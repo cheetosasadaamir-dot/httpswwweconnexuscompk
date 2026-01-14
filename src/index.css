@@ -53,6 +53,13 @@
     --gradient-navy: 222 47% 5%;
     --gradient-indigo: 234 60% 15%;
     --gradient-charcoal: 220 20% 8%;
+    
+    /* Cambridge 9708 Standard Colors */
+    --cambridge-cyan: 185 100% 50%;
+    --cambridge-magenta: 300 100% 60%;
+    --cambridge-green: 142 76% 45%;
+    --cambridge-orange: 25 95% 55%;
+    --cambridge-yellow: 45 93% 55%;
 
     --sidebar-background: 222 47% 4%;
     --sidebar-foreground: 210 40% 96%;
