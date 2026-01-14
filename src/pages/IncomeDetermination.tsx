@@ -146,10 +146,12 @@ const IncomeDetermination = () => {
             </NoteCard>
           </div>
 
-          <ExamTipBox
-            title="The Breakeven Point"
-            content="Where C = Y (on the 45° line), APC = 1. To the left, C > Y (dissaving/borrowing). To the right, C < Y (positive saving). Always label this point in your diagrams!"
-          />
+          <ExamTipBox title="The Breakeven Point">
+            <p>
+              Where C = Y (on the 45° line), APC = 1. To the left, C &gt; Y (dissaving/borrowing). 
+              To the right, C &lt; Y (positive saving). Always label this point in your diagrams!
+            </p>
+          </ExamTipBox>
         </ContentSection>
 
         {/* Saving Function */}
@@ -257,19 +259,26 @@ const IncomeDetermination = () => {
             <KeynesianCrossDiagram />
           </div>
 
-          <AnalysisBlock
-            title="Analysis: Equilibrium Adjustment"
-            points={[
-              {
-                ao3: "If AE > Y: Firms experience unplanned inventory depletion. They respond by increasing production, hiring more workers, and expanding output until Y rises to match AE.",
-                ao4: "The adjustment process involves time lags. Firms may be uncertain whether demand changes are temporary or permanent, leading to cautious responses initially."
-              },
-              {
-                ao3: "If AE < Y: Firms experience unplanned inventory accumulation. They respond by cutting production and laying off workers until Y falls to match AE.",
-                ao4: "This explains how economies can get stuck in recession—if AE is persistently below full-employment output, there is no automatic market mechanism to restore full employment (the Keynesian insight)."
-              }
-            ]}
-          />
+          <AnalysisBlock title="Analysis: Equilibrium Adjustment">
+            <div className="space-y-4">
+              <div>
+                <p className="font-medium text-primary mb-1">AO3 - Analysis:</p>
+                <p>If AE &gt; Y: Firms experience unplanned inventory depletion. They respond by increasing production, hiring more workers, and expanding output until Y rises to match AE.</p>
+              </div>
+              <div>
+                <p className="font-medium text-secondary mb-1">AO4 - Evaluation:</p>
+                <p>The adjustment process involves time lags. Firms may be uncertain whether demand changes are temporary or permanent, leading to cautious responses initially.</p>
+              </div>
+              <div>
+                <p className="font-medium text-primary mb-1">AO3 - Analysis:</p>
+                <p>If AE &lt; Y: Firms experience unplanned inventory accumulation. They respond by cutting production and laying off workers until Y falls to match AE.</p>
+              </div>
+              <div>
+                <p className="font-medium text-secondary mb-1">AO4 - Evaluation:</p>
+                <p>This explains how economies can get stuck in recession—if AE is persistently below full-employment output, there is no automatic market mechanism to restore full employment (the Keynesian insight).</p>
+              </div>
+            </div>
+          </AnalysisBlock>
         </ContentSection>
 
         {/* The Multiplier */}
@@ -311,10 +320,13 @@ const IncomeDetermination = () => {
             </ol>
           </div>
 
-          <ExamTipBox
-            title="Cambridge Examiner Expectation"
-            content="Show the multiplier process step-by-step. Explain that the process ends because each round 'leaks' some income to savings (and in more complex models, to taxes and imports). The multiplier is finite because MPC < 1."
-          />
+          <ExamTipBox title="Cambridge Examiner Expectation">
+            <p>
+              Show the multiplier process step-by-step. Explain that the process ends because 
+              each round 'leaks' some income to savings (and in more complex models, to taxes and imports). 
+              The multiplier is finite because MPC &lt; 1.
+            </p>
+          </ExamTipBox>
         </ContentSection>
 
         {/* Summary */}

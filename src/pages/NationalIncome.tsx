@@ -117,10 +117,13 @@ const NationalIncome = () => {
             </NoteCard>
           </div>
 
-          <ExamTipBox
-            title="Cambridge Examiner Insight"
-            content="When drawing the circular flow, always show the indirect links: savings flow to investment via financial institutions; taxes flow to government spending via the government; imports enable foreigners to earn income to purchase our exports."
-          />
+          <ExamTipBox title="Cambridge Examiner Insight">
+            <p>
+              When drawing the circular flow, always show the indirect links: savings flow to investment 
+              via financial institutions; taxes flow to government spending via the government; 
+              imports enable foreigners to earn income to purchase our exports.
+            </p>
+          </ExamTipBox>
         </ContentSection>
 
         {/* Equilibrium */}
@@ -139,19 +142,26 @@ const NationalIncome = () => {
             </p>
           </NoteCard>
 
-          <AnalysisBlock
-            title="Analysis: The Adjustment Process"
-            points={[
-              {
-                ao3: "If J > W, national income will rise as more is being added to the flow than is being withdrawn. This creates additional income and spending.",
-                ao4: "However, as income rises, households will not only spend more on domestic goods (Cᵈ), but also save more (S), pay more taxes (T), and buy more imports (M). Withdrawals rise until they equal injections."
-              },
-              {
-                ao3: "Conversely, if J < W, the circular flow contracts. Income falls, reducing the ability of households to save, pay taxes, and import.",
-                ao4: "The magnitude of adjustment depends on the marginal propensities (MPS, MPT, MPM). Higher marginal propensities mean faster adjustment to equilibrium."
-              }
-            ]}
-          />
+          <AnalysisBlock title="Analysis: The Adjustment Process">
+            <div className="space-y-4">
+              <div>
+                <p className="font-medium text-primary mb-1">AO3 - Analysis:</p>
+                <p>If J &gt; W, national income will rise as more is being added to the flow than is being withdrawn. This creates additional income and spending.</p>
+              </div>
+              <div>
+                <p className="font-medium text-secondary mb-1">AO4 - Evaluation:</p>
+                <p>However, as income rises, households will not only spend more on domestic goods (Cᵈ), but also save more (S), pay more taxes (T), and buy more imports (M). Withdrawals rise until they equal injections.</p>
+              </div>
+              <div>
+                <p className="font-medium text-primary mb-1">AO3 - Analysis:</p>
+                <p>Conversely, if J &lt; W, the circular flow contracts. Income falls, reducing the ability of households to save, pay taxes, and import.</p>
+              </div>
+              <div>
+                <p className="font-medium text-secondary mb-1">AO4 - Evaluation:</p>
+                <p>The magnitude of adjustment depends on the marginal propensities (MPS, MPT, MPM). Higher marginal propensities mean faster adjustment to equilibrium.</p>
+              </div>
+            </div>
+          </AnalysisBlock>
 
           <NoteCard title="Implications for Policy" type="concept" className="mt-6">
             <p>
@@ -170,10 +180,13 @@ const NationalIncome = () => {
             </ul>
           </NoteCard>
 
-          <ExamTipBox
-            title="Key Evaluation Point"
-            content="Always consider time lags in adjustment. While the model suggests automatic adjustment to equilibrium, in reality, there may be significant delays. Sticky wages and prices can prevent rapid adjustment, leading to prolonged periods of disequilibrium unemployment."
-          />
+          <ExamTipBox title="Key Evaluation Point">
+            <p>
+              Always consider time lags in adjustment. While the model suggests automatic adjustment 
+              to equilibrium, in reality, there may be significant delays. Sticky wages and prices 
+              can prevent rapid adjustment, leading to prolonged periods of disequilibrium unemployment.
+            </p>
+          </ExamTipBox>
         </ContentSection>
 
         {/* Links between sectors */}

@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 
 interface NoteCardProps {
   title: string;
-  type?: 'theory' | 'application' | 'exam-tip' | 'definition';
+  type?: 'theory' | 'application' | 'exam-tip' | 'definition' | 'concept' | 'formula';
   children: React.ReactNode;
   className?: string;
   delay?: number;
@@ -28,6 +28,16 @@ const typeStyles = {
     border: 'border-l-cyan-500',
     badge: 'bg-cyan-500/20 text-cyan-400',
     label: 'Key Definition',
+  },
+  concept: {
+    border: 'border-l-indigo-500',
+    badge: 'bg-indigo-500/20 text-indigo-400',
+    label: 'Key Concept',
+  },
+  formula: {
+    border: 'border-l-emerald-500',
+    badge: 'bg-emerald-500/20 text-emerald-400',
+    label: 'Formula',
   },
 };
 
