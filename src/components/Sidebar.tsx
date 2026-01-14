@@ -33,10 +33,11 @@ const navigation: NavItem[] = [
     title: 'Microeconomics',
     icon: TrendingUp,
     children: [
+      { title: 'Ch.1: Basic Economic Problem', href: '/basic-economic-problem' },
+      { title: 'Ch.2: Economic Systems', href: '/economic-systems' },
+      { title: 'Ch.3: Specialization & Money', href: '/specialization-money' },
+      { title: 'Ch.4: Price Mechanism', href: '/price-mechanism' },
       { title: 'Market Structures', href: '/market-structures' },
-      { title: 'Supply & Demand', href: '/supply-demand' },
-      { title: 'Elasticity', href: '/elasticity' },
-      { title: 'Market Failure', href: '/market-failure' },
     ],
   },
   {
