@@ -6,17 +6,11 @@ import {
   BookOpen, 
   TrendingUp, 
   Globe,
-  BarChart3,
   Home,
   Image,
-  Scale,
-  Factory,
-  Users,
-  Wallet,
-  Banknote,
-  Target,
   Building2,
-  Ship
+  Layers,
+  GraduationCap
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -27,7 +21,7 @@ interface NavItem {
   children?: { title: string; href: string }[];
 }
 
-// Bamford & Grant Structure - Aligned with A2 Macroeconomics Notes
+// Master Syllabus Map - AS & A2 Structure from Teacher's Notes
 const navigation: NavItem[] = [
   {
     title: 'Home',
@@ -57,18 +51,28 @@ const navigation: NavItem[] = [
     ],
   },
   {
-    title: 'Macroeconomics',
-    icon: Globe,
+    title: 'AS Macroeconomics',
+    icon: Layers,
     children: [
-      { title: 'Ch.1: National Income', href: '/national-income' },
-      { title: 'Ch.2: Income Determination', href: '/income-determination' },
-      { title: 'Ch.3: Investment', href: '/investment' },
-      { title: 'Ch.4: Government & Trade', href: '/government-trade' },
-      { title: 'Ch.5: Money & Banking', href: '/money-banking' },
-      { title: 'Ch.6: Unemployment & Growth', href: '/unemployment-growth' },
-      { title: 'Ch.7: AD/AS Analysis', href: '/ad-as-analysis' },
-      { title: 'Ch.8: International Trade', href: '/international-trade' },
-      { title: 'Ch.9: Development Economics', href: '/development-economics' },
+      { title: 'Ch.1: AD/AS Equilibrium', href: '/as-macro/ad-as' },
+      { title: 'Ch.2: Inflation', href: '/as-macro/inflation' },
+      { title: 'Ch.3: International Trade', href: '/as-macro/international-trade' },
+      { title: 'Ch.4: Balance of Payments', href: '/as-macro/balance-of-payments' },
+      { title: 'Ch.5: Macroeconomic Policy', href: '/as-macro/policy' },
+    ],
+  },
+  {
+    title: 'A2 Macroeconomics',
+    icon: GraduationCap,
+    children: [
+      { title: 'Ch.1: National Income', href: '/a2-macro/national-income' },
+      { title: 'Ch.2: Income Determination', href: '/a2-macro/income-determination' },
+      { title: 'Ch.3: Investment', href: '/a2-macro/investment' },
+      { title: 'Ch.4: Government & Trade', href: '/a2-macro/government-trade' },
+      { title: 'Ch.5: Money & Banking', href: '/a2-macro/money-banking' },
+      { title: 'Ch.6: Unemployment & Growth', href: '/a2-macro/unemployment-growth' },
+      { title: 'Ch.7: Policy Objectives', href: '/a2-macro/policy-objectives' },
+      { title: 'Ch.8: Development & Trade Blocs', href: '/a2-macro/development' },
     ],
   },
   {
@@ -85,7 +89,7 @@ const navigation: NavItem[] = [
 
 const Sidebar = () => {
   const location = useLocation();
-  const [expandedItems, setExpandedItems] = useState<string[]>(['Microeconomics']);
+  const [expandedItems, setExpandedItems] = useState<string[]>(['AS Macroeconomics', 'A2 Macroeconomics']);
 
   const toggleExpand = (title: string) => {
     setExpandedItems(prev => 
@@ -113,7 +117,7 @@ const Sidebar = () => {
             </div>
             <div>
               <h1 className="font-serif text-lg font-semibold text-silver-bright">EconVerse</h1>
-              <p className="text-xs text-muted-foreground">Bamford & Grant Edition</p>
+              <p className="text-xs text-muted-foreground">Cambridge 9708 Edition</p>
             </div>
           </Link>
         </div>
@@ -182,7 +186,7 @@ const Sidebar = () => {
         <div className="p-4 border-t border-silver/10">
           <div className="glass-card p-3 rounded-lg">
             <p className="text-xs text-muted-foreground text-center">
-              Based on Bamford & Grant Textbook
+              Cambridge International AS & A Level
             </p>
           </div>
         </div>
