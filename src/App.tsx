@@ -20,6 +20,9 @@ import InternationalTrade from "./pages/as-macro/InternationalTrade";
 
 // A2 Macro chapters
 import Investment from "./pages/a2-macro/Investment";
+import GovernmentTrade from "./pages/a2-macro/GovernmentTrade";
+import MoneyBanking from "./pages/a2-macro/MoneyBanking";
+import UnemploymentGrowth from "./pages/a2-macro/UnemploymentGrowth";
 
 const queryClient = new QueryClient();
 
@@ -48,9 +51,9 @@ const App = () => (
           <Route path="/a2-macro/national-income" element={<NationalIncome />} />
           <Route path="/a2-macro/income-determination" element={<IncomeDetermination />} />
           <Route path="/a2-macro/investment" element={<Investment />} />
-          <Route path="/a2-macro/government-trade" element={<DiagramBank />} />
-          <Route path="/a2-macro/money-banking" element={<DiagramBank />} />
-          <Route path="/a2-macro/unemployment-growth" element={<DiagramBank />} />
+          <Route path="/a2-macro/government-trade" element={<GovernmentTrade />} />
+          <Route path="/a2-macro/money-banking" element={<MoneyBanking />} />
+          <Route path="/a2-macro/unemployment-growth" element={<UnemploymentGrowth />} />
           <Route path="/a2-macro/policy-objectives" element={<DiagramBank />} />
           <Route path="/a2-macro/development" element={<DiagramBank />} />
           
