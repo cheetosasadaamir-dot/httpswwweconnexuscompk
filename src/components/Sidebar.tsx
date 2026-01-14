@@ -5,14 +5,18 @@ import {
   ChevronDown, 
   BookOpen, 
   TrendingUp, 
-  Building2, 
-  Scale, 
-  Landmark,
   Globe,
-  PiggyBank,
-  Users,
   BarChart3,
-  Home
+  Home,
+  Image,
+  Scale,
+  Factory,
+  Users,
+  Wallet,
+  Banknote,
+  Target,
+  Building2,
+  Ship
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -23,6 +27,7 @@ interface NavItem {
   children?: { title: string; href: string }[];
 }
 
+// Bamford & Grant Structure
 const navigation: NavItem[] = [
   {
     title: 'Home',
@@ -30,34 +35,41 @@ const navigation: NavItem[] = [
     icon: Home,
   },
   {
+    title: 'Diagram Bank',
+    href: '/diagrams',
+    icon: Image,
+  },
+  {
     title: 'Microeconomics',
     icon: TrendingUp,
     children: [
-      { title: 'Ch.1: Basic Economic Problem', href: '/basic-economic-problem' },
-      { title: 'Ch.2: Economic Systems', href: '/economic-systems' },
-      { title: 'Ch.3: Specialization & Money', href: '/specialization-money' },
-      { title: 'Ch.4: Price Mechanism', href: '/price-mechanism' },
-      { title: 'Market Structures', href: '/market-structures' },
+      { title: 'Ch.1: Basic Economic Ideas', href: '/basic-economic-ideas' },
+      { title: 'Ch.2: The Price System', href: '/price-system' },
+      { title: 'Ch.3: Elasticities', href: '/elasticities' },
+      { title: 'Ch.4: Market Failure', href: '/market-failure' },
+      { title: 'Ch.5: Theory of the Firm', href: '/theory-of-firm' },
+      { title: 'Ch.6: Labor Markets', href: '/labor-markets' },
     ],
   },
   {
     title: 'Macroeconomics',
     icon: Globe,
     children: [
-      { title: 'Economic Growth', href: '/economic-growth' },
-      { title: 'Inflation', href: '/inflation' },
-      { title: 'Unemployment', href: '/unemployment' },
-      { title: 'Fiscal Policy', href: '/fiscal-policy' },
-      { title: 'Monetary Policy', href: '/monetary-policy' },
+      { title: 'Ch.7: AD/AS Analysis', href: '/ad-as-analysis' },
+      { title: 'Ch.8: Money & Banking', href: '/money-banking' },
+      { title: 'Ch.9: Macro Objectives', href: '/macro-objectives' },
+      { title: 'Ch.10: International Trade', href: '/international-trade' },
+      { title: 'Ch.11: Development Economics', href: '/development-economics' },
     ],
   },
   {
-    title: 'International Trade',
-    icon: Landmark,
+    title: 'Market Structures',
+    icon: Building2,
     children: [
-      { title: 'Trade Theory', href: '/trade-theory' },
-      { title: 'Exchange Rates', href: '/exchange-rates' },
-      { title: 'Balance of Payments', href: '/balance-of-payments' },
+      { title: 'Perfect Competition', href: '/market-structures#perfect-competition' },
+      { title: 'Monopoly', href: '/market-structures#monopoly' },
+      { title: 'Oligopoly', href: '/market-structures#oligopoly' },
+      { title: 'Monopolistic Competition', href: '/market-structures#monopolistic' },
     ],
   },
 ];
@@ -74,6 +86,13 @@ const Sidebar = () => {
     );
   };
 
+  const isActive = (href: string) => {
+    if (href.includes('#')) {
+      return location.pathname === href.split('#')[0];
+    }
+    return location.pathname === href;
+  };
+
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 glass-card rounded-none border-r border-silver/10 z-40 overflow-hidden">
       <div className="flex flex-col h-full">
@@ -85,7 +104,7 @@ const Sidebar = () => {
             </div>
             <div>
               <h1 className="font-serif text-lg font-semibold text-silver-bright">EconVerse</h1>
-              <p className="text-xs text-muted-foreground">A-Level Economics</p>
+              <p className="text-xs text-muted-foreground">Bamford & Grant Edition</p>
             </div>
           </Link>
         </div>
@@ -100,7 +119,7 @@ const Sidebar = () => {
                     to={item.href}
                     className={cn(
                       "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300",
-                      location.pathname === item.href
+                      isActive(item.href)
                         ? "bg-primary/10 text-primary border border-primary/20"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                     )}
@@ -132,7 +151,7 @@ const Sidebar = () => {
                               to={child.href}
                               className={cn(
                                 "block px-3 py-2 rounded-lg text-sm transition-all duration-300",
-                                location.pathname === child.href
+                                isActive(child.href)
                                   ? "text-primary bg-primary/10"
                                   : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
                               )}
@@ -154,7 +173,7 @@ const Sidebar = () => {
         <div className="p-4 border-t border-silver/10">
           <div className="glass-card p-3 rounded-lg">
             <p className="text-xs text-muted-foreground text-center">
-              Your journey to A* starts here
+              Based on Bamford & Grant Textbook
             </p>
           </div>
         </div>
