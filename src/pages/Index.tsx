@@ -1,172 +1,267 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Brain, Target, TrendingUp, Sparkles } from 'lucide-react';
-import Layout from '@/components/Layout';
+import { motion } from 'framer-motion';
+import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
+import ParticleField from '@/components/ParticleField';
+import MeshGradientBackground from '@/components/MeshGradientBackground';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import EconomicGlobe from '@/components/EconomicGlobe';
+import KnowledgePillars from '@/components/KnowledgePillars';
+import PPFDiagram from '@/components/PPFDiagram';
 import { Button } from '@/components/ui/button';
 
 const features = [
   {
-    icon: Brain,
-    title: 'Intelligent Diagrams',
-    description: 'Animated visualizations that bring economic concepts to life',
+    icon: LineChart,
+    title: 'Clear Diagrams',
+    description: 'No more messy hand-drawn charts. Our animated diagrams make complex relationships crystal clear.',
+  },
+  {
+    icon: MessageSquare,
+    title: 'Easy Language',
+    description: 'Complex economic theories explained in plain English. Jargon decoded, concepts simplified.',
   },
   {
     icon: Target,
-    title: 'Exam-Focused',
-    description: 'Every concept broken down into theory, application, and exam tips',
+    title: 'Exam Focused',
+    description: 'Strategically built for A-Level board specifications. Every concept leads to exam success.',
   },
-  {
-    icon: TrendingUp,
-    title: 'Progressive Learning',
-    description: 'Build understanding from basics to advanced analysis',
-  },
-];
-
-const topics = [
-  { title: 'Market Structures', href: '/market-structures', category: 'Microeconomics' },
-  { title: 'Supply & Demand', href: '/supply-demand', category: 'Microeconomics' },
-  { title: 'Economic Growth', href: '/economic-growth', category: 'Macroeconomics' },
-  { title: 'Monetary Policy', href: '/monetary-policy', category: 'Macroeconomics' },
 ];
 
 const Index = () => {
   return (
-    <Layout>
-      <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <MeshGradientBackground />
+      <ParticleField />
+      <Header />
+
+      <main className="relative z-20">
         {/* Hero Section */}
-        <section className="relative py-24 px-8 lg:px-16">
-          <div className="max-w-4xl">
-            {/* Badge */}
-            <div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
-              style={{ animation: 'fade-in-up 0.6s ease-out forwards' }}
-            >
-              <Sparkles className="w-4 h-4 text-secondary" />
-              <span className="text-sm text-muted-foreground">A-Level Economics Mastery</span>
-            </div>
+        <section className="min-h-screen flex items-center pt-20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-24">
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+              {/* Text Content */}
+              <div className="flex-1 text-center lg:text-left">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
+                >
+                  <Sparkles className="w-4 h-4 text-secondary" />
+                  <span className="text-sm text-muted-foreground">Elite A-Level Economics Portal</span>
+                </motion.div>
 
-            {/* Main heading */}
-            <h1 
-              className="font-serif text-5xl lg:text-7xl font-bold leading-tight mb-6 section-title"
-              style={{ animation: 'fade-in-up 0.6s ease-out 0.1s forwards', opacity: 0 }}
-            >
-              Master Economics
-              <br />
-              <span className="text-foreground">with Clarity</span>
-            </h1>
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-6"
+                >
+                  <span className="section-title">Master the</span>
+                  <br />
+                  <span className="text-foreground">Economy in 4D</span>
+                </motion.h1>
 
-            {/* Subtitle */}
-            <p 
-              className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10"
-              style={{ animation: 'fade-in-up 0.6s ease-out 0.2s forwards', opacity: 0 }}
-            >
-              Immersive notes, animated diagrams, and exam-focused insights designed 
-              to transform complex economic theory into unforgettable understanding.
-            </p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0 mb-10"
+                >
+                  Elite A-Level notes, interactive diagrams, and AI-powered insights. 
+                  Designed for clarity, built for top grades.
+                </motion.p>
 
-            {/* CTA Buttons */}
-            <div 
-              className="flex flex-wrap gap-4"
-              style={{ animation: 'fade-in-up 0.6s ease-out 0.3s forwards', opacity: 0 }}
-            >
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8">
-                <Link to="/market-structures">
-                  Start Learning
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-silver/20 hover:bg-muted/50">
-                <Link to="/market-structures">
-                  <BookOpen className="mr-2 w-4 h-4" />
-                  Browse Topics
-                </Link>
-              </Button>
-            </div>
-          </div>
-
-          {/* Decorative element */}
-          <div 
-            className="absolute right-8 lg:right-16 top-1/2 -translate-y-1/2 w-64 h-64 lg:w-96 lg:h-96 rounded-full opacity-20 blur-3xl pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle, hsl(234 89% 74%) 0%, transparent 70%)',
-            }}
-          />
-        </section>
-
-        {/* Features Section */}
-        <section className="py-16 px-8 lg:px-16">
-          <div className="grid md:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <div 
-                key={feature.title}
-                className="glass-card-hover p-6"
-                style={{ 
-                  animation: 'fade-in-up 0.6s ease-out forwards',
-                  animationDelay: `${0.4 + index * 0.1}s`,
-                  opacity: 0,
-                }}
-              >
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="font-serif text-lg text-silver-bright mb-2">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                >
+                  <Button
+                    asChild
+                    size="lg"
+                    className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-medium rounded-xl group"
+                  >
+                    <Link to="/market-structures">
+                      <motion.span
+                        className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                        animate={{
+                          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                        }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        style={{ backgroundSize: '200% 200%' }}
+                      />
+                      <span className="relative flex items-center gap-2">
+                        Start Learning
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </Link>
+                  </Button>
+                </motion.div>
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* Topics Grid */}
-        <section className="py-16 px-8 lg:px-16">
-          <div 
-            className="mb-8"
-            style={{ animation: 'fade-in-up 0.6s ease-out 0.7s forwards', opacity: 0 }}
-          >
-            <h2 className="font-serif text-3xl text-silver-bright mb-2">Explore Topics</h2>
-            <p className="text-muted-foreground">Begin your journey through A-Level Economics</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            {topics.map((topic, index) => (
-              <Link 
-                key={topic.href}
-                to={topic.href}
-                className="glass-card-hover group p-6 flex items-center justify-between"
-                style={{ 
-                  animation: 'fade-in-up 0.6s ease-out forwards',
-                  animationDelay: `${0.8 + index * 0.1}s`,
-                  opacity: 0,
-                }}
+              {/* 3D Globe */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex-1 flex justify-center"
               >
-                <div>
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                    {topic.category}
-                  </span>
-                  <h3 className="font-serif text-xl text-silver-bright mt-1 group-hover:text-primary transition-colors">
-                    {topic.title}
-                  </h3>
-                </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-              </Link>
-            ))}
+                <EconomicGlobe />
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* Quote Section */}
-        <section className="py-24 px-8 lg:px-16">
-          <blockquote 
-            className="max-w-3xl mx-auto text-center"
-            style={{ animation: 'fade-in-up 0.6s ease-out 1.2s forwards', opacity: 0 }}
-          >
-            <p className="font-serif text-2xl lg:text-3xl text-silver/80 italic leading-relaxed mb-6">
-              "Economics is a study of mankind in the ordinary business of life."
-            </p>
-            <cite className="text-muted-foreground not-italic">
-              — Alfred Marshall
-            </cite>
-          </blockquote>
+        {/* Silver Divider */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        </div>
+
+        {/* Knowledge Pillars Section */}
+        <section className="py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="font-serif text-4xl lg:text-5xl font-bold section-title mb-4">
+                Knowledge Pillars
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Two foundational branches of economics, each with its own universe of concepts to master.
+              </p>
+            </motion.div>
+
+            <KnowledgePillars />
+          </div>
         </section>
-      </div>
-    </Layout>
+
+        {/* Silver Divider */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        </div>
+
+        {/* Interactive Visualization Section */}
+        <section className="py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full glass-card text-sm text-muted-foreground mb-6">
+                Interactive Learning
+              </span>
+              <h2 className="font-serif text-4xl lg:text-5xl font-bold section-title mb-4">
+                Interactive Visualization
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Don't just read about economics—experience it. Interact with our diagrams to see concepts come alive.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="glass-card p-8 lg:p-12"
+            >
+              <PPFDiagram />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Silver Divider */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        </div>
+
+        {/* Simplified Mastery Section */}
+        <section className="py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="font-serif text-4xl lg:text-5xl font-bold section-title mb-4">
+                Simplified Mastery
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Why struggle with dense textbooks when clarity is just a click away?
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  whileHover={{ y: -5 }}
+                  className="glass-card-hover p-8 text-center group"
+                >
+                  <motion.div
+                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-6"
+                    whileHover={{ rotate: 5, scale: 1.05 }}
+                  >
+                    <feature.icon className="w-7 h-7 text-primary group-hover:text-secondary transition-colors" />
+                  </motion.div>
+                  <h3 className="font-serif text-xl text-silver-bright mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Silver Divider */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        </div>
+
+        {/* CTA Section */}
+        <section className="py-24 lg:py-32">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="font-serif text-4xl lg:text-5xl font-bold text-silver-bright mb-6">
+                Ready to Master Economics?
+              </h2>
+              <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+                Join thousands of students who've transformed their understanding of economics. 
+                Your A* journey starts here.
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-6 text-lg rounded-xl animate-glow"
+              >
+                <Link to="/market-structures">
+                  Begin Your Journey
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
