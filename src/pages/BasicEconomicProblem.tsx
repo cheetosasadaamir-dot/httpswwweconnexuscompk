@@ -17,7 +17,7 @@ const BasicEconomicProblem = () => {
       <ContentSection title="Scarcity and Opportunity Cost">
         <NoteCard title="The Fundamental Problem" type="theory">
           <p>
-            The basic economic problem is that of <GlossaryTooltip term="Scarcity">scarcity</GlossaryTooltip>. 
+            The basic economic problem is that of <GlossaryTooltip term="Scarcity" definition="The condition where unlimited wants exceed the limited resources available to satisfy them.">scarcity</GlossaryTooltip>. 
             Given that human wants are <strong>unlimited</strong> and that resources are <strong>finite</strong>, 
             choices have to be made between the various uses of resources.
           </p>
@@ -28,7 +28,7 @@ const BasicEconomicProblem = () => {
 
         <NoteCard title="Opportunity Cost Explained" type="application" delay={200}>
           <p>
-            <GlossaryTooltip term="Opportunity Cost">Opportunity cost</GlossaryTooltip> is the value of the 
+            <GlossaryTooltip term="Opportunity Cost" definition="The value of the next best alternative foregone when making a choice.">Opportunity cost</GlossaryTooltip> is the value of the 
             next best alternative sacrificed when making a choice.
           </p>
           <p className="mt-4">
@@ -70,7 +70,7 @@ const BasicEconomicProblem = () => {
       <ContentSection title="The Production Possibility Curve (PPC)">
         <NoteCard title="What is the PPC?" type="theory">
           <p>
-            The <GlossaryTooltip term="Production Possibility Curve">PPC</GlossaryTooltip> is an economic 
+            The <GlossaryTooltip term="Production Possibility Curve" definition="A curve showing the maximum possible output combinations of two goods given fixed resources and technology.">PPC</GlossaryTooltip> is an economic 
             model showing the maximum output of two goods that can be produced, holding all resources and 
             technology constant.
           </p>
