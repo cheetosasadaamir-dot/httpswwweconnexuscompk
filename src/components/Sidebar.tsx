@@ -27,7 +27,7 @@ interface NavItem {
   children?: { title: string; href: string }[];
 }
 
-// Bamford & Grant Structure
+// Bamford & Grant Structure - Aligned with A2 Macroeconomics Notes
 const navigation: NavItem[] = [
   {
     title: 'Home',
@@ -38,6 +38,11 @@ const navigation: NavItem[] = [
     title: 'Diagram Bank',
     href: '/diagrams',
     icon: Image,
+  },
+  {
+    title: 'Case Studies',
+    href: '/case-studies',
+    icon: BookOpen,
   },
   {
     title: 'Microeconomics',
@@ -55,11 +60,15 @@ const navigation: NavItem[] = [
     title: 'Macroeconomics',
     icon: Globe,
     children: [
+      { title: 'Ch.1: National Income', href: '/national-income' },
+      { title: 'Ch.2: Income Determination', href: '/income-determination' },
+      { title: 'Ch.3: Investment', href: '/investment' },
+      { title: 'Ch.4: Government & Trade', href: '/government-trade' },
+      { title: 'Ch.5: Money & Banking', href: '/money-banking' },
+      { title: 'Ch.6: Unemployment & Growth', href: '/unemployment-growth' },
       { title: 'Ch.7: AD/AS Analysis', href: '/ad-as-analysis' },
-      { title: 'Ch.8: Money & Banking', href: '/money-banking' },
-      { title: 'Ch.9: Macro Objectives', href: '/macro-objectives' },
-      { title: 'Ch.10: International Trade', href: '/international-trade' },
-      { title: 'Ch.11: Development Economics', href: '/development-economics' },
+      { title: 'Ch.8: International Trade', href: '/international-trade' },
+      { title: 'Ch.9: Development Economics', href: '/development-economics' },
     ],
   },
   {
