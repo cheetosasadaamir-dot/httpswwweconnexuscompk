@@ -8,6 +8,7 @@ import MarketStructures from "./pages/MarketStructures";
 import BasicEconomicIdeas from "./pages/BasicEconomicIdeas";
 import PriceSystem from "./pages/PriceSystem";
 import DiagramBank from "./pages/DiagramBank";
+import CaseStudies from "./pages/CaseStudies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/basic-economic-ideas" element={<BasicEconomicIdeas />} />
           <Route path="/price-system" element={<PriceSystem />} />
           <Route path="/diagrams" element={<DiagramBank />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
           {/* Legacy routes - redirect to new structure */}
           <Route path="/basic-economic-problem" element={<BasicEconomicIdeas />} />
           {/* Placeholder routes for future chapters */}
