@@ -16,6 +16,10 @@ import NotFound from "./pages/NotFound";
 // AS Macro chapters
 import ADASEquilibrium from "./pages/as-macro/ADASEquilibrium";
 import Inflation from "./pages/as-macro/Inflation";
+import InternationalTrade from "./pages/as-macro/InternationalTrade";
+
+// A2 Macro chapters
+import Investment from "./pages/a2-macro/Investment";
 
 const queryClient = new QueryClient();
 
@@ -36,14 +40,14 @@ const App = () => (
           {/* AS Macroeconomics chapters */}
           <Route path="/as-macro/ad-as" element={<ADASEquilibrium />} />
           <Route path="/as-macro/inflation" element={<Inflation />} />
-          <Route path="/as-macro/international-trade" element={<DiagramBank />} />
+          <Route path="/as-macro/international-trade" element={<InternationalTrade />} />
           <Route path="/as-macro/balance-of-payments" element={<DiagramBank />} />
           <Route path="/as-macro/policy" element={<DiagramBank />} />
           
           {/* A2 Macroeconomics chapters */}
           <Route path="/a2-macro/national-income" element={<NationalIncome />} />
           <Route path="/a2-macro/income-determination" element={<IncomeDetermination />} />
-          <Route path="/a2-macro/investment" element={<DiagramBank />} />
+          <Route path="/a2-macro/investment" element={<Investment />} />
           <Route path="/a2-macro/government-trade" element={<DiagramBank />} />
           <Route path="/a2-macro/money-banking" element={<DiagramBank />} />
           <Route path="/a2-macro/unemployment-growth" element={<DiagramBank />} />
