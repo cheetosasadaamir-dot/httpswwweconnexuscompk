@@ -94,7 +94,7 @@ const MacroeconomicPolicy = () => {
               </NoteCard>
             </div>
 
-            <NoteCard title="The Multiplier Effect" variant="info" className="mb-6">
+            <NoteCard title="The Multiplier Effect" type="formula" className="mb-6">
               <p className="text-sm text-muted-foreground mb-2">
                 An initial change in spending creates a larger final change in national income:
               </p>
@@ -142,7 +142,7 @@ const MacroeconomicPolicy = () => {
             </NoteCard>
 
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Expansionary Monetary Policy" variant="success">
+              <NoteCard title="Expansionary Monetary Policy">
                 <ul className="list-disc list-inside text-sm space-y-1">
                   <li>Lower interest rates</li>
                   <li>Quantitative easing (QE)</li>
@@ -151,7 +151,7 @@ const MacroeconomicPolicy = () => {
                 <p className="text-sm mt-2"><strong>Goal:</strong> Stimulate spending during recession</p>
               </NoteCard>
 
-              <NoteCard title="Contractionary Monetary Policy" variant="warning">
+              <NoteCard title="Contractionary Monetary Policy">
                 <ul className="list-disc list-inside text-sm space-y-1">
                   <li>Higher interest rates</li>
                   <li>Selling government bonds</li>
@@ -200,7 +200,7 @@ const MacroeconomicPolicy = () => {
               </NoteCard>
             </div>
 
-            <NoteCard title="Benefits of Supply-Side Policies" variant="success" className="mb-4">
+            <NoteCard title="Benefits of Supply-Side Policies" className="mb-4">
               <ul className="list-disc list-inside text-sm space-y-1">
                 <li>Non-inflationary growth (LRAS shifts right)</li>
                 <li>Improved international competitiveness</li>
@@ -209,7 +209,7 @@ const MacroeconomicPolicy = () => {
               </ul>
             </NoteCard>
 
-            <NoteCard title="Limitations of Supply-Side Policies" variant="warning">
+            <NoteCard title="Limitations of Supply-Side Policies" type="exam-tip">
               <ul className="list-disc list-inside text-sm space-y-1">
                 <li>Long time lags (education takes years to improve productivity)</li>
                 <li>Costly to implement (infrastructure spending)</li>
