@@ -82,13 +82,10 @@ const navigation: NavItem[] = [
       {
         title: 'A2 Level',
         children: [
-          { title: 'Ch.1: National Income', href: '/a2-macro/national-income' },
-          { title: 'Ch.2: Income Determination', href: '/a2-macro/income-determination' },
-          { title: 'Ch.3: Investment', href: '/a2-macro/investment' },
-          { title: 'Ch.4: Government & Trade', href: '/a2-macro/government-trade' },
-          { title: 'Ch.5: Money & Banking', href: '/a2-macro/money-banking' },
-          { title: 'Ch.6: Unemployment & Growth', href: '/a2-macro/unemployment-growth' },
-          { title: 'Ch.7: Policy Objectives', href: '/a2-macro/policy-objectives' },
+          { title: 'Ch.2: Keynesian Theory', href: '/a2-macro/national-income' },
+          { title: 'Ch.4: Unemployment & Phillips Curve', href: '/a2-macro/unemployment-growth' },
+          { title: 'Ch.5: Policy Objectives', href: '/a2-macro/policy-objectives' },
+          { title: 'Ch.6: Money & Banking', href: '/a2-macro/money-banking' },
           { title: 'Ch.8: Development', href: '/a2-macro/development' },
         ],
       },

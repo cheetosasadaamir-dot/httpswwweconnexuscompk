@@ -9,8 +9,9 @@ import BasicEconomicIdeas from "./pages/BasicEconomicIdeas";
 import PriceSystem from "./pages/PriceSystem";
 import DiagramBank from "./pages/DiagramBank";
 import CaseStudies from "./pages/CaseStudies";
-import NationalIncome from "./pages/NationalIncome";
+import NationalIncomeLegacy from "./pages/NationalIncome";
 import IncomeDetermination from "./pages/IncomeDetermination";
+import NationalIncome from "./pages/a2-macro/NationalIncome";
 import NotFound from "./pages/NotFound";
 import Elasticities from "./pages/Elasticities";
 
@@ -77,9 +78,6 @@ const App = () => (
           
           {/* A2 Macroeconomics chapters */}
           <Route path="/a2-macro/national-income" element={<NationalIncome />} />
-          <Route path="/a2-macro/income-determination" element={<IncomeDetermination />} />
-          <Route path="/a2-macro/investment" element={<Investment />} />
-          <Route path="/a2-macro/government-trade" element={<GovernmentTrade />} />
           <Route path="/a2-macro/money-banking" element={<MoneyBanking />} />
           <Route path="/a2-macro/unemployment-growth" element={<UnemploymentGrowth />} />
           <Route path="/a2-macro/policy-objectives" element={<PolicyObjectives />} />
