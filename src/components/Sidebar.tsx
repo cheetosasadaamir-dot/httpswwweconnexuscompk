@@ -39,15 +39,23 @@ const navigation: NavItem[] = [
     icon: BookOpen,
   },
   {
-    title: 'Microeconomics',
+    title: 'AS Microeconomics',
     icon: TrendingUp,
     children: [
       { title: 'Ch.1: Basic Economic Ideas', href: '/basic-economic-ideas' },
       { title: 'Ch.2: The Price System', href: '/price-system' },
       { title: 'Ch.3: Elasticities', href: '/elasticities' },
       { title: 'Ch.4: Market Failure', href: '/market-failure' },
-      { title: 'Ch.5: Theory of the Firm', href: '/theory-of-firm' },
-      { title: 'Ch.6: Labor Markets', href: '/labor-markets' },
+    ],
+  },
+  {
+    title: 'A2 Microeconomics',
+    icon: GraduationCap,
+    children: [
+      { title: 'Ch.1: Utility & Consumer Choice', href: '/a2-micro/utility-consumer-choice' },
+      { title: 'Ch.4: Efficiency & Market Failure', href: '/a2-micro/economic-efficiency' },
+      { title: 'Ch.5: Market Structures', href: '/a2-micro/market-structures' },
+      { title: 'Ch.6: Labor Market', href: '/a2-micro/labor-market' },
     ],
   },
   {
