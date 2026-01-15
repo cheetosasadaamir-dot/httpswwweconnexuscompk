@@ -57,7 +57,7 @@ const ProductionCosts = () => {
           </div>
         </div>
 
-        <ExamTipBox type="gold">
+        <ExamTipBox variant="gold">
           These three relationships are <strong>universal</strong> in economics. They apply to production (TP, MP, AP), 
           costs (TC, MC, AC), revenue (TR, MR, AR), and utility (TU, MU, AU). Master these relationships once, 
           and you can apply them across all topics.
@@ -89,8 +89,8 @@ const ProductionCosts = () => {
 
           <div className="bg-gradient-to-br from-card/50 to-card/30 border border-primary/20 rounded-xl p-6">
             <h4 className="text-primary font-semibold mb-4">
-              <GlossaryTooltip term="Law of Diminishing Returns">
-                As more units of a variable input are added to fixed inputs, the marginal product initially rises but eventually falls.
+              <GlossaryTooltip term="Law of Diminishing Returns" definition="As more units of a variable input are added to fixed inputs, the marginal product initially rises but eventually falls.">
+                Law of Diminishing Returns
               </GlossaryTooltip>
             </h4>
             <p className="text-silver leading-relaxed mb-4">
@@ -137,10 +137,12 @@ const ProductionCosts = () => {
           <CostCurvesDiagram />
         </div>
 
-        <AnalysisBlock
-          analysis="The product curves illustrate the Law of Diminishing Returns in action. Initially, as workers are added, specialization allows MP to rise (increasing returns). However, as more workers share fixed capital, MP begins to fall (diminishing returns). When MP becomes negative, TP actually decreases due to overcrowding and inefficiency. The MP curve intersects AP at its maximum point—a crucial relationship for understanding cost behavior."
-          evaluation="While diminishing returns is a powerful short-run concept, it assumes technology remains constant. In reality, technological innovation can shift the entire TP curve upward. Additionally, the assumption of homogeneous labor is often unrealistic; skilled workers may have higher productivity regardless of diminishing returns. The model also assumes perfect factor divisibility, which may not hold for some capital equipment."
-        />
+        <AnalysisBlock title="Product Curves Analysis" type="analysis">
+          <p>The product curves illustrate the Law of Diminishing Returns in action. Initially, as workers are added, specialization allows MP to rise (increasing returns). However, as more workers share fixed capital, MP begins to fall (diminishing returns). When MP becomes negative, TP actually decreases due to overcrowding and inefficiency. The MP curve intersects AP at its maximum point—a crucial relationship for understanding cost behavior.</p>
+        </AnalysisBlock>
+        <AnalysisBlock title="Critical Evaluation" type="evaluation">
+          <p>While diminishing returns is a powerful short-run concept, it assumes technology remains constant. In reality, technological innovation can shift the entire TP curve upward. Additionally, the assumption of homogeneous labor is often unrealistic; skilled workers may have higher productivity regardless of diminishing returns. The model also assumes perfect factor divisibility, which may not hold for some capital equipment.</p>
+        </AnalysisBlock>
       </ContentSection>
 
       {/* Topic 2: Short-Run Costs */}
@@ -222,7 +224,7 @@ const ProductionCosts = () => {
             </p>
           </div>
 
-          <ExamTipBox type="silver">
+          <ExamTipBox variant="silver">
             Remember: <strong>MC intersects both AVC and ATC at their minimum points</strong>. This is because when 
             MC {"<"} AC, it pulls the average down; when MC {">"} AC, it pulls the average up. The gap between ATC 
             and AVC equals AFC, which shrinks as output increases.
@@ -435,8 +437,8 @@ const ProductionCosts = () => {
 
           <div className="bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/30 rounded-xl p-6">
             <h4 className="text-primary font-semibold mb-3">
-              <GlossaryTooltip term="Economies of Scope">
-                Cost savings from producing multiple products together rather than separately.
+              <GlossaryTooltip term="Economies of Scope" definition="Cost savings from producing multiple products together rather than separately.">
+                Economies of Scope
               </GlossaryTooltip>
             </h4>
             <p className="text-silver text-sm leading-relaxed">
@@ -450,10 +452,12 @@ const ProductionCosts = () => {
           </div>
         </div>
 
-        <AnalysisBlock
-          analysis="The LRAC curve demonstrates how firms can achieve lower costs by expanding to their optimal scale. The Minimum Efficient Scale (MES) represents the output level at which LRAC is minimized—the point where all economies of scale have been exhausted but diseconomies have not yet set in. Industries with high MES (like automobile manufacturing) tend toward oligopoly, while those with low MES (like restaurants) remain fragmented."
-          evaluation="The traditional U-shaped LRAC curve may oversimplify modern business realities. Many digital firms (like software companies) exhibit nearly unlimited economies of scale with negligible marginal costs. External economies can shift the entire LRAC curve, not just move along it. Furthermore, MES varies significantly by industry and may change over time with technological innovation."
-        />
+        <AnalysisBlock title="Long-Run Cost Analysis" type="analysis">
+          <p>The LRAC curve demonstrates how firms can achieve lower costs by expanding to their optimal scale. The Minimum Efficient Scale (MES) represents the output level at which LRAC is minimized—the point where all economies of scale have been exhausted but diseconomies have not yet set in. Industries with high MES (like automobile manufacturing) tend toward oligopoly, while those with low MES (like restaurants) remain fragmented.</p>
+        </AnalysisBlock>
+        <AnalysisBlock title="Critical Evaluation" type="evaluation">
+          <p>The traditional U-shaped LRAC curve may oversimplify modern business realities. Many digital firms (like software companies) exhibit nearly unlimited economies of scale with negligible marginal costs. External economies can shift the entire LRAC curve, not just move along it. Furthermore, MES varies significantly by industry and may change over time with technological innovation.</p>
+        </AnalysisBlock>
       </ContentSection>
 
       {/* Topic 4: Revenues */}
@@ -480,7 +484,7 @@ const ProductionCosts = () => {
             </p>
           </div>
 
-          <ExamTipBox type="gold">
+          <ExamTipBox variant="gold">
             For a price maker with a linear demand curve, the MR curve has <strong>twice the slope</strong> of the 
             AR (demand) curve. This means MR reaches zero (TR is maximized) at exactly half the quantity where 
             AR equals zero. Always draw MR intersecting the quantity axis at half the point where demand does.
@@ -642,10 +646,12 @@ const ProductionCosts = () => {
           </div>
         </div>
 
-        <AnalysisBlock
-          analysis="The profit maximization rule (MC = MR) applies universally to all market structures. Combined with the average condition (AR vs AC), these tools allow us to determine both the optimal output level and the nature of profits. In the short run, a firm may continue operating at a loss if it can cover variable costs, buying time for market conditions to improve or to make an orderly exit."
-          evaluation="The MC = MR rule assumes firms have perfect information about their cost and revenue curves—an unrealistic assumption for many real businesses. Alternative objectives (revenue maximization, satisficing, market share growth) may better explain actual firm behavior. Additionally, the model assumes profit maximization is the sole goal, ignoring stakeholder considerations, ethical constraints, and managerial discretion in modern corporations."
-        />
+        <AnalysisBlock title="Profit Maximization Analysis" type="analysis">
+          <p>The profit maximization rule (MC = MR) applies universally to all market structures. Combined with the average condition (AR vs AC), these tools allow us to determine both the optimal output level and the nature of profits. In the short run, a firm may continue operating at a loss if it can cover variable costs, buying time for market conditions to improve or to make an orderly exit.</p>
+        </AnalysisBlock>
+        <AnalysisBlock title="Critical Evaluation" type="evaluation">
+          <p>The MC = MR rule assumes firms have perfect information about their cost and revenue curves—an unrealistic assumption for many real businesses. Alternative objectives (revenue maximization, satisficing, market share growth) may better explain actual firm behavior. Additionally, the model assumes profit maximization is the sole goal, ignoring stakeholder considerations, ethical constraints, and managerial discretion in modern corporations.</p>
+        </AnalysisBlock>
       </ContentSection>
 
       {/* Summary */}
