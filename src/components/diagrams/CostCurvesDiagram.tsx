@@ -1,18 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 interface CostCurvesDiagramProps {
   showTable?: boolean;
 }
 
+/**
+ * Cambridge 9708 Accurate Cost Curves Diagram
+ * - MC MUST intersect AVC at its minimum point
+ * - MC MUST intersect ATC at its minimum point
+ * - U-shaped curves with proper Bezier paths
+ */
 const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true }) => {
   const [activeView, setActiveView] = useState<'short-run' | 'product-curves'>('short-run');
   const [showMC, setShowMC] = useState(true);
   const [showATC, setShowATC] = useState(true);
   const [showAVC, setShowAVC] = useState(true);
   const [showAFC, setShowAFC] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Cost curve data points
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Cost curve data points (numerically accurate)
   const costData = [
     { q: 0, tfc: 100, tvc: 0, tc: 100, mc: '-', afc: '-', avc: '-', atc: '-' },
     { q: 1, tfc: 100, tvc: 50, tc: 150, mc: 50, afc: 100, avc: 50, atc: 150 },
@@ -42,73 +67,61 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
     { labor: 10, tp: 26, mp: -4, ap: 2.6 },
   ];
 
-  // SVG path generators
-  const generateMCPath = () => {
-    const points = [
-      { x: 80, y: 280 },
-      { x: 120, y: 300 },
-      { x: 160, y: 310 },
-      { x: 200, y: 305 },
-      { x: 240, y: 290 },
-      { x: 280, y: 260 },
-      { x: 320, y: 220 },
-      { x: 360, y: 170 },
-      { x: 400, y: 110 },
-      { x: 440, y: 50 },
-    ];
-    return `M ${points.map(p => `${p.x},${p.y}`).join(' L ')}`;
-  };
+  // SVG dimensions
+  const width = 500;
+  const height = 380;
+  const margin = { top: 30, right: 50, bottom: 60, left: 60 };
+  const chartWidth = width - margin.left - margin.right;
+  const chartHeight = height - margin.top - margin.bottom;
 
-  const generateATCPath = () => {
-    const points = [
-      { x: 80, y: 60 },
-      { x: 120, y: 130 },
-      { x: 160, y: 180 },
-      { x: 200, y: 220 },
-      { x: 240, y: 250 },
-      { x: 280, y: 265 },
-      { x: 320, y: 260 },
-      { x: 360, y: 240 },
-      { x: 400, y: 210 },
-      { x: 440, y: 170 },
-    ];
-    return `M ${points.map(p => `${p.x},${p.y}`).join(' L ')}`;
-  };
+  // Key intersection points (Cambridge accurate)
+  // AVC minimum at Q=5, AVC=26 (where MC crosses AVC)
+  // ATC minimum at Q=7, ATC=42.9 (where MC crosses ATC)
+  const avcMinQ = 5;
+  const avcMinY = 26;
+  const atcMinQ = 7;
+  const atcMinY = 42.9;
 
-  const generateAVCPath = () => {
-    const points = [
-      { x: 80, y: 270 },
-      { x: 120, y: 285 },
-      { x: 160, y: 295 },
-      { x: 200, y: 300 },
-      { x: 240, y: 298 },
-      { x: 280, y: 290 },
-      { x: 320, y: 275 },
-      { x: 360, y: 255 },
-      { x: 400, y: 225 },
-      { x: 440, y: 185 },
-    ];
-    return `M ${points.map(p => `${p.x},${p.y}`).join(' L ')}`;
-  };
+  const xScale = (q: number) => margin.left + (q / 12) * chartWidth;
+  const yScale = (cost: number) => margin.top + chartHeight - (cost / 160) * chartHeight;
 
-  const generateAFCPath = () => {
-    const points = [
-      { x: 80, y: 40 },
-      { x: 120, y: 120 },
-      { x: 160, y: 180 },
-      { x: 200, y: 230 },
-      { x: 240, y: 270 },
-      { x: 280, y: 295 },
-      { x: 320, y: 315 },
-      { x: 360, y: 330 },
-      { x: 400, y: 340 },
-      { x: 440, y: 348 },
-    ];
-    return `M ${points.map(p => `${p.x},${p.y}`).join(' L ')}`;
+  // MC curve - U-shaped, must pass through AVC min and ATC min
+  const mcPath = `M ${xScale(0.5)} ${yScale(90)} 
+                  Q ${xScale(2)} ${yScale(40)}, ${xScale(4)} ${yScale(15)}
+                  L ${xScale(avcMinQ)} ${yScale(avcMinY)}
+                  Q ${xScale(6)} ${yScale(32)}, ${xScale(atcMinQ)} ${yScale(atcMinY)}
+                  Q ${xScale(9)} ${yScale(80)}, ${xScale(10)} ${yScale(130)}`;
+
+  // ATC curve - U-shaped, minimum at Q=7
+  const atcPath = `M ${xScale(0.8)} ${yScale(155)} 
+                   Q ${xScale(2)} ${yScale(95)}, ${xScale(4)} ${yScale(55)}
+                   Q ${xScale(5.5)} ${yScale(45)}, ${xScale(atcMinQ)} ${yScale(atcMinY)}
+                   Q ${xScale(8.5)} ${yScale(46)}, ${xScale(10)} ${yScale(58)}`;
+
+  // AVC curve - U-shaped, minimum at Q=5
+  const avcPath = `M ${xScale(0.8)} ${yScale(55)} 
+                   Q ${xScale(2)} ${yScale(42)}, ${xScale(3.5)} ${yScale(30)}
+                   Q ${xScale(4.5)} ${yScale(27)}, ${xScale(avcMinQ)} ${yScale(avcMinY)}
+                   Q ${xScale(7)} ${yScale(30)}, ${xScale(9)} ${yScale(42)}
+                   L ${xScale(10)} ${yScale(48)}`;
+
+  // AFC curve - rectangular hyperbola (always decreasing)
+  const afcPath = `M ${xScale(0.8)} ${yScale(125)} 
+                   Q ${xScale(2)} ${yScale(50)}, ${xScale(4)} ${yScale(25)}
+                   Q ${xScale(6)} ${yScale(17)}, ${xScale(8)} ${yScale(12.5)}
+                   L ${xScale(10)} ${yScale(10)}`;
+
+  const curveVariants = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { 
+      pathLength: 1, 
+      opacity: 1,
+      transition: { duration: 1.2, ease: "easeInOut" as const }
+    }
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div ref={containerRef} className="w-full space-y-6">
       {/* View Toggle */}
       <div className="flex gap-2 flex-wrap">
         <button
@@ -177,133 +190,197 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
 
           {/* SVG Diagram */}
           <div className="relative bg-card/30 rounded-xl p-4 border border-silver/10">
-            <svg viewBox="0 0 500 400" className="w-full h-auto">
+            <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
               {/* Grid */}
               <defs>
                 <pattern id="costGrid" width="40" height="40" patternUnits="userSpaceOnUse">
                   <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(100,116,139,0.1)" strokeWidth="1"/>
                 </pattern>
+                <marker id="arrow-cost" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                  <polygon points="0 0, 10 3.5, 0 7" fill="hsl(220, 14%, 75%)" />
+                </marker>
               </defs>
-              <rect x="50" y="20" width="420" height="340" fill="url(#costGrid)" />
+              <rect x={margin.left} y={margin.top} width={chartWidth} height={chartHeight} fill="url(#costGrid)" />
 
               {/* Axes */}
-              <line x1="50" y1="360" x2="480" y2="360" stroke="hsl(var(--silver))" strokeWidth="2" />
-              <line x1="50" y1="360" x2="50" y2="20" stroke="hsl(var(--silver))" strokeWidth="2" />
+              <line 
+                x1={margin.left} y1={margin.top + chartHeight} 
+                x2={margin.left + chartWidth} y2={margin.top + chartHeight} 
+                stroke="hsl(var(--silver))" strokeWidth="2" 
+                markerEnd="url(#arrow-cost)"
+              />
+              <line 
+                x1={margin.left} y1={margin.top + chartHeight} 
+                x2={margin.left} y2={margin.top - 5} 
+                stroke="hsl(var(--silver))" strokeWidth="2" 
+                markerEnd="url(#arrow-cost)"
+              />
 
               {/* Axis Labels */}
-              <text x="260" y="390" textAnchor="middle" className="fill-silver text-sm">Output (Q)</text>
-              <text x="20" y="190" textAnchor="middle" transform="rotate(-90, 20, 190)" className="fill-silver text-sm">Costs ($)</text>
+              <text x={margin.left + chartWidth / 2} y={height - 15} textAnchor="middle" className="fill-silver text-sm font-serif">
+                Output (Q)
+              </text>
+              <text x={20} y={margin.top + chartHeight / 2} textAnchor="middle" transform={`rotate(-90, 20, ${margin.top + chartHeight / 2})`} className="fill-silver text-sm font-serif">
+                Costs ($)
+              </text>
+              <text x={margin.left - 8} y={margin.top + chartHeight + 16} className="fill-silver text-xs">0</text>
 
-              {/* AFC Curve */}
+              {/* AFC Curve - rectangular hyperbola */}
               {showAFC && (
                 <motion.path
-                  d={generateAFCPath()}
+                  d={afcPath}
                   fill="none"
                   stroke="rgb(251, 191, 36)"
                   strokeWidth="2.5"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1 }}
+                  strokeLinecap="round"
+                  variants={curveVariants}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
                 />
               )}
 
-              {/* AVC Curve */}
+              {/* AVC Curve - U-shaped */}
               {showAVC && (
                 <motion.path
-                  d={generateAVCPath()}
+                  d={avcPath}
                   fill="none"
                   stroke="rgb(52, 211, 153)"
                   strokeWidth="2.5"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1, delay: 0.2 }}
+                  strokeLinecap="round"
+                  variants={curveVariants}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  transition={{ delay: 0.2 }}
                 />
               )}
 
-              {/* ATC Curve */}
+              {/* ATC Curve - U-shaped */}
               {showATC && (
                 <motion.path
-                  d={generateATCPath()}
+                  d={atcPath}
                   fill="none"
                   stroke="hsl(var(--neon-magenta))"
                   strokeWidth="2.5"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1, delay: 0.4 }}
+                  strokeLinecap="round"
+                  variants={curveVariants}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  transition={{ delay: 0.4 }}
                 />
               )}
 
-              {/* MC Curve */}
+              {/* MC Curve - U-shaped, intersects AVC and ATC at their minimums */}
               {showMC && (
                 <motion.path
-                  d={generateMCPath()}
+                  d={mcPath}
                   fill="none"
                   stroke="hsl(var(--neon-cyan))"
                   strokeWidth="3"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1, delay: 0.6 }}
+                  strokeLinecap="round"
+                  variants={curveVariants}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  transition={{ delay: 0.6 }}
                 />
               )}
 
-              {/* Intersection Points */}
+              {/* Intersection Points - Cambridge Critical */}
+              {/* MC = AVC at AVC minimum */}
               {showMC && showAVC && (
-                <motion.circle
-                  cx="200"
-                  cy="300"
-                  r="6"
-                  fill="rgb(52, 211, 153)"
-                  stroke="white"
-                  strokeWidth="2"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 1.2 }}
-                />
-              )}
-              {showMC && showATC && (
-                <motion.circle
-                  cx="280"
-                  cy="265"
-                  r="6"
-                  fill="hsl(var(--neon-magenta))"
-                  stroke="white"
-                  strokeWidth="2"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 1.4 }}
-                />
+                <>
+                  <motion.circle
+                    cx={xScale(avcMinQ)}
+                    cy={yScale(avcMinY)}
+                    r="7"
+                    fill="rgb(52, 211, 153)"
+                    stroke="white"
+                    strokeWidth="2"
+                    initial={{ scale: 0 }}
+                    animate={isVisible ? { scale: 1 } : { scale: 0 }}
+                    transition={{ delay: 1.2, type: "spring" }}
+                  />
+                  <motion.text
+                    x={xScale(avcMinQ) - 30}
+                    y={yScale(avcMinY) + 20}
+                    className="fill-emerald-400 text-[10px] font-medium"
+                    initial={{ opacity: 0 }}
+                    animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ delay: 1.4 }}
+                  >
+                    MC = AVC
+                  </motion.text>
+                  <motion.text
+                    x={xScale(avcMinQ) - 30}
+                    y={yScale(avcMinY) + 32}
+                    className="fill-emerald-400 text-[9px]"
+                    initial={{ opacity: 0 }}
+                    animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ delay: 1.4 }}
+                  >
+                    (shutdown point)
+                  </motion.text>
+                </>
               )}
 
-              {/* Annotations */}
+              {/* MC = ATC at ATC minimum */}
+              {showMC && showATC && (
+                <>
+                  <motion.circle
+                    cx={xScale(atcMinQ)}
+                    cy={yScale(atcMinY)}
+                    r="7"
+                    fill="hsl(var(--neon-magenta))"
+                    stroke="white"
+                    strokeWidth="2"
+                    initial={{ scale: 0 }}
+                    animate={isVisible ? { scale: 1 } : { scale: 0 }}
+                    transition={{ delay: 1.4, type: "spring" }}
+                  />
+                  <motion.text
+                    x={xScale(atcMinQ) + 12}
+                    y={yScale(atcMinY) - 5}
+                    className="fill-neon-magenta text-[10px] font-medium"
+                    initial={{ opacity: 0 }}
+                    animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ delay: 1.6 }}
+                  >
+                    MC = ATC
+                  </motion.text>
+                  <motion.text
+                    x={xScale(atcMinQ) + 12}
+                    y={yScale(atcMinY) + 7}
+                    className="fill-neon-magenta text-[9px]"
+                    initial={{ opacity: 0 }}
+                    animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ delay: 1.6 }}
+                  >
+                    (breakeven)
+                  </motion.text>
+                </>
+              )}
+
+              {/* Curve Labels */}
               {showMC && (
-                <text x="450" y="45" className="fill-neon-cyan text-xs font-medium">MC</text>
+                <text x={xScale(10.5)} y={yScale(130)} className="fill-neon-cyan text-xs font-medium">MC</text>
               )}
               {showATC && (
-                <text x="450" y="165" className="fill-neon-magenta text-xs font-medium">ATC</text>
+                <text x={xScale(10.5)} y={yScale(58)} className="fill-neon-magenta text-xs font-medium">ATC</text>
               )}
               {showAVC && (
-                <text x="450" y="180" fill="rgb(52, 211, 153)" className="text-xs font-medium">AVC</text>
+                <text x={xScale(10.5)} y={yScale(48)} fill="rgb(52, 211, 153)" className="text-xs font-medium">AVC</text>
               )}
               {showAFC && (
-                <text x="450" y="345" fill="rgb(251, 191, 36)" className="text-xs font-medium">AFC</text>
-              )}
-
-              {/* Key Point Labels */}
-              {showMC && showAVC && (
-                <text x="180" y="330" className="fill-silver text-[10px]">MC = AVC (min)</text>
-              )}
-              {showMC && showATC && (
-                <text x="290" y="285" className="fill-silver text-[10px]">MC = ATC (min)</text>
+                <text x={xScale(10.5)} y={yScale(10)} fill="rgb(251, 191, 36)" className="text-xs font-medium">AFC</text>
               )}
             </svg>
           </div>
 
-          {/* Key Insight */}
+          {/* Key Insight - Cambridge Standard */}
           <div className="bg-gradient-to-r from-neon-cyan/10 to-transparent border-l-4 border-neon-cyan p-4 rounded-r-lg">
             <p className="text-sm text-silver-bright">
-              <strong>Key Insight:</strong> The MC curve intersects both AVC and ATC at their <em>minimum points</em>. 
-              This occurs because when MC {"<"} AC, average costs are falling; when MC {">"} AC, average costs are rising.
-              The U-shape of these curves is explained by the Law of Diminishing Returns.
+              <strong>Cambridge Key Relationship:</strong> The MC curve <em>always</em> intersects both AVC and ATC at their <strong>minimum points</strong>. 
+              When $MC {"<"} AC$, average costs are falling; when $MC {">"} AC$, average costs are rising. 
+              The U-shape is explained by the <strong>Law of Diminishing Returns</strong> in the short run.
             </p>
           </div>
         </>
@@ -385,17 +462,19 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
               <text x="455" y="455" className="fill-neon-magenta text-xs">MP</text>
               <text x="455" y="395" fill="rgb(52, 211, 153)" className="text-xs">AP</text>
 
-              {/* Intersection Point */}
+              {/* MP = AP Intersection Point */}
               <motion.circle
                 cx="240"
                 cy="275"
-                r="5"
+                r="6"
                 fill="white"
+                stroke="hsl(var(--primary))"
+                strokeWidth="2"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 1.5 }}
+                transition={{ delay: 1.5, type: "spring" }}
               />
-              <text x="245" y="268" className="fill-silver text-[10px]">MP = AP</text>
+              <text x="250" y="268" className="fill-silver text-[10px] font-medium">MP = AP (Max AP)</text>
 
               {/* Phase Labels */}
               <text x="120" y="215" className="fill-emerald-400 text-[9px]">Increasing MP</text>
@@ -453,28 +532,27 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
               </tr>
             </thead>
             <tbody>
-              {activeView === 'short-run' 
+              {activeView === 'short-run'
                 ? costData.map((row, i) => (
-                    <tr key={i} className="hover:bg-card/30">
+                    <tr key={`cost-row-${i}`} className="hover:bg-card/30">
                       <td className="border border-silver/20 px-3 py-2 text-center text-silver">{row.q}</td>
                       <td className="border border-silver/20 px-3 py-2 text-center text-silver">{row.tfc}</td>
                       <td className="border border-silver/20 px-3 py-2 text-center text-silver">{row.tvc}</td>
                       <td className="border border-silver/20 px-3 py-2 text-center text-silver">{row.tc}</td>
                       <td className="border border-silver/20 px-3 py-2 text-center text-neon-cyan">{row.mc}</td>
-                      <td className="border border-silver/20 px-3 py-2 text-center text-amber-400">{typeof row.afc === 'number' ? row.afc.toFixed(1) : row.afc}</td>
-                      <td className="border border-silver/20 px-3 py-2 text-center text-emerald-400">{typeof row.avc === 'number' ? row.avc.toFixed(1) : row.avc}</td>
-                      <td className="border border-silver/20 px-3 py-2 text-center text-neon-magenta">{typeof row.atc === 'number' ? row.atc.toFixed(1) : row.atc}</td>
+                      <td className="border border-silver/20 px-3 py-2 text-center text-amber-400">{row.afc}</td>
+                      <td className="border border-silver/20 px-3 py-2 text-center text-emerald-400">{row.avc}</td>
+                      <td className="border border-silver/20 px-3 py-2 text-center text-neon-magenta">{row.atc}</td>
                     </tr>
                   ))
                 : productData.map((row, i) => (
-                    <tr key={i} className="hover:bg-card/30">
+                    <tr key={`product-row-${i}`} className="hover:bg-card/30">
                       <td className="border border-silver/20 px-3 py-2 text-center text-silver">{row.labor}</td>
                       <td className="border border-silver/20 px-3 py-2 text-center text-neon-cyan">{row.tp}</td>
                       <td className="border border-silver/20 px-3 py-2 text-center text-neon-magenta">{row.mp}</td>
-                      <td className="border border-silver/20 px-3 py-2 text-center text-emerald-400">{typeof row.ap === 'number' ? row.ap.toFixed(1) : row.ap}</td>
+                      <td className="border border-silver/20 px-3 py-2 text-center text-emerald-400">{row.ap}</td>
                     </tr>
-                  ))
-              }
+                  ))}
             </tbody>
           </table>
         </div>
