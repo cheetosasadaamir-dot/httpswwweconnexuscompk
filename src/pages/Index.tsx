@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import EconomicGlobe from '@/components/EconomicGlobe';
 import KnowledgePillars from '@/components/KnowledgePillars';
 import PPFDiagram from '@/components/PPFDiagram';
+import EconomicsChatbot from '@/components/EconomicsChatbot';
 import { Button } from '@/components/ui/button';
 
 const features = [
@@ -224,6 +225,14 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Silver Divider */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        </div>
+
+        {/* AI Economics Mentor Chatbot */}
+        <EconomicsChatbot />
 
         {/* Silver Divider */}
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
