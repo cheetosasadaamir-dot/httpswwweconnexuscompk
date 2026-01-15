@@ -33,6 +33,7 @@ import MarketStructuresA2 from "./pages/a2-micro/MarketStructuresA2";
 import LaborMarketA2 from "./pages/a2-micro/LaborMarket";
 import UtilityConsumerChoice from "./pages/a2-micro/UtilityConsumerChoice";
 import EconomicEfficiency from "./pages/a2-micro/EconomicEfficiency";
+import ProductionCosts from "./pages/a2-micro/ProductionCosts";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,7 @@ const App = () => (
           {/* A2 Microeconomics */}
           <Route path="/a2-micro/utility-consumer-choice" element={<UtilityConsumerChoice />} />
           <Route path="/a2-micro/economic-efficiency" element={<EconomicEfficiency />} />
+          <Route path="/a2-micro/production-costs" element={<ProductionCosts />} />
           <Route path="/a2-micro/market-structures" element={<MarketStructuresA2 />} />
           <Route path="/a2-micro/labor-market" element={<LaborMarketA2 />} />
           

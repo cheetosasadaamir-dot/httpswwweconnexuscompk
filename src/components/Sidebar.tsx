@@ -54,6 +54,7 @@ const navigation: NavItem[] = [
     icon: GraduationCap,
     children: [
       { title: 'Ch.1: Utility & Consumer Choice', href: '/a2-micro/utility-consumer-choice' },
+      { title: 'Ch.2: Production, Costs & Profits', href: '/a2-micro/production-costs' },
       { title: 'Ch.4: Efficiency & Market Failure', href: '/a2-micro/economic-efficiency' },
       { title: 'Ch.5: Market Structures', href: '/a2-micro/market-structures' },
       { title: 'Ch.6: Labor Market', href: '/a2-micro/labor-market' },
