@@ -80,7 +80,7 @@ const BalanceOfPayments = () => {
             </p>
 
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Causes of Current Account Deficit" variant="warning">
+              <NoteCard title="Causes of Current Account Deficit" type="concept">
                 <ul className="list-disc list-inside text-sm space-y-2">
                   <li><strong>High domestic demand:</strong> Strong consumer spending pulls in imports</li>
                   <li><strong>Overvalued exchange rate:</strong> Makes exports expensive, imports cheap</li>
@@ -91,7 +91,7 @@ const BalanceOfPayments = () => {
                 </ul>
               </NoteCard>
 
-              <NoteCard title="Consequences of Persistent Deficit" variant="danger">
+              <NoteCard title="Consequences of Persistent Deficit" type="exam-tip">
                 <ul className="list-disc list-inside text-sm space-y-2">
                   <li><strong>Rising external debt:</strong> Must borrow to finance the deficit</li>
                   <li><strong>Currency depreciation pressure:</strong> Excess supply of domestic currency</li>
@@ -182,7 +182,7 @@ const BalanceOfPayments = () => {
             {/* Exchange Rate Diagram */}
             <ExchangeRateDiagram />
 
-            <NoteCard title="Managed Float (Dirty Float)" variant="info" className="mt-6">
+            <NoteCard title="Managed Float (Dirty Float)" type="definition" className="mt-6">
               <p className="text-sm text-muted-foreground">
                 Most countries today operate a <strong>managed float</strong> system—a hybrid where the exchange rate is primarily market-determined but the central bank occasionally intervenes to prevent excessive volatility or correct misalignments. This provides flexibility while avoiding extreme fluctuations.
               </p>

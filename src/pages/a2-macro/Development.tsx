@@ -51,7 +51,7 @@ const Development = () => {
               </NoteCard>
             </div>
 
-            <NoteCard title="Human Development Index (HDI)" variant="info" className="mb-6">
+            <NoteCard title="Human Development Index (HDI)" type="concept" className="mb-6">
               <p className="text-sm text-muted-foreground mb-3">
                 The HDI, created by the UN, measures development across three dimensions:
               </p>
@@ -213,7 +213,7 @@ const Development = () => {
               </NoteCard>
             </div>
 
-            <NoteCard title="Role of Foreign Aid" variant="info" className="mb-6">
+            <NoteCard title="Role of Foreign Aid" type="application" className="mb-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="font-semibold text-primary mb-2">Arguments For</h4>
@@ -244,7 +244,7 @@ const Development = () => {
             </p>
 
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Benefits of Globalization" variant="success">
+              <NoteCard title="Benefits of Globalization">
                 <ul className="list-disc list-inside text-sm space-y-2">
                   <li><strong>Trade gains:</strong> Specialization based on comparative advantage</li>
                   <li><strong>FDI inflows:</strong> Capital, technology, and jobs</li>
@@ -254,7 +254,7 @@ const Development = () => {
                 </ul>
               </NoteCard>
 
-              <NoteCard title="Costs of Globalization" variant="danger">
+              <NoteCard title="Costs of Globalization" type="exam-tip">
                 <ul className="list-disc list-inside text-sm space-y-2">
                   <li><strong>Increased inequality:</strong> Winners and losers within countries</li>
                   <li><strong>Job displacement:</strong> Competition from low-wage economies</li>

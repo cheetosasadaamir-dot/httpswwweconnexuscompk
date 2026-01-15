@@ -17,12 +17,16 @@ import NotFound from "./pages/NotFound";
 import ADASEquilibrium from "./pages/as-macro/ADASEquilibrium";
 import Inflation from "./pages/as-macro/Inflation";
 import InternationalTrade from "./pages/as-macro/InternationalTrade";
+import BalanceOfPayments from "./pages/as-macro/BalanceOfPayments";
+import MacroeconomicPolicy from "./pages/as-macro/MacroeconomicPolicy";
 
 // A2 Macro chapters
 import Investment from "./pages/a2-macro/Investment";
 import GovernmentTrade from "./pages/a2-macro/GovernmentTrade";
 import MoneyBanking from "./pages/a2-macro/MoneyBanking";
 import UnemploymentGrowth from "./pages/a2-macro/UnemploymentGrowth";
+import PolicyObjectives from "./pages/a2-macro/PolicyObjectives";
+import Development from "./pages/a2-macro/Development";
 
 const queryClient = new QueryClient();
 
@@ -44,8 +48,8 @@ const App = () => (
           <Route path="/as-macro/ad-as" element={<ADASEquilibrium />} />
           <Route path="/as-macro/inflation" element={<Inflation />} />
           <Route path="/as-macro/international-trade" element={<InternationalTrade />} />
-          <Route path="/as-macro/balance-of-payments" element={<DiagramBank />} />
-          <Route path="/as-macro/policy" element={<DiagramBank />} />
+          <Route path="/as-macro/balance-of-payments" element={<BalanceOfPayments />} />
+          <Route path="/as-macro/policy" element={<MacroeconomicPolicy />} />
           
           {/* A2 Macroeconomics chapters */}
           <Route path="/a2-macro/national-income" element={<NationalIncome />} />
@@ -54,8 +58,8 @@ const App = () => (
           <Route path="/a2-macro/government-trade" element={<GovernmentTrade />} />
           <Route path="/a2-macro/money-banking" element={<MoneyBanking />} />
           <Route path="/a2-macro/unemployment-growth" element={<UnemploymentGrowth />} />
-          <Route path="/a2-macro/policy-objectives" element={<DiagramBank />} />
-          <Route path="/a2-macro/development" element={<DiagramBank />} />
+          <Route path="/a2-macro/policy-objectives" element={<PolicyObjectives />} />
+          <Route path="/a2-macro/development" element={<Development />} />
           
           {/* Legacy routes */}
           <Route path="/national-income" element={<NationalIncome />} />

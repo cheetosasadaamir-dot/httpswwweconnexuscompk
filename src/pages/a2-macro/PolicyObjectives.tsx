@@ -63,7 +63,7 @@ const PolicyObjectives = () => {
             </p>
 
             <div className="space-y-4 mb-6">
-              <NoteCard title="1. Inflation vs Unemployment" variant="warning">
+              <NoteCard title="1. Inflation vs Unemployment" type="concept">
                 <p className="text-sm text-muted-foreground mb-3">
                   <strong>The Phillips Curve Trade-off:</strong> In the short run, reducing unemployment below the natural rate creates inflationary pressure as wages rise in tight labor markets.
                 </p>
@@ -79,7 +79,7 @@ const PolicyObjectives = () => {
                 </div>
               </NoteCard>
 
-              <NoteCard title="2. Economic Growth vs Current Account" variant="warning">
+              <NoteCard title="2. Economic Growth vs Current Account" type="concept">
                 <p className="text-sm text-muted-foreground mb-3">
                   Rapid growth typically worsens the current account as rising incomes increase demand for imports. Countries with high growth rates often experience current account deficits.
                 </p>
@@ -88,7 +88,7 @@ const PolicyObjectives = () => {
                 </p>
               </NoteCard>
 
-              <NoteCard title="3. Low Interest Rates vs Exchange Rate Stability" variant="warning">
+              <NoteCard title="3. Low Interest Rates vs Exchange Rate Stability" type="concept">
                 <p className="text-sm text-muted-foreground mb-3">
                   Low interest rates stimulate domestic demand but may cause capital outflows, depreciating the currency. This can help exports but risks imported inflation.
                 </p>
@@ -97,7 +97,7 @@ const PolicyObjectives = () => {
                 </p>
               </NoteCard>
 
-              <NoteCard title="4. Growth vs Environmental Sustainability" variant="warning">
+              <NoteCard title="4. Growth vs Environmental Sustainability" type="concept">
                 <p className="text-sm text-muted-foreground mb-3">
                   Traditional growth increases resource use and pollution. The challenge is achieving "green growth" that decouples economic expansion from environmental degradation.
                 </p>
@@ -247,7 +247,7 @@ const PolicyObjectives = () => {
             </p>
 
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Arguments For Independence" variant="success">
+              <NoteCard title="Arguments For Independence">
                 <ul className="list-disc list-inside text-sm space-y-2">
                   <li><strong>Credibility:</strong> Reduces inflation expectations</li>
                   <li><strong>Long-term focus:</strong> Avoids political business cycle</li>
@@ -257,7 +257,7 @@ const PolicyObjectives = () => {
                 </ul>
               </NoteCard>
 
-              <NoteCard title="Arguments Against Independence" variant="warning">
+              <NoteCard title="Arguments Against Independence" type="exam-tip">
                 <ul className="list-disc list-inside text-sm space-y-2">
                   <li><strong>Democratic deficit:</strong> Unelected officials make major decisions</li>
                   <li><strong>Narrow focus:</strong> May neglect employment objectives</li>
