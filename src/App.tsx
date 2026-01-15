@@ -66,11 +66,15 @@ const App = () => (
           <Route path="/income-determination" element={<IncomeDetermination />} />
           <Route path="/basic-economic-problem" element={<BasicEconomicIdeas />} />
           
+          {/* A2 Microeconomics */}
+          <Route path="/a2-micro/market-structures" element={<MarketStructuresA2 />} />
+          <Route path="/a2-micro/labor-market" element={<LaborMarketA2 />} />
+          
           {/* Microeconomics placeholders */}
           <Route path="/elasticities" element={<DiagramBank />} />
           <Route path="/market-failure" element={<DiagramBank />} />
-          <Route path="/theory-of-firm" element={<DiagramBank />} />
-          <Route path="/labor-markets" element={<DiagramBank />} />
+          <Route path="/theory-of-firm" element={<MarketStructuresA2 />} />
+          <Route path="/labor-markets" element={<LaborMarketA2 />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
