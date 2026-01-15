@@ -13,6 +13,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import logoImage from '@/assets/logo-macromicro.png';
 
 interface NavItem {
   title: string;
@@ -120,11 +121,13 @@ const Sidebar = () => {
         {/* Logo */}
         <div className="p-6 border-b border-silver/10">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-primary-foreground" />
-            </div>
+            <img 
+              src={logoImage} 
+              alt="A2/AS Economics Portal Logo"
+              className="w-10 h-10 object-contain"
+            />
             <div>
-              <h1 className="font-serif text-lg font-semibold text-silver-bright">EconVerse</h1>
+              <h1 className="font-serif text-lg font-semibold text-silver-bright">MacroMicro</h1>
               <p className="text-xs text-muted-foreground">Cambridge 9708 Edition</p>
             </div>
           </Link>
