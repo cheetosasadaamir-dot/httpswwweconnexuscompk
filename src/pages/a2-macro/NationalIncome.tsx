@@ -15,72 +15,61 @@ import ParadoxOfThriftDiagram from '@/components/diagrams/ParadoxOfThriftDiagram
 const NationalIncome = () => {
   return (
     <Layout showSidebar>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          transition={{ duration: 0.5 }}
+          className="mb-6"
         >
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-3 mb-2">
             <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium">
               A2 Level • Chapter 2
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-gradient mb-4">
+          <h1 className="text-3xl md:text-4xl font-serif font-bold text-gradient mb-2">
             Keynesian Theory of Income & Employment
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed-plus">
-            A comprehensive exploration of how national income is measured, the circular flow of income, 
-            the Keynesian consumption function, investment theory, and the multiplier effect.
+          <p className="text-base text-muted-foreground leading-relaxed">
+            National income measurement, circular flow, Keynesian consumption function, investment theory, and the multiplier effect.
           </p>
         </motion.div>
 
         {/* Topic 1: Measuring National Income */}
         <ContentSection title="Topic 1: Measuring National Income" id="measuring-national-income">
           <NoteCard title="Definition of National Income" type="definition">
-            <p>
-              <strong>National Income</strong> is the total amount of money earned within a country. It represents 
-              the aggregate value of all final goods and services produced in an economy over a specific period, 
-              typically one year. Understanding national income is fundamental to macroeconomic analysis as it 
-              provides a measure of economic activity and living standards.
+            <p className="text-sm">
+              <strong>National Income</strong> is the total amount of money earned within a country. It represents the aggregate value of all final goods and services produced in an economy over a specific period, typically one year.
             </p>
           </NoteCard>
 
-          <div className="overflow-x-auto my-6">
-            <table className="w-full text-sm border border-muted rounded-lg overflow-hidden">
+          <div className="overflow-x-auto my-3">
+            <table className="w-full text-xs border border-muted rounded-lg overflow-hidden">
               <thead className="bg-muted/30">
                 <tr>
-                  <th className="text-left py-3 px-4 font-semibold">Concept</th>
-                  <th className="text-left py-3 px-4 font-semibold">Description</th>
+                  <th className="text-left py-2 px-3 font-semibold">Concept</th>
+                  <th className="text-left py-2 px-3 font-semibold">Description</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-t border-muted">
-                  <td className="py-3 px-4 font-medium text-cambridge-cyan">Gross Domestic Product (GDP)</td>
-                  <td className="py-3 px-4 text-muted-foreground">
-                    This shows the value of final goods and services produced <strong>within a country</strong>, 
-                    regardless of who owns the factors of production.
+                  <td className="py-2 px-3 font-medium text-cambridge-cyan">GDP</td>
+                  <td className="py-2 px-3 text-muted-foreground">
+                    Value of final goods/services produced <strong>within a country</strong>, regardless of ownership.
                   </td>
                 </tr>
                 <tr className="border-t border-muted">
-                  <td className="py-3 px-4 font-medium text-cambridge-magenta">Gross National Product (GNP)</td>
-                  <td className="py-3 px-4 text-muted-foreground">
-                    This shows the value of final goods and services produced by factors of production 
-                    <strong> owned by a country's citizens</strong>, regardless of where in the world this is earned.
-                    <div className="mt-2 p-2 bg-muted/20 rounded font-mono text-xs">
-                      GNP = GDP + Net Property Income from Abroad
-                    </div>
+                  <td className="py-2 px-3 font-medium text-cambridge-magenta">GNP</td>
+                  <td className="py-2 px-3 text-muted-foreground">
+                    Value by factors <strong>owned by citizens</strong>, regardless of location.
+                    <span className="ml-1 font-mono text-[10px]">GNP = GDP + NPIA</span>
                   </td>
                 </tr>
                 <tr className="border-t border-muted">
-                  <td className="py-3 px-4 font-medium text-cambridge-green">Net National Product (NNP)</td>
-                  <td className="py-3 px-4 text-muted-foreground">
-                    To measure additional (or new or net) income earned, we deduct the amount spent on 
-                    replacement of worn-out capital (depreciation). This is also called <strong>net income</strong>.
-                    <div className="mt-2 p-2 bg-muted/20 rounded font-mono text-xs">
-                      NNP = GNP - Depreciation
-                    </div>
+                  <td className="py-2 px-3 font-medium text-cambridge-green">NNP</td>
+                  <td className="py-2 px-3 text-muted-foreground">
+                    Net income after deducting depreciation.
+                    <span className="ml-1 font-mono text-[10px]">NNP = GNP - Depreciation</span>
                   </td>
                 </tr>
               </tbody>
@@ -216,7 +205,7 @@ const NationalIncome = () => {
             </ul>
           </NoteCard>
 
-          <div className="my-8">
+          <div className="my-4">
             <CircularFlowDiagram title="The 4-Sector Circular Flow of Income" />
           </div>
 
@@ -304,7 +293,7 @@ const NationalIncome = () => {
             </div>
           </NoteCard>
 
-          <div className="my-8">
+          <div className="my-4">
             <ConsumptionFunctionDiagram />
           </div>
 
@@ -487,7 +476,7 @@ const NationalIncome = () => {
             </p>
           </NoteCard>
 
-          <div className="my-8">
+          <div className="my-4">
             <MECCurveDiagram />
           </div>
 
@@ -553,7 +542,7 @@ const NationalIncome = () => {
             </div>
           </NoteCard>
 
-          <div className="my-8">
+          <div className="my-4">
             <AcceleratorDiagram />
           </div>
 
@@ -614,7 +603,7 @@ const NationalIncome = () => {
             </p>
           </NoteCard>
 
-          <div className="my-8">
+          <div className="my-4">
             <KeynesianCrossDiagram />
           </div>
 
@@ -679,7 +668,7 @@ const NationalIncome = () => {
             </div>
           </NoteCard>
 
-          <div className="my-8">
+          <div className="my-4">
             <MultiplierDiagram sectors={2} />
           </div>
 
@@ -770,7 +759,7 @@ const NationalIncome = () => {
             </p>
           </NoteCard>
 
-          <div className="my-8">
+          <div className="my-4">
             <ParadoxOfThriftDiagram />
           </div>
 
