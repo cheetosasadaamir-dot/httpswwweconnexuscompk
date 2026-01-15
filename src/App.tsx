@@ -12,6 +12,7 @@ import CaseStudies from "./pages/CaseStudies";
 import NationalIncome from "./pages/NationalIncome";
 import IncomeDetermination from "./pages/IncomeDetermination";
 import NotFound from "./pages/NotFound";
+import Elasticities from "./pages/Elasticities";
 
 // AS Macro chapters
 import ADASEquilibrium from "./pages/as-macro/ADASEquilibrium";
@@ -80,8 +81,8 @@ const App = () => (
           <Route path="/a2-micro/market-structures" element={<MarketStructuresA2 />} />
           <Route path="/a2-micro/labor-market" element={<LaborMarketA2 />} />
           
-          {/* Microeconomics placeholders */}
-          <Route path="/elasticities" element={<DiagramBank />} />
+          {/* Microeconomics chapters */}
+          <Route path="/elasticities" element={<Elasticities />} />
           <Route path="/market-failure" element={<DiagramBank />} />
           <Route path="/theory-of-firm" element={<MarketStructuresA2 />} />
           <Route path="/labor-markets" element={<LaborMarketA2 />} />
