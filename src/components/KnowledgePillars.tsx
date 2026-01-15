@@ -138,7 +138,7 @@ const KnowledgePillars = () => {
       <PillarCard
         title="Microeconomics"
         description="Explore individual markets, consumer behavior, and the forces of supply and demand."
-        href="/market-structures"
+        href="/microeconomics"
         icons={[TrendingUp, Users, ShoppingCart, BarChart3]}
         gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(234 60% 12%) 50%, hsl(var(--navy-light)) 100%)"
         hoverGradient="linear-gradient(135deg, hsl(234 60% 15%) 0%, hsl(217 60% 18%) 50%, hsl(234 50% 20%) 100%)"
@@ -147,7 +147,7 @@ const KnowledgePillars = () => {
       <PillarCard
         title="Macroeconomics"
         description="Understand global trade, inflation, monetary policy, and economic growth."
-        href="/economic-growth"
+        href="/macroeconomics"
         icons={[Globe, Landmark, PiggyBank, Activity]}
         gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(217 50% 12%) 50%, hsl(var(--navy-light)) 100%)"
         hoverGradient="linear-gradient(135deg, hsl(217 50% 15%) 0%, hsl(200 50% 18%) 50%, hsl(217 40% 20%) 100%)"

@@ -14,6 +14,10 @@ import IncomeDetermination from "./pages/IncomeDetermination";
 import NotFound from "./pages/NotFound";
 import Elasticities from "./pages/Elasticities";
 
+// Landing pages for hierarchical navigation
+import Microeconomics from "./pages/Microeconomics";
+import Macroeconomics from "./pages/Macroeconomics";
+
 // AS Macro chapters
 import ADASEquilibrium from "./pages/as-macro/ADASEquilibrium";
 import Inflation from "./pages/as-macro/Inflation";
@@ -46,11 +50,23 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/market-structures" element={<MarketStructures />} />
+          
+          {/* Main Landing Pages */}
+          <Route path="/microeconomics" element={<Microeconomics />} />
+          <Route path="/macroeconomics" element={<Macroeconomics />} />
+          
+          {/* AS Microeconomics chapters */}
           <Route path="/basic-economic-ideas" element={<BasicEconomicIdeas />} />
           <Route path="/price-system" element={<PriceSystem />} />
-          <Route path="/diagrams" element={<DiagramBank />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/elasticities" element={<Elasticities />} />
+          <Route path="/market-failure" element={<DiagramBank />} />
+          
+          {/* A2 Microeconomics chapters */}
+          <Route path="/a2-micro/utility-consumer-choice" element={<UtilityConsumerChoice />} />
+          <Route path="/a2-micro/economic-efficiency" element={<EconomicEfficiency />} />
+          <Route path="/a2-micro/production-costs" element={<ProductionCosts />} />
+          <Route path="/a2-micro/market-structures" element={<MarketStructuresA2 />} />
+          <Route path="/a2-micro/labor-market" element={<LaborMarketA2 />} />
           
           {/* AS Macroeconomics chapters */}
           <Route path="/as-macro/ad-as" element={<ADASEquilibrium />} />
@@ -69,23 +85,18 @@ const App = () => (
           <Route path="/a2-macro/policy-objectives" element={<PolicyObjectives />} />
           <Route path="/a2-macro/development" element={<Development />} />
           
-          {/* Legacy routes */}
+          {/* Utility pages */}
+          <Route path="/diagrams" element={<DiagramBank />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/market-structures" element={<MarketStructures />} />
+          
+          {/* Legacy routes - redirect to new structure */}
           <Route path="/national-income" element={<NationalIncome />} />
           <Route path="/income-determination" element={<IncomeDetermination />} />
           <Route path="/basic-economic-problem" element={<BasicEconomicIdeas />} />
-          
-          {/* A2 Microeconomics */}
-          <Route path="/a2-micro/utility-consumer-choice" element={<UtilityConsumerChoice />} />
-          <Route path="/a2-micro/economic-efficiency" element={<EconomicEfficiency />} />
-          <Route path="/a2-micro/production-costs" element={<ProductionCosts />} />
-          <Route path="/a2-micro/market-structures" element={<MarketStructuresA2 />} />
-          <Route path="/a2-micro/labor-market" element={<LaborMarketA2 />} />
-          
-          {/* Microeconomics chapters */}
-          <Route path="/elasticities" element={<Elasticities />} />
-          <Route path="/market-failure" element={<DiagramBank />} />
           <Route path="/theory-of-firm" element={<MarketStructuresA2 />} />
           <Route path="/labor-markets" element={<LaborMarketA2 />} />
+          <Route path="/economic-growth" element={<Macroeconomics />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
