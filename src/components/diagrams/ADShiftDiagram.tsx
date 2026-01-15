@@ -66,7 +66,7 @@ const ADShiftDiagram = () => {
     visible: { 
       pathLength: 1, 
       opacity: 1,
-      transition: { duration: 1.2, ease: "easeInOut" }
+      transition: { duration: 1.2, ease: "easeInOut" as const }
     }
   };
 
