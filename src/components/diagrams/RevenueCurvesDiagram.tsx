@@ -61,132 +61,226 @@ const RevenueCurvesDiagram: React.FC = () => {
         {/* TR Curve */}
         <div className="relative bg-card/30 rounded-xl p-4 border border-silver/10">
           <h4 className="text-silver-bright text-sm font-medium mb-2 text-center">Total Revenue (TR)</h4>
-          <svg viewBox="0 0 300 220" className="w-full h-auto">
-            <defs>
-              <pattern id="trGrid" width="30" height="30" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(100,116,139,0.1)" strokeWidth="1"/>
-              </pattern>
-            </defs>
-            <rect x="40" y="10" width="240" height="170" fill="url(#trGrid)" />
+          <svg viewBox="0 0 320 240" className="w-full h-auto" style={{ minHeight: '200px' }}>
+            {/* Grid background */}
+            <rect x="50" y="20" width="240" height="170" fill="rgba(100,116,139,0.05)" />
+            
+            {/* Grid lines */}
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+              <line
+                key={`vgrid-tr-${i}`}
+                x1={50 + i * 40}
+                y1="20"
+                x2={50 + i * 40}
+                y2="190"
+                stroke="rgba(100,116,139,0.15)"
+                strokeWidth="1"
+              />
+            ))}
+            {[0, 1, 2, 3, 4].map((i) => (
+              <line
+                key={`hgrid-tr-${i}`}
+                x1="50"
+                y1={20 + i * 42.5}
+                x2="290"
+                y2={20 + i * 42.5}
+                stroke="rgba(100,116,139,0.15)"
+                strokeWidth="1"
+              />
+            ))}
 
             {/* Axes */}
-            <line x1="40" y1="180" x2="290" y2="180" stroke="hsl(var(--silver))" strokeWidth="2" />
-            <line x1="40" y1="180" x2="40" y2="10" stroke="hsl(var(--silver))" strokeWidth="2" />
+            <line x1="50" y1="190" x2="300" y2="190" stroke="#94a3b8" strokeWidth="2" />
+            <line x1="50" y1="190" x2="50" y2="15" stroke="#94a3b8" strokeWidth="2" />
+            
+            {/* Arrow heads */}
+            <polygon points="300,190 292,186 292,194" fill="#94a3b8" />
+            <polygon points="50,15 46,23 54,23" fill="#94a3b8" />
 
-            <text x="165" y="205" textAnchor="middle" className="fill-silver text-[10px]">Quantity (Q)</text>
-            <text x="15" y="95" textAnchor="middle" transform="rotate(-90, 15, 95)" className="fill-silver text-[10px]">TR ($)</text>
+            {/* Axis Labels */}
+            <text x="175" y="220" textAnchor="middle" fill="#94a3b8" fontSize="11">Quantity (Q)</text>
+            <text x="20" y="105" textAnchor="middle" transform="rotate(-90, 20, 105)" fill="#94a3b8" fontSize="11">TR ($)</text>
+
+            {/* Origin label */}
+            <text x="42" y="205" fill="#94a3b8" fontSize="10">0</text>
 
             {firmType === 'price-taker' ? (
-              /* Linear TR for price taker */
-              <motion.path
-                d="M 40,180 L 270,30"
-                fill="none"
-                stroke="hsl(var(--neon-cyan))"
+              /* Linear TR for price taker - straight line from origin */
+              <motion.line
+                key="tr-line-taker"
+                x1="50"
+                y1="190"
+                x2="280"
+                y2="35"
+                stroke="#22d3ee"
                 strokeWidth="3"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
                 transition={{ duration: 1 }}
               />
             ) : (
-              /* Parabolic TR for price maker */
+              /* Parabolic TR for price maker - rises then falls */
               <>
                 <motion.path
-                  d="M 40,180 Q 100,120 160,60 Q 200,40 220,45 Q 250,60 270,100"
+                  key="tr-curve-maker"
+                  d="M 50,190 Q 100,140 150,70 Q 180,40 200,35 Q 230,40 260,70 Q 280,100 290,140"
                   fill="none"
-                  stroke="hsl(var(--neon-cyan))"
+                  stroke="#22d3ee"
                   strokeWidth="3"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
-                  transition={{ duration: 1 }}
+                  transition={{ duration: 1.2 }}
                 />
                 {/* Max TR point */}
                 <motion.circle
                   cx="200"
-                  cy="42"
-                  r="5"
-                  fill="hsl(var(--neon-magenta))"
+                  cy="35"
+                  r="6"
+                  fill="#f472b6"
                   stroke="white"
                   strokeWidth="2"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ delay: 1.2 }}
+                  transition={{ delay: 1.3 }}
                 />
-                <text x="208" y="35" className="fill-neon-magenta text-[9px]">Max TR</text>
-                <text x="208" y="55" className="fill-silver text-[8px]">(MR = 0)</text>
+                <text x="208" y="28" fill="#f472b6" fontSize="10" fontWeight="500">Max TR</text>
+                <text x="208" y="50" fill="#94a3b8" fontSize="9">(where MR = 0)</text>
               </>
             )}
-            <text x="275" y={firmType === 'price-taker' ? 25 : 95} className="fill-neon-cyan text-xs">TR</text>
+            
+            {/* TR Label */}
+            <text 
+              x={firmType === 'price-taker' ? 285 : 295} 
+              y={firmType === 'price-taker' ? 30 : 135} 
+              fill="#22d3ee" 
+              fontSize="12" 
+              fontWeight="600"
+            >
+              TR
+            </text>
           </svg>
         </div>
 
         {/* AR/MR Curves */}
         <div className="relative bg-card/30 rounded-xl p-4 border border-silver/10">
           <h4 className="text-silver-bright text-sm font-medium mb-2 text-center">AR & MR Curves</h4>
-          <svg viewBox="0 0 300 220" className="w-full h-auto">
-            <defs>
-              <pattern id="armrGrid" width="30" height="30" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(100,116,139,0.1)" strokeWidth="1"/>
-              </pattern>
-            </defs>
-            <rect x="40" y="10" width="240" height="170" fill="url(#armrGrid)" />
+          <svg viewBox="0 0 320 240" className="w-full h-auto" style={{ minHeight: '200px' }}>
+            {/* Grid background */}
+            <rect x="50" y="20" width="240" height="170" fill="rgba(100,116,139,0.05)" />
+            
+            {/* Grid lines */}
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+              <line
+                key={`vgrid-armr-${i}`}
+                x1={50 + i * 40}
+                y1="20"
+                x2={50 + i * 40}
+                y2="190"
+                stroke="rgba(100,116,139,0.15)"
+                strokeWidth="1"
+              />
+            ))}
+            {[0, 1, 2, 3, 4].map((i) => (
+              <line
+                key={`hgrid-armr-${i}`}
+                x1="50"
+                y1={20 + i * 42.5}
+                x2="290"
+                y2={20 + i * 42.5}
+                stroke="rgba(100,116,139,0.15)"
+                strokeWidth="1"
+              />
+            ))}
 
             {/* Axes */}
-            <line x1="40" y1="180" x2="290" y2="180" stroke="hsl(var(--silver))" strokeWidth="2" />
-            <line x1="40" y1="180" x2="40" y2="10" stroke="hsl(var(--silver))" strokeWidth="2" />
+            <line x1="50" y1="190" x2="300" y2="190" stroke="#94a3b8" strokeWidth="2" />
+            <line x1="50" y1="190" x2="50" y2="15" stroke="#94a3b8" strokeWidth="2" />
+            
+            {/* Arrow heads */}
+            <polygon points="300,190 292,186 292,194" fill="#94a3b8" />
+            <polygon points="50,15 46,23 54,23" fill="#94a3b8" />
 
-            <text x="165" y="205" textAnchor="middle" className="fill-silver text-[10px]">Quantity (Q)</text>
-            <text x="15" y="95" textAnchor="middle" transform="rotate(-90, 15, 95)" className="fill-silver text-[10px]">Price/Revenue ($)</text>
+            {/* Axis Labels */}
+            <text x="175" y="220" textAnchor="middle" fill="#94a3b8" fontSize="11">Quantity (Q)</text>
+            <text x="20" y="105" textAnchor="middle" transform="rotate(-90, 20, 105)" fill="#94a3b8" fontSize="11">Price/Revenue ($)</text>
+
+            {/* Origin label */}
+            <text x="42" y="205" fill="#94a3b8" fontSize="10">0</text>
 
             {firmType === 'price-taker' ? (
               /* Horizontal AR = MR = D for price taker */
               <>
                 <motion.line
-                  x1="40"
+                  key="ar-mr-line-taker"
+                  x1="50"
                   y1="80"
-                  x2="270"
+                  x2="280"
                   y2="80"
-                  stroke="hsl(var(--neon-cyan))"
+                  stroke="#22d3ee"
                   strokeWidth="3"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 1 }}
                 />
-                <text x="275" y="75" className="fill-neon-cyan text-[10px]">P = AR = MR = D</text>
-                <text x="30" y="75" className="fill-silver text-[9px]">P</text>
+                {/* Price level indicator */}
+                <line x1="45" y1="80" x2="50" y2="80" stroke="#94a3b8" strokeWidth="2" />
+                <text x="38" y="84" fill="#94a3b8" fontSize="10" textAnchor="end">P</text>
+                
+                {/* Label */}
+                <text x="285" y="75" fill="#22d3ee" fontSize="10" fontWeight="500">P = AR = MR = D</text>
               </>
             ) : (
               /* Downward sloping AR and MR for price maker */
               <>
-                {/* AR (Demand) curve */}
-                <motion.path
-                  d="M 40,40 L 270,170"
-                  fill="none"
-                  stroke="hsl(var(--neon-cyan))"
+                {/* AR (Demand) curve - from top-left to bottom-right */}
+                <motion.line
+                  key="ar-line-maker"
+                  x1="50"
+                  y1="40"
+                  x2="280"
+                  y2="180"
+                  stroke="#22d3ee"
                   strokeWidth="2.5"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 1 }}
                 />
-                <text x="275" y="165" className="fill-neon-cyan text-[10px]">AR = D</text>
+                <text x="285" y="175" fill="#22d3ee" fontSize="11" fontWeight="500">AR = D</text>
 
-                {/* MR curve (steeper, twice the slope) */}
-                <motion.path
-                  d="M 40,40 L 155,170"
-                  fill="none"
-                  stroke="hsl(var(--neon-magenta))"
+                {/* MR curve - steeper slope, twice the gradient */}
+                <motion.line
+                  key="mr-line-maker"
+                  x1="50"
+                  y1="40"
+                  x2="165"
+                  y2="180"
+                  stroke="#f472b6"
                   strokeWidth="2.5"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 1, delay: 0.3 }}
                 />
-                <text x="160" y="168" className="fill-neon-magenta text-[10px]">MR</text>
+                <text x="170" y="178" fill="#f472b6" fontSize="11" fontWeight="500">MR</text>
 
-                {/* Zero line for MR */}
-                <line x1="40" y1="180" x2="155" y2="180" stroke="hsl(var(--neon-magenta))" strokeWidth="1" strokeDasharray="4,4" opacity="0.5" />
+                {/* MR = 0 dashed line */}
+                <line 
+                  x1="165" 
+                  y1="180" 
+                  x2="165" 
+                  y2="190" 
+                  stroke="#f472b6" 
+                  strokeWidth="1.5" 
+                  strokeDasharray="3,3" 
+                />
                 
-                {/* Annotation */}
-                <text x="180" y="130" className="fill-silver text-[8px]">MR falls twice</text>
-                <text x="180" y="142" className="fill-silver text-[8px]">as fast as AR</text>
+                {/* Quantity labels on x-axis */}
+                <text x="165" y="205" fill="#f472b6" fontSize="9" textAnchor="middle">Q*</text>
+                <text x="280" y="205" fill="#22d3ee" fontSize="9" textAnchor="middle">2Q*</text>
+                
+                {/* Annotation box */}
+                <rect x="185" y="105" width="90" height="35" fill="rgba(0,0,0,0.3)" rx="4" />
+                <text x="230" y="120" fill="#94a3b8" fontSize="9" textAnchor="middle">MR falls twice</text>
+                <text x="230" y="133" fill="#94a3b8" fontSize="9" textAnchor="middle">as fast as AR</text>
               </>
             )}
           </svg>
@@ -226,7 +320,7 @@ const RevenueCurvesDiagram: React.FC = () => {
           </thead>
           <tbody>
             {(firmType === 'price-taker' ? priceTakerData : priceMakerData).map((row, i) => (
-              <tr key={i} className="hover:bg-card/30">
+              <tr key={`revenue-row-${firmType}-${i}`} className="hover:bg-card/30">
                 <td className="border border-silver/20 px-3 py-2 text-center text-silver">{row.q}</td>
                 <td className="border border-silver/20 px-3 py-2 text-center text-silver">{row.p}</td>
                 <td className="border border-silver/20 px-3 py-2 text-center text-neon-cyan">{row.tr}</td>
