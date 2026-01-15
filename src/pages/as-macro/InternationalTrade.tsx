@@ -6,6 +6,8 @@ import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
 import ComparativeAdvantageDiagram from '@/components/diagrams/ComparativeAdvantageDiagram';
 import TariffQuotaDiagram from '@/components/diagrams/TariffQuotaDiagram';
+import TermsOfTradeDiagram from '@/components/diagrams/TermsOfTradeDiagram';
+import TradeBlocsDiagram from '@/components/diagrams/TradeBlocsDiagram';
 
 const InternationalTrade = () => {
   return (
