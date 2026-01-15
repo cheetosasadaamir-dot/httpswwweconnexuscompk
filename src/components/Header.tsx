@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Search, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import logoImage from '@/assets/logo-macromicro.png';
 
 const navLinks = [
   { label: 'Notes Library', href: '/market-structures' },
@@ -37,16 +38,16 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-secondary to-indigo-glow flex items-center justify-center"
-            >
-              <span className="font-serif text-lg font-bold text-primary-foreground">E</span>
-            </motion.div>
+            <motion.img
+              src={logoImage}
+              alt="A2/AS Economics Portal Logo"
+              className="h-10 w-10 object-contain"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            />
             <div className="hidden sm:block">
               <span className="font-serif text-xl font-semibold text-silver-bright group-hover:text-gradient transition-all">
-                Eco-Elite
+                MacroMicro
               </span>
             </div>
           </Link>
