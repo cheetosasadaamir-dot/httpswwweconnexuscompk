@@ -28,6 +28,10 @@ import UnemploymentGrowth from "./pages/a2-macro/UnemploymentGrowth";
 import PolicyObjectives from "./pages/a2-macro/PolicyObjectives";
 import Development from "./pages/a2-macro/Development";
 
+// A2 Microeconomics
+import MarketStructuresA2 from "./pages/a2-micro/MarketStructuresA2";
+import LaborMarketA2 from "./pages/a2-micro/LaborMarket";
+
 const queryClient = new QueryClient();
 
 const App = () => (
