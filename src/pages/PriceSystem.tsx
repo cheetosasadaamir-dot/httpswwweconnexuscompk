@@ -8,6 +8,7 @@ import GlossaryTooltip from '@/components/GlossaryTooltip';
 import DemandSupplyDiagram from '@/components/diagrams/DemandSupplyDiagram';
 import MarketEquilibriumInteractive from '@/components/diagrams/MarketEquilibriumInteractive';
 import ConsumerProducerSurplusDiagram from '@/components/diagrams/ConsumerProducerSurplusDiagram';
+import DemandSupplyEquilibriumDiagram from '@/components/diagrams/DemandSupplyEquilibriumDiagram';
 
 const PriceSystem = () => {
   return (
@@ -21,13 +22,75 @@ const PriceSystem = () => {
         title="The Law of Demand" 
         subtitle="The Inverse Relationship Between Price and Quantity Demanded"
       >
-        <NoteCard title="Demand: Definition & Determinants" type="definition">
+        <NoteCard title="Definition of Demand" type="definition">
           <p>
-            <GlossaryTooltip term="Demand" definition="The quantity of a good or service that consumers are willing and able to purchase at various price levels over a given time period.">Demand</GlossaryTooltip> refers 
-            to the quantity of a good consumers are <strong>willing and able</strong> to buy at each price level.
+            <GlossaryTooltip term="Demand" definition="The quantity of a good or service that consumers are willing and able to purchase at various price levels over a given time period.">Demand</GlossaryTooltip> is 
+            a fundamental economic concept that refers to the quantity of a good or service that consumers are <strong>willing and able</strong> to purchase at various price levels during a specific time period. The emphasis on both willingness (desire) and ability (purchasing power) is crucial—a consumer may want a Ferrari, but without the financial means, this does not constitute effective demand in economic terms. Effective demand requires both the desire for a good and the ability to back that desire with payment.
           </p>
           <p className="mt-3">
-            <strong>The Law of Demand:</strong> As price rises, quantity demanded falls, <em>ceteris paribus</em>.
+            A <strong>demand schedule</strong> is a table showing the different quantities of a good that consumers are willing and able to buy at different price levels. When this data is plotted on a graph with price on the vertical axis and quantity on the horizontal axis, we obtain a <strong>demand curve</strong>, which typically slopes downward from left to right.
+          </p>
+        </NoteCard>
+
+        <NoteCard title="The Law of Demand" type="theory" delay={50}>
+          <p>
+            <strong>The Law of Demand</strong> states that there is an <strong>inverse (negative) relationship</strong> between the price of a good and the quantity demanded, <em>ceteris paribus</em> (all other factors remaining constant). As price rises, quantity demanded falls; as price falls, quantity demanded rises. This fundamental law gives the demand curve its characteristic downward slope.
+          </p>
+          <p className="mt-3">
+            The law of demand can be explained through two key effects:
+          </p>
+          <div className="grid md:grid-cols-2 gap-4 mt-4">
+            <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+              <h5 className="font-semibold text-cyan-400 mb-2">The Substitution Effect</h5>
+              <p className="text-sm text-muted-foreground">
+                When the price of a good rises, it becomes relatively more expensive compared to substitute goods. Consumers respond by switching some of their consumption to these now relatively cheaper alternatives, reducing the quantity demanded of the original good.
+              </p>
+            </div>
+            <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+              <h5 className="font-semibold text-emerald-400 mb-2">The Income Effect</h5>
+              <p className="text-sm text-muted-foreground">
+                When the price of a good rises, consumers experience a reduction in their real purchasing power (real income). With effectively less income, consumers can afford to buy less of most goods, including the good whose price has risen, leading to reduced quantity demanded.
+              </p>
+            </div>
+          </div>
+        </NoteCard>
+
+        <NoteCard title="Demand Schedule Example" type="application" delay={100}>
+          <p className="mb-4">The following table illustrates a hypothetical demand schedule for apples:</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b-2 border-silver/30">
+                  <th className="text-left py-3 px-4 text-silver-bright">Price per kg ($)</th>
+                  <th className="text-left py-3 px-4 text-silver-bright">Quantity Demanded (kg/week)</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
+                <tr className="border-b border-silver/10">
+                  <td className="py-2 px-4">5.00</td>
+                  <td className="py-2 px-4">100</td>
+                </tr>
+                <tr className="border-b border-silver/10">
+                  <td className="py-2 px-4">4.00</td>
+                  <td className="py-2 px-4">200</td>
+                </tr>
+                <tr className="border-b border-silver/10">
+                  <td className="py-2 px-4">3.00</td>
+                  <td className="py-2 px-4">300</td>
+                </tr>
+                <tr className="border-b border-silver/10">
+                  <td className="py-2 px-4">2.00</td>
+                  <td className="py-2 px-4">400</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4">1.00</td>
+                  <td className="py-2 px-4">500</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Notice the inverse relationship: as price falls from $5 to $1, quantity demanded rises from 100kg to 500kg per week.
           </p>
         </NoteCard>
 
