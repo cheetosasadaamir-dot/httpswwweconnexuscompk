@@ -61,6 +61,82 @@ const ADASEquilibrium = () => {
           </NoteCard>
         </ContentSection>
 
+        {/* Real vs Nominal Values */}
+        <ContentSection title="Measuring Economic Performance: Real vs Nominal Values">
+          <NoteCard title="Why Real Values Matter" type="definition">
+            <p className="leading-relaxed">
+              When measuring economic performance over time, economists must distinguish between 
+              <strong> nominal values</strong> (also called money values or current prices) and 
+              <strong> real values</strong> (constant prices, adjusted for inflation). This distinction 
+              is fundamental to understanding whether an economy is genuinely growing or merely experiencing 
+              rising prices that inflate the numerical measurements without any real improvement in living 
+              standards.
+            </p>
+            <p className="mt-4 leading-relaxed">
+              <strong>Nominal values</strong> are expressed in terms of the prices that prevailed at the time 
+              of measurement. If a country's GDP was £100 billion in 2020 and £110 billion in 2023, this tells 
+              us the total value of goods and services produced measured in each year's prices. However, this 
+              comparison is misleading if prices have risen – some of the apparent increase in GDP may simply 
+              reflect higher prices rather than more goods and services being produced.
+            </p>
+            <p className="mt-4 leading-relaxed">
+              <strong>Real values</strong> remove the distorting effects of price changes by expressing all 
+              measurements in the prices of a chosen base year. If we calculate that real GDP (in constant 
+              2020 prices) was £100 billion in 2020 and £105 billion in 2023, we know that actual production 
+              increased by 5% – any inflation has been stripped out. This gives a much more accurate picture 
+              of genuine changes in economic output and living standards.
+            </p>
+          </NoteCard>
+
+          <NoteCard title="The GDP Deflator and Price Indices" type="theory">
+            <p className="leading-relaxed">
+              To convert nominal values to real values, economists use <strong>price indices</strong> such as 
+              the Consumer Price Index (CPI) or the GDP Deflator. The conversion formula is straightforward:
+            </p>
+            <div className="mt-4 p-4 bg-muted/40 rounded-xl font-mono text-center text-lg border border-primary/20">
+              Real Value = (Nominal Value ÷ Price Index) × 100
+            </div>
+            <p className="mt-4 leading-relaxed">
+              For example, if nominal GDP is £120 billion and the GDP deflator (price index) is 120, then real 
+              GDP is (£120bn ÷ 120) × 100 = £100 billion in base year prices. This adjustment is essential when 
+              comparing economic performance across different time periods or when assessing whether workers' 
+              wages have genuinely increased in purchasing power terms.
+            </p>
+          </NoteCard>
+
+          <div className="grid md:grid-cols-2 gap-4 mt-6">
+            <div className="glass-card p-5 border-l-4 border-primary">
+              <h4 className="font-semibold text-primary mb-3">Nominal Measurements</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Expressed in current market prices</li>
+                <li>• Include the effects of inflation</li>
+                <li>• Can be misleading for comparisons over time</li>
+                <li>• Also called "money values" or "current prices"</li>
+                <li>• Easy to observe directly in the economy</li>
+              </ul>
+            </div>
+            <div className="glass-card p-5 border-l-4 border-secondary">
+              <h4 className="font-semibold text-secondary mb-3">Real Measurements</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Expressed in constant prices (base year)</li>
+                <li>• Adjusted to remove inflation effects</li>
+                <li>• Essential for meaningful time comparisons</li>
+                <li>• Also called "real terms" or "constant prices"</li>
+                <li>• Show genuine changes in quantity/output</li>
+              </ul>
+            </div>
+          </div>
+
+          <ExamTipBox title="Critical Distinction" variant="warning">
+            <p>
+              Always clarify whether values are nominal or real in your exam answers. A country with 10% 
+              nominal GDP growth but 8% inflation has only experienced approximately 2% real economic growth. 
+              Policy makers focus on <strong>real values</strong> because these reflect genuine changes in 
+              economic welfare and living standards.
+            </p>
+          </ExamTipBox>
+        </ContentSection>
+
         {/* Aggregate Demand - Expanded */}
         <ContentSection title="Aggregate Demand (AD)">
           <NoteCard title="Definition and Components of Aggregate Demand" type="theory">
