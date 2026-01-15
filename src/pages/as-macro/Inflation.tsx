@@ -5,6 +5,7 @@ import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
 import InflationDiagrams from '@/components/diagrams/InflationDiagrams';
+import MoneySupplyDiagram from '@/components/diagrams/MoneySupplyDiagram';
 
 const Inflation = () => {
   return (
@@ -19,14 +20,140 @@ const Inflation = () => {
         <div className="mb-12">
           <span className="text-primary text-sm font-medium tracking-wider uppercase">AS Level • Chapter 2</span>
           <h1 className="font-serif text-4xl md:text-5xl text-gradient mt-2 mb-4">
-            Inflation
+            Money and Inflation
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Understanding the causes, measurement, and consequences of a sustained rise in the general price level.
+            Understanding the nature of money, the causes and measurement of inflation, and their macroeconomic consequences.
           </p>
         </div>
 
-        {/* Definition */}
+        {/* SECTION 1: Money */}
+        <ContentSection title="The Nature of Money">
+          <NoteCard title="What is Money?" type="definition">
+            <p className="leading-relaxed">
+              <strong>Money</strong> is defined as anything that is <strong>generally acceptable as a means of payment</strong> 
+              for goods, services, and the settlement of debts. In modern economies, money takes various forms including 
+              physical currency (notes and coins), bank deposits, and digital balances. The key characteristic that 
+              distinguishes money from other assets is its universal acceptability in transactions – when you offer money 
+              in exchange for goods, sellers accept it without question because they are confident they can use it to 
+              purchase other goods in turn.
+            </p>
+            <p className="mt-4 leading-relaxed">
+              Money has evolved throughout history from commodity money (such as gold, silver, cattle, or shells) to 
+              <strong> representative money</strong> (paper notes backed by gold) to today's <strong>fiat money</strong> – 
+              currency that has value because the government declares it legal tender and people have confidence in it, 
+              rather than because it can be exchanged for a physical commodity like gold.
+            </p>
+          </NoteCard>
+
+          <NoteCard title="The Four Functions of Money" type="theory">
+            <p className="leading-relaxed mb-4">
+              Money serves four essential functions in any economy. For something to qualify as money, it must perform 
+              all four of these roles effectively:
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="p-4 bg-gradient-to-r from-primary/10 to-transparent rounded-lg border-l-4 border-primary">
+                <h5 className="font-semibold text-primary mb-2">1. Medium of Exchange</h5>
+                <p className="text-sm leading-relaxed">
+                  Money's most important function. It eliminates the need for <strong>barter</strong> and the 
+                  <strong> double coincidence of wants</strong> – the requirement that each party must want exactly 
+                  what the other has. With money, a baker can sell bread for money, then use that money to buy shoes, 
+                  without needing to find a shoemaker who wants bread.
+                </p>
+              </div>
+              <div className="p-4 bg-gradient-to-r from-secondary/10 to-transparent rounded-lg border-l-4 border-secondary">
+                <h5 className="font-semibold text-secondary mb-2">2. Store of Value</h5>
+                <p className="text-sm leading-relaxed">
+                  Money allows purchasing power to be saved for future use. Unlike perishable goods, money can be 
+                  held over time without deteriorating. However, <strong>inflation erodes this function</strong> – 
+                  if prices rise, the same amount of money buys less in the future, making it a poor store of value.
+                </p>
+              </div>
+              <div className="p-4 bg-gradient-to-r from-accent/10 to-transparent rounded-lg border-l-4 border-accent">
+                <h5 className="font-semibold text-accent mb-2">3. Unit of Account</h5>
+                <p className="text-sm leading-relaxed">
+                  Money provides a common measure for valuing goods, services, and assets. Prices are expressed in 
+                  monetary units (£, $, €), allowing easy comparison. Without this function, you would need to 
+                  remember thousands of exchange ratios between different goods.
+                </p>
+              </div>
+              <div className="p-4 bg-gradient-to-r from-cambridge-gold/10 to-transparent rounded-lg border-l-4 border-cambridge-gold">
+                <h5 className="font-semibold text-cambridge-gold mb-2">4. Standard of Deferred Payment</h5>
+                <p className="text-sm leading-relaxed">
+                  Money enables borrowing and lending by providing a unit in which debts and future payments are 
+                  expressed. Contracts can specify amounts to be paid in the future with confidence that the money 
+                  will still be acceptable. <strong>Inflation undermines this function</strong> by making future 
+                  payments uncertain in real terms.
+                </p>
+              </div>
+            </div>
+          </NoteCard>
+
+          <NoteCard title="Characteristics of Good Money" type="application">
+            <p className="leading-relaxed mb-4">
+              For any item to serve effectively as money, it must possess six key characteristics:
+            </p>
+            <div className="grid md:grid-cols-3 gap-3">
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <h6 className="font-semibold text-primary text-sm">1. Acceptability</h6>
+                <p className="text-xs mt-1">Must be universally accepted in exchange. This is the most fundamental requirement.</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <h6 className="font-semibold text-primary text-sm">2. Divisibility</h6>
+                <p className="text-xs mt-1">Must be divisible into smaller units for transactions of any size without losing value.</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <h6 className="font-semibold text-primary text-sm">3. Durability</h6>
+                <p className="text-xs mt-1">Must be able to withstand physical wear and tear to remain usable over time.</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <h6 className="font-semibold text-primary text-sm">4. Portability</h6>
+                <p className="text-xs mt-1">Must be easy to carry and transfer between parties in different locations.</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <h6 className="font-semibold text-primary text-sm">5. Homogeneity</h6>
+                <p className="text-xs mt-1">Each unit must be identical to every other unit of the same denomination.</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <h6 className="font-semibold text-primary text-sm">6. Limited Supply</h6>
+                <p className="text-xs mt-1">Must be scarce enough to maintain value; unlimited supply would make it worthless.</p>
+              </div>
+            </div>
+          </NoteCard>
+
+          <MoneySupplyDiagram />
+
+          <NoteCard title="Near Money and Liquidity" type="theory">
+            <p className="leading-relaxed">
+              <strong>Near money</strong> refers to assets that can be quickly and easily converted into cash (money) 
+              with little or no loss of value. These assets are highly <strong>liquid</strong> but not quite as liquid 
+              as money itself. The concept of <strong>liquidity</strong> refers to how quickly and easily an asset can 
+              be converted into a medium of exchange without significant loss of value.
+            </p>
+            <div className="mt-4 p-4 bg-muted/30 rounded-lg">
+              <h5 className="font-semibold mb-2">Liquidity Spectrum:</h5>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-primary font-medium">Most Liquid</span>
+                <span className="text-destructive font-medium">Least Liquid</span>
+              </div>
+              <div className="mt-2 h-3 bg-gradient-to-r from-primary via-accent to-destructive rounded-full"></div>
+              <div className="flex justify-between text-xs mt-2 text-muted-foreground">
+                <span>Cash</span>
+                <span>Sight Deposits</span>
+                <span>Savings</span>
+                <span>Bonds</span>
+                <span>Property</span>
+              </div>
+            </div>
+            <p className="mt-4 leading-relaxed">
+              Examples of near money include: savings accounts, time deposits, money market funds, treasury bills, 
+              and short-term government bonds. While these cannot be used directly for transactions, they can be 
+              converted to cash relatively quickly with minimal cost.
+            </p>
+          </NoteCard>
+        </ContentSection>
+
+        {/* SECTION 2: Inflation Definition */}
         <ContentSection title="What is Inflation?">
           <NoteCard title="Defining Inflation" type="definition">
             <p className="leading-relaxed">
@@ -53,6 +180,30 @@ const Inflation = () => {
             </p>
           </NoteCard>
 
+          <div className="grid md:grid-cols-3 gap-4 my-6">
+            <div className="glass-card p-5 border-l-4 border-primary">
+              <h4 className="font-semibold text-primary mb-2">Inflation</h4>
+              <p className="text-sm text-muted-foreground">
+                A <strong>sustained rise</strong> in the general price level. Prices continue to increase over time.
+              </p>
+              <div className="mt-3 font-mono text-primary text-lg">↑ P continuously</div>
+            </div>
+            <div className="glass-card p-5 border-l-4 border-secondary">
+              <h4 className="font-semibold text-secondary mb-2">Deflation</h4>
+              <p className="text-sm text-muted-foreground">
+                A <strong>sustained fall</strong> in the general price level. Opposite of inflation; money gains purchasing power.
+              </p>
+              <div className="mt-3 font-mono text-secondary text-lg">↓ P continuously</div>
+            </div>
+            <div className="glass-card p-5 border-l-4 border-accent">
+              <h4 className="font-semibold text-accent mb-2">Disinflation</h4>
+              <p className="text-sm text-muted-foreground">
+                A <strong>reduction in the rate of inflation</strong>. Prices still rise, but more slowly than before.
+              </p>
+              <div className="mt-3 font-mono text-accent text-lg">↑ P (but slower)</div>
+            </div>
+          </div>
+
           <NoteCard title="Real vs Nominal Values in an Inflationary Environment" type="theory">
             <p className="leading-relaxed">
               Understanding the distinction between <strong>nominal values</strong> and <strong>real values</strong> 
@@ -77,6 +228,11 @@ const Inflation = () => {
                 </p>
               </div>
             </div>
+            <div className="mt-4 p-4 bg-primary/10 rounded-lg">
+              <p className="font-mono text-center">
+                Real Value = <span className="text-primary">(Nominal Value / Price Index)</span> × 100
+              </p>
+            </div>
             <p className="mt-4 leading-relaxed">
               Economists focus overwhelmingly on <strong>real values</strong> rather than nominal values because 
               real values accurately reflect genuine changes in economic well-being. A 5% nominal wage increase 
@@ -98,8 +254,7 @@ const Inflation = () => {
               measure of changes in the cost of living.
             </p>
             <p className="mt-4 leading-relaxed">
-              The construction and calculation of the CPI involves a rigorous three-step methodology that ensures 
-              accuracy and representativeness:
+              The construction and calculation of the CPI involves a rigorous methodology:
             </p>
             <div className="mt-5 space-y-4">
               <div className="p-4 bg-gradient-to-r from-primary/10 to-transparent rounded-lg border-l-4 border-primary">
@@ -181,11 +336,6 @@ const Inflation = () => {
                 Inflation = (25% × 0.60) + (8.3% × 0.30) + (10% × 0.10) = <strong>18.49%</strong>
               </p>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Notice how food, with its 60% weight, contributes 15 percentage points to the overall 18.49% 
-              inflation rate. This demonstrates why the choice of weights is so important – categories with 
-              larger weights have a greater influence on the measured inflation rate.
-            </p>
           </NoteCard>
 
           <NoteCard title="Uses of the Consumer Price Index" type="application">
@@ -198,25 +348,22 @@ const Inflation = () => {
                 <p className="text-sm mt-1 leading-relaxed">
                   Central banks, such as the Bank of England, use CPI inflation as their primary measure of 
                   price stability. The inflation target (typically 2% in developed economies) guides interest 
-                  rate decisions. If CPI inflation rises above target, the central bank may raise interest 
-                  rates to cool demand and bring inflation back down.
+                  rate decisions.
                 </p>
               </li>
               <li>
                 <strong className="text-secondary">2. Indexation of Payments:</strong>
                 <p className="text-sm mt-1 leading-relaxed">
                   Many payments are <strong>indexed</strong> (automatically adjusted) in line with inflation to 
-                  maintain their real purchasing power. State pensions, welfare benefits, some wage contracts, 
-                  and certain financial instruments are linked to CPI. This protects recipients from having 
-                  their living standards eroded by inflation.
+                  maintain their real purchasing power. State pensions, welfare benefits, and some wage contracts 
+                  are linked to CPI.
                 </p>
               </li>
               <li>
                 <strong className="text-accent">3. Deflating Nominal to Real Values:</strong>
                 <p className="text-sm mt-1 leading-relaxed">
                   Economists use the CPI as a <strong>deflator</strong> to convert nominal values into real 
-                  values. This enables meaningful comparisons of wages, GDP, and other economic variables 
-                  across different time periods by removing the distorting effects of price changes.
+                  values, enabling meaningful comparisons across time periods.
                 </p>
               </li>
             </ul>
@@ -228,13 +375,11 @@ const Inflation = () => {
               <li>• <strong>Non-representative baskets:</strong> The average basket may not reflect the spending 
               patterns of specific groups (pensioners, students, high-income earners)</li>
               <li>• <strong>Quality changes:</strong> When products improve in quality, price increases may 
-              partly reflect better quality rather than pure inflation – this is difficult to measure</li>
-              <li>• <strong>New products:</strong> Innovative goods (smartphones, streaming services) may take 
-              time to be included in the basket, missing their price changes in the early period</li>
-              <li>• <strong>Substitution bias:</strong> When prices rise, consumers switch to cheaper 
-              alternatives, but the fixed-weight CPI may overstate the actual cost increase</li>
-              <li>• <strong>Regional variations:</strong> The national CPI may not reflect significant 
-              differences in prices across regions of the country</li>
+              partly reflect better quality rather than pure inflation</li>
+              <li>• <strong>New products:</strong> Innovative goods may take time to be included in the basket</li>
+              <li>• <strong>Substitution bias:</strong> Consumers switch to cheaper alternatives, but fixed-weight 
+              CPI may overstate actual cost increase</li>
+              <li>• <strong>Regional variations:</strong> National CPI may not reflect significant price differences across regions</li>
             </ul>
           </ExamTipBox>
         </ContentSection>
@@ -244,23 +389,23 @@ const Inflation = () => {
           <div className="grid md:grid-cols-2 gap-4">
             <div className="glass-card p-4">
               <div className="text-primary font-mono text-2xl mb-2">&lt;5%</div>
-              <h4 className="font-semibold">Mild Inflation</h4>
-              <p className="text-sm text-muted-foreground">Very mild inflation that can actually aid competitiveness and economic growth.</p>
+              <h4 className="font-semibold">Mild/Creeping Inflation</h4>
+              <p className="text-sm text-muted-foreground">Very mild inflation that can actually aid competitiveness and economic growth. Considered healthy for the economy.</p>
             </div>
             <div className="glass-card p-4">
               <div className="text-secondary font-mono text-2xl mb-2">5-9%</div>
-              <h4 className="font-semibold">Moderate Inflation</h4>
-              <p className="text-sm text-muted-foreground">Mild inflation requiring control to prevent future difficulties.</p>
+              <h4 className="font-semibold">Moderate/Walking Inflation</h4>
+              <p className="text-sm text-muted-foreground">Mild inflation requiring control to prevent future difficulties. Policy action typically needed.</p>
             </div>
             <div className="glass-card p-4">
               <div className="text-cambridge-orange font-mono text-2xl mb-2">10-19%</div>
-              <h4 className="font-semibold">Serious Inflation</h4>
-              <p className="text-sm text-muted-foreground">Builds pressure for wage demands and high interest rates. Strict policies essential.</p>
+              <h4 className="font-semibold">Galloping/Serious Inflation</h4>
+              <p className="text-sm text-muted-foreground">Builds pressure for wage demands and high interest rates. Strict policies essential to prevent escalation.</p>
             </div>
             <div className="glass-card p-4">
               <div className="text-destructive font-mono text-2xl mb-2">&gt;50%</div>
               <h4 className="font-semibold">Hyperinflation</h4>
-              <p className="text-sm text-muted-foreground">Economic structures collapse; currency becomes worthless domestically and internationally.</p>
+              <p className="text-sm text-muted-foreground">Economic structures collapse; currency becomes worthless. Examples: Zimbabwe 2008, Venezuela 2018, Weimar Germany 1923.</p>
             </div>
           </div>
         </ContentSection>
@@ -269,8 +414,7 @@ const Inflation = () => {
         <ContentSection title="Causes of Inflation">
           <p className="text-muted-foreground mb-6 leading-relaxed">
             Economists identify three main theoretical explanations for inflation, each focusing on different 
-            economic mechanisms. Understanding these causes is essential for selecting appropriate policy 
-            responses and for exam analysis.
+            economic mechanisms. Understanding these causes is essential for selecting appropriate policy responses.
           </p>
           
           <InflationDiagrams />
@@ -286,33 +430,21 @@ const Inflation = () => {
             <p className="mt-4 leading-relaxed">
               Demand-pull inflation is particularly evident when the economy is operating at or near 
               <strong> full employment</strong>. At this point, the Short-Run Aggregate Supply (SRAS) curve 
-              becomes increasingly steep because firms find it difficult to increase output further – labour 
-              and other resources are already fully employed. Any increase in aggregate demand at this stage 
-              translates almost entirely into higher prices rather than increased real output.
+              becomes increasingly steep because firms find it difficult to increase output further.
             </p>
-            <p className="mt-4">Sources of demand-pull pressure include:</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">→</span>
-                Rapid increases in consumer spending from optimistic households or rising incomes
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">→</span>
-                Surging investment expenditure driven by confident business expectations
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">→</span>
-                Expansionary fiscal policy through increased government spending (↑G) or tax cuts (↓T)
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">→</span>
-                Export growth from improved international competitiveness or overseas economic growth
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">→</span>
-                Loose monetary policy with low interest rates encouraging borrowing and spending
-              </li>
-            </ul>
+            <div className="mt-4 p-4 bg-primary/10 rounded-lg">
+              <h5 className="font-semibold text-primary mb-2">Reasons for Increase in Aggregate Demand:</h5>
+              <ul className="grid md:grid-cols-2 gap-2 text-sm">
+                <li>• ↑ Consumer spending (C) - rising confidence/income</li>
+                <li>• ↑ Investment (I) - business optimism</li>
+                <li>• ↑ Government spending (G) - fiscal expansion</li>
+                <li>• ↑ Net exports (X-M) - exchange rate depreciation</li>
+                <li>• ↓ Interest rates - cheaper borrowing</li>
+                <li>• ↓ Taxes - higher disposable income</li>
+                <li>• ↑ Money supply - quantitative easing</li>
+                <li>• ↑ Wealth effect - rising asset prices</li>
+              </ul>
+            </div>
           </NoteCard>
 
           <NoteCard title="Cost-Push Inflation" type="theory">
@@ -320,47 +452,40 @@ const Inflation = () => {
               <strong>Cost-push inflation</strong> is associated with continuing rises in the costs of 
               production that cause the Short-Run Aggregate Supply curve to shift leftward. When firms face 
               higher costs for labour, raw materials, energy, or other inputs, they respond by raising their 
-              prices to maintain profit margins. This cost increase is then "pushed" through to consumers in 
-              the form of higher prices throughout the economy.
+              prices to maintain profit margins. This cost increase is then "pushed" through to consumers.
             </p>
             <p className="mt-4 leading-relaxed">
               Cost-push inflation creates the dangerous combination of <strong>stagflation</strong> – 
-              simultaneous inflation and stagnation (falling output with rising unemployment). The leftward 
-              shift of SRAS means that the new equilibrium has both a higher price level and lower real output 
-              than before. This poses a severe policy dilemma because the standard remedy for inflation 
-              (reducing demand) would worsen the output and employment situation.
+              simultaneous inflation and stagnation (falling output with rising unemployment).
             </p>
             <div className="mt-5 grid md:grid-cols-2 gap-3">
               <div className="p-4 border border-muted rounded-lg">
                 <strong className="text-primary">Wage-Push Inflation:</strong>
                 <p className="text-sm mt-2 leading-relaxed">
                   Occurs when trade unions or workers successfully push for higher wages independently of 
-                  productivity improvements or labour market conditions. Higher labour costs force firms to 
-                  raise prices, which then leads to further wage demands – creating a wage-price spiral.
+                  productivity improvements. Higher labour costs force firms to raise prices, creating a 
+                  <strong> wage-price spiral</strong>.
                 </p>
               </div>
               <div className="p-4 border border-muted rounded-lg">
                 <strong className="text-secondary">Profit-Push Inflation:</strong>
                 <p className="text-sm mt-2 leading-relaxed">
                   Monopolies or firms with significant market power may increase prices to boost profits, 
-                  particularly if competitive pressures are weak. This "greedflation" can occur when firms 
-                  exploit their pricing power, especially during periods of general price increases.
+                  particularly if competitive pressures are weak.
                 </p>
               </div>
               <div className="p-4 border border-muted rounded-lg">
                 <strong className="text-accent">Import-Price-Push Inflation:</strong>
                 <p className="text-sm mt-2 leading-relaxed">
                   Rising prices of imported goods, particularly essential commodities like oil, increase 
-                  production costs throughout the economy. Oil price shocks have historically been major 
-                  sources of cost-push inflation globally, as energy costs affect virtually every industry.
+                  production costs throughout the economy. Currency depreciation amplifies this effect.
                 </p>
               </div>
               <div className="p-4 border border-muted rounded-lg">
                 <strong className="text-destructive">Tax-Push Inflation:</strong>
                 <p className="text-sm mt-2 leading-relaxed">
                   Increases in indirect taxes (VAT, excise duties) directly add to consumer prices and 
-                  contribute to measured inflation. Higher business taxes may also be passed on to consumers 
-                  in the form of higher prices.
+                  contribute to measured inflation.
                 </p>
               </div>
             </div>
@@ -377,30 +502,23 @@ const Inflation = () => {
               <p className="font-semibold mb-3 text-center">The Fisher Equation (Equation of Exchange):</p>
               <p className="font-mono text-center text-2xl text-primary">MV = PT</p>
               <div className="grid grid-cols-2 gap-3 mt-4 text-sm">
-                <div className="p-2 bg-background/50 rounded"><strong>M</strong> = Money Supply (total quantity of money in circulation)</div>
-                <div className="p-2 bg-background/50 rounded"><strong>V</strong> = Velocity of circulation (how many times each unit of money changes hands)</div>
+                <div className="p-2 bg-background/50 rounded"><strong>M</strong> = Money Supply (total quantity of money)</div>
+                <div className="p-2 bg-background/50 rounded"><strong>V</strong> = Velocity of circulation (times money changes hands)</div>
                 <div className="p-2 bg-background/50 rounded"><strong>P</strong> = General Price level</div>
                 <div className="p-2 bg-background/50 rounded"><strong>T</strong> = Volume of Transactions (real output)</div>
               </div>
             </div>
             <p className="mt-5 leading-relaxed">
-              Monetarists argue that the velocity of money (V) and real output (T) are relatively stable in 
-              the short run – V is determined by institutional factors like payment habits, and T is 
-              constrained by the economy's productive capacity. Therefore, if the money supply (M) grows faster 
-              than the growth in real transactions (T), the excess money must push up prices (P).
-            </p>
-            <p className="mt-4 leading-relaxed">
-              The famous monetarist dictum, associated with Milton Friedman, states: <em>"Inflation is always 
-              and everywhere a monetary phenomenon."</em> This view suggests that sustained inflation cannot 
-              occur without excessive money creation, and that controlling the money supply is the key to 
-              controlling inflation.
+              Monetarists argue that V and T are relatively stable in the short run. Therefore, if M grows 
+              faster than T, the excess money must push up P. The famous monetarist dictum, associated with 
+              Milton Friedman, states: <em>"Inflation is always and everywhere a monetary phenomenon."</em>
             </p>
           </NoteCard>
         </ContentSection>
 
         {/* Costs of Inflation */}
         <ContentSection title="Costs of Inflation">
-          <AnalysisBlock title="Economic Consequences">
+          <AnalysisBlock title="Economic Consequences" type="analysis">
             <div className="space-y-4">
               <div>
                 <h4 className="font-semibold text-primary">1. Shoe Leather Costs</h4>
@@ -434,7 +552,14 @@ const Inflation = () => {
                 <h4 className="font-semibold text-primary">5. Balance of Payments</h4>
                 <p className="text-sm mt-1">
                   Higher inflation than trading partners makes exports less competitive and imports 
-                  relatively cheaper, worsening the trade balance and potentially reducing GDP.
+                  relatively cheaper, worsening the trade balance.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-primary">6. Fiscal Drag</h4>
+                <p className="text-sm mt-1">
+                  If tax thresholds are not indexed to inflation, rising nominal incomes push people into 
+                  higher tax brackets even when their real income has not increased.
                 </p>
               </div>
             </div>
@@ -455,8 +580,7 @@ const Inflation = () => {
             </ul>
             <p className="mt-3">
               <strong>Inflation targeting</strong> by central banks aims to anchor expectations. 
-              If the target is credible, it suppresses cost-push pressure by limiting wage demands 
-              to the expected (low) rate of inflation.
+              If the target is credible, it suppresses cost-push pressure by limiting wage demands.
             </p>
           </NoteCard>
 
@@ -473,7 +597,7 @@ const Inflation = () => {
                 <h4 className="font-semibold text-destructive mb-2">Unanticipated Inflation</h4>
                 <p className="text-sm">
                   Unexpected inflation causes greater harm – people and firms are caught unaware, 
-                  leading to arbitrary redistribution and increased uncertainty about future planning.
+                  leading to arbitrary redistribution and increased uncertainty.
                 </p>
               </div>
             </div>
@@ -481,8 +605,8 @@ const Inflation = () => {
         </ContentSection>
 
         {/* Deflation */}
-        <ContentSection title="Deflation">
-          <NoteCard title="The Dangers of Falling Prices" type="theory">
+        <ContentSection title="Deflation and Disinflation">
+          <NoteCard title="Understanding Deflation" type="theory">
             <p>
               <strong>Deflation</strong> is a persistent fall in the average level of prices. While falling 
               prices may seem beneficial, deflation caused by weak demand can have serious consequences:
@@ -490,28 +614,51 @@ const Inflation = () => {
             <ul className="mt-4 space-y-3">
               <li>
                 <strong>Consumer Confidence:</strong> Consumers delay purchases expecting lower future prices, 
-                further reducing demand.
+                further reducing demand – creating a <strong>deflationary spiral</strong>.
               </li>
               <li>
                 <strong>Investment:</strong> Businesses expect lower profits and reduce investment, 
                 harming future growth potential.
               </li>
               <li>
-                <strong>Unemployment:</strong> Falling demand leads to layoffs, creating a deflationary spiral 
-                as incomes and spending fall further.
+                <strong>Unemployment:</strong> Falling demand leads to layoffs, as incomes and spending fall further.
               </li>
               <li>
                 <strong>Debt Burden:</strong> The real value of debt increases, making repayment more difficult 
                 and potentially causing bankruptcies.
               </li>
+              <li>
+                <strong>Monetary Policy Ineffectiveness:</strong> Interest rates cannot fall below zero (the 
+                <strong> zero lower bound</strong>), limiting central bank stimulus options.
+              </li>
             </ul>
+          </NoteCard>
+
+          <NoteCard title="Good vs Bad Deflation" type="application">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="p-4 bg-primary/10 rounded-lg">
+                <h5 className="font-semibold text-primary mb-2">Good Deflation (Supply-Side)</h5>
+                <p className="text-sm">
+                  Prices fall due to <strong>productivity improvements</strong> or <strong>technological 
+                  advances</strong> that lower production costs. Output and employment may still rise. 
+                  Example: Falling computer prices.
+                </p>
+              </div>
+              <div className="p-4 bg-destructive/10 rounded-lg">
+                <h5 className="font-semibold text-destructive mb-2">Bad Deflation (Demand-Side)</h5>
+                <p className="text-sm">
+                  Prices fall due to <strong>weak aggregate demand</strong>. This leads to falling output, 
+                  rising unemployment, and economic recession. Example: Japan's "Lost Decade" (1990s-2000s).
+                </p>
+              </div>
+            </div>
           </NoteCard>
 
           <ExamTipBox title="The Ideal Rate" variant="gold">
             <p>
               Economists suggest that an ideal inflation rate is a positive <strong>1-2%</strong>. 
               This keeps the costs of inflation low while avoiding the dangers of deflation. 
-              Very mild inflation is associated with economic growth and increasing prosperity.
+              Most central banks target 2% inflation as their goal.
             </p>
           </ExamTipBox>
         </ContentSection>
@@ -521,6 +668,14 @@ const Inflation = () => {
           <div className="glass-card p-6">
             <h3 className="font-serif text-xl text-gradient mb-4">Key Takeaways</h3>
             <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <span className="text-primary">•</span>
+                Money serves four functions: medium of exchange, store of value, unit of account, and standard of deferred payment.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">•</span>
+                Narrow money (M0/M1) is highly liquid; broad money (M4) includes near money assets.
+              </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
                 Inflation is a sustained rise in the general price level, measured primarily by the CPI.
@@ -539,7 +694,7 @@ const Inflation = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                Deflation from weak demand is dangerous; ideal inflation is around 1-2%.
+                Deflation from weak demand is dangerous; ideal inflation is around 2%.
               </li>
             </ul>
           </div>
