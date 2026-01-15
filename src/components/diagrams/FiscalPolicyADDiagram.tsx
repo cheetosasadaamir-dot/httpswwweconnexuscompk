@@ -44,14 +44,20 @@ const FiscalPolicyADDiagram: React.FC<FiscalPolicyADDiagramProps> = ({
   const xScale = (val: number) => margin.left + val * chartWidth;
   const yScale = (val: number) => margin.top + chartHeight - val * chartHeight;
 
-  // Generate curve points
+  // Generate AD curve points
+  // A rightward shift means: for the same price level, more output is demanded
+  // This shifts the curve to the right: same Y (price), higher X (output)
   const generateADPoints = (shift: number = 0) => {
     const points: { x: number; y: number }[] = [];
     for (let q = 0.1; q <= 0.95; q += 0.05) {
-      points.push({
-        x: xScale(q + shift),
-        y: yScale(0.95 - q * 0.85)
-      });
+      // Shift affects quantity (x) for each price level
+      const shiftedQ = q + shift;
+      if (shiftedQ >= 0.05 && shiftedQ <= 1.05) {
+        points.push({
+          x: xScale(shiftedQ),
+          y: yScale(0.95 - q * 0.85)  // Price stays based on original q
+        });
+      }
     }
     return points;
   };

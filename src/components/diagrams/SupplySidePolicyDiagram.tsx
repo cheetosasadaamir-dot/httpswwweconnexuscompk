@@ -49,13 +49,20 @@ const SupplySidePolicyDiagram = () => {
   };
 
   // Generate AS curve points (upward sloping)
+  // A rightward shift means: for the same price level, more output is supplied
+  // This means shifting the curve to the right: same Y, higher X
   const generateASPoints = (shift: number = 0) => {
     const points: { x: number; y: number }[] = [];
     for (let q = 0.1; q <= 0.9; q += 0.05) {
-      points.push({
-        x: xScale(q + shift),
-        y: yScale(0.15 + q * 0.75)
-      });
+      // Shift affects the quantity (x) for each price level
+      // Positive shift = rightward = more output at same price
+      const shiftedQ = q + shift;
+      if (shiftedQ >= 0.1 && shiftedQ <= 1.0) {
+        points.push({
+          x: xScale(shiftedQ),
+          y: yScale(0.15 + q * 0.75)  // Price stays based on original q
+        });
+      }
     }
     return points;
   };
@@ -71,13 +78,15 @@ const SupplySidePolicyDiagram = () => {
 
   const adPoints = generateADPoints();
   const as1Points = generateASPoints(0);
-  const as2Points = generateASPoints(0.12);
+  const as2Points = generateASPoints(0.15);  // Rightward shift
 
-  // Equilibrium points
+  // Equilibrium points - calculated from curve intersections
+  // E1: AD and AS1 intersect
   const eq1X = xScale(0.45);
-  const eq1Y = yScale(0.52);
-  const eq2X = xScale(0.57);
-  const eq2Y = yScale(0.45);
+  const eq1Y = yScale(0.49);
+  // E2: AD and AS2 intersect (shifted right, lower price)
+  const eq2X = xScale(0.55);
+  const eq2Y = yScale(0.42);
 
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },
