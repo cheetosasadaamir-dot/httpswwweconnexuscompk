@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
-import ParticleField from '@/components/ParticleField';
-import MeshGradientBackground from '@/components/MeshGradientBackground';
+import FluidGraphiteBackground from '@/components/FluidGraphiteBackground';
+import ScholarDustParticles from '@/components/ScholarDustParticles';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EconomicGlobe from '@/components/EconomicGlobe';
@@ -33,8 +33,8 @@ const features = [
 const Index = () => {
   return (
     <div className="min-h-screen relative">
-      <MeshGradientBackground />
-      <ParticleField />
+      <FluidGraphiteBackground />
+      <ScholarDustParticles />
       <Header />
 
       <main className="relative z-20">

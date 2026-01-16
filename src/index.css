@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,43 +6,44 @@
 
 @layer base {
   :root {
-    /* Infinite Horizon Theme - Deep Space */
-    --background: 222 47% 2%;
-    --foreground: 210 40% 96%;
+    /* Fluid Graphite Theme - Premium Charcoal */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 96%;
 
-    --card: 222 47% 5%;
-    --card-foreground: 210 40% 96%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 222 47% 6%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 96%;
 
     --primary: 185 100% 50%;
-    --primary-foreground: 222 47% 2%;
+    --primary-foreground: 0 0% 5%;
 
     --secondary: 43 72% 53%;
-    --secondary-foreground: 222 47% 2%;
+    --secondary-foreground: 0 0% 5%;
 
-    --muted: 222 47% 10%;
-    --muted-foreground: 210 20% 60%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
 
     --accent: 185 100% 50%;
-    --accent-foreground: 222 47% 2%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 222 30% 15%;
-    --input: 222 30% 10%;
+    --border: 0 0% 18%;
+    --input: 0 0% 12%;
     --ring: 185 100% 50%;
 
     --radius: 0.75rem;
 
-    /* Infinite Horizon Deep Space Tokens */
-    --space-void: 222 47% 1%;
-    --space-deep: 222 47% 2%;
-    --space-base: 222 47% 4%;
-    --space-elevated: 222 40% 8%;
-    --space-surface: 222 35% 12%;
+    /* Fluid Graphite Color Tokens */
+    --graphite-base: 0 0% 7%;
+    --graphite-deep: 0 0% 4%;
+    --graphite-void: 0 0% 2%;
+    --graphite-elevated: 0 0% 11%;
+    --graphite-surface: 0 0% 15%;
+    --graphite-navy: 222 47% 6%;
     
     /* Neon Accent Colors */
     --neon-cyan: 185 100% 50%;
@@ -53,35 +54,42 @@
     
     /* Text hierarchy */
     --text-bright: 0 0% 98%;
-    --text-primary: 210 40% 90%;
-    --text-secondary: 210 20% 70%;
-    --text-muted: 210 15% 50%;
+    --text-primary: 0 0% 90%;
+    --text-secondary: 0 0% 70%;
+    --text-muted: 0 0% 50%;
 
-    /* Premium Glass effects */
-    --glass-bg: 222 47% 4% / 0.75;
-    --glass-border: 185 100% 50% / 0.12;
-    --glass-glow: 0 0 40px hsl(185 100% 50% / 0.15);
+    /* Premium Glassmorphism effects */
+    --glass-bg: 0 0% 8% / 0.65;
+    --glass-border: 0 0% 100% / 0.08;
+    --glass-glow: 0 0 60px hsl(0 0% 100% / 0.05);
     
     /* Legacy support */
-    --navy-deep: 222 47% 2%;
-    --navy-base: 222 47% 4%;
-    --navy-light: 222 40% 8%;
+    --navy-deep: 222 47% 4%;
+    --navy-base: 222 47% 6%;
+    --navy-light: 222 40% 10%;
     --indigo-glow: 185 100% 50%;
-    --silver: 210 20% 70%;
+    --silver: 0 0% 70%;
     --silver-bright: 0 0% 98%;
     
     /* Charcoal tokens for component compatibility */
-    --charcoal-base: 222 47% 2%;
-    --charcoal-deep: 222 47% 1%;
-    --charcoal-light: 222 40% 8%;
-    --charcoal-elevated: 222 35% 12%;
+    --charcoal-base: 0 0% 7%;
+    --charcoal-deep: 0 0% 4%;
+    --charcoal-light: 0 0% 11%;
+    --charcoal-elevated: 0 0% 15%;
     --charcoal-cyan: 185 100% 50%;
     --charcoal-cyan-glow: 185 100% 65%;
     --charcoal-gold: 43 72% 53%;
     --charcoal-gold-muted: 43 60% 40%;
     --charcoal-foreground: 0 0% 98%;
-    --charcoal-silver: 210 20% 70%;
-    --charcoal-muted: 210 15% 50%;
+    --charcoal-silver: 0 0% 70%;
+    --charcoal-muted: 0 0% 50%;
+    
+    /* Space tokens mapped to graphite */
+    --space-void: 0 0% 2%;
+    --space-deep: 0 0% 4%;
+    --space-base: 0 0% 7%;
+    --space-elevated: 0 0% 11%;
+    --space-surface: 0 0% 15%;
     
     /* Cambridge 9708 Standard Colors */
     --cambridge-cyan: 185 100% 50%;
@@ -91,46 +99,46 @@
     --cambridge-yellow: 45 93% 55%;
     
     /* CIE Master Tutor Theme */
-    --tutor-oxford: 222 50% 8%;
+    --tutor-oxford: 0 0% 10%;
     --tutor-gold: 43 72% 53%;
     --tutor-gold-muted: 43 60% 40%;
     --tutor-cyan: 185 100% 50%;
     --tutor-cyan-glow: 185 100% 65%;
-    --tutor-navy: 222 47% 4%;
-    --tutor-navy-deep: 222 47% 2%;
-    --tutor-formula-bg: 222 40% 8%;
-    --tutor-formula-border: 222 30% 20%;
+    --tutor-navy: 222 47% 6%;
+    --tutor-navy-deep: 0 0% 4%;
+    --tutor-formula-bg: 0 0% 10%;
+    --tutor-formula-border: 0 0% 22%;
     --tutor-verified: 142 76% 45%;
 
-    --sidebar-background: 222 47% 3%;
+    --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 96%;
     --sidebar-primary: 185 100% 50%;
-    --sidebar-primary-foreground: 222 47% 2%;
+    --sidebar-primary-foreground: 0 0% 5%;
     --sidebar-accent: 43 72% 53%;
-    --sidebar-accent-foreground: 222 47% 2%;
-    --sidebar-border: 222 30% 15%;
+    --sidebar-accent-foreground: 0 0% 5%;
+    --sidebar-border: 0 0% 18%;
     --sidebar-ring: 185 100% 50%;
   }
 
   .dark {
-    --background: 222 47% 2%;
-    --foreground: 210 40% 96%;
-    --card: 222 47% 5%;
-    --card-foreground: 210 40% 96%;
-    --popover: 222 47% 6%;
-    --popover-foreground: 210 40% 96%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 96%;
     --primary: 185 100% 50%;
-    --primary-foreground: 222 47% 2%;
+    --primary-foreground: 0 0% 5%;
     --secondary: 43 72% 53%;
-    --secondary-foreground: 222 47% 2%;
-    --muted: 222 47% 10%;
-    --muted-foreground: 210 20% 60%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
     --accent: 185 100% 50%;
-    --accent-foreground: 222 47% 2%;
+    --accent-foreground: 0 0% 5%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 222 30% 15%;
-    --input: 222 30% 10%;
+    --border: 0 0% 18%;
+    --input: 0 0% 12%;
     --ring: 185 100% 50%;
   }
 }
@@ -147,34 +155,35 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(180deg, #020617 0%, #0a0a0a 100%);
+    background: #121212;
     min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
   }
 
-  /* Starlight glow effect on headings */
+  /* Subtle glow on headings */
   h1, h2 {
-    text-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.3);
+    text-shadow: 0 0 40px hsl(var(--neon-cyan) / 0.2);
   }
 }
 
 @layer components {
-  /* NASA-Grade Glassmorphism Card */
+  /* Premium Glassmorphism Card - Research Portal Style */
   .glass-card {
     @apply relative overflow-hidden rounded-xl;
-    background: hsl(var(--glass-bg));
-    border: 0.5px solid hsl(var(--glass-border));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: hsl(var(--graphite-base) / 0.7);
+    border: 0.5px solid;
+    border-image: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)) 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.6),
-      0 0 0 0.5px hsl(var(--neon-cyan) / 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      0 0 0 0.5px rgba(255, 255, 255, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   .glass-card-hover {
@@ -182,27 +191,26 @@
   }
 
   .glass-card-hover:hover {
-    border-color: hsl(var(--neon-cyan) / 0.4);
+    border-image: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.08)) 1;
     box-shadow: 
-      0 16px 48px rgba(0, 0, 0, 0.7), 
-      0 0 60px hsl(var(--neon-cyan) / 0.2),
-      0 0 0 0.5px hsl(var(--neon-cyan) / 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    transform: translateY(-3px);
+      0 20px 60px rgba(0, 0, 0, 0.6), 
+      0 0 80px rgba(255, 255, 255, 0.03),
+      0 0 0 0.5px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transform: translateY(-4px);
   }
 
-  /* Floating Dock Navigation - NASA Control Style */
+  /* Floating Dock Navigation - Premium Glass Style */
   .floating-dock {
-    background: hsl(var(--space-deep) / 0.9);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 0.5px solid hsl(var(--neon-cyan) / 0.15);
+    background: hsl(var(--graphite-deep) / 0.85);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.6),
-      0 0 0 0.5px hsl(var(--neon-cyan) / 0.1),
-      0 0 60px hsl(var(--neon-cyan) / 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      0 16px 50px rgba(0, 0, 0, 0.5),
+      0 0 0 0.5px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
 
   .dock-item {
@@ -213,37 +221,37 @@
 
   .dock-item:hover {
     color: hsl(var(--text-bright));
-    background: hsl(var(--space-elevated) / 0.6);
-    text-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.5);
+    background: rgba(255, 255, 255, 0.06);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   }
 
   .dock-item.active {
     color: hsl(var(--neon-cyan));
-    background: hsl(var(--neon-cyan) / 0.12);
+    background: hsl(var(--neon-cyan) / 0.1);
     box-shadow: 
-      0 0 30px hsl(var(--neon-cyan) / 0.25),
-      inset 0 0 20px hsl(var(--neon-cyan) / 0.05);
-    text-shadow: 0 0 15px hsl(var(--neon-cyan) / 0.6);
+      0 0 30px hsl(var(--neon-cyan) / 0.2),
+      inset 0 0 20px hsl(var(--neon-cyan) / 0.03);
+    text-shadow: 0 0 15px hsl(var(--neon-cyan) / 0.5);
   }
 
   .dropdown-menu {
-    background: hsl(var(--space-base) / 0.98);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 0.5px solid hsl(var(--neon-cyan) / 0.12);
+    background: hsl(var(--graphite-base) / 0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     box-shadow: 
-      0 20px 60px rgba(0, 0, 0, 0.7),
-      0 0 40px hsl(var(--neon-cyan) / 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      0 25px 70px rgba(0, 0, 0, 0.6),
+      0 0 60px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
     padding: 8px;
   }
 
   .mobile-menu {
-    background: hsl(var(--space-deep) / 0.98);
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
-    border-left: 0.5px solid hsl(var(--neon-cyan) / 0.15);
+    background: hsl(var(--graphite-deep) / 0.98);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border-left: 0.5px solid rgba(255, 255, 255, 0.08);
   }
 
   /* Text Gradients - Cosmic Edition */
