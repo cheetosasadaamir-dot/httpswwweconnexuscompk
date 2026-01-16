@@ -61,15 +61,17 @@
     --cambridge-orange: 25 95% 55%;
     --cambridge-yellow: 45 93% 55%;
     
-    /* CIE Master Tutor Theme */
-    --tutor-gold: 45 93% 58%;
-    --tutor-gold-muted: 45 70% 45%;
+    /* CIE Master Tutor Theme - Oxford Academic */
+    --tutor-oxford: 214 100% 14%;
+    --tutor-gold: 43 72% 53%;
+    --tutor-gold-muted: 43 60% 40%;
     --tutor-cyan: 185 100% 50%;
     --tutor-cyan-glow: 185 100% 65%;
     --tutor-navy: 222 47% 5%;
     --tutor-navy-deep: 222 50% 3%;
     --tutor-formula-bg: 220 40% 12%;
     --tutor-formula-border: 220 40% 25%;
+    --tutor-verified: 142 76% 45%;
 
     --sidebar-background: 222 47% 4%;
     --sidebar-foreground: 210 40% 96%;
@@ -200,8 +202,57 @@
   }
 
   .tutor-avatar {
-    background: linear-gradient(135deg, hsl(var(--tutor-gold)), hsl(var(--tutor-cyan)));
-    box-shadow: 0 0 16px hsl(var(--tutor-cyan) / 0.4);
+    background: linear-gradient(135deg, hsl(var(--tutor-oxford)), hsl(var(--tutor-gold)));
+    box-shadow: 0 0 16px hsl(var(--tutor-gold) / 0.3);
+  }
+
+  /* Prof. Econs Header Banner */
+  .tutor-header-banner {
+    background: linear-gradient(90deg, hsl(var(--tutor-oxford) / 0.9), hsl(var(--tutor-navy)));
+    border-bottom: 2px solid hsl(var(--tutor-gold) / 0.6);
+    padding: 8px 16px;
+  }
+
+  .tutor-header-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: hsl(var(--tutor-gold));
+    text-transform: uppercase;
+  }
+
+  .tutor-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: hsl(var(--tutor-verified));
+    background: hsl(var(--tutor-verified) / 0.1);
+    border: 1px solid hsl(var(--tutor-verified) / 0.3);
+    padding: 2px 8px;
+    border-radius: 9999px;
+  }
+
+  /* Professor Serif Response Styling */
+  .tutor-professor-response {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.7;
+  }
+
+  .tutor-professor-response strong {
+    color: hsl(var(--tutor-gold)) !important;
+    font-weight: 700;
+  }
+
+  .tutor-professor-response code {
+    background: hsl(var(--tutor-formula-bg));
+    border: 1px solid hsl(var(--tutor-formula-border));
+    color: hsl(var(--tutor-cyan));
+    font-family: 'Courier New', monospace;
+    padding: 2px 6px;
+    border-radius: 4px;
   }
 
   /* Compact chat spacing */

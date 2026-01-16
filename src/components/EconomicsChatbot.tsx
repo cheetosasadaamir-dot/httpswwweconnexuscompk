@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, Brain, TrendingUp, GraduationCap } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -9,6 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
+import professorAvatar from '@/assets/professor-avatar.png';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -27,26 +28,33 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-ch
 // Generate unique ID for messages
 const generateId = () => `msg_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
-// CIE Master Tutor Avatar Component
-const TutorAvatar = () => (
-  <div className="tutor-avatar w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 relative">
-    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[hsl(45,93%,58%)] to-[hsl(185,100%,50%)] opacity-90" />
-    <div className="relative flex items-center justify-center">
-      <Brain className="w-3.5 h-3.5 text-[hsl(222,47%,5%)] absolute -top-0.5 -left-0.5" />
-      <TrendingUp className="w-3 h-3 text-[hsl(222,47%,5%)] absolute bottom-0 right-0" />
-      <GraduationCap className="w-4 h-4 text-[hsl(222,47%,5%)]" />
+// Prof. Econs Avatar Component with generated logo
+const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
+  const sizeClasses = {
+    sm: 'w-8 h-8',
+    md: 'w-9 h-9',
+    lg: 'w-14 h-14',
+  };
+  
+  return (
+    <div className={`${sizeClasses[size]} rounded-full flex-shrink-0 overflow-hidden ring-2 ring-[hsl(43,72%,53%)]/50 shadow-lg`}>
+      <img 
+        src={professorAvatar} 
+        alt="Prof. Econs" 
+        className="w-full h-full object-cover"
+      />
     </div>
-  </div>
-);
+  );
+};
 
 // Typing animation dots component
 const TypingIndicator = () => (
   <div className="flex items-center gap-1.5">
-    <span className="text-xs text-[hsl(185,100%,50%)] font-medium">CIE Master Tutor is analyzing</span>
+    <span className="text-xs text-[hsl(43,72%,53%)] font-medium font-serif">Prof. Econs is preparing response</span>
     {[0, 1, 2].map((i) => (
       <motion.span
         key={i}
-        className="w-1.5 h-1.5 rounded-full bg-[hsl(185,100%,50%)]"
+        className="w-1.5 h-1.5 rounded-full bg-[hsl(43,72%,53%)]"
         animate={{ 
           y: [0, -6, 0],
           opacity: [0.4, 1, 0.4],
@@ -317,19 +325,24 @@ export default function EconomicsChatbot() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-8"
+          className="text-center mb-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-4">
-            <div className="tutor-avatar w-6 h-6 rounded-full flex items-center justify-center">
-              <GraduationCap className="w-3 h-3 text-[hsl(222,47%,5%)]" />
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card mb-4">
+            <TutorAvatar size="sm" />
+            <div className="text-left">
+              <span className="text-sm text-[hsl(43,72%,53%)] font-semibold block">Prof. Econs</span>
+              <span className="text-xs text-muted-foreground">CIE 9708 Specialist</span>
             </div>
-            <span className="text-sm text-[hsl(45,93%,58%)] font-medium">CIE Economics Master Tutor</span>
+            <div className="tutor-verified-badge ml-2">
+              <CheckCircle2 className="w-3 h-3" />
+              <span>Verified</span>
+            </div>
           </div>
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold section-title mb-3">
+          <h2 className="font-serif text-3xl lg:text-4xl font-bold section-title mb-2">
             Stuck on a Concept?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ask the Cambridge 9708 AI Tutor
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+            Ask the Cambridge A-Level Economics Professor
           </p>
         </motion.div>
 
@@ -341,23 +354,28 @@ export default function EconomicsChatbot() {
           transition={{ delay: 0.2 }}
           className="relative rounded-2xl overflow-hidden tutor-chat-container"
           style={{
-            background: 'linear-gradient(to bottom, hsl(222 50% 3%), hsl(222 47% 5%))',
+            background: 'linear-gradient(to bottom, hsl(214 100% 14% / 0.3), hsl(222 47% 5%))',
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
-            border: '1px solid hsl(185 100% 50% / 0.3)',
-            boxShadow: '0 0 40px hsl(185 100% 50% / 0.1), inset 0 1px 0 hsl(185 100% 50% / 0.1)',
+            border: '1px solid hsl(43 72% 53% / 0.3)',
+            boxShadow: '0 0 40px hsl(43 72% 53% / 0.08), inset 0 1px 0 hsl(43 72% 53% / 0.1)',
           }}
         >
           {/* Glowing border effect */}
           <div 
             className="absolute inset-0 rounded-2xl pointer-events-none"
             style={{
-              background: 'linear-gradient(135deg, hsl(185 100% 50% / 0.05) 0%, transparent 50%, hsl(45 93% 58% / 0.05) 100%)',
+              background: 'linear-gradient(135deg, hsl(214 100% 14% / 0.1) 0%, transparent 50%, hsl(43 72% 53% / 0.05) 100%)',
             }}
           />
 
+          {/* Professional Academic Banner */}
+          <div className="tutor-header-banner relative">
+            <p className="tutor-header-title">Cambridge A-Level Economics Department</p>
+          </div>
+
           {/* Header with Clear Button */}
-          <div className="relative flex items-center justify-between p-3 lg:p-4 border-b border-[hsl(185,100%,50%)]/20">
+          <div className="relative flex items-center justify-between p-3 lg:p-4 border-b border-[hsl(43,72%,53%)]/20">
             <div>
               <p className="text-xs text-muted-foreground mb-1.5">Quick questions:</p>
               <div className="flex flex-wrap gap-1.5">
@@ -366,13 +384,13 @@ export default function EconomicsChatbot() {
                     key={i}
                     onClick={() => handleSend(action.query)}
                     disabled={isLoading}
-                    whileHover={{ scale: 1.02, boxShadow: '0 0 16px hsl(185 100% 50% / 0.3)' }}
+                    whileHover={{ scale: 1.02, boxShadow: '0 0 16px hsl(43 72% 53% / 0.3)' }}
                     whileTap={{ scale: 0.98 }}
                     className="px-2.5 py-1 rounded-full text-xs font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     style={{
-                      background: 'linear-gradient(135deg, hsl(185 100% 50% / 0.1), hsl(45 93% 58% / 0.1))',
-                      border: '1px solid hsl(185 100% 50% / 0.4)',
-                      color: 'hsl(185 100% 50%)',
+                      background: 'linear-gradient(135deg, hsl(214 100% 14% / 0.4), hsl(43 72% 53% / 0.1))',
+                      border: '1px solid hsl(43 72% 53% / 0.4)',
+                      color: 'hsl(43 72% 53%)',
                     }}
                   >
                     <Sparkles className="w-2.5 h-2.5 inline mr-1" />
@@ -402,11 +420,10 @@ export default function EconomicsChatbot() {
             {messages.length === 0 ? (
               <div className="h-full flex items-center justify-center text-center">
                 <div className="text-muted-foreground">
-                  <div className="tutor-avatar w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <GraduationCap className="w-7 h-7 text-[hsl(222,47%,5%)]" />
-                  </div>
-                  <p className="text-base font-medium text-[hsl(45,93%,58%)]">CIE Economics Master Tutor</p>
-                  <p className="text-sm mt-1 opacity-70">Ask me anything about A-Level Economics (9708)</p>
+                  <TutorAvatar size="lg" />
+                  <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">Prof. Econs</p>
+                  <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">CIE 9708 Specialist</p>
+                  <p className="text-sm mt-1 opacity-70 font-serif">Ask me anything about A-Level Economics</p>
                   <p className="text-xs mt-2 opacity-50">PED, Comparative Advantage, Inflation, Multiplier...</p>
                 </div>
               </div>
@@ -428,10 +445,10 @@ export default function EconomicsChatbot() {
                       }`}
                     >
                       {msg.role === 'assistant' ? (
-                        <div className="prose prose-invert prose-sm max-w-none">
+                        <div className="prose prose-invert prose-sm max-w-none tutor-professor-response">
                           {/* Lesson Header */}
                           <div className="tutor-lesson-header">
-                            Syllabus 9708 | AI Tutor Response
+                            Syllabus 9708 | Prof. Econs Response
                           </div>
                           <ReactMarkdown
                             remarkPlugins={[remarkMath]}
@@ -441,10 +458,10 @@ export default function EconomicsChatbot() {
                                 <p className="text-sm leading-relaxed text-foreground mb-1.5">{children}</p>
                               ),
                               strong: ({ children }) => (
-                                <strong className="text-[hsl(185,100%,50%)] font-semibold">{children}</strong>
+                                <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>
                               ),
                               code: ({ children }) => (
-                                <code className="tutor-formula-highlight text-[hsl(45,93%,58%)] font-mono text-xs">{children}</code>
+                                <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>
                               ),
                             }}
                           >
@@ -485,15 +502,15 @@ export default function EconomicsChatbot() {
           </ScrollArea>
 
           {/* Input Area */}
-          <div className="relative p-3 lg:p-4 border-t border-[hsl(185,100%,50%)]/20">
+          <div className="relative p-3 lg:p-4 border-t border-[hsl(43,72%,53%)]/20">
             <div className="flex gap-2">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about PED, Comparative Advantage, or Inflation causes..."
+                placeholder="Ask Prof. Econs about PED, Comparative Advantage, or Inflation causes..."
                 disabled={isLoading}
-                className="flex-1 bg-[hsl(222,47%,5%)]/80 border-[hsl(185,100%,50%)]/30 focus:border-[hsl(185,100%,50%)] placeholder:text-muted-foreground/50 text-sm"
+                className="flex-1 bg-[hsl(214,100%,14%)]/30 border-[hsl(43,72%,53%)]/30 focus:border-[hsl(43,72%,53%)] placeholder:text-muted-foreground/50 text-sm font-sans"
               />
               
               {/* Retry button - show when there's an error */}
@@ -502,7 +519,7 @@ export default function EconomicsChatbot() {
                   onClick={handleRetry}
                   variant="outline"
                   size="icon"
-                  className="border-[hsl(185,100%,50%)]/30 hover:border-[hsl(185,100%,50%)] hover:bg-[hsl(185,100%,50%)]/10"
+                  className="border-[hsl(43,72%,53%)]/30 hover:border-[hsl(43,72%,53%)] hover:bg-[hsl(43,72%,53%)]/10"
                   title="Retry last question"
                 >
                   <RefreshCw className="w-4 h-4" />
@@ -513,7 +530,7 @@ export default function EconomicsChatbot() {
                 onClick={() => handleSend()}
                 disabled={!input.trim() || isLoading}
                 size="icon"
-                className="bg-gradient-to-r from-[hsl(45,93%,58%)] to-[hsl(185,100%,50%)] hover:opacity-90 text-[hsl(222,47%,5%)]"
+                className="bg-gradient-to-r from-[hsl(214,100%,14%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/50"
               >
                 {isLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
