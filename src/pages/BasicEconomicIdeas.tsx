@@ -19,6 +19,8 @@ import ProductivityChainDiagram from '@/components/diagrams/ProductivityChainDia
 import TradeLoopDiagram from '@/components/diagrams/TradeLoopDiagram';
 import FunctionsOfMoneyDiagram from '@/components/diagrams/FunctionsOfMoneyDiagram';
 import BalancedArgumentTable from '@/components/diagrams/BalancedArgumentTable';
+import PositiveNormativeQuiz from '@/components/diagrams/PositiveNormativeQuiz';
+import PositiveNormativePPCDiagram from '@/components/diagrams/PositiveNormativePPCDiagram';
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@/components/ui/table';
 const BasicEconomicIdeas = () => {
   return (
@@ -198,46 +200,277 @@ const BasicEconomicIdeas = () => {
         </NoteCard>
       </ContentSection>
 
-      {/* Topic 3: Positive and Normative Statements */}
+      {/* Section 1.2.2: Positive and Normative Statements */}
       <ContentSection 
-        title="Topic 3: Positive and Normative Statements" 
-        subtitle="Facts vs. Value Judgments in Economics"
+        title="Section 1.2.2: Positive and Normative Statements" 
+        subtitle="Facts vs. Value Judgments in Economic Analysis"
       >
-        <div className="grid md:grid-cols-2 gap-3">
-          <NoteCard title="Positive Statements" type="definition">
-            <p className="text-sm text-muted-foreground">
-              A <GlossaryTooltip term="Positive Statement" definition="A statement that can be tested and verified using factual evidence. It describes 'what is' rather than 'what should be'.">positive statement</GlossaryTooltip> is 
-              based on <strong>factual evidence</strong>. It tells us <strong>what is</strong> and can 
-              be tested empirically.
-            </p>
-            <div className="mt-2 p-2 rounded bg-cyan-500/10 border border-cyan-500/20 text-xs">
-              <strong>Example:</strong> "Increasing the minimum wage will reduce employment among 
-              low-skilled workers."
+        {/* AO1 Definitions */}
+        <NoteCard title="Examiner-Standard Definitions (AO1)" type="definition">
+          <div className="space-y-4">
+            <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
+              <h5 className="font-semibold text-cyan-400 mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                Positive Statements
+              </h5>
+              <p className="text-sm text-muted-foreground">
+                <GlossaryTooltip term="Positive Statement" definition="Objective statements that can be tested, amended, or rejected by referring to available evidence. They deal with 'what is'.">Positive statements</GlossaryTooltip> are 
+                <strong className="text-cyan-400"> objective statements</strong> that can be <strong>tested, amended, or rejected</strong> by 
+                referring to <strong>available evidence</strong>. They deal with <strong>"what is"</strong> and are the 
+                basis of economics as a <strong>social science</strong>.
+              </p>
+              <div className="mt-3 p-2 rounded bg-charcoal-deep/50 text-xs">
+                <strong>Key Identifier:</strong> Can be verified or falsified through empirical observation and data.
+              </div>
             </div>
-          </NoteCard>
 
-          <NoteCard title="Normative Statements" type="definition" delay={100}>
-            <p className="text-sm text-muted-foreground">
-              A <GlossaryTooltip term="Normative Statement" definition="A statement that expresses an opinion or value judgment about what 'should' or 'ought to' happen. Cannot be tested empirically.">normative statement</GlossaryTooltip> is 
-              one that expresses a <strong>value judgment</strong>. It tells us what <strong>should</strong> happen.
-            </p>
-            <div className="mt-2 p-2 rounded bg-magenta-400/10 border border-magenta-400/20 text-xs">
-              <strong>Example:</strong> "The government should do everything it can to help promote 
-              this industry."
+            <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30">
+              <h5 className="font-semibold text-amber-400 mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-amber-400" />
+                Normative Statements
+              </h5>
+              <p className="text-sm text-muted-foreground">
+                <GlossaryTooltip term="Normative Statement" definition="Subjective statements containing value judgments that cannot be proven or disproven by facts. They deal with 'what ought to be'.">Normative statements</GlossaryTooltip> are 
+                <strong className="text-amber-400"> subjective statements</strong> that contain a <strong>value judgment</strong> and 
+                <strong> cannot be proven or disproven</strong> by a search for facts. They deal with 
+                <strong> "what ought to be"</strong> or <strong>"what should be"</strong>.
+              </p>
+              <div className="mt-3 p-2 rounded bg-charcoal-deep/50 text-xs">
+                <strong>Key Identifier:</strong> Contains words like "should," "ought," "must," "fair," "unfair," or "best."
+              </div>
             </div>
-          </NoteCard>
+
+            <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/30">
+              <h5 className="font-semibold text-purple-400 mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-purple-400" />
+                The Key Distinction
+              </h5>
+              <p className="text-sm text-muted-foreground">
+                The fundamental difference is the presence of <strong className="text-amber-400">Value Judgments</strong> versus 
+                <strong className="text-cyan-400"> Facts</strong>. Economics aims to be a science using positive analysis, 
+                but policy decisions are inherently normative.
+              </p>
+            </div>
+          </div>
+        </NoteCard>
+
+        {/* Essential Examples */}
+        <NoteCard title="CIE 9708 Standard Examples" type="theory" delay={100}>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <h5 className="font-semibold text-cyan-400 text-sm border-b border-cyan-500/20 pb-2">
+                ✓ Positive Statements (Testable)
+              </h5>
+              <div className="space-y-2">
+                <div className="p-3 rounded-lg bg-cyan-500/5 border border-cyan-500/10 text-xs">
+                  <p className="text-silver-bright italic mb-1">
+                    "An increase in the interest rate will lead to a decrease in investment."
+                  </p>
+                  <p className="text-muted-foreground">
+                    → Testable using macroeconomic data on interest rates and investment levels.
+                  </p>
+                </div>
+                <div className="p-3 rounded-lg bg-cyan-500/5 border border-cyan-500/10 text-xs">
+                  <p className="text-silver-bright italic mb-1">
+                    "Unemployment in the UK is currently at 4.2%."
+                  </p>
+                  <p className="text-muted-foreground">
+                    → Verifiable by checking ONS (Office for National Statistics) data.
+                  </p>
+                </div>
+                <div className="p-3 rounded-lg bg-cyan-500/5 border border-cyan-500/10 text-xs">
+                  <p className="text-silver-bright italic mb-1">
+                    "A depreciation of the currency increases export competitiveness."
+                  </p>
+                  <p className="text-muted-foreground">
+                    → Can be tested by analyzing trade data following exchange rate changes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h5 className="font-semibold text-amber-400 text-sm border-b border-amber-500/20 pb-2">
+                ⚖ Normative Statements (Value-Based)
+              </h5>
+              <div className="space-y-2">
+                <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10 text-xs">
+                  <p className="text-silver-bright italic mb-1">
+                    "The government should increase the minimum wage to reduce poverty."
+                  </p>
+                  <p className="text-muted-foreground">
+                    → Contains "should"—an ethical stance on equity and social policy.
+                  </p>
+                </div>
+                <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10 text-xs">
+                  <p className="text-silver-bright italic mb-1">
+                    "The rich ought to pay higher taxes to fund public services."
+                  </p>
+                  <p className="text-muted-foreground">
+                    → Contains "ought to"—a value judgment about fairness and redistribution.
+                  </p>
+                </div>
+                <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10 text-xs">
+                  <p className="text-silver-bright italic mb-1">
+                    "It is unfair that CEOs earn 300 times more than average workers."
+                  </p>
+                  <p className="text-muted-foreground">
+                    → Contains "unfair"—a subjective judgment on income distribution.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </NoteCard>
+
+        {/* Role in Economic Methodology */}
+        <AnalysisBlock
+          title="The Role in Economic Methodology (AO3)"
+          type="analysis"
+        >
+          <div className="space-y-4">
+            <div className="p-4 rounded-xl bg-charcoal-deep/50 border border-silver/10">
+              <h5 className="font-semibold text-cyan-400 text-sm mb-2">
+                Economics as a Social Science
+              </h5>
+              <p className="text-sm text-muted-foreground">
+                While economics aims to be a <strong className="text-cyan-400">social science</strong> using positive analysis 
+                to build theories and models, almost all <strong className="text-amber-400">government policy is normative</strong> because 
+                it involves choosing between <strong>competing priorities</strong>.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-3">
+              <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                <h6 className="font-semibold text-cyan-400 text-xs mb-2">Positive Economics</h6>
+                <ul className="text-xs text-muted-foreground space-y-1">
+                  <li>• Builds economic <strong>models</strong> (Supply & Demand)</li>
+                  <li>• Tests hypotheses with <strong>data</strong></li>
+                  <li>• Predicts <strong>outcomes</strong> of policy changes</li>
+                  <li>• Forms the <strong>scientific foundation</strong></li>
+                </ul>
+              </div>
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <h6 className="font-semibold text-amber-400 text-xs mb-2">Normative Economics</h6>
+                <ul className="text-xs text-muted-foreground space-y-1">
+                  <li>• Guides <strong>policy decisions</strong></li>
+                  <li>• Weighs <strong>trade-offs</strong> (Equity vs. Efficiency)</li>
+                  <li>• Reflects <strong>political values</strong></li>
+                  <li>• Determines <strong>social priorities</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20">
+              <h5 className="font-semibold text-purple-400 text-sm mb-2">
+                Decision-Making at The Margin
+              </h5>
+              <p className="text-sm text-muted-foreground">
+                Economic decision-making can be based on <strong className="text-cyan-400">facts</strong> (marginal cost vs. marginal benefit analysis) 
+                but is often driven by <strong className="text-amber-400">values and ethical judgments</strong> about what outcomes are desirable for society.
+              </p>
+            </div>
+          </div>
+        </AnalysisBlock>
+
+        {/* Interactive Quiz */}
+        <div className="glass-card p-4 my-4">
+          <h4 className="font-serif text-lg font-bold text-silver-bright mb-4 flex items-center gap-2">
+            <span className="text-purple-400">🎯</span> Interactive Identification Quiz
+          </h4>
+          <p className="text-sm text-muted-foreground mb-4">
+            Test your ability to distinguish between positive and normative statements—a key skill for CIE 9708 Paper 2 essays.
+          </p>
+          <PositiveNormativeQuiz />
         </div>
 
-        <NoteCard title="Converting Positive to Normative" type="theory" delay={150}>
-          <p className="text-sm text-muted-foreground mb-2">
-            Positive statements can be converted to normative statements by adding phrases such as:
-          </p>
-          <ul className="space-y-1 text-sm text-muted-foreground">
-            <li>• "...and this <strong>should be</strong> beneficial for the environment."</li>
-            <li>• "...and therefore the government <strong>should do</strong> everything it can to help promote this industry."</li>
-            <li>• "...and this <strong>should</strong> reduce traffic congestion."</li>
+        {/* PPC Diagram Integration */}
+        <div className="glass-card p-4 my-4">
+          <h4 className="font-serif text-lg font-bold text-silver-bright mb-4 flex items-center gap-2">
+            <span className="text-cyan-400">📊</span> The PPC: Facts vs. Choices
+          </h4>
+          <PositiveNormativePPCDiagram />
+        </div>
+
+        {/* Critical Evaluation for A* Essays */}
+        <AnalysisBlock
+          title="Critical Evaluation for A* Essays (AO4)"
+          type="evaluation"
+        >
+          <div className="space-y-4">
+            <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30">
+              <h5 className="font-semibold text-amber-400 text-sm mb-3">
+                ⚡ Why Do Economists Disagree?
+              </h5>
+              <p className="text-sm text-muted-foreground mb-3">
+                Economists rarely disagree about the <strong className="text-cyan-400">facts</strong> (positive elements). 
+                Their disagreements usually stem from different <strong className="text-amber-400">values</strong> (normative elements) regarding:
+              </p>
+              <div className="grid md:grid-cols-3 gap-2">
+                <div className="p-2 rounded bg-charcoal-deep/50 text-center">
+                  <span className="text-amber-400 font-semibold text-xs">Social Progress</span>
+                </div>
+                <div className="p-2 rounded bg-charcoal-deep/50 text-center">
+                  <span className="text-amber-400 font-semibold text-xs">Income Distribution</span>
+                </div>
+                <div className="p-2 rounded bg-charcoal-deep/50 text-center">
+                  <span className="text-amber-400 font-semibold text-xs">Role of Government</span>
+                </div>
+              </div>
+            </div>
+
+            <Table>
+              <TableHeader>
+                <TableRow className="border-silver/20">
+                  <TableHead className="text-silver-bright text-xs">Aspect</TableHead>
+                  <TableHead className="text-cyan-400 text-xs">Positive Analysis</TableHead>
+                  <TableHead className="text-amber-400 text-xs">Normative Guidance</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow className="border-silver/10">
+                  <TableCell className="font-medium text-silver-bright text-sm py-2">Models</TableCell>
+                  <TableCell className="text-muted-foreground text-sm py-2">Used to build and test theories</TableCell>
+                  <TableCell className="text-muted-foreground text-sm py-2">Guides how models are applied in policy</TableCell>
+                </TableRow>
+                <TableRow className="border-silver/10">
+                  <TableCell className="font-medium text-silver-bright text-sm py-2">Trade-offs</TableCell>
+                  <TableCell className="text-muted-foreground text-sm py-2">Identifies the opportunity costs</TableCell>
+                  <TableCell className="text-muted-foreground text-sm py-2">Determines which trade-offs are acceptable</TableCell>
+                </TableRow>
+                <TableRow className="border-silver/10">
+                  <TableCell className="font-medium text-silver-bright text-sm py-2">Policy</TableCell>
+                  <TableCell className="text-muted-foreground text-sm py-2">Predicts policy outcomes</TableCell>
+                  <TableCell className="text-muted-foreground text-sm py-2">Decides if outcomes are desirable</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+
+            <div className="p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 to-amber-500/10 border border-silver/20">
+              <h5 className="font-semibold text-silver-bright text-sm mb-2">
+                📝 Essay Application (Paper 2 Skill)
+              </h5>
+              <p className="text-sm text-muted-foreground">
+                When writing evaluative essays, <strong>distinguish clearly</strong> between your positive analysis 
+                (evidence-based arguments) and normative conclusions (value-based recommendations). 
+                A strong essay uses <strong className="text-cyan-400">facts to support arguments</strong> while 
+                acknowledging that final policy choices depend on <strong className="text-amber-400">societal values</strong>.
+              </p>
+            </div>
+          </div>
+        </AnalysisBlock>
+
+        <ExamTipBox
+          variant="gold"
+          title="Command Word Alert"
+        >
+          <ul className="space-y-2 text-sm">
+            <li>• <strong className="text-cyan-400">'Analyze'</strong> requires positive reasoning—explain cause and effect using economic theory.</li>
+            <li>• <strong className="text-amber-400">'Evaluate'</strong> requires normative judgment—weigh up arguments and reach a conclusion.</li>
+            <li>• <strong className="text-purple-400">'Discuss'</strong> requires both—present positive facts AND normative perspectives.</li>
+            <li>• Always identify whether exam questions ask for facts (positive) or opinions (normative).</li>
           </ul>
-        </NoteCard>
+        </ExamTipBox>
       </ContentSection>
 
       {/* Section 1.5: Specialization and the Division of Labour */}
