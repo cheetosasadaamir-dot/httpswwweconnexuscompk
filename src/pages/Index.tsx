@@ -7,7 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EconomicGlobe from '@/components/EconomicGlobe';
 import KnowledgePillars from '@/components/KnowledgePillars';
-import PPFDiagram from '@/components/PPFDiagram';
+import InteractivePPCEngine from '@/components/InteractivePPCEngine';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
 import { Button } from '@/components/ui/button';
@@ -175,7 +175,7 @@ const Index = () => {
               transition={{ delay: 0.2 }}
               className="glass-card p-8 lg:p-12"
             >
-              <PPFDiagram />
+              <InteractivePPCEngine />
             </motion.div>
           </div>
         </section>
