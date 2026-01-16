@@ -19,8 +19,17 @@ type Message = {
 
 const QUICK_ACTIONS = [
   { label: 'Explain Comparative Advantage', query: 'Explain the concept of Comparative Advantage with a numerical example' },
-  { label: 'How to calculate Terms of Trade?', query: 'How do I calculate Terms of Trade using the TOT formula?' },
-  { label: 'Cost-Push vs Demand-Pull', query: 'What is the difference between Cost-Push and Demand-Pull inflation?' },
+  { label: 'Natural Rate of Unemployment', query: 'Explain the Natural Rate of Unemployment and the Expectations-Augmented Phillips Curve' },
+  { label: 'HDI vs MPI', query: 'Compare HDI and MPI as development indicators according to the 2026-2028 syllabus' },
+];
+
+const COMMAND_WORDS = [
+  { word: 'Analyse', meaning: 'Examine in detail to show meaning, identify elements and relationships' },
+  { word: 'Assess', meaning: 'Make an informed judgement' },
+  { word: 'Compare', meaning: 'Identify/comment on similarities and/or differences' },
+  { word: 'Discuss', meaning: 'Write about issues in depth in a structured way' },
+  { word: 'Evaluate', meaning: 'Judge the quality, importance, or value of something' },
+  { word: 'Explain', meaning: 'Set out purposes/reasons; make relationships clear with evidence' },
 ];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-chat`;
@@ -43,6 +52,58 @@ const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
         alt="Prof. Econs" 
         className="w-full h-full object-cover"
       />
+    </div>
+  );
+};
+
+// Exam Guidance Dropdown
+const ExamGuidance = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <div className="relative">
+      <motion.button
+        onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="px-2.5 py-1 rounded-full text-xs font-medium transition-all flex items-center gap-1"
+        style={{
+          background: 'linear-gradient(135deg, hsl(214 100% 14% / 0.4), hsl(43 72% 53% / 0.1))',
+          border: '1px solid hsl(43 72% 53% / 0.4)',
+          color: 'hsl(43 72% 53%)',
+        }}
+      >
+        <Sparkles className="w-2.5 h-2.5" />
+        Exam Command Words
+      </motion.button>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            className="absolute top-full left-0 mt-2 z-50 w-72 rounded-xl p-3 shadow-xl"
+            style={{
+              background: 'linear-gradient(to bottom, hsl(214 100% 14%), hsl(222 47% 8%))',
+              border: '1px solid hsl(43 72% 53% / 0.3)',
+            }}
+          >
+            <p className="text-xs text-[hsl(43,72%,53%)] font-semibold mb-2 font-serif">Cambridge 9708 Command Words</p>
+            <div className="space-y-1.5">
+              {COMMAND_WORDS.map((cmd, i) => (
+                <div key={i} className="text-xs">
+                  <span className="font-semibold text-[hsl(185,100%,50%)]">{cmd.word}:</span>
+                  <span className="text-muted-foreground ml-1">{cmd.meaning}</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/20">
+              Source: Cambridge 9708 Syllabus 2026-2028
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -331,11 +392,11 @@ export default function EconomicsChatbot() {
             <TutorAvatar size="sm" />
             <div className="text-left">
               <span className="text-sm text-[hsl(43,72%,53%)] font-semibold block">Prof. Econs</span>
-              <span className="text-xs text-muted-foreground">CIE 9708 Specialist</span>
+              <span className="text-xs text-muted-foreground">CIE Senior Fellow</span>
             </div>
             <div className="tutor-verified-badge ml-2">
               <CheckCircle2 className="w-3 h-3" />
-              <span>Verified</span>
+              <span>2026-2028</span>
             </div>
           </div>
           <h2 className="font-serif text-3xl lg:text-4xl font-bold section-title mb-2">
@@ -397,6 +458,7 @@ export default function EconomicsChatbot() {
                     {action.label}
                   </motion.button>
                 ))}
+                <ExamGuidance />
               </div>
             </div>
             
@@ -422,9 +484,9 @@ export default function EconomicsChatbot() {
                 <div className="text-muted-foreground">
                   <TutorAvatar size="lg" />
                   <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">Prof. Econs</p>
-                  <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">CIE 9708 Specialist</p>
-                  <p className="text-sm mt-1 opacity-70 font-serif">Ask me anything about A-Level Economics</p>
-                  <p className="text-xs mt-2 opacity-50">PED, Comparative Advantage, Inflation, Multiplier...</p>
+                  <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">CIE Senior Fellow • 2026-2028 Syllabus</p>
+                  <p className="text-sm mt-1 opacity-70 font-serif">Your Senior Cambridge Examiner is ready</p>
+                  <p className="text-xs mt-2 opacity-50">NRU, Phillips Curve, HDI, MPI, Marshall-Lerner...</p>
                 </div>
               </div>
             ) : (
@@ -448,7 +510,7 @@ export default function EconomicsChatbot() {
                         <div className="prose prose-invert prose-sm max-w-none tutor-professor-response">
                           {/* Lesson Header */}
                           <div className="tutor-lesson-header">
-                            Syllabus 9708 | Prof. Econs Response
+                            Syllabus 9708 (2026-2028) | CIE Senior Fellow
                           </div>
                           <ReactMarkdown
                             remarkPlugins={[remarkMath]}
