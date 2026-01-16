@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,53 +6,66 @@
 
 @layer base {
   :root {
-    --background: 222 47% 3%;
-    --foreground: 210 40% 96%;
+    /* Charcoal Universe Theme */
+    --background: 240 6% 7%;
+    --foreground: 0 0% 95%;
 
-    --card: 222 47% 6%;
-    --card-foreground: 210 40% 96%;
+    --card: 240 6% 10%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 240 6% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 3%;
+    --primary: 185 100% 50%;
+    --primary-foreground: 240 6% 7%;
 
-    --secondary: 234 89% 74%;
-    --secondary-foreground: 222 47% 3%;
+    --secondary: 43 72% 53%;
+    --secondary-foreground: 240 6% 7%;
 
-    --muted: 222 47% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 240 6% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 234 89% 74%;
-    --accent-foreground: 222 47% 3%;
+    --accent: 185 100% 50%;
+    --accent-foreground: 240 6% 7%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217 33% 20%;
-    --input: 217 33% 15%;
-    --ring: 217 91% 60%;
+    --border: 240 6% 20%;
+    --input: 240 6% 15%;
+    --ring: 185 100% 50%;
 
     --radius: 0.75rem;
 
-    /* Custom tokens for 5D theme */
-    --navy-deep: 222 47% 3%;
-    --navy-base: 222 47% 6%;
-    --navy-light: 222 47% 12%;
-    --indigo-glow: 234 89% 74%;
+    /* Charcoal Universe Tokens */
+    --charcoal-base: 240 6% 7%;
+    --charcoal-deep: 240 8% 5%;
+    --charcoal-light: 240 6% 12%;
+    --charcoal-elevated: 240 6% 15%;
+    
+    /* Accent Colors - Neon Cyan & Amber Gold */
+    --charcoal-cyan: 185 100% 50%;
+    --charcoal-cyan-glow: 185 100% 65%;
+    --charcoal-gold: 43 72% 53%;
+    --charcoal-gold-muted: 43 60% 40%;
+    
+    /* Text hierarchy */
+    --charcoal-foreground: 0 0% 95%;
+    --charcoal-silver: 220 14% 75%;
+    --charcoal-muted: 0 0% 55%;
+
+    /* Glass effects */
+    --glass-bg: 240 6% 10% / 0.7;
+    --glass-border: 0 0% 100% / 0.08;
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    
+    /* Legacy support for existing components */
+    --navy-deep: 240 6% 5%;
+    --navy-base: 240 6% 7%;
+    --navy-light: 240 6% 12%;
+    --indigo-glow: 185 100% 50%;
     --silver: 220 14% 75%;
-    --silver-bright: 220 14% 90%;
-    
-    /* Glassmorphic styles */
-    --glass-bg: 222 47% 8% / 0.6;
-    --glass-border: 220 14% 75% / 0.15;
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    
-    /* Gradient stops */
-    --gradient-navy: 222 47% 5%;
-    --gradient-indigo: 234 60% 15%;
-    --gradient-charcoal: 220 20% 8%;
+    --silver-bright: 0 0% 95%;
     
     /* Cambridge 9708 Standard Colors */
     --cambridge-cyan: 185 100% 50%;
@@ -61,48 +74,48 @@
     --cambridge-orange: 25 95% 55%;
     --cambridge-yellow: 45 93% 55%;
     
-    /* CIE Master Tutor Theme - Oxford Academic */
+    /* CIE Master Tutor Theme */
     --tutor-oxford: 214 100% 14%;
     --tutor-gold: 43 72% 53%;
     --tutor-gold-muted: 43 60% 40%;
     --tutor-cyan: 185 100% 50%;
     --tutor-cyan-glow: 185 100% 65%;
-    --tutor-navy: 222 47% 5%;
-    --tutor-navy-deep: 222 50% 3%;
-    --tutor-formula-bg: 220 40% 12%;
-    --tutor-formula-border: 220 40% 25%;
+    --tutor-navy: 240 6% 7%;
+    --tutor-navy-deep: 240 8% 5%;
+    --tutor-formula-bg: 240 6% 12%;
+    --tutor-formula-border: 240 6% 25%;
     --tutor-verified: 142 76% 45%;
 
-    --sidebar-background: 222 47% 4%;
-    --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 47% 3%;
-    --sidebar-accent: 234 89% 74%;
-    --sidebar-accent-foreground: 222 47% 3%;
-    --sidebar-border: 217 33% 20%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-background: 240 6% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 185 100% 50%;
+    --sidebar-primary-foreground: 240 6% 7%;
+    --sidebar-accent: 43 72% 53%;
+    --sidebar-accent-foreground: 240 6% 7%;
+    --sidebar-border: 240 6% 20%;
+    --sidebar-ring: 185 100% 50%;
   }
 
   .dark {
-    --background: 222 47% 3%;
-    --foreground: 210 40% 96%;
-    --card: 222 47% 6%;
-    --card-foreground: 210 40% 96%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 96%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 3%;
-    --secondary: 234 89% 74%;
-    --secondary-foreground: 222 47% 3%;
-    --muted: 222 47% 12%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 234 89% 74%;
-    --accent-foreground: 222 47% 3%;
+    --background: 240 6% 7%;
+    --foreground: 0 0% 95%;
+    --card: 240 6% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 240 6% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 185 100% 50%;
+    --primary-foreground: 240 6% 7%;
+    --secondary: 43 72% 53%;
+    --secondary-foreground: 240 6% 7%;
+    --muted: 240 6% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 185 100% 50%;
+    --accent-foreground: 240 6% 7%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 20%;
-    --input: 217 33% 15%;
-    --ring: 217 91% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 20%;
+    --input: 240 6% 15%;
+    --ring: 185 100% 50%;
   }
 }
 
@@ -121,17 +134,21 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Playfair Display', serif;
   }
 }
 
 @layer components {
+  /* Premium Glassmorphism Card - Charcoal Universe */
   .glass-card {
     @apply relative overflow-hidden rounded-xl;
     background: hsl(var(--glass-bg));
     border: 1px solid hsl(var(--glass-border));
-    backdrop-filter: blur(12px);
-    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .glass-card-hover {
@@ -139,61 +156,122 @@
   }
 
   .glass-card-hover:hover {
-    border-color: hsl(var(--silver) / 0.3);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 40px hsl(var(--indigo-glow) / 0.1);
+    border-color: hsl(var(--charcoal-cyan) / 0.3);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.6), 
+      0 0 50px hsl(var(--charcoal-cyan) / 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
     transform: translateY(-2px);
   }
 
+  /* Floating Dock Navigation */
+  .floating-dock {
+    background: hsl(var(--charcoal-base) / 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+    border-radius: 16px;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      0 0 0 1px hsl(var(--charcoal-gold) / 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .dock-item {
+    color: hsl(var(--charcoal-silver));
+  }
+
+  .dock-item:hover {
+    color: hsl(var(--charcoal-foreground));
+    background: hsl(var(--charcoal-light) / 0.5);
+  }
+
+  .dock-item.active {
+    color: hsl(var(--charcoal-cyan));
+    background: hsl(var(--charcoal-cyan) / 0.1);
+    box-shadow: 0 0 20px hsl(var(--charcoal-cyan) / 0.2);
+  }
+
+  .dropdown-menu {
+    background: hsl(var(--charcoal-base) / 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+    border-radius: 12px;
+    box-shadow: 
+      0 16px 48px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    padding: 8px;
+  }
+
+  .mobile-menu {
+    background: hsl(var(--charcoal-base) / 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-left: 1px solid hsl(var(--glass-border));
+  }
+
+  /* Text Gradients */
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--silver-bright)), hsl(var(--indigo-glow)), hsl(var(--silver)));
+    background-image: linear-gradient(135deg, hsl(var(--charcoal-foreground)), hsl(var(--charcoal-cyan)), hsl(var(--charcoal-gold)));
   }
 
   .text-gradient-subtle {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--silver)));
+    background-image: linear-gradient(90deg, hsl(var(--charcoal-foreground)), hsl(var(--charcoal-silver)));
   }
 
   .glow-text {
-    text-shadow: 0 0 40px hsl(var(--indigo-glow) / 0.5);
+    text-shadow: 0 0 40px hsl(var(--charcoal-cyan) / 0.5);
   }
 
   .section-title {
     @apply text-gradient glow-text tracking-wide;
   }
 
+  /* Interactive Hover Glow Effect */
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--charcoal-cyan) / 0.3);
+    border-color: hsl(var(--charcoal-cyan) / 0.4) !important;
+  }
+
   /* CIE Master Tutor Premium Glassmorphism Chat Styles */
   .tutor-chat-container {
     background: linear-gradient(135deg, 
-      hsl(var(--tutor-navy-deep)) 0%, 
-      hsl(var(--tutor-oxford) / 0.4) 50%, 
-      hsl(var(--tutor-navy)) 100%
+      hsl(var(--charcoal-deep)) 0%, 
+      hsl(var(--charcoal-base)) 50%, 
+      hsl(var(--charcoal-light) / 0.5) 100%
     );
   }
 
   .tutor-glassmorphism {
-    background: hsl(var(--tutor-oxford) / 0.25);
+    background: hsl(var(--charcoal-light) / 0.4);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--tutor-gold) / 0.15);
+    border: 1px solid hsl(var(--charcoal-gold) / 0.15);
     box-shadow: 
-      0 8px 32px hsl(var(--tutor-oxford) / 0.5),
-      inset 0 1px 0 hsl(var(--tutor-gold) / 0.1),
-      inset 0 -1px 0 hsl(var(--tutor-oxford) / 0.5);
+      0 8px 32px hsl(var(--charcoal-deep)),
+      inset 0 1px 0 hsl(var(--charcoal-gold) / 0.1),
+      inset 0 -1px 0 hsl(var(--charcoal-deep));
   }
 
   .tutor-message-ai {
-    background: hsl(var(--tutor-oxford) / 0.5);
+    background: hsl(var(--charcoal-light) / 0.6);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid hsl(var(--tutor-gold) / 0.25);
+    border: 1px solid hsl(var(--charcoal-gold) / 0.25);
     box-shadow: 
-      0 4px 24px hsl(var(--tutor-oxford) / 0.4),
-      inset 0 1px 0 hsl(var(--tutor-gold) / 0.08);
+      0 4px 24px hsl(var(--charcoal-deep) / 0.6),
+      inset 0 1px 0 hsl(var(--charcoal-gold) / 0.08);
   }
 
   .tutor-message-user {
-    background: hsl(var(--tutor-navy-deep) / 0.8);
+    background: hsl(var(--charcoal-deep) / 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid hsl(var(--border) / 0.4);
@@ -208,41 +286,40 @@
   }
 
   .tutor-lesson-header {
-    background: linear-gradient(90deg, hsl(var(--tutor-gold) / 0.12), transparent);
-    border-left: 2px solid hsl(var(--tutor-gold));
+    background: linear-gradient(90deg, hsl(var(--charcoal-gold) / 0.12), transparent);
+    border-left: 2px solid hsl(var(--charcoal-gold));
     padding: 3px 8px;
     font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: hsl(var(--tutor-gold));
+    color: hsl(var(--charcoal-gold));
     margin-bottom: 6px;
     border-radius: 0 3px 3px 0;
   }
 
   .tutor-avatar {
-    background: linear-gradient(135deg, hsl(var(--tutor-oxford)), hsl(var(--tutor-gold)));
-    box-shadow: 0 0 16px hsl(var(--tutor-gold) / 0.3);
+    background: linear-gradient(135deg, hsl(var(--charcoal-base)), hsl(var(--charcoal-gold)));
+    box-shadow: 0 0 16px hsl(var(--charcoal-gold) / 0.3);
   }
 
-  /* Prof. Econs Header Banner - Premium Glass */
   .tutor-header-banner {
     background: linear-gradient(90deg, 
-      hsl(var(--tutor-oxford) / 0.95), 
-      hsl(var(--tutor-oxford) / 0.7)
+      hsl(var(--charcoal-base) / 0.95), 
+      hsl(var(--charcoal-light) / 0.7)
     );
-    border-bottom: 1px solid hsl(var(--tutor-gold) / 0.4);
+    border-bottom: 1px solid hsl(var(--charcoal-gold) / 0.4);
     padding: 6px 14px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
 
   .tutor-header-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.1em;
-    color: hsl(var(--tutor-gold));
+    color: hsl(var(--charcoal-gold));
     text-transform: uppercase;
   }
 
@@ -271,21 +348,20 @@
   }
 
   .tutor-professor-response strong {
-    color: hsl(var(--tutor-gold)) !important;
+    color: hsl(var(--charcoal-gold)) !important;
     font-weight: 700;
   }
 
   .tutor-professor-response code {
     background: hsl(var(--tutor-formula-bg));
     border: 1px solid hsl(var(--tutor-formula-border));
-    color: hsl(var(--tutor-cyan));
+    color: hsl(var(--charcoal-cyan));
     font-family: 'Courier New', monospace;
     padding: 1px 5px;
     border-radius: 3px;
     font-size: 0.85em;
   }
 
-  /* Command word badge styling */
   .tutor-command-badge {
     display: inline-flex;
     align-items: center;
@@ -299,32 +375,30 @@
   }
 
   .tutor-ao-badge {
-    background: hsl(var(--tutor-cyan) / 0.1);
-    border: 1px solid hsl(var(--tutor-cyan) / 0.3);
-    color: hsl(var(--tutor-cyan));
+    background: hsl(var(--charcoal-cyan) / 0.1);
+    border: 1px solid hsl(var(--charcoal-cyan) / 0.3);
+    color: hsl(var(--charcoal-cyan));
   }
 
-  /* Zero-gap compact chat spacing */
   .tutor-compact-spacing > * + * {
     margin-top: 6px;
   }
 
-  /* Premium glow effects */
   .tutor-gold-glow {
-    box-shadow: 0 0 30px hsl(var(--tutor-gold) / 0.15);
+    box-shadow: 0 0 30px hsl(var(--charcoal-gold) / 0.15);
   }
 
   .tutor-input-glass {
-    background: hsl(var(--tutor-oxford) / 0.35);
+    background: hsl(var(--charcoal-light) / 0.35);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid hsl(var(--tutor-gold) / 0.2);
+    border: 1px solid hsl(var(--charcoal-gold) / 0.2);
     transition: all 0.2s ease;
   }
 
   .tutor-input-glass:focus {
-    border-color: hsl(var(--tutor-gold) / 0.5);
-    box-shadow: 0 0 20px hsl(var(--tutor-gold) / 0.1);
+    border-color: hsl(var(--charcoal-gold) / 0.5);
+    box-shadow: 0 0 20px hsl(var(--charcoal-gold) / 0.1);
   }
 }
 
@@ -344,6 +418,15 @@
   .animate-glow {
     animation: glow 3s ease-in-out infinite alternate;
   }
+
+  /* Zero-gap utility for dense layouts */
+  .space-compact > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .gap-compact {
+    gap: 0.5rem;
+  }
 }
 
 @keyframes float {
@@ -357,14 +440,14 @@
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 20px hsl(var(--indigo-glow) / 0.2);
+    box-shadow: 0 0 20px hsl(var(--charcoal-cyan) / 0.2);
   }
   to {
-    box-shadow: 0 0 40px hsl(var(--indigo-glow) / 0.4);
+    box-shadow: 0 0 40px hsl(var(--charcoal-cyan) / 0.4);
   }
 }
 
-/* Mesh gradient animation */
+/* Mesh gradient animation - updated for charcoal */
 @keyframes meshMove {
   0% {
     background-position: 0% 50%;
@@ -380,29 +463,38 @@
 .mesh-gradient {
   background: linear-gradient(
     -45deg,
-    hsl(var(--navy-deep)),
-    hsl(var(--gradient-indigo)),
-    hsl(var(--gradient-charcoal)),
-    hsl(var(--navy-base))
+    hsl(var(--charcoal-deep)),
+    hsl(var(--charcoal-base)),
+    hsl(var(--charcoal-light)),
+    hsl(var(--charcoal-base))
   );
   background-size: 400% 400%;
   animation: meshMove 20s ease infinite;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Charcoal theme */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--navy-deep));
+  background: hsl(var(--charcoal-deep));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 4px;
+  background: hsl(var(--charcoal-light));
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
+  background: hsl(var(--charcoal-cyan) / 0.5);
+}
+
+/* Diagram transparent background support */
+.diagram-transparent {
+  background: transparent !important;
+}
+
+.diagram-transparent svg {
+  background: transparent !important;
 }
