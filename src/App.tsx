@@ -23,6 +23,7 @@ import Macroeconomics from "./pages/Macroeconomics";
 import ADASEquilibrium from "./pages/as-macro/ADASEquilibrium";
 import Inflation from "./pages/as-macro/Inflation";
 import InternationalTrade from "./pages/as-macro/InternationalTrade";
+import ExchangeRates from "./pages/as-macro/ExchangeRates";
 import BalanceOfPayments from "./pages/as-macro/BalanceOfPayments";
 import MacroeconomicPolicy from "./pages/as-macro/MacroeconomicPolicy";
 
@@ -69,10 +70,11 @@ const App = () => (
           <Route path="/a2-micro/market-structures" element={<MarketStructuresA2 />} />
           <Route path="/a2-micro/labor-market" element={<LaborMarketA2 />} />
           
-          {/* AS Macroeconomics chapters */}
+{/* AS Macroeconomics chapters */}
           <Route path="/as-macro/ad-as" element={<ADASEquilibrium />} />
           <Route path="/as-macro/inflation" element={<Inflation />} />
           <Route path="/as-macro/international-trade" element={<InternationalTrade />} />
+          <Route path="/as-macro/exchange-rates" element={<ExchangeRates />} />
           <Route path="/as-macro/balance-of-payments" element={<BalanceOfPayments />} />
           <Route path="/as-macro/policy" element={<MacroeconomicPolicy />} />
           

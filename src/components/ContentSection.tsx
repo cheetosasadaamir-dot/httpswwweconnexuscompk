@@ -16,19 +16,19 @@ const ContentSection = ({ title, subtitle, id, children, className }: ContentSec
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className={cn("mb-8", className)}
+      transition={{ duration: 0.5 }}
+      className={cn("mb-4", className)}
     >
-      <div className="mb-4">
-        <h2 className="font-serif text-2xl lg:text-3xl font-bold section-title mb-1">
+      <div className="mb-2">
+        <h2 className="font-serif text-xl lg:text-2xl font-bold section-title mb-0.5">
           {title}
         </h2>
         {subtitle && (
-          <p className="text-base text-muted-foreground">{subtitle}</p>
+          <p className="text-sm text-muted-foreground">{subtitle}</p>
         )}
-        <div className="h-0.5 w-20 bg-gradient-to-r from-primary to-secondary rounded-full mt-2" />
+        <div className="h-0.5 w-16 bg-gradient-to-r from-primary to-secondary rounded-full mt-1" />
       </div>
-      <div className="space-y-3">
+      <div className="space-y-2">
         {children}
       </div>
     </motion.section>
