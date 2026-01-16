@@ -9,6 +9,7 @@ import EconomicGlobe from '@/components/EconomicGlobe';
 import KnowledgePillars from '@/components/KnowledgePillars';
 import PPFDiagram from '@/components/PPFDiagram';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
+import GlossarySection from '@/components/GlossarySection';
 import { Button } from '@/components/ui/button';
 
 const features = [
@@ -233,6 +234,14 @@ const Index = () => {
 
         {/* AI Economics Mentor Chatbot */}
         <EconomicsChatbot />
+
+        {/* Silver Divider */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        </div>
+
+        {/* Master Economist's Glossary */}
+        <GlossarySection />
 
         {/* Silver Divider */}
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
