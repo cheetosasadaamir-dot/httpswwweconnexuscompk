@@ -7,7 +7,7 @@ import AnalysisBlock from '@/components/AnalysisBlock';
 import GlossaryTooltip from '@/components/GlossaryTooltip';
 import DemandSupplyDiagram from '@/components/diagrams/DemandSupplyDiagram';
 import MarketEquilibriumInteractive from '@/components/diagrams/MarketEquilibriumInteractive';
-import ConsumerProducerSurplusDiagramNew from '@/components/diagrams/ConsumerProducerSurplusDiagramNew';
+import WelfareEconomicsSurplusDiagram from '@/components/diagrams/WelfareEconomicsSurplusDiagram';
 import DemandSupplyEquilibriumDiagram from '@/components/diagrams/DemandSupplyEquilibriumDiagram';
 import MovementShiftDiagram from '@/components/diagrams/MovementShiftDiagram';
 import ExcessDemandSupplyDiagram from '@/components/diagrams/ExcessDemandSupplyDiagram';
@@ -476,67 +476,106 @@ const PriceSystem = () => {
         </ExamTipBox>
       </ContentSection>
 
-      {/* Section 2.6: Consumer & Producer Surplus */}
+      {/* Section 2.6: Consumer & Producer Surplus - WELFARE ECONOMICS PRECISION MODULE */}
       <ContentSection 
         title="2.6 Consumer and Producer Surplus" 
-        subtitle="Measuring Economic Welfare from Market Transactions"
+        subtitle="The Mathematical Foundations of Welfare Economics"
       >
-        <NoteCard title="Definitions (CIE 9708)" type="definition">
-          <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-              <h5 className="font-semibold text-cyan-400 mb-2">Consumer Surplus (CS)</h5>
-              <p className="text-sm text-muted-foreground">
-                The <strong>difference</strong> between the price consumers are <strong>willing to pay</strong> (shown by the demand curve) and the price they <strong>actually pay</strong> (market price). It represents the <strong>extra utility</strong> consumers receive.
+        {/* High-Density Consumer Surplus Block */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-cyan-500 pl-6">
+            <h3 className="font-serif text-2xl text-cyan-400 mb-4">Consumer Surplus: A Technical Analysis</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                <strong className="text-cyan-400">Consumer Surplus (CS)</strong> is defined as the difference between the <strong>maximum price a consumer is willing and able to pay</strong> for a good and the <strong>actual market price</strong> they pay. This concept, first rigorously formalized by Alfred Marshall, provides a monetary measure of the welfare gain accruing to consumers from market participation. The theoretical foundation rests upon the principle of <strong className="text-amber-400">Diminishing Marginal Utility</strong>: as a rational consumer acquires successive units of a commodity, the additional satisfaction derived from each subsequent unit declines. Consequently, the demand curve—which represents the consumer's willingness to pay for each marginal unit—slopes downward from left to right, with earlier units commanding higher reservation prices than later units.
               </p>
-              <p className="text-xs text-muted-foreground mt-2 font-mono">
-                CS = Willingness to Pay − Market Price (summed over all units)
+              <p>
+                The geometric representation of Consumer Surplus is <strong>the triangular area below the demand curve and above the equilibrium price line</strong>, bounded on the left by the price axis. The height of this triangle is determined by the vertical distance between the <strong>demand curve's Y-intercept</strong> (denoted P<sub>max</sub>, representing the reservation price of the first unit) and the equilibrium price (P<sub>e</sub>). The base of the triangle extends horizontally from the origin to the equilibrium quantity (Q<sub>e</sub>). Mathematically, for linear demand curves, Consumer Surplus is calculated as: <span className="font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">CS = ½ × Qe × (Pmax − Pe)</span>. For non-linear demand functions, Consumer Surplus requires integration of the area under the demand curve from zero to Q<sub>e</sub>, minus the rectangular area representing total expenditure.
               </p>
-            </div>
-            <div className="p-4 rounded-lg bg-magenta-500/10 border border-magenta-500/20">
-              <h5 className="font-semibold text-magenta-400 mb-2">Producer Surplus (PS)</h5>
-              <p className="text-sm text-muted-foreground">
-                The <strong>difference</strong> between the market price received and the <strong>minimum price</strong> producers would accept (shown by the supply curve). It represents the <strong>extra profit</strong> producers receive.
-              </p>
-              <p className="text-xs text-muted-foreground mt-2 font-mono">
-                PS = Market Price − Minimum Acceptable Price (summed over all units)
+              <p>
+                <strong className="text-amber-400">Chain of Analysis (AO3):</strong> Consider the welfare implications of a supply contraction—for instance, due to an exogenous increase in raw material costs. The leftward shift of the supply curve establishes a new equilibrium at a higher price (P₁) and lower quantity (Q₁). Consumer Surplus contracts through two mechanisms: first, the <strong>price effect</strong>—the equilibrium price rises, reducing the surplus on each unit still purchased; second, the <strong>quantity effect</strong>—some consumers who previously purchased at P<sub>e</sub> are now priced out of the market entirely, losing their entire consumer surplus. The net result is a geometrically smaller CS triangle, representing an unambiguous welfare loss to the consuming population.
               </p>
             </div>
           </div>
-        </NoteCard>
-
-        <div className="glass-card p-8 my-6">
-          <ConsumerProducerSurplusDiagramNew title="Figure 2.3: Consumer and Producer Surplus" />
         </div>
 
-        <AnalysisBlock title="AO3 Analysis: Welfare Economics" type="analysis">
-          <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/20">
-              <h5 className="font-semibold text-amber-400 mb-2">Total Social Surplus (Economic Welfare)</h5>
-              <p className="text-sm text-muted-foreground">
-                <strong>Total Welfare = CS + PS</strong>
+        {/* High-Density Producer Surplus Block */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-magenta-500 pl-6">
+            <h3 className="font-serif text-2xl text-magenta-400 mb-4">Producer Surplus: A Technical Analysis</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                <strong className="text-magenta-400">Producer Surplus (PS)</strong> is defined as the difference between the <strong>price at which a producer is willing and able to supply</strong> a good and the <strong>actual market price</strong> they receive. This measure captures the welfare gain to producers from market participation—the excess revenue above the minimum required to induce supply. Producer Surplus is conceptually analogous to <strong className="text-amber-400">Economic Rent</strong>: the return to a factor of production above its opportunity cost, which reflects the producer's incentive structure and underlying cost conditions.
               </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                At the free market equilibrium, total welfare is <strong>maximized</strong>. This is the condition for <strong>allocative efficiency</strong> - where resources are allocated to their highest valued uses.
+              <p>
+                The geometric representation of Producer Surplus is <strong>the triangular area above the supply curve and below the equilibrium price line</strong>, bounded on the left by the price axis. The supply curve represents the marginal cost of production at each output level—the minimum price producers require to supply the marginal unit. Units produced at lower marginal cost than the equilibrium price generate surplus. The height of the PS triangle is determined by the vertical distance between the equilibrium price (P<sub>e</sub>) and the <strong>supply curve's Y-intercept</strong> (denoted P<sub>min</sub>, representing the minimum viable supply price for the first unit). For linear supply curves, Producer Surplus is calculated as: <span className="font-mono text-magenta-400 bg-magenta-500/10 px-2 py-1 rounded">PS = ½ × Qe × (Pe − Pmin)</span>.
+              </p>
+              <p>
+                <strong className="text-amber-400">Chain of Analysis (AO3):</strong> The magnitude of Producer Surplus is critically dependent upon the <strong>slope of the supply curve</strong>, which reflects the rate at which marginal costs rise with output. A relatively <strong>inelastic supply curve</strong> (steep slope) indicates that early units can be produced at costs far below the equilibrium price, generating substantial surplus. This corresponds to the concept of <strong>Economic Rent</strong>: producers with low opportunity costs (fertile land, superior technology, or location advantages) earn rents on their factor inputs. When demand increases, shifting rightward, the new equilibrium occurs at a higher price and quantity. Producer Surplus expands as firms receive the higher price on <strong>all units sold</strong>—including those units they were previously willing to supply at the lower price—representing a direct transfer of welfare from consumers to producers.
               </p>
             </div>
-            <p className="text-sm text-muted-foreground">
-              <strong className="text-silver-bright">Key Insight:</strong> Any government intervention that moves the market away from equilibrium will reduce total welfare by creating <strong>deadweight loss</strong>.
-            </p>
           </div>
-        </AnalysisBlock>
+        </div>
 
+        {/* Precision Diagram */}
+        <div className="glass-card p-8 my-6">
+          <WelfareEconomicsSurplusDiagram />
+        </div>
+
+        {/* Total Welfare Analysis Block */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-2xl text-amber-400 mb-4">Total Social Welfare and Allocative Efficiency</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                In welfare economics, <strong className="text-amber-400">Total Social Welfare</strong> (or Total Economic Surplus) is defined as the sum of Consumer Surplus and Producer Surplus: <span className="font-mono text-amber-400 bg-amber-500/10 px-2 py-1 rounded">W = CS + PS</span>. This aggregate measure captures the net welfare gain to society from the production and consumption of a commodity through voluntary market exchange. At the competitive equilibrium, where quantity demanded equals quantity supplied, Total Welfare is <strong>maximized</strong>—there exists no alternative allocation of resources that could increase one party's welfare without reducing another's. This is the <strong>Pareto Optimality</strong> condition that characterizes allocative efficiency.
+              </p>
+              <p>
+                Any deviation from the competitive equilibrium—whether induced by government intervention (taxes, subsidies, price controls) or market failure (externalities, monopoly power)—generates a <strong className="text-red-400">Deadweight Loss (DWL)</strong>. This irrecoverable welfare loss represents transactions that would have occurred at the equilibrium price, generating mutual gains to trade, but are now prevented. The DWL forms a characteristic <strong>triangle</strong> (the "Harberger Triangle") between the demand curve, supply curve, and the quantity actually transacted. Unlike the redistribution of surplus between consumers and producers (which is a transfer, not a loss), deadweight loss represents a genuine reduction in social welfare—resources that are either misallocated or left idle.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Tax Incidence and Welfare Interactive Diagram */}
         <div className="glass-card p-8 my-6">
           <SurplusWithTaxDiagram />
         </div>
 
-        <ExamTipBox title="Surplus Calculation" variant="silver" className="mt-6">
-          <p>For calculation questions, surplus areas are <strong>triangles</strong>:</p>
-          <div className="mt-2 p-3 rounded bg-muted/50 font-mono text-sm">
-            Area = ½ × base × height
+        {/* Senior Examiner's Conclusions */}
+        <div className="glass-card p-8 my-6 bg-gradient-to-br from-background via-background to-amber-500/5">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-2xl text-amber-400 mb-4">Senior Examiner's Conclusions (AO4)</h3>
+            <div className="space-y-6">
+              {/* CS Conclusion */}
+              <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                <h5 className="font-semibold text-cyan-400 mb-3">Consumer Surplus Evaluation</h5>
+                <p className="text-sm text-muted-foreground text-justify leading-relaxed">
+                  "Ultimately, the magnitude of Consumer Surplus is heavily dependent on the <strong className="text-cyan-400">Price Elasticity of Demand (PED)</strong>. In markets with highly inelastic demand, such as addictive demerit goods (tobacco, alcohol) or life-saving pharmaceuticals, the potential for consumer surplus is vast, as consumers demonstrate high willingness-to-pay relative to equilibrium prices. Yet paradoxically, these same consumers are <strong>more vulnerable to welfare erosion</strong> through price increases or indirect taxation—because their quantity response is limited, they absorb the burden through reduced surplus rather than reduced consumption. Conversely, in highly elastic markets, consumers can easily substitute, limiting both the magnitude of CS and their exposure to welfare losses from price shocks. This insight is critical for policy analysis: the welfare burden of excise duties falls disproportionately on consumers with the fewest alternatives."
+                </p>
+              </div>
+
+              {/* PS Conclusion */}
+              <div className="p-4 rounded-lg bg-magenta-500/10 border border-magenta-500/20">
+                <h5 className="font-semibold text-magenta-400 mb-3">Producer Surplus Evaluation</h5>
+                <p className="text-sm text-muted-foreground text-justify leading-relaxed">
+                  "In conclusion, Producer Surplus is a vital indicator of allocative efficiency and market functioning; however, in cases of <strong className="text-magenta-400">market power</strong> (Monopoly), a firm may capture Consumer Surplus and convert it into 'Excess Producer Surplus' (supernormal profit). This transfer occurs because the monopolist restricts output below the competitive level and raises price above marginal cost. While the <strong>total PS may appear larger</strong> for the monopolist, this is a misleading measure of social welfare—the expanded PS comes at the cost of both reduced CS <strong>and</strong> a deadweight loss representing foregone transactions. This raises <strong>normative questions regarding equity and fairness</strong> in the price system: is it socially acceptable for producers with market power to extract rents from consumers who have limited alternatives? The answer depends on one's ethical framework, but the positive economic analysis is unambiguous: monopoly pricing sacrifices allocative efficiency for producer gain."
+                </p>
+              </div>
+            </div>
           </div>
-          <p className="mt-2 text-sm">
-            • CS = ½ × Qe × (Maximum WTP − Pe)<br />
-            • PS = ½ × Qe × (Pe − Minimum Price)
+        </div>
+
+        {/* Calculation Exam Tip */}
+        <ExamTipBox title="Surplus Calculation Formula (Full Marks)" variant="gold" className="mt-6">
+          <p className="text-justify">For calculation questions, surplus areas form <strong>triangles</strong> (linear curves) or require <strong>integration</strong> (non-linear curves):</p>
+          <div className="mt-3 p-4 rounded-lg bg-muted/50 font-mono text-sm space-y-2">
+            <p className="text-cyan-400">CS = ½ × Q<sub>e</sub> × (P<sub>max</sub> − P<sub>e</sub>)</p>
+            <p className="text-magenta-400">PS = ½ × Q<sub>e</sub> × (P<sub>e</sub> − P<sub>min</sub>)</p>
+            <p className="text-amber-400">Total Welfare = CS + PS</p>
+          </div>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Where P<sub>max</sub> is the Y-intercept of the demand curve (maximum willingness to pay), P<sub>min</sub> is the Y-intercept of the supply curve (minimum acceptable supply price), P<sub>e</sub> is equilibrium price, and Q<sub>e</sub> is equilibrium quantity.
           </p>
         </ExamTipBox>
       </ContentSection>
