@@ -14,6 +14,11 @@ import ResourceAllocationSpectrumDiagram from '@/components/diagrams/ResourceAll
 import PriceMechanismFlowDiagram from '@/components/diagrams/PriceMechanismFlowDiagram';
 import SystemComparisonPPCDiagram from '@/components/diagrams/SystemComparisonPPCDiagram';
 import ThreeQuestionsComparisonDiagram from '@/components/diagrams/ThreeQuestionsComparisonDiagram';
+import SpecializationPPCShiftDiagram from '@/components/diagrams/SpecializationPPCShiftDiagram';
+import ProductivityChainDiagram from '@/components/diagrams/ProductivityChainDiagram';
+import TradeLoopDiagram from '@/components/diagrams/TradeLoopDiagram';
+import FunctionsOfMoneyDiagram from '@/components/diagrams/FunctionsOfMoneyDiagram';
+import BalancedArgumentTable from '@/components/diagrams/BalancedArgumentTable';
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@/components/ui/table';
 const BasicEconomicIdeas = () => {
   return (
@@ -235,105 +240,158 @@ const BasicEconomicIdeas = () => {
         </NoteCard>
       </ContentSection>
 
-      {/* Topic 4: Specialization and Division of Labour */}
+      {/* Section 1.5: Specialization and the Division of Labour */}
       <ContentSection 
-        title="Topic 4: Specialization and Division of Labour" 
-        subtitle="Efficiency Through Concentration of Production"
+        title="Section 1.5: Specialization and the Division of Labour" 
+        subtitle="Efficiency, Productivity, and the Foundation of Trade"
       >
-        <NoteCard title="Definition of Specialization" type="definition">
-          <p className="text-sm text-muted-foreground">
-            <GlossaryTooltip term="Specialization" definition="The process by which individuals, firms, regions, or countries concentrate on producing those goods and services where they have an advantage over others.">Specialization</GlossaryTooltip> is 
-            the process by which individuals, firms, regions, or countries <strong>concentrate on 
-            producing those goods and services where they have an advantage</strong> over others.
-          </p>
+        {/* AO1 Definitions */}
+        <NoteCard title="Examiner-Standard Definitions (AO1)" type="definition">
+          <div className="space-y-4">
+            <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+              <h5 className="font-semibold text-cyan-400 mb-2">Specialization</h5>
+              <p className="text-sm text-muted-foreground">
+                The <GlossaryTooltip term="Specialization" definition="The concentration of individuals, firms, or economies on a narrow range of goods or services to increase efficiency and output.">concentration</GlossaryTooltip> of 
+                <strong> individuals, firms, or economies</strong> on a <strong>narrow range of goods or services</strong>.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/30">
+              <h5 className="font-semibold text-purple-400 mb-2">Division of Labour</h5>
+              <p className="text-sm text-muted-foreground">
+                A specific type of specialization where the <strong>production process is broken down</strong> into 
+                <strong> separate, repetitive tasks</strong> performed by <strong>different workers</strong>.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
+              <h5 className="font-semibold text-amber-400 mb-2">Link to Scarcity</h5>
+              <p className="text-sm text-muted-foreground">
+                Specialization is a <strong>direct response to the Basic Economic Problem</strong> because it allows for 
+                <strong className="text-cyan-400"> more efficient use of limited resources</strong>, increasing output from the same inputs.
+              </p>
+            </div>
+          </div>
         </NoteCard>
 
+        {/* Levels of Specialization */}
         <NoteCard title="Levels of Specialization" type="theory" delay={100}>
           <Table>
             <TableHeader>
               <TableRow className="border-silver/20">
                 <TableHead className="text-silver-bright text-xs">Level</TableHead>
                 <TableHead className="text-silver-bright text-xs">Description</TableHead>
+                <TableHead className="text-silver-bright text-xs">Examples</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               <TableRow className="border-silver/10">
-                <TableCell className="font-medium text-cyan-400 text-sm py-2">1. Individual</TableCell>
-                <TableCell className="text-muted-foreground text-sm py-2">
-                  Individuals tend to master a particular skill in life. This allows workers to master 
-                  their skill and increase productivity.
-                </TableCell>
+                <TableCell className="font-medium text-cyan-400 text-sm py-2">Individual</TableCell>
+                <TableCell className="text-muted-foreground text-sm py-2">Workers master a particular skill or task</TableCell>
+                <TableCell className="text-muted-foreground text-sm py-2">Surgeons, software developers, electricians</TableCell>
               </TableRow>
               <TableRow className="border-silver/10">
-                <TableCell className="font-medium text-cyan-400 text-sm py-2">2. Firm</TableCell>
-                <TableCell className="text-muted-foreground text-sm py-2">
-                  Businesses around the globe master in a particular industry. Shell in Oil, IKEA in 
-                  furniture, McDonald's in burgers and fast food etc.
-                </TableCell>
+                <TableCell className="font-medium text-purple-400 text-sm py-2">Firm</TableCell>
+                <TableCell className="text-muted-foreground text-sm py-2">Businesses focus on a specific industry or product</TableCell>
+                <TableCell className="text-muted-foreground text-sm py-2">Shell (oil), IKEA (furniture), Apple (technology)</TableCell>
               </TableRow>
               <TableRow className="border-silver/10">
-                <TableCell className="font-medium text-cyan-400 text-sm py-2">3. Region</TableCell>
-                <TableCell className="text-muted-foreground text-sm py-2">
-                  Regions in the world specialize in the production of a particular good. Silicon Valley 
-                  for IT and communication technology, Paris and Milan for fashion industry.
-                </TableCell>
+                <TableCell className="font-medium text-green-400 text-sm py-2">Region</TableCell>
+                <TableCell className="text-muted-foreground text-sm py-2">Geographic areas specialize in certain outputs</TableCell>
+                <TableCell className="text-muted-foreground text-sm py-2">Silicon Valley (tech), Milan (fashion), Hollywood (film)</TableCell>
               </TableRow>
               <TableRow className="border-silver/10">
-                <TableCell className="font-medium text-cyan-400 text-sm py-2">4. Country</TableCell>
-                <TableCell className="text-muted-foreground text-sm py-2">
-                  Countries specialize in the production of certain products. Example: Pakistan in rice 
-                  and mangoes.
-                </TableCell>
+                <TableCell className="font-medium text-amber-400 text-sm py-2">Country</TableCell>
+                <TableCell className="text-muted-foreground text-sm py-2">Nations concentrate on goods with comparative advantage</TableCell>
+                <TableCell className="text-muted-foreground text-sm py-2">Saudi Arabia (oil), Bangladesh (textiles), Germany (engineering)</TableCell>
               </TableRow>
             </TableBody>
           </Table>
         </NoteCard>
 
-        <div className="grid md:grid-cols-2 gap-3 mt-3">
-          <NoteCard title="Advantages of Specialization" type="application" delay={150}>
-            <div className="space-y-1 text-sm">
-              <p className="font-medium text-green-400 mb-2">For the Economy:</p>
-              <ul className="space-y-1 text-muted-foreground text-xs">
-                <li>• <strong>Higher GDP:</strong> Increase in output.</li>
-                <li>• <strong>Economies of Scale:</strong> Production increases, firms enjoy larger economies 
-                of scale. Cost cuts can be passed on to consumers in the form of lower prices.</li>
-                <li>• <strong>Improved Competitiveness:</strong> Competitive advantage in international market, 
-                higher exports, appreciation in currency, higher AD.</li>
-              </ul>
-              <p className="font-medium text-green-400 mt-3 mb-2">For Individuals:</p>
-              <ul className="space-y-1 text-muted-foreground text-xs">
-                <li>• Workers can undertake tasks which match their natural abilities.</li>
-                <li>• Can become more expert through practice.</li>
-                <li>• Waste less time through reduced movement.</li>
-                <li>• Make greater use of machinery which itself is more effective.</li>
-              </ul>
-            </div>
-          </NoteCard>
-
-          <NoteCard title="Disadvantages of Specialization" type="application" delay={200}>
-            <div className="space-y-1 text-sm">
-              <ul className="space-y-2 text-muted-foreground text-xs">
-                <li>• <strong>Overspecialization:</strong> Economy becomes vulnerable. Example: Iran is 
-                highly dependent on oil export; a trade embargo by the west results in major economic collapse.</li>
-                <li>• <strong>High Labour Turnover:</strong> Specialists continuously search for better paid 
-                jobs, increasing rehiring costs.</li>
-                <li>• <strong>Low Labour Mobility:</strong> Workers skilled only in one field find it hard 
-                to understand other functions. Labour force becomes inflexible.</li>
-                <li>• <strong>Lack of Variety:</strong> Consumers have less choice since the company 
-                specializes in only one type of product.</li>
-                <li>• <strong>High Cost:</strong> Cost to employ specialist workers is high, leading to 
-                expensive products and reduced profits.</li>
-                <li>• <strong>Boredom and Monotony:</strong> People become bored doing the same job daily, 
-                affecting product quality.</li>
-              </ul>
-            </div>
-          </NoteCard>
+        {/* Productivity Chain Diagram */}
+        <div className="glass-card p-4 my-4">
+          <ProductivityChainDiagram />
         </div>
 
-        {/* Specialization Numerical Example */}
-        <div className="glass-card p-4 my-3">
-          <SpecializationTableDiagram />
+        {/* PPC Connection */}
+        <NoteCard title="The PPC Connection: Specialization and Economic Growth" type="concept" delay={150}>
+          <p className="text-sm text-muted-foreground">
+            Specialization leads to an <strong className="text-cyan-400">outward shift of the PPC</strong>, representing 
+            an increase in the economy's <strong>productive capacity</strong>. This is <strong>economic growth</strong>.
+          </p>
+        </NoteCard>
+
+        <div className="glass-card p-4 my-4">
+          <SpecializationPPCShiftDiagram />
         </div>
+
+        {/* Trade Loop */}
+        <NoteCard title="The Trade Loop: From Specialization to Money" type="theory" delay={200}>
+          <p className="text-sm text-muted-foreground">
+            <strong>Analyze</strong> the logical chain: Specialization creates surpluses that must be exchanged, 
+            leading to the need for money as a medium of exchange.
+          </p>
+        </NoteCard>
+
+        <div className="glass-card p-4 my-4">
+          <TradeLoopDiagram />
+        </div>
+
+        {/* Functions of Money */}
+        <NoteCard title="The Functions of Money (Syllabus Page 16)" type="definition" delay={250}>
+          <p className="text-sm text-muted-foreground mb-3">
+            <strong>Discuss</strong> why specialization requires money to replace the inefficient <strong>barter system</strong>. 
+            Money must fulfill four key functions:
+          </p>
+        </NoteCard>
+
+        <div className="glass-card p-4 my-4">
+          <FunctionsOfMoneyDiagram />
+        </div>
+
+        {/* Balanced Argument Table - AO4 */}
+        <AnalysisBlock title="AO4 Critical Evaluation: Required for A-Grade" type="evaluation">
+          <p className="text-sm text-muted-foreground mb-4">
+            <strong>Evaluate</strong> the Division of Labour by presenting a balanced argument with benefits and risks:
+          </p>
+        </AnalysisBlock>
+
+        <div className="glass-card p-4 my-4">
+          <BalancedArgumentTable />
+        </div>
+
+        {/* Adam Smith Reference */}
+        <NoteCard title="Adam Smith's Pin Factory (1776)" type="application" delay={300}>
+          <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+            <p className="text-sm text-muted-foreground">
+              In <em>The Wealth of Nations</em>, Adam Smith observed a pin factory where 10 workers, each specializing 
+              in one of 18 distinct operations, could produce <strong className="text-cyan-400">48,000 pins per day</strong>. 
+              Without the division of labour, each worker could make <strong className="text-amber-400">only 20 pins per day</strong>.
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              <strong className="text-green-400">Productivity increase:</strong> From 200 pins (10 × 20) to 48,000 pins = <strong>240x improvement</strong>.
+            </p>
+          </div>
+        </NoteCard>
+
+        <ExamTipBox title="Essay Command Words for Section 1.5" variant="gold">
+          <p className="text-sm mb-2">Use these <strong>command words</strong> precisely:</p>
+          <ul className="space-y-1 text-xs">
+            <li><strong className="text-cyan-400">Analyze:</strong> Break down the productivity chain step by step</li>
+            <li><strong className="text-cyan-400">Evaluate:</strong> Present both benefits AND risks with a judgment</li>
+            <li><strong className="text-cyan-400">Discuss:</strong> Explore multiple perspectives on specialization</li>
+            <li><strong className="text-amber-400">Explain:</strong> Show the causal link between specialization → surplus → trade → money</li>
+          </ul>
+        </ExamTipBox>
+
+        <ExamTipBox title="Syllabus Link: CIE 9708 (2026-2028)" variant="silver">
+          <p className="text-sm mb-2">Key assessment objectives:</p>
+          <ul className="space-y-1 text-xs">
+            <li><strong className="text-cyan-400">AO1:</strong> Define specialization, division of labour, and the four functions of money</li>
+            <li><strong className="text-cyan-400">AO2:</strong> Apply concepts to real-world examples (Adam Smith, modern firms)</li>
+            <li><strong className="text-cyan-400">AO3:</strong> Analyze the productivity chain and link to PPC shifts</li>
+            <li><strong className="text-amber-400">AO4:</strong> Evaluate benefits vs. risks; discuss trade-offs for workers, firms, and economies</li>
+          </ul>
+        </ExamTipBox>
       </ContentSection>
 
       {/* Topic 5: Production Possibility Curve */}
