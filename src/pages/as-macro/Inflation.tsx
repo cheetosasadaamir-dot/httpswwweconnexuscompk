@@ -6,6 +6,8 @@ import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
 import InflationDiagrams from '@/components/diagrams/InflationDiagrams';
 import MoneySupplyDiagram from '@/components/diagrams/MoneySupplyDiagram';
+import ADInflationStagesDiagram from '@/components/diagrams/ADInflationStagesDiagram';
+import CostPushInflationDiagram from '@/components/diagrams/CostPushInflationDiagram';
 
 const Inflation = () => {
   return (
@@ -16,13 +18,13 @@ const Inflation = () => {
         transition={{ duration: 0.6 }}
         className="max-w-4xl mx-auto"
       >
-        {/* Chapter Header */}
-        <div className="mb-8">
+{/* Chapter Header */}
+        <div className="mb-5">
           <span className="text-primary text-sm font-medium tracking-wider uppercase">AS Level • Chapter 2</span>
-          <h1 className="font-serif text-4xl md:text-5xl text-gradient mt-2 mb-3">
+          <h1 className="font-serif text-3xl md:text-4xl text-gradient mt-1 mb-2">
             Money &amp; Inflation
           </h1>
-          <p className="text-muted-foreground text-lg leading-relaxed">
+          <p className="text-muted-foreground text-base leading-relaxed">
             Understanding the nature of money, the causes and measurement of inflation, and their macroeconomic consequences.
           </p>
         </div>
@@ -343,7 +345,9 @@ const Inflation = () => {
             There are four main causes of inflation: Demand-pull, Cost-push, Monetary, and Imported Inflation.
           </p>
           
-          <InflationDiagrams />
+<InflationDiagrams />
+          
+          <ADInflationStagesDiagram />
           
           <NoteCard title="1. Demand-Pull Inflation" type="theory" className="mt-4">
             <p className="leading-relaxed">
@@ -398,6 +402,8 @@ const Inflation = () => {
               </div>
             </div>
           </NoteCard>
+
+          <CostPushInflationDiagram />
 
           <NoteCard title="3. Monetary Inflation" type="theory" className="mt-3">
             <p className="leading-relaxed">
