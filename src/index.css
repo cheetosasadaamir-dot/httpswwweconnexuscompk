@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    /* Fluid Graphite Theme - Premium Charcoal */
-    --background: 0 0% 7%;
+    /* 5D Fluid Graphite Theme - Premium Charcoal (#101010 base) */
+    --background: 0 0% 6%;
     --foreground: 0 0% 96%;
 
     --card: 0 0% 9%;
@@ -155,7 +155,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
-    background: #121212;
+    background: #101010;
     min-height: 100vh;
   }
 
@@ -167,7 +167,7 @@
 
   /* Subtle glow on headings */
   h1, h2 {
-    text-shadow: 0 0 40px hsl(var(--neon-cyan) / 0.2);
+    text-shadow: 0 0 50px hsl(var(--neon-cyan) / 0.25);
   }
 }
 
@@ -175,15 +175,23 @@
   /* Premium Glassmorphism Card - Research Portal Style */
   .glass-card {
     @apply relative overflow-hidden rounded-xl;
-    background: hsl(var(--graphite-base) / 0.7);
-    border: 0.5px solid;
-    border-image: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)) 1;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    background: hsl(0 0% 8% / 0.75);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.5),
-      0 0 0 0.5px rgba(255, 255, 255, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      0 20px 50px rgba(0, 0, 0, 0.5),
+      0 8px 25px rgba(0, 0, 0, 0.3),
+      0 0 0 0.5px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 50%);
+    pointer-events: none;
   }
 
   .glass-card-hover {
@@ -191,13 +199,13 @@
   }
 
   .glass-card-hover:hover {
-    border-image: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.08)) 1;
+    border-color: rgba(255, 255, 255, 0.12);
     box-shadow: 
-      0 20px 60px rgba(0, 0, 0, 0.6), 
-      0 0 80px rgba(255, 255, 255, 0.03),
-      0 0 0 0.5px rgba(255, 255, 255, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    transform: translateY(-4px);
+      0 25px 60px rgba(0, 0, 0, 0.6), 
+      0 10px 30px rgba(0, 0, 0, 0.4),
+      0 0 0 0.5px rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transform: translateY(-6px);
   }
 
   /* Floating Dock Navigation - Premium Glass Style */
