@@ -8,6 +8,9 @@ import ADASInteractiveDiagram from '@/components/diagrams/ADASInteractiveDiagram
 import ADCurveDiagram from '@/components/diagrams/ADCurveDiagram';
 import ADShiftDiagram from '@/components/diagrams/ADShiftDiagram';
 import SRASLRASDiagram from '@/components/diagrams/SRASLRASDiagram';
+import ADASEquilibriumDiagram from '@/components/diagrams/ADASEquilibriumDiagram';
+import DemandPullInflationDiagram from '@/components/diagrams/DemandPullInflationDiagram';
+import CostPushStagflationDiagram from '@/components/diagrams/CostPushStagflationDiagram';
 
 const ADASEquilibrium = () => {
   return (
@@ -500,6 +503,11 @@ const ADASEquilibrium = () => {
           <SRASLRASDiagram />
         </ContentSection>
 
+        {/* Precision Equilibrium Diagram */}
+        <ContentSection title="The AD/AS Framework: Precision Analysis">
+          <ADASEquilibriumDiagram />
+        </ContentSection>
+
         {/* Interactive AD/AS Model */}
         <ContentSection title="Interactive AD/AS Model">
           <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -510,23 +518,80 @@ const ADASEquilibrium = () => {
           <ADASInteractiveDiagram />
         </ContentSection>
 
+        {/* Demand-Pull Inflation */}
+        <ContentSection title="Demand-Pull Inflation: Chain of Analysis">
+          <div className="space-y-0 mb-6">
+            <p className="text-muted-foreground leading-relaxed text-justify">
+              Demand-pull inflation represents the classical mechanism whereby persistent increases in Aggregate 
+              Demand, unmatched by corresponding increases in Aggregate Supply, generate sustained upward pressure 
+              on the general price level. The fundamental insight is that when total planned expenditure in the 
+              economy (C + I + G + X − M) exceeds the economy's current productive capacity at prevailing prices, 
+              the excess demand cannot be satisfied through additional output alone—particularly as the economy 
+              approaches full employment. Instead, the competitive bidding for scarce goods and factor inputs 
+              translates into price increases. The relationship between AD shifts and inflation is critically 
+              mediated by the slope of the SRAS curve: when the economy operates with substantial spare capacity 
+              (the "Keynesian" horizontal segment), AD increases translate primarily into output gains with 
+              minimal inflationary impact; as the economy approaches full employment (the "classical" vertical 
+              segment), further AD increases become increasingly inflationary with diminishing real output effects.
+            </p>
+          </div>
+          <DemandPullInflationDiagram />
+          
+          <div className="mt-8 p-6 bg-gradient-to-r from-secondary/10 to-transparent rounded-xl border-l-4 border-secondary">
+            <h4 className="font-serif text-lg font-semibold text-secondary mb-4">The Multiplier Effect in an AD/AS Context</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed text-justify">
+              The multiplier effect amplifies initial changes in autonomous expenditure through successive rounds 
+              of induced consumption. When the government increases spending by ΔG, this injection becomes income 
+              for households who supply factors of production. A proportion of this additional income—determined 
+              by the marginal propensity to consume (MPC)—is respent on domestically produced goods, generating 
+              further income for other producers. The process continues geometrically, with each round diminished 
+              by the marginal propensity to withdraw (MPW = MPS + MPT + MPM). The final change in national income 
+              is given by: <span className="font-mono bg-muted/50 px-2 py-1 rounded">ΔY = k × ΔG</span> where 
+              <span className="font-mono bg-muted/50 px-2 py-1 rounded mx-1">k = 1/MPW = 1/(1 − MPC)</span>. 
+              However, the multiplier's effectiveness is constrained by the AS curve's slope. At full employment, 
+              the "real" multiplier approaches zero as nominal spending increases translate entirely into price 
+              rises rather than output expansion. Thus, the multiplier is most potent when significant spare 
+              capacity exists—precisely the condition Keynes emphasised during the Great Depression.
+            </p>
+          </div>
+        </ContentSection>
+
+        {/* Cost-Push Inflation / Stagflation */}
+        <ContentSection title="Cost-Push Inflation & Stagflation: Chain of Analysis">
+          <div className="space-y-0 mb-6">
+            <p className="text-muted-foreground leading-relaxed text-justify">
+              Cost-push inflation originates from the supply side of the economy, arising when increases in the 
+              costs of production—independent of demand conditions—force firms to raise prices to maintain 
+              profitability. Unlike demand-pull inflation, which arises from "too much money chasing too few 
+              goods," cost-push inflation represents a contraction in the economy's willingness to supply at 
+              any given price level. The SRAS curve shifts leftward (upward), reflecting higher unit costs of 
+              production. Primary sources of cost-push pressure include: commodity price shocks (particularly 
+              energy and raw materials); wage-push pressures when nominal wage increases exceed productivity 
+              growth; currency depreciation raising import costs; increases in indirect taxation; and regulatory 
+              compliance costs. The distinguishing characteristic of cost-push inflation is its association 
+              with falling output—the economy moves up and to the left along the AD curve, experiencing 
+              simultaneously higher prices and reduced real GDP.
+            </p>
+          </div>
+          <CostPushStagflationDiagram />
+        </ContentSection>
+
         {/* Macroeconomic Equilibrium - Expanded */}
         <ContentSection title="Determining Macroeconomic Equilibrium">
           <NoteCard title="The Intersection of AD and AS" type="theory">
-            <p className="leading-relaxed">
-              Macroeconomic equilibrium occurs at the <strong>intersection of the aggregate demand and 
-              aggregate supply curves</strong>. At this point, the total quantity of goods and services that 
+            <p className="leading-relaxed text-justify">
+              Macroeconomic equilibrium occurs at the intersection of the aggregate demand and 
+              aggregate supply curves. At this point, the total quantity of goods and services that 
               consumers, firms, government, and foreign buyers wish to purchase exactly equals the total 
               quantity that producers are willing to supply. The equilibrium determines two crucial 
-              macroeconomic variables simultaneously: the <strong>general price level (P)</strong> and the 
-              level of <strong>real national output (Y)</strong>.
-            </p>
-            <p className="mt-4 leading-relaxed">
-              At equilibrium, there is no tendency for the price level or output to change because the plans 
-              of buyers and sellers are mutually consistent. If the price level were above equilibrium, the 
-              quantity supplied would exceed quantity demanded, creating unsold inventories that would put 
-              downward pressure on prices. If the price level were below equilibrium, excess demand would bid 
-              prices upward. Only at the equilibrium price level do these pressures balance.
+              macroeconomic variables simultaneously: the general price level (P) and the 
+              level of real national output (Y). The self-adjusting mechanism operates as follows: 
+              should the actual price level exceed equilibrium, an excess supply of goods manifests as 
+              unplanned inventory accumulation, signalling to firms that production exceeds sales and 
+              exerting downward pressure on prices and output until equilibrium is restored. Conversely, 
+              a below-equilibrium price level generates excess demand, depleting inventories and bidding 
+              prices upward. Only at the equilibrium price level do these countervailing pressures balance, 
+              ensuring that aggregate planned expenditure equals aggregate planned output.
             </p>
           </NoteCard>
 
@@ -534,11 +599,11 @@ const ADASEquilibrium = () => {
             <div className="space-y-6">
               <div className="p-5 border-l-4 border-primary rounded-r-lg bg-primary/5">
                 <h4 className="font-semibold text-primary text-lg">Positive Demand Shock (Increase in AD)</h4>
-                <p className="mt-3 leading-relaxed">
+                <p className="mt-3 leading-relaxed text-justify">
                   When aggregate demand increases (AD shifts rightward) – for example, due to a cut in interest 
                   rates, increased government spending, or rising consumer confidence – the economy moves to a 
-                  new equilibrium with <strong>higher real output (Y₁ &gt; Y₀)</strong> and a 
-                  <strong> higher price level (P₁ &gt; P₀)</strong>. The magnitude of these effects depends
+                  new equilibrium with higher real output (Y₁ → Y₂) and a 
+                  higher price level (P₁ → P₂). The magnitude of these effects depends
                   critically on the slope of the SRAS curve. When the economy has significant spare capacity 
                   (operating well below full employment), the SRAS is relatively flat, so most of the impact 
                   falls on output with little price increase. As the economy approaches full employment, the 
@@ -549,12 +614,12 @@ const ADASEquilibrium = () => {
               
               <div className="p-5 border-l-4 border-destructive rounded-r-lg bg-destructive/5">
                 <h4 className="font-semibold text-destructive text-lg">Negative Supply Shock (Decrease in SRAS)</h4>
-                <p className="mt-3 leading-relaxed">
+                <p className="mt-3 leading-relaxed text-justify">
                   When aggregate supply decreases (SRAS shifts leftward) – for example, due to rising oil 
                   prices, increased wages, or supply chain disruptions – the economy experiences the worst of 
-                  both worlds: <strong>falling output (Y₁ &lt; Y₀)</strong> combined with a 
-                  <strong> rising price level (P₁ &gt; P₀)</strong>. This combination is known as
-                  <strong> stagflation</strong> – stagnation (falling output and rising unemployment) occurring 
+                  both worlds: falling output (Y₁ → Y₂, where Y₂ {'<'} Y₁) combined with a 
+                  rising price level (P₁ → P₂, where P₂ {'>'} P₁). This combination is known as
+                  stagflation – stagnation (falling output and rising unemployment) occurring 
                   simultaneously with inflation. Stagflation poses a severe policy dilemma: policies to boost 
                   demand and reduce unemployment would worsen inflation, while policies to reduce inflation 
                   would further depress output and employment.
@@ -562,37 +627,56 @@ const ADASEquilibrium = () => {
               </div>
 
               <div className="p-5 border-l-4 border-secondary rounded-r-lg bg-secondary/5">
-                <h4 className="font-semibold text-secondary text-lg">Long-Run Adjustment</h4>
-                <p className="mt-3 leading-relaxed">
+                <h4 className="font-semibold text-secondary text-lg">Long-Run Adjustment Mechanism</h4>
+                <p className="mt-3 leading-relaxed text-justify">
                   In the long run, the economy tends to return to its potential output level (Y*). If a 
                   positive demand shock pushes output temporarily above Y*, the resulting inflationary 
-                  pressure will eventually cause wages to rise, shifting SRAS leftward until the economy 
-                  returns to Y* at a higher price level. Conversely, if the economy is below Y* (recession), 
-                  the resulting unemployment will eventually put downward pressure on wages, shifting SRAS 
-                  rightward until the economy returns to potential output. This self-correcting mechanism 
-                  operates through wage and price flexibility, though in practice this adjustment can take 
-                  considerable time.
+                  pressure will eventually cause wages to rise as workers demand compensation for reduced 
+                  real wages, shifting SRAS leftward until the economy returns to Y* at a higher price level. 
+                  Conversely, if the economy is below Y* (recession), the resulting unemployment will eventually 
+                  put downward pressure on wages as workers accept lower nominal wages to find employment, 
+                  shifting SRAS rightward until the economy returns to potential output. This self-correcting 
+                  mechanism operates through wage and price flexibility, though in practice this adjustment 
+                  can take considerable time—hence the case for active stabilisation policy.
                 </p>
               </div>
             </div>
           </AnalysisBlock>
 
-          <ExamTipBox title="Diagram Technique for Exams" variant="gold">
+          <ExamTipBox title="Senior Examiner's Conclusion: The Elasticity-Dependent Impact" variant="gold">
+            <p className="leading-relaxed text-justify">
+              <strong>Ultimately, the impact of an AD shift on the Price Level is critically dependent upon the 
+              elasticity of the AS curve.</strong> If the economy is operating with significant spare capacity 
+              (the Keynesian horizontal section of SRAS), an increase in Aggregate Demand will lead to economic 
+              growth with minimal inflationary pressure—firms can expand output by employing previously 
+              underutilised resources without significant cost increases. However, at or near full employment 
+              (Yfe), where the SRAS becomes highly inelastic and approaches the vertical LRAS, any further 
+              increase in AD is <em>purely inflationary</em>—nominal demand rises but cannot be met with 
+              additional real output, translating entirely into higher prices. This insight underpins the 
+              policy debate regarding the appropriate stance of fiscal and monetary policy: expansionary 
+              measures are most effective in recessions with spare capacity, whereas at full employment they 
+              risk accelerating inflation without generating real growth. The examiner will reward candidates 
+              who explicitly link their analysis to the position on the AS curve and the concept of 
+              capacity constraints.
+            </p>
+          </ExamTipBox>
+
+          <ExamTipBox title="Diagram Technique for Examinations" variant="warning">
             <div className="space-y-3">
               <p className="leading-relaxed">
                 When drawing AD/AS diagrams in examinations, always follow this sequence:
               </p>
               <ol className="space-y-2 list-decimal list-inside">
-                <li><strong>Label both axes clearly:</strong> Y-axis = "General Price Level (P)" and X-axis = "Real National Output / Real GDP (Y)"</li>
-                <li><strong>Draw and label the original curves:</strong> AD, SRAS, and if relevant, LRAS</li>
-                <li><strong>Mark the initial equilibrium:</strong> Label it E₀, P₀, Y₀</li>
-                <li><strong>Show the shift:</strong> Draw the new curve (e.g., AD₁) and indicate direction with an arrow</li>
-                <li><strong>Mark the new equilibrium:</strong> Label it E₁, P₁, Y₁</li>
-                <li><strong>Explain the analysis:</strong> Describe what happened and why in your written answer</li>
+                <li><strong>Label both axes clearly:</strong> Y-axis = "General Price Level (GPL)" and X-axis = "Real National Output / Real GDP (Y)"</li>
+                <li><strong>Draw and label the original curves:</strong> AD, SRAS, and if relevant, LRAS at Yfe</li>
+                <li><strong>Mark the initial equilibrium:</strong> Label it E₁, P₁, Y₁</li>
+                <li><strong>Show the shift:</strong> Draw the new curve (e.g., AD₂) and indicate direction with an arrow</li>
+                <li><strong>Mark the new equilibrium:</strong> Label it E₂, P₂, Y₂</li>
+                <li><strong>Identify gaps if applicable:</strong> Mark inflationary or recessionary gaps relative to LRAS</li>
               </ol>
               <p className="mt-3 text-sm italic">
-                Remember: Clear, well-labeled diagrams can earn significant marks even if your written 
-                explanation is incomplete.
+                Clear, well-labeled diagrams demonstrating correct understanding of curve positions and equilibrium 
+                determination can earn significant marks even if written explanation is incomplete.
               </p>
             </div>
           </ExamTipBox>
