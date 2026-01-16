@@ -96,19 +96,34 @@ const Elasticities = () => {
         </div>
 
 
-        {/* High-Density PED Determinants Block */}
+        {/* High-Density PED Determinants Block - Chains of Analysis */}
         <div className="glass-card p-8 my-6">
           <div className="border-l-4 border-cyan-500 pl-6">
-            <h3 className="font-serif text-2xl text-silver-bright mb-4">The Determinants of Price Elasticity: An Integrated Analysis</h3>
+            <h3 className="font-serif text-2xl text-silver-bright mb-4">The Determinants of Price Elasticity of Demand: Chains of Analysis</h3>
+            <div className="space-y-1 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The <strong className="text-cyan-400">price elasticity of demand</strong> for any commodity is determined by a complex interplay of factors that collectively govern the consumer's ability and willingness to adjust quantity demanded in response to price signals. The <strong className="text-cyan-400">availability and closeness of substitutes</strong> constitutes the paramount determinant, establishing the foundation upon which all other factors operate. When close substitutes exist, a marginal price increase triggers a rapid and rational reallocation of expenditure: consumers, behaving as utility-maximizing agents, recognize that the same satisfaction can be obtained at lower cost from the substitute good, and therefore execute a "switch" that manifests as highly elastic demand. The magnitude of this substitution response depends critically on the degree of substitutability—perfect substitutes (homogeneous commodities in competitive markets) yield perfectly elastic demand, while goods with distant or imperfect substitutes (differentiated products with brand loyalty, patented pharmaceuticals, or goods with unique characteristics) exhibit progressively more inelastic demand curves. This substitutability operates hierarchically across market definitions: brand-level demand (e.g., for "Coca-Cola") exhibits higher elasticity than product-category demand (e.g., for "carbonated soft drinks"), which itself exceeds aggregate commodity-class demand (e.g., for "beverages")—a principle that explains why individual firms face more elastic demand curves than industries, and why market power increases as product differentiation intensifies.
+              </p>
+              <p>
+                The <strong className="text-cyan-400">proportion of consumer income</strong> absorbed by expenditure on the good determines the intensity with which the budget constraint binds and consequently the degree of consumer responsiveness to price changes. For goods commanding a substantial share of household budgets—residential accommodation, motor vehicles, higher education, major appliances—a given percentage price increase represents a significant absolute expenditure change that materially affects the consumer's ability to purchase other goods, thereby inducing careful deliberation, extensive search for alternatives, and heightened price sensitivity manifesting as elastic demand. Conversely, for goods absorbing negligible income shares—salt, matches, shoelaces, postage stamps—the same percentage price increase passes largely unnoticed within the overall consumption bundle, consumers rationally economize on search costs by maintaining habitual purchase patterns, and demand exhibits inelasticity. The <strong className="text-cyan-400">necessity-luxury spectrum</strong> operates through an analogous mechanism rooted in the concept of consumer surplus and diminishing marginal utility: necessities—goods satisfying fundamental biological or social requirements including staple foods, basic utilities, essential medicines, and mandatory transportation—generate high marginal utility at low consumption levels that exceeds the marginal utility of income, rendering consumers unwilling to reduce consumption even when prices rise substantially (inelastic demand); luxuries—discretionary consumption items including holidays, entertainment, premium branded goods, and aesthetic enhancements—generate lower marginal utility relative to the marginal utility of income, enabling consumers to defer, reduce, or eliminate purchases when prices rise without significant welfare loss (elastic demand).
+              </p>
+              <p>
+                The <strong className="text-cyan-400">time period</strong> over which price elasticity is measured fundamentally transforms the observed consumer response through the operation of adjustment costs, information acquisition, and habit modification. In the <strong className="text-cyan-400">momentary period</strong> following a price change, consumers remain locked into pre-existing consumption patterns by contractual commitments (rental agreements, subscription services, installment purchases), information constraints (unawareness of available substitutes or their prices), and psychological habit persistence—demand appears highly inelastic. As the <strong className="text-cyan-400">short run</strong> unfolds, consumers acquire information about alternatives, existing contracts expire, and marginal adjustments become feasible—demand elasticity increases modestly. In the <strong className="text-cyan-400">long run</strong>, consumers undertake comprehensive lifestyle adjustments: replacing vehicles with fuel-efficient alternatives in response to petrol price increases, relocating residences in response to regional cost differentials, or substituting capital for energy in response to utility price trends—demand becomes substantially more elastic. The petroleum market exemplifies this temporal progression: short-run demand for motor fuel is highly inelastic (estimated PED ≈ 0.2-0.3) as commuters cannot immediately alter journey requirements or vehicle characteristics; long-run demand is considerably more elastic (estimated PED ≈ 0.7-1.0) as the vehicle stock turns over, urban planning adjusts, and modal substitution proceeds.
+              </p>
+              <p>
+                The <strong className="text-cyan-400">degree of habit formation and addiction</strong> introduces psychological dimensions that override purely economic considerations in elasticity determination. Habit-forming goods—including tobacco, alcohol, caffeine-containing beverages, opioids, and gambling services—generate consumption patterns characterized by physiological or psychological dependency that fundamentally alters the utility function: discontinuation or reduction imposes withdrawal costs that may exceed the financial costs of continued consumption at higher prices. For addictive substances, the internal "switching cost" imposed by physical dependency symptoms or psychological craving effectively eliminates substitutes from the consumer's consideration set, rendering demand persistently inelastic regardless of time period. Empirical estimates consistently demonstrate that tobacco demand exhibits PED values of 0.3-0.5 even over extended periods, while demand for illicit opioids may approach perfect inelasticity as dependency intensifies—observations with profound implications for the design of "sin taxes" and public health interventions targeting consumption of harmful substances.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Excellent Conclusion for PED Determinants */}
+        <div className="glass-card p-8 my-6 border border-amber-500/30">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-xl text-amber-400 mb-4">Excellent Conclusion: The Dynamic Nature of PED</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
               <p>
-                The <strong className="text-cyan-400">price elasticity of demand</strong> for any good is not fixed but varies according to several interrelated determinants that collectively shape consumer responsiveness to price changes. The <strong className="text-cyan-400">availability and closeness of substitutes</strong> constitutes the single most important determinant: goods with numerous close substitutes exhibit highly elastic demand because consumers can readily switch to alternatives when prices rise, whereas goods with few or no substitutes (such as patented pharmaceuticals or addictive substances) demonstrate inelastic demand since consumers have limited options for substitution. This substitutability operates on multiple levels—brand-level elasticity exceeds product-category elasticity, which in turn exceeds industry-level elasticity—explaining why demand for "Coca-Cola" is more elastic than demand for "soft drinks" which is more elastic than demand for "beverages" as a category.
-              </p>
-              <p>
-                The <strong className="text-cyan-400">proportion of income</strong> devoted to the good significantly influences elasticity through the intensity of the budget constraint's bite. Expensive purchases command greater consumer deliberation: a 10% price increase on an automobile or residential property induces intensive search for alternatives and careful reconsideration of the purchase decision, whereas the same percentage increase on salt or matches passes largely unnoticed. This proportion-of-income effect explains why demand for housing, vehicles, and consumer electronics tends to be elastic, while demand for everyday consumables exhibits inelasticity. The <strong className="text-cyan-400">necessity-luxury distinction</strong> operates through a similar mechanism: necessities—goods required for basic functioning such as staple foods, utilities, and essential medicines—demonstrate inelastic demand because consumption cannot be significantly reduced regardless of price; luxuries—discretionary purchases that can be postponed or foregone—exhibit elastic demand because price increases prompt deferral or cancellation.
-              </p>
-              <p>
-                The <strong className="text-cyan-400">time horizon</strong> over which elasticity is measured profoundly affects observed responsiveness. In the immediate aftermath of a price change, consumers may be locked into established consumption patterns by contracts, habits, or incomplete information about alternatives; over longer periods, consumers discover substitutes, adjust lifestyles, change suppliers, and modify consumption habits, rendering demand increasingly elastic. Demand for petrol illustrates this temporal dimension: in the short run, commuters must fuel their vehicles regardless of price (inelastic); over years, consumers purchase fuel-efficient vehicles, relocate closer to work, or switch to public transport (elastic). <strong className="text-cyan-400">Habit formation and addiction</strong> create psychological switching costs that reduce elasticity: tobacco, alcohol, caffeine, and other habit-forming substances demonstrate persistently inelastic demand because the psychological cost of reducing consumption exceeds the financial cost of price increases.
+                Ultimately, the price elasticity of demand for any product is <strong className="text-amber-400">not a static parameter</strong> but a <strong className="text-amber-400">dynamic variable</strong> shaped by strategic firm behavior and evolving market conditions. A firm's ability to manipulate elasticity through <strong className="text-cyan-400">non-price competition</strong>—brand building, product differentiation, loyalty programs, and the creation of perceived uniqueness—can successfully transform an elastic product into an inelastic one, conferring upon the firm substantial "price-setting" power and correspondingly greater control over total revenue. Apple Inc. exemplifies this strategic transformation: by cultivating intense brand loyalty, creating an integrated ecosystem of complementary products, and positioning its devices as status symbols rather than mere commodity electronics, the company has rendered demand for iPhones substantially less elastic than the underlying smartphone category would suggest, enabling premium pricing that generates exceptional profit margins. The sophisticated analyst therefore recognizes that observed PED values reflect not only underlying product characteristics but also the accumulated effects of past marketing investments and competitive positioning strategies.
               </p>
             </div>
           </div>
@@ -486,71 +501,67 @@ const Elasticities = () => {
           </div>
         </div>
 
-        <NoteCard title="Determinants of Price Elasticity of Supply" type="theory" delay={200}>
-          <p className="mb-4">
-            Several factors determine whether supply for a particular good or service will be elastic or inelastic. These factors relate primarily to producers' ability to adjust output levels in response to price changes.
-          </p>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-magenta-400 font-semibold">Time Period</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Supply is more elastic in the long run. In the short run, firms face capacity constraints; in the long run, they can build new factories, hire workers, and expand capacity.
-              </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-magenta-400 font-semibold">Spare Capacity</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Firms with unused capacity can increase output quickly without significant cost increases, making supply more elastic.
-              </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-magenta-400 font-semibold">Factor Mobility</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                If labor and capital can move easily between industries, supply is more elastic. Specialized resources reduce elasticity.
-              </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-magenta-400 font-semibold">Stock Availability</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Industries that can hold inventory can respond quickly to price changes. Perishable goods or services cannot be stored, reducing elasticity.
-              </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-magenta-400 font-semibold">Production Period</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Goods with long production cycles (aircraft, buildings, crops) have inelastic supply in the short run compared to quickly manufactured goods.
-              </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-magenta-400 font-semibold">Barriers to Entry</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                High barriers prevent new firms from entering the market, limiting the supply response to price increases.
-              </p>
-            </div>
-          </div>
-        </NoteCard>
-
-        <ExamTipBox title="PES and Market Adjustment" variant="gold" className="mt-6">
-          <p className="mb-2"><strong>Key Cambridge exam applications:</strong></p>
-          <ul className="space-y-1 text-sm">
-            <li>• <strong>Tax incidence:</strong> More inelastic supply → producers bear more of tax burden</li>
-            <li>• <strong>Price volatility:</strong> Inelastic supply → greater price fluctuations from demand shifts</li>
-            <li>• <strong>Agricultural markets:</strong> Often inelastic in short run (growing seasons) → volatile prices</li>
-            <li>• <strong>Housing market:</strong> Supply inelastic in short run → price rises faster than quantity</li>
-          </ul>
-        </ExamTipBox>
-
-        {/* High-Density Tax Incidence Evaluation Block */}
+        {/* High-Density PES Determinants Block - Chains of Analysis */}
         <div className="glass-card p-8 my-6">
-          <div className="border-l-4 border-amber-500 pl-6">
-            <h3 className="font-serif text-xl text-amber-400 mb-4">Senior Examiner's Conclusion: Tax Incidence and Relative Elasticities</h3>
-            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+          <div className="border-l-4 border-magenta-500 pl-6">
+            <h3 className="font-serif text-2xl text-silver-bright mb-4">The Determinants of Price Elasticity of Supply: Chains of Analysis</h3>
+            <div className="space-y-1 text-muted-foreground text-justify leading-relaxed">
               <p>
-                The <strong className="text-amber-400">economic incidence of taxation</strong> depends critically upon relative elasticities. The party with the <strong className="text-amber-400">more inelastic curve bears the greater tax burden</strong>, regardless of legal incidence. Formally: <span className="font-mono text-amber-400 bg-amber-500/10 px-2 py-1 rounded">Consumer Share = PES / (PES + |PED|)</span>. This explains why governments tax goods with inelastic demand (tobacco, alcohol, petrol): consumers bear most of the burden and consumption changes little, maximizing revenue while minimizing distortion. The sophisticated analyst recognizes that elasticity estimates are subject to uncertainty and should incorporate sensitivity analysis in policy evaluation.
+                The <strong className="text-magenta-400">price elasticity of supply</strong> is fundamentally governed by the producer's capacity to adjust output levels in response to market price signals, a capacity that varies systematically with temporal horizons, factor availability, and technological constraints. The <strong className="text-magenta-400">time period</strong> under consideration constitutes the most critical determinant, establishing the boundaries within which all other factors operate. In the <strong className="text-magenta-400">momentary (market) period</strong>, all factors of production are fixed—plant capacity, machinery, labor contracts, and raw material inventories cannot be altered—and supply is consequently <strong className="text-cyan-400">perfectly inelastic (PES = 0)</strong>: the quantity available for sale is the existing stock regardless of price movements. The supply curve in this period is vertical, explaining the extreme price volatility observed in markets for perishable agricultural commodities immediately following harvest or in ticket markets for imminent events where supply is absolutely fixed.
+              </p>
+              <p>
+                As the temporal horizon extends into the <strong className="text-magenta-400">short run</strong>, at least one factor of production remains fixed (typically capital plant and equipment), but variable factors (labor, raw materials, energy) can be adjusted. Firms can increase output by hiring additional workers, intensifying equipment utilization, extending operating hours, or drawing down inventories—but only within the constraints imposed by existing capital stock. The Law of Diminishing Marginal Returns imposes an upward-sloping cost structure: as variable inputs are added to fixed capital, marginal productivity eventually declines, requiring higher prices to justify increased output. Short-run supply is therefore <strong className="text-cyan-400">positively elastic but constrained</strong> by capacity limits—the supply curve slopes upward but becomes increasingly steep as production approaches maximum capacity. The magnitude of short-run elasticity depends critically on <strong className="text-cyan-400">spare capacity</strong>: firms operating well below capacity can expand output at minimal marginal cost (elastic supply), while firms approaching full capacity utilization face rapidly escalating marginal costs (inelastic supply).
+              </p>
+              <p>
+                In the <strong className="text-magenta-400">long run</strong>, all factors of production become variable: firms can construct new production facilities, purchase additional machinery, enter long-term labor contracts, and fundamentally restructure operations. Crucially, the long run also permits industry-level adjustments through entry and exit of firms: supernormal profits attract new entrants who add to industry supply, while losses induce exit that reduces aggregate supply. This flexibility renders long-run supply <strong className="text-cyan-400">substantially more elastic</strong> than short-run supply—the long-run supply curve is flatter, reflecting producers' enhanced capacity to respond to price incentives through capacity expansion, technological adoption, and competitive entry. In the limiting case of a <strong className="text-cyan-400">constant-cost industry</strong> where factor prices remain unchanged as industry output expands, long-run supply approaches perfect elasticity (horizontal supply curve at the minimum point of long-run average cost).
+              </p>
+              <p>
+                The <strong className="text-magenta-400">mobility of factors of production</strong> determines the ease with which resources can be reallocated from declining industries to expanding sectors in response to relative price changes. When factors are occupationally and geographically mobile—when workers can readily retrain for new occupations, machinery can be repurposed for alternative production, and land can be converted to different uses—supply responds rapidly to price signals (elastic). Conversely, when factors are specialized and immobile—when workers possess industry-specific human capital that depreciates upon redeployment, when physical capital is purpose-built for particular production processes, or when land is constrained by planning regulations—supply adjusts slowly and incompletely (inelastic). The distinction between <strong className="text-cyan-400">specific assets</strong> (valuable only in their current use) and <strong className="text-cyan-400">general assets</strong> (easily redeployed) underlies this mobility dimension: industries employing general-purpose factors exhibit elastic supply, while industries dependent on specialized assets face supply rigidities.
+              </p>
+              <p>
+                The capacity to <strong className="text-magenta-400">hold stocks and inventories</strong> dramatically affects short-run supply elasticity by decoupling current sales from current production. Manufacturers of durable, non-perishable goods can accumulate inventories during periods of weak demand and draw them down during demand surges, smoothing production schedules while responding elastically to price movements—the automobile industry, consumer electronics, and industrial equipment sectors all exhibit inventory-buffered supply responses. Conversely, producers of perishable goods (fresh produce, cut flowers, dairy products) or services (hotel accommodation, airline seats, entertainment performances) cannot store output for future sale: once the production period passes, unsold capacity perishes or evaporates, and supply becomes highly inelastic to short-run price fluctuations. The <strong className="text-cyan-400">production period or gestation lag</strong> further constrains supply response: agricultural crops with annual growing cycles, forestry with decade-long maturation periods, and construction projects with multi-year completion timelines cannot expand output immediately regardless of price signals—supply remains inelastic until the natural production period elapses.
               </p>
             </div>
           </div>
         </div>
+
+        {/* Excellent Conclusion for PES Determinants */}
+        <div className="glass-card p-8 my-6 border border-amber-500/30">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-xl text-amber-400 mb-4">Excellent Conclusion: Commodity Price Volatility and Agricultural Markets</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                In conclusion, the elasticity of supply is most significantly constrained by the <strong className="text-amber-400">nature of the production process</strong> and the <strong className="text-amber-400">biological or physical characteristics</strong> of the product. Agricultural commodities exemplify this constraint: crops are subject to <strong className="text-cyan-400">gestation periods</strong>—planting-to-harvest cycles that may span months or years—during which supply cannot respond to price signals regardless of how attractive prices become. Cocoa trees require five years to reach productive maturity; coffee bushes need four years; rubber trees seven years. Consequently, agricultural supply exhibits extreme short-run inelasticity, and positive demand shocks translate almost entirely into price increases rather than quantity adjustments. This supply rigidity, combined with price-inelastic demand for food staples, explains the notorious <strong className="text-cyan-400">price volatility</strong> characteristic of global commodity markets: minor shifts in supply (droughts, pest infestations, weather disruptions) or demand (population growth, income changes, biofuel mandates) generate extreme price oscillations that destabilize producer incomes and consumer budgets throughout the developing world. The sophisticated analyst recognizes that PES fundamentally shapes market stability and that policies targeting agricultural price volatility must address the underlying supply rigidities through buffer stock schemes, crop insurance mechanisms, or long-term investment in agricultural research and infrastructure.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* High-Density Tax Incidence Analysis */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-cyan-500 pl-6">
+            <h3 className="font-serif text-2xl text-silver-bright mb-4">Tax Incidence and Relative Elasticities: The Burden Distribution Principle</h3>
+            <div className="space-y-1 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The <strong className="text-cyan-400">economic incidence of taxation</strong>—the ultimate distribution of tax burden between buyers and sellers—is determined not by legal liability but by the <strong className="text-cyan-400">relative elasticities</strong> of demand and supply. This fundamental principle holds regardless of whether the statute imposes the tax on producers (an excise duty) or consumers (a sales tax): the party with the <strong className="text-amber-400">more inelastic curve bears the greater share of the tax burden</strong> because their inability to adjust quantities in response to the tax-induced price change forces them to absorb the wedge between consumer and producer prices. The formal relationship can be expressed algebraically: <span className="font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">Consumer Share of Tax = PES / (PES + |PED|)</span> and correspondingly <span className="font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">Producer Share of Tax = |PED| / (PES + |PED|)</span>.
+              </p>
+              <p>
+                This incidence principle explains the strategic logic underlying government taxation of goods with <strong className="text-amber-400">inelastic demand</strong> (tobacco, alcohol, petroleum products, gambling): consumers bear most of the tax burden because their consumption changes little in response to the tax-induced price increase, while the behavioral distortion (deadweight loss) is minimized because quantity transacted falls only modestly. Such taxation achieves the dual objectives of <strong className="text-cyan-400">revenue maximization</strong> and <strong className="text-cyan-400">allocative efficiency</strong>—the Ramsey Rule for optimal commodity taxation formally recommends higher tax rates on goods with lower demand elasticity. Conversely, taxes on goods with elastic demand shift burden onto producers, may generate substantial deadweight losses, and often prove counterproductive for revenue generation as consumers substitute towards untaxed alternatives.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <ExamTipBox title="PES Determinants: Exam Chain of Reasoning" variant="gold" className="mt-6">
+          <p className="mb-2"><strong>Cambridge 9708 expects integrated chains:</strong></p>
+          <ul className="space-y-1 text-sm">
+            <li>• <strong>Time:</strong> Short run → some factors fixed → capacity constraints → inelastic PES</li>
+            <li>• <strong>Spare Capacity:</strong> High utilization → rising MC → steeper supply → lower PES</li>
+            <li>• <strong>Factor Mobility:</strong> Specialized assets → slow reallocation → supply rigidity → inelastic PES</li>
+            <li>• <strong>Stocks:</strong> Perishability → no inventory buffer → output = sales → inelastic short-run PES</li>
+            <li>• <strong>Gestation:</strong> Long production period → delayed response → inelastic PES until maturity</li>
+          </ul>
+        </ExamTipBox>
 
         <ExamTipBox title="AO3/AO4 Essay Structure for Elasticity (20/20 Template)" variant="gold" className="mt-6">
           <p className="mb-2 text-justify"><strong>For 25-mark essays on elasticity:</strong></p>
