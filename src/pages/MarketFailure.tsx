@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import ChapterLayout from '@/components/ChapterLayout';
 import MarketFailureExternalityDiagram from '@/components/diagrams/MarketFailureExternalityDiagram';
-import ExternalitiesDiagram from '@/components/diagrams/ExternalitiesDiagram';
+import NegativeProductionExternalityDiagram from '@/components/diagrams/NegativeProductionExternalityDiagram';
+import PositiveConsumptionExternalityDiagram from '@/components/diagrams/PositiveConsumptionExternalityDiagram';
 import SurplusWithTaxDiagram from '@/components/diagrams/SurplusWithTaxDiagram';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertTriangle, Scale, Lightbulb, TrendingDown, Users, ShieldAlert, BookOpen } from 'lucide-react';
@@ -140,12 +141,14 @@ const MarketFailure = () => {
         {/* Interactive Externality Diagram */}
         <MarketFailureExternalityDiagram />
 
-        {/* Static Externality Diagram with Detailed Labels */}
-        <div className="mt-6">
-          <ExternalitiesDiagram 
-            title="Negative Production Externality: The Welfare Loss Triangle" 
-            type="negative-production"
-          />
+        {/* Precision Diagram: Negative Production Externality */}
+        <div className="mt-8">
+          <NegativeProductionExternalityDiagram />
+        </div>
+
+        {/* Precision Diagram: Positive Consumption Externality */}
+        <div className="mt-8">
+          <PositiveConsumptionExternalityDiagram />
         </div>
       </motion.section>
 
