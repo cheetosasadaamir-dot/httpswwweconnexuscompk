@@ -146,44 +146,92 @@ const NationalIncome = () => {
 
         {/* Topic 2: Keynesians and Monetarists */}
         <ContentSection title="Topic 2: Keynesians and Monetarists" id="keynesians-monetarists">
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4">
             <NoteCard title="Keynesian View of the Economy" type="theory">
-              <p>
+              <p className="text-sm">
                 According to the Keynesian perspective, up to full employment the aggregate supply is 
                 <strong> horizontal (perfectly elastic)</strong>. An increase in aggregate demand increases 
                 output and employment, <strong>not prices</strong>. Only when full employment is reached 
                 will prices begin to increase.
               </p>
-              <p className="mt-3 text-sm text-muted-foreground">
+              <p className="mt-2 text-xs text-muted-foreground">
                 The government should control aggregate demand to ensure equilibrium occurs at full employment. 
                 This justifies activist fiscal policy during recessions.
               </p>
-              <div className="mt-3 p-2 bg-primary/10 rounded text-sm">
+              <div className="mt-2 p-2 bg-primary/10 rounded text-xs">
                 <strong>Key implication:</strong> Demand management is effective in changing real output.
               </div>
             </NoteCard>
 
             <NoteCard title="Monetarist (Classical) View" type="theory">
-              <p>
+              <p className="text-sm">
                 According to the Monetarist perspective, aggregate supply is <strong>vertical</strong> 
                 at the natural rate of output. Any increase in AD increases the <strong>price level</strong> 
                 but not output and employment.
               </p>
-              <p className="mt-3 text-sm text-muted-foreground">
+              <p className="mt-2 text-xs text-muted-foreground">
                 To increase output and employment, supply-side policies are needed to shift AS to the right. 
                 Monetary policy should focus on controlling inflation.
               </p>
-              <div className="mt-3 p-2 bg-secondary/10 rounded text-sm">
+              <div className="mt-2 p-2 bg-secondary/10 rounded text-xs">
                 <strong>Key implication:</strong> Only supply-side policies can increase real output.
               </div>
             </NoteCard>
           </div>
 
+          <AnalysisBlock title="Chain of Reasoning (AO3): Keynesian vs. Monetarist Policy Transmission" type="analysis">
+            <div className="space-y-3 text-xs">
+              <div className="p-2 bg-cambridge-cyan/10 rounded-lg">
+                <p className="font-semibold text-cambridge-cyan mb-1">Keynesian Transmission (With Spare Capacity):</p>
+                <div className="font-mono text-center py-1">
+                  ↑G or ↓T → ↑Disposable Income → ↑C → ↑AD → ↑Real GDP (with minimal ↑P)
+                </div>
+                <p className="text-muted-foreground mt-1">
+                  When there is significant spare capacity (high unemployment), an increase in AD leads primarily to an increase in output rather than prices. The economy moves along the horizontal section of the Keynesian AS curve, justifying demand-side intervention.
+                </p>
+              </div>
+              <div className="p-2 bg-cambridge-magenta/10 rounded-lg">
+                <p className="font-semibold text-cambridge-magenta mb-1">Monetarist Transmission (At Full Employment):</p>
+                <div className="font-mono text-center py-1">
+                  ↑Ms → ↑AD → ↑P only (Real GDP unchanged at $Y_f$)
+                </div>
+                <p className="text-muted-foreground mt-1">
+                  At full employment, the LRAS is vertical. Any increase in AD simply causes inflation without changing real output. Only supply-side policies can shift LRAS rightward to achieve sustainable growth.
+                </p>
+              </div>
+            </div>
+          </AnalysisBlock>
+
+          <AnalysisBlock title="Critical Evaluation (AO4): State of the Economy Matters" type="evaluation">
+            <div className="grid md:grid-cols-2 gap-2 text-xs">
+              <div className="p-2 bg-destructive/10 rounded-lg">
+                <h5 className="font-semibold text-destructive mb-1">When Keynesian Policy Fails</h5>
+                <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                  <li><strong>At full capacity:</strong> ↑AD → ↑P only (demand-pull inflation)</li>
+                  <li><strong>Crowding out:</strong> ↑G → ↑r → ↓Private I (net effect reduced)</li>
+                  <li><strong>Time lags:</strong> Recognition, implementation, and response delays</li>
+                </ul>
+              </div>
+              <div className="p-2 bg-cambridge-orange/10 rounded-lg">
+                <h5 className="font-semibold text-cambridge-orange mb-1">When Monetarist Policy Fails</h5>
+                <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                  <li><strong>Liquidity trap:</strong> ↓r has no effect when r is already near zero</li>
+                  <li><strong>Low confidence:</strong> Firms won't invest despite cheap credit</li>
+                  <li><strong>Long-run focus:</strong> Cannot address short-term demand deficiency</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-2 p-2 bg-muted/30 rounded-lg text-xs text-muted-foreground">
+              <strong>Examiner Note:</strong> The effectiveness of policy depends critically on the state of the economy. Keynesian policies are most effective during recessions with spare capacity, while Monetarist/supply-side approaches are appropriate when the economy is near or at full employment.
+            </div>
+          </AnalysisBlock>
+
           <ExamTipBox title="Cambridge Examiner Insight">
-            <p>
+            <p className="text-xs">
               When answering questions on macroeconomic policy, always consider <strong>both views</strong>. 
               Keynesian analysis is more relevant for short-run analysis with spare capacity, while 
               Monetarist analysis applies to the long run or when the economy is at full employment.
+              State explicitly: "The effectiveness of this policy depends on the state of the economy..."
             </p>
           </ExamTipBox>
         </ContentSection>
@@ -656,89 +704,120 @@ const NationalIncome = () => {
         {/* Topic 7: Keynesian Multiplier */}
         <ContentSection title="Topic 7: Keynesian Multiplier" id="multiplier">
           <NoteCard title="What is the Multiplier?" type="concept">
-            <p>
+            <p className="text-sm">
               The <strong>multiplier (k)</strong> describes the phenomenon whereby an initial increase in 
               injections (J) leads to a <strong>larger final increase in national income</strong>. This occurs 
               because one person's spending becomes another person's income, which is then partially spent again.
             </p>
-            <div className="mt-4 p-4 bg-muted/30 rounded-lg">
-              <p className="font-mono text-center">
+            <div className="mt-3 p-3 bg-muted/30 rounded-lg">
+              <p className="font-mono text-center text-sm">
                 Multiplier (k) = ΔY / ΔI = Change in Income / Change in Injections
               </p>
             </div>
           </NoteCard>
 
-          <div className="my-4">
+          <div className="my-3">
             <MultiplierDiagram sectors={2} />
           </div>
 
           <NoteCard title="Multiplier Formulas by Sector Model" type="formula">
             <div className="overflow-x-auto">
-              <table className="w-full text-sm border border-muted rounded-lg overflow-hidden">
+              <table className="w-full text-xs border border-muted rounded-lg overflow-hidden">
                 <thead className="bg-muted/30">
                   <tr>
-                    <th className="py-3 px-4 text-left">Sector Model</th>
-                    <th className="py-3 px-4 text-left">Description</th>
-                    <th className="py-3 px-4 text-left">Multiplier Formula</th>
+                    <th className="py-2 px-3 text-left">Sector Model</th>
+                    <th className="py-2 px-3 text-left">Description</th>
+                    <th className="py-2 px-3 text-left">Multiplier Formula</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-t border-muted">
-                    <td className="py-3 px-4 font-medium text-cambridge-cyan">Two-Sector Economy</td>
-                    <td className="py-3 px-4 text-muted-foreground">
-                      Households and firms only. A closed economy with no government. Investment is autonomous.
-                    </td>
-                    <td className="py-3 px-4 font-mono text-cambridge-cyan">k = 1 / (1 - MPC) = 1 / MPS</td>
+                    <td className="py-2 px-3 font-medium text-cambridge-cyan">Two-Sector</td>
+                    <td className="py-2 px-3 text-muted-foreground">Households and firms only. Closed economy, no government.</td>
+                    <td className="py-2 px-3 font-mono text-cambridge-cyan">k = 1 / (1 - MPC) = 1 / MPS</td>
                   </tr>
                   <tr className="border-t border-muted">
-                    <td className="py-3 px-4 font-medium text-cambridge-magenta">Three-Sector Economy</td>
-                    <td className="py-3 px-4 text-muted-foreground">
-                      Adds government sector. A closed economy with government taxation.
-                    </td>
-                    <td className="py-3 px-4 font-mono text-cambridge-magenta">k = 1 / (MPS + MPT)</td>
+                    <td className="py-2 px-3 font-medium text-cambridge-magenta">Three-Sector</td>
+                    <td className="py-2 px-3 text-muted-foreground">Adds government sector with taxation.</td>
+                    <td className="py-2 px-3 font-mono text-cambridge-magenta">k = 1 / (MPS + MPT)</td>
                   </tr>
                   <tr className="border-t border-muted">
-                    <td className="py-3 px-4 font-medium text-cambridge-green">Four-Sector Economy</td>
-                    <td className="py-3 px-4 text-muted-foreground">
-                      Adds foreign sector (exports and imports). An open economy – the most realistic model.
-                    </td>
-                    <td className="py-3 px-4 font-mono text-cambridge-green">k = 1 / (MPS + MPT + MPM)</td>
+                    <td className="py-2 px-3 font-medium text-cambridge-green">Four-Sector</td>
+                    <td className="py-2 px-3 text-muted-foreground">Adds foreign sector (X and M). Most realistic model.</td>
+                    <td className="py-2 px-3 font-mono text-cambridge-green">k = 1 / (MPS + MPT + MPM)</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
+            <p className="mt-2 text-xs text-muted-foreground">
               <strong>Note:</strong> MPC + MPS = 1 in a two-sector model. In multi-sector models, 
               the marginal propensities to withdraw (MPS + MPT + MPM) determine the multiplier size.
             </p>
           </NoteCard>
 
-          <AnalysisBlock title="Analysis: The Size of the Multiplier">
-            <div className="space-y-4">
-              <div>
-                <p className="font-medium text-primary mb-1">Low MPC (Flat AD Curve):</p>
-                <p className="text-sm">
-                  When MPC is low, the AD curve is relatively flat. An increase in injections leads 
-                  to a <strong>small multiplier effect</strong> because a large proportion of each 
-                  additional dollar of income leaks out of the circular flow.
-                </p>
+          <AnalysisBlock title="Chain of Reasoning (AO3): The Multiplier Process" type="analysis">
+            <div className="space-y-2 text-xs">
+              <p className="text-muted-foreground">
+                <strong>PEEL Structure — The Multiplier Transmission Mechanism:</strong>
+              </p>
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <p className="font-semibold mb-1">Step-by-Step Process (Example: MPC = 0.8, Initial ΔI = £100m):</p>
+                <div className="space-y-1 text-muted-foreground">
+                  <p><strong>Round 1:</strong> Firms receive £100m investment → Pay wages/profits → Households receive £100m income</p>
+                  <p><strong>Round 2:</strong> Households spend 80% (£80m) on consumption → Firms receive £80m → Pay incomes → Households receive £80m</p>
+                  <p><strong>Round 3:</strong> Households spend 80% of £80m (£64m) → Process continues...</p>
+                  <p><strong>Final Effect:</strong> ΔY = £100m × (1/0.2) = £100m × 5 = <strong>£500m</strong></p>
+                </div>
               </div>
-              <div>
-                <p className="font-medium text-secondary mb-1">High MPC (Steep AD Curve):</p>
-                <p className="text-sm">
-                  When MPC is high, the AD curve is steep. An increase in injections leads to a 
-                  <strong> large multiplier effect</strong> because most additional income is respent, 
-                  generating further rounds of income.
+              <div className="p-2 bg-cambridge-cyan/10 rounded-lg">
+                <p className="font-semibold text-cambridge-cyan mb-1">Why the Process Ends:</p>
+                <p className="text-muted-foreground">
+                  Each round "leaks" income to savings (MPS), taxation (MPT), and imports (MPM). Since MPC &lt; 1, 
+                  each successive round of spending is smaller than the previous one. The geometric series converges 
+                  to a finite sum: ΔY = ΔI × k where k = 1/(1-MPC) = 1/MPW.
                 </p>
               </div>
             </div>
           </AnalysisBlock>
 
+          <AnalysisBlock title="Critical Evaluation (AO4): Multiplier Limitations" type="evaluation">
+            <div className="grid md:grid-cols-3 gap-2 text-xs">
+              <div className="p-2 bg-destructive/10 rounded-lg">
+                <h5 className="font-semibold text-destructive mb-1">Time Lags</h5>
+                <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                  <li>Full effect takes 12-18 months</li>
+                  <li>Policy may be pro-cyclical by accident</li>
+                  <li>Recognition lag delays response</li>
+                </ul>
+              </div>
+              <div className="p-2 bg-cambridge-orange/10 rounded-lg">
+                <h5 className="font-semibold text-cambridge-orange mb-1">At Full Employment</h5>
+                <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                  <li>No spare capacity → ↑P not ↑Y</li>
+                  <li>Multiplier leads to inflation</li>
+                  <li>Real GDP unchanged</li>
+                </ul>
+              </div>
+              <div className="p-2 bg-cambridge-magenta/10 rounded-lg">
+                <h5 className="font-semibold text-cambridge-magenta mb-1">Crowding Out</h5>
+                <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                  <li>↑G → ↑Borrowing → ↑r</li>
+                  <li>↑r → ↓Private Investment</li>
+                  <li>Net multiplier effect reduced</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-2 p-2 bg-muted/30 rounded-lg text-xs text-muted-foreground">
+              <strong>Examiner Note:</strong> The actual multiplier in developed economies is typically 1.5-2.0, 
+              smaller than theoretical models suggest due to high tax rates, import propensity, and crowding out effects.
+            </div>
+          </AnalysisBlock>
+
           <ExamTipBox title="Cambridge Examiner Expectation">
-            <p>
-              When explaining the multiplier, show the <strong>step-by-step process</strong>. Explain that 
-              the process ends because each round "leaks" some income to savings, taxes, and imports. 
-              The multiplier is finite because MPC &lt; 1.
+            <p className="text-xs">
+              When explaining the multiplier, show the <strong>step-by-step process</strong> with numerical examples. 
+              Explain that the process ends because each round "leaks" some income to savings, taxes, and imports. 
+              Always evaluate: "However, the size of the multiplier depends on the state of the economy and the marginal propensities to withdraw..."
             </p>
           </ExamTipBox>
         </ContentSection>
