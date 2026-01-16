@@ -162,22 +162,41 @@
     @apply text-gradient glow-text tracking-wide;
   }
 
-  /* CIE Master Tutor Glassmorphism Chat Styles */
+  /* CIE Master Tutor Premium Glassmorphism Chat Styles */
   .tutor-chat-container {
-    background: linear-gradient(to bottom, hsl(var(--tutor-navy-deep)), hsl(var(--tutor-navy)));
+    background: linear-gradient(135deg, 
+      hsl(var(--tutor-navy-deep)) 0%, 
+      hsl(var(--tutor-oxford) / 0.4) 50%, 
+      hsl(var(--tutor-navy)) 100%
+    );
+  }
+
+  .tutor-glassmorphism {
+    background: hsl(var(--tutor-oxford) / 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--tutor-gold) / 0.15);
+    box-shadow: 
+      0 8px 32px hsl(var(--tutor-oxford) / 0.5),
+      inset 0 1px 0 hsl(var(--tutor-gold) / 0.1),
+      inset 0 -1px 0 hsl(var(--tutor-oxford) / 0.5);
   }
 
   .tutor-message-ai {
-    background: hsl(var(--tutor-navy) / 0.7);
+    background: hsl(var(--tutor-oxford) / 0.5);
     backdrop-filter: blur(16px);
-    border: 1px solid hsl(var(--tutor-cyan) / 0.4);
-    box-shadow: 0 0 20px hsl(var(--tutor-cyan) / 0.15), inset 0 1px 0 hsl(var(--tutor-cyan) / 0.1);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--tutor-gold) / 0.25);
+    box-shadow: 
+      0 4px 24px hsl(var(--tutor-oxford) / 0.4),
+      inset 0 1px 0 hsl(var(--tutor-gold) / 0.08);
   }
 
   .tutor-message-user {
-    background: hsl(var(--tutor-navy-deep));
-    backdrop-filter: blur(16px);
-    border: 1px solid hsl(var(--border) / 0.5);
+    background: hsl(var(--tutor-navy-deep) / 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.4);
   }
 
   .tutor-formula-highlight {
@@ -189,16 +208,16 @@
   }
 
   .tutor-lesson-header {
-    background: linear-gradient(90deg, hsl(var(--tutor-gold) / 0.15), transparent);
-    border-left: 3px solid hsl(var(--tutor-gold));
-    padding: 4px 10px;
-    font-size: 0.7rem;
+    background: linear-gradient(90deg, hsl(var(--tutor-gold) / 0.12), transparent);
+    border-left: 2px solid hsl(var(--tutor-gold));
+    padding: 3px 8px;
+    font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     color: hsl(var(--tutor-gold));
-    margin-bottom: 8px;
-    border-radius: 0 4px 4px 0;
+    margin-bottom: 6px;
+    border-radius: 0 3px 3px 0;
   }
 
   .tutor-avatar {
@@ -206,18 +225,23 @@
     box-shadow: 0 0 16px hsl(var(--tutor-gold) / 0.3);
   }
 
-  /* Prof. Econs Header Banner */
+  /* Prof. Econs Header Banner - Premium Glass */
   .tutor-header-banner {
-    background: linear-gradient(90deg, hsl(var(--tutor-oxford) / 0.9), hsl(var(--tutor-navy)));
-    border-bottom: 2px solid hsl(var(--tutor-gold) / 0.6);
-    padding: 8px 16px;
+    background: linear-gradient(90deg, 
+      hsl(var(--tutor-oxford) / 0.95), 
+      hsl(var(--tutor-oxford) / 0.7)
+    );
+    border-bottom: 1px solid hsl(var(--tutor-gold) / 0.4);
+    padding: 6px 14px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .tutor-header-title {
     font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: hsl(var(--tutor-gold));
     text-transform: uppercase;
   }
@@ -225,20 +249,25 @@
   .tutor-verified-badge {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 0.65rem;
-    font-weight: 500;
+    gap: 3px;
+    font-size: 0.6rem;
+    font-weight: 600;
     color: hsl(var(--tutor-verified));
-    background: hsl(var(--tutor-verified) / 0.1);
-    border: 1px solid hsl(var(--tutor-verified) / 0.3);
-    padding: 2px 8px;
+    background: hsl(var(--tutor-verified) / 0.08);
+    border: 1px solid hsl(var(--tutor-verified) / 0.25);
+    padding: 2px 6px;
     border-radius: 9999px;
   }
 
-  /* Professor Serif Response Styling */
+  /* Professor Serif Response Styling - Zero Gap */
   .tutor-professor-response {
     font-family: 'Georgia', 'Times New Roman', serif;
-    line-height: 1.7;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+
+  .tutor-professor-response p {
+    margin-bottom: 0.35rem !important;
   }
 
   .tutor-professor-response strong {
@@ -251,13 +280,51 @@
     border: 1px solid hsl(var(--tutor-formula-border));
     color: hsl(var(--tutor-cyan));
     font-family: 'Courier New', monospace;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.85em;
   }
 
-  /* Compact chat spacing */
+  /* Command word badge styling */
+  .tutor-command-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .tutor-ao-badge {
+    background: hsl(var(--tutor-cyan) / 0.1);
+    border: 1px solid hsl(var(--tutor-cyan) / 0.3);
+    color: hsl(var(--tutor-cyan));
+  }
+
+  /* Zero-gap compact chat spacing */
   .tutor-compact-spacing > * + * {
-    margin-top: 8px;
+    margin-top: 6px;
+  }
+
+  /* Premium glow effects */
+  .tutor-gold-glow {
+    box-shadow: 0 0 30px hsl(var(--tutor-gold) / 0.15);
+  }
+
+  .tutor-input-glass {
+    background: hsl(var(--tutor-oxford) / 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--tutor-gold) / 0.2);
+    transition: all 0.2s ease;
+  }
+
+  .tutor-input-glass:focus {
+    border-color: hsl(var(--tutor-gold) / 0.5);
+    box-shadow: 0 0 20px hsl(var(--tutor-gold) / 0.1);
   }
 }
 
