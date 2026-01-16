@@ -60,6 +60,16 @@
     --cambridge-green: 142 76% 45%;
     --cambridge-orange: 25 95% 55%;
     --cambridge-yellow: 45 93% 55%;
+    
+    /* CIE Master Tutor Theme */
+    --tutor-gold: 45 93% 58%;
+    --tutor-gold-muted: 45 70% 45%;
+    --tutor-cyan: 185 100% 50%;
+    --tutor-cyan-glow: 185 100% 65%;
+    --tutor-navy: 222 47% 5%;
+    --tutor-navy-deep: 222 50% 3%;
+    --tutor-formula-bg: 220 40% 12%;
+    --tutor-formula-border: 220 40% 25%;
 
     --sidebar-background: 222 47% 4%;
     --sidebar-foreground: 210 40% 96%;
@@ -148,6 +158,55 @@
 
   .section-title {
     @apply text-gradient glow-text tracking-wide;
+  }
+
+  /* CIE Master Tutor Glassmorphism Chat Styles */
+  .tutor-chat-container {
+    background: linear-gradient(to bottom, hsl(var(--tutor-navy-deep)), hsl(var(--tutor-navy)));
+  }
+
+  .tutor-message-ai {
+    background: hsl(var(--tutor-navy) / 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--tutor-cyan) / 0.4);
+    box-shadow: 0 0 20px hsl(var(--tutor-cyan) / 0.15), inset 0 1px 0 hsl(var(--tutor-cyan) / 0.1);
+  }
+
+  .tutor-message-user {
+    background: hsl(var(--tutor-navy-deep));
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .tutor-formula-highlight {
+    background: hsl(var(--tutor-formula-bg));
+    border: 1px solid hsl(var(--tutor-formula-border));
+    border-radius: 6px;
+    padding: 2px 6px;
+    margin: 2px 0;
+  }
+
+  .tutor-lesson-header {
+    background: linear-gradient(90deg, hsl(var(--tutor-gold) / 0.15), transparent);
+    border-left: 3px solid hsl(var(--tutor-gold));
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--tutor-gold));
+    margin-bottom: 8px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .tutor-avatar {
+    background: linear-gradient(135deg, hsl(var(--tutor-gold)), hsl(var(--tutor-cyan)));
+    box-shadow: 0 0 16px hsl(var(--tutor-cyan) / 0.4);
+  }
+
+  /* Compact chat spacing */
+  .tutor-compact-spacing > * + * {
+    margin-top: 8px;
   }
 }
 
