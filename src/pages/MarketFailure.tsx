@@ -1,0 +1,316 @@
+import { motion } from 'framer-motion';
+import ChapterLayout from '@/components/ChapterLayout';
+import MarketFailureExternalityDiagram from '@/components/diagrams/MarketFailureExternalityDiagram';
+import ExternalitiesDiagram from '@/components/diagrams/ExternalitiesDiagram';
+import SurplusWithTaxDiagram from '@/components/diagrams/SurplusWithTaxDiagram';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { AlertTriangle, Scale, Lightbulb, TrendingDown, Users, ShieldAlert, BookOpen } from 'lucide-react';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
+
+const MarketFailure = () => {
+  return (
+    <ChapterLayout
+      chapterNumber={4}
+      title="Market Failure"
+      subtitle="Analyzing the failure of the price mechanism, externalities, public goods, and government intervention in achieving allocative efficiency"
+    >
+      {/* Section 1: Defining Efficiency and Market Failure */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mb-8"
+      >
+        <h2 className="text-2xl font-serif font-bold text-silver-bright mb-4">
+          1. The Concept of Market Failure and Allocative Efficiency
+        </h2>
+
+        {/* High-Density Definition Block */}
+        <Card className="glass-card border-destructive/30 mb-4">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-6 h-6 text-destructive flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold text-silver-bright mb-2">Definition: Market Failure</h4>
+                <p className="text-muted-foreground text-justify leading-relaxed">
+                  <strong className="text-primary">Market failure</strong> occurs when the free market mechanism, operating through the forces of demand and supply, fails to achieve an optimal allocation of scarce resources. In technical terms, market failure represents a situation where the equilibrium reached by private market transactions diverges from the socially optimal outcome, meaning that <strong className="text-primary">Allocative Efficiency</strong>—defined by the condition <InlineMath math="P = MC" /> at the firm level and <InlineMath math="MSB = MSC" /> at the societal level—is not attained. The consequence is a net loss of total economic welfare, often visualized as a <strong className="text-amber-400">Deadweight Loss Triangle</strong> on a standard supply-demand diagram. It is critical to distinguish between <strong className="text-cyan-400">Partial Market Failure</strong>, where markets exist but produce sub-optimal quantities (leading to over-consumption of demerit goods or under-consumption of merit goods), and <strong className="text-cyan-400">Complete Market Failure</strong>, where markets fail to form entirely due to the characteristics of the good in question (as with pure public goods where the Free-Rider Problem prevents private provision).
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Chain of Analysis: The Invisible Hand */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-primary mb-3 flex items-center gap-2">
+            <Scale className="w-5 h-5" />
+            The Failure of the "Invisible Hand"
+          </h3>
+          <p className="text-muted-foreground text-justify leading-relaxed mb-3">
+            Adam Smith's concept of the "Invisible Hand" posits that the pursuit of individual self-interest, guided by market prices, leads to an outcome that is beneficial for society as a whole. In a perfectly functioning market, the price mechanism performs three key functions: <strong className="text-silver-bright">rationing</strong> (allocating goods to those who value them most), <strong className="text-silver-bright">signaling</strong> (transmitting information about scarcity through price changes), and <strong className="text-silver-bright">incentivizing</strong> (motivating producers and consumers to alter their behavior). However, this elegant mechanism fails when the fundamental assumptions of perfect competition are violated. Specifically, the Invisible Hand cannot guide resources efficiently when there are <strong className="text-cyan-400">Externalities</strong> (unpriced spillover effects), <strong className="text-cyan-400">Information Asymmetries</strong> (where one party possesses more knowledge than another), <strong className="text-cyan-400">Public Goods</strong> (which are non-excludable and non-rivalrous), or <strong className="text-cyan-400">Market Power</strong> (where firms can influence prices). In each of these cases, the private equilibrium (<InlineMath math="MPC = MPB" />) diverges from the social optimum (<InlineMath math="MSC = MSB" />), resulting in a misallocation of resources and a reduction in total welfare. Understanding why and how this divergence occurs is the analytical core of this chapter.
+          </p>
+        </div>
+
+        {/* Efficiency Conditions */}
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <Card className="glass-card border-primary/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base text-primary">Allocative Efficiency Condition</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="bg-charcoal-deep/50 p-3 rounded-lg text-center mb-2">
+                <BlockMath math="MSB = MSC" />
+              </div>
+              <p className="text-sm text-muted-foreground text-justify leading-relaxed">
+                Resources are optimally allocated when the marginal benefit to society from consuming the last unit equals the marginal cost to society of producing it. At this point, it is impossible to make anyone better off without making someone else worse off (Pareto Optimality).
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="glass-card border-secondary/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base text-secondary">Market Equilibrium Condition</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="bg-charcoal-deep/50 p-3 rounded-lg text-center mb-2">
+                <BlockMath math="MPB = MPC" />
+              </div>
+              <p className="text-sm text-muted-foreground text-justify leading-relaxed">
+                In unregulated markets, self-interested agents trade until their private marginal benefit equals their private marginal cost. This ignores external effects on third parties, causing market equilibrium to diverge from the social optimum.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </motion.section>
+
+      {/* Section 2: Externalities - The Gap Between Private and Social */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="mb-8"
+      >
+        <h2 className="text-2xl font-serif font-bold text-silver-bright mb-4">
+          2. Externalities: The Divergence Between Private and Social Costs/Benefits
+        </h2>
+
+        {/* Core Formulas */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-amber-400 mb-3">The Fundamental Externality Equations</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-charcoal-deep/50 p-4 rounded-lg">
+              <p className="text-sm text-muted-foreground mb-2 text-center">For Costs (Production Externalities):</p>
+              <BlockMath math="MSC = MPC + MEC" />
+              <p className="text-xs text-muted-foreground mt-2 text-center">
+                Marginal Social Cost = Marginal Private Cost + Marginal External Cost
+              </p>
+            </div>
+            <div className="bg-charcoal-deep/50 p-4 rounded-lg">
+              <p className="text-sm text-muted-foreground mb-2 text-center">For Benefits (Consumption Externalities):</p>
+              <BlockMath math="MSB = MPB + MEB" />
+              <p className="text-xs text-muted-foreground mt-2 text-center">
+                Marginal Social Benefit = Marginal Private Benefit + Marginal External Benefit
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Negative Externalities of Production - Dense Analysis */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-destructive mb-3 flex items-center gap-2">
+            <TrendingDown className="w-5 h-5" />
+            Negative Externalities of Production
+          </h3>
+          <p className="text-muted-foreground text-justify leading-relaxed mb-3">
+            A <strong className="text-destructive">Negative Externality of Production</strong> arises when the act of producing a good imposes costs on third parties who are neither the producer nor the consumer in the transaction. The classic example is industrial pollution: a factory manufacturing chemicals may discharge effluent into a river, imposing costs on downstream fishermen, local residents requiring healthcare, and the environment itself. Crucially, these <strong className="text-amber-400">External Costs</strong> are not reflected in the firm's private cost calculations. The profit-maximizing firm, operating rationally, will produce at the output level where its <strong className="text-primary">Marginal Private Cost (MPC)</strong> equals its <strong className="text-secondary">Marginal Private Benefit (MPB)</strong>—which, in a competitive market, is the market price. However, the true <strong className="text-destructive">Marginal Social Cost (MSC)</strong> exceeds MPC by the value of the externality (<InlineMath math="MSC = MPC + MEC" />). The consequence is that the market equilibrium quantity (<InlineMath math="Q_m" />) exceeds the socially optimal quantity (<InlineMath math="Q^*" />), resulting in <strong className="text-amber-400">overproduction</strong>. Furthermore, because the external costs are not borne by the polluter, the market price is <strong className="text-cyan-400">too low</strong>, failing to reflect the true resource cost to society. The area of the triangle between the MSC curve, the demand curve, and the vertical lines at <InlineMath math="Q^*" /> and <InlineMath math="Q_m" /> represents the <strong className="text-destructive">Deadweight Welfare Loss</strong>—the net reduction in total economic surplus attributable to the externality. This welfare loss represents units of production where the social cost of production exceeded the social benefit, yet production occurred anyway due to the firm's myopic focus on private costs.
+          </p>
+        </div>
+
+        {/* Positive Externalities of Consumption - Dense Analysis */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-green-400 mb-3 flex items-center gap-2">
+            <Users className="w-5 h-5" />
+            Positive Externalities of Consumption
+          </h3>
+          <p className="text-muted-foreground text-justify leading-relaxed mb-3">
+            A <strong className="text-green-400">Positive Externality of Consumption</strong> occurs when the consumption of a good generates benefits for third parties who are not directly involved in the transaction. Education and vaccination are paradigmatic examples. When an individual obtains a university degree, they gain private benefits in the form of higher lifetime earnings and personal development (the MPB). However, society as a whole also benefits: a more educated workforce drives innovation, increases productivity, reduces crime rates, and strengthens democratic institutions. These <strong className="text-amber-400">External Benefits</strong> are not captured by the individual's private decision-making calculus. The rational consumer will consume up to the point where their MPB equals the price they pay. However, the true <strong className="text-green-400">Marginal Social Benefit (MSB)</strong> exceeds MPB by the value of the external benefit (<InlineMath math="MSB = MPB + MEB" />). The consequence is that the market equilibrium quantity (<InlineMath math="Q_m" />) falls short of the socially optimal quantity (<InlineMath math="Q^*" />), resulting in <strong className="text-amber-400">under-consumption</strong>. Vaccination provides an even more striking example: when an individual is vaccinated, they not only protect themselves but also contribute to "herd immunity," reducing transmission to vulnerable populations who cannot be vaccinated. Because individuals do not account for this positive spillover, the free market will systematically under-provide vaccination, necessitating government intervention through subsidies or direct provision.
+          </p>
+        </div>
+
+        {/* Interactive Externality Diagram */}
+        <MarketFailureExternalityDiagram />
+
+        {/* Static Externality Diagram with Detailed Labels */}
+        <div className="mt-6">
+          <ExternalitiesDiagram 
+            title="Negative Production Externality: The Welfare Loss Triangle" 
+            type="negative-production"
+          />
+        </div>
+      </motion.section>
+
+      {/* Section 3: Public Goods, Merit Goods, and Demerit Goods */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="mb-8"
+      >
+        <h2 className="text-2xl font-serif font-bold text-silver-bright mb-4">
+          3. Public Goods, Merit Goods, and Information Failure
+        </h2>
+
+        {/* Public Goods - Dense Analysis */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-cyan-400 mb-3 flex items-center gap-2">
+            <ShieldAlert className="w-5 h-5" />
+            Pure Public Goods: Non-Excludability and Non-Rivalry
+          </h3>
+          <p className="text-muted-foreground text-justify leading-relaxed mb-3">
+            <strong className="text-cyan-400">Pure Public Goods</strong> represent a case of complete market failure: the private market will fail to provide these goods entirely, not merely in sub-optimal quantities. Public goods possess two defining characteristics. First, they are <strong className="text-primary">Non-Excludable</strong>: once the good is provided, it is impossible (or prohibitively costly) to prevent anyone from consuming it, regardless of whether they have paid. Second, they are <strong className="text-secondary">Non-Rivalrous</strong>: one person's consumption of the good does not diminish the quantity or quality available to others; the marginal cost of an additional user is zero. National defense is the canonical example: if a country is protected from invasion, all citizens benefit equally, and it is impossible to exclude any individual from this protection, nor does one citizen's consumption of "security" reduce the security available to others. Street lighting, lighthouses, and public fireworks displays exhibit similar properties. The consequence of non-excludability is the <strong className="text-amber-400">Free-Rider Problem</strong>: rational, self-interested individuals will attempt to consume the good without paying, knowing they cannot be excluded. If everyone reasons this way, no one will voluntarily pay, and the private market has no incentive to provide the good—despite the clear social benefit. This represents a fundamental coordination failure that only collective action (typically through government provision funded by taxation) can resolve. It is important to note that many goods described as "public goods" in common parlance are actually <strong className="text-muted-foreground">Quasi-Public Goods</strong> that exhibit one but not both characteristics (e.g., a congested road is non-excludable but rivalrous; a cinema is non-rivalrous but excludable through ticket sales).
+          </p>
+        </div>
+
+        {/* Merit and Demerit Goods - Dense Analysis */}
+        <div className="grid md:grid-cols-2 gap-4 mb-4">
+          <Card className="glass-card border-green-400/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base text-green-400 flex items-center gap-2">
+                <Lightbulb className="w-4 h-4" /> Merit Goods
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground text-justify leading-relaxed">
+                <strong className="text-green-400">Merit goods</strong> are goods that society deems intrinsically desirable and which would be under-consumed if left to free market forces. The under-consumption arises primarily from <strong className="text-amber-400">Information Failure</strong>: consumers underestimate the private benefits of consumption (due to "myopia" or short-termism) or are unaware of the positive externalities generated. Education, healthcare, vaccinations, and museums are typical examples. An 18-year-old may undervalue the future income gains from attending university, leading to under-investment in human capital. The "paternalistic" argument for government intervention holds that the state, possessing superior information about long-term consequences, is justified in encouraging consumption beyond the level individuals would freely choose—through subsidies, direct provision, or even legal compulsion (as with mandatory schooling). The key analytical link is the wedge between <InlineMath math="MPB" /> (which guides private decisions) and the "true" private benefit (which includes long-term effects the consumer fails to perceive).
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="glass-card border-destructive/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base text-destructive flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4" /> Demerit Goods
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground text-justify leading-relaxed">
+                <strong className="text-destructive">Demerit goods</strong> are the converse of merit goods: they are goods that society deems harmful and which would be over-consumed if left to free market forces. The over-consumption stems from consumers underestimating the private costs (particularly long-term health consequences) and ignoring the negative externalities imposed on others. Tobacco, alcohol, and addictive drugs are classic examples. A young person beginning to smoke may fail to appreciate the future costs of addiction, cancer, and reduced life expectancy; they certainly do not account for the costs imposed on passive smokers or the burden on public healthcare systems. Demerit goods thus combine <strong className="text-amber-400">Information Failure</strong> (consumers are not fully informed or are "irrationally" short-sighted) with <strong className="text-cyan-400">Negative Externalities</strong>. The policy response typically involves a combination of indirect taxation (to "internalize" the externality), regulation (such as banning smoking in public places), and information campaigns (such as graphic health warnings on cigarette packets). The challenge for policymakers is balancing the reduction in welfare loss against concerns about individual liberty and the regressive nature of "sin taxes."
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </motion.section>
+
+      {/* Section 4: Government Intervention */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="mb-8"
+      >
+        <h2 className="text-2xl font-serif font-bold text-silver-bright mb-4">
+          4. Government Intervention to Correct Market Failure
+        </h2>
+
+        {/* Indirect Taxes - Long Chain of Analysis */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-amber-400 mb-3">Indirect Taxation: Internalizing the Externality</h3>
+          <p className="text-muted-foreground text-justify leading-relaxed mb-3">
+            The primary purpose of a <strong className="text-amber-400">Pigouvian Tax</strong> (named after economist Arthur Pigou) is to "internalize the externality"—that is, to force the polluter to bear the external costs they impose on society. In diagrammatic terms, imposing a per-unit tax equal to the Marginal External Cost (<InlineMath math="MEC" />) shifts the firm's perceived cost curve upward from <InlineMath math="MPC" /> to <InlineMath math="MPC + Tax = MSC" />. The new market equilibrium will occur at a higher price and lower quantity—precisely the socially optimal outcome where <InlineMath math="MSC = MSB" />. The tax thus achieves allocative efficiency by aligning private incentives with social costs. The revenue generated can, in principle, be used to compensate those harmed by the pollution or to fund environmental remediation. However, several practical challenges limit the effectiveness of Pigouvian taxes. First, accurately quantifying the Marginal External Cost is extremely difficult: how does one place a monetary value on ecosystem damage, aesthetic degradation, or increased mortality risk? Second, if the demerit good has <strong className="text-cyan-400">inelastic demand</strong> (as with addictive substances like tobacco), the tax will raise revenue but have a limited effect on reducing consumption—the behavioral response is muted. Third, indirect taxes are often <strong className="text-destructive">regressive</strong>, imposing a proportionately higher burden on low-income households who spend a larger share of their income on taxed goods. Fourth, firms may relocate production to jurisdictions with lower environmental standards ("pollution havens"), resulting in no net reduction in global emissions. These limitations must be weighed against the theoretical elegance of the Pigouvian approach.
+          </p>
+        </div>
+
+        {/* Interactive Tax Diagram */}
+        <div className="mb-6">
+          <SurplusWithTaxDiagram />
+        </div>
+
+        {/* Tax Incidence - High-Density Analysis */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-primary mb-3">The Incidence of Taxation: Who Bears the Burden?</h3>
+          <p className="text-muted-foreground text-justify leading-relaxed mb-3">
+            The <strong className="text-primary">economic incidence</strong> of a tax—that is, who ultimately bears the burden in terms of reduced welfare—does not depend on who legally pays the tax; it depends on the relative <strong className="text-cyan-400">elasticities of demand and supply</strong>. This is a critical distinction often missed in policy debates. When an indirect tax is imposed, the market price rises, but typically by less than the full amount of the tax. The difference represents the portion of the tax absorbed by producers through reduced producer surplus. The formal result is as follows: the share of the tax burden falling on consumers is proportional to the ratio of the elasticity of supply to the sum of the elasticities:
+          </p>
+          <div className="bg-charcoal-deep/50 p-4 rounded-lg my-3">
+            <BlockMath math="\text{Consumer Share} = \frac{PES}{PES + |PED|}" />
+            <BlockMath math="\text{Producer Share} = \frac{|PED|}{PES + |PED|}" />
+          </div>
+          <p className="text-muted-foreground text-justify leading-relaxed">
+            If demand is relatively <strong className="text-destructive">inelastic</strong> compared to supply (as with addictive goods or necessities), consumers will bear the majority of the tax burden because they cannot easily reduce their consumption in response to price increases. Conversely, if supply is relatively inelastic (as with goods requiring specialized factors of production that cannot be easily redeployed), producers will absorb more of the tax. This analysis has profound implications for policy: a tax intended to correct a negative externality (such as a carbon tax) may fail to significantly reduce consumption if demand is inelastic, while simultaneously imposing a heavy burden on low-income consumers. Similarly, a tax on landlords (such as a property tax) may ultimately be borne by tenants if the supply of housing is inelastic.
+          </p>
+        </div>
+
+        {/* Subsidies and Regulation */}
+        <div className="grid md:grid-cols-2 gap-4 mb-4">
+          <Card className="glass-card border-green-400/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base text-green-400">Subsidies for Positive Externalities</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground text-justify leading-relaxed">
+                <strong className="text-green-400">Subsidies</strong> can correct under-consumption of goods with positive externalities by reducing the price paid by consumers, shifting the demand curve rightward toward the socially optimal quantity. Alternatively, a production subsidy shifts the supply curve downward. The optimal subsidy equals the Marginal External Benefit (<InlineMath math="MEB" />). However, subsidies carry an <strong className="text-amber-400">opportunity cost</strong>: government funds devoted to subsidies cannot be used for other purposes. There is also a risk of <strong className="text-destructive">government failure</strong> if the subsidy is set incorrectly (due to imperfect information about the true MEB) or if it creates perverse incentives (such as over-production of subsidized crops leading to environmental damage).
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="glass-card border-destructive/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base text-destructive">Regulation and Direct Controls</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground text-justify leading-relaxed">
+                <strong className="text-destructive">Direct regulation</strong>—such as emission standards, bans on harmful substances, or mandatory safety requirements—offers a more certain outcome than market-based instruments. If the government bans CFC gases, emissions fall to zero, regardless of demand elasticity. However, regulation lacks the flexibility of taxation: a uniform emission standard ignores the fact that abatement costs differ across firms. Some firms could reduce pollution cheaply, while others face prohibitive costs. A tax or tradeable permit system, by contrast, allows emission reductions to occur where they are cheapest, achieving the same environmental outcome at lower total cost. Regulation also carries significant <strong className="text-amber-400">administrative costs</strong> and may be subject to <strong className="text-cyan-400">regulatory capture</strong>, where the regulated industry influences the rules in its favor.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Tradeable Permits */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-cyan-400 mb-3">Tradeable Pollution Permits: Market-Based Efficiency</h3>
+          <p className="text-muted-foreground text-justify leading-relaxed">
+            <strong className="text-cyan-400">Tradeable pollution permits</strong> (also known as "cap-and-trade" systems) combine the certainty of quantity-based regulation with the efficiency of market mechanisms. The government sets a total "cap" on permissible emissions and issues permits up to this limit. Firms must hold permits equal to their emissions; those who reduce emissions below their permit allocation can sell surplus permits to firms for whom abatement is more costly. The result is that emission reductions occur where they are cheapest, minimizing the total cost of achieving the environmental target. The permit price that emerges from trading reflects the marginal abatement cost across the economy. This system has been applied successfully to sulfur dioxide emissions in the United States and to carbon dioxide under the EU Emissions Trading System. Critics argue that initial permit allocation can create windfall profits for polluters (if permits are given free), that price volatility creates uncertainty for business planning, and that monitoring and enforcement are administratively complex.
+          </p>
+        </div>
+      </motion.section>
+
+      {/* Section 5: Senior Examiner's Evaluation */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="mb-8"
+      >
+        <h2 className="text-2xl font-serif font-bold text-silver-bright mb-4">
+          5. Evaluation: Limitations and Government Failure (AO4)
+        </h2>
+
+        {/* Balanced Evaluation Block */}
+        <Card className="glass-card border-amber-500/40 mb-4">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg text-amber-400 flex items-center gap-2">
+              <BookOpen className="w-5 h-5" />
+              Senior Examiner's Conclusion: The Risk of Government Failure
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground text-justify leading-relaxed mb-3">
+              While the theoretical case for government intervention to correct market failure is compelling, it is essential to recognize that intervention is not costless and may itself lead to <strong className="text-destructive">Government Failure</strong>—a situation where the costs of intervention exceed the welfare losses from the original market failure. Government failure may arise from several sources. First, <strong className="text-cyan-400">Imperfect Information</strong>: governments rarely possess accurate data on the magnitude of external costs or benefits, leading to taxes or subsidies set at the "wrong" level—either failing to correct the distortion or overcorrecting and creating a new misallocation. Second, <strong className="text-amber-400">Administrative and Compliance Costs</strong>: implementing, monitoring, and enforcing regulations consumes real resources that could be used productively elsewhere. Third, <strong className="text-destructive">Unintended Consequences</strong>: policies designed to correct one market failure may create new distortions; a minimum alcohol price may reduce consumption among heavy drinkers but also harm moderate consumers and create incentives for black markets. Fourth, <strong className="text-primary">Regulatory Capture and Rent-Seeking</strong>: powerful interest groups may influence policy to serve their own ends rather than the public interest, leading to regulations that protect incumbent firms from competition rather than maximizing social welfare. Fifth, <strong className="text-muted-foreground">Time Lags</strong>: the legislative process is slow, and by the time a policy is implemented, the underlying problem may have changed or resolved itself.
+            </p>
+            <p className="text-muted-foreground text-justify leading-relaxed">
+              Ultimately, the decision to intervene must weigh the magnitude of the market failure against the probability and severity of government failure. A pragmatic approach recognizes that neither pure laissez-faire nor comprehensive central planning is optimal; the appropriate level of intervention depends on the specific characteristics of the market, the nature of the failure, and the institutional capacity of the government to implement and enforce policy effectively. Examiners will reward candidates who demonstrate this balanced, nuanced understanding rather than advocating dogmatically for either market solutions or state intervention.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Final Weighing */}
+        <div className="glass-card p-5 rounded-xl border-l-4 border-l-primary">
+          <h3 className="text-lg font-semibold text-silver-bright mb-3">Final Analytical Weighing</h3>
+          <p className="text-muted-foreground text-justify leading-relaxed">
+            The concept of market failure provides a powerful analytical framework for understanding why unfettered markets may fail to maximize social welfare. However, its policy implications must be treated with caution. The existence of an externality is a <strong className="text-cyan-400">necessary but not sufficient</strong> condition for intervention: intervention is only justified if the expected benefits (in terms of reduced deadweight loss) exceed the expected costs (including the risk of government failure). In practice, this calculation is fraught with uncertainty. The most effective approach often combines multiple instruments—taxes, subsidies, regulation, and information provision—tailored to the specific characteristics of each market failure. Furthermore, international coordination is increasingly necessary for externalities that cross national borders, such as climate change and pandemic disease. The analytical toolkit developed in this chapter equips students to evaluate both market outcomes and policy proposals with rigor and nuance—essential skills for achieving the highest marks in AS Level Economics.
+          </p>
+        </div>
+      </motion.section>
+    </ChapterLayout>
+  );
+};
+
+export default MarketFailure;
