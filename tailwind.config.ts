@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ["Cinzel", "serif"],
+        serif: ["Playfair Display", "serif"],
         sans: ["Inter", "sans-serif"],
       },
       colors: {
@@ -61,6 +61,21 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Charcoal Universe Theme Colors
+        charcoal: {
+          base: "hsl(var(--charcoal-base))",
+          deep: "hsl(var(--charcoal-deep))",
+          light: "hsl(var(--charcoal-light))",
+          elevated: "hsl(var(--charcoal-elevated))",
+          cyan: "hsl(var(--charcoal-cyan))",
+          "cyan-glow": "hsl(var(--charcoal-cyan-glow))",
+          gold: "hsl(var(--charcoal-gold))",
+          "gold-muted": "hsl(var(--charcoal-gold-muted))",
+          foreground: "hsl(var(--charcoal-foreground))",
+          silver: "hsl(var(--charcoal-silver))",
+          muted: "hsl(var(--charcoal-muted))",
+        },
+        // Legacy support
         navy: {
           deep: "hsl(var(--navy-deep))",
           base: "hsl(var(--navy-base))",
@@ -104,6 +119,14 @@ export default {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        orbit: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--charcoal-cyan) / 0.2)" },
+          "50%": { boxShadow: "0 0 40px hsl(var(--charcoal-cyan) / 0.4)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -112,6 +135,11 @@ export default {
         "draw-line": "draw-line 2s ease-out forwards",
         "scale-in": "scale-in 0.5s ease-out forwards",
         shimmer: "shimmer 2s linear infinite",
+        orbit: "orbit 20s linear infinite",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+      },
+      spacing: {
+        'compact': '0.25rem',
       },
     },
   },
