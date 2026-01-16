@@ -95,71 +95,64 @@ const Elasticities = () => {
           <AllElasticityDiagrams />
         </div>
 
-        <NoteCard title="Determinants of Price Elasticity of Demand" type="concept" delay={200}>
-          <p className="mb-4">
-            Several key factors determine whether the demand for a particular good or service will be elastic or inelastic. Understanding these determinants helps predict consumer behavior and informs business pricing strategies.
-          </p>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-cyan-400 font-semibold">Availability of Substitutes</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                The more substitutes available, the more elastic demand. Consumers can easily switch to alternatives when prices rise. Brand-specific products typically have more elastic demand than product categories.
+
+        {/* High-Density PED Determinants Block */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-cyan-500 pl-6">
+            <h3 className="font-serif text-2xl text-silver-bright mb-4">The Determinants of Price Elasticity: An Integrated Analysis</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The <strong className="text-cyan-400">price elasticity of demand</strong> for any good is not fixed but varies according to several interrelated determinants that collectively shape consumer responsiveness to price changes. The <strong className="text-cyan-400">availability and closeness of substitutes</strong> constitutes the single most important determinant: goods with numerous close substitutes exhibit highly elastic demand because consumers can readily switch to alternatives when prices rise, whereas goods with few or no substitutes (such as patented pharmaceuticals or addictive substances) demonstrate inelastic demand since consumers have limited options for substitution. This substitutability operates on multiple levels—brand-level elasticity exceeds product-category elasticity, which in turn exceeds industry-level elasticity—explaining why demand for "Coca-Cola" is more elastic than demand for "soft drinks" which is more elastic than demand for "beverages" as a category.
               </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-cyan-400 font-semibold">Necessity vs. Luxury</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Necessities tend to have inelastic demand (consumers must buy them regardless of price), while luxuries have elastic demand (easily postponed or foregone when prices rise).
+              <p>
+                The <strong className="text-cyan-400">proportion of income</strong> devoted to the good significantly influences elasticity through the intensity of the budget constraint's bite. Expensive purchases command greater consumer deliberation: a 10% price increase on an automobile or residential property induces intensive search for alternatives and careful reconsideration of the purchase decision, whereas the same percentage increase on salt or matches passes largely unnoticed. This proportion-of-income effect explains why demand for housing, vehicles, and consumer electronics tends to be elastic, while demand for everyday consumables exhibits inelasticity. The <strong className="text-cyan-400">necessity-luxury distinction</strong> operates through a similar mechanism: necessities—goods required for basic functioning such as staple foods, utilities, and essential medicines—demonstrate inelastic demand because consumption cannot be significantly reduced regardless of price; luxuries—discretionary purchases that can be postponed or foregone—exhibit elastic demand because price increases prompt deferral or cancellation.
               </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-cyan-400 font-semibold">Proportion of Income</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Goods that consume a larger share of consumer income tend to have more elastic demand. A 10% price increase on a car matters more than a 10% increase on salt.
-              </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-cyan-400 font-semibold">Time Horizon</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Demand tends to be more elastic in the long run as consumers have more time to find substitutes, change habits, or adjust consumption patterns.
-              </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-cyan-400 font-semibold">Habit-Forming Goods</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Addictive or habit-forming goods (tobacco, caffeine) have inelastic demand as consumers find it difficult to reduce consumption even when prices increase.
-              </p>
-            </div>
-            <div className="p-3 rounded-lg bg-muted/50">
-              <span className="text-cyan-400 font-semibold">Definition of the Market</span>
-              <p className="text-xs text-muted-foreground mt-1">
-                Narrowly defined markets have more elastic demand. Demand for "Coca-Cola" is more elastic than demand for "soft drinks" which is more elastic than demand for "beverages."
+              <p>
+                The <strong className="text-cyan-400">time horizon</strong> over which elasticity is measured profoundly affects observed responsiveness. In the immediate aftermath of a price change, consumers may be locked into established consumption patterns by contracts, habits, or incomplete information about alternatives; over longer periods, consumers discover substitutes, adjust lifestyles, change suppliers, and modify consumption habits, rendering demand increasingly elastic. Demand for petrol illustrates this temporal dimension: in the short run, commuters must fuel their vehicles regardless of price (inelastic); over years, consumers purchase fuel-efficient vehicles, relocate closer to work, or switch to public transport (elastic). <strong className="text-cyan-400">Habit formation and addiction</strong> create psychological switching costs that reduce elasticity: tobacco, alcohol, caffeine, and other habit-forming substances demonstrate persistently inelastic demand because the psychological cost of reducing consumption exceeds the financial cost of price increases.
               </p>
             </div>
           </div>
-        </NoteCard>
+        </div>
       </ContentSection>
 
       {/* Section 2: PED and Total Revenue */}
       <ContentSection 
         title="PED and Total Revenue" 
-        subtitle="The Critical Relationship Between Elasticity and Revenue"
+        subtitle="The Critical Relationship Between Elasticity and Revenue Optimization"
       >
         <NoteCard title="Understanding Total Revenue" type="definition">
           <p>
             <GlossaryTooltip term="Total Revenue" definition="The total amount of money received by a firm from the sale of goods or services, calculated as Price × Quantity sold.">Total Revenue (TR)</GlossaryTooltip> represents the total income a firm receives from selling its output. It is calculated simply as <strong>Price × Quantity (TR = P × Q)</strong>. The relationship between price changes and total revenue depends critically on the price elasticity of demand, making this one of the most practically important applications of elasticity analysis.
           </p>
-          <div className="bg-navy-deep/50 p-4 rounded-lg mt-4 border border-silver/20">
+          <div className="bg-graphite-deep/50 p-4 rounded-lg mt-4 border border-silver/20">
             <p className="text-center text-lg font-mono text-cyan-400">
               Total Revenue = Price × Quantity Sold
             </p>
           </div>
         </NoteCard>
 
-        <NoteCard title="The PED-Revenue Relationship" type="theory" delay={100}>
-          <p className="mb-4">
-            The relationship between price elasticity of demand and total revenue is fundamental to business pricing strategy and revenue optimization. When a firm changes its price, two opposing forces affect revenue: the price effect and the quantity effect.
-          </p>
+        {/* High-Density PED-Revenue Analysis Block */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-2xl text-amber-400 mb-4">The Price Effect versus the Quantity Effect: A Technical Synthesis</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The relationship between <strong className="text-amber-400">price elasticity of demand and total revenue</strong> represents one of the most consequential applications of elasticity analysis for business decision-making and fiscal policy design. When a firm contemplates a price change, two opposing forces simultaneously affect total revenue: the <strong className="text-cyan-400">price effect</strong> (the direct impact of charging a different price per unit) and the <strong className="text-cyan-400">quantity effect</strong> (the indirect impact through changed volume of sales). The net effect on total revenue depends entirely upon which force dominates, which in turn is determined by the price elasticity of demand. This relationship can be expressed algebraically: since <span className="font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">TR = P × Q</span>, a small percentage change in price (ΔP/P) combined with the resulting percentage change in quantity (ΔQ/Q) yields: <span className="font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">ΔTR ≈ Q × ΔP + P × ΔQ</span>.
+              </p>
+              <p>
+                For goods with <strong className="text-cyan-400">elastic demand (PED &gt; 1)</strong>, the quantity effect dominates the price effect. When price falls, the proportionate increase in quantity demanded exceeds the proportionate decrease in price, generating a net increase in total revenue. Conversely, when price rises, the proportionate decrease in quantity demanded exceeds the proportionate increase in price, causing total revenue to fall. The business implication is unambiguous: firms facing elastic demand should reduce prices to increase revenue. This explains the prevalence of discount strategies, promotional pricing, and sales events in markets characterized by numerous substitutes—retailers of branded consumer electronics, fashion apparel, and non-essential services routinely deploy price reductions to stimulate demand and capture market share, confident that the volume gains will outweigh the per-unit revenue sacrifice.
+              </p>
+              <p>
+                For goods with <strong className="text-amber-400">inelastic demand (PED &lt; 1)</strong>, the price effect dominates the quantity effect. When price rises, the proportionate decrease in quantity demanded is smaller than the proportionate increase in price, generating a net increase in total revenue. Conversely, when price falls, the proportionate increase in quantity demanded is insufficient to compensate for the lower price per unit, causing total revenue to decline. The business implication is equally clear: firms facing inelastic demand should raise prices to maximize revenue. This logic underpins the pricing power enjoyed by pharmaceutical companies with patented drugs, utilities operating as natural monopolies, and producers of essential commodities with few substitutes. The same reasoning explains why governments tax goods with inelastic demand (tobacco, alcohol, petrol): the behavioral distortion is minimized while tax revenue is maximized because consumption changes little despite the price increase.
+              </p>
+              <p>
+                For goods with <strong className="text-silver-bright">unit elastic demand (PED = 1)</strong>, the price and quantity effects exactly offset: any price change leaves total revenue unchanged. This represents the revenue-maximizing point on the demand curve—the price at which the firm extracts maximum possible revenue from the market. Graphically, unit elasticity corresponds to the midpoint of a linear demand curve, and total revenue reaches its maximum at this point. The <span className="font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">Total Revenue Test</span> provides a practical diagnostic: if a price increase raises total revenue, demand is inelastic; if it reduces total revenue, demand is elastic; if revenue is unchanged, demand is unit elastic.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <NoteCard title="The PED-Revenue Relationship: Summary Table" type="theory">
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
@@ -167,6 +160,7 @@ const Elasticities = () => {
                   <th className="text-left py-3 px-4 text-silver-bright">Elasticity</th>
                   <th className="text-left py-3 px-4 text-silver-bright">Price Increase →</th>
                   <th className="text-left py-3 px-4 text-silver-bright">Price Decrease →</th>
+                  <th className="text-left py-3 px-4 text-silver-bright">Dominant Effect</th>
                 </tr>
               </thead>
               <tbody className="text-muted-foreground">
@@ -174,52 +168,44 @@ const Elasticities = () => {
                   <td className="py-3 px-4 font-medium text-cyan-400">Elastic (PED &gt; 1)</td>
                   <td className="py-3 px-4 text-red-400">TR Falls ↓</td>
                   <td className="py-3 px-4 text-emerald-400">TR Rises ↑</td>
+                  <td className="py-3 px-4">Quantity Effect</td>
                 </tr>
                 <tr className="border-b border-silver/10">
                   <td className="py-3 px-4 font-medium text-amber-400">Unit Elastic (PED = 1)</td>
                   <td className="py-3 px-4 text-silver-bright">TR Unchanged</td>
                   <td className="py-3 px-4 text-silver-bright">TR Unchanged</td>
+                  <td className="py-3 px-4">Effects Balance</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4 font-medium text-orange-400">Inelastic (PED &lt; 1)</td>
                   <td className="py-3 px-4 text-emerald-400">TR Rises ↑</td>
                   <td className="py-3 px-4 text-red-400">TR Falls ↓</td>
+                  <td className="py-3 px-4">Price Effect</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </NoteCard>
 
-        <AnalysisBlock title="AO3 Analysis: Revenue Implications" type="analysis">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h5 className="font-semibold text-emerald-400 mb-2">Elastic Demand (PED &gt; 1):</h5>
-              <p className="text-sm text-muted-foreground mb-2">
-                When demand is elastic, the quantity effect dominates the price effect. A price reduction leads to a proportionally larger increase in quantity demanded, resulting in higher total revenue.
-              </p>
-              <p className="text-sm text-cyan-400">
-                <strong>Strategy:</strong> Firms should lower prices to increase revenue. Discount strategies and sales promotions are effective.
-              </p>
-            </div>
-            <div>
-              <h5 className="font-semibold text-orange-400 mb-2">Inelastic Demand (PED &lt; 1):</h5>
-              <p className="text-sm text-muted-foreground mb-2">
-                When demand is inelastic, the price effect dominates the quantity effect. A price increase leads to a proportionally smaller decrease in quantity demanded, resulting in higher total revenue.
-              </p>
-              <p className="text-sm text-cyan-400">
-                <strong>Strategy:</strong> Firms should raise prices to increase revenue. Premium pricing strategies are effective.
+        {/* Senior Examiner's Conclusion for PED */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-xl text-amber-400 mb-4">Senior Examiner's Conclusion: The Limitations of PED Analysis</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                Ultimately, the usefulness of PED to a firm depends on the <strong className="text-amber-400">accuracy of the elasticity estimate</strong> and the <strong className="text-amber-400">validity of the ceteris paribus assumption</strong>. Elasticity coefficients are typically estimated from historical data or market research, both of which are subject to measurement error, sampling bias, and specification issues. More fundamentally, the ceteris paribus assumption rarely holds in dynamic competitive markets: when a firm reduces its price, competitors may respond with matching price cuts, negating the anticipated quantity gains; conversely, a price increase may trigger competitor entry or aggressive discounting, amplifying customer defection beyond the elasticity-predicted response. Furthermore, elasticity varies along the demand curve—a firm may find demand elastic at current prices but inelastic at lower prices—invalidating the assumption of constant elasticity implicit in many business applications. The sophisticated analyst recognizes that PED provides a useful first approximation, but must be supplemented with game-theoretic analysis of competitive dynamics, consideration of supply-side constraints, and sensitivity analysis across a range of elasticity estimates.
               </p>
             </div>
           </div>
-        </AnalysisBlock>
+        </div>
 
-        <ExamTipBox title="The Total Revenue Test" variant="gold" className="mt-6">
-          <p className="mb-2"><strong>Cambridge 9708 frequently tests:</strong></p>
+        <ExamTipBox title="The Total Revenue Test: Examination Application" variant="gold" className="mt-6">
+          <p className="mb-2 text-justify"><strong>Cambridge 9708 frequently tests this relationship:</strong></p>
           <ul className="space-y-1 text-sm">
-            <li>• If a price rise causes TR to rise → Demand is <strong>inelastic</strong></li>
-            <li>• If a price rise causes TR to fall → Demand is <strong>elastic</strong></li>
-            <li>• If TR remains constant → Demand is <strong>unit elastic</strong></li>
-            <li>✓ This "Total Revenue Test" is a quick way to determine elasticity from revenue data</li>
+            <li>• If a price rise causes TR to rise → Demand is <strong>inelastic</strong> (Price Effect &gt; Quantity Effect)</li>
+            <li>• If a price rise causes TR to fall → Demand is <strong>elastic</strong> (Quantity Effect &gt; Price Effect)</li>
+            <li>• If TR remains constant → Demand is <strong>unit elastic</strong> (Effects Balance)</li>
+            <li>✓ This "Total Revenue Test" provides a quick diagnostic for determining elasticity from revenue data without calculating percentage changes</li>
           </ul>
         </ExamTipBox>
       </ContentSection>
@@ -289,6 +275,24 @@ const Elasticities = () => {
           </div>
         </NoteCard>
 
+        {/* High-Density YED Business Application Block */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-emerald-500 pl-6">
+            <h3 className="font-serif text-2xl text-emerald-400 mb-4">Strategic Application: YED and Business Cycle Forecasting</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The <strong className="text-emerald-400">income elasticity of demand</strong> provides firms with a powerful analytical tool for anticipating how macroeconomic fluctuations will affect product-specific demand. During periods of <strong className="text-emerald-400">economic expansion</strong>—characterized by rising GDP, falling unemployment, and increasing consumer confidence—demand for goods with high positive YED (luxury goods where YED &gt; 1) will grow proportionately faster than aggregate income growth. Producers of premium automobiles, designer apparel, international travel services, and fine dining experiences can anticipate demand growth that exceeds GDP growth rates, justifying capacity expansion and aggressive marketing investment. Conversely, producers of necessities (0 &lt; YED &lt; 1) such as basic foodstuffs, utilities, and healthcare services will experience more modest demand growth, reflecting the reality that consumers have already satisfied baseline requirements for these goods and allocate marginal income primarily to discretionary purchases.
+              </p>
+              <p>
+                During <strong className="text-red-400">economic recessions</strong>—periods of declining real income, rising unemployment, and deteriorating consumer sentiment—the YED coefficient determines corporate fortunes. Luxury goods producers (YED &gt; 1) suffer disproportionately as consumers defer discretionary purchases, with demand contracting faster than aggregate income decline. The 2008-2009 financial crisis illustrated this dynamic: luxury retailers, premium hospitality providers, and high-end automotive manufacturers experienced sales declines far exceeding the 2-3% GDP contraction, with some segments contracting 30-40% as affluent consumers retrenched. Simultaneously, <strong className="text-red-400">inferior goods producers</strong> (YED &lt; 0) experience counter-cyclical demand expansion: as incomes fall, consumers substitute towards budget alternatives—discount retailers, public transportation, second-hand goods, and store-brand products all witness demand growth during recessions. This counter-cyclical property makes inferior goods businesses attractive for portfolio diversification and recession-hedging strategies.
+              </p>
+              <p>
+                The <strong className="text-amber-400">sign of YED</strong> carries critical information that PED lacks: a positive YED classifies the good as normal (demand moves with income), while a negative YED classifies it as inferior (demand moves against income). This distinction has profound implications for long-term strategic planning: as economies develop and per capita incomes rise secularly, normal goods experience trend demand growth while inferior goods face trend decline. Firms producing inferior goods must either innovate to reposition products as normal goods, diversify into normal goods categories, or accept structural demand decline as their strategic context.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="glass-card p-8 my-6">
           <h4 className="font-serif text-lg text-silver-bright mb-6 text-center">Figure 3.2: Income Elasticity of Demand</h4>
           <div className="grid md:grid-cols-2 gap-6">
@@ -297,33 +301,23 @@ const Elasticities = () => {
           </div>
         </div>
 
-        <AnalysisBlock title="AO3 Analysis: Business Implications of YED" type="analysis">
-          <p className="mb-3">Understanding YED helps businesses plan for economic cycles:</p>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <h5 className="font-semibold text-emerald-400 mb-2">During Economic Growth:</h5>
-              <ul className="space-y-1 text-sm">
-                <li>• Luxury goods producers benefit most (YED &gt; 1)</li>
-                <li>• Necessity producers see modest growth</li>
-                <li>• Inferior goods producers may see declining demand</li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-semibold text-red-400 mb-2">During Recession:</h5>
-              <ul className="space-y-1 text-sm">
-                <li>• Luxury goods demand falls sharply</li>
-                <li>• Necessity demand remains stable</li>
-                <li>• Inferior goods demand may increase</li>
-              </ul>
+        {/* Senior Examiner's Conclusion for YED */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-xl text-amber-400 mb-4">Senior Examiner's Conclusion: The Practical Limitations of YED</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The usefulness of YED for business forecasting depends critically on the <strong className="text-amber-400">stability of the elasticity coefficient</strong> across income levels and time periods. Empirical research reveals that YED is not constant: goods classified as luxuries in developing economies often become necessities as incomes rise (television sets, refrigerators, mobile phones have all transitioned from luxury to necessity status over decades). Furthermore, YED varies across income segments—a good may be a luxury for low-income consumers but a necessity for high-income consumers—complicating market-wide elasticity estimates. The sophisticated analyst recognizes that YED provides directional guidance for cyclical planning but should be supplemented with segmented analysis and scenario planning across a range of macroeconomic outcomes.
+              </p>
             </div>
           </div>
-        </AnalysisBlock>
+        </div>
 
         <ExamTipBox title="Special Cases: Giffen & Veblen Goods" variant="silver" className="mt-6">
-          <p className="mb-2"><strong>Cambridge may test these exceptional cases:</strong></p>
+          <p className="mb-2 text-justify"><strong>Cambridge may test these exceptional cases:</strong></p>
           <ul className="space-y-2 text-sm">
-            <li><strong>Giffen Goods:</strong> Extremely inferior goods where the income effect dominates the substitution effect, causing demand to <em>increase</em> when price rises (violating the Law of Demand). Theoretical case: staple foods in extreme poverty.</li>
-            <li><strong>Veblen Goods:</strong> Conspicuous consumption goods where higher prices increase demand due to status signaling. Examples: luxury watches, designer fashion, fine art.</li>
+            <li><strong>Giffen Goods:</strong> Extremely inferior goods where the income effect dominates the substitution effect, causing demand to <em>increase</em> when price rises (violating the Law of Demand). Theoretical case: staple foods in extreme poverty where price increases reduce real income so severely that consumers cannot afford superior alternatives.</li>
+            <li><strong>Veblen Goods:</strong> Conspicuous consumption goods where higher prices increase demand due to status signaling. The high price itself becomes a desirable attribute, demonstrating wealth to observers. Examples: luxury watches, designer fashion, fine art, exclusive club memberships.</li>
           </ul>
         </ExamTipBox>
       </ContentSection>
@@ -381,26 +375,35 @@ const Elasticities = () => {
           </div>
         </div>
 
-        <AnalysisBlock title="AO3 Analysis: Strategic Applications of XED" type="analysis">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <h5 className="font-semibold text-silver-bright mb-2">Competition Analysis:</h5>
-              <ul className="space-y-1 text-sm">
-                <li>• High positive XED = close competitors</li>
-                <li>• Firms monitor substitute prices carefully</li>
-                <li>• Market definition in antitrust cases uses XED</li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-semibold text-silver-bright mb-2">Pricing Strategy:</h5>
-              <ul className="space-y-1 text-sm">
-                <li>• Loss-leader pricing on complements (cheap printers, expensive ink)</li>
-                <li>• Bundle pricing for strong complements</li>
-                <li>• Predatory pricing to eliminate close substitutes</li>
-              </ul>
+        {/* High-Density XED Strategic Application Block */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-cyan-500 pl-6">
+            <h3 className="font-serif text-2xl text-cyan-400 mb-4">Strategic Application: XED in Competitive Analysis and Pricing Strategy</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The <strong className="text-cyan-400">cross elasticity of demand</strong> serves as a quantitative measure of market structure, enabling rigorous definition of market boundaries for competitive analysis, antitrust enforcement, and strategic planning. Competition authorities routinely employ XED to define relevant markets: products with high positive XED values constitute close substitutes and therefore belong to the same market for regulatory purposes. The U.S. Federal Trade Commission and European Commission both utilize XED-based analysis in merger reviews—if a proposed merger would combine firms producing goods with high positive XED, the combined entity may possess market power warranting regulatory intervention. Conversely, products with low or zero XED belong to separate markets, and their combination raises fewer competitive concerns.
+              </p>
+              <p>
+                For <strong className="text-cyan-400">substitute goods</strong> (XED &gt; 0), firms face the strategic imperative of competitive monitoring and responsive pricing. When a competitor reduces its price, the positive cross-elasticity ensures that demand will flow away from the firm's product towards the now-cheaper substitute. The magnitude of the XED coefficient determines the urgency of competitive response: high XED values (close substitutes) mandate immediate price matching or differentiation strategies, while low XED values (distant substitutes) afford greater pricing flexibility. Airlines, telecommunications providers, and retailers operating in highly competitive markets with high XED between rival offerings must maintain sophisticated competitive intelligence systems to detect and respond to rival price movements. The "Cross-Effect" creates strategic interdependence—each firm's pricing decision affects rivals' demand, generating the game-theoretic dynamics characteristic of oligopolistic competition.
+              </p>
+              <p>
+                For <strong className="text-red-400">complementary goods</strong> (XED &lt; 0), firms can exploit the demand interdependence through <strong>bundle pricing</strong> and <strong>loss-leader strategies</strong>. The canonical example is the "razor-and-blades" model: sell the razor (primary good) at low margin or even a loss, knowing that the negative XED ensures customers will subsequently purchase high-margin blades (complement). Printer manufacturers, video game console producers, and mobile phone carriers all deploy variants of this strategy—subsidizing the primary device to capture the complementary consumables, services, or applications revenue stream. The strength of the complementary relationship (magnitude of negative XED) determines the viability of this strategy: strong complements (highly negative XED) support aggressive primary good discounting; weak complements (mildly negative XED) require more balanced pricing across the product bundle.
+              </p>
             </div>
           </div>
-        </AnalysisBlock>
+        </div>
+
+        {/* Senior Examiner's Conclusion for XED */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-xl text-amber-400 mb-4">Senior Examiner's Conclusion: The Asymmetry of Cross-Effects</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                Students frequently assume symmetry in cross-elasticities—that if Good A and Good B are substitutes, the XED of A with respect to B equals the XED of B with respect to A. This assumption is typically <strong className="text-amber-400">incorrect</strong>. The cross-elasticity relationship is asymmetric when goods differ in market size, brand strength, or consumer loyalty. A price increase for Coca-Cola may shift substantial demand to Pepsi (high XED of Pepsi with respect to Coca-Cola), but a price increase for a small regional cola brand may shift minimal demand to Coca-Cola (low XED of Coca-Cola with respect to the regional brand). The sophisticated analyst recognizes this asymmetry and calculates directional XED values appropriate to the strategic question at hand.
+              </p>
+            </div>
+          </div>
+        </div>
       </ContentSection>
 
       {/* Section 5: Price Elasticity of Supply (PES) */}
@@ -537,27 +540,27 @@ const Elasticities = () => {
           </ul>
         </ExamTipBox>
 
-        <AnalysisBlock title="AO4 Evaluation: Elasticity and Government Policy" type="evaluation">
-          <p className="mb-3">Elasticities inform the effectiveness of various government interventions:</p>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <h5 className="font-semibold text-silver-bright mb-2">Indirect Taxes:</h5>
-              <ul className="space-y-1 text-sm">
-                <li>• Tax on inelastic goods → less distortion, more revenue</li>
-                <li>• Tax incidence depends on relative elasticities</li>
-                <li>• Demerit good taxes work best on inelastic goods</li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-semibold text-silver-bright mb-2">Subsidies:</h5>
-              <ul className="space-y-1 text-sm">
-                <li>• Subsidies on elastic goods → larger quantity increase</li>
-                <li>• Producer vs consumer benefit depends on elasticities</li>
-                <li>• Merit good subsidies most effective when elastic</li>
-              </ul>
+        {/* High-Density Tax Incidence Evaluation Block */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-xl text-amber-400 mb-4">Senior Examiner's Conclusion: Tax Incidence and Relative Elasticities</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The <strong className="text-amber-400">economic incidence of taxation</strong> depends critically upon relative elasticities. The party with the <strong className="text-amber-400">more inelastic curve bears the greater tax burden</strong>, regardless of legal incidence. Formally: <span className="font-mono text-amber-400 bg-amber-500/10 px-2 py-1 rounded">Consumer Share = PES / (PES + |PED|)</span>. This explains why governments tax goods with inelastic demand (tobacco, alcohol, petrol): consumers bear most of the burden and consumption changes little, maximizing revenue while minimizing distortion. The sophisticated analyst recognizes that elasticity estimates are subject to uncertainty and should incorporate sensitivity analysis in policy evaluation.
+              </p>
             </div>
           </div>
-        </AnalysisBlock>
+        </div>
+
+        <ExamTipBox title="AO3/AO4 Essay Structure for Elasticity (20/20 Template)" variant="gold" className="mt-6">
+          <p className="mb-2 text-justify"><strong>For 25-mark essays on elasticity:</strong></p>
+          <ul className="space-y-1 text-sm">
+            <li><strong>Introduction (AO1):</strong> Define elasticity precisely with formula</li>
+            <li><strong>Para 1-2 (AO2/AO3):</strong> Analyze applications with diagrams (PED-Revenue, Tax Incidence)</li>
+            <li><strong>Para 3-4 (AO4):</strong> <span className="text-amber-400">Evaluate</span>—data limitations, ceteris paribus violations, competitive responses</li>
+            <li><strong>Conclusion:</strong> Weighted judgment acknowledging usefulness and limitations</li>
+          </ul>
+        </ExamTipBox>
       </ContentSection>
     </ChapterLayout>
   );
