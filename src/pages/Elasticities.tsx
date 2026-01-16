@@ -20,14 +20,20 @@ const Elasticities = () => {
         title="Price Elasticity of Demand (PED)" 
         subtitle="Measuring the Responsiveness of Quantity Demanded to Price Changes"
       >
-        <NoteCard title="Definition of Price Elasticity of Demand" type="definition">
-          <p>
-            <GlossaryTooltip term="Price Elasticity of Demand" definition="A measure of the responsiveness of quantity demanded of a good to a change in its price, calculated as the percentage change in quantity demanded divided by the percentage change in price.">Price Elasticity of Demand (PED)</GlossaryTooltip> is a fundamental concept in microeconomics that measures the degree to which the quantity demanded of a good or service responds to changes in its market price. It quantifies the sensitivity of consumers to price fluctuations and provides crucial information for businesses, policymakers, and economists seeking to understand market dynamics. The elasticity coefficient tells us whether demand is relatively responsive (elastic) or unresponsive (inelastic) to price variations, which has profound implications for revenue management and taxation policy.
-          </p>
-          <p className="mt-3">
-            The formal definition states that PED measures the <strong>proportionate (percentage) change in quantity demanded</strong> resulting from a <strong>proportionate (percentage) change in price</strong>. This proportionate measurement allows for meaningful comparisons across different goods, markets, and time periods, regardless of the units in which prices or quantities are measured.
-          </p>
-        </NoteCard>
+        {/* High-Density Definition Block - Zero Gap Academic Style */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-cyan-500 pl-6">
+            <h3 className="font-serif text-2xl text-cyan-400 mb-4">The Technical Definition of Price Elasticity of Demand</h3>
+            <div className="space-y-1 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                <GlossaryTooltip term="Price Elasticity of Demand" definition="A measure of the responsiveness of quantity demanded of a good to a change in its price, calculated as the percentage change in quantity demanded divided by the percentage change in price.">Price Elasticity of Demand (PED)</GlossaryTooltip> constitutes the numerical measure of the <strong className="text-cyan-400">responsiveness of quantity demanded</strong> for a product following a change in its own price, expressed as the ratio of proportionate changes: <span className="font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">PED = (% ΔQd) / (% ΔP)</span>. This formulation, grounded in the foundational work of Alfred Marshall, enables meaningful comparison across commodities irrespective of the units in which prices or quantities are denominated—a 10% price increase yields identical elasticity interpretations whether applied to automobiles priced in dollars or bread priced in cents. The coefficient's magnitude reveals the intensity of consumer responsiveness: values exceeding unity indicate <strong className="text-emerald-400">elastic demand</strong> where consumers exhibit heightened price sensitivity, while values below unity signify <strong className="text-amber-400">inelastic demand</strong> where consumption patterns prove resistant to price fluctuations. The negative sign conventionally associated with PED (reflecting the inverse relationship established by the Law of Demand) is typically suppressed in economic discourse, with analysts employing absolute values to facilitate comparison and interpretation.
+              </p>
+              <p>
+                The theoretical underpinning of the downward-sloping demand curve—and hence the negative PED—derives from two complementary mechanisms operating through consumer choice theory. The <strong className="text-cyan-400">substitution effect</strong> captures the reallocation of expenditure that occurs when relative prices change: a price reduction for Good X renders it relatively cheaper compared to substitutes, inducing utility-maximizing consumers to substitute towards the now-cheaper option while maintaining equivalent satisfaction levels along the original indifference curve. The <strong className="text-cyan-400">income effect</strong> captures the purchasing power dimension: a price reduction for a good in the consumption basket effectively increases the consumer's real income (the bundle of goods affordable with nominal income), enabling expansion of consumption possibilities including increased demand for the price-reduced good itself. For normal goods, both effects operate in the same direction—reinforcing the negative relationship between price and quantity demanded—while for inferior goods, the income effect partially offsets the substitution effect, yielding lower observed elasticity than substitution alone would generate.
+              </p>
+            </div>
+          </div>
+        </div>
 
         <NoteCard title="The PED Formula" type="formula" delay={100}>
           <div className="bg-navy-deep/50 p-6 rounded-lg border border-silver/20">
@@ -230,11 +236,20 @@ const Elasticities = () => {
         title="Income Elasticity of Demand (YED)" 
         subtitle="Measuring How Demand Responds to Changes in Consumer Income"
       >
-        <NoteCard title="Definition of Income Elasticity of Demand" type="definition">
-          <p>
-            <GlossaryTooltip term="Income Elasticity of Demand" definition="A measure of the responsiveness of quantity demanded to a change in consumer income, calculated as the percentage change in quantity demanded divided by the percentage change in income.">Income Elasticity of Demand (YED)</GlossaryTooltip> measures the responsiveness of quantity demanded to changes in consumer income. Unlike PED, the sign of YED carries important information about the nature of the good. This elasticity concept is crucial for understanding how economic growth and changes in living standards affect demand for different products.
-          </p>
-        </NoteCard>
+        {/* High-Density YED Definition Block - Zero Gap Academic Style */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-emerald-500 pl-6">
+            <h3 className="font-serif text-2xl text-emerald-400 mb-4">The Technical Definition of Income Elasticity of Demand</h3>
+            <div className="space-y-1 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                <GlossaryTooltip term="Income Elasticity of Demand" definition="A measure of the responsiveness of quantity demanded to a change in consumer income, calculated as the percentage change in quantity demanded divided by the percentage change in income.">Income Elasticity of Demand (YED)</GlossaryTooltip> measures the <strong className="text-emerald-400">responsiveness of demand to a change in real income</strong>, formally expressed as <span className="font-mono text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">YED = (% ΔQd) / (% ΔY)</span>, where Y represents consumer income. Unlike PED, the <strong className="text-emerald-400">sign of YED carries substantive economic information</strong>: a positive coefficient classifies the good as <strong className="text-cyan-400">normal</strong> (demand rises with income), while a negative coefficient classifies it as <strong className="text-red-400">inferior</strong> (demand falls as income rises, as consumers substitute towards superior alternatives). The magnitude further distinguishes <strong className="text-cyan-400">necessities</strong> (0 &lt; YED &lt; 1, where demand rises less than proportionally with income) from <strong className="text-amber-400">luxuries</strong> (YED &gt; 1, where demand rises more than proportionally with income, reflecting discretionary consumption that expands disproportionately as budget constraints relax). This classification scheme underpins Engel's Law—the empirical regularity that the proportion of income devoted to food expenditure declines as income rises—reflecting the necessity status (low YED) of basic sustenance relative to discretionary categories.
+              </p>
+              <p>
+                The analytical significance of YED extends beyond static classification to dynamic forecasting across the business cycle and secular development trajectory. During periods of macroeconomic expansion characterized by rising national income, aggregate demand for luxury goods (YED &gt; 1) expands more rapidly than GDP growth, while demand for inferior goods (YED &lt; 0) contracts absolutely despite economy-wide prosperity. This asymmetry generates sectoral differentiation in cyclical exposure: luxury goods producers experience amplified volatility—outperforming during booms but suffering disproportionate contraction during recessions—while inferior goods producers enjoy counter-cyclical demand patterns that provide recession-hedging properties. The sophisticated firm deploys YED analysis to calibrate inventory management, capacity planning, and marketing investment across the anticipated business cycle, concentrating resources during phases when income-driven demand favors its product category.
+              </p>
+            </div>
+          </div>
+        </div>
 
         <NoteCard title="The YED Formula" type="formula" delay={100}>
           <div className="bg-navy-deep/50 p-6 rounded-lg border border-silver/20">
@@ -342,7 +357,22 @@ const Elasticities = () => {
         title="Cross Elasticity of Demand (XED)" 
         subtitle="Measuring How Demand for One Good Responds to Price Changes of Another"
       >
-        <NoteCard title="Definition of Cross Elasticity of Demand" type="definition">
+        {/* High-Density XED Definition Block - Zero Gap Academic Style */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-violet-500 pl-6">
+            <h3 className="font-serif text-2xl text-violet-400 mb-4">The Technical Definition of Cross Elasticity of Demand</h3>
+            <div className="space-y-1 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                <GlossaryTooltip term="Cross Elasticity of Demand" definition="A measure of the responsiveness of quantity demanded of one good to a change in the price of another good.">Cross Elasticity of Demand (XED)</GlossaryTooltip> measures the <strong className="text-violet-400">responsiveness of demand for Good A to a change in the price of Good B</strong>, formally expressed as <span className="font-mono text-violet-400 bg-violet-500/10 px-2 py-1 rounded">XED = (% ΔQₐ) / (% ΔPᵦ)</span>. The <strong className="text-violet-400">sign of XED reveals the economic relationship</strong> between the two goods: a positive coefficient indicates <strong className="text-emerald-400">substitutes</strong> (a price increase for Good B shifts demand towards Good A as consumers redirect expenditure to the now relatively cheaper alternative), while a negative coefficient indicates <strong className="text-red-400">complements</strong> (a price increase for Good B reduces demand for Good A because the goods are consumed jointly—the higher cost of one component discourages consumption of the complementary bundle). The magnitude quantifies the <strong className="text-cyan-400">closeness of the relationship</strong>: XED values approaching zero suggest weak or negligible inter-good effects (unrelated goods), while large absolute values indicate strong substitutability or complementarity with significant competitive or synergistic implications.
+              </p>
+              <p>
+                The strategic application of XED extends to <strong className="text-amber-400">market definition for antitrust purposes</strong>—goods with high positive XED belong to the same relevant market because they constrain each other's pricing power—and to <strong className="text-amber-400">competitive intelligence</strong> for oligopolistic firms monitoring rival price movements. For complement producers, XED analysis informs <strong className="text-cyan-400">bundle pricing strategies</strong>: the "razor-and-blades" model exploits negative XED by subsidizing the primary device (low-margin or loss-leader razor) to capture high-margin demand for the complement (blades), a strategy deployed across printer-ink, console-games, and smartphone-applications ecosystems. The sophisticated analyst recognizes that XED operates asymmetrically—the cross-effect of Coca-Cola's price on Pepsi demand may exceed the reverse effect due to brand strength differentials—and calculates directional coefficients appropriate to the strategic question at hand.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <NoteCard title="XED Formula and Classification" type="formula">
           <p>
             <GlossaryTooltip term="Cross Elasticity of Demand" definition="A measure of the responsiveness of quantity demanded of one good to a change in the price of another good, calculated as the percentage change in quantity demanded of good A divided by the percentage change in price of good B.">Cross Elasticity of Demand (XED)</GlossaryTooltip> measures the responsiveness of demand for one good (Good A) to changes in the price of another good (Good B). The sign of XED reveals the relationship between the two goods—whether they are substitutes, complements, or unrelated.
           </p>
@@ -572,6 +602,24 @@ const Elasticities = () => {
             <li><strong>Conclusion:</strong> Weighted judgment acknowledging usefulness and limitations</li>
           </ul>
         </ExamTipBox>
+
+        {/* Senior Examiner's Final Weighting - Comprehensive Synthesis */}
+        <div className="glass-card p-8 my-8 border-2 border-amber-500/50">
+          <div className="border-l-4 border-amber-500 pl-6">
+            <h3 className="font-serif text-2xl text-amber-400 mb-4">Senior Examiner's Final Weighting: The Unified Theory of Elasticity Application</h3>
+            <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                The <strong className="text-amber-400">analytical power of elasticity concepts</strong> lies in their capacity to transform qualitative economic intuitions—"demand falls when price rises"—into quantitative predictions suitable for business decision-making and policy design. Yet the <strong className="text-amber-400">practical utility</strong> of any elasticity coefficient depends fundamentally on <strong className="text-cyan-400">three interrelated validity conditions</strong>: the accuracy of the underlying data, the stability of the estimated parameter across the relevant range, and the applicability of the ceteris paribus assumption to the decision context. Elasticity estimates derived from historical data or market research are subject to measurement error, sampling variation, and specification bias; they represent average responses across heterogeneous consumer or producer populations that may not apply to marginal agents relevant to a specific decision. The assumption of parameter stability—that elasticity remains constant as prices or incomes change—rarely holds empirically: demand typically becomes more elastic at higher prices (as consumption approaches discretionary thresholds) and less elastic at lower prices (as it approaches satiation levels), generating point elasticity variation along any given curve.
+              </p>
+              <p>
+                Most fundamentally, the <strong className="text-cyan-400">ceteris paribus condition</strong> underlying all partial elasticity analysis is violated routinely in dynamic, competitive markets. When a firm reduces its price to exploit perceived elastic demand, competitors may respond with matching reductions—eliminating the relative price advantage and negating the anticipated quantity gains while reducing industry-wide revenue. When a government imposes taxes on goods believed to have inelastic demand, smuggling, black-market substitution, or consumer migration to untaxed jurisdictions may erode the anticipated revenue yield. When incomes rise and firms project luxury goods demand expansion based on historical YED, shifting consumer preferences, technological disruption, or new market entrants may fundamentally alter the relationship between income and demand. The sophisticated analyst therefore deploys elasticity estimates as <strong className="text-amber-400">first approximations</strong> within a broader analytical framework that incorporates competitive game theory, scenario analysis across parameter ranges, and qualitative assessment of market dynamics that may invalidate purely quantitative predictions.
+              </p>
+              <p className="italic border-l-4 border-cyan-500 pl-4 mt-4">
+                <strong className="text-cyan-400">Final Verdict:</strong> "Ultimately, the effectiveness of using elasticity coefficients for decision-making is <strong className="text-amber-400">limited by time-lags</strong>, the <strong className="text-amber-400">difficulty of obtaining accurate and timely market data</strong>, and the <strong className="text-amber-400">inherent instability</strong> of consumer and producer behavior in evolving competitive environments. Nevertheless, elasticity analysis remains the foundational tool of applied microeconomics, providing the essential quantitative framework through which businesses optimize pricing, governments design efficient tax systems, and economists predict market responses to policy interventions. The prudent analyst recognizes both its power and its limitations."
+              </p>
+            </div>
+          </div>
+        </div>
       </ContentSection>
     </ChapterLayout>
   );
