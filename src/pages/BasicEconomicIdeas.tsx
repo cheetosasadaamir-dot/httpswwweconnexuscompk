@@ -10,8 +10,11 @@ import FactorsOfProductionDiagram from '@/components/diagrams/FactorsOfProductio
 import PPCShiftsDiagram from '@/components/diagrams/PPCShiftsDiagram';
 import OpportunityCostPPCDiagram from '@/components/diagrams/OpportunityCostPPCDiagram';
 import SpecializationTableDiagram from '@/components/diagrams/SpecializationTableDiagram';
+import ResourceAllocationSpectrumDiagram from '@/components/diagrams/ResourceAllocationSpectrumDiagram';
+import PriceMechanismFlowDiagram from '@/components/diagrams/PriceMechanismFlowDiagram';
+import SystemComparisonPPCDiagram from '@/components/diagrams/SystemComparisonPPCDiagram';
+import ThreeQuestionsComparisonDiagram from '@/components/diagrams/ThreeQuestionsComparisonDiagram';
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@/components/ui/table';
-
 const BasicEconomicIdeas = () => {
   return (
     <ChapterLayout
@@ -496,147 +499,221 @@ const BasicEconomicIdeas = () => {
         </ExamTipBox>
       </ContentSection>
 
-      {/* Topic 6: Economic Systems */}
+      {/* Section 1.4: Resource Allocation in Different Economic Systems */}
       <ContentSection 
-        title="Topic 6: Economic Systems" 
-        subtitle="How Societies Solve the Economic Problem"
+        title="Section 1.4: Resource Allocation in Different Economic Systems" 
+        subtitle="How Market, Planned, and Mixed Economies Solve the Economic Problem"
       >
-        <NoteCard title="Types of Economic Systems" type="definition">
+        <NoteCard title="Economic Systems: Core Definitions" type="definition">
+          <p className="text-sm text-muted-foreground mb-3">
+            An <GlossaryTooltip term="Economic System" definition="The organizational framework by which a society allocates its scarce resources to satisfy unlimited wants.">economic system</GlossaryTooltip> determines 
+            how resources are allocated and provides answers to the three fundamental economic questions.
+          </p>
+          <div className="grid md:grid-cols-3 gap-3 mt-3">
+            <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
+              <h5 className="font-semibold text-blue-400 mb-2 text-sm">Market Economy</h5>
+              <p className="text-xs text-muted-foreground">
+                A system where resources are allocated through the <strong className="text-cyan-400">Price Mechanism</strong> (Supply and Demand) 
+                with <strong>no government intervention</strong>.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30">
+              <h5 className="font-semibold text-red-400 mb-2 text-sm">Planned (Command) Economy</h5>
+              <p className="text-xs text-muted-foreground">
+                A system where the <strong className="text-amber-400">Government/State</strong> determines resource allocation 
+                through <strong>central planning</strong>.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/30">
+              <h5 className="font-semibold text-green-400 mb-2 text-sm">Mixed Economy</h5>
+              <p className="text-xs text-muted-foreground">
+                A system that <strong>combines</strong> both market forces and government intervention to allocate resources.
+              </p>
+            </div>
+          </div>
+        </NoteCard>
+
+        {/* Resource Allocation Spectrum Diagram */}
+        <div className="glass-card p-4 my-4">
+          <ResourceAllocationSpectrumDiagram />
+        </div>
+
+        {/* Three Questions Analysis */}
+        <NoteCard title="Analysis: The Three Basic Economic Questions" type="theory" delay={100}>
+          <p className="text-sm text-muted-foreground mb-3">
+            Each economic system answers the three fundamental questions differently based on its allocation mechanism:
+          </p>
+        </NoteCard>
+
+        <div className="glass-card p-4 my-3">
+          <ThreeQuestionsComparisonDiagram />
+        </div>
+
+        {/* Price Mechanism Flow */}
+        <NoteCard title="The Price Mechanism in Market Economies" type="concept" delay={150}>
           <p className="text-sm text-muted-foreground">
-            An <GlossaryTooltip term="Economic System" definition="The way in which a society organizes the production, distribution, and consumption of goods and services.">economic system</GlossaryTooltip> determines 
-            how resources are allocated and the answers to the three fundamental economic questions.
+            In a market economy, the <GlossaryTooltip term="Price Mechanism" definition="The system by which prices act as signals to allocate resources. Rising prices signal producers to increase supply; falling prices signal reduced demand.">price mechanism</GlossaryTooltip> acts 
+            as an automatic signal system that coordinates the decisions of buyers and sellers without central direction.
           </p>
         </NoteCard>
 
-        {/* Market Economy */}
-        <NoteCard title="1. Market Economy" type="theory" delay={100}>
-          <p className="text-sm text-muted-foreground mb-2">
-            A <GlossaryTooltip term="Market Economy" definition="An economic system where resources are allocated through the price mechanism, with minimal government intervention.">market economy</GlossaryTooltip> is 
-            where ownership of resources is in the hands of private individuals who allocate them 
-            through the price mechanism.
-          </p>
-          <p className="text-xs text-muted-foreground mb-2"><strong>Features include:</strong></p>
-          <ul className="space-y-1 text-xs text-muted-foreground ml-2">
-            <li>• No government interference</li>
-            <li>• Resources allocated on the basis of price - higher the price, more the supply; lower the price, more the demand</li>
-            <li>• Resources are sold to individuals who have the <strong>willingness and ability to pay</strong></li>
-            <li>• Production of profitable products is maximized whereas production of unprofitable products is stopped</li>
-            <li>• Competition in the market leads to greater choice for consumers</li>
-          </ul>
-        </NoteCard>
-
-        <div className="grid md:grid-cols-2 gap-3 mt-2">
-          <NoteCard title="Market Economy: Advantages" type="application" delay={150}>
-            <ul className="space-y-1 text-xs text-muted-foreground">
-              <li>• <strong>Consumer Sovereignty:</strong> Consumers determine the goods and services produced; 
-              producers make what consumers want through demand and supply.</li>
-              <li>• <strong>Variety of Goods:</strong> More choice; people can decide who to work for.</li>
-              <li>• <strong>Quick Response:</strong> Market economy allows for quick responses to changes in 
-              consumer preferences.</li>
-              <li>• <strong>Efficiency:</strong> Average cost per unit decreases through competition.</li>
-            </ul>
-          </NoteCard>
-
-          <NoteCard title="Market Economy: Disadvantages" type="application" delay={200}>
-            <ul className="space-y-1 text-xs text-muted-foreground">
-              <li>• <strong>Inequality of Income:</strong> The rich can increase their earning potential; 
-              vulnerable groups may find it difficult to earn an income.</li>
-              <li>• <strong>Private Monopolies:</strong> May charge high prices, reduce quality, and restrict choice.</li>
-              <li>• <strong>Demerit Goods:</strong> Private firms under profit maximization will produce harmful 
-              goods like alcohol, cigarettes.</li>
-              <li>• <strong>No Public Goods:</strong> Street lighting, roads, healthcare might not be provided.</li>
-              <li>• <strong>Waste on Advertising:</strong> Due to competition, firms waste resources on advertising.</li>
-            </ul>
-          </NoteCard>
+        <div className="glass-card p-4 my-3">
+          <PriceMechanismFlowDiagram />
         </div>
 
-        {/* Planned Economy */}
-        <NoteCard title="2. Planned (Command) Economy" type="theory" delay={250}>
-          <p className="text-sm text-muted-foreground mb-2">
-            A <GlossaryTooltip term="Planned Economy" definition="An economic system where the government owns and controls all resources and makes all economic decisions.">planned economy</GlossaryTooltip> is 
-            where the basic economic questions are answered by the government through central planning.
+        {/* PPC Comparison */}
+        <NoteCard title="Resource Allocation on the PPC" type="theory" delay={200}>
+          <p className="text-sm text-muted-foreground">
+            Different economic systems choose different points on the Production Possibility Curve based on their priorities:
           </p>
         </NoteCard>
 
-        <div className="grid md:grid-cols-2 gap-3 mt-2">
-          <NoteCard title="Planned Economy: Advantages" type="application" delay={300}>
-            <ul className="space-y-1 text-xs text-muted-foreground">
-              <li>• <strong>Economies of Scale:</strong> Operating large state monopolies results in low 
-              prices for consumers.</li>
-              <li>• <strong>No Competition Wastage:</strong> No ads, price wars, etc.</li>
-              <li>• <strong>Reduced Inequality:</strong> Gap between rich and poor is minimized; everyone has 
-              access to basic necessities.</li>
-              <li>• <strong>Externalities Controlled:</strong> Pollution restricted, demerit goods reduced, 
-              merit goods produced.</li>
-              <li>• <strong>Costs Reduced:</strong> Costs of advertisement not necessary.</li>
-              <li>• <strong>Basic Needs:</strong> Government provides basic needs (education, healthcare) for everyone.</li>
-            </ul>
-          </NoteCard>
-
-          <NoteCard title="Planned Economy: Disadvantages" type="application" delay={350}>
-            <ul className="space-y-1 text-xs text-muted-foreground">
-              <li>• <strong>Surpluses and Shortages:</strong> No price mechanism to balance supply and demand.</li>
-              <li>• <strong>Lack of Variety:</strong> Standard of living falls due to limited choice.</li>
-              <li>• <strong>Less Responsive:</strong> Bureaucrats take decisions; they don't take entrepreneurial 
-              risks and lack innovation.</li>
-              <li>• <strong>Policy Misuse:</strong> Politicians might use monetary, fiscal and supply side 
-              policy to win votes, not allocate resources efficiently.</li>
-            </ul>
-          </NoteCard>
+        <div className="glass-card p-4 my-3">
+          <SystemComparisonPPCDiagram />
         </div>
 
-        {/* Mixed Economy */}
-        <NoteCard title="3. Mixed Economy" type="theory" delay={400}>
-          <p className="text-sm text-muted-foreground mb-2">
-            A <GlossaryTooltip term="Mixed Economy" definition="An economic system that combines elements of both market and planned economies, with both private and public sectors.">mixed economy</GlossaryTooltip> combines 
-            features of both market and planned economies. The government makes some decisions and lets 
-            the market forces allocate other resources.
+        {/* Market Economy Deep Dive */}
+        <AnalysisBlock title="AO3 Analysis: Market Economy" type="analysis">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+              <h5 className="font-semibold text-green-400 mb-2 text-sm flex items-center gap-2">
+                <span className="text-cyan-400">✓</span> Strengths
+              </h5>
+              <ul className="space-y-1 text-xs text-muted-foreground">
+                <li>• <strong className="text-cyan-400">Efficiency:</strong> Competition drives firms to minimize costs and innovate</li>
+                <li>• <strong className="text-cyan-400">Consumer Sovereignty:</strong> Production responds to consumer preferences through demand signals</li>
+                <li>• <strong className="text-cyan-400">Innovation:</strong> Profit motive incentivizes research, development, and entrepreneurship</li>
+                <li>• <strong className="text-cyan-400">Quick Adjustment:</strong> Prices respond rapidly to changes in supply and demand conditions</li>
+                <li>• <strong className="text-cyan-400">Variety:</strong> Competition leads to greater choice and quality improvements</li>
+              </ul>
+            </div>
+            <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+              <h5 className="font-semibold text-red-400 mb-2 text-sm flex items-center gap-2">
+                <span className="text-amber-400">✗</span> Weaknesses
+              </h5>
+              <ul className="space-y-1 text-xs text-muted-foreground">
+                <li>• <strong className="text-amber-400">Market Failure:</strong> Externalities, public goods, and information asymmetries not addressed</li>
+                <li>• <strong className="text-amber-400">Non-provision of Public Goods:</strong> Street lighting, defense, and infrastructure may not be provided</li>
+                <li>• <strong className="text-amber-400">Inequality:</strong> Distribution based on purchasing power leads to income disparity</li>
+                <li>• <strong className="text-amber-400">Demerit Goods:</strong> Overproduction of harmful goods like alcohol and cigarettes</li>
+                <li>• <strong className="text-amber-400">Monopoly Power:</strong> Market concentration may reduce competition over time</li>
+              </ul>
+            </div>
+          </div>
+        </AnalysisBlock>
+
+        {/* Planned Economy Deep Dive */}
+        <AnalysisBlock title="AO3 Analysis: Planned (Command) Economy" type="analysis">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+              <h5 className="font-semibold text-green-400 mb-2 text-sm flex items-center gap-2">
+                <span className="text-cyan-400">✓</span> Strengths
+              </h5>
+              <ul className="space-y-1 text-xs text-muted-foreground">
+                <li>• <strong className="text-cyan-400">Direct Provision:</strong> Public goods and merit goods (healthcare, education) guaranteed for all</li>
+                <li>• <strong className="text-cyan-400">Reduced Inequality:</strong> Resources distributed based on need, minimizing income gaps</li>
+                <li>• <strong className="text-cyan-400">Externalities Controlled:</strong> State can directly limit pollution and demerit goods</li>
+                <li>• <strong className="text-cyan-400">No Wasteful Competition:</strong> Resources not spent on duplicate advertising or price wars</li>
+                <li>• <strong className="text-cyan-400">Strategic Planning:</strong> Long-term national objectives can be prioritized</li>
+              </ul>
+            </div>
+            <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+              <h5 className="font-semibold text-red-400 mb-2 text-sm flex items-center gap-2">
+                <span className="text-amber-400">✗</span> Weaknesses
+              </h5>
+              <ul className="space-y-1 text-xs text-muted-foreground">
+                <li>• <strong className="text-amber-400">Inefficiency:</strong> No profit motive leads to X-inefficiency and waste</li>
+                <li>• <strong className="text-amber-400">Surpluses/Shortages:</strong> Central planners cannot accurately predict demand</li>
+                <li>• <strong className="text-amber-400">Lack of Innovation:</strong> No incentive to develop new products or improve quality</li>
+                <li>• <strong className="text-amber-400">Limited Choice:</strong> Standardized products reduce consumer variety</li>
+                <li>• <strong className="text-amber-400">Bureaucratic Delays:</strong> Slow response to changing economic conditions</li>
+              </ul>
+            </div>
+          </div>
+        </AnalysisBlock>
+
+        {/* Mixed Economy Evaluation */}
+        <AnalysisBlock title="AO4 Evaluation: Mixed Economy – Correcting Market Failures" type="evaluation">
+          <p className="text-sm text-muted-foreground mb-3">
+            In a <span className="text-green-400 font-medium">Mixed Economy</span>, government intervention aims to correct market failures while maintaining the benefits of competition:
           </p>
-          <div className="grid md:grid-cols-2 gap-2 mt-2">
+          <div className="grid md:grid-cols-3 gap-3 mt-3">
+            <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+              <h6 className="text-cyan-400 font-medium text-xs mb-2">Taxation</h6>
+              <p className="text-xs text-muted-foreground">
+                Taxes on negative externalities (pollution, tobacco) internalize external costs and discourage consumption
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/30">
+              <h6 className="text-green-400 font-medium text-xs mb-2">Subsidies</h6>
+              <p className="text-xs text-muted-foreground">
+                Subsidies for merit goods (education, healthcare) encourage consumption beyond market equilibrium
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
+              <h6 className="text-amber-400 font-medium text-xs mb-2">Regulation</h6>
+              <p className="text-xs text-muted-foreground">
+                Laws and standards ensure quality, safety, and environmental protection in market activities
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20">
+            <p className="text-xs text-muted-foreground">
+              <span className="text-primary font-medium">Evaluation Point:</span> The optimal balance between market forces and government intervention 
+              depends on the <strong>magnitude</strong> of market failure, <strong>political ideology</strong>, and the <strong>capacity</strong> of 
+              government institutions to intervene effectively. Over-intervention may lead to government failure.
+            </p>
+          </div>
+        </AnalysisBlock>
+
+        {/* Transition to Mixed Economy */}
+        <NoteCard title="Transition from Planned to Mixed Economy" type="application" delay={250}>
+          <p className="text-sm text-muted-foreground mb-2">
+            When a planned economy transforms into a mixed economy:
+          </p>
+          <div className="grid md:grid-cols-2 gap-3">
             <div className="p-2 rounded bg-green-500/10 border border-green-500/20 text-xs">
               <strong className="text-green-400">Positive Impacts:</strong>
-              <ul className="mt-1 text-muted-foreground">
-                <li>• Stronger financial system</li>
-                <li>• Active business environment</li>
-                <li>• More sectors in the economy</li>
-                <li>• Variety of goods</li>
+              <ul className="mt-1 text-muted-foreground space-y-0.5">
+                <li>• Stronger, more efficient financial system</li>
+                <li>• Active business environment with entrepreneurship</li>
+                <li>• Greater variety of goods and services</li>
+                <li>• Improved allocation of resources</li>
+                <li>• Foreign direct investment attracted</li>
               </ul>
             </div>
             <div className="p-2 rounded bg-red-500/10 border border-red-500/20 text-xs">
               <strong className="text-red-400">Negative Impacts:</strong>
-              <ul className="mt-1 text-muted-foreground">
-                <li>• Job losses during transition</li>
-                <li>• Need for social reforms</li>
-                <li>• Must establish good tax system</li>
-                <li>• Consumer exploitation might increase</li>
+              <ul className="mt-1 text-muted-foreground space-y-0.5">
+                <li>• Transitional unemployment as state firms close</li>
+                <li>• Initial increase in inequality</li>
+                <li>• Need for new regulatory frameworks</li>
+                <li>• Consumer exploitation during transition</li>
+                <li>• Social safety nets must be established</li>
               </ul>
             </div>
           </div>
         </NoteCard>
 
-        <AnalysisBlock title="AO4 Evaluation: Transition to Mixed Economy" type="evaluation">
-          <p className="text-sm text-muted-foreground mb-2">
-            When a planned economy transforms into a mixed economy:
-          </p>
-          <ul className="space-y-1 text-xs text-muted-foreground">
-            <li>• <strong>Implementation takes time</strong> - Cannot happen overnight; requires gradual reforms.</li>
-            <li>• <strong>Government roles:</strong> Provide law and order, defense, fix balance of payments, 
-            impose tariffs, manage exchange rates, and provide public goods.</li>
-            <li>• <strong>Private sector freedom:</strong> Actions not dictated by government; free to produce 
-            what they want and decide for whom to produce.</li>
-            <li>• <strong>Evaluation:</strong> The advantages of transformation generally outweigh the 
-            disadvantages when managed carefully.</li>
-          </ul>
-        </AnalysisBlock>
-
         <ExamTipBox title="AO4 Evaluation Phrases for Economic Systems" variant="gold">
           <p className="text-sm">Use these evaluation connectives for top marks:</p>
           <ul className="mt-2 space-y-1 text-xs">
             <li>• "However, this depends on the <strong>magnitude</strong> of government intervention..."</li>
-            <li>• "The effectiveness is limited by <strong>time lags</strong> in implementation..."</li>
-            <li>• "This analysis assumes <strong>ceteris paribus</strong>, but in reality mixed economies vary..."</li>
+            <li>• "The effectiveness is limited by <strong>time lags</strong> in policy implementation..."</li>
+            <li>• "This analysis assumes <strong>ceteris paribus</strong>, but in reality mixed economies vary significantly..."</li>
             <li>• "It could be argued that... <strong>on the other hand</strong>..."</li>
-            <li>• "The degree of market vs. planning depends on <strong>political ideology</strong>..."</li>
+            <li>• "The degree of market vs. planning depends on <strong>political ideology</strong> and institutional capacity..."</li>
+            <li>• "Government intervention may lead to <strong>government failure</strong> if poorly implemented..."</li>
+          </ul>
+        </ExamTipBox>
+
+        <ExamTipBox title="Syllabus Link: CIE 9708 (2026-2028)" variant="silver">
+          <p className="text-sm mb-2">Key assessment objectives for this section:</p>
+          <ul className="space-y-1 text-xs">
+            <li><strong className="text-cyan-400">AO1:</strong> Define market, planned, and mixed economies with precision</li>
+            <li><strong className="text-cyan-400">AO2:</strong> Apply the price mechanism to explain resource allocation</li>
+            <li><strong className="text-cyan-400">AO3:</strong> Analyze how each system answers the three basic questions</li>
+            <li><strong className="text-amber-400">AO4:</strong> Evaluate strengths and weaknesses; discuss trade-offs between efficiency and equity</li>
           </ul>
         </ExamTipBox>
       </ContentSection>
