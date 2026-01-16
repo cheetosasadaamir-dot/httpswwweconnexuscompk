@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ["Playfair Display", "serif"],
+        serif: ["Montserrat", "sans-serif"],
         sans: ["Inter", "sans-serif"],
+        display: ["Montserrat", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -61,7 +62,22 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Charcoal Universe Theme Colors
+        // Infinite Horizon Theme Colors
+        space: {
+          void: "hsl(var(--space-void))",
+          deep: "hsl(var(--space-deep))",
+          base: "hsl(var(--space-base))",
+          elevated: "hsl(var(--space-elevated))",
+          surface: "hsl(var(--space-surface))",
+        },
+        neon: {
+          cyan: "hsl(var(--neon-cyan))",
+          "cyan-glow": "hsl(var(--neon-cyan-glow))",
+          gold: "hsl(var(--neon-gold))",
+          "gold-muted": "hsl(var(--neon-gold-muted))",
+          magenta: "hsl(var(--neon-magenta))",
+        },
+        // Legacy support for existing components
         charcoal: {
           base: "hsl(var(--charcoal-base))",
           deep: "hsl(var(--charcoal-deep))",
@@ -75,7 +91,6 @@ export default {
           silver: "hsl(var(--charcoal-silver))",
           muted: "hsl(var(--charcoal-muted))",
         },
-        // Legacy support
         navy: {
           deep: "hsl(var(--navy-deep))",
           base: "hsl(var(--navy-base))",
@@ -124,8 +139,17 @@ export default {
           "100%": { transform: "rotate(360deg)" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--charcoal-cyan) / 0.2)" },
-          "50%": { boxShadow: "0 0 40px hsl(var(--charcoal-cyan) / 0.4)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--neon-cyan) / 0.2)" },
+          "50%": { boxShadow: "0 0 50px hsl(var(--neon-cyan) / 0.5)" },
+        },
+        twinkle: {
+          "0%, 100%": { opacity: "0.3" },
+          "50%": { opacity: "1" },
+        },
+        "nebula-drift": {
+          "0%": { transform: "translateX(0) translateY(0)" },
+          "50%": { transform: "translateX(20px) translateY(-10px)" },
+          "100%": { transform: "translateX(0) translateY(0)" },
         },
       },
       animation: {
@@ -137,9 +161,16 @@ export default {
         shimmer: "shimmer 2s linear infinite",
         orbit: "orbit 20s linear infinite",
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        twinkle: "twinkle 2s ease-in-out infinite",
+        "nebula-drift": "nebula-drift 30s ease-in-out infinite",
       },
       spacing: {
-        'compact': '0.25rem',
+        compact: "0.25rem",
+      },
+      boxShadow: {
+        "neon-cyan": "0 0 30px hsl(var(--neon-cyan) / 0.3)",
+        "neon-gold": "0 0 30px hsl(var(--neon-gold) / 0.3)",
+        "glass": "0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)",
       },
     },
   },
