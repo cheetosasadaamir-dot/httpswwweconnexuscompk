@@ -18,18 +18,21 @@ type Message = {
 };
 
 const QUICK_ACTIONS = [
-  { label: 'Explain Comparative Advantage', query: 'Explain the concept of Comparative Advantage with a numerical example' },
-  { label: 'Natural Rate of Unemployment', query: 'Explain the Natural Rate of Unemployment and the Expectations-Augmented Phillips Curve' },
+  { label: 'Comparative Advantage', query: 'Explain the concept of Comparative Advantage with a numerical example' },
+  { label: 'Phillips Curve (NRU)', query: 'Explain the Natural Rate of Unemployment and the Expectations-Augmented Phillips Curve' },
   { label: 'HDI vs MPI', query: 'Compare HDI and MPI as development indicators according to the 2026-2028 syllabus' },
+  { label: 'Why Study Economics?', query: 'Why should I study Economics? How will it help my career?' },
 ];
 
+// Command words with AO (Assessment Objective) requirements
 const COMMAND_WORDS = [
-  { word: 'Analyse', meaning: 'Examine in detail to show meaning, identify elements and relationships' },
-  { word: 'Assess', meaning: 'Make an informed judgement' },
-  { word: 'Compare', meaning: 'Identify/comment on similarities and/or differences' },
-  { word: 'Discuss', meaning: 'Write about issues in depth in a structured way' },
-  { word: 'Evaluate', meaning: 'Judge the quality, importance, or value of something' },
-  { word: 'Explain', meaning: 'Set out purposes/reasons; make relationships clear with evidence' },
+  { word: 'Define', ao: 'AO1', meaning: 'Give precise meaning', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out purposes/reasons with evidence', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Analyse', ao: 'AO1+AO2', meaning: 'Examine in detail to show meaning and relationships', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Compare', ao: 'AO1+AO2', meaning: 'Identify similarities and/or differences', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Assess', ao: 'AO1+AO2+AO3', meaning: 'Make an informed judgement', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Discuss', ao: 'AO1+AO2+AO3', meaning: 'Write about issues in depth with structure', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Evaluate', ao: 'AO1+AO2+AO3', meaning: 'Judge quality, importance, or value critically', color: 'hsl(43, 72%, 53%)' },
 ];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-chat`;
@@ -56,7 +59,7 @@ const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   );
 };
 
-// Exam Guidance Dropdown
+// Exam Guidance Dropdown with AO Intelligence
 const ExamGuidance = () => {
   const [isOpen, setIsOpen] = useState(false);
   
@@ -66,15 +69,11 @@ const ExamGuidance = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="px-2.5 py-1 rounded-full text-xs font-medium transition-all flex items-center gap-1"
-        style={{
-          background: 'linear-gradient(135deg, hsl(214 100% 14% / 0.4), hsl(43 72% 53% / 0.1))',
-          border: '1px solid hsl(43 72% 53% / 0.4)',
-          color: 'hsl(43 72% 53%)',
-        }}
+        className="px-2.5 py-1 rounded-full text-xs font-medium transition-all flex items-center gap-1 tutor-glassmorphism"
+        style={{ color: 'hsl(43 72% 53%)' }}
       >
         <Sparkles className="w-2.5 h-2.5" />
-        Exam Command Words
+        Command Words
       </motion.button>
       
       <AnimatePresence>
@@ -83,24 +82,33 @@ const ExamGuidance = () => {
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            className="absolute top-full left-0 mt-2 z-50 w-72 rounded-xl p-3 shadow-xl"
-            style={{
-              background: 'linear-gradient(to bottom, hsl(214 100% 14%), hsl(222 47% 8%))',
-              border: '1px solid hsl(43 72% 53% / 0.3)',
-            }}
+            className="absolute top-full left-0 mt-2 z-50 w-80 rounded-xl p-3 shadow-2xl tutor-glassmorphism tutor-gold-glow"
           >
-            <p className="text-xs text-[hsl(43,72%,53%)] font-semibold mb-2 font-serif">Cambridge 9708 Command Words</p>
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-xs text-[hsl(43,72%,53%)] font-semibold font-serif">Cambridge 9708 Command Words</p>
+              <span className="tutor-verified-badge">
+                <CheckCircle2 className="w-2.5 h-2.5" />
+                2026-2028
+              </span>
+            </div>
             <div className="space-y-1.5">
               {COMMAND_WORDS.map((cmd, i) => (
-                <div key={i} className="text-xs">
-                  <span className="font-semibold text-[hsl(185,100%,50%)]">{cmd.word}:</span>
-                  <span className="text-muted-foreground ml-1">{cmd.meaning}</span>
+                <div key={i} className="flex items-start gap-2 text-xs p-1.5 rounded-lg hover:bg-white/5 transition-colors">
+                  <span 
+                    className="font-bold shrink-0" 
+                    style={{ color: cmd.color }}
+                  >
+                    {cmd.word}
+                  </span>
+                  <span className="text-muted-foreground flex-1">{cmd.meaning}</span>
+                  <span className="tutor-command-badge tutor-ao-badge shrink-0">{cmd.ao}</span>
                 </div>
               ))}
             </div>
-            <p className="text-[10px] text-muted-foreground mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/20">
-              Source: Cambridge 9708 Syllabus 2026-2028
-            </p>
+            <div className="mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/15 space-y-1">
+              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: AO1 (35%) • AO2 (40%) • AO3 (25%)</p>
+              <p className="text-[10px] text-muted-foreground/60">Use "Evaluate" for A* level answers</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -407,32 +415,32 @@ export default function EconomicsChatbot() {
           </p>
         </motion.div>
 
-        {/* Chat Card - Professional Glassmorphism */}
+        {/* Chat Card - Premium Glassmorphism */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="relative rounded-2xl overflow-hidden tutor-chat-container"
+          className="relative rounded-2xl overflow-hidden tutor-chat-container tutor-gold-glow"
           style={{
-            background: 'linear-gradient(to bottom, hsl(214 100% 14% / 0.3), hsl(222 47% 5%))',
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
-            border: '1px solid hsl(43 72% 53% / 0.3)',
-            boxShadow: '0 0 40px hsl(43 72% 53% / 0.08), inset 0 1px 0 hsl(43 72% 53% / 0.1)',
+            border: '1px solid hsl(43 72% 53% / 0.2)',
+            boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), inset 0 1px 0 hsl(43 72% 53% / 0.08)',
           }}
         >
-          {/* Glowing border effect */}
+          {/* Premium glass overlay */}
           <div 
             className="absolute inset-0 rounded-2xl pointer-events-none"
             style={{
-              background: 'linear-gradient(135deg, hsl(214 100% 14% / 0.1) 0%, transparent 50%, hsl(43 72% 53% / 0.05) 100%)',
+              background: 'linear-gradient(180deg, hsl(43 72% 53% / 0.03) 0%, transparent 30%, hsl(214 100% 14% / 0.1) 100%)',
             }}
           />
 
-          {/* Professional Academic Banner */}
-          <div className="tutor-header-banner relative">
-            <p className="tutor-header-title">Cambridge A-Level Economics Department</p>
+          {/* Academic Banner */}
+          <div className="tutor-header-banner relative flex items-center justify-between">
+            <p className="tutor-header-title">Cambridge A-Level Economics • 9708</p>
+            <span className="text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">2026-2028 Syllabus</span>
           </div>
 
           {/* Header with Clear Button */}
@@ -563,28 +571,28 @@ export default function EconomicsChatbot() {
             )}
           </ScrollArea>
 
-          {/* Input Area */}
-          <div className="relative p-3 lg:p-4 border-t border-[hsl(43,72%,53%)]/20">
+          {/* Input Area - Premium Glass */}
+          <div className="relative p-3 lg:p-4 border-t border-[hsl(43,72%,53%)]/15">
             <div className="flex gap-2">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask Prof. Econs about PED, Comparative Advantage, or Inflation causes..."
+                placeholder="Ask about Multiplier, NRU, J-Curve, Development indicators..."
                 disabled={isLoading}
-                className="flex-1 bg-[hsl(214,100%,14%)]/30 border-[hsl(43,72%,53%)]/30 focus:border-[hsl(43,72%,53%)] placeholder:text-muted-foreground/50 text-sm font-sans"
+                className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans"
               />
               
-              {/* Retry button - show when there's an error */}
+              {/* Retry button */}
               {messages.length > 0 && !isLoading && retryCount < 3 && (
                 <Button
                   onClick={handleRetry}
                   variant="outline"
                   size="icon"
-                  className="border-[hsl(43,72%,53%)]/30 hover:border-[hsl(43,72%,53%)] hover:bg-[hsl(43,72%,53%)]/10"
+                  className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5"
                   title="Retry last question"
                 >
-                  <RefreshCw className="w-4 h-4" />
+                  <RefreshCw className="w-4 h-4 text-[hsl(43,72%,53%)]" />
                 </Button>
               )}
               
@@ -592,7 +600,7 @@ export default function EconomicsChatbot() {
                 onClick={() => handleSend()}
                 disabled={!input.trim() || isLoading}
                 size="icon"
-                className="bg-gradient-to-r from-[hsl(214,100%,14%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/50"
+                className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg"
               >
                 {isLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
