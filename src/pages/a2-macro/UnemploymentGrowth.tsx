@@ -231,48 +231,114 @@ const UnemploymentGrowth = () => {
               improved education, reduced benefits, and lower income taxes.
             </p>
           </ExamTipBox>
+
+          {/* Chain of Reasoning: Supply-Side vs Demand-Side Policies */}
+          <AnalysisBlock title="Chain of Reasoning: Policy Approaches to Unemployment" type="analysis">
+            <p className="mb-3">
+              <strong>Supply-Side Policies for Structural Unemployment:</strong> The government implements 
+              education and training schemes → workers gain new skills relevant to growing industries → 
+              occupational mobility increases → workers can transition from declining sectors (e.g., coal mining) 
+              to expanding sectors (e.g., technology) → the mismatch between labor skills and employer demands 
+              narrows → structural unemployment falls → the Natural Rate of Unemployment (NRU) decreases → 
+              the LRPC shifts leftward, indicating lower equilibrium unemployment without inflationary pressure.
+            </p>
+            <p className="mb-3">
+              <strong>Demand-Side Policies for Cyclical Unemployment:</strong> During a recession, the government 
+              implements expansionary fiscal policy (↑G and/or ↓T) → disposable income rises → consumption (C) 
+              increases → aggregate demand (AD) shifts rightward → firms experience higher demand for goods and 
+              services → firms increase production and hire more workers → cyclical unemployment falls → the 
+              negative output gap closes → actual GDP approaches potential GDP.
+            </p>
+            <div className="p-3 bg-primary/10 rounded-lg mt-3">
+              <p className="text-sm font-mono text-center">
+                Structural: Training → Skills ↑ → Mobility ↑ → NRU ↓ → LRPC shifts left
+              </p>
+              <p className="text-sm font-mono text-center mt-1">
+                Cyclical: ↑G/↓T → C ↑ → AD ↑ → Output ↑ → Employment ↑ → Cyclical U ↓
+              </p>
+            </div>
+          </AnalysisBlock>
+
+          <AnalysisBlock title="Critical Evaluation: Effectiveness of Unemployment Policies" type="evaluation">
+            <p className="mb-3">
+              <strong>Time Lags:</strong> Supply-side policies targeting structural unemployment suffer from 
+              significant <em>implementation</em> and <em>response</em> lags. Education and training programs 
+              may take 3-5 years before workers acquire sufficient skills to re-enter the labor market. In 
+              contrast, demand-side policies face <em>recognition</em> lags (identifying the recession) and 
+              <em>decision</em> lags (parliamentary approval), but once implemented, effects may materialize 
+              within 12-18 months.
+            </p>
+            <p className="mb-3">
+              <strong>State of the Economy:</strong> Demand-side policies are highly effective when the 
+              economy operates below full capacity (spare capacity exists). However, at or near full employment, 
+              expansionary fiscal/monetary policy will only cause <strong>inflation</strong> without reducing 
+              unemployment—the economy is already at the NRU. In this situation, only supply-side policies 
+              can sustainably reduce unemployment by lowering the NRU itself.
+            </p>
+            <p className="mb-3">
+              <strong>Crowding Out:</strong> Government borrowing to finance expansionary fiscal policy may 
+              increase interest rates → private investment falls → the net effect on AD is smaller than intended. 
+              This "crowding out" effect limits the multiplier's effectiveness.
+            </p>
+            <p>
+              <strong>Hysteresis:</strong> Long-term unemployment can cause permanent damage to human capital 
+              (skill depreciation, loss of work habits). Even when the economy recovers, structurally unemployed 
+              workers may remain unemployable—the NRU rises. This suggests early intervention is more effective 
+              than delayed policy responses.
+            </p>
+          </AnalysisBlock>
         </ContentSection>
 
         {/* Costs of Unemployment */}
         <ContentSection title="Costs of Unemployment">
-          <div className="grid md:grid-cols-2 gap-4">
-            <NoteCard title="Costs to Individuals" type="application">
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Loss of income and reduced living standards</li>
-                <li>• Erosion of skills (human capital depreciation)</li>
-                <li>• Psychological stress and reduced self-esteem</li>
-                <li>• Health deterioration</li>
-                <li>• Reduced future employability</li>
-              </ul>
-            </NoteCard>
+          <p className="text-muted-foreground mb-4 text-sm">
+            Unemployment imposes substantial costs on individuals, businesses, the economy, and communities. 
+            These costs extend beyond the immediate loss of income to include long-term scarring effects on 
+            human capital and social cohesion.
+          </p>
+          
+          <NoteCard title="Individual Costs" type="application">
+            <p className="text-sm text-muted-foreground mb-2">
+              <strong>Loss of Income:</strong> Unemployed individuals experience reduced purchasing power and 
+              living standards. Savings deplete rapidly, and debt may accumulate. The psychological impact 
+              includes stress, anxiety, depression, and reduced self-esteem. <strong>Human Capital Depreciation:</strong> 
+              Skills atrophy during unemployment—technical knowledge becomes outdated, and work habits deteriorate. 
+              This "scarring effect" reduces future employability and earning potential. Research indicates that 
+              workers who experience extended unemployment earn 10-20% less even after re-employment.
+            </p>
+          </NoteCard>
 
-            <NoteCard title="Costs to Business" type="application">
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Reduced consumer spending → lower revenues</li>
-                <li>• Loss of skilled workforce during layoffs</li>
-                <li>• Retraining costs when rehiring</li>
-                <li>• Reduced business confidence</li>
-              </ul>
-            </NoteCard>
+          <NoteCard title="Business Costs" type="application">
+            <p className="text-sm text-muted-foreground mb-2">
+              <strong>Reduced Consumer Spending:</strong> Mass unemployment lowers aggregate consumption → firms 
+              experience falling revenues and profits → business confidence declines → investment (I) falls → 
+              further job losses occur (negative multiplier effect). <strong>Skills Shortages:</strong> When 
+              recovery begins, firms may struggle to find workers with appropriate skills—particularly if 
+              structural unemployment has caused widespread retraining needs.
+            </p>
+          </NoteCard>
 
-            <NoteCard title="Costs to the Economy" type="application">
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Lost output (negative output gap)</li>
-                <li>• Reduced tax revenues</li>
-                <li>• Increased government spending on benefits</li>
-                <li>• Worsening fiscal position</li>
-              </ul>
-            </NoteCard>
+          <NoteCard title="Macroeconomic Costs" type="application">
+            <p className="text-sm text-muted-foreground mb-2">
+              <strong>Lost Output:</strong> Unemployment represents wasted productive capacity—actual GDP falls 
+              below potential GDP, creating a negative output gap. <strong>Fiscal Deterioration:</strong> 
+              Tax revenues decline (fewer income and sales taxes) while government spending rises (unemployment 
+              benefits, welfare payments). The budget deficit widens, potentially requiring future tax increases 
+              or spending cuts. <strong>Opportunity Cost:</strong> Resources spent on unemployment benefits could 
+              have financed productive investment in infrastructure or education.
+            </p>
+          </NoteCard>
 
-            <NoteCard title="Costs to Communities" type="application">
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Increased crime rates</li>
-                <li>• Social unrest and family breakdown</li>
-                <li>• Regional decline and depopulation</li>
-                <li>• Intergenerational poverty cycles</li>
-              </ul>
-            </NoteCard>
-          </div>
+          <NoteCard title="Social and Community Costs" type="application">
+            <p className="text-sm text-muted-foreground mb-2">
+              <strong>Social Breakdown:</strong> High unemployment correlates with increased crime rates, substance 
+              abuse, family breakdown, and mental health problems. <strong>Regional Decline:</strong> Areas with 
+              concentrated unemployment (e.g., former industrial regions) experience population outflows, declining 
+              property values, and reduced local services. <strong>Intergenerational Effects:</strong> Children in 
+              unemployed households face reduced educational outcomes and are more likely to experience unemployment 
+              themselves—perpetuating cycles of disadvantage.
+            </p>
+          </NoteCard>
         </ContentSection>
 
         {/* Topic 2: Phillips Curve */}
@@ -350,6 +416,64 @@ const UnemploymentGrowth = () => {
             </div>
           </NoteCard>
 
+          {/* Chain of Reasoning: Adaptive Expectations */}
+          <AnalysisBlock title="Chain of Reasoning: Adaptive Expectations & the LRPC" type="analysis">
+            <p className="mb-3">
+              <strong>The Expectations-Augmented Phillips Curve:</strong> Assume the economy is initially at 
+              point A on SRPC₁, with unemployment at the NRU and inflation at 2%. The government implements 
+              expansionary policy → AD increases → firms raise prices (inflation rises to 4%) → real wages 
+              fall → firms hire more workers → unemployment falls below the NRU to point B.
+            </p>
+            <p className="mb-3">
+              <strong>Short-Run to Long-Run Transition:</strong> Workers initially suffer from "money illusion"—they 
+              do not immediately recognize that higher nominal wages have been eroded by inflation. However, 
+              through <em>adaptive expectations</em>, workers eventually demand higher nominal wages to restore 
+              real purchasing power → firms' labor costs rise → some workers are laid off → unemployment returns 
+              to the NRU at point C, but now with 4% inflation embedded in the system. The SRPC has shifted 
+              rightward to SRPC₂.
+            </p>
+            <div className="p-3 bg-primary/10 rounded-lg">
+              <p className="text-sm font-mono text-center">
+                ↑AD → π ↑ → Real W ↓ → Hiring ↑ → U ↓ (Short-Run)
+              </p>
+              <p className="text-sm font-mono text-center mt-1">
+                Workers adjust expectations → Demand ↑ Nominal W → Costs ↑ → U returns to NRU (Long-Run)
+              </p>
+            </div>
+          </AnalysisBlock>
+
+          <AnalysisBlock title="Critical Evaluation: The Phillips Curve Trade-Off" type="evaluation">
+            <p className="mb-3">
+              <strong>Short-Run Validity:</strong> Empirical evidence supports the short-run trade-off. When 
+              economies experience demand-pull inflation, unemployment typically falls temporarily. Central 
+              banks exploit this relationship through monetary policy adjustments.
+            </p>
+            <p className="mb-3">
+              <strong>Stagflation Challenges:</strong> The 1970s oil crises demonstrated that <em>cost-push</em> 
+              inflation can break the Phillips relationship entirely. Supply shocks caused both inflation and 
+              unemployment to rise simultaneously—shifting the SRPC rightward. This "stagflation" undermined 
+              Keynesian confidence in demand management.
+            </p>
+            <p className="mb-3">
+              <strong>Rational vs. Adaptive Expectations:</strong> New Classical economists argue that workers 
+              have <em>rational expectations</em>—they anticipate policy effects immediately. If true, even 
+              the short-run trade-off disappears: expansionary policy causes immediate wage demands, preventing 
+              any reduction in unemployment. Only <em>unexpected</em> policy changes affect real variables.
+            </p>
+            <p className="mb-3">
+              <strong>Policy Implications:</strong> If the LRPC is vertical, governments cannot permanently 
+              reduce unemployment through demand management. The only sustainable approach is supply-side 
+              policy to shift the NRU leftward: education, training, labor market flexibility, and reduced 
+              welfare dependency. However, Keynesians counter that demand-side policies remain essential for 
+              addressing cyclical unemployment during recessions.
+            </p>
+            <p>
+              <strong>Extent of Trade-Off:</strong> The slope of the SRPC varies across economies. Countries 
+              with flexible labor markets (e.g., USA) may experience steeper trade-offs, while rigid labor 
+              markets (e.g., Europe) show flatter curves with unemployment more persistent.
+            </p>
+          </AnalysisBlock>
+
           <ExamTipBox title="Keynesian vs Monetarist Views" variant="gold">
             <p>
               <strong>Keynesians</strong> believe demand-side policies can effectively reduce unemployment, especially 
@@ -379,6 +503,14 @@ const UnemploymentGrowth = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary font-bold">•</span>
+                <span><strong>Supply-side policies</strong> reduce structural unemployment by improving labor mobility and skills</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary font-bold">•</span>
+                <span><strong>Demand-side policies</strong> reduce cyclical unemployment by closing the negative output gap</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary font-bold">•</span>
                 <span>The <strong>SRPC</strong> shows inverse relationship between inflation and unemployment (short-run trade-off)</span>
               </li>
               <li className="flex items-start gap-2">
@@ -387,11 +519,11 @@ const UnemploymentGrowth = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary font-bold">•</span>
-                <span>Supply shocks and changes in NRU components cause the SRPC to shift</span>
+                <span><strong>Adaptive expectations</strong> explain why short-run gains are reversed in the long run</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary font-bold">•</span>
-                <span>Different types of unemployment require different policy responses—demand-side for cyclical, supply-side for others</span>
+                <span><strong>Stagflation</strong> (1970s) challenged the simple Phillips trade-off with simultaneous ↑π and ↑U</span>
               </li>
             </ul>
           </div>

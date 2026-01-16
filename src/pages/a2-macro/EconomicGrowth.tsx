@@ -280,13 +280,61 @@ const EconomicGrowth = () => {
               </div>
               <div className="text-center p-2 bg-primary/10 rounded-lg">
                 <p className="font-semibold text-primary">(iii) Income</p>
-                <p className="text-muted-foreground">GDP per capita (PPP adjusted)</p>
+                <p className="text-muted-foreground">GNI per capita (PPP adjusted)</p>
               </div>
             </div>
             <p className="text-xs text-muted-foreground mt-2">
               HDI ranges from 0 to 1. Classifications: Low (&lt;0.550), Medium (0.550-0.699), High (0.700-0.799), Very High (≥0.800).
             </p>
           </NoteCard>
+
+          {/* Chain of Reasoning: HDI Components */}
+          <AnalysisBlock title="Chain of Reasoning: How HDI Captures Development" type="analysis">
+            <p className="mb-3">
+              <strong>Health Dimension:</strong> Higher life expectancy reflects improved nutrition, sanitation, 
+              healthcare access, and disease prevention → healthier workers are more productive → labor productivity 
+              increases → higher output per worker → economic growth → resources available for further health 
+              investment → virtuous cycle of development.
+            </p>
+            <p className="mb-3">
+              <strong>Education Dimension:</strong> Mean years of schooling captures historical educational 
+              attainment, while expected years measures future potential → educated workers possess greater 
+              human capital → they can adopt new technologies and innovate → productivity gains shift LRAS 
+              rightward → sustainable long-run growth → higher incomes fund further education investment.
+            </p>
+            <p>
+              <strong>Income Dimension:</strong> GNI per capita (PPP) measures command over resources → higher 
+              income enables consumption of merit goods (healthcare, education) → improvements in health and 
+              education → human capital accumulation → productivity growth → higher GNI → development becomes 
+              self-sustaining.
+            </p>
+          </AnalysisBlock>
+
+          <AnalysisBlock title="Critical Evaluation: Limitations of HDI" type="evaluation">
+            <p className="mb-3">
+              <strong>Ignores Income Distribution:</strong> HDI uses <em>average</em> GNI per capita, masking 
+              potentially severe inequality. A country with very high average income but extreme inequality 
+              (high Gini coefficient) may score well on HDI while most citizens live in poverty. The 
+              <em>Inequality-adjusted HDI (IHDI)</em> was developed to address this limitation.
+            </p>
+            <p className="mb-3">
+              <strong>Quality vs. Quantity:</strong> Mean years of schooling measures <em>duration</em> but not 
+              <em>quality</em> of education. A country with 12 years of poor-quality schooling may score higher 
+              than one with 8 years of excellent education. Similarly, life expectancy does not capture quality 
+              of life in those years.
+            </p>
+            <p className="mb-3">
+              <strong>Missing Dimensions:</strong> HDI excludes political freedom, environmental sustainability, 
+              gender equality, and subjective well-being. A country may score highly on HDI while suppressing 
+              civil liberties or depleting natural resources unsustainably.
+            </p>
+            <p>
+              <strong>Arbitrary Weighting:</strong> HDI gives equal weight (1/3) to each dimension. Is health 
+              truly as important as education? Different weighting schemes would produce different rankings. 
+              The geometric mean calculation also means very low scores in one dimension significantly drag 
+              down the overall HDI.
+            </p>
+          </AnalysisBlock>
 
           {/* Other Measures */}
           <div className="grid md:grid-cols-2 gap-3">
@@ -307,28 +355,20 @@ const EconomicGrowth = () => {
             <p className="text-sm mb-2">
               Developed in 2010 by OPHI and the UNDP, the <strong>MPI</strong> assesses poverty across multiple dimensions:
             </p>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="text-xs">Dimension</TableHead>
-                  <TableHead className="text-xs">Indicators</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="text-xs">
-                <TableRow>
-                  <TableCell className="font-medium">1. Health</TableCell>
-                  <TableCell className="text-muted-foreground">Child Mortality, Nutrition</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">2. Education</TableCell>
-                  <TableCell className="text-muted-foreground">Years of Schooling, School Attendance</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">3. Living Standards</TableCell>
-                  <TableCell className="text-muted-foreground">Cooking Fuel, Toilet, Water, Electricity, Floor, Assets</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+            <div className="space-y-2 text-xs">
+              <div className="p-2 bg-muted/30 rounded">
+                <p className="font-semibold text-primary">1. Health</p>
+                <p className="text-muted-foreground">Child Mortality, Nutrition</p>
+              </div>
+              <div className="p-2 bg-muted/30 rounded">
+                <p className="font-semibold text-primary">2. Education</p>
+                <p className="text-muted-foreground">Years of Schooling, School Attendance</p>
+              </div>
+              <div className="p-2 bg-muted/30 rounded">
+                <p className="font-semibold text-primary">3. Living Standards</p>
+                <p className="text-muted-foreground">Cooking Fuel, Toilet, Water, Electricity, Floor, Assets</p>
+              </div>
+            </div>
           </NoteCard>
 
           {/* Qualitative Factors */}
@@ -372,20 +412,57 @@ const EconomicGrowth = () => {
           {/* Income Distribution - Lorenz/Gini */}
           <GiniLorenzDiagram title="The Lorenz Curve & Gini Coefficient" />
 
-          <AnalysisBlock title="Income Distribution Analysis" type="analysis">
-            <p className="text-sm mb-2">
-              <strong>Income distribution</strong> is the smoothness or equality with which income is distributed among members of a society. If everyone earns exactly the same, distribution is perfectly equal.
+          <AnalysisBlock title="Chain of Reasoning: Inequality and Development" type="analysis">
+            <p className="mb-3">
+              <strong>Income distribution</strong> measures the equality with which income is distributed among 
+              members of a society. The <strong>Lorenz Curve</strong> plots cumulative population share (x-axis) 
+              against cumulative income share (y-axis). A perfectly equal distribution produces a 45° diagonal 
+              line; greater curvature indicates greater inequality.
             </p>
-            <p className="text-sm text-muted-foreground">
-              In developing countries, there is typically a wide gap between richest and poorest—the rich may hold 40% of income while the poor hold only 10%. 
-              Developed countries have lower Gini coefficients (more equality), while developing countries have higher coefficients (more inequality).
+            <p className="mb-3">
+              <strong>The Gini Coefficient</strong> quantifies inequality as the ratio of the area between the 
+              Lorenz Curve and the line of perfect equality (Area A) to the total area under the equality line 
+              (Area A + B). Values range from 0 (perfect equality) to 1 (perfect inequality).
             </p>
-            <p className="text-xs text-muted-foreground mt-2">
-              <strong>Kuznets Curve:</strong> Rapidly developing countries (like BRICS) may initially experience high inequality, but this tends to improve over time as development proceeds.
+            <div className="p-3 bg-primary/10 rounded-lg text-center mb-3">
+              <p className="font-mono text-sm">Gini = A / (A + B)</p>
+            </div>
+            <p className="text-sm">
+              In developing countries, there is typically a wide gap between richest and poorest—the rich may 
+              hold 40% of income while the poor hold only 10%. Developed countries generally have Gini coefficients 
+              of 0.25-0.35, while highly unequal countries may exceed 0.50.
             </p>
           </AnalysisBlock>
 
-          {/* Characteristics Table */}
+          <AnalysisBlock title="Critical Evaluation: Growth vs. Development" type="evaluation">
+            <p className="mb-3">
+              <strong>The Kuznets Hypothesis:</strong> Economist Simon Kuznets proposed that inequality initially 
+              <em>increases</em> during early development (as workers migrate from low-productivity agriculture 
+              to higher-productivity industry) before eventually <em>declining</em> as the benefits of growth 
+              become more widely distributed. This inverted-U relationship suggests some inequality may be 
+              inevitable during structural transformation.
+            </p>
+            <p className="mb-3">
+              <strong>Growth Without Development:</strong> High GDP growth does not guarantee improved living 
+              standards for the majority. Oil-exporting nations may achieve high GDP per capita while wealth 
+              concentrates among elites. The <strong>resource curse</strong> suggests natural resource abundance 
+              can actually worsen governance and development outcomes.
+            </p>
+            <p className="mb-3">
+              <strong>Environmental Sustainability:</strong> Rapid economic growth often causes environmental 
+              degradation—pollution, deforestation, resource depletion. The <strong>Environmental Kuznets Curve</strong> 
+              hypothesizes that pollution initially rises with income but eventually falls as societies demand 
+              environmental quality. However, some damage (e.g., species extinction) may be irreversible.
+            </p>
+            <p>
+              <strong>Policy Implications:</strong> Governments must balance growth objectives with distributional 
+              concerns. Progressive taxation, social safety nets, education investment, and healthcare provision 
+              can ensure growth translates into broad-based development. However, excessive redistribution may 
+              reduce incentives for enterprise and innovation.
+            </p>
+          </AnalysisBlock>
+
+          {/* Characteristics Table - Dense Paragraph Format */}
           <NoteCard title="Characteristics of Developing vs. Developed Economies" type="concept">
             <div className="space-y-3 text-xs">
               <div className="p-2 bg-muted/30 rounded">
@@ -517,6 +594,42 @@ const EconomicGrowth = () => {
             </p>
           </NoteCard>
 
+          <AnalysisBlock title="Chain of Reasoning: Development Strategies" type="analysis">
+            <p className="mb-3">
+              <strong>Import Substitution Industrialization (ISI):</strong> Government imposes tariffs and quotas 
+              on manufactured imports → domestic firms protected from foreign competition → infant industries 
+              develop without competitive pressure → employment in manufacturing rises → structural transformation 
+              from primary to secondary sector → reduced import dependence.
+            </p>
+            <p className="mb-3">
+              <strong>Export-Led Growth:</strong> Government removes trade barriers and promotes exports → domestic 
+              firms compete in global markets → economies of scale achieved → technology transfer from foreign 
+              partners → productivity increases → export revenues fund further investment → rapid growth (as in 
+              Asian Tiger economies: South Korea, Taiwan, Singapore, Hong Kong).
+            </p>
+          </AnalysisBlock>
+
+          <AnalysisBlock title="Critical Evaluation: Development Strategies" type="evaluation">
+            <p className="mb-3">
+              <strong>ISI Limitations:</strong> Protected industries may become permanently inefficient without 
+              competitive pressure. Small domestic markets prevent economies of scale. Trading partners may 
+              retaliate with their own protectionism. ISI was largely unsuccessful in Latin America during 
+              the 1960s-70s, with protected firms remaining uncompetitive.
+            </p>
+            <p className="mb-3">
+              <strong>Export-Led Limitations:</strong> Success depends on access to developed country markets—if 
+              protectionism rises, export growth stalls. Countries may engage in "race to the bottom" on wages, 
+              labor standards, and environmental regulations to maintain competitiveness. Overreliance on exports 
+              creates vulnerability to external demand shocks (as seen during the 2008 financial crisis).
+            </p>
+            <p>
+              <strong>Context Matters:</strong> No single development strategy works universally. Success depends 
+              on initial conditions (natural resources, human capital, institutional quality), external environment 
+              (global trade conditions), and policy implementation capacity. Hybrid approaches combining elements 
+              of ISI and export promotion may be optimal.
+            </p>
+          </AnalysisBlock>
+
           <ExamTipBox title="A2 Evaluation: Growth vs. Development" variant="gold">
             <p className="text-sm mb-2">
               <strong>Economic growth ≠ Economic development.</strong> Growth is a necessary but not sufficient condition for development.
@@ -526,6 +639,7 @@ const EconomicGrowth = () => {
               <li>• Environmental costs may offset welfare gains</li>
               <li>• HDI and MPI provide more holistic measures than GDP alone</li>
               <li>• Structural change (primary → tertiary) is a key indicator of true development</li>
+              <li>• The Kuznets Curve suggests inequality may rise before falling during development</li>
             </ul>
           </ExamTipBox>
         </ContentSection>
