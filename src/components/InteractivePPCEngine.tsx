@@ -6,35 +6,27 @@ import 'katex/dist/katex.min.css';
 
 type PointType = 'efficient' | 'inefficient' | 'unattainable';
 
-interface DraggablePoint {
-  x: number;
-  y: number;
-  label: string;
-  type: PointType;
-}
-
 const InteractivePPCEngine = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [curveShift, setCurveShift] = useState<'none' | 'growth' | 'consumption'>('none');
-  const [activePoint, setActivePoint] = useState<DraggablePoint | null>(null);
   const [showOpportunityCost, setShowOpportunityCost] = useState(false);
-  const [pointA, setPointA] = useState({ x: 140, y: 120 });
-  const [pointB, setPointB] = useState({ x: 240, y: 220 });
+  const [pointA, setPointA] = useState({ x: 30, y: 70 }); // In percentage coordinates (0-100)
+  const [pointB, setPointB] = useState({ x: 70, y: 30 });
   const [showProfessorInsight, setShowProfessorInsight] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const isDragging = useRef(false);
   const dragTarget = useRef<'A' | 'B' | null>(null);
 
-  // SVG dimensions
-  const width = 500;
-  const height = 400;
-  const margin = { top: 40, right: 40, bottom: 60, left: 70 };
+  // SVG dimensions with 10% buffer
+  const width = 520;
+  const height = 440;
+  const margin = { top: 50, right: 50, bottom: 70, left: 80 };
   const chartWidth = width - margin.left - margin.right;
   const chartHeight = height - margin.top - margin.bottom;
 
-  // Curve shift offset
-  const shiftOffset = curveShift === 'growth' ? 40 : curveShift === 'consumption' ? -30 : 0;
+  // Curve shift multiplier (20% for growth, -15% for consumption)
+  const shiftMultiplier = curveShift === 'growth' ? 1.2 : curveShift === 'consumption' ? 0.85 : 1;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,47 +45,79 @@ const InteractivePPCEngine = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Generate PPC curve path
-  const generateCurvePath = (offset: number = 0) => {
-    const startX = margin.left;
-    const startY = margin.top + 20 - offset;
-    const endX = margin.left + chartWidth - 20 + offset;
-    const endY = margin.top + chartHeight;
+  // Convert percentage coordinates (0-100) to SVG coordinates
+  const toSvgX = (pct: number, shift: number = 1) => margin.left + (pct / 100) * chartWidth * shift;
+  const toSvgY = (pct: number, shift: number = 1) => margin.top + chartHeight - (pct / 100) * chartHeight * shift;
+  
+  // Convert SVG coordinates to percentage (0-100)
+  const toPctX = (svgX: number) => ((svgX - margin.left) / chartWidth) * 100;
+  const toPctY = (svgY: number) => ((margin.top + chartHeight - svgY) / chartHeight) * 100;
+
+  // Generate PPC curve using Cubic Bezier - starts at (0, 100) ends at (100, 0)
+  // The curve is concave to the origin (bowed outward)
+  const generateCurvePath = (shift: number = 1) => {
+    // Start point: (0, 100) - top of Y-axis
+    const startX = toSvgX(0, 1);
+    const startY = toSvgY(100 * shift, 1);
     
-    const cp1x = startX + 60;
-    const cp1y = startY + 40;
-    const cp2x = endX - 80;
-    const cp2y = endY - 40;
+    // End point: (100, 0) - end of X-axis
+    const endX = toSvgX(100 * shift, 1);
+    const endY = toSvgY(0, 1);
     
-    return `M ${startX} ${startY} Q ${cp1x} ${cp1y} ${(startX + endX) / 2} ${(startY + endY) / 2 + 20} Q ${cp2x} ${cp2y} ${endX} ${endY}`;
+    // Control points for concave curve (bowed outward from origin)
+    // First control point - pulls curve down from start
+    const cp1x = startX + chartWidth * 0.15 * shift;
+    const cp1y = startY + chartHeight * 0.35;
+    
+    // Second control point - pulls curve left from end
+    const cp2x = endX - chartWidth * 0.35;
+    const cp2y = endY - chartHeight * 0.15 * shift;
+    
+    return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+  };
+
+  // Calculate Y value on the PPC curve for a given X (percentage)
+  const getYOnCurve = (xPct: number, shift: number = 1): number => {
+    // Using the mathematical relationship for a concave PPC
+    // y = sqrt(1 - (x/100)^2) * 100 * shift (approximate quarter ellipse)
+    const normalizedX = xPct / (100 * shift);
+    if (normalizedX >= 1) return 0;
+    if (normalizedX <= 0) return 100 * shift;
+    
+    // Quadratic relationship for increasing opportunity cost
+    const yPct = Math.sqrt(1 - Math.pow(normalizedX, 2)) * 100 * shift;
+    return yPct;
   };
 
   // Check if point is on/near the curve
-  const getPointType = (x: number, y: number): PointType => {
-    // Calculate expected Y on curve for given X
-    const normalizedX = (x - margin.left) / chartWidth;
-    const curveY = margin.top + 20 + Math.pow(normalizedX, 1.8) * chartHeight * 0.9 - shiftOffset;
+  const getPointType = (xPct: number, yPct: number): PointType => {
+    const curveY = getYOnCurve(xPct, shiftMultiplier);
+    const distance = yPct - curveY;
     
-    const distance = y - curveY;
-    
-    if (Math.abs(distance) < 15) return 'efficient';
-    if (distance > 15) return 'inefficient';
+    if (Math.abs(distance) < 5) return 'efficient';
+    if (distance < -5) return 'inefficient';
     return 'unattainable';
+  };
+
+  // Constrain point to valid area (within chart, respecting curve boundaries)
+  const constrainPoint = (xPct: number, yPct: number): { x: number; y: number } => {
+    const x = Math.max(2, Math.min(98, xPct));
+    const y = Math.max(2, Math.min(98, yPct));
+    return { x, y };
   };
 
   // Calculate opportunity cost between points A and B
   const calculateOpportunityCost = () => {
-    const deltaCapital = Math.abs(pointB.x - pointA.x);
-    const deltaConsumer = Math.abs(pointB.y - pointA.y);
+    const deltaX = pointB.x - pointA.x;
+    const deltaY = pointB.y - pointA.y;
     
-    if (deltaCapital === 0) return { gain: 'Consumer Goods', loss: 'Capital Goods', ratio: 0 };
+    if (Math.abs(deltaX) < 0.1) return { gain: 'Consumer Goods', loss: 'Capital Goods', ratio: '∞' };
     
-    const ratio = deltaConsumer / deltaCapital;
-    const isMovingRight = pointB.x > pointA.x;
+    const ratio = Math.abs(deltaY / deltaX);
     
     return {
-      gain: isMovingRight ? 'Capital Goods' : 'Consumer Goods',
-      loss: isMovingRight ? 'Consumer Goods' : 'Capital Goods',
+      gain: deltaX > 0 ? 'Capital Goods' : 'Consumer Goods',
+      loss: deltaX > 0 ? 'Consumer Goods' : 'Capital Goods',
       ratio: ratio.toFixed(2)
     };
   };
@@ -101,6 +125,7 @@ const InteractivePPCEngine = () => {
   // Handle mouse/touch events for dragging
   const handleMouseDown = useCallback((target: 'A' | 'B') => (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     isDragging.current = true;
     dragTarget.current = target;
     setShowOpportunityCost(true);
@@ -121,19 +146,23 @@ const InteractivePPCEngine = () => {
       clientY = e.clientY;
     }
     
-    const x = ((clientX - rect.left) / rect.width) * width;
-    const y = ((clientY - rect.top) / rect.height) * height;
+    // Convert to SVG coordinates
+    const svgX = ((clientX - rect.left) / rect.width) * width;
+    const svgY = ((clientY - rect.top) / rect.height) * height;
     
-    // Constrain to chart area
-    const constrainedX = Math.max(margin.left + 20, Math.min(margin.left + chartWidth - 30, x));
-    const constrainedY = Math.max(margin.top + 20, Math.min(margin.top + chartHeight - 20, y));
+    // Convert to percentage coordinates
+    const pctX = toPctX(svgX);
+    const pctY = toPctY(svgY);
+    
+    // Constrain to valid area
+    const constrained = constrainPoint(pctX, pctY);
     
     if (dragTarget.current === 'A') {
-      setPointA({ x: constrainedX, y: constrainedY });
+      setPointA(constrained);
     } else {
-      setPointB({ x: constrainedX, y: constrainedY });
+      setPointB(constrained);
     }
-  }, [chartHeight, chartWidth, height, margin.left, margin.top, width]);
+  }, []);
 
   const handleMouseUp = useCallback(() => {
     isDragging.current = false;
@@ -156,8 +185,11 @@ const InteractivePPCEngine = () => {
   const pointColors = {
     efficient: { fill: 'hsl(185 100% 50%)', stroke: 'hsl(185 100% 70%)', label: 'Productive Efficiency' },
     inefficient: { fill: 'hsl(0 84% 60%)', stroke: 'hsl(0 84% 80%)', label: 'Inefficiency/Unemployment' },
-    unattainable: { fill: 'hsl(43 72% 53%)', stroke: 'hsl(43 72% 73%)', label: 'Unattainable in Short Run' }
+    unattainable: { fill: 'hsl(43 72% 53%)', stroke: 'hsl(43 72% 73%)', label: 'Unattainable (Short Run)' }
   };
+
+  // Grid lines at 20% intervals
+  const gridLines = [0, 20, 40, 60, 80, 100];
 
   return (
     <div ref={containerRef} className="w-full">
@@ -168,7 +200,7 @@ const InteractivePPCEngine = () => {
             Interactive Production Possibility Curve
           </h3>
           <p className="text-sm text-muted-foreground">
-            CIE 9708 Standard • Drag points to explore opportunity cost
+            CIE 9708 Standard • Drag points A & B to explore opportunity cost
           </p>
         </div>
         
@@ -203,7 +235,7 @@ const InteractivePPCEngine = () => {
                     As we produce more of one good, we must sacrifice increasingly larger amounts of the other.
                   </p>
                   <div className="p-3 bg-space-elevated rounded-lg">
-                    <BlockMath math="\text{Opportunity Cost} = \frac{\Delta \text{Good Y}}{\Delta \text{Good X}}" />
+                    <BlockMath math="\text{Opportunity Cost} = \frac{\Delta \text{Consumer Goods}}{\Delta \text{Capital Goods}}" />
                   </div>
                 </div>
                 <div>
@@ -213,11 +245,11 @@ const InteractivePPCEngine = () => {
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                     An outward shift of the PPC represents an increase in <strong className="text-foreground">productive potential</strong>. 
-                    This corresponds to a rightward shift of the <strong className="text-primary">Long-Run Aggregate Supply (LRAS)</strong> curve 
+                    This corresponds to a rightward shift of the <strong className="text-primary">LRAS</strong> curve 
                     and an increase in the <strong className="text-secondary">trend rate of economic growth</strong>.
                   </p>
                   <div className="text-xs text-muted-foreground italic">
-                    Causes: Investment in capital, technological progress, improved education & training, discovery of resources.
+                    Causes: Investment, technology, education, resource discovery.
                   </div>
                 </div>
               </div>
@@ -237,7 +269,7 @@ const InteractivePPCEngine = () => {
           }`}
         >
           <TrendingUp className="w-4 h-4" />
-          <span className="text-sm font-medium">Economic Growth</span>
+          <span className="text-sm font-medium">Economic Growth (+20%)</span>
         </button>
         
         <button
@@ -249,7 +281,7 @@ const InteractivePPCEngine = () => {
           }`}
         >
           <TrendingDown className="w-4 h-4" />
-          <span className="text-sm font-medium">Capital Consumption</span>
+          <span className="text-sm font-medium">Capital Consumption (-15%)</span>
         </button>
 
         <button
@@ -266,71 +298,75 @@ const InteractivePPCEngine = () => {
       </div>
 
       {/* Main SVG Diagram */}
-      <div className="relative">
+      <div className="relative rounded-xl overflow-hidden bg-space-base/50 border border-border/50">
         <svg
           ref={svgRef}
           viewBox={`0 0 ${width} ${height}`}
-          className="w-full h-auto cursor-crosshair"
+          className="w-full h-auto"
+          style={{ touchAction: 'none' }}
           onMouseMove={handleMouseMove}
           onTouchMove={handleMouseMove}
-          style={{ touchAction: 'none' }}
         >
           {/* Definitions */}
           <defs>
-            <linearGradient id="ppcCurveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(185 100% 50%)" />
-              <stop offset="100%" stopColor="hsl(185 100% 70%)" />
+            <linearGradient id="ppcMainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(185 100% 55%)" />
+              <stop offset="50%" stopColor="hsl(185 100% 50%)" />
+              <stop offset="100%" stopColor="hsl(185 100% 45%)" />
             </linearGradient>
-            <linearGradient id="growthCurveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(142 76% 45%)" />
-              <stop offset="100%" stopColor="hsl(142 76% 60%)" />
+            <linearGradient id="ppcGrowthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(142 76% 50%)" />
+              <stop offset="100%" stopColor="hsl(142 76% 40%)" />
             </linearGradient>
-            <linearGradient id="consumptionCurveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(0 84% 50%)" />
-              <stop offset="100%" stopColor="hsl(0 84% 65%)" />
+            <linearGradient id="ppcContractionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(0 84% 55%)" />
+              <stop offset="100%" stopColor="hsl(0 84% 45%)" />
             </linearGradient>
-            <filter id="glowCyan">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <filter id="curveGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
               <feMerge>
-                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="blur"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
-            <filter id="glowGold">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <filter id="pointGlow" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
               <feMerge>
-                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="blur"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
-            <marker id="arrowHead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-              <polygon points="0 0, 10 3.5, 0 7" fill="hsl(210 20% 60%)" />
+            <marker id="arrowMarker" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="hsl(210 20% 65%)" />
             </marker>
           </defs>
 
-          {/* Background Grid */}
-          <g opacity="0.15">
-            {Array.from({ length: 11 }).map((_, i) => (
-              <line
-                key={`h-${i}`}
-                x1={margin.left}
-                y1={margin.top + (chartHeight / 10) * i}
-                x2={margin.left + chartWidth}
-                y2={margin.top + (chartHeight / 10) * i}
-                stroke="hsl(185 100% 50%)"
-                strokeWidth="0.5"
-              />
-            ))}
-            {Array.from({ length: 11 }).map((_, i) => (
-              <line
-                key={`v-${i}`}
-                x1={margin.left + (chartWidth / 10) * i}
-                y1={margin.top}
-                x2={margin.left + (chartWidth / 10) * i}
-                y2={margin.top + chartHeight}
-                stroke="hsl(185 100% 50%)"
-                strokeWidth="0.5"
-              />
+          {/* Background */}
+          <rect x="0" y="0" width={width} height={height} fill="transparent" />
+
+          {/* Grid Lines - aligned with scale */}
+          <g opacity="0.12">
+            {gridLines.map((pct) => (
+              <g key={`grid-${pct}`}>
+                {/* Horizontal grid lines */}
+                <line
+                  x1={margin.left}
+                  y1={toSvgY(pct)}
+                  x2={margin.left + chartWidth}
+                  y2={toSvgY(pct)}
+                  stroke="hsl(185 100% 50%)"
+                  strokeWidth="1"
+                />
+                {/* Vertical grid lines */}
+                <line
+                  x1={toSvgX(pct)}
+                  y1={margin.top}
+                  x2={toSvgX(pct)}
+                  y2={margin.top + chartHeight}
+                  stroke="hsl(185 100% 50%)"
+                  strokeWidth="1"
+                />
+              </g>
             ))}
           </g>
 
@@ -338,86 +374,131 @@ const InteractivePPCEngine = () => {
           <motion.line
             x1={margin.left}
             y1={margin.top + chartHeight}
-            x2={margin.left + chartWidth}
+            x2={margin.left + chartWidth + 15}
             y2={margin.top + chartHeight}
-            stroke="hsl(210 20% 60%)"
+            stroke="hsl(210 20% 65%)"
             strokeWidth="2"
-            markerEnd="url(#arrowHead)"
+            strokeLinecap="round"
+            markerEnd="url(#arrowMarker)"
             initial={{ pathLength: 0 }}
             animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           />
           <motion.line
             x1={margin.left}
             y1={margin.top + chartHeight}
             x2={margin.left}
-            y2={margin.top}
-            stroke="hsl(210 20% 60%)"
+            y2={margin.top - 15}
+            stroke="hsl(210 20% 65%)"
             strokeWidth="2"
-            markerEnd="url(#arrowHead)"
+            strokeLinecap="round"
+            markerEnd="url(#arrowMarker)"
             initial={{ pathLength: 0 }}
             animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           />
 
-          {/* Axis Labels with Glow */}
+          {/* Axis Tick Marks and Labels */}
+          {gridLines.map((pct) => (
+            <g key={`tick-${pct}`}>
+              {/* X-axis ticks */}
+              <line
+                x1={toSvgX(pct)}
+                y1={margin.top + chartHeight}
+                x2={toSvgX(pct)}
+                y2={margin.top + chartHeight + 6}
+                stroke="hsl(210 20% 65%)"
+                strokeWidth="1.5"
+              />
+              <text
+                x={toSvgX(pct)}
+                y={margin.top + chartHeight + 20}
+                textAnchor="middle"
+                fill="hsl(210 20% 60%)"
+                fontSize="11"
+                fontFamily="Inter"
+              >
+                {pct}
+              </text>
+              
+              {/* Y-axis ticks */}
+              <line
+                x1={margin.left - 6}
+                y1={toSvgY(pct)}
+                x2={margin.left}
+                y2={toSvgY(pct)}
+                stroke="hsl(210 20% 65%)"
+                strokeWidth="1.5"
+              />
+              <text
+                x={margin.left - 12}
+                y={toSvgY(pct) + 4}
+                textAnchor="end"
+                fill="hsl(210 20% 60%)"
+                fontSize="11"
+                fontFamily="Inter"
+              >
+                {pct}
+              </text>
+            </g>
+          ))}
+
+          {/* Axis Labels - positioned outside axes */}
           <motion.text
             x={margin.left + chartWidth / 2}
             y={height - 15}
             textAnchor="middle"
-            fill="hsl(185 100% 50%)"
+            fill="hsl(185 100% 55%)"
             fontSize="14"
             fontFamily="Montserrat"
-            fontWeight="500"
-            filter="url(#glowCyan)"
+            fontWeight="600"
             initial={{ opacity: 0 }}
             animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.5 }}
-            className="hover:brightness-150 transition-all cursor-default"
+            transition={{ delay: 0.4 }}
           >
-            Capital Goods
+            Capital Goods (Units)
           </motion.text>
           <motion.text
-            x={20}
+            x={25}
             y={margin.top + chartHeight / 2}
             textAnchor="middle"
-            fill="hsl(185 100% 50%)"
+            fill="hsl(185 100% 55%)"
             fontSize="14"
             fontFamily="Montserrat"
-            fontWeight="500"
-            transform={`rotate(-90, 20, ${margin.top + chartHeight / 2})`}
-            filter="url(#glowCyan)"
+            fontWeight="600"
+            transform={`rotate(-90, 25, ${margin.top + chartHeight / 2})`}
             initial={{ opacity: 0 }}
             animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.5 }}
-            className="hover:brightness-150 transition-all cursor-default"
+            transition={{ delay: 0.4 }}
           >
-            Consumer Goods
+            Consumer Goods (Units)
           </motion.text>
 
-          {/* Original PPC Curve with Self-Drawing Animation */}
+          {/* Original PPC Curve - starts at (0,100), ends at (100,0) */}
           <motion.path
-            d={generateCurvePath(0)}
+            d={generateCurvePath(1)}
             fill="none"
-            stroke="url(#ppcCurveGradient)"
+            stroke="url(#ppcMainGradient)"
             strokeWidth="3"
             strokeLinecap="round"
-            filter="url(#glowCyan)"
+            strokeLinejoin="round"
+            filter="url(#curveGlow)"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
           />
 
-          {/* Shifted Curve (Growth or Consumption) */}
+          {/* Shifted Curve */}
           <AnimatePresence>
             {curveShift !== 'none' && (
               <motion.path
-                d={generateCurvePath(shiftOffset)}
+                d={generateCurvePath(shiftMultiplier)}
                 fill="none"
-                stroke={curveShift === 'growth' ? 'url(#growthCurveGradient)' : 'url(#consumptionCurveGradient)'}
+                stroke={curveShift === 'growth' ? 'url(#ppcGrowthGradient)' : 'url(#ppcContractionGradient)'}
                 strokeWidth="3"
                 strokeLinecap="round"
-                strokeDasharray="8 4"
+                strokeLinejoin="round"
+                strokeDasharray="10 5"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
                 exit={{ pathLength: 0, opacity: 0 }}
@@ -426,7 +507,7 @@ const InteractivePPCEngine = () => {
             )}
           </AnimatePresence>
 
-          {/* Shift Arrows */}
+          {/* Shift Direction Arrow */}
           <AnimatePresence>
             {curveShift === 'growth' && (
               <motion.g
@@ -434,17 +515,23 @@ const InteractivePPCEngine = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <motion.path
-                  d="M 250 160 L 280 140"
-                  stroke="hsl(142 76% 45%)"
+                <line
+                  x1={toSvgX(50)}
+                  y1={toSvgY(getYOnCurve(50))}
+                  x2={toSvgX(50 * 1.15)}
+                  y2={toSvgY(getYOnCurve(50) * 1.15)}
+                  stroke="hsl(142 76% 50%)"
                   strokeWidth="2"
-                  fill="none"
-                  markerEnd="url(#arrowHead)"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ delay: 0.5 }}
+                  markerEnd="url(#arrowMarker)"
                 />
-                <text x="290" y="135" fill="hsl(142 76% 45%)" fontSize="11" fontFamily="Montserrat">
+                <text
+                  x={toSvgX(58)}
+                  y={toSvgY(getYOnCurve(50) * 1.1) - 10}
+                  fill="hsl(142 76% 50%)"
+                  fontSize="12"
+                  fontFamily="Montserrat"
+                  fontWeight="500"
+                >
                   Growth
                 </text>
               </motion.g>
@@ -455,17 +542,23 @@ const InteractivePPCEngine = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <motion.path
-                  d="M 220 200 L 190 220"
-                  stroke="hsl(0 84% 60%)"
+                <line
+                  x1={toSvgX(50)}
+                  y1={toSvgY(getYOnCurve(50))}
+                  x2={toSvgX(50 * 0.88)}
+                  y2={toSvgY(getYOnCurve(50) * 0.88)}
+                  stroke="hsl(0 84% 55%)"
                   strokeWidth="2"
-                  fill="none"
-                  markerEnd="url(#arrowHead)"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ delay: 0.5 }}
+                  markerEnd="url(#arrowMarker)"
                 />
-                <text x="145" y="235" fill="hsl(0 84% 60%)" fontSize="11" fontFamily="Montserrat">
+                <text
+                  x={toSvgX(35)}
+                  y={toSvgY(getYOnCurve(50) * 0.85) + 20}
+                  fill="hsl(0 84% 55%)"
+                  fontSize="12"
+                  fontFamily="Montserrat"
+                  fontWeight="500"
+                >
                   Contraction
                 </text>
               </motion.g>
@@ -480,73 +573,75 @@ const InteractivePPCEngine = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                {/* Dashed lines showing trade-off */}
+                {/* Horizontal dashed line from A to B's X */}
                 <motion.line
-                  x1={pointA.x}
-                  y1={pointA.y}
-                  x2={pointB.x}
-                  y2={pointA.y}
+                  x1={toSvgX(pointA.x)}
+                  y1={toSvgY(pointA.y)}
+                  x2={toSvgX(pointB.x)}
+                  y2={toSvgY(pointA.y)}
                   stroke="hsl(43 72% 53%)"
                   strokeWidth="2"
-                  strokeDasharray="6 4"
+                  strokeDasharray="8 4"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.4 }}
                 />
+                {/* Vertical dashed line from that point to B */}
                 <motion.line
-                  x1={pointB.x}
-                  y1={pointA.y}
-                  x2={pointB.x}
-                  y2={pointB.y}
+                  x1={toSvgX(pointB.x)}
+                  y1={toSvgY(pointA.y)}
+                  x2={toSvgX(pointB.x)}
+                  y2={toSvgY(pointB.y)}
                   stroke="hsl(43 72% 53%)"
                   strokeWidth="2"
-                  strokeDasharray="6 4"
+                  strokeDasharray="8 4"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
                 />
                 
-                {/* Gain/Loss Labels */}
+                {/* Delta X label */}
                 <rect
-                  x={(pointA.x + pointB.x) / 2 - 25}
-                  y={pointA.y - 22}
-                  width="50"
-                  height="18"
+                  x={(toSvgX(pointA.x) + toSvgX(pointB.x)) / 2 - 22}
+                  y={toSvgY(pointA.y) - 25}
+                  width="44"
+                  height="20"
                   rx="4"
-                  fill="hsl(142 76% 45% / 0.2)"
-                  stroke="hsl(142 76% 45%)"
+                  fill="hsl(142 76% 40% / 0.3)"
+                  stroke="hsl(142 76% 50%)"
                   strokeWidth="1"
                 />
                 <text
-                  x={(pointA.x + pointB.x) / 2}
-                  y={pointA.y - 10}
+                  x={(toSvgX(pointA.x) + toSvgX(pointB.x)) / 2}
+                  y={toSvgY(pointA.y) - 11}
                   textAnchor="middle"
-                  fill="hsl(142 76% 45%)"
-                  fontSize="10"
+                  fill="hsl(142 76% 55%)"
+                  fontSize="11"
                   fontWeight="600"
                 >
-                  {pointB.x > pointA.x ? '+' : '-'} ΔX
+                  ΔX: {Math.abs(pointB.x - pointA.x).toFixed(0)}
                 </text>
                 
+                {/* Delta Y label */}
                 <rect
-                  x={pointB.x + 5}
-                  y={(pointA.y + pointB.y) / 2 - 9}
-                  width="50"
-                  height="18"
+                  x={toSvgX(pointB.x) + 8}
+                  y={(toSvgY(pointA.y) + toSvgY(pointB.y)) / 2 - 10}
+                  width="44"
+                  height="20"
                   rx="4"
-                  fill="hsl(0 84% 60% / 0.2)"
+                  fill="hsl(0 84% 50% / 0.3)"
                   stroke="hsl(0 84% 60%)"
                   strokeWidth="1"
                 />
                 <text
-                  x={pointB.x + 30}
-                  y={(pointA.y + pointB.y) / 2 + 4}
+                  x={toSvgX(pointB.x) + 30}
+                  y={(toSvgY(pointA.y) + toSvgY(pointB.y)) / 2 + 4}
                   textAnchor="middle"
-                  fill="hsl(0 84% 60%)"
-                  fontSize="10"
+                  fill="hsl(0 84% 65%)"
+                  fontSize="11"
                   fontWeight="600"
                 >
-                  {pointB.y > pointA.y ? '-' : '+'} ΔY
+                  ΔY: {Math.abs(pointB.y - pointA.y).toFixed(0)}
                 </text>
               </motion.g>
             )}
@@ -559,26 +654,27 @@ const InteractivePPCEngine = () => {
             onTouchStart={handleMouseDown('A')}
             initial={{ scale: 0, opacity: 0 }}
             animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-            transition={{ delay: 1.2, type: "spring" }}
-            whileHover={{ scale: 1.2 }}
+            transition={{ delay: 1.6, type: "spring", stiffness: 200 }}
+            whileHover={{ scale: 1.15 }}
           >
             <circle
-              cx={pointA.x}
-              cy={pointA.y}
-              r="14"
+              cx={toSvgX(pointA.x)}
+              cy={toSvgY(pointA.y)}
+              r="16"
               fill={pointColors[pointAType].fill}
               stroke={pointColors[pointAType].stroke}
               strokeWidth="3"
-              opacity="0.9"
-              filter="url(#glowGold)"
+              filter="url(#pointGlow)"
             />
             <text
-              x={pointA.x}
-              y={pointA.y + 5}
+              x={toSvgX(pointA.x)}
+              y={toSvgY(pointA.y) + 5}
               textAnchor="middle"
-              fill="hsl(222 47% 2%)"
-              fontSize="12"
+              fill="hsl(222 47% 5%)"
+              fontSize="13"
               fontWeight="bold"
+              fontFamily="Montserrat"
+              style={{ pointerEvents: 'none' }}
             >
               A
             </text>
@@ -591,26 +687,27 @@ const InteractivePPCEngine = () => {
             onTouchStart={handleMouseDown('B')}
             initial={{ scale: 0, opacity: 0 }}
             animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-            transition={{ delay: 1.4, type: "spring" }}
-            whileHover={{ scale: 1.2 }}
+            transition={{ delay: 1.8, type: "spring", stiffness: 200 }}
+            whileHover={{ scale: 1.15 }}
           >
             <circle
-              cx={pointB.x}
-              cy={pointB.y}
-              r="14"
+              cx={toSvgX(pointB.x)}
+              cy={toSvgY(pointB.y)}
+              r="16"
               fill={pointColors[pointBType].fill}
               stroke={pointColors[pointBType].stroke}
               strokeWidth="3"
-              opacity="0.9"
-              filter="url(#glowGold)"
+              filter="url(#pointGlow)"
             />
             <text
-              x={pointB.x}
-              y={pointB.y + 5}
+              x={toSvgX(pointB.x)}
+              y={toSvgY(pointB.y) + 5}
               textAnchor="middle"
-              fill="hsl(222 47% 2%)"
-              fontSize="12"
+              fill="hsl(222 47% 5%)"
+              fontSize="13"
               fontWeight="bold"
+              fontFamily="Montserrat"
+              style={{ pointerEvents: 'none' }}
             >
               B
             </text>
@@ -620,50 +717,72 @@ const InteractivePPCEngine = () => {
           <motion.g
             initial={{ opacity: 0, x: 20 }}
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-            transition={{ delay: 1.6 }}
+            transition={{ delay: 2 }}
           >
             <rect
-              x={width - 170}
-              y={margin.top}
-              width="160"
-              height="85"
-              rx="8"
-              fill="hsl(222 47% 4% / 0.9)"
-              stroke="hsl(185 100% 50% / 0.2)"
+              x={width - 175}
+              y={margin.top + 5}
+              width="165"
+              height="90"
+              rx="10"
+              fill="hsl(222 47% 4% / 0.92)"
+              stroke="hsl(185 100% 50% / 0.25)"
+              strokeWidth="1"
             />
-            <circle cx={width - 155} cy={margin.top + 20} r="6" fill="hsl(185 100% 50%)" />
-            <text x={width - 140} y={margin.top + 24} fill="hsl(210 20% 70%)" fontSize="11">Efficient</text>
             
-            <circle cx={width - 155} cy={margin.top + 45} r="6" fill="hsl(0 84% 60%)" />
-            <text x={width - 140} y={margin.top + 49} fill="hsl(210 20% 70%)" fontSize="11">Inefficient</text>
+            <circle cx={width - 158} cy={margin.top + 28} r="7" fill="hsl(185 100% 50%)" />
+            <text x={width - 143} y={margin.top + 32} fill="hsl(210 20% 75%)" fontSize="11" fontFamily="Inter">
+              On Curve (Efficient)
+            </text>
             
-            <circle cx={width - 155} cy={margin.top + 70} r="6" fill="hsl(43 72% 53%)" />
-            <text x={width - 140} y={margin.top + 74} fill="hsl(210 20% 70%)" fontSize="11">Unattainable</text>
+            <circle cx={width - 158} cy={margin.top + 53} r="7" fill="hsl(0 84% 60%)" />
+            <text x={width - 143} y={margin.top + 57} fill="hsl(210 20% 75%)" fontSize="11" fontFamily="Inter">
+              Inside (Inefficient)
+            </text>
+            
+            <circle cx={width - 158} cy={margin.top + 78} r="7" fill="hsl(43 72% 53%)" />
+            <text x={width - 143} y={margin.top + 82} fill="hsl(210 20% 75%)" fontSize="11" fontFamily="Inter">
+              Outside (Unattainable)
+            </text>
           </motion.g>
-        </svg>
 
-        {/* Point Status Indicators */}
-        <div className="flex flex-wrap gap-4 mt-4 justify-center">
-          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-space-elevated">
-            <div 
-              className="w-4 h-4 rounded-full" 
-              style={{ backgroundColor: pointColors[pointAType].fill }}
-            />
-            <span className="text-sm text-muted-foreground">Point A:</span>
-            <span className="text-sm font-medium" style={{ color: pointColors[pointAType].fill }}>
-              {pointColors[pointAType].label}
-            </span>
-          </div>
-          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-space-elevated">
-            <div 
-              className="w-4 h-4 rounded-full" 
-              style={{ backgroundColor: pointColors[pointBType].fill }}
-            />
-            <span className="text-sm text-muted-foreground">Point B:</span>
-            <span className="text-sm font-medium" style={{ color: pointColors[pointBType].fill }}>
-              {pointColors[pointBType].label}
-            </span>
-          </div>
+          {/* Origin Label */}
+          <text
+            x={margin.left - 10}
+            y={margin.top + chartHeight + 18}
+            textAnchor="middle"
+            fill="hsl(210 20% 55%)"
+            fontSize="12"
+            fontFamily="Inter"
+          >
+            O
+          </text>
+        </svg>
+      </div>
+
+      {/* Point Status Indicators */}
+      <div className="flex flex-wrap gap-4 mt-4 justify-center">
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-space-elevated border border-border/50">
+          <div 
+            className="w-4 h-4 rounded-full shadow-lg" 
+            style={{ backgroundColor: pointColors[pointAType].fill, boxShadow: `0 0 10px ${pointColors[pointAType].fill}` }}
+          />
+          <span className="text-sm text-muted-foreground">Point A:</span>
+          <span className="text-sm font-semibold" style={{ color: pointColors[pointAType].fill }}>
+            {pointColors[pointAType].label}
+          </span>
+          <span className="text-xs text-muted-foreground">({pointA.x.toFixed(0)}, {pointA.y.toFixed(0)})</span>
+        </div>
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-space-elevated border border-border/50">
+          <div 
+            className="w-4 h-4 rounded-full shadow-lg" 
+            style={{ backgroundColor: pointColors[pointBType].fill, boxShadow: `0 0 10px ${pointColors[pointBType].fill}` }}
+          />
+          <span className="text-sm text-muted-foreground">Point B:</span>
+          <span className="text-sm font-semibold" style={{ color: pointColors[pointBType].fill }}>
+            {pointColors[pointBType].label}
+          </span>
+          <span className="text-xs text-muted-foreground">({pointB.x.toFixed(0)}, {pointB.y.toFixed(0)})</span>
         </div>
       </div>
 
@@ -683,22 +802,24 @@ const InteractivePPCEngine = () => {
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Moving from <strong className="text-primary">A</strong> to <strong className="text-primary">B</strong>:
+                  Moving from <strong className="text-primary">A ({pointA.x.toFixed(0)}, {pointA.y.toFixed(0)})</strong> to <strong className="text-primary">B ({pointB.x.toFixed(0)}, {pointB.y.toFixed(0)})</strong>:
                 </p>
-                <ul className="text-sm space-y-1">
+                <ul className="text-sm space-y-1.5">
                   <li className="flex items-center gap-2">
-                    <span className="text-green-400">↑ Gain:</span>
+                    <span className="px-2 py-0.5 rounded bg-green-500/20 text-green-400 text-xs">GAIN</span>
                     <span className="text-foreground">{opportunityCost.gain}</span>
+                    <span className="text-muted-foreground">(+{Math.abs(pointB.x - pointA.x).toFixed(0)} units)</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-red-400">↓ Loss:</span>
+                    <span className="px-2 py-0.5 rounded bg-red-500/20 text-red-400 text-xs">LOSS</span>
                     <span className="text-foreground">{opportunityCost.loss}</span>
+                    <span className="text-muted-foreground">(-{Math.abs(pointB.y - pointA.y).toFixed(0)} units)</span>
                   </li>
                 </ul>
               </div>
-              <div className="p-3 bg-space-elevated rounded-lg">
+              <div className="p-3 bg-space-elevated rounded-lg border border-border/30">
                 <p className="text-xs text-muted-foreground mb-2">Opportunity Cost Ratio:</p>
-                <InlineMath math={`\\text{OC} = \\frac{\\Delta Y}{\\Delta X} = ${opportunityCost.ratio}`} />
+                <BlockMath math={`\\text{OC} = \\frac{|\\Delta Y|}{|\\Delta X|} = \\frac{${Math.abs(pointB.y - pointA.y).toFixed(0)}}{${Math.abs(pointB.x - pointA.x).toFixed(0)}} = ${opportunityCost.ratio}`} />
               </div>
             </div>
           </motion.div>
@@ -709,13 +830,13 @@ const InteractivePPCEngine = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ delay: 2 }}
+        transition={{ delay: 2.2 }}
         className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20"
       >
-        <p className="text-xs text-muted-foreground">
-          <strong className="text-primary">Exam Tip:</strong> Always explain that points <em>inside</em> the PPC 
-          indicate <strong>unemployed resources</strong> or <strong>productive inefficiency</strong>, while points 
-          <em>outside</em> are unattainable without <strong>economic growth</strong> (outward shift of PPC/LRAS).
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-primary">Exam Tip (AO1/AO2):</strong> Points <em>on</em> the PPC represent <strong>productive efficiency</strong> — 
+          all resources are fully employed. Points <em>inside</em> indicate <strong>unemployed resources</strong> or <strong>technical inefficiency</strong>. 
+          Points <em>outside</em> are unattainable without <strong>economic growth</strong> (rightward shift of LRAS).
         </p>
       </motion.div>
     </div>
