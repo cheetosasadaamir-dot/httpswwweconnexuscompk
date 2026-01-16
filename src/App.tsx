@@ -14,6 +14,7 @@ import IncomeDetermination from "./pages/IncomeDetermination";
 import NationalIncome from "./pages/a2-macro/NationalIncome";
 import NotFound from "./pages/NotFound";
 import Elasticities from "./pages/Elasticities";
+import MarketFailure from "./pages/MarketFailure";
 
 // Landing pages for hierarchical navigation
 import Microeconomics from "./pages/Microeconomics";
@@ -61,7 +62,7 @@ const App = () => (
           <Route path="/basic-economic-ideas" element={<BasicEconomicIdeas />} />
           <Route path="/price-system" element={<PriceSystem />} />
           <Route path="/elasticities" element={<Elasticities />} />
-          <Route path="/market-failure" element={<DiagramBank />} />
+          <Route path="/market-failure" element={<MarketFailure />} />
           
           {/* A2 Microeconomics chapters */}
           <Route path="/a2-micro/utility-consumer-choice" element={<UtilityConsumerChoice />} />
