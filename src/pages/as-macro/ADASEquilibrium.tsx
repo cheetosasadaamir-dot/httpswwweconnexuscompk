@@ -11,6 +11,8 @@ import SRASLRASDiagram from '@/components/diagrams/SRASLRASDiagram';
 import ADASEquilibriumDiagram from '@/components/diagrams/ADASEquilibriumDiagram';
 import DemandPullInflationDiagram from '@/components/diagrams/DemandPullInflationDiagram';
 import CostPushStagflationDiagram from '@/components/diagrams/CostPushStagflationDiagram';
+import ADDeterminantsDiagram from '@/components/diagrams/ADDeterminantsDiagram';
+import ASDeterminantsDiagram from '@/components/diagrams/ASDeterminantsDiagram';
 
 const ADASEquilibrium = () => {
   return (
@@ -138,6 +140,82 @@ const ADASEquilibrium = () => {
               economic welfare and living standards.
             </p>
           </ExamTipBox>
+        </ContentSection>
+
+        {/* AD Definition and Determinants - High-Density Academic Block */}
+        <ContentSection title="Aggregate Demand: Formal Definition and Determinants">
+          {/* Zero-Gap Dense Definition Block */}
+          <div className="space-y-0 mb-8">
+            <div className="glass-card p-8 bg-gradient-to-br from-primary/5 to-transparent border-l-4 border-primary">
+              <h4 className="font-serif text-xl font-semibold text-primary mb-6">The Formal Definition of Aggregate Demand</h4>
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                Aggregate Demand (AD) is defined as the <strong>total planned expenditure on an economy's goods and services 
+                at a given price level in a given time period</strong>. It represents the sum of all spending intentions 
+                by the four sectors of the macroeconomy: households (consumption), firms (investment), government (public 
+                expenditure), and the foreign sector (net exports). The fundamental equation expressing this relationship is:
+              </p>
+              <div className="my-6 p-5 bg-muted/40 rounded-xl font-mono text-center text-2xl border border-primary/30">
+                AD = C + I + G + (X − M)
+              </div>
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                Where <strong>C</strong> represents household consumption expenditure on goods and services, <strong>I</strong> denotes 
+                gross fixed capital formation (investment by firms in capital goods), <strong>G</strong> signifies government 
+                expenditure on goods and services (excluding transfer payments), <strong>X</strong> represents the value of 
+                exports to foreign buyers, and <strong>M</strong> represents the value of imports from abroad. The term (X − M) 
+                constitutes net exports or the trade balance. It is critical to understand that AD measures <em>planned</em> or 
+                <em>desired</em> expenditure at each price level—it is a schedule showing how much economic agents <em>intend</em> 
+                to spend, not necessarily what they actually succeed in purchasing. The downward slope of the AD curve reflects 
+                the inverse relationship between the general price level and the quantity of real GDP demanded, operating through 
+                three distinct transmission mechanisms: the wealth effect (Pigou effect), the international trade effect, and the 
+                interest rate effect (Keynes effect).
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-justify">
+                The distinction between <strong>movements along the AD curve</strong> and <strong>shifts of the AD curve</strong> 
+                is fundamental to macroeconomic analysis. A movement along the curve occurs when the price level changes—for 
+                instance, a fall in the general price level increases the real value of money holdings, improves international 
+                competitiveness, and reduces interest rates, collectively increasing the quantity of real GDP demanded. A shift 
+                of the entire AD curve, however, occurs when any factor <em>other than the price level</em> causes planned 
+                expenditure to change at every price level. These factors—known as the <strong>determinants of AD</strong>—include 
+                changes in consumer confidence, interest rates, fiscal policy, exchange rates, asset prices, and conditions in 
+                trading partner economies.
+              </p>
+            </div>
+          </div>
+
+          {/* Determinants Chain of Analysis */}
+          <ADDeterminantsDiagram />
+
+          {/* Additional Determinants Analysis */}
+          <div className="space-y-0 mt-8">
+            <div className="glass-card p-8 bg-gradient-to-br from-secondary/5 to-transparent border-l-4 border-secondary">
+              <h4 className="font-serif text-xl font-semibold text-secondary mb-6">Further Determinants: Fiscal Policy and Exchange Rates</h4>
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                <strong>Fiscal policy</strong> operates through changes in government spending (G) and taxation, directly 
+                influencing aggregate demand. An increase in government expenditure on infrastructure, defence, or public 
+                services constitutes an injection into the circular flow, shifting AD rightward. The magnitude of this effect 
+                is amplified by the <strong>multiplier process</strong>: initial government spending becomes income for 
+                households and firms, who respend a proportion determined by the marginal propensity to consume (MPC), 
+                generating successive rounds of induced expenditure. The fiscal multiplier is given by k = 1/(1 − MPC) in a 
+                closed economy, though this is reduced by withdrawals into savings, taxation, and imports. Conversely, changes 
+                in taxation affect AD indirectly through their impact on disposable income. A reduction in direct taxation 
+                increases households' post-tax income, stimulating consumption; a reduction in corporation tax improves 
+                after-tax profitability, potentially stimulating investment. The transmission mechanism operates thus: 
+                <span className="font-mono bg-muted/50 px-2 py-1 rounded mx-1">↓ Tax → ↑ Yd → ↑ C → AD shifts right</span>.
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-justify">
+                <strong>Exchange rate movements</strong> affect AD through the net exports component (X − M). A depreciation 
+                (fall) in the domestic currency's exchange rate makes exports cheaper in foreign currency terms and imports 
+                more expensive in domestic currency terms. Assuming demand is sufficiently price-elastic (the Marshall-Lerner 
+                condition), this improves the trade balance over time, shifting AD rightward. The chain of analysis proceeds: 
+                <span className="font-mono bg-muted/50 px-2 py-1 rounded mx-1">↓ Exchange rate → ↓ Px (export price) → ↑ X</span> 
+                simultaneously with 
+                <span className="font-mono bg-muted/50 px-2 py-1 rounded mx-1">↓ Exchange rate → ↑ Pm (import price) → ↓ M</span>. 
+                The net effect is an increase in (X − M) and a rightward shift in AD. However, the J-curve effect suggests 
+                that in the short run, before quantities adjust, a depreciation may initially worsen the trade balance before 
+                improving it, as import values rise immediately while export volumes respond with a lag.
+              </p>
+            </div>
+          </div>
         </ContentSection>
 
         {/* Aggregate Demand - Expanded */}
@@ -369,6 +447,111 @@ const ADASEquilibrium = () => {
               </div>
             </div>
           </NoteCard>
+        </ContentSection>
+
+        {/* AS Definition and Determinants - High-Density Academic Block */}
+        <ContentSection title="Aggregate Supply: Formal Definition and Determinants">
+          {/* Zero-Gap Dense Definition Block */}
+          <div className="space-y-0 mb-8">
+            <div className="glass-card p-8 bg-gradient-to-br from-secondary/5 to-transparent border-l-4 border-secondary">
+              <h4 className="font-serif text-xl font-semibold text-secondary mb-6">The Formal Definition of Aggregate Supply</h4>
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                Aggregate Supply (AS) is defined as the <strong>total value of goods and services that all producers in an 
+                economy are willing and able to supply at a given price level in a given time period</strong>. Unlike the 
+                supply curve in microeconomics, which relates to individual firms or industries, aggregate supply encompasses 
+                the entire productive capacity of the national economy. The analysis of AS requires a crucial distinction 
+                between two conceptually different time horizons: the <strong>Short-Run Aggregate Supply (SRAS)</strong>, 
+                where certain input prices—particularly money wages—are assumed to be fixed or "sticky"; and the 
+                <strong>Long-Run Aggregate Supply (LRAS)</strong>, where all prices and wages have fully adjusted to their 
+                market-clearing levels.
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                The <strong>Short-Run Aggregate Supply curve slopes upward</strong>, indicating that as the general price 
+                level rises, firms are willing to supply more output. This positive relationship exists because, in the short 
+                run, money wages are contractually fixed—when output prices rise but wage costs remain constant, 
+                <strong>real wages fall and profit margins widen</strong>. Firms find it profitable to hire additional workers 
+                and expand production. Alternatively, from a "sticky-wage" perspective, workers may suffer from money illusion, 
+                failing to immediately recognise that inflation has eroded their real purchasing power, and thus continue to 
+                supply labour at the existing nominal wage. As firms bid for additional workers to expand output, they may 
+                also encounter rising marginal costs from overtime pay, less efficient equipment utilisation, and bottlenecks 
+                in supply chains. These factors collectively generate the upward slope.
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-justify">
+                The <strong>Long-Run Aggregate Supply curve is vertical</strong> at the economy's potential output (Yfe or Y*)—the 
+                level of real GDP that corresponds to full employment of all factors of production. In the long run, all 
+                prices and wages are fully flexible. If the price level doubles, nominal wages will eventually double 
+                proportionally, leaving real wages unchanged. Since real wages determine equilibrium employment, and 
+                employment determines output, there is no lasting effect on real GDP from changes in the price level alone. 
+                The economy's output in the long run is determined solely by <strong>real supply-side factors</strong>: the 
+                quantity and quality of labour (L), the capital stock (K), the level of technology (T), and the efficiency 
+                of resource allocation determined by institutions and incentives.
+              </p>
+            </div>
+          </div>
+
+          {/* AS Determinants Diagram */}
+          <ASDeterminantsDiagram />
+
+          {/* SRAS Shift Determinants */}
+          <div className="space-y-0 mt-8">
+            <div className="glass-card p-8 bg-gradient-to-br from-destructive/5 to-transparent border-l-4 border-destructive">
+              <h4 className="font-serif text-xl font-semibold text-destructive mb-6">SRAS Determinants: Costs of Production</h4>
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                The position of the SRAS curve is determined by the <strong>unit costs of production</strong> facing firms 
+                across the economy. Any factor that raises costs at every level of output will shift the SRAS curve leftward 
+                (upward), as firms require a higher price to supply the same quantity. The primary determinants of SRAS 
+                include: <strong>money wage rates</strong>—the largest cost component for most firms; <strong>raw material 
+                and commodity prices</strong>—particularly energy (oil, gas), metals, and agricultural inputs; 
+                <strong>import prices</strong>—affected by exchange rate movements; <strong>indirect taxation</strong>—VAT, 
+                excise duties, and carbon taxes raise costs; and <strong>productivity levels</strong>—higher productivity 
+                reduces unit costs, shifting SRAS rightward.
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-justify">
+                Consider the chain of analysis for an <strong>oil price shock</strong>: a geopolitical conflict disrupts oil 
+                supplies, raising crude prices on world markets. This increases costs for transportation, manufacturing, 
+                and electricity generation across the economy. Firms face higher unit costs of production at every output 
+                level. The SRAS curve shifts leftward from SRAS₁ to SRAS₂. At the intersection with AD, the new equilibrium 
+                E₂ occurs at a higher price level (P₂ {'>'} P₁) and lower real output (Y₂ {'<'} Y₁). This <strong>stagflation</strong>—
+                simultaneous stagnation and inflation—represents the worst possible macroeconomic outcome: falling living 
+                standards, rising unemployment, and erosion of purchasing power through higher prices. The policy response 
+                is constrained: expansionary demand policy would add to inflationary pressures; contractionary policy would 
+                deepen the recession.
+              </p>
+            </div>
+          </div>
+
+          {/* LRAS Shift Determinants */}
+          <div className="space-y-0 mt-6">
+            <div className="glass-card p-8 bg-gradient-to-br from-accent/5 to-transparent border-l-4 border-accent">
+              <h4 className="font-serif text-xl font-semibold text-accent mb-6">LRAS Determinants: Productive Capacity</h4>
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                Shifts in the Long-Run Aggregate Supply curve represent changes in the economy's <strong>underlying 
+                productive potential</strong>—its capacity to produce goods and services at full employment. Unlike SRAS 
+                shifts, which are often temporary responses to cost shocks, LRAS shifts represent structural changes in 
+                the quantity or quality of factors of production. These supply-side improvements are the source of 
+                <strong>genuine, sustainable economic growth</strong> that raises living standards over time.
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                The determinants of LRAS can be categorised using the factors of production framework. 
+                <strong>Labour quantity</strong> increases through population growth, immigration, or rising labour force 
+                participation rates (more women entering the workforce, later retirement ages). <strong>Labour quality 
+                (human capital)</strong> improves through education, vocational training, and healthcare investment that 
+                enhances worker productivity. <strong>Physical capital</strong> expands through investment in machinery, 
+                equipment, infrastructure (roads, ports, telecommunications), and buildings. <strong>Technological 
+                progress</strong>—the application of new knowledge to production—allows more output from the same inputs, 
+                effectively shifting the production function upward. <strong>Institutional factors</strong>—property rights, 
+                rule of law, regulatory efficiency, trade openness—affect the efficiency with which resources are allocated 
+                and reduce transaction costs.
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-justify">
+                The policy implication is profound: while demand-side policies (fiscal and monetary) can stabilise output 
+                around potential in the short run, <strong>only supply-side policies can shift LRAS rightward</strong> and 
+                generate sustained improvements in real GDP per capita. Governments seeking long-run growth must invest in 
+                education and skills, incentivise research and development, maintain infrastructure, ensure competitive 
+                markets, and foster an institutional environment conducive to entrepreneurship and innovation.
+              </p>
+            </div>
+          </div>
         </ContentSection>
 
         {/* Aggregate Supply - Expanded */}
