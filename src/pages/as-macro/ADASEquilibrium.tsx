@@ -13,6 +13,12 @@ import DemandPullInflationDiagram from '@/components/diagrams/DemandPullInflatio
 import CostPushStagflationDiagram from '@/components/diagrams/CostPushStagflationDiagram';
 import ADDeterminantsDiagram from '@/components/diagrams/ADDeterminantsDiagram';
 import ASDeterminantsDiagram from '@/components/diagrams/ASDeterminantsDiagram';
+import { EquilibriumAdjustmentDiagram } from '@/components/diagrams/EquilibriumAdjustmentDiagram';
+import { OutputGapsDiagram } from '@/components/diagrams/OutputGapsDiagram';
+import { ADShiftImpactDiagram } from '@/components/diagrams/ADShiftImpactDiagram';
+import { SRASShiftStagflationDiagram } from '@/components/diagrams/SRASShiftStagflationDiagram';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 const ADASEquilibrium = () => {
   return (
