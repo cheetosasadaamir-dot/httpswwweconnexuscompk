@@ -9,6 +9,8 @@ import ComparativeAdvantageTableDiagram from '@/components/diagrams/ComparativeA
 import TradingPossibilityCurveDiagram from '@/components/diagrams/TradingPossibilityCurveDiagram';
 import TariffDeadweightDiagram from '@/components/diagrams/TariffDeadweightDiagram';
 import TradeBlocsDiagram from '@/components/diagrams/TradeBlocsDiagram';
+import TradeCreationDiagram from '@/components/diagrams/TradeCreationDiagram';
+import TradeDiversionDiagram from '@/components/diagrams/TradeDiversionDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
@@ -304,26 +306,87 @@ const InternationalTrade = () => {
             </p>
 
             <TradeBlocsDiagram />
+          </div>
+        </ContentSection>
 
-            <div className="grid md:grid-cols-2 gap-4">
-              <NoteCard title="Trade Creation (Welfare Gain)" type="theory">
-                <p className="text-sm leading-relaxed">
-                  <strong className="text-cambridge-green">Trade creation</strong> occurs when the formation of a trade bloc leads to imports from a <strong>lower-cost member country</strong> replacing higher-cost domestic production. The removal of tariffs between members allows consumers to purchase from the most efficient producer within the bloc, increasing consumer surplus and allocative efficiency. Trade creation represents a <strong>welfare gain</strong> as resources are redirected towards their comparative advantage use.
-                </p>
-              </NoteCard>
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* SECTION 6: TRADE CREATION AND TRADE DIVERSION (4.7.3) */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Trade Creation and Trade Diversion">
+          <div className="glass-card p-5 space-y-4">
+            <h3 className="font-serif text-xl text-gradient">The Welfare Economics of Customs Unions</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              The formation of a <strong className="text-foreground">Customs Union</strong>—characterised by the elimination of tariffs between member states and the adoption of a <strong className="text-secondary">Common External Tariff (CET)</strong> against non-members—produces two countervailing welfare effects that determine whether membership is beneficial or harmful for any individual country. These effects, first rigorously analysed by Jacob Viner in 1950, are termed <strong className="text-cambridge-green">Trade Creation</strong> and <strong className="text-destructive">Trade Diversion</strong>. Understanding the balance between these effects is essential for evaluating whether regional integration enhances or diminishes economic welfare, and constitutes a high-frequency examination topic requiring precise diagrammatic analysis.
+            </p>
 
-              <NoteCard title="Trade Diversion (Welfare Loss)" type="application">
+            {/* TRADE CREATION SUBSECTION */}
+            <div className="p-4 bg-cambridge-green/5 rounded-lg border border-cambridge-green/30 space-y-3">
+              <h4 className="font-serif text-lg text-cambridge-green font-semibold">Trade Creation: Definition and Welfare Analysis</h4>
+              
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                <strong className="text-foreground">Trade Creation</strong> is defined as the replacement of <strong>high-cost domestic production</strong> with <strong>lower-cost imports from a fellow member</strong> of a trading bloc, made possible by the removal of tariffs between member countries. Prior to joining the customs union, domestic producers may have been protected by tariffs that artificially raised the price of imports from the partner country. Upon entry into the union, these internal tariffs are abolished. The domestic price falls from the tariff-inclusive level (<InlineMath>{'P_{domestic} + t'}</InlineMath>) to the member country's export price (<InlineMath>{'P_{member}'}</InlineMath>). This price reduction has two distinct welfare-enhancing effects.
+              </p>
+
+              <AnalysisBlock title="Chain of Analysis: The Two Effects of Trade Creation" type="analysis">
                 <p className="text-sm leading-relaxed">
-                  <strong className="text-destructive">Trade diversion</strong> occurs when the formation of a trade bloc leads to imports from a <strong>higher-cost member country</strong> replacing lower-cost imports from non-members. Because the bloc maintains (or imposes) a common external tariff against non-members, consumers may be forced to buy from a less efficient member producer rather than a more efficient world producer. Trade diversion represents a <strong>welfare loss</strong> as the price mechanism is distorted away from global efficiency.
+                  <strong className="text-cambridge-green">First, the Production Effect:</strong> At the lower post-union price, domestic production becomes less profitable. Marginal domestic firms, whose costs lie between the old tariff-inclusive price and the new member price, exit the market or reduce output. Production contracts from <InlineMath>{'Q_S'}</InlineMath> to <InlineMath>{"Q'_S"}</InlineMath>. This is <em>efficient</em>: resources that were previously employed in domestic production—where marginal cost exceeded the world (member) price—are now released for reallocation to sectors where the country has a genuine comparative advantage. The <strong>production effect triangle</strong> represents the welfare gain from eliminating this production inefficiency. <strong className="text-cambridge-green">Second, the Consumption Effect:</strong> Lower prices expand consumer demand from <InlineMath>{'Q_D'}</InlineMath> to <InlineMath>{"Q'_D"}</InlineMath>. Consumers who were previously priced out of the market now enter, and existing consumers increase their purchases. Consumer surplus rises. The <strong>consumption effect triangle</strong> represents the welfare gain from this expanded consumption. The combined area of these two triangles is the <strong className="text-foreground">net welfare gain from trade creation</strong>—a permanent efficiency improvement resulting from the reallocation of resources according to comparative advantage principles within the bloc.
                 </p>
-              </NoteCard>
+              </AnalysisBlock>
             </div>
 
-            <AnalysisBlock title="Evaluating Trade Blocs: Creation vs. Diversion" type="evaluation">
-              <p className="text-sm leading-relaxed">
-                The net welfare effect of a trade bloc depends on whether <strong>trade creation outweighs trade diversion</strong>. A bloc is more likely to be net-beneficial when: (1) member countries have <em>different</em> comparative advantages, so there is scope for efficiency gains from intra-bloc trade; (2) the Common External Tariff (CET) is <em>low</em>, minimising the degree of trade diversion; (3) the bloc includes many countries, increasing internal competition and reducing the likelihood of intra-bloc monopolies; (4) the external tariff structure is negotiated downwards over time through WTO rounds. Critics argue that regional trade blocs, while liberalising trade among members, represent a departure from the first-best solution of <em>multilateral</em> free trade under the WTO, and may fragment the global trading system into competing blocs.
+            <TradeCreationDiagram />
+
+            {/* TRADE DIVERSION SUBSECTION */}
+            <div className="p-4 bg-destructive/5 rounded-lg border border-destructive/30 space-y-3 mt-4">
+              <h4 className="font-serif text-lg text-destructive font-semibold">Trade Diversion: Definition and Welfare Analysis</h4>
+              
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                <strong className="text-foreground">Trade Diversion</strong> is defined as the replacement of <strong>lower-cost imports from an efficient non-member country</strong> with <strong>higher-cost imports from a less efficient member country</strong>, caused by the discriminatory effect of the Common External Tariff (CET). Before joining the union, a country may import from the most efficient global producer—say, at world price <InlineMath>{'P_w'}</InlineMath>—paying a tariff that generates government revenue. After joining the customs union, imports from non-members continue to face the CET, but imports from member countries enter tariff-free. If the member country's price (<InlineMath>{'P_m'}</InlineMath>) is lower than the world price <em>plus</em> the CET (<InlineMath>{'P_w + CET'}</InlineMath>), but <strong>higher than the actual world price</strong> (<InlineMath>{'P_m > P_w'}</InlineMath>), trade is <em>diverted</em> from the efficient non-member to the less efficient member. This is the critical source of welfare loss.
               </p>
-            </AnalysisBlock>
+
+              <AnalysisBlock title="Chain of Analysis: The Mechanics of Trade Diversion Loss" type="evaluation">
+                <p className="text-sm leading-relaxed">
+                  The welfare calculus of trade diversion involves comparing gains and losses. <strong className="text-cambridge-green">Consumer Gain:</strong> The domestic price falls from <InlineMath>{'P_w + CET'}</InlineMath> to <InlineMath>{'P_m'}</InlineMath>. Consumers benefit from lower prices, and the familiar production and consumption effect triangles appear as small gains. <strong className="text-destructive">Government Loss (Tariff Revenue):</strong> Prior to the union, the government collected tariff revenue on imports from the efficient non-member. This revenue is now <strong>completely lost</strong>—the government no longer taxes imports from the member country. <strong className="text-destructive">Trade Diversion Loss Rectangle:</strong> This is the <em>critical</em> welfare loss. On every unit of imports now purchased from the member country, the country pays <InlineMath>{'P_m'}</InlineMath> instead of the true world price <InlineMath>{'P_w'}</InlineMath>. The difference (<InlineMath>{'P_m - P_w'}</InlineMath>) multiplied by the quantity of imports represents a transfer of purchasing power from the importing country to the less efficient member producer. This payment <strong>buys nothing additional</strong>—it simply compensates the member country for its higher production costs. If the area of the <strong className="text-destructive">trade diversion loss rectangle</strong> exceeds the sum of the small consumer surplus triangles, the country suffers a <strong>net welfare loss</strong> from joining the customs union.
+                </p>
+              </AnalysisBlock>
+            </div>
+
+            <TradeDiversionDiagram />
+
+            {/* FACTORS DETERMINING NET WELFARE EFFECT */}
+            <div className="p-4 bg-muted/30 rounded-lg border border-border space-y-3 mt-4">
+              <h4 className="font-semibold text-foreground">Factors Determining Whether Trade Creation Outweighs Trade Diversion</h4>
+              
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div className="space-y-2">
+                  <p className="font-semibold text-cambridge-green">Trade Creation Dominates When:</p>
+                  <ul className="text-xs text-muted-foreground space-y-1">
+                    <li>• Member countries have <strong>different</strong> comparative advantages, enabling efficient intra-bloc specialisation</li>
+                    <li>• The bloc includes <strong>many countries</strong> with diverse production structures, increasing internal competition</li>
+                    <li>• Pre-union tariffs between members were <strong>high</strong>, so their removal generates large price reductions</li>
+                    <li>• Member producers are <strong>close to world-efficiency levels</strong>, minimising the cost disadvantage relative to non-members</li>
+                    <li>• Demand elasticities are <strong>high</strong>, so consumers respond strongly to price falls</li>
+                  </ul>
+                </div>
+                <div className="space-y-2">
+                  <p className="font-semibold text-destructive">Trade Diversion Dominates When:</p>
+                  <ul className="text-xs text-muted-foreground space-y-1">
+                    <li>• The <strong>Common External Tariff is high</strong>, creating a large price wedge against efficient non-members</li>
+                    <li>• Member countries are <strong>significantly less efficient</strong> than the best global producers</li>
+                    <li>• The bloc includes <strong>few countries</strong> with similar production structures, limiting scope for intra-bloc gains</li>
+                    <li>• A large share of pre-union trade was with <strong>efficient non-members</strong> who are now discriminated against</li>
+                    <li>• The importing country's domestic production is <strong>small</strong>, limiting the production effect gain</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <ExamTipBox title="Critical Evaluation: A Second-Best Outcome" variant="gold">
+              <p className="text-sm leading-relaxed">
+                "Ultimately, Trade Diversion is a <strong>second-best outcome</strong>. While customs unions may facilitate regional cooperation, political integration, and larger internal markets, they represent a departure from the <strong>first-best solution</strong> of multilateral free trade where all countries trade with the most efficient global producers regardless of political bloc membership. Trade diversion <strong>violates the principle of global comparative advantage</strong> by discriminating against the most efficient world producers purely on the basis of political bloc membership. The net welfare effect of joining a customs union is empirically determined by the balance between creation and diversion, and cannot be presumed positive. A high-scoring essay must demonstrate awareness that regional integration, while politically attractive, may be economically inferior to non-discriminatory multilateral liberalisation under the WTO."
+              </p>
+            </ExamTipBox>
           </div>
         </ContentSection>
 
