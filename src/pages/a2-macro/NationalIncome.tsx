@@ -7,6 +7,7 @@ import ContentSection from '@/components/ContentSection';
 import CircularFlowDiagram from '@/components/diagrams/CircularFlowDiagram';
 import ConsumptionFunctionDiagram from '@/components/diagrams/ConsumptionFunctionDiagram';
 import KeynesianCrossDiagram from '@/components/diagrams/KeynesianCrossDiagram';
+import AEModelDiagram from '@/components/diagrams/AEModelDiagram';
 import MultiplierDiagram from '@/components/diagrams/MultiplierDiagram';
 import MECCurveDiagram from '@/components/diagrams/MECCurveDiagram';
 import AcceleratorDiagram from '@/components/diagrams/AcceleratorDiagram';
@@ -627,193 +628,216 @@ const NationalIncome = () => {
           </ExamTipBox>
         </ContentSection>
 
-        {/* Topic 6: Keynesian Cross */}
-        <ContentSection title="Topic 6: Keynesian Cross" id="keynesian-cross">
-          <NoteCard title="The 45-Degree Line Model" type="concept">
-            <p>
-              The <strong>Keynesian Cross</strong> (or 45-degree line model) shows how equilibrium 
-              national income is determined. All injections are assumed to be autonomous of national output.
+        {/* Topic 6: The Aggregate Expenditure Model (Keynesian Cross) - A2 Level */}
+        <ContentSection title="Topic 6: The Aggregate Expenditure Model (Keynesian Cross)" id="ae-model">
+          <div className="space-y-0">
+            <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
+              The <strong className="text-silver-bright">Aggregate Expenditure (AE) Model</strong>, also known as the Keynesian Cross or 45-degree line diagram, provides the foundational framework for analyzing short-run equilibrium national income determination within the Keynesian paradigm. This model directly challenges the <strong className="text-cambridge-orange">classical doctrine of Say's Law</strong>—the assertion that "supply creates its own demand"—by demonstrating that equilibrium can occur at output levels substantially below full employment capacity. The model's central proposition is that equilibrium national income is determined where <strong>planned (ex-ante) aggregate expenditure equals actual (ex-post) national output</strong>, expressed mathematically as <InlineMath math="Y^* = AE" /> where <InlineMath math="AE = C + I + G + (X - M)" />. The 45-degree line serves as the geometric locus of all points where this equilibrium condition is satisfied, since any point on this line represents equality between the horizontal axis (real national income <InlineMath math="Y" />) and the vertical axis (aggregate expenditure <InlineMath math="AE" />). The aggregate expenditure function itself is constructed by vertically summing the consumption function <InlineMath math="C = a + bY_d" /> with autonomous injections, yielding a line with intercept equal to <strong>total autonomous expenditure</strong> (<InlineMath math="A = a + I + G + X" />) and slope equal to the <strong>Marginal Propensity to Consume</strong> (MPC).
             </p>
-            <div className="mt-4 p-4 bg-primary/10 rounded-lg text-center">
-              <p className="font-mono text-lg font-bold text-primary">
-                Equilibrium: AD = Y (i.e., AE = National Output)
+
+            <div className="text-center p-4 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20 mb-4">
+              <p className="text-xs text-muted-foreground mb-2">Equilibrium Condition</p>
+              <BlockMath math="Y^* = AE = C + I + G + (X - M) = a + bY + I + G + (X - M)" />
+              <p className="text-xs text-muted-foreground mt-2">
+                Solving: <InlineMath math="Y^* = \frac{A}{1 - MPC} = \frac{A}{MPW} = A \times k" /> where <InlineMath math="A" /> = total autonomous expenditure
               </p>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              <strong>Note:</strong> The Aggregate Demand schedule is: AD = C + I + G + (X - M). 
-              The slope of the AD curve depends on the marginal propensity to consume (MPC).
+
+            <div className="my-4">
+              <AEModelDiagram title="The Aggregate Expenditure Model: Ex-Ante Equilibrium & Multiplier" />
+            </div>
+
+            <AnalysisBlock title="Chain of Analysis (AO3): Ex-Ante vs. Ex-Post & The Inventory Adjustment Mechanism" type="analysis">
+              <div className="space-y-3 text-xs">
+                <p className="text-muted-foreground leading-relaxed text-justify">
+                  The distinction between <strong className="text-cambridge-cyan">ex-ante (planned)</strong> and <strong className="text-cambridge-magenta">ex-post (actual)</strong> values is fundamental to understanding the disequilibrium adjustment process. In any given period, households and firms make <em>planned</em> decisions about consumption, saving, and investment based on their expectations. However, actual outcomes may differ from plans due to unexpected changes in inventory levels—the crucial buffer variable that absorbs the difference between planned expenditure and actual output. This inventory adjustment mechanism provides the self-correcting force that drives the economy toward equilibrium.
+                </p>
+                <div className="p-3 bg-cambridge-green/10 rounded-lg border-l-3 border-cambridge-green">
+                  <p className="font-semibold text-cambridge-green mb-2">Case 1: Excess Demand (AE &gt; Y) — Unplanned Inventory Depletion</p>
+                  <p className="text-muted-foreground leading-relaxed text-justify">
+                    When planned aggregate expenditure exceeds current output (<InlineMath math="AE > Y" />), demand outstrips supply and firms experience <strong>unexpected stock depletion</strong>. Inventories fall below target levels as goods are sold faster than they can be produced. This signals to profit-maximizing firms that market demand exceeds their current production capacity. Rational response: firms <strong>increase output</strong> by hiring additional labor, extending working hours, and expanding capacity utilization. This output expansion generates additional factor incomes (wages, profits), which through the induced consumption mechanism triggers further rounds of spending. National income rises toward the equilibrium level where <InlineMath math="AE = Y" />.
+                  </p>
+                </div>
+                <div className="p-3 bg-cambridge-magenta/10 rounded-lg border-l-3 border-cambridge-magenta">
+                  <p className="font-semibold text-cambridge-magenta mb-2">Case 2: Deficient Demand (AE &lt; Y) — Unplanned Inventory Accumulation</p>
+                  <p className="text-muted-foreground leading-relaxed text-justify">
+                    When planned aggregate expenditure falls short of current output (<InlineMath math="AE < Y" />), supply exceeds demand and firms experience <strong>unexpected stock accumulation</strong>—goods pile up in warehouses unsold. This unplanned inventory investment signals that production has exceeded market requirements. Rational response: firms <strong>cut production</strong>, reduce labor demand through layoffs or reduced hours, and scale back capacity utilization. The resulting fall in factor incomes triggers negative multiplier effects as reduced consumption propagates through the economy. National income contracts toward equilibrium.
+                  </p>
+                </div>
+                <div className="text-center p-3 bg-muted/30 rounded-lg mt-3">
+                  <p className="text-xs font-mono">
+                    <strong>Equilibrium Identity:</strong> At <InlineMath math="Y^*" />: Planned AE = Actual Y = Planned Output
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Unplanned Inventory Change = <InlineMath math="Y - AE = 0" />
+                  </p>
+                </div>
+              </div>
+            </AnalysisBlock>
+
+            <h3 className="font-serif text-xl font-semibold mt-8 mb-4 text-silver-bright">
+              Inflationary and Deflationary (Recessionary) Gaps
+            </h3>
+
+            <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
+              The <strong className="text-silver-bright">output gap</strong> concept extends the AE framework to analyze deviations between equilibrium and full employment output. A <strong className="text-cambridge-magenta">deflationary (recessionary) gap</strong> exists when equilibrium national income falls below full employment output (<InlineMath math="Y^* < Y_f" />), representing a situation of <strong>demand deficiency</strong> where the economy operates with involuntary unemployment and underutilized capacity. Conversely, an <strong className="text-cambridge-orange">inflationary gap</strong> occurs when equilibrium income exceeds full employment output (<InlineMath math="Y^* > Y_f" />), representing <strong>excess aggregate demand</strong> that cannot be satisfied through increased real output and therefore manifests as demand-pull inflation. The magnitude of these gaps is measured not by the difference in income levels but by the <strong>difference in autonomous expenditure</strong> required to shift AE such that equilibrium occurs at <InlineMath math="Y_f" />.
             </p>
-          </NoteCard>
 
-          <div className="my-4">
-            <KeynesianCrossDiagram />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-4 bg-cambridge-green/10 rounded-lg border border-cambridge-green/20">
-              <h5 className="font-semibold text-cambridge-green mb-2">AD &gt; Output</h5>
-              <p className="text-sm text-muted-foreground">
-                If aggregate demand exceeds output, firms experience unplanned inventory depletion. 
-                There is an incentive for firms to <strong>produce more</strong>, and national income rises.
-              </p>
+            <div className="grid md:grid-cols-2 gap-4 mb-4">
+              <div className="p-4 bg-cambridge-magenta/10 rounded-lg border border-cambridge-magenta/20">
+                <h5 className="font-semibold text-cambridge-magenta mb-2 flex items-center gap-2">
+                  <span>Deflationary (Recessionary) Gap</span>
+                </h5>
+                <div className="text-center py-2 mb-2 bg-muted/30 rounded">
+                  <InlineMath math="Y^* < Y_f \Rightarrow \text{Demand Deficiency}" />
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Equilibrium occurs below full employment. <strong>Involuntary unemployment</strong> persists because wages are "sticky downwards"—trade unions, contracts, and efficiency wage concerns prevent nominal wage cuts. Without government intervention, the economy may remain trapped in this <strong>under-employment equilibrium</strong> indefinitely, validating Keynes's rejection of automatic market clearing.
+                </p>
+                <div className="mt-3 p-2 bg-cambridge-cyan/10 rounded text-xs">
+                  <strong className="text-cambridge-cyan">Policy Response:</strong> Expansionary fiscal policy (↑G or ↓T) to shift AE upward and close the gap via the multiplier.
+                </div>
+              </div>
+              <div className="p-4 bg-cambridge-orange/10 rounded-lg border border-cambridge-orange/20">
+                <h5 className="font-semibold text-cambridge-orange mb-2 flex items-center gap-2">
+                  <span>Inflationary Gap</span>
+                </h5>
+                <div className="text-center py-2 mb-2 bg-muted/30 rounded">
+                  <InlineMath math="Y^* > Y_f \Rightarrow \text{Excess Demand}" />
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Aggregate demand exceeds the economy's productive capacity at full employment. Since real output cannot expand beyond <InlineMath math="Y_f" />, excess demand translates into <strong>demand-pull inflation</strong> as firms raise prices in response to persistent excess demand. Factor markets tighten, pushing up wage costs and reinforcing inflationary pressures through cost-push mechanisms.
+                </p>
+                <div className="mt-3 p-2 bg-destructive/10 rounded text-xs">
+                  <strong className="text-destructive">Policy Response:</strong> Contractionary fiscal policy (↓G or ↑T) to shift AE downward and eliminate excess demand.
+                </div>
+              </div>
             </div>
-            <div className="p-4 bg-cambridge-magenta/10 rounded-lg border border-cambridge-magenta/20">
-              <h5 className="font-semibold text-cambridge-magenta mb-2">AD &lt; Output</h5>
-              <p className="text-sm text-muted-foreground">
-                If aggregate demand is less than output, firms experience unplanned inventory accumulation. 
-                There is an incentive for firms to <strong>produce less</strong>, and national income falls.
-              </p>
-            </div>
-          </div>
 
-          <h3 className="font-serif text-xl font-semibold mt-8 mb-4 text-silver-bright">
-            Inflationary and Deflationary Gaps
-          </h3>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <NoteCard title="Inflationary Gap" type="concept">
-              <p>
-                An <strong>inflationary gap</strong> exists when equilibrium national income exceeds 
-                full-employment national income. Excess aggregate demand causes <strong>demand-pull inflation</strong>.
+            <ExamTipBox title="Senior Examiner's Conclusion: The Keynesian Under-Employment Equilibrium" variant="gold">
+              <p className="text-xs leading-relaxed text-justify">
+                <strong>Ultimately</strong>, the Keynesian AE model demonstrates that a market economy possesses <strong>no automatic mechanism to ensure equilibrium occurs at full employment</strong>. Unlike the classical paradigm where flexible wages and prices guarantee market clearing, the Keynesian framework shows that equilibrium is determined solely by the intersection of the AE function with the 45-degree line—a purely <strong>demand-side determination</strong> that may occur at any output level. The economy can settle at an "under-employment equilibrium" where significant spare capacity and involuntary unemployment persist indefinitely because <strong>wage stickiness</strong> prevents the classical adjustment mechanism from operating. This theoretical insight provides the intellectual foundation for discretionary fiscal policy: if aggregate demand is insufficient to generate full employment, the government must actively manage AD through changes in <InlineMath math="G" /> and <InlineMath math="T" /> to shift the AE function and close recessionary gaps. As Keynes famously argued, waiting for long-run market adjustments is economically unacceptable—"in the long run, we are all dead."
               </p>
-              <p className="mt-3 text-sm text-muted-foreground">
-                <strong>Policy Response:</strong> Contractionary fiscal policy (reduce G, increase T) or 
-                contractionary monetary policy (raise interest rates).
-              </p>
-            </NoteCard>
-
-            <NoteCard title="Deflationary Gap" type="concept">
-              <p>
-                A <strong>deflationary gap</strong> exists when equilibrium national income is below 
-                full-employment national income. Deficient aggregate demand causes <strong>unemployment</strong>.
-              </p>
-              <p className="mt-3 text-sm text-muted-foreground">
-                <strong>Policy Response:</strong> Expansionary fiscal policy (increase G, reduce T) or 
-                expansionary monetary policy (lower interest rates).
-              </p>
-            </NoteCard>
+            </ExamTipBox>
           </div>
         </ContentSection>
 
-        {/* Topic 7: Keynesian Multiplier */}
-        <ContentSection title="Topic 7: Keynesian Multiplier" id="multiplier">
-          <NoteCard title="What is the Multiplier?" type="concept">
-            <p className="text-sm">
-              The <strong>multiplier (k)</strong> describes the phenomenon whereby an initial increase in 
-              injections (J) leads to a <strong>larger final increase in national income</strong>. This occurs 
-              because one person's spending becomes another person's income, which is then partially spent again.
+        {/* Topic 7: The Multiplier & Marginal Propensities (A2 Level) */}
+        <ContentSection title="Topic 7: The Multiplier Effect & Marginal Propensities" id="multiplier">
+          <div className="space-y-0">
+            <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
+              The <strong className="text-silver-bright">Keynesian Multiplier</strong> represents the mechanism whereby an initial autonomous injection into the circular flow generates a <strong>magnified final impact</strong> on equilibrium national income. The multiplier coefficient <InlineMath math="k" /> quantifies the ratio of the final change in income to the initial autonomous expenditure change: <InlineMath math="k = \frac{\Delta Y}{\Delta A}" />. The transmission operates through successive rounds of induced consumption: an initial autonomous injection (whether <InlineMath math="\Delta I" />, <InlineMath math="\Delta G" />, or <InlineMath math="\Delta X" />) creates income for factor owners (wages, profits, rent, interest), who subsequently spend a fraction—determined by the <strong>Marginal Propensity to Consume</strong> (MPC)—on domestic consumption, thereby generating further incomes and further consumption in a <strong>geometric series</strong> that converges to a finite sum determined by the marginal propensity to withdraw. The critical insight is that the multiplier's magnitude is <strong>inversely related</strong> to the total leakage rate from the circular flow: economies with higher savings rates, tax burdens, or import propensities exhibit smaller multipliers because a greater fraction of each income increment "leaks" out before generating subsequent rounds of domestic spending.
             </p>
-            <div className="mt-3 p-3 bg-muted/30 rounded-lg">
-              <p className="font-mono text-center text-sm">
-                Multiplier (k) = ΔY / ΔI = Change in Income / Change in Injections
+
+            <div className="text-center p-4 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20 mb-4">
+              <p className="text-xs text-muted-foreground mb-2">The Multiplier Formula (Open Economy)</p>
+              <BlockMath math="k = \frac{1}{1 - MPC + MPM} = \frac{1}{MPS + MPT + MPM} = \frac{1}{MPW}" />
+              <p className="text-xs text-muted-foreground mt-2">
+                where <InlineMath math="MPW" /> = Marginal Propensity to Withdraw = <InlineMath math="MPS + MPT + MPM" />
               </p>
             </div>
-          </NoteCard>
 
-          <div className="my-3">
-            <MultiplierDiagram sectors={2} />
-          </div>
-
-          <NoteCard title="Multiplier Formulas by Sector Model" type="formula">
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs border border-muted rounded-lg overflow-hidden">
-                <thead className="bg-muted/30">
-                  <tr>
-                    <th className="py-2 px-3 text-left">Sector Model</th>
-                    <th className="py-2 px-3 text-left">Description</th>
-                    <th className="py-2 px-3 text-left">Multiplier Formula</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-t border-muted">
-                    <td className="py-2 px-3 font-medium text-cambridge-cyan">Two-Sector</td>
-                    <td className="py-2 px-3 text-muted-foreground">Households and firms only. Closed economy, no government.</td>
-                    <td className="py-2 px-3 font-mono text-cambridge-cyan">k = 1 / (1 - MPC) = 1 / MPS</td>
-                  </tr>
-                  <tr className="border-t border-muted">
-                    <td className="py-2 px-3 font-medium text-cambridge-magenta">Three-Sector</td>
-                    <td className="py-2 px-3 text-muted-foreground">Adds government sector with taxation.</td>
-                    <td className="py-2 px-3 font-mono text-cambridge-magenta">k = 1 / (MPS + MPT)</td>
-                  </tr>
-                  <tr className="border-t border-muted">
-                    <td className="py-2 px-3 font-medium text-cambridge-green">Four-Sector</td>
-                    <td className="py-2 px-3 text-muted-foreground">Adds foreign sector (X and M). Most realistic model.</td>
-                    <td className="py-2 px-3 font-mono text-cambridge-green">k = 1 / (MPS + MPT + MPM)</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="my-4">
+              <MultiplierDiagram sectors={4} title="The Four-Sector Multiplier: Injections, Withdrawals & Transmission" />
             </div>
-            <p className="mt-2 text-xs text-muted-foreground">
-              <strong>Note:</strong> MPC + MPS = 1 in a two-sector model. In multi-sector models, 
-              the marginal propensities to withdraw (MPS + MPT + MPM) determine the multiplier size.
-            </p>
-          </NoteCard>
 
-          <AnalysisBlock title="Chain of Reasoning (AO3): The Multiplier Process" type="analysis">
-            <div className="space-y-2 text-xs">
-              <p className="text-muted-foreground">
-                <strong>PEEL Structure — The Multiplier Transmission Mechanism:</strong>
-              </p>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <p className="font-semibold mb-1">Step-by-Step Process (Example: MPC = 0.8, Initial ΔI = £100m):</p>
-                <div className="space-y-1 text-muted-foreground">
-                  <p><strong>Round 1:</strong> Firms receive £100m investment → Pay wages/profits → Households receive £100m income</p>
-                  <p><strong>Round 2:</strong> Households spend 80% (£80m) on consumption → Firms receive £80m → Pay incomes → Households receive £80m</p>
-                  <p><strong>Round 3:</strong> Households spend 80% of £80m (£64m) → Process continues...</p>
-                  <p><strong>Final Effect:</strong> ΔY = £100m × (1/0.2) = £100m × 5 = <strong>£500m</strong></p>
+            <AnalysisBlock title="Chain of Analysis (AO3): The Multiplier Transmission Mechanism" type="analysis">
+              <div className="space-y-3 text-xs">
+                <p className="text-muted-foreground leading-relaxed text-justify">
+                  The multiplier process can be mathematically derived as a convergent geometric series. Consider an initial autonomous injection <InlineMath math="\Delta A = £100m" /> with <InlineMath math="MPC = 0.75" /> and no taxation or imports (simple two-sector model). The transmission proceeds as follows:
+                </p>
+                <div className="p-3 bg-cambridge-cyan/10 rounded-lg border-l-3 border-cambridge-cyan">
+                  <p className="font-semibold text-cambridge-cyan mb-2">Round-by-Round Transmission (MPC = 0.75, ΔA = £100m)</p>
+                  <div className="grid grid-cols-5 gap-2 text-center font-mono text-[10px] mb-2">
+                    <div className="p-1 bg-muted/30 rounded"><strong>Round</strong></div>
+                    <div className="p-1 bg-muted/30 rounded"><strong>ΔY</strong></div>
+                    <div className="p-1 bg-muted/30 rounded"><strong>ΔC</strong></div>
+                    <div className="p-1 bg-muted/30 rounded"><strong>ΔS</strong></div>
+                    <div className="p-1 bg-muted/30 rounded"><strong>Cumulative ΔY</strong></div>
+                    <div className="p-1">1</div><div className="p-1">£100m</div><div className="p-1">£75m</div><div className="p-1">£25m</div><div className="p-1">£100m</div>
+                    <div className="p-1">2</div><div className="p-1">£75m</div><div className="p-1">£56.25m</div><div className="p-1">£18.75m</div><div className="p-1">£175m</div>
+                    <div className="p-1">3</div><div className="p-1">£56.25m</div><div className="p-1">£42.19m</div><div className="p-1">£14.06m</div><div className="p-1">£231.25m</div>
+                    <div className="p-1">4</div><div className="p-1">£42.19m</div><div className="p-1">£31.64m</div><div className="p-1">£10.55m</div><div className="p-1">£273.44m</div>
+                    <div className="p-1">∞</div><div className="p-1 text-cambridge-cyan font-bold">→</div><div className="p-1">→</div><div className="p-1">→</div><div className="p-1 text-cambridge-cyan font-bold">£400m</div>
+                  </div>
+                  <p className="text-muted-foreground text-center mt-2">
+                    <InlineMath math="\Delta Y = \Delta A \times k = £100m \times \frac{1}{0.25} = £100m \times 4 = £400m" />
+                  </p>
+                </div>
+                <div className="text-center p-3 bg-muted/30 rounded-lg">
+                  <p className="text-xs font-mono">
+                    <strong>Geometric Series:</strong> <InlineMath math="\Delta Y = \Delta A (1 + MPC + MPC^2 + MPC^3 + ...) = \frac{\Delta A}{1 - MPC}" />
+                  </p>
                 </div>
               </div>
-              <div className="p-2 bg-cambridge-cyan/10 rounded-lg">
-                <p className="font-semibold text-cambridge-cyan mb-1">Why the Process Ends:</p>
-                <p className="text-muted-foreground">
-                  Each round "leaks" income to savings (MPS), taxation (MPT), and imports (MPM). Since MPC &lt; 1, 
-                  each successive round of spending is smaller than the previous one. The geometric series converges 
-                  to a finite sum: ΔY = ΔI × k where k = 1/(1-MPC) = 1/MPW.
+            </AnalysisBlock>
+
+            <NoteCard title="The Marginal Propensities: Determinants of Multiplier Size" type="formula">
+              <div className="grid md:grid-cols-3 gap-3 text-xs mt-3">
+                <div className="p-3 bg-cambridge-cyan/10 rounded-lg border-l-3 border-cambridge-cyan">
+                  <h5 className="font-semibold text-cambridge-cyan mb-1">Marginal Propensity to Save (MPS)</h5>
+                  <div className="font-mono text-center py-1 mb-2 bg-muted/30 rounded">
+                    <InlineMath math="MPS = \frac{\Delta S}{\Delta Y}" />
+                  </div>
+                  <p className="text-muted-foreground">
+                    Fraction of additional income allocated to saving. Higher MPS → lower MPC → <strong>smaller multiplier</strong>. Constrained by: <InlineMath math="MPC + MPS = 1" />.
+                  </p>
+                </div>
+                <div className="p-3 bg-cambridge-magenta/10 rounded-lg border-l-3 border-cambridge-magenta">
+                  <h5 className="font-semibold text-cambridge-magenta mb-1">Marginal Propensity to Tax (MPT)</h5>
+                  <div className="font-mono text-center py-1 mb-2 bg-muted/30 rounded">
+                    <InlineMath math="MPT = \frac{\Delta T}{\Delta Y}" />
+                  </div>
+                  <p className="text-muted-foreground">
+                    Fraction of additional income absorbed by taxation (progressive tax systems). Higher MPT → greater fiscal leakage → <strong>smaller multiplier</strong>.
+                  </p>
+                </div>
+                <div className="p-3 bg-cambridge-orange/10 rounded-lg border-l-3 border-cambridge-orange">
+                  <h5 className="font-semibold text-cambridge-orange mb-1">Marginal Propensity to Import (MPM)</h5>
+                  <div className="font-mono text-center py-1 mb-2 bg-muted/30 rounded">
+                    <InlineMath math="MPM = \frac{\Delta M}{\Delta Y}" />
+                  </div>
+                  <p className="text-muted-foreground">
+                    Fraction of additional income spent on imports. Open economies with high import dependence exhibit <strong>smaller multipliers</strong> due to external leakage.
+                  </p>
+                </div>
+              </div>
+            </NoteCard>
+
+            <AnalysisBlock title="Critical Evaluation (AO4): Multiplier Effectiveness & Limitations" type="evaluation">
+              <div className="space-y-3 text-xs">
+                <p className="text-muted-foreground leading-relaxed text-justify">
+                  The effectiveness of the fiscal multiplier as a policy instrument is contingent upon multiple factors that A2 candidates must evaluate systematically. Empirical estimates for developed economies suggest actual multipliers range from <strong>1.5–2.5</strong> during recessions (with spare capacity) but fall toward <strong>0.5–1.0</strong> when economies approach full employment—substantially below theoretical maxima due to significant real-world leakages and offsetting mechanisms.
                 </p>
+                <div className="grid md:grid-cols-2 gap-3">
+                  <div className="p-3 bg-destructive/10 rounded-lg border border-destructive/30">
+                    <h5 className="font-semibold text-destructive mb-2">Factors Reducing Multiplier Effectiveness</h5>
+                    <ul className="space-y-1 text-muted-foreground">
+                      <li><strong>• Crowding Out:</strong> ↑G → ↑Government Borrowing → ↑Interest Rates → ↓Private Investment → partial/full offset of fiscal stimulus</li>
+                      <li><strong>• Ricardian Equivalence:</strong> Rational consumers anticipate future tax increases to repay government debt → ↑Saving today → ↓Consumption (neutralizing fiscal impact)</li>
+                      <li><strong>• Import Leakage:</strong> In open economies, significant proportion of induced consumption "leaks" abroad via imports, generating income for foreign rather than domestic producers</li>
+                      <li><strong>• Time Lags:</strong> Recognition, decision, and implementation lags mean fiscal stimulus may arrive too late, potentially becoming pro-cyclical</li>
+                    </ul>
+                  </div>
+                  <div className="p-3 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/30">
+                    <h5 className="font-semibold text-cambridge-cyan mb-2">Conditions for Maximum Effectiveness</h5>
+                    <ul className="space-y-1 text-muted-foreground">
+                      <li><strong>• Significant Spare Capacity:</strong> Horizontal/elastic section of Keynesian AS curve allows real output expansion without inflation</li>
+                      <li><strong>• Low Interest Rate Sensitivity:</strong> If investment is interest-inelastic, crowding out effect is minimized</li>
+                      <li><strong>• Liquidity Trap:</strong> When monetary policy is ineffective, fiscal multiplier becomes the primary stabilization tool</li>
+                      <li><strong>• Targeted Spending:</strong> Transfers to low-income households (high MPC) generate larger multipliers than tax cuts for wealthy (high MPS)</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-          </AnalysisBlock>
+            </AnalysisBlock>
 
-          <AnalysisBlock title="Critical Evaluation (AO4): Multiplier Limitations" type="evaluation">
-            <div className="grid md:grid-cols-3 gap-2 text-xs">
-              <div className="p-2 bg-destructive/10 rounded-lg">
-                <h5 className="font-semibold text-destructive mb-1">Time Lags</h5>
-                <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
-                  <li>Full effect takes 12-18 months</li>
-                  <li>Policy may be pro-cyclical by accident</li>
-                  <li>Recognition lag delays response</li>
-                </ul>
-              </div>
-              <div className="p-2 bg-cambridge-orange/10 rounded-lg">
-                <h5 className="font-semibold text-cambridge-orange mb-1">At Full Employment</h5>
-                <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
-                  <li>No spare capacity → ↑P not ↑Y</li>
-                  <li>Multiplier leads to inflation</li>
-                  <li>Real GDP unchanged</li>
-                </ul>
-              </div>
-              <div className="p-2 bg-cambridge-magenta/10 rounded-lg">
-                <h5 className="font-semibold text-cambridge-magenta mb-1">Crowding Out</h5>
-                <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
-                  <li>↑G → ↑Borrowing → ↑r</li>
-                  <li>↑r → ↓Private Investment</li>
-                  <li>Net multiplier effect reduced</li>
-                </ul>
-              </div>
-            </div>
-            <div className="mt-2 p-2 bg-muted/30 rounded-lg text-xs text-muted-foreground">
-              <strong>Examiner Note:</strong> The actual multiplier in developed economies is typically 1.5-2.0, 
-              smaller than theoretical models suggest due to high tax rates, import propensity, and crowding out effects.
-            </div>
-          </AnalysisBlock>
-
-          <ExamTipBox title="Cambridge Examiner Expectation">
-            <p className="text-xs">
-              When explaining the multiplier, show the <strong>step-by-step process</strong> with numerical examples. 
-              Explain that the process ends because each round "leaks" some income to savings, taxes, and imports. 
-              Always evaluate: "However, the size of the multiplier depends on the state of the economy and the marginal propensities to withdraw..."
-            </p>
-          </ExamTipBox>
+            <ExamTipBox title="Senior Examiner's Conclusion: The Multiplier & Fiscal Policy Efficacy" variant="gold">
+              <p className="text-xs leading-relaxed text-justify">
+                <strong>In conclusion</strong>, the effectiveness of Keynesian fiscal policy through the multiplier mechanism is critically <strong>state-contingent</strong>. During deep recessions characterized by significant output gaps, wage stickiness, and monetary policy paralysis at the zero lower bound, fiscal multipliers can exceed unity and provide substantial macroeconomic stimulus with minimal inflationary consequences. However, near full employment, the multiplier's impact manifests primarily as <strong>demand-pull inflation</strong> rather than real output expansion, and the "Crowding Out" effect may substantially neutralize fiscal stimulus by displacing private investment. Furthermore, in highly open economies with elevated import propensities, a significant portion of the multiplier "leaks" abroad, reducing domestic effectiveness while stimulating foreign economies—an effect that may necessitate international policy coordination for optimal outcomes. The ultimate judgment on fiscal multiplier effectiveness must therefore weigh the cyclical position of the economy, the monetary policy stance, the degree of economic openness, and the composition of fiscal changes.
+              </p>
+            </ExamTipBox>
+          </div>
         </ContentSection>
 
         {/* Topic 8: Paradox of Thrift */}
