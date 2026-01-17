@@ -11,6 +11,7 @@ import InteractivePPCEngine from '@/components/InteractivePPCEngine';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
 import { Button } from '@/components/ui/button';
+import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
 const features = [
   {
@@ -31,6 +32,8 @@ const features = [
 ];
 
 const Index = () => {
+  const { scrollToNotesRepository } = useSmoothScroll();
+
   return (
     <div className="min-h-screen relative">
       <FluidGraphiteBackground />
@@ -82,24 +85,22 @@ const Index = () => {
                   className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                 >
                   <Button
-                    asChild
                     size="lg"
-                    className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-medium rounded-xl group"
+                    onClick={() => scrollToNotesRepository()}
+                    className="cta-amber-glow relative overflow-hidden bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 py-6 text-lg font-medium rounded-xl group cursor-pointer"
                   >
-                    <Link to="/market-structures">
-                      <motion.span
-                        className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity"
-                        animate={{
-                          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                        }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                        style={{ backgroundSize: '200% 200%' }}
-                      />
-                      <span className="relative flex items-center gap-2">
-                        Start Learning
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </Link>
+                    <motion.span
+                      className="absolute inset-0 bg-gradient-to-r from-secondary via-amber-400 to-secondary opacity-0 group-hover:opacity-100 transition-opacity"
+                      animate={{
+                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                      }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                      style={{ backgroundSize: '200% 200%' }}
+                    />
+                    <span className="relative flex items-center gap-2">
+                      Start Learning
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
                   </Button>
                 </motion.div>
               </div>
@@ -122,8 +123,8 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
-        {/* Knowledge Pillars Section */}
-        <section className="py-24 lg:py-32">
+        {/* Knowledge Pillars / Notes Repository Section */}
+        <section id="notes-repository" className="py-24 lg:py-32 scroll-mt-20 transition-all duration-500">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -131,6 +132,9 @@ const Index = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
+              <span className="inline-block px-4 py-1.5 rounded-full glass-card text-sm text-secondary mb-6">
+                📚 Notes Repository
+              </span>
               <h2 className="font-serif text-4xl lg:text-5xl font-bold section-title mb-4">
                 Knowledge Pillars
               </h2>
@@ -264,14 +268,12 @@ const Index = () => {
                 Your A* journey starts here.
               </p>
               <Button
-                asChild
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-6 text-lg rounded-xl animate-glow"
+                onClick={() => scrollToNotesRepository()}
+                className="cta-amber-glow bg-secondary hover:bg-secondary/90 text-secondary-foreground px-10 py-6 text-lg rounded-xl cursor-pointer"
               >
-                <Link to="/market-structures">
-                  Begin Your Journey
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
+                Begin Your Journey
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </motion.div>
           </div>
