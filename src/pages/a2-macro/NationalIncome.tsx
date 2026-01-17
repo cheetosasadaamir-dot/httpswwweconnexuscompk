@@ -11,6 +11,10 @@ import MultiplierDiagram from '@/components/diagrams/MultiplierDiagram';
 import MECCurveDiagram from '@/components/diagrams/MECCurveDiagram';
 import AcceleratorDiagram from '@/components/diagrams/AcceleratorDiagram';
 import ParadoxOfThriftDiagram from '@/components/diagrams/ParadoxOfThriftDiagram';
+import KeynesianASCurveDiagram from '@/components/diagrams/KeynesianASCurveDiagram';
+import LiquidityTrapDiagram from '@/components/diagrams/LiquidityTrapDiagram';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 const NationalIncome = () => {
   return (
@@ -144,8 +148,91 @@ const NationalIncome = () => {
           </NoteCard>
         </ContentSection>
 
-        {/* Topic 2: Keynesians and Monetarists */}
-        <ContentSection title="Topic 2: Keynesians and Monetarists" id="keynesians-monetarists">
+        {/* Topic 2: The Keynesian Shape of Aggregate Supply */}
+        <ContentSection title="Topic 2: The Keynesian Shape of Aggregate Supply" id="keynesian-as">
+          <div className="space-y-0">
+            <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
+              The <strong className="text-silver-bright">Keynesian Aggregate Supply curve</strong> represents a fundamental departure from the classical vertical long-run supply conception, embodying the central Keynesian insight that the economy can reach equilibrium at output levels substantially below full employment. Unlike the classical model which assumes instantaneous market clearing through flexible wages and prices, the Keynesian framework recognizes that <strong className="text-cambridge-orange">nominal wages are "sticky" downward</strong>—they resist falling even when unemployment persists—due to institutional factors including long-term labor contracts, trade union bargaining power, efficiency wage considerations (where firms fear productivity losses from wage cuts), and simple worker resistance to nominal pay reductions. This wage rigidity means that when aggregate demand falls, the adjustment occurs primarily through <strong>quantity reductions</strong> (output and employment) rather than price reductions, potentially trapping the economy in a prolonged <strong>under-employment equilibrium</strong> from which market forces alone cannot extricate it.
+            </p>
+
+            <div className="my-4">
+              <KeynesianASCurveDiagram title="The Three-Phase Keynesian Aggregate Supply Curve" />
+            </div>
+
+            <AnalysisBlock title="Chain of Analysis (AO3): The Three Ranges of Keynesian AS" type="analysis">
+              <div className="space-y-3 text-xs">
+                <div className="p-3 bg-cambridge-cyan/10 rounded-lg border-l-3 border-cambridge-cyan">
+                  <p className="font-semibold text-cambridge-cyan mb-1">1. The Horizontal (Keynesian) Range — Perfectly Elastic Supply</p>
+                  <p className="text-muted-foreground leading-relaxed text-justify">
+                    When significant <strong>spare capacity</strong> exists in the economy—characterized by high unemployment, idle factory capacity, and abundant raw materials—firms can increase output without encountering rising factor costs. Labor is plentiful and willing to work at prevailing wages; capital equipment sits underutilized. In this range, increases in Aggregate Demand translate <strong>entirely into real output expansion</strong> with zero inflationary pressure. The General Price Level remains constant at <InlineMath math="P_0" /> while Real National Output rises from <InlineMath math="Y_1" /> toward potential output. This range provides the strongest justification for expansionary fiscal policy during recessions.
+                  </p>
+                </div>
+                <div className="p-3 bg-cambridge-orange/10 rounded-lg border-l-3 border-cambridge-orange">
+                  <p className="font-semibold text-cambridge-orange mb-1">2. The Upward Sloping (Intermediate) Range — Emerging Bottlenecks</p>
+                  <p className="text-muted-foreground leading-relaxed text-justify">
+                    As the economy approaches full employment, <strong>bottlenecks</strong> emerge in specific sectors—shortages of skilled labor in certain industries, capacity constraints in key supplier industries, and rising raw material costs as global demand increases. Firms must offer higher wages to attract workers from competitors, and production costs begin rising. In this range, AD expansion produces <strong>both output gains and inflation</strong>: the economy moves northeast along the AS curve, with each unit of additional output requiring a progressively higher price level. The elasticity of AS diminishes continuously as <InlineMath math="Y \rightarrow Y_f" />.
+                  </p>
+                </div>
+                <div className="p-3 bg-destructive/10 rounded-lg border-l-3 border-destructive">
+                  <p className="font-semibold text-destructive mb-1">3. The Vertical (Classical) Range — Full Employment Ceiling</p>
+                  <p className="text-muted-foreground leading-relaxed text-justify">
+                    At full employment output (<InlineMath math="Y_f" />), all factors of production are fully utilized—unemployment equals only the natural rate (frictional + structural). The economy has reached its <strong>production possibility frontier</strong>. Further AD expansion cannot generate additional real output; instead, excess demand translates <strong>purely into inflation</strong>. This represents the classical supply-side limit where only productivity improvements, capital accumulation, or labor force expansion can shift the supply curve rightward. Demand management becomes counterproductive, justifying supply-side policy focus.
+                  </p>
+                </div>
+              </div>
+            </AnalysisBlock>
+
+            <ExamTipBox title="Senior Examiner's Conclusion: Keynesian Aggregate Supply" variant="gold">
+              <p className="text-xs leading-relaxed text-justify">
+                <strong>Ultimately</strong>, the impact of any shift in AD on the macroeconomic equilibrium is <strong>entirely dependent on the elasticity of the AS curve</strong> at the current output level. If the economy possesses significant spare capacity (horizontal Keynesian range), AD expansion achieves real growth without inflation, providing powerful justification for counter-cyclical demand management. However, as the economy approaches <InlineMath math="Y_f" />, the AS curve becomes progressively inelastic, meaning further AD expansion results <strong>primarily in inflation rather than real growth</strong>. The policy implication is clear: fiscal and monetary stimulus should be deployed during recessions (horizontal range) but withdrawn as the economy recovers (intermediate range) to prevent overheating. The effectiveness of demand-side policy is thus <strong>state-contingent</strong>—a conclusion that reconciles Keynesian and Classical perspectives within a unified framework.
+              </p>
+            </ExamTipBox>
+          </div>
+        </ContentSection>
+
+        {/* Topic 2.5: Liquidity Preference Theory */}
+        <ContentSection title="Topic 2.5: Liquidity Preference & Interest Rate Determination" id="liquidity-preference">
+          <div className="space-y-0">
+            <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
+              Keynes's <strong className="text-silver-bright">Liquidity Preference Theory</strong> provides the theoretical foundation for understanding how interest rates are determined in money markets, representing a fundamental departure from the classical loanable funds approach. Rather than viewing interest rates as the price that equilibrates saving and investment, Keynes argued that the interest rate is determined by the <strong>supply of and demand for money</strong>—specifically, by the interaction between an exogenously-determined money supply (controlled by the central bank) and the public's desire to hold wealth in liquid monetary form rather than interest-bearing assets. The demand for money (liquidity preference) arises from three distinct motives, each with different determinants and elasticities.
+            </p>
+
+            <div className="my-4">
+              <LiquidityTrapDiagram />
+            </div>
+
+            <AnalysisBlock title="Chain of Analysis (AO3): Money Demand Motives & The Liquidity Trap" type="analysis">
+              <div className="space-y-3 text-xs">
+                <p className="text-muted-foreground leading-relaxed text-justify">
+                  The <strong className="text-silver-bright">three motives for holding money</strong> create the downward-sloping liquidity preference curve. The <strong className="text-cambridge-cyan">Transactions Motive</strong> generates demand proportional to income (<InlineMath math="M^T = kY" />), as higher income levels require greater cash holdings for routine purchases. The <strong className="text-cambridge-magenta">Precautionary Motive</strong> similarly relates to income, reflecting money held against unforeseen contingencies. Crucially, the <strong className="text-cambridge-orange">Speculative Motive</strong> creates an <em>inverse relationship</em> between money demand and interest rates: when interest rates are high, the opportunity cost of holding money is substantial, and bond prices (being inversely related to yields) are low—people expect rates to fall and bond prices to rise, so they hold bonds. Conversely, when rates are very low, bond prices are high and expected to fall, making money-holding preferable to the risk of capital losses on bonds.
+                </p>
+                <div className="p-3 bg-cambridge-orange/10 rounded-lg border border-cambridge-orange/30">
+                  <p className="font-semibold text-cambridge-orange mb-2">The Liquidity Trap: Monetary Policy Paralysis</p>
+                  <p className="text-muted-foreground leading-relaxed text-justify">
+                    At extremely low interest rates (approaching the <strong>zero lower bound</strong>), the speculative demand for money becomes <strong>perfectly elastic</strong>—the liquidity preference curve turns horizontal. In this "liquidity trap," any additional money supply injected by the central bank is simply absorbed into idle balances rather than being used to purchase bonds. Since monetary policy operates by lowering interest rates to stimulate investment, its transmission mechanism is completely broken when rates cannot fall further. People expect rates can only rise (and bond prices fall), so they prefer holding any amount of money at the prevailing near-zero rate. This renders <strong>conventional monetary policy completely ineffective</strong> for stimulating aggregate demand.
+                  </p>
+                </div>
+                <div className="text-center p-3 bg-muted/30 rounded-lg">
+                  <p className="text-xs font-mono">
+                    Money Market Equilibrium: <InlineMath math="M^s = M^d = L(r, Y)" />
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    In the trap: <InlineMath math="\frac{\partial M^d}{\partial r} \rightarrow -\infty" /> (perfectly elastic)
+                  </p>
+                </div>
+              </div>
+            </AnalysisBlock>
+
+            <ExamTipBox title="Senior Examiner's Conclusion: The Liquidity Trap" variant="gold">
+              <p className="text-xs leading-relaxed text-justify">
+                <strong>In conclusion</strong>, the existence of a liquidity trap represents the <strong>ultimate limit of conventional monetary policy</strong>. When the economy falls into this trap—as witnessed in Japan's "Lost Decades" (1990s–2010s), the Global Financial Crisis (2008–2009), and the COVID-19 recession—central banks find their primary instrument (interest rate manipulation) rendered impotent. In such circumstances, only a <strong>massive injection of government spending</strong> (fiscal policy) can directly shift the AD curve rightward and extract the economy from its low-level equilibrium trap. This provides the theoretical justification for Keynes's famous dictum that "in the long run we are all dead," implying that waiting for market self-correction during a liquidity trap is economically and socially unacceptable. Alternative monetary approaches—including <strong>quantitative easing</strong> (direct asset purchases) and <strong>forward guidance</strong> (managing expectations)—represent attempts to circumvent the trap, but their effectiveness remains empirically contested.
+              </p>
+            </ExamTipBox>
+          </div>
+        </ContentSection>
+
+        {/* Topic 2.6: Keynesians vs Monetarists */}
+        <ContentSection title="Topic 2.6: Keynesians and Monetarists – A Comparative Analysis" id="keynesians-monetarists">
           <div className="grid md:grid-cols-2 gap-4">
             <NoteCard title="Keynesian View of the Economy" type="theory">
               <p className="text-sm">
@@ -193,7 +280,7 @@ const NationalIncome = () => {
               <div className="p-2 bg-cambridge-magenta/10 rounded-lg">
                 <p className="font-semibold text-cambridge-magenta mb-1">Monetarist Transmission (At Full Employment):</p>
                 <div className="font-mono text-center py-1">
-                  ↑Ms → ↑AD → ↑P only (Real GDP unchanged at $Y_f$)
+                  ↑Ms → ↑AD → ↑P only (Real GDP unchanged at <InlineMath math="Y_f" />)
                 </div>
                 <p className="text-muted-foreground mt-1">
                   At full employment, the LRAS is vertical. Any increase in AD simply causes inflation without changing real output. Only supply-side policies can shift LRAS rightward to achieve sustainable growth.
@@ -310,154 +397,61 @@ const NationalIncome = () => {
           </NoteCard>
         </ContentSection>
 
-        {/* Topic 4: Consumption */}
-        <ContentSection title="Topic 4: Consumption" id="consumption">
-          <NoteCard title="The Keynesian Consumption Function" type="formula">
-            <p className="mb-4">
-              The Keynesian consumption function shows the relationship between consumption expenditure 
-              and the level of national income. It is one of the most important relationships in 
-              macroeconomics.
+        {/* Topic 4: The Keynesian Consumption Function & Multiplier */}
+        <ContentSection title="Topic 4: The Keynesian Consumption Function & Multiplier Theory" id="consumption">
+          <div className="space-y-0">
+            <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
+              The <strong className="text-silver-bright">Keynesian consumption function</strong> represents one of the foundational pillars of macroeconomic theory, establishing a systematic relationship between aggregate consumption expenditure and the level of disposable national income. Keynes, in his seminal work <em>The General Theory of Employment, Interest and Money</em> (1936), posited that consumption is primarily determined by current income levels, rejecting the classical assumption that interest rates were the principal driver of household spending decisions. The function takes the canonical form <InlineMath math="C = a + bY" />, where the parameter <InlineMath math="a" /> represents <strong className="text-cambridge-cyan">autonomous consumption</strong>—expenditure that occurs irrespective of income levels, financed through dissaving or borrowing—and the coefficient <InlineMath math="b" /> denotes the <strong className="text-cambridge-cyan">Marginal Propensity to Consume (MPC)</strong>, defined as the fraction of each additional unit of income that households allocate to consumption rather than saving. The theoretical constraint that <InlineMath math="0 < MPC < 1" /> ensures that increases in income generate proportionately smaller increases in consumption, with the residual flowing into saving, thereby establishing the fundamental identity <InlineMath math="MPC + MPS = 1" />.
             </p>
-            <div className="text-center p-4 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20">
-              <p className="text-2xl font-mono font-bold text-cambridge-cyan mb-2">
-                C = a + bY
+
+            <div className="text-center p-4 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20 mb-4">
+              <BlockMath math="C = a + bY^d" />
+              <p className="text-xs text-muted-foreground mt-2">
+                where <InlineMath math="a" /> = autonomous consumption, <InlineMath math="b" /> = MPC, <InlineMath math="Y^d" /> = disposable income
               </p>
             </div>
-            <div className="mt-4 grid md:grid-cols-2 gap-4 text-sm">
-              <div>
-                <p><strong className="text-cambridge-cyan">a</strong> = Autonomous consumption</p>
-                <p className="text-muted-foreground">
-                  Spending that occurs regardless of income level (e.g., from savings or borrowing). 
-                  When income is zero, consumption is at this autonomous level.
-                </p>
-              </div>
-              <div>
-                <p><strong className="text-cambridge-cyan">b</strong> = Marginal Propensity to Consume (MPC)</p>
-                <p className="text-muted-foreground">
-                  The slope of the consumption function. It indicates the proportion of each additional 
-                  dollar of income that is spent on consumption.
-                </p>
-              </div>
+
+            <div className="my-4">
+              <ConsumptionFunctionDiagram />
             </div>
-          </NoteCard>
 
-          <div className="my-4">
-            <ConsumptionFunctionDiagram />
-          </div>
+            <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
+              The <strong className="text-silver-bright">Marginal Propensity to Consume</strong>, mathematically expressed as <InlineMath math="MPC = \frac{\Delta C}{\Delta Y}" />, constitutes the slope of the consumption function and determines the responsiveness of aggregate consumption to income changes. Empirically, developed economies typically exhibit MPC values ranging from 0.6 to 0.9, with lower-income households demonstrating systematically higher marginal propensities due to their greater need to satisfy immediate consumption requirements. This distributional characteristic carries profound policy implications: fiscal transfers directed toward lower-income groups generate larger multiplier effects precisely because such recipients spend proportionally more of any additional income received. The <strong className="text-silver-bright">Average Propensity to Consume</strong> (<InlineMath math="APC = \frac{C}{Y}" />) exhibits a declining trajectory as income rises—a phenomenon Keynes termed the "fundamental psychological law"—implying that wealthier societies save proportionally more, potentially creating structural demand deficiencies in mature economies.
+            </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <NoteCard title="Marginal Propensity to Consume (MPC)" type="definition">
-              <div className="text-center p-3 bg-muted/30 rounded-lg mb-3">
-                <p className="font-mono text-lg">MPC = ΔC / ΔY</p>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                The amount of every additional dollar earned that is spent on consumption. 
-                For the economy, MPC is positive and less than 1 (some income is always saved).
-              </p>
-              <p className="mt-3 text-sm font-medium text-cambridge-cyan">
-                Note: MPC + MPS = 1
-              </p>
-            </NoteCard>
-
-            <NoteCard title="Average Propensity to Consume (APC)" type="definition">
-              <div className="text-center p-3 bg-muted/30 rounded-lg mb-3">
-                <p className="font-mono text-lg">APC = C / Y</p>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                The proportion of total income spent on consumption. As income increases, 
-                the APC tends to <strong>fall</strong> because people save a larger proportion 
-                at higher income levels.
-              </p>
-              <p className="mt-3 text-sm text-muted-foreground">
-                If there is no autonomous consumption, then APC = MPC.
-              </p>
-            </NoteCard>
-          </div>
-
-          <NoteCard title="Saving and Dissaving" type="concept">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-3 bg-cambridge-green/10 rounded-lg">
-                <h5 className="font-semibold text-cambridge-green mb-2">Saving (C &lt; Y)</h5>
-                <p className="text-sm text-muted-foreground">
-                  When consumption is less than income, households are saving. This occurs to the 
-                  right of the breakeven point on the consumption function diagram.
+            <AnalysisBlock title="Chain of Analysis (AO3): The Multiplier Transmission Mechanism" type="analysis">
+              <div className="space-y-3 text-xs">
+                <p className="text-muted-foreground leading-relaxed text-justify">
+                  The <strong className="text-silver-bright">Keynesian Multiplier Effect</strong> represents the mechanism whereby an initial autonomous injection into the circular flow generates a magnified final impact on equilibrium national income. The transmission operates through successive rounds of induced consumption: an initial investment injection of <InlineMath math="\Delta I" /> creates income for factor owners, who subsequently spend a fraction (<InlineMath math="MPC"  />) on domestic consumption, thereby generating further incomes and further consumption in a geometric series that converges to a finite sum determined by the multiplier coefficient <InlineMath math="k" />.
                 </p>
+                <div className="text-center p-3 bg-primary/10 rounded-lg">
+                  <BlockMath math="k = \frac{1}{1 - MPC} = \frac{1}{MPS} = \frac{1}{MPW}" />
+                  <p className="text-xs text-muted-foreground mt-2">
+                    In a 4-sector open economy: <InlineMath math="k = \frac{1}{MPS + MPT + MPM}" />
+                  </p>
+                </div>
+                <div className="p-3 bg-cambridge-cyan/10 rounded-lg">
+                  <p className="font-semibold text-cambridge-cyan mb-2">Numerical Transmission (MPC = 0.8, Initial ΔI = £100m):</p>
+                  <div className="space-y-1 text-muted-foreground font-mono text-xs">
+                    <p>Round 1: £100m → Wages/Profits → £100m household income</p>
+                    <p>Round 2: £100m × 0.8 = £80m consumption → £80m new income</p>
+                    <p>Round 3: £80m × 0.8 = £64m consumption → £64m new income</p>
+                    <p>Round n: Process continues with diminishing increments...</p>
+                    <p className="text-cambridge-cyan font-bold mt-2">Final ΔY = £100m × (1/0.2) = £100m × 5 = £500m</p>
+                  </div>
+                </div>
               </div>
-              <div className="p-3 bg-destructive/10 rounded-lg">
-                <h5 className="font-semibold text-destructive mb-2">Dissaving (C &gt; Y)</h5>
-                <p className="text-sm text-muted-foreground">
-                  When consumption exceeds income, households are dissaving (borrowing or using 
-                  past savings). This occurs to the left of the breakeven point.
-                </p>
-              </div>
-            </div>
-          </NoteCard>
+            </AnalysisBlock>
 
-          <NoteCard title="Factors Affecting Consumption" type="application">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="border-b border-muted">
-                  <tr>
-                    <th className="text-left py-2 px-3">Factor</th>
-                    <th className="text-left py-2 px-3">Effect on Consumption</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-muted/50">
-                    <td className="py-2 px-3 font-medium">1. Level of Income</td>
-                    <td className="py-2 px-3 text-muted-foreground">
-                      As income increases, the MPC may decline, making the consumption function less steep.
-                    </td>
-                  </tr>
-                  <tr className="border-b border-muted/50">
-                    <td className="py-2 px-3 font-medium">2. Interest Rates</td>
-                    <td className="py-2 px-3 text-muted-foreground">
-                      Higher interest rates encourage saving and discourage borrowing, reducing consumption.
-                    </td>
-                  </tr>
-                  <tr className="border-b border-muted/50">
-                    <td className="py-2 px-3 font-medium">3. Expectations</td>
-                    <td className="py-2 px-3 text-muted-foreground">
-                      Optimism about future income increases current consumption; pessimism decreases it.
-                    </td>
-                  </tr>
-                  <tr className="border-b border-muted/50">
-                    <td className="py-2 px-3 font-medium">4. Wealth</td>
-                    <td className="py-2 px-3 text-muted-foreground">
-                      Higher wealth (assets) increases consumption at every income level (upward shift).
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 px-3 font-medium">5. Distribution of Income</td>
-                    <td className="py-2 px-3 text-muted-foreground">
-                      More equal distribution raises total consumption (poorer households have higher MPC).
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="my-4">
+              <MultiplierDiagram sectors={4} title="The Four-Sector Multiplier Process" />
             </div>
-          </NoteCard>
 
-          <div className="overflow-x-auto my-6">
-            <p className="text-sm font-medium mb-3">Numerical Example: APC Declining as Income Rises</p>
-            <table className="w-full text-sm border border-muted rounded-lg overflow-hidden">
-              <thead className="bg-muted/30">
-                <tr>
-                  <th className="py-2 px-4">Income (Y)</th>
-                  <th className="py-2 px-4">Consumption (C)</th>
-                  <th className="py-2 px-4">APC = C/Y</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-t border-muted"><td className="py-2 px-4">0</td><td className="py-2 px-4">10</td><td className="py-2 px-4">∞</td></tr>
-                <tr className="border-t border-muted"><td className="py-2 px-4">10</td><td className="py-2 px-4">18</td><td className="py-2 px-4">1.80</td></tr>
-                <tr className="border-t border-muted"><td className="py-2 px-4">20</td><td className="py-2 px-4">26</td><td className="py-2 px-4">1.30</td></tr>
-                <tr className="border-t border-muted"><td className="py-2 px-4">50</td><td className="py-2 px-4">50</td><td className="py-2 px-4 text-primary font-medium">1.00 (Breakeven)</td></tr>
-                <tr className="border-t border-muted"><td className="py-2 px-4">100</td><td className="py-2 px-4">90</td><td className="py-2 px-4">0.90</td></tr>
-                <tr className="border-t border-muted"><td className="py-2 px-4">500</td><td className="py-2 px-4">410</td><td className="py-2 px-4">0.82</td></tr>
-                <tr className="border-t border-muted"><td className="py-2 px-4">1000</td><td className="py-2 px-4">810</td><td className="py-2 px-4">0.81</td></tr>
-              </tbody>
-            </table>
+            <ExamTipBox title="Senior Examiner's Conclusion: The Consumption Function" variant="gold">
+              <p className="text-xs leading-relaxed text-justify">
+                <strong>Ultimately</strong>, the Keynesian consumption function provides the theoretical foundation for understanding short-run fluctuations in aggregate demand and justifies the use of discretionary fiscal policy. The multiplier's magnitude—and hence the potency of demand management—depends critically on the <strong>marginal propensity to withdraw</strong> (<InlineMath math="MPW = MPS + MPT + MPM" />). In practice, open economies with progressive tax systems exhibit multipliers between 1.5–2.0, substantially below the theoretical maximum, due to significant leakages at each round of the transmission mechanism. Furthermore, the multiplier operates symmetrically: contractions in autonomous spending trigger <strong>negative multiplier effects</strong>, potentially precipitating recessionary spirals that justify counter-cyclical intervention.
+              </p>
+            </ExamTipBox>
           </div>
         </ContentSection>
 
