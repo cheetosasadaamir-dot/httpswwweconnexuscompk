@@ -1,12 +1,18 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/logo-macromicro.png';
 
-const navLinks = [
-  { label: 'Notes Library', href: '/market-structures' },
+interface NavLink {
+  label: string;
+  href?: string;
+  scrollTo?: string;
+}
+
+const navLinks: NavLink[] = [
+  { label: 'Notes Library', scrollTo: 'notes-repository' },
   { label: 'Diagram Bank', href: '/diagrams' },
   { label: 'Case Studies', href: '/case-studies' },
 ];
@@ -16,6 +22,50 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
+    if (closeMobileMenu) {
+      setIsMobileMenuOpen(false);
+    }
+
+    const executeScroll = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+
+        // Trigger highlight animation
+        setTimeout(() => {
+          element.classList.add('section-highlight');
+          // Highlight first card
+          const firstCard = document.querySelector('[data-first-chapter="true"]');
+          if (firstCard) {
+            firstCard.classList.add('glassmorphism-highlight');
+            setTimeout(() => {
+              firstCard.classList.remove('glassmorphism-highlight');
+            }, 2000);
+          }
+          setTimeout(() => {
+            element.classList.remove('section-highlight');
+          }, 2000);
+        }, 500);
+      }
+    };
+
+    if (location.pathname === '/') {
+      executeScroll();
+    } else {
+      navigate('/');
+      setTimeout(executeScroll, 150);
+    }
+  }, [location.pathname, navigate]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,24 +105,37 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={cn(
-                  "relative text-sm font-medium transition-colors duration-300",
-                  location.pathname === link.href
-                    ? "text-primary"
-                    : "text-silver hover:text-silver-bright"
-                )}
-              >
-                {link.label}
-                {location.pathname === link.href && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary"
-                  />
-                )}
-              </Link>
+              link.scrollTo ? (
+                <button
+                  key={link.label}
+                  onClick={() => scrollToSection(link.scrollTo!)}
+                  className={cn(
+                    "relative text-sm font-medium transition-colors duration-300 cursor-pointer",
+                    "text-silver hover:text-secondary"
+                  )}
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href!}
+                  className={cn(
+                    "relative text-sm font-medium transition-colors duration-300",
+                    location.pathname === link.href
+                      ? "text-primary"
+                      : "text-silver hover:text-silver-bright"
+                  )}
+                >
+                  {link.label}
+                  {location.pathname === link.href && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary"
+                    />
+                  )}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -111,14 +174,24 @@ const Header = () => {
           >
             <div className="px-6 py-4 space-y-3">
               {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-silver hover:text-silver-bright transition-colors"
-                >
-                  {link.label}
-                </Link>
+                link.scrollTo ? (
+                  <button
+                    key={link.label}
+                    onClick={() => scrollToSection(link.scrollTo!, true)}
+                    className="block w-full text-left py-2 text-silver hover:text-secondary transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.href}
+                    to={link.href!}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-2 text-silver hover:text-silver-bright transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
               <div className="relative pt-2">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground mt-1" />

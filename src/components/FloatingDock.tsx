@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, 
@@ -11,7 +11,8 @@ import {
   GraduationCap,
   Menu,
   X,
-  Sparkles
+  Sparkles,
+  Library
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/logo-macromicro.png';
@@ -31,10 +32,12 @@ interface NavItem {
   href?: string;
   icon: React.ComponentType<{ className?: string }>;
   levels?: LevelNavItem[];
+  scrollTo?: string;
 }
 
 const navigation: NavItem[] = [
   { title: 'Home', href: '/', icon: Home },
+  { title: 'Notes Library', scrollTo: 'notes-repository', icon: Library },
   {
     title: 'Microeconomics',
     href: '/microeconomics',
@@ -94,10 +97,54 @@ const navigation: NavItem[] = [
 
 const FloatingDock = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
+    if (closeMobileMenu) {
+      setIsMobileMenuOpen(false);
+    }
+
+    const executeScroll = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+
+        // Trigger highlight animation
+        setTimeout(() => {
+          element.classList.add('section-highlight');
+          // Highlight first card
+          const firstCard = document.querySelector('[data-first-chapter="true"]');
+          if (firstCard) {
+            firstCard.classList.add('glassmorphism-highlight');
+            setTimeout(() => {
+              firstCard.classList.remove('glassmorphism-highlight');
+            }, 2000);
+          }
+          setTimeout(() => {
+            element.classList.remove('section-highlight');
+          }, 2000);
+        }, 500);
+      }
+    };
+
+    if (location.pathname === '/') {
+      executeScroll();
+    } else {
+      navigate('/');
+      setTimeout(executeScroll, 150);
+    }
+  }, [location.pathname, navigate]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -157,24 +204,34 @@ const FloatingDock = () => {
               onMouseEnter={() => item.levels && setActiveDropdown(item.title)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <Link
-                to={item.href || '#'}
-                className={cn(
-                  "dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300",
-                  isActive(item.href || '') || isParentActive(item)
-                    ? "active"
-                    : ""
-                )}
-              >
-                <item.icon className="w-4 h-4" />
-                <span className="text-sm font-medium font-display">{item.title}</span>
-                {item.levels && (
-                  <ChevronDown className={cn(
-                    "w-3 h-3 transition-transform duration-300",
-                    activeDropdown === item.title && "rotate-180"
-                  )} />
-                )}
-              </Link>
+              {item.scrollTo ? (
+                <button
+                  onClick={() => scrollToSection(item.scrollTo!)}
+                  className="dock-item cta-amber-glow flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer hover:text-secondary"
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span className="text-sm font-medium font-display">{item.title}</span>
+                </button>
+              ) : (
+                <Link
+                  to={item.href || '#'}
+                  className={cn(
+                    "dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300",
+                    isActive(item.href || '') || isParentActive(item)
+                      ? "active"
+                      : ""
+                  )}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span className="text-sm font-medium font-display">{item.title}</span>
+                  {item.levels && (
+                    <ChevronDown className={cn(
+                      "w-3 h-3 transition-transform duration-300",
+                      activeDropdown === item.title && "rotate-180"
+                    )} />
+                  )}
+                </Link>
+              )}
 
               {/* Dropdown Menu with glow */}
               <AnimatePresence>
@@ -278,19 +335,29 @@ const FloatingDock = () => {
               <div className="p-6 pt-20">
                 {navigation.map((item) => (
                   <div key={item.title} className="mb-4">
-                    <Link
-                      to={item.href || '#'}
-                      onClick={() => !item.levels && setIsMobileMenuOpen(false)}
-                      className={cn(
-                        "flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-display",
-                        isActive(item.href || '') || isParentActive(item)
-                          ? "bg-neon-cyan/10 text-neon-cyan shadow-neon-cyan"
-                          : "text-muted-foreground hover:bg-space-elevated hover:text-white"
-                      )}
-                    >
-                      <item.icon className="w-5 h-5" />
-                      <span className="font-medium">{item.title}</span>
-                    </Link>
+                    {item.scrollTo ? (
+                      <button
+                        onClick={() => scrollToSection(item.scrollTo!, true)}
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl text-secondary hover:bg-secondary/10 transition-all font-display w-full text-left cta-amber-glow cursor-pointer"
+                      >
+                        <item.icon className="w-5 h-5" />
+                        <span className="font-medium">{item.title}</span>
+                      </button>
+                    ) : (
+                      <Link
+                        to={item.href || '#'}
+                        onClick={() => !item.levels && setIsMobileMenuOpen(false)}
+                        className={cn(
+                          "flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-display",
+                          isActive(item.href || '') || isParentActive(item)
+                            ? "bg-neon-cyan/10 text-neon-cyan shadow-neon-cyan"
+                            : "text-muted-foreground hover:bg-space-elevated hover:text-white"
+                        )}
+                      >
+                        <item.icon className="w-5 h-5" />
+                        <span className="font-medium">{item.title}</span>
+                      </Link>
+                    )}
                     
                     {item.levels && (
                       <div className="ml-6 mt-2 border-l border-neon-gold/20 pl-4">

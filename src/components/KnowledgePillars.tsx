@@ -135,15 +135,17 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
 const KnowledgePillars = () => {
   return (
     <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-      <PillarCard
-        title="Microeconomics"
-        description="Explore individual markets, consumer behavior, and the forces of supply and demand."
-        href="/microeconomics"
-        icons={[TrendingUp, Users, ShoppingCart, BarChart3]}
-        gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(234 60% 12%) 50%, hsl(var(--navy-light)) 100%)"
-        hoverGradient="linear-gradient(135deg, hsl(234 60% 15%) 0%, hsl(217 60% 18%) 50%, hsl(234 50% 20%) 100%)"
-        delay={0}
-      />
+      <div data-first-chapter="true">
+        <PillarCard
+          title="Microeconomics"
+          description="Explore individual markets, consumer behavior, and the forces of supply and demand."
+          href="/microeconomics"
+          icons={[TrendingUp, Users, ShoppingCart, BarChart3]}
+          gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(234 60% 12%) 50%, hsl(var(--navy-light)) 100%)"
+          hoverGradient="linear-gradient(135deg, hsl(234 60% 15%) 0%, hsl(217 60% 18%) 50%, hsl(234 50% 20%) 100%)"
+          delay={0}
+        />
+      </div>
       <PillarCard
         title="Macroeconomics"
         description="Understand global trade, inflation, monetary policy, and economic growth."
