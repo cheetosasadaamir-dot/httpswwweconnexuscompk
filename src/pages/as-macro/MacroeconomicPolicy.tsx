@@ -1,300 +1,214 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import Layout from '@/components/Layout';
 import ContentSection from '@/components/ContentSection';
-import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
-import { PolicyTradeoffDiagram } from '@/components/diagrams/PolicyTradeoffDiagram';
+import FiscalPolicyShiftDiagram from '@/components/diagrams/FiscalPolicyShiftDiagram';
+import MonetaryPolicyTransmissionDiagram from '@/components/diagrams/MonetaryPolicyTransmissionDiagram';
+import SupplySideLRASDiagram from '@/components/diagrams/SupplySideLRASDiagram';
+import PolicyConflictsDiagram from '@/components/diagrams/PolicyConflictsDiagram';
+import MultiplierDiagram from '@/components/diagrams/MultiplierDiagram';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 const MacroeconomicPolicy = () => {
   return (
     <Layout showSidebar>
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl font-bold text-foreground mb-4">
-            Macroeconomic Policy
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-4xl mx-auto"
+      >
+        {/* Chapter Header */}
+        <div className="mb-6">
+          <span className="text-primary text-sm font-medium tracking-wider uppercase">AS Level • Chapter 5</span>
+          <h1 className="font-serif text-4xl md:text-5xl text-gradient mt-2 mb-3">
+            Government Macroeconomic Intervention
           </h1>
-          <p className="text-xl text-muted-foreground mb-8">
-            AS Level Macroeconomics • Chapter 5
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            Fiscal Policy, Monetary Policy, Supply-Side Policies, and the Trade-offs Inherent in Pursuing Multiple Macroeconomic Objectives.
           </p>
+        </div>
 
-          {/* Policy Objectives */}
-          <ContentSection title="Macroeconomic Policy Objectives">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              Governments pursue a range of macroeconomic objectives to promote economic welfare. These objectives often conflict with each other, requiring policymakers to make difficult trade-offs.
+        {/* Syllabus Overview */}
+        <div className="glass-card p-4 mb-6">
+          <h3 className="font-serif text-lg font-semibold mb-2">Syllabus Coverage (CIE 9708)</h3>
+          <div className="grid md:grid-cols-2 gap-1 text-sm">
+            <p>1. Fiscal Policy: Government Spending (G) and Taxation (T)</p>
+            <p>2. The Multiplier Effect and its Determinants</p>
+            <p>3. Monetary Policy: Interest Rates and the Transmission Mechanism</p>
+            <p>4. Supply-Side Policies: Market-Based and Interventionist</p>
+            <p>5. Policy Conflicts and Trade-offs</p>
+            <p>6. Time Lags and Limitations of Policy</p>
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* SECTION 1: FISCAL POLICY */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Fiscal Policy: The Budgetary Tool">
+          <div className="glass-card p-5 space-y-4">
+            <h3 className="font-serif text-xl text-gradient">Defining Fiscal Policy</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              <strong className="text-foreground">Fiscal policy</strong> refers to the deliberate manipulation of <strong className="text-primary">government spending (G)</strong> and <strong className="text-primary">taxation (T)</strong> to influence the level of Aggregate Demand (AD) and, consequently, the key macroeconomic variables of output, employment, and the price level. Fiscal policy is determined by the government (typically the Treasury or Ministry of Finance) and is implemented through the annual budget. When the government increases its expenditure or reduces taxation, it is pursuing an <strong className="text-cambridge-green">expansionary (reflationary) fiscal policy</strong>, which increases AD and is typically associated with a budget deficit (G &gt; T). Conversely, when the government reduces spending or raises taxes, it is pursuing a <strong className="text-destructive">contractionary (deflationary) fiscal policy</strong>, which reduces AD and may generate a budget surplus (T &gt; G). The fundamental logic is rooted in the Keynesian identity: <InlineMath>{'AD = C + I + G + (X - M)'}</InlineMath>. Any increase in G directly increases AD, while a reduction in T increases disposable income, which in turn increases consumption (C) via the marginal propensity to consume (MPC).
             </p>
 
-            <NoteCard title="The Four Main Objectives" className="mb-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="font-semibold text-primary">1. Economic Growth</h4>
-                    <p className="text-sm text-muted-foreground">Sustained increase in real GDP over time, typically measured as annual percentage change. Target: 2-3% for developed economies.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-primary">2. Low Unemployment</h4>
-                    <p className="text-sm text-muted-foreground">Minimizing the number of people actively seeking work but unable to find it. Target: Natural rate (around 4-5%).</p>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="font-semibold text-primary">3. Price Stability</h4>
-                    <p className="text-sm text-muted-foreground">Keeping inflation low and stable to maintain purchasing power and economic certainty. Target: 2% (most central banks).</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-primary">4. Balance of Payments Equilibrium</h4>
-                    <p className="text-sm text-muted-foreground">Avoiding persistent current account deficits or surpluses that could lead to external debt or currency instability.</p>
-                  </div>
-                </div>
-              </div>
-            </NoteCard>
-
-            <AnalysisBlock title="Additional Policy Objectives">
-              <ul className="list-disc list-inside space-y-2">
-                <li><strong>Income Equality:</strong> Reducing the gap between rich and poor through progressive taxation and redistribution</li>
-                <li><strong>Environmental Sustainability:</strong> Balancing economic growth with protection of natural resources</li>
-                <li><strong>Regional Balance:</strong> Ensuring economic development is spread across all regions</li>
-                <li><strong>Fiscal Balance:</strong> Managing government debt at sustainable levels</li>
-              </ul>
-            </AnalysisBlock>
-          </ContentSection>
-
-          {/* Fiscal Policy */}
-          <ContentSection title="Fiscal Policy">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              <strong>Fiscal policy</strong> refers to the use of government spending (G) and taxation (T) to influence aggregate demand and the overall economy. It is determined by the government (typically the Treasury or Ministry of Finance).
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Expansionary Fiscal Policy">
-                <p className="text-sm text-muted-foreground mb-2">Used to stimulate AD during recessions:</p>
-                <ul className="list-disc list-inside text-sm space-y-1 mb-3">
-                  <li>Increase government spending (G↑)</li>
-                  <li>Cut taxes (T↓)</li>
-                  <li>Increase transfer payments</li>
-                </ul>
-                <p className="text-sm"><strong>Effect:</strong> AD shifts right → higher output and employment</p>
-                <p className="text-sm text-amber-600 mt-2">⚠️ Results in budget deficit</p>
-              </NoteCard>
-
-              <NoteCard title="Contractionary Fiscal Policy">
-                <p className="text-sm text-muted-foreground mb-2">Used to cool overheating economy:</p>
-                <ul className="list-disc list-inside text-sm space-y-1 mb-3">
-                  <li>Decrease government spending (G↓)</li>
-                  <li>Raise taxes (T↑)</li>
-                  <li>Reduce transfer payments</li>
-                </ul>
-                <p className="text-sm"><strong>Effect:</strong> AD shifts left → lower inflation</p>
-                <p className="text-sm text-green-600 mt-2">✓ May create budget surplus</p>
-              </NoteCard>
-            </div>
-
-            <NoteCard title="The Multiplier Effect" type="formula" className="mb-6">
-              <p className="text-sm text-muted-foreground mb-2">
-                An initial change in spending creates a larger final change in national income:
+            <AnalysisBlock title="Chain of Analysis: Expansionary Fiscal Policy" type="analysis">
+              <p className="text-sm leading-relaxed">
+                Consider a government that reduces Personal Income Tax to stimulate a recessionary economy. The transmission mechanism operates as follows: <strong>A reduction in income tax increases households' disposable income</strong> (the income available after taxation). This increase in disposable income leads to a rise in consumption expenditure (C), as households spend a proportion of their additional income determined by the Marginal Propensity to Consume (MPC). The increase in consumption represents an increase in a component of Aggregate Demand, causing the AD curve to shift to the right from AD₁ to AD₂. This rightward shift in AD intersects the SRAS curve at a higher level of real GDP (Y₁ → Y₂) and a higher price level (P₁ → P₂), demonstrating the short-run trade-off between output and inflation. Furthermore, the initial increase in spending triggers a <strong className="text-secondary">Multiplier Effect</strong>: the additional consumption becomes income for businesses, which in turn spend a portion of this income, generating further rounds of spending. The final increase in national income is a multiple of the initial injection.
               </p>
-              <div className="bg-primary/10 p-3 rounded-lg text-center mb-3">
-                <p className="font-mono font-semibold">Multiplier (k) = 1 / (1 - MPC) = 1 / MPS</p>
-              </div>
-              <p className="text-sm">
-                If MPC = 0.8, then k = 5. A £10bn increase in G leads to £50bn increase in GDP.
+            </AnalysisBlock>
+
+            <FiscalPolicyShiftDiagram />
+          </div>
+
+          {/* The Multiplier Effect */}
+          <div className="glass-card p-5 space-y-4 mt-4">
+            <h3 className="font-serif text-xl text-gradient">The Multiplier Effect</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              The <strong className="text-foreground">Multiplier (k)</strong> quantifies the relationship between an initial change in an injection (such as government spending, investment, or exports) and the resulting total change in national income. The core insight is that an initial injection of spending circulates through the economy, generating successive rounds of income and expenditure. If a government injects £10 billion into the economy, and recipients spend 80% of each additional pound received (MPC = 0.8), then the initial £10bn generates £8bn of spending in the second round, £6.4bn in the third, and so on. The sum of this infinite geometric series converges to a finite total: <InlineMath>{'\\Delta Y = k \\times \\Delta G'}</InlineMath>, where the multiplier <InlineMath>{'k = \\frac{1}{1 - MPC} = \\frac{1}{MPS}'}</InlineMath> in a simple two-sector model.
+            </p>
+
+            <div className="p-4 bg-primary/10 rounded-lg border border-primary/30 text-center space-y-2">
+              <BlockMath>{'k = \\frac{1}{1 - MPC} = \\frac{1}{MPS + MPT + MPM}'}</BlockMath>
+              <p className="text-xs text-muted-foreground">Where MPS = Marginal Propensity to Save, MPT = Marginal Propensity to Tax, MPM = Marginal Propensity to Import</p>
+            </div>
+
+            <MultiplierDiagram sectors={2} />
+
+            <ExamTipBox title="Multiplier Weakeners: Leakages from the Circular Flow" variant="warning">
+              <p className="text-sm leading-relaxed">
+                The multiplier is <strong>smaller</strong> in open economies with progressive taxation. Each leakage—Saving (S), Taxation (T), and Imports (M)—withdraws spending from the circular flow, reducing the proportion passed on in each round. In reality, if MPS = 0.1, MPT = 0.2, and MPM = 0.15, then the multiplier is <InlineMath>{'k = \\frac{1}{0.1 + 0.2 + 0.15} = 2.22'}</InlineMath>, far smaller than the theoretical maximum of 10 if only saving existed. Candidates frequently overestimate multiplier effects by ignoring these leakages.
               </p>
-            </NoteCard>
-
-            <AnalysisBlock title="Limitations of Fiscal Policy">
-              <div className="grid md:grid-cols-2 gap-4">
-                <ul className="list-disc list-inside text-sm space-y-2">
-                  <li><strong>Time lags:</strong> Recognition, decision, and implementation delays</li>
-                  <li><strong>Crowding out:</strong> Government borrowing raises interest rates, reducing private investment</li>
-                  <li><strong>Political constraints:</strong> Spending cuts are politically unpopular</li>
-                </ul>
-                <ul className="list-disc list-inside text-sm space-y-2">
-                  <li><strong>Ricardian equivalence:</strong> Consumers may save more anticipating future tax rises</li>
-                  <li><strong>Debt sustainability:</strong> Persistent deficits increase national debt</li>
-                  <li><strong>Leakages:</strong> Spending may leak to imports</li>
-                </ul>
-              </div>
-            </AnalysisBlock>
-          </ContentSection>
-
-          {/* Monetary Policy */}
-          <ContentSection title="Monetary Policy">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              <strong>Monetary policy</strong> involves the central bank using interest rates, money supply, and other tools to influence aggregate demand, particularly through investment and consumption decisions.
-            </p>
-
-            <NoteCard title="Interest Rate Transmission Mechanism" className="mb-6">
-              <div className="space-y-2 text-sm">
-                <p className="font-semibold text-primary">When central bank cuts interest rates:</p>
-                <ol className="list-decimal list-inside space-y-1 ml-2">
-                  <li>Cost of borrowing falls → businesses invest more (I↑)</li>
-                  <li>Return on saving falls → consumers spend more (C↑)</li>
-                  <li>Asset prices rise → wealth effect increases consumption</li>
-                  <li>Exchange rate may depreciate → exports more competitive (X↑)</li>
-                  <li><strong>Result:</strong> AD increases → output and inflation rise</li>
-                </ol>
-              </div>
-            </NoteCard>
-
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Expansionary Monetary Policy">
-                <ul className="list-disc list-inside text-sm space-y-1">
-                  <li>Lower interest rates</li>
-                  <li>Quantitative easing (QE)</li>
-                  <li>Lower reserve requirements</li>
-                </ul>
-                <p className="text-sm mt-2"><strong>Goal:</strong> Stimulate spending during recession</p>
-              </NoteCard>
-
-              <NoteCard title="Contractionary Monetary Policy">
-                <ul className="list-disc list-inside text-sm space-y-1">
-                  <li>Higher interest rates</li>
-                  <li>Selling government bonds</li>
-                  <li>Higher reserve requirements</li>
-                </ul>
-                <p className="text-sm mt-2"><strong>Goal:</strong> Control inflation</p>
-              </NoteCard>
-            </div>
-
-            <AnalysisBlock title="Limitations of Monetary Policy">
-              <ul className="list-disc list-inside space-y-2 text-sm">
-                <li><strong>Liquidity trap:</strong> At very low interest rates, further cuts have no effect (people hold cash)</li>
-                <li><strong>Time lags:</strong> Takes 18-24 months for full effect on economy</li>
-                <li><strong>Confidence effects:</strong> Businesses may not invest even with low rates if confidence is weak</li>
-                <li><strong>Asset bubbles:</strong> Prolonged low rates can inflate housing/stock bubbles</li>
-                <li><strong>Exchange rate constraints:</strong> Rate cuts may cause excessive currency depreciation</li>
-              </ul>
-            </AnalysisBlock>
-          </ContentSection>
-
-          {/* Supply-Side Policy */}
-          <ContentSection title="Supply-Side Policies">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              <strong>Supply-side policies</strong> aim to increase the productive capacity of the economy by shifting the LRAS curve to the right. Unlike demand-side policies, they focus on improving efficiency and competitiveness.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Market-Based Policies">
-                <ul className="list-disc list-inside text-sm space-y-2">
-                  <li><strong>Deregulation:</strong> Reduce bureaucracy and barriers to entry</li>
-                  <li><strong>Privatization:</strong> Transfer state assets to private sector</li>
-                  <li><strong>Tax reform:</strong> Lower marginal tax rates to incentivize work/enterprise</li>
-                  <li><strong>Trade liberalization:</strong> Reduce tariffs and quotas</li>
-                  <li><strong>Labor market flexibility:</strong> Reduce union power, ease hiring/firing</li>
-                </ul>
-              </NoteCard>
-
-              <NoteCard title="Interventionist Policies">
-                <ul className="list-disc list-inside text-sm space-y-2">
-                  <li><strong>Education & training:</strong> Improve human capital</li>
-                  <li><strong>Infrastructure investment:</strong> Roads, broadband, transport</li>
-                  <li><strong>R&D subsidies:</strong> Encourage innovation</li>
-                  <li><strong>Industrial policy:</strong> Support strategic sectors</li>
-                  <li><strong>Regional policy:</strong> Attract investment to lagging areas</li>
-                </ul>
-              </NoteCard>
-            </div>
-
-            <NoteCard title="Benefits of Supply-Side Policies" className="mb-4">
-              <ul className="list-disc list-inside text-sm space-y-1">
-                <li>Non-inflationary growth (LRAS shifts right)</li>
-                <li>Improved international competitiveness</li>
-                <li>Higher long-run living standards</li>
-                <li>Reduced natural rate of unemployment</li>
-              </ul>
-            </NoteCard>
-
-            <NoteCard title="Limitations of Supply-Side Policies" type="exam-tip">
-              <ul className="list-disc list-inside text-sm space-y-1">
-                <li>Long time lags (education takes years to improve productivity)</li>
-                <li>Costly to implement (infrastructure spending)</li>
-                <li>May increase inequality (tax cuts benefit wealthy)</li>
-                <li>Uncertain outcomes (deregulation may not improve efficiency)</li>
-                <li>May face political resistance (privatization, labor reforms)</li>
-              </ul>
-            </NoteCard>
-          </ContentSection>
-
-          {/* Policy Trade-offs */}
-          <ContentSection title="Policy Conflicts & Trade-offs">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              Pursuing one policy objective often comes at the cost of another. Understanding these trade-offs is essential for policy analysis.
-            </p>
-
-            <PolicyTradeoffDiagram />
-
-            <NoteCard title="Key Policy Conflicts" className="mt-6 mb-6">
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-primary">Inflation vs Unemployment (Phillips Curve)</h4>
-                  <p className="text-sm text-muted-foreground">Expansionary policies reduce unemployment but may cause inflation. This trade-off is more evident in the short run.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary">Growth vs Environment</h4>
-                  <p className="text-sm text-muted-foreground">Rapid growth often increases pollution and resource depletion, though "green growth" policies aim to reconcile these.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary">Growth vs Current Account</h4>
-                  <p className="text-sm text-muted-foreground">Strong growth pulls in imports, worsening the current account. Countries with high growth often run deficits.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary">Low Inflation vs Growth</h4>
-                  <p className="text-sm text-muted-foreground">High interest rates to control inflation can dampen investment and slow growth.</p>
-                </div>
-              </div>
-            </NoteCard>
-
-            <ExamTipBox title="Policy Analysis Framework">
-              <p className="mb-2">When evaluating policies, always consider:</p>
-              <ol className="list-decimal list-inside space-y-1 text-sm">
-                <li><strong>Objective:</strong> What is the policy trying to achieve?</li>
-                <li><strong>Mechanism:</strong> How does it work (AD/AS framework)?</li>
-                <li><strong>Trade-offs:</strong> What objectives might be sacrificed?</li>
-                <li><strong>Time horizon:</strong> Short-run vs long-run effects?</li>
-                <li><strong>Context:</strong> Economic conditions matter (recession vs boom)</li>
-              </ol>
             </ExamTipBox>
-          </ContentSection>
+          </div>
 
-          {/* Chapter Summary */}
-          <ContentSection title="Chapter Summary">
-            <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-foreground mb-4">Key Takeaways</h3>
-              <div className="grid md:grid-cols-3 gap-4 text-sm">
-                <div>
-                  <h4 className="font-semibold text-primary mb-2">Fiscal Policy</h4>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>G and T to shift AD</li>
-                    <li>Multiplier amplifies effects</li>
-                    <li>Risk: crowding out, debt</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary mb-2">Monetary Policy</h4>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Interest rates to shift AD</li>
-                    <li>Central bank independence</li>
-                    <li>Risk: liquidity trap, lags</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary mb-2">Supply-Side</h4>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Shifts LRAS right</li>
-                    <li>Non-inflationary growth</li>
-                    <li>Long time lags</li>
-                  </ul>
-                </div>
+          {/* Limitations of Fiscal Policy */}
+          <div className="glass-card p-5 space-y-4 mt-4">
+            <h3 className="font-serif text-xl text-gradient">Critical Evaluation: Limitations of Fiscal Policy (AO4)</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              <strong className="text-foreground">Time Lags:</strong> Fiscal policy is subject to three significant lags. The <em>recognition lag</em> is the time taken to identify that the economy requires intervention; the <em>implementation lag</em> is the delay between policy decision and actual government action (budget approval, contract signing); the <em>response lag</em> is the time taken for households and firms to adjust their behaviour. Combined, these lags can exceed 12-18 months, by which time the economy may have already self-corrected, rendering the policy pro-cyclical rather than counter-cyclical. <strong className="text-foreground">Crowding Out:</strong> If the government finances its deficit by borrowing, increased demand for loanable funds raises interest rates. Higher interest rates reduce private investment (I), partially or fully offsetting the initial stimulus. In the extreme (full crowding out), fiscal policy is entirely ineffective—a position associated with the Monetarist critique. <strong className="text-foreground">Ricardian Equivalence:</strong> Rational consumers may anticipate that today's government borrowing implies higher future taxes. In response, they increase saving (to pay these future taxes), reducing current consumption and negating the stimulus. <strong className="text-foreground">Political Economy Constraints:</strong> Expansionary fiscal policy is politically popular (tax cuts, spending increases), while contractionary policy is unpopular. This asymmetry creates a bias towards deficits and accumulating public debt.
+            </p>
+          </div>
+        </ContentSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* SECTION 2: MONETARY POLICY */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Monetary Policy: The Financial Tool">
+          <div className="glass-card p-5 space-y-4">
+            <h3 className="font-serif text-xl text-gradient">Defining Monetary Policy</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              <strong className="text-foreground">Monetary policy</strong> refers to the manipulation of <strong className="text-primary">interest rates</strong>, the <strong className="text-primary">money supply</strong>, and, in some cases, the <strong className="text-primary">exchange rate</strong> by the Central Bank to influence Aggregate Demand. In most modern economies, the primary instrument is the <em>base rate</em> (policy rate), which is the interest rate at which commercial banks borrow from the Central Bank. Changes in the base rate ripple through the financial system, affecting mortgage rates, savings rates, and corporate borrowing costs. When the Central Bank raises interest rates, it is pursuing <strong className="text-destructive">contractionary (tight) monetary policy</strong>, designed to reduce AD and combat inflation. When it lowers interest rates, it is pursuing <strong className="text-cambridge-green">expansionary (loose) monetary policy</strong>, designed to stimulate AD and combat unemployment or recession.
+            </p>
+
+            <AnalysisBlock title="Chain of Analysis: Contractionary Monetary Policy (↑r)" type="analysis">
+              <p className="text-sm leading-relaxed">
+                Consider a Central Bank raising interest rates to combat demand-pull inflation. The transmission operates through three channels: <strong>(1) Investment Channel:</strong> Higher interest rates increase the cost of borrowing. For firms, fewer investment projects have a Marginal Efficiency of Capital (MEC) exceeding the now-higher cost of capital; thus, Investment (I) falls. <strong>(2) Consumption Channel:</strong> Higher interest rates increase the return on saving, raising the opportunity cost of consumption. Households substitute saving for spending, reducing Consumption (C). Additionally, higher mortgage rates reduce disposable income for mortgage-holders, further dampening spending. <strong>(3) Exchange Rate Channel:</strong> Higher domestic interest rates attract international capital seeking higher returns ("hot money" inflows). The demand for the domestic currency rises, causing <strong>currency appreciation</strong>. A stronger currency makes exports more expensive to foreign buyers (↓X) and imports cheaper for domestic consumers (↑M), worsening net exports (X - M). The combined effect of ↓I, ↓C, and ↓(X - M) causes Aggregate Demand to shift leftward, reducing both output and the price level in the short run.
+              </p>
+            </AnalysisBlock>
+
+            <MonetaryPolicyTransmissionDiagram />
+          </div>
+
+          {/* Limitations of Monetary Policy */}
+          <div className="glass-card p-5 space-y-4 mt-4">
+            <h3 className="font-serif text-xl text-gradient">Critical Evaluation: Limitations of Monetary Policy (AO4)</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              <strong className="text-foreground">The Liquidity Trap:</strong> At very low interest rates (approaching the zero lower bound), further rate cuts become ineffective. Households and firms hold cash rather than spend or invest, regardless of how cheap borrowing becomes. This was observed during Japan's "Lost Decade" and in Western economies post-2008. Central Banks responded with <em>unconventional policies</em> such as Quantitative Easing (QE), but the effectiveness of these remains debated. <strong className="text-foreground">Time Lags:</strong> Monetary policy transmission takes 18-24 months for full effect. Rate changes today affect inflation projections 2 years hence, requiring Central Banks to be forward-looking. <strong className="text-foreground">Confidence and Expectations:</strong> Even with low rates, firms may not invest if business confidence is weak or if future demand is uncertain. "You can lead a horse to water, but you cannot make it drink." <strong className="text-foreground">Asset Price Inflation:</strong> Prolonged low interest rates can inflate asset bubbles (property, equities), creating financial instability risks. <strong className="text-foreground">Distributional Effects:</strong> Rate changes redistribute income between savers and borrowers, creating political sensitivity and potential inequality effects.
+            </p>
+          </div>
+        </ContentSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* SECTION 3: SUPPLY-SIDE POLICIES */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Supply-Side Policies: Expanding Productive Capacity">
+          <div className="glass-card p-5 space-y-4">
+            <h3 className="font-serif text-xl text-gradient">Defining Supply-Side Policies</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              <strong className="text-foreground">Supply-side policies</strong> are government measures designed to increase the <strong className="text-primary">productive potential</strong> of the economy by improving the quantity and/or quality of factors of production. Unlike demand-side policies (fiscal and monetary), which shift AD, supply-side policies shift the <strong className="text-secondary">Long-Run Aggregate Supply (LRAS)</strong> curve to the right, increasing the economy's capacity to produce without generating inflation. The theoretical appeal is clear: a rightward shift in LRAS enables the economy to achieve higher output (Y), lower prices (P), and lower unemployment simultaneously—overcoming the demand-side trade-off between inflation and growth. Supply-side policies are classified into two broad categories: <strong>Market-Based</strong> policies, which seek to improve efficiency by enhancing the functioning of markets; and <strong>Interventionist</strong> policies, which involve active government spending to address market failures in skills, infrastructure, or innovation.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-lg border" style={{ backgroundColor: 'hsl(180 100% 50% / 0.05)', borderColor: 'hsl(180 100% 50% / 0.3)' }}>
+                <h4 className="font-semibold text-sm mb-2" style={{ color: 'hsl(180 100% 50%)' }}>Market-Based Policies</h4>
+                <ul className="text-xs text-muted-foreground space-y-1">
+                  <li><strong>Deregulation:</strong> Reduce bureaucracy, lower barriers to entry</li>
+                  <li><strong>Privatisation:</strong> Transfer state assets to private sector (efficiency gains)</li>
+                  <li><strong>Tax Reform:</strong> Lower marginal rates → higher work incentives</li>
+                  <li><strong>Trade Liberalisation:</strong> Reduce tariffs → competitive pressure</li>
+                  <li><strong>Labour Market Flexibility:</strong> Reduce union power, ease hiring/firing</li>
+                </ul>
+              </div>
+              <div className="p-4 rounded-lg border" style={{ backgroundColor: 'hsl(36 100% 50% / 0.05)', borderColor: 'hsl(36 100% 50% / 0.3)' }}>
+                <h4 className="font-semibold text-sm mb-2" style={{ color: 'hsl(36 100% 50%)' }}>Interventionist Policies</h4>
+                <ul className="text-xs text-muted-foreground space-y-1">
+                  <li><strong>Education & Training:</strong> Improve human capital quality</li>
+                  <li><strong>Infrastructure Investment:</strong> Roads, rail, broadband (↓costs)</li>
+                  <li><strong>R&D Subsidies:</strong> Encourage innovation, technological progress</li>
+                  <li><strong>Industrial Policy:</strong> Support strategic sectors</li>
+                  <li><strong>Regional Policy:</strong> Attract investment to lagging areas</li>
+                </ul>
               </div>
             </div>
-          </ContentSection>
-        </motion.div>
-      </div>
+
+            <AnalysisBlock title="Chain of Analysis: Investment in Vocational Training" type="analysis">
+              <p className="text-sm leading-relaxed">
+                Consider a government programme investing in vocational training for the workforce. <strong>Step 1:</strong> Increased spending on technical colleges and apprenticeship schemes improves the skills and productivity of labour. <strong>Step 2:</strong> Higher labour productivity means each worker can produce more output per hour, reducing <em>unit labour costs</em> for firms. <strong>Step 3:</strong> Lower unit costs shift the Short-Run Aggregate Supply (SRAS) curve rightward. <strong>Step 4:</strong> In the long run, the increase in the quality of the labour force increases the economy's productive potential, shifting the LRAS curve from LRAS₁ to LRAS₂. <strong>Step 5:</strong> The new equilibrium features higher real GDP (Y<sub>f1</sub> → Y<sub>f2</sub>) and a lower price level (P₁ → P₂), demonstrating <strong>non-inflationary economic growth</strong>. Additionally, structural unemployment falls as workers possess skills demanded by modern industries.
+              </p>
+            </AnalysisBlock>
+
+            <SupplySideLRASDiagram />
+          </div>
+
+          {/* Evaluation of Supply-Side Policies */}
+          <div className="glass-card p-5 space-y-4 mt-4">
+            <h3 className="font-serif text-xl text-gradient">Critical Evaluation: Supply-Side Policies (AO4)</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              <strong className="text-foreground">Time Lags:</strong> The most significant limitation of supply-side policies is their <em>long gestation period</em>. Infrastructure projects take years to complete; improvements in education take a generation to fully materialise in the workforce. Unlike monetary policy (which operates in months), supply-side policies cannot address short-run stabilisation needs. <strong className="text-foreground">Inequality Concerns:</strong> Market-based policies, particularly tax cuts on high earners and reductions in welfare, may exacerbate income inequality. While they may improve incentives and efficiency, the distributional consequences may be politically unacceptable. <strong className="text-foreground">Uncertain Outcomes:</strong> Deregulation does not guarantee improved efficiency; it may reduce consumer protection or environmental standards. Privatisation of natural monopolies (e.g., water, rail) may simply replace public monopoly with private monopoly. <strong className="text-foreground">Cost:</strong> Interventionist policies—particularly infrastructure and education—require substantial government expenditure, which may conflict with objectives of fiscal consolidation or debt reduction.
+            </p>
+
+            <ExamTipBox title="Exam Strategy: Policy Comparison" variant="gold">
+              <p className="text-sm leading-relaxed">
+                When comparing policy types, always address: (1) <strong>Speed of impact</strong>: Monetary fastest, fiscal medium, supply-side slowest; (2) <strong>Inflation trade-off</strong>: Demand-side policies face the Phillips Curve constraint; supply-side avoids it; (3) <strong>Side effects</strong>: Fiscal may crowd out, monetary may cause asset bubbles, supply-side may worsen inequality; (4) <strong>Economic context</strong>: In a liquidity trap, fiscal becomes essential; in an overheating economy, supply-side offers non-inflationary growth.
+              </p>
+            </ExamTipBox>
+          </div>
+        </ContentSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* SECTION 4: POLICY CONFLICTS */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Policy Conflicts and Trade-offs">
+          <div className="glass-card p-5 space-y-4">
+            <h3 className="font-serif text-xl text-gradient">The Impossibility of Simultaneous Achievement</h3>
+            
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Governments pursue four primary macroeconomic objectives: <strong className="text-cambridge-green">economic growth</strong>, <strong className="text-cambridge-cyan">low unemployment</strong>, <strong className="text-cambridge-orange">price stability (low inflation)</strong>, and <strong className="text-cambridge-magenta">Balance of Payments equilibrium</strong>. However, pursuing one objective frequently impairs the achievement of another. The <strong className="text-foreground">Phillips Curve</strong> relationship illustrates the short-run trade-off between inflation and unemployment: expansionary policies that reduce unemployment tend to increase inflation, while contractionary policies that reduce inflation tend to increase unemployment. The <strong className="text-foreground">Growth-Current Account conflict</strong> arises because higher national income (Y) increases demand for imports through the Marginal Propensity to Import (MPM), worsening the current account. The <strong className="text-foreground">Growth-Inflation conflict</strong> occurs when rapid demand-led growth outstrips the economy's productive capacity, generating demand-pull inflation. These trade-offs force policymakers to <em>prioritise</em>, and the choice of priority is as much a political judgement as an economic calculation.
+            </p>
+
+            <PolicyConflictsDiagram />
+          </div>
+        </ContentSection>
+
+        {/* Final Synthesis */}
+        <ContentSection title="Final Synthesis">
+          <div className="glass-card p-5 border-l-4 border-primary">
+            <p className="text-sm leading-relaxed text-foreground/90">
+              <strong className="text-primary font-serif text-lg">Senior Examiner's Conclusion:</strong> Ultimately, the effectiveness of any macroeconomic policy is constrained by <strong>Time Lags</strong> (recognition, implementation, and response lags), the <strong>Degree of Spare Capacity</strong> in the economy, and the <strong>State of Expectations</strong> among households and firms. In a deep recession characterised by a <em>Liquidity Trap</em>, monetary policy may become ineffective ("pushing on a string"), making fiscal policy the more potent tool for recovery—as Keynes argued in the 1930s. Conversely, in an economy operating near full capacity, expansionary demand-side policies simply generate inflation, making supply-side reforms essential for sustainable growth. The optimal policy mix depends on the specific macroeconomic context: the cause of the problem (demand-side or supply-side shock), the current position in the business cycle, and the relative importance society places on competing objectives. No single policy is universally superior; the art of macroeconomic management lies in judicious selection and timing.
+            </p>
+          </div>
+        </ContentSection>
+      </motion.div>
     </Layout>
   );
 };
