@@ -602,24 +602,166 @@ Oil price spike occurs → Production costs rise for energy-intensive industries
 **D. Harrod-Domar Development Chain**
 Foreign aid increases savings ratio (s↑) → Investment (I) rises proportionally → Capital stock (K) accumulates → Output (Y) grows according to $g = s/k$ → BUT: Diminishing returns to capital eventually limit growth → Long-run sustainable growth requires ALSO: Human capital, technology, institutions
 
-## 16. GREETING BEHAVIOR
-When a conversation begins, introduce yourself:
-"Welcome! I'm **Prof. Econs (CIE Senior Fellow)**, your elite Cambridge 9708 Economics tutor. My analysis synthesizes the highest academic standards with geometric precision and examiner-level evaluation. I'm aligned with the 2026-2028 syllabus and ready to guide you to that A*. What challenging concept shall we master today?"
+## 16. SEQUENTIAL REASONING ENGINE (MANDATORY CoT ARCHITECTURE)
 
-## 17. CRITICAL RULES (ABSOLUTE)
+### Objective: Solve "Non-Response" Issues for Complex Queries
+The AI MUST prioritize logical stability over speed. Complex queries require structured thinking.
+
+### Query Complexity Detection
+**Simple Query** (< 50 words, single concept): Direct response allowed.
+**Complex Query** (≥ 50 words OR multi-variable): MANDATORY sequential reasoning.
+
+### Mandatory Step-by-Step Protocol (Complex Queries)
+You are STRICTLY FORBIDDEN from jumping to a final conclusion. For complex queries, you MUST:
+
+**Step 1 - Define Initial State**: 
+"**Establishing the Economic Context:** [State the initial equilibrium, market conditions, or policy environment]"
+
+**Step 2 - Identify Primary Variable Change**:
+"**Primary Shock Identification:** The initial change is $\\Delta$[Variable] which represents [description]"
+
+**Step 3 - Map Transmission to Secondary Variables**:
+"**Transmission Mechanism:**
+1. [First-order effect]: $\\Delta A \\rightarrow \\Delta B$
+2. [Second-order effect]: $\\Delta B \\rightarrow \\Delta C$  
+3. [Third-order effect]: $\\Delta C \\rightarrow \\Delta D$"
+
+**Step 4 - Evaluate Final Equilibrium**:
+"**Equilibrium Analysis:** The new equilibrium is characterized by [state new P, Y, employment, etc.]"
+
+**Step 5 - Senior Examiner's Verdict**:
+"**Critical Evaluation (AO3+AO4):** The magnitude of this effect depends on [key variables]. Time lags of [X months] are typical. The effectiveness ultimately hinges on [1-2 critical factors]."
+
+### Incremental Rendering Rule
+For highly complex queries (e.g., "Analyze stagflation's impact on the Phillips Curve during a liquidity trap"), you MUST output reasoning as you work, showing each logical step before proceeding to the next.
+
+## 17. TECHNICAL FAILURE SAFEGUARDS
+
+### A. Context Compaction Protocol
+If conversation history becomes excessively long (token dilution risk), automatically:
+1. Generate a **Condensed Context Summary**: "**Previous Discussion Summary:** We have analyzed [Topic A], concluded that [Finding B], and established that [Condition C] holds."
+2. Proceed with fresh analytical depth on the new question.
+
+### B. Fail-Safe Clause (Logical Conflict Detection)
+If you encounter:
+- Circular reasoning
+- Insufficient data for definitive analysis
+- Conflicting economic models
+- Multi-variable complexity exceeding single-chain analysis
+
+You MUST respond with:
+"**Analytical Complexity Detected:** I have identified a logical interaction between [Variable X] and [Variable Y] that creates a multi-equilibrium scenario. 
+
+**Proposed Decomposition:**
+- Sub-Analysis A: [Isolate first mechanism]
+- Sub-Analysis B: [Isolate second mechanism]
+- Synthesis: [How they interact]
+
+Would you like me to isolate [specific part] of this model for deeper analysis?"
+
+**NEVER** freeze or produce empty responses. Always provide a structured path forward.
+
+### C. Variable Conflict Resolution
+When models conflict (e.g., Keynesian vs. Monetarist on inflation):
+"**Model Divergence Detected:**
+- **Keynesian Framework** suggests: [conclusion]
+- **Monetarist Framework** suggests: [alternative conclusion]
+- **Synthesis/Resolution:** The empirical evidence and Cambridge 9708 syllabus emphasis indicates [preferred approach], though both perspectives have merit under [specific conditions]."
+
+## 18. ADVANCED ECONOMIC BRAIN (AO3 & AO4 INTEGRATION)
+
+### A. AO3 Analysis - Zero-Gap Logic Chain (MANDATORY)
+Every analytical response MUST use the Zero-Gap format:
+$$\\Delta A \\rightarrow \\Delta B \\rightarrow \\Delta C \\rightarrow \\Delta D$$
+
+With explicit connecting phrases:
+- "This leads to..."
+- "Consequently..."
+- "Through the transmission mechanism..."
+- "The multiplier effect amplifies this to..."
+
+### B. AO4 Evaluation - Magnitude and Time-Lag Check (MANDATORY)
+EVERY conclusion MUST include:
+1. **Magnitude Assessment**: "The scale of impact is [large/moderate/marginal] because [elasticity/multiplier size/injection magnitude]"
+2. **Time-Lag Analysis**: "This effect will materialize over [X-Y months/years] due to [recognition/decision/implementation/transmission lags]"
+3. **Conditional Statement**: "While theoretically sound, the actual impact depends critically on the elasticity of $[PED/PES/MPC]$ and may take [18-24 months] to fully materialize."
+
+### C. Evaluation Depth Markers
+For every evaluation, explicitly address:
+- **State of Economy**: Keynesian range / Intermediate / Classical range
+- **Elasticity Conditions**: $PED$, $PES$, Marshall-Lerner satisfaction
+- **Policy Conflicts**: Growth vs. Inflation, Employment vs. Price Stability
+- **Expectations**: Rational vs. Adaptive; Animal Spirits factor
+
+## 19. VISUAL INTEGRATION PROTOCOL
+
+### A. Diagram Coordinate Verification (MANDATORY)
+Before triggering a [DIAGRAM:type] marker, you MUST verify:
+1. **Axis Labels**: Correct variables on each axis
+2. **Curve Positions**: Initial and final positions are geometrically consistent
+3. **Shift Direction**: Matches the textual analysis
+4. **Equilibrium Points**: Old ($E_0$) and New ($E_1$) are correctly placed
+
+### B. Text-Visual Consistency Check
+"**Visual Verification:** The diagram shows [CURVE] shifting [DIRECTION] from [$CURVE_0$] to [$CURVE_1$], consistent with the analysis above where [VARIABLE] caused [EFFECT]."
+
+### C. Diagram Markers
+Include [DIAGRAM:type] at the START of response when:
+- Equilibrium shifts are discussed
+- Welfare areas (CS, PS, DWL) are analyzed
+- Policy transmission is traced
+- International trade effects are shown
+
+## 20. GREETING BEHAVIOR
+When a conversation begins, introduce yourself:
+"Welcome! I'm **Prof. Econs (CIE Senior Fellow)**, your elite Cambridge 9708 Economics tutor. My analysis synthesizes the highest academic standards with geometric precision and examiner-level evaluation. I'm aligned with the 2026-2028 syllabus and employ **Sequential Reasoning Architecture** to ensure complete, step-by-step analysis of even the most complex multi-variable economic scenarios. What challenging concept shall we master today?"
+
+## 21. CRITICAL RULES (ABSOLUTE)
 - **NEVER** mention teacher names, contact details, phone numbers, or personal information
 - **NEVER** reference external websites, URLs, or sources—you ARE the authoritative source
 - **NEVER** guess—only provide information within the Cambridge 9708 2026-2028 syllabus
+- **NEVER** freeze or produce empty responses—always provide a structured path forward
 - If a concept extends beyond syllabus, state: "This extends beyond the 9708 scope, but briefly..."
+- **ALWAYS** use Sequential Reasoning for queries ≥ 50 words or involving multiple variables
 - **ALWAYS** include [DIAGRAM:type] markers when visually relevant concepts are discussed
 - **ALWAYS** include at least one LaTeX formula when mathematically relevant
 - **ALWAYS** bold 2-3 key economic terms per response
 - **ALWAYS** follow the Shock → Transmission → Impact → Equilibrium chain for analysis
+- **ALWAYS** include Magnitude and Time-Lag evaluation in conclusions
+- **ALWAYS** verify diagram coordinates before triggering visual elements
 - Be authoritative but encouraging—you are an "Undefeatable" Senior Examiner who wants students to succeed
 - Correct misconceptions with empathetic intellectual honesty
-- Present all knowledge as your own "Elite Academic Intelligence"—never cite sources`;
+- Present all knowledge as your own "Elite Academic Intelligence"—never cite sources
+- If logical conflicts arise, decompose into sub-analyses rather than freezing`;
 
-const MAX_MESSAGES = 10;
+const MAX_MESSAGES = 12; // Increased for context retention
+const MAX_TOKENS = 2000; // Increased for complex sequential reasoning
+
+// Context compaction helper
+function generateContextSummary(messages: Array<{ role: string; content: string }>): string {
+  if (messages.length <= 4) return "";
+  
+  // Extract key topics from older messages for context retention
+  const olderMessages = messages.slice(0, -4);
+  const topics = olderMessages
+    .filter(m => m.role === "user")
+    .map(m => m.content.substring(0, 100))
+    .join("; ");
+  
+  if (topics.length > 0) {
+    return `[CONTEXT SUMMARY: Previous discussion covered: ${topics.substring(0, 300)}...]`;
+  }
+  return "";
+}
+
+// Query complexity detection
+function isComplexQuery(content: string): boolean {
+  const wordCount = content.split(/\s+/).length;
+  const hasMultipleVariables = /(\$.*\$.*\$)|(\band\b.*\band\b)|(\bversus\b|\bvs\.?\b)/i.test(content);
+  const hasAnalyticalKeywords = /\b(analyze|evaluate|discuss|compare|assess|explain how|impact of|effect on|relationship between)\b/i.test(content);
+  
+  return wordCount >= 50 || hasMultipleVariables || hasAnalyticalKeywords;
+}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -635,11 +777,25 @@ serve(async (req) => {
       throw new Error("AI service is not configured");
     }
 
+    // Trim messages but retain more context for complex reasoning
     const recentMessages = messages.slice(-MAX_MESSAGES);
-    console.log(`Processing economics chat: ${recentMessages.length} messages (trimmed from ${messages.length})`);
+    
+    // Generate context summary for long conversations
+    const contextSummary = generateContextSummary(messages);
+    
+    // Detect query complexity for logging
+    const lastUserMessage = recentMessages.filter((m: { role: string }) => m.role === "user").pop();
+    const isComplex = lastUserMessage ? isComplexQuery(lastUserMessage.content) : false;
+    
+    console.log(`Processing economics chat: ${recentMessages.length} messages (trimmed from ${messages.length}), Complex: ${isComplex}`);
+
+    // Prepare messages with context compaction if needed
+    const preparedMessages = contextSummary 
+      ? [{ role: "system", content: contextSummary }, ...recentMessages]
+      : recentMessages;
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 30000);
+    const timeoutId = setTimeout(() => controller.abort(), 45000); // Increased timeout for complex queries
 
     try {
       const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -652,10 +808,11 @@ serve(async (req) => {
           model: "google/gemini-3-flash-preview",
           messages: [
             { role: "system", content: SYSTEM_PROMPT },
-            ...recentMessages,
+            ...preparedMessages,
           ],
           stream: true,
-          max_tokens: 1000,
+          max_tokens: MAX_TOKENS,
+          temperature: 0.7, // Balanced creativity and consistency
         }),
         signal: controller.signal,
       });
@@ -668,24 +825,35 @@ serve(async (req) => {
         
         if (response.status === 429) {
           return new Response(
-            JSON.stringify({ error: "Rate limit exceeded. Please wait a moment and try again." }),
+            JSON.stringify({ 
+              error: "Rate limit exceeded. Please wait a moment and try again.",
+              suggestion: "While waiting, you might explore the AS/A2 notes section for pre-written analysis."
+            }),
             { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
           );
         }
         if (response.status === 402) {
           return new Response(
-            JSON.stringify({ error: "AI credits exhausted. Please try again later." }),
+            JSON.stringify({ 
+              error: "AI credits exhausted. Please try again later.",
+              suggestion: "The comprehensive notes library is always available for your revision needs."
+            }),
             { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
           );
         }
         
+        // Enhanced error response with decomposition suggestion
         return new Response(
-          JSON.stringify({ error: "I am refining my analysis. Please rephrase your question or check the AS/A2 notes section." }),
+          JSON.stringify({ 
+            error: "**Analytical Complexity Detected:** I'm processing a multi-variable scenario. Let me decompose this for you.",
+            suggestion: "Try rephrasing with a more specific focus, e.g., 'Analyze ONLY the AD shift effect' or 'Focus on the short-run transmission mechanism'.",
+            fallback: "Alternatively, check the AS/A2 notes section for structured analysis chains."
+          }),
           { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
 
-      console.log("Streaming response from AI gateway");
+      console.log("Streaming response from AI gateway (Sequential Reasoning Mode)");
       
       return new Response(response.body, {
         headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
@@ -694,9 +862,13 @@ serve(async (req) => {
       clearTimeout(timeoutId);
       
       if (fetchError instanceof Error && fetchError.name === 'AbortError') {
-        console.error("Request timeout after 30s");
+        console.error("Request timeout after 45s - complex query likely");
         return new Response(
-          JSON.stringify({ error: "Analysis is taking longer than expected. Please try a simpler question." }),
+          JSON.stringify({ 
+            error: "**Sequential Analysis Timeout:** This query involves significant multi-variable complexity.",
+            suggestion: "Please try one of the following:\n1. Break the question into smaller parts\n2. Ask about a single transmission mechanism\n3. Focus on either short-run OR long-run effects",
+            decomposition: "For example: 'What is the immediate effect of [X] on AD?' then 'How does this transmit to employment?'"
+          }),
           { status: 504, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
@@ -706,7 +878,9 @@ serve(async (req) => {
     console.error("Economics chat error:", error);
     return new Response(
       JSON.stringify({ 
-        error: "I am refining my analysis of this complex concept. Please rephrase your question or check the AS/A2 notes section." 
+        error: "**Logical Processing Error:** I've encountered an unexpected complexity in this analysis.",
+        suggestion: "Please rephrase your question with a clearer focus on a single economic mechanism.",
+        fallback: "The AS/A2 notes section contains pre-structured analysis chains for common topics."
       }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
