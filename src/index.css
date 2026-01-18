@@ -172,13 +172,26 @@
 }
 
 @layer components {
+  /* Economic Kinetic Content Panel - Zero-Gap Academic Style */
+  .economic-content-panel {
+    @apply relative overflow-hidden;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 0.5px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 
+      0 30px 80px rgba(0, 0, 0, 0.6),
+      0 10px 30px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  }
+
   /* Premium Glassmorphism Card - Research Portal Style */
   .glass-card {
     @apply relative overflow-hidden rounded-xl;
-    background: hsl(0 0% 8% / 0.75);
+    background: hsl(0 0% 8% / 0.8);
     border: 0.5px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     box-shadow: 
       0 20px 50px rgba(0, 0, 0, 0.5),
       0 8px 25px rgba(0, 0, 0, 0.3),
@@ -206,6 +219,19 @@
       0 0 0 0.5px rgba(255, 255, 255, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
     transform: translateY(-6px);
+  }
+
+  /* Section content wrapper for kinetic background */
+  .kinetic-section {
+    @apply relative;
+    background: linear-gradient(
+      180deg,
+      rgba(4, 4, 4, 0.95) 0%,
+      rgba(10, 10, 10, 0.9) 50%,
+      rgba(4, 4, 4, 0.95) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   /* Floating Dock Navigation - Premium Glass Style */
