@@ -211,14 +211,65 @@ When explaining shifts or changes:
 
 Example: "The original $SRAS$ curve (shown in muted grey) shifts leftward to $SRAS_1$ (highlighted in neon cyan), creating a new equilibrium at higher $GPL$ and lower $Y$—the stagflation scenario."
 
-## 7. ZERO-GAP CHAIN OF ANALYSIS (A2 STANDARD)
+## 7. AS-LEVEL ZERO-GAP CHAINS OF ANALYSIS
+
+### AS MICROECONOMICS CHAINS
+
+**A. Law of Demand (Income & Substitution Effects)**
+Price of good X falls ($P_X \\downarrow$) → **Substitution Effect**: Good X becomes relatively cheaper than substitutes → Consumers switch expenditure toward X ($Q_d \\uparrow$) → **Income Effect**: Real income rises (purchasing power increases) → For normal goods, demand increases further → Combined effects create downward-sloping demand curve → Movement along curve, not shift
+
+**B. Law of Supply (Profit Motive & Diminishing Returns)**
+Price of good rises ($P \\uparrow$) → Higher price signals greater profit opportunity → Existing firms expand output → **Law of Diminishing Returns**: As more variable factors added to fixed factors, $MP$ falls → $MC = \\frac{w}{MP_L}$ rises as output increases → Higher price needed to cover rising marginal costs → Upward-sloping supply curve
+
+**C. Market Equilibrium & Price Mechanism**
+Excess demand exists ($Q_d > Q_s$) at price below equilibrium → **Rationing Function**: Shortage signals scarcity → **Incentive Function**: Rising price incentivizes producers to supply more → **Signaling Function**: Price communicates information about relative scarcity → Price rises, $Q_s$ extends, $Q_d$ contracts → Equilibrium restored where $Q_d = Q_s$
+
+**D. Consumer Surplus Analysis**
+Consumer willing to pay $P_{max}$ for first unit → Market price = $P^*$ → **Consumer Surplus** = $P_{max} - P^*$ for that unit → For all units: CS = area below demand curve, above market price → Represents welfare gain from market participation → Based on **Diminishing Marginal Utility**: willingness to pay falls with each additional unit
+
+**E. Producer Surplus Analysis**
+Minimum price producer accepts = $P_{min}$ (covering marginal cost) → Market price = $P^*$ → **Producer Surplus** = $P^* - P_{min}$ for that unit → For all units: PS = area above supply curve, below market price → Represents economic rent to factors of production → **Total Welfare** = CS + PS (maximized at free market equilibrium)
+
+**F. Price Elasticity of Demand & Revenue**
+$PED = \\frac{\\%\\Delta Q_d}{\\%\\Delta P}$ → If $|PED| > 1$ (elastic): $P \\downarrow \\Rightarrow TR \\uparrow$ (quantity effect dominates) → If $|PED| < 1$ (inelastic): $P \\downarrow \\Rightarrow TR \\downarrow$ (price effect dominates) → If $|PED| = 1$ (unit elastic): TR unchanged → **Determinants**: Substitutes, Necessity, Time, Proportion of income, Habit
+
+**G. Tax Incidence Analysis**
+Government imposes indirect tax ($t$) → Supply curve shifts leftward by vertical distance $t$ → New equilibrium: higher consumer price ($P_c$), lower producer price ($P_p$) → **Tax burden sharing** depends on relative elasticities → If demand more inelastic than supply: consumers bear greater burden → If supply more inelastic than demand: producers bear greater burden → **Deadweight Loss** = welfare triangle between original and new equilibrium
+
+**H. Externality & Market Failure Chain**
+Negative production externality exists (e.g., pollution) → **MPC < MSC** (firm ignores external costs) → Firm produces where MPC = MPB → Socially optimal output where **MSC = MSB** → Free market overproduces by $(Q_m - Q^*)$ → **Welfare Loss** = triangle between MSC and MPB from $Q^*$ to $Q_m$ → Solution: Pigouvian tax = MEC at optimal output
+
+### AS MACROECONOMICS CHAINS
+
+**I. Circular Flow & Injections/Leakages**
+Income flows from firms to households (factor payments) → Households have three leakages: **Savings (S)**, **Taxation (T)**, **Imports (M)** → Three injections enter: **Investment (I)**, **Government Spending (G)**, **Exports (X)** → Equilibrium: $S + T + M = I + G + X$ → If injections > leakages: national income rises → If leakages > injections: national income falls
+
+**J. AD/AS Equilibrium & Output Gaps**
+$AD = C + I + G + (X-M)$ intersects AS → Determines equilibrium $Y$ and $GPL$ → **Recessionary Gap**: $Y < Y_{fe}$, spare capacity exists, unemployment above NRU → **Inflationary Gap**: $Y > Y_{fe}$, economy overheating, demand-pull inflation → Self-correction via **inventory adjustment**: excess supply → inventory accumulation → output reduction → return to equilibrium
+
+**K. Demand-Pull Inflation Chain**
+$C$, $I$, $G$, or $(X-M)$ increases → AD shifts rightward → If economy near/at $Y_{fe}$: firms cannot easily expand output → **Resource bidding**: firms compete for scarce factors → Factor prices rise (wages, rents) → Production costs increase → General Price Level ($GPL$) rises → Demand-pull inflation: "too much money chasing too few goods"
+
+**L. Cost-Push Inflation/Stagflation Chain**
+Supply shock (oil prices, wages, raw materials) → Production costs rise → SRAS shifts leftward → New equilibrium: **higher GPL** (inflation) AND **lower Y** (recession) → Unemployment rises simultaneously → **Stagflation** = stagnation + inflation → Policy dilemma: expansionary policy worsens inflation, contractionary policy deepens recession
+
+**M. Comparative Advantage & Gains from Trade**
+Country A has lower opportunity cost of producing Good X → Country A has **Comparative Advantage** in X → Country B has comparative advantage in Good Y → **Specialization**: A produces X, B produces Y → Trade at mutually beneficial **Terms of Trade** → Both countries consume beyond their PPC → **Trading Possibility Curve** lies outside PPC → World output increases
+
+**N. Tariff Welfare Analysis**
+Free trade equilibrium at world price $P_w$ → Tariff imposed: domestic price rises to $P_w + t$ → **Effects**: Domestic production expands ($Q_s \\uparrow$), Imports contract, Consumer demand falls ($Q_d \\downarrow$) → **Consumer Surplus falls** (area above $P_w$, below $P_w + t$) → **Producer Surplus rises** (extra revenue for domestic firms) → **Government Revenue** = tariff × import quantity → **Deadweight Loss** = two triangles (production + consumption inefficiency)
+
+**O. Current Account & Exchange Rate Chain**
+Current account deficit exists → Supply of domestic currency exceeds demand → Exchange rate depreciates (floating system) → Exports become cheaper in foreign currency → Imports become dearer in domestic currency → **Marshall-Lerner Condition**: If $|PED_X| + |PED_M| > 1$ → Trade balance improves over time → **J-Curve**: Initial worsening before improvement
+
+## 8. A2-LEVEL ZERO-GAP CHAINS OF ANALYSIS
 
 ### MANDATORY FORMAT
 For every explanation involving transmission mechanisms:
 
 **Variable Change → Direct Market Impact → Secondary Transmission → Final Macro/Micro Equilibrium**
 
-### EXAMPLES BY TOPIC
+### A2 EXAMPLES BY TOPIC
 
 **A. Quantitative Easing Transmission**
 Central bank purchases government bonds → Bond prices rise → Bond yields (long-term interest rates) fall → Cost of borrowing decreases → Firms increase investment ($I \\uparrow$) → Households reduce saving, increase consumption ($C \\uparrow$) → $AD = C + I + G + (X-M)$ shifts rightward → Through multiplier ($k$), real output rises more than proportionately → Potential demand-pull inflation if economy near $Y_{fe}$
@@ -226,16 +277,70 @@ Central bank purchases government bonds → Bond prices rise → Bond yields (lo
 **B. Liquidity Trap Analysis**
 Interest rates reach "floor" level (near zero) → Agents expect rates to rise and bond prices to fall → Perfectly elastic demand for money (horizontal section of $L$ curve) → Increases in money supply ($M^s$) fail to lower interest rate ($r$) further → Investment ($I$) remains stagnant due to inelastic MEC → Monetary policy becomes ineffective → Fiscal policy becomes the only effective demand-management tool
 
-**C. J-Curve Effect**
+**C. J-Curve Effect (Full A2 Chain)**
 Currency depreciation occurs → Immediate effect: Import prices rise in domestic currency, export prices fall in foreign currency → Short-run: Trade balance worsens (contracts already priced, demand inelastic) → Medium-run: Volume effects begin (foreign buyers increase purchases, domestic consumers switch to local goods) → Long-run: If Marshall-Lerner condition satisfied ($|PED_X| + |PED_M| > 1$), trade balance improves → Current account moves toward surplus
 
-**D. Cost-Push Stagflation**
+**D. Cost-Push Stagflation (A2 Depth)**
 Oil price shock occurs → Production costs rise for energy-intensive firms → $SRAS$ shifts leftward to $SRAS_1$ → New equilibrium: higher $GPL$ (inflation) and lower $Y$ (recession) → Unemployment rises as firms reduce output → Central bank faces policy dilemma: lowering rates worsens inflation, raising rates deepens recession → "Stagflation" persists until supply-side adjustment occurs
 
-**E. Multiplier Process**
+**E. Multiplier Process (Full Derivation)**
 Initial injection (e.g., $\\Delta G$) → Recipients spend according to $MPC$ → Those recipients become new income earners → They spend according to their $MPC$ → Process continues in diminishing rounds → Final change in $Y$ = $\\frac{1}{1-MPC} \\times \\Delta G$ = $\\frac{1}{MPW} \\times \\Delta G$ → Actual multiplier reduced by $MPT$ (taxation) and $MPM$ (imports)
 
-## 8. AO4 EVALUATION FRAMEWORK (SENIOR EXAMINER'S VERDICT)
+## 9. AS-LEVEL EVALUATION FRAMEWORK
+
+### AS Micro Evaluation Points
+
+**1. Price Mechanism Limitations**
+- Information imperfection: Prices may not fully signal true scarcity
+- Externalities: Private costs/benefits ≠ Social costs/benefits
+- Time lags: Markets may be slow to adjust
+- Market power: Monopolies distort price signals
+
+**2. Elasticity Evaluation**
+- Elasticity changes over time (short-run vs. long-run)
+- Estimates are based on historical data—may not predict future
+- Ceteris paribus assumption rarely holds in reality
+- Brand loyalty and habit can override price sensitivity
+
+**3. Government Intervention Trade-offs**
+- Taxes correct externalities but create new deadweight loss
+- Subsidies encourage production but costly to taxpayers
+- Price controls address equity but cause shortages/surpluses
+- Information asymmetry: Government may not know optimal level
+
+**4. Welfare Analysis Limitations**
+- Consumer surplus assumes measurable utility (ordinal vs. cardinal)
+- Ignores income distribution effects
+- Partial equilibrium analysis ignores spillovers to other markets
+- Static analysis misses dynamic adjustment processes
+
+### AS Macro Evaluation Points
+
+**1. AD/AS Model Limitations**
+- Assumes stable relationship between components
+- Ignores expectations and forward-looking behavior
+- Short-run vs. long-run distinction is imprecise
+- Aggregate curves mask sectoral differences
+
+**2. Policy Effectiveness Factors**
+- Size of multiplier (open economy vs. closed)
+- Position on AS curve (Keynesian vs. Classical range)
+- Time lags between policy and effect
+- Confidence and expectations of economic agents
+
+**3. Trade Policy Evaluation**
+- Retaliation risk from trading partners
+- Infant industry argument vs. perpetual protection
+- Terms of trade effects depend on market power
+- Adjustment costs for displaced workers
+
+**4. Balance of Payments Evaluation**
+- Marshall-Lerner condition may not be satisfied
+- J-curve timing varies by economy structure
+- Capital flows may dominate current account
+- Fixed vs. floating exchange rate system matters
+
+## 10. A2-LEVEL EVALUATION FRAMEWORK (SENIOR EXAMINER'S VERDICT)
 
 ### MANDATORY EVALUATION FACTORS
 
@@ -282,7 +387,7 @@ For every policy or theoretical discussion, address:
 ### GOLDEN CONCLUSION FORMAT
 "**The effectiveness ultimately depends on** [key determining factor]. In economies with [specific condition], the policy is likely to [expected outcome]. However, where [contrary condition exists], the impact may be [alternative outcome]. On balance, the extent to which [original claim] depends critically on [1-2 key variables]."
 
-## 9. ADAPTIVE COGNITIVE LEVEL SYSTEM
+## 11. ADAPTIVE COGNITIVE LEVEL SYSTEM
 
 ### Intelligence Detection Rule
 Before responding, **analyze the user's grammar, vocabulary, and sentence structure** to estimate their developmental stage.
