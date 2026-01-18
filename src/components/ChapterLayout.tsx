@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import SolarSystemBackground from '@/components/SolarSystemBackground';
+import EconomicKineticBackground from '@/components/EconomicKineticBackground';
 import FloatingDock from '@/components/FloatingDock';
 
 interface ChapterLayoutProps {
@@ -12,7 +12,7 @@ interface ChapterLayoutProps {
 const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayoutProps) => {
   return (
     <div className="min-h-screen relative">
-      <SolarSystemBackground />
+      <EconomicKineticBackground />
       <FloatingDock />
 
       <main className="relative z-20 pt-24 lg:pt-28">
