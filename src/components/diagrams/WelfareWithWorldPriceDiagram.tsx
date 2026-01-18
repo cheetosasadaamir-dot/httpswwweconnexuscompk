@@ -45,7 +45,7 @@ const WelfareWithWorldPriceDiagram = ({
   const chartWidth = width - margin.left - margin.right;
   const chartHeight = height - margin.top - margin.bottom;
   
-  // Colors (Econova palette)
+  // Colors (EconNexus palette)
   const demandColor = 'hsl(185, 100%, 50%)'; // Neon Cyan
   const supplyColor = 'hsl(300, 100%, 60%)'; // Magenta
   const worldPriceColor = 'hsl(45, 93%, 55%)'; // Amber Gold

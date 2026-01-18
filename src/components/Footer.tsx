@@ -35,10 +35,10 @@ const Footer = () => {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-secondary to-indigo-glow flex items-center justify-center">
                 <span className="font-serif text-lg font-bold text-primary-foreground">E</span>
               </div>
-              <span className="font-serif text-xl font-semibold text-gradient">Econova</span>
+              <span className="font-serif text-xl font-semibold text-gradient">EconNexus</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              The A2 Level Economics Masterclass. 
+              Advanced A2 Economics Mastery. 
               Designed for clarity, built for top grades.
             </p>
             <p className="font-serif text-xs text-silver/60 italic">
@@ -108,7 +108,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-silver/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="font-serif text-xs text-silver/50">
-              © 2026 Econova. All Rights Reserved.
+              © 2026 EconNexus. All Rights Reserved.
             </p>
             <div className="flex items-center gap-6">
               <span className="text-xs text-muted-foreground">
