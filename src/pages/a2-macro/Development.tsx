@@ -6,6 +6,16 @@ import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
 import { LorenzCurveDiagram } from '@/components/diagrams/LorenzCurveDiagram';
+import { KuznetsCurveDiagram } from '@/components/diagrams/KuznetsCurveDiagram';
+import { PrebischSingerDiagram } from '@/components/diagrams/PrebischSingerDiagram';
+import { HarrodDomarDiagram } from '@/components/diagrams/HarrodDomarDiagram';
+import { JCurveMarshallLernerDiagram } from '@/components/diagrams/JCurveMarshallLernerDiagram';
+import { ExchangeRateDiagram } from '@/components/diagrams/ExchangeRateDiagram';
+import FixedExchangeRateDiagram from '@/components/diagrams/FixedExchangeRateDiagram';
+import TradeCreationDiagram from '@/components/diagrams/TradeCreationDiagram';
+import TradeDiversionDiagram from '@/components/diagrams/TradeDiversionDiagram';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 const Development = () => {
   return (
@@ -16,344 +26,349 @@ const Development = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl font-bold text-foreground mb-4">
-            Economic Development & Globalization
+          <h1 className="text-4xl font-bold text-foreground mb-2 font-playfair">
+            Economic Development & Global Integration
           </h1>
-          <p className="text-xl text-muted-foreground mb-8">
-            A2 Level Macroeconomics • Chapter 8
+          <p className="text-xl text-muted-foreground mb-6">
+            A2 Level Macroeconomics • CIE 9708 Syllabus (2026-2028)
           </p>
 
-          {/* Economic Development */}
-          <ContentSection title="Economic Growth vs Economic Development">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              <strong>Economic growth</strong> refers to an increase in real GDP over time—a quantitative measure of output expansion. <strong>Economic development</strong> is a broader concept encompassing improvements in living standards, health, education, and overall quality of life.
+          {/* Section 1: Economic Growth vs Development */}
+          <ContentSection title="Section 8.1: Economic Growth vs Economic Development">
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              The fundamental distinction between <strong>economic growth</strong> and <strong>economic development</strong> represents one of the most critical conceptual frameworks in development economics and carries significant implications for policy formulation. <em>Economic growth</em> is defined strictly as an increase in real Gross Domestic Product (GDP) over a specified time period—a quantitative expansion of the productive capacity and actual output of an economy, typically expressed as a percentage change in real GDP or real GDP per capita. This metric, while essential for measuring the expansion of economic activity, is inherently limited in its scope: it captures the aggregate value of final goods and services produced within a nation's borders but reveals nothing about the distribution of that output, the sustainability of the growth process, or its impact on human welfare. Growth may be driven by unsustainable resource extraction, may accrue predominantly to a narrow elite, or may coincide with environmental degradation and declining quality of life for the majority of the population.
+            </p>
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              <strong>Economic development</strong>, by contrast, encompasses a far broader and more normative concept: the sustained improvement in living standards, reduction of poverty, and enhancement of human capabilities across multiple dimensions of wellbeing. Development implies not merely quantitative expansion but qualitative transformation—structural changes in the economy (the transition from primary to secondary and tertiary sectors), improvements in health and life expectancy, expansion of educational attainment, greater gender equality, enhanced environmental sustainability, and the strengthening of institutions that protect rights and enable participation. As Amartya Sen's influential 'capabilities approach' articulates, development should be understood as the expansion of human freedoms—the genuine opportunities that individuals possess to lead lives they have reason to value, encompassing political participation, economic security, social opportunities, and protective guarantees against vulnerability.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Economic Growth">
-                <ul className="list-disc list-inside text-sm space-y-2">
-                  <li>Measured by real GDP or GDP per capita</li>
-                  <li>Quantitative increase in output</li>
-                  <li>Necessary but not sufficient for development</li>
-                  <li>Does not capture income distribution</li>
-                  <li>Ignores environmental degradation</li>
-                </ul>
-              </NoteCard>
-
-              <NoteCard title="Economic Development">
-                <ul className="list-disc list-inside text-sm space-y-2">
-                  <li>Measured by HDI, life expectancy, education levels</li>
-                  <li>Qualitative improvement in wellbeing</li>
-                  <li>Includes structural economic changes</li>
-                  <li>Considers inequality and poverty reduction</li>
-                  <li>Encompasses social and political progress</li>
-                </ul>
-              </NoteCard>
-            </div>
-
-            <NoteCard title="Human Development Index (HDI)" type="concept" className="mb-6">
-              <p className="text-sm text-muted-foreground mb-3">
-                The HDI, created by the UN, measures development across three dimensions:
+            <NoteCard title="Human Development Index (HDI)" type="concept" className="mb-2">
+              <p className="text-sm text-muted-foreground mb-2">
+                The <strong>United Nations Development Programme (UNDP)</strong> created the HDI to provide a composite measure of development across three fundamental dimensions of human flourishing:
               </p>
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-3 gap-3 mb-2">
                 <div className="text-center p-3 bg-primary/10 rounded-lg">
-                  <p className="font-semibold text-primary">Health</p>
-                  <p className="text-sm">Life expectancy at birth</p>
+                  <p className="font-semibold text-primary text-sm">Health Dimension</p>
+                  <p className="text-xs text-muted-foreground">Life expectancy at birth</p>
+                  <p className="text-xs text-muted-foreground mt-1 italic">Proxy for longevity & health</p>
                 </div>
                 <div className="text-center p-3 bg-primary/10 rounded-lg">
-                  <p className="font-semibold text-primary">Education</p>
-                  <p className="text-sm">Mean & expected years of schooling</p>
+                  <p className="font-semibold text-primary text-sm">Education Dimension</p>
+                  <p className="text-xs text-muted-foreground">Mean years of schooling (adults)</p>
+                  <p className="text-xs text-muted-foreground">Expected years of schooling (children)</p>
                 </div>
                 <div className="text-center p-3 bg-primary/10 rounded-lg">
-                  <p className="font-semibold text-primary">Living Standards</p>
-                  <p className="text-sm">GNI per capita (PPP)</p>
+                  <p className="font-semibold text-primary text-sm">Standard of Living</p>
+                  <p className="text-xs text-muted-foreground">GNI per capita (PPP USD)</p>
+                  <p className="text-xs text-muted-foreground mt-1 italic">Adjusted for purchasing power</p>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground mt-3">
-                HDI ranges from 0 to 1. Countries are classified as: Low (&lt;0.550), Medium (0.550-0.699), High (0.700-0.799), Very High (≥0.800).
+              <p className="text-xs text-muted-foreground">
+                <strong>Classification:</strong> Very High HDI (≥0.800), High (0.700-0.799), Medium (0.550-0.699), Low (&lt;0.550). The geometric mean of normalised indices for each dimension produces the final HDI score (0 to 1).
               </p>
             </NoteCard>
+
+            <AnalysisBlock title="Chain of Analysis: Growth Without Development (AO3)">
+              <p className="text-sm text-foreground/80 text-justify mb-1">
+                The phenomenon of <em>growth without development</em> demonstrates why GDP expansion is a necessary but insufficient condition for genuine welfare improvement. Consider an economy experiencing 8% annual GDP growth driven by commodity exports: <strong>Initial Impact</strong>—resource extraction generates foreign exchange earnings and fiscal revenues, boosting headline growth figures. <strong>However</strong>, if the extractive sector is capital-intensive and employs few workers, if revenues are captured by political elites or repatriated by multinational corporations, if environmental degradation imposes health costs on local populations, and if the commodity boom induces 'Dutch Disease' (real exchange rate appreciation undermining non-resource tradeable sectors), then the growth episode may deliver minimal improvements—or even deterioration—in human development indicators. This pattern, observed in many resource-rich developing nations, illustrates the critical importance of <em>inclusive growth</em>—economic expansion that creates broad-based opportunities, reduces inequality, and translates into measurable improvements in HDI components.
+              </p>
+            </AnalysisBlock>
           </ContentSection>
 
-          {/* Measuring Inequality */}
-          <ContentSection title="Income Inequality & Distribution">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              Development is not just about increasing average income but also about how income is distributed across the population. High inequality can undermine social cohesion and limit the benefits of growth for the poor.
+          {/* Section 2: Measuring Inequality */}
+          <ContentSection title="Section 8.2: Income Inequality & Distribution">
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              The distribution of income and wealth within an economy represents a fundamental dimension of development that aggregate growth statistics fail to capture. High levels of inequality undermine social cohesion, reduce the poverty-reducing impact of growth (since growth accrues disproportionately to those already wealthy), and may generate political instability that undermines investment and long-term prosperity. The measurement and analysis of inequality therefore occupy a central position in development economics, with the <strong>Lorenz Curve</strong> and <strong>Gini Coefficient</strong> serving as the primary analytical tools.
+            </p>
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              The <strong>Lorenz Curve</strong> provides a graphical representation of income distribution by plotting the cumulative percentage of total income received against the cumulative percentage of the population, ranked from poorest to richest. A perfectly equal distribution would produce a 45-degree 'Line of Equality' (the bottom 20% receiving 20% of income, the bottom 50% receiving 50%, and so forth). The actual Lorenz Curve lies below this line, with greater deviation indicating greater inequality. The <strong>Gini Coefficient</strong> quantifies this deviation as the ratio of the area between the Lorenz Curve and the Line of Equality to the total area under the Line of Equality, producing a value between 0 (perfect equality) and 1 (perfect inequality, where one individual receives all income).
             </p>
 
-            {/* Lorenz Curve Diagram */}
             <LorenzCurveDiagram />
 
-            <AnalysisBlock title="The Gini Coefficient">
-              <p className="mb-4">
-                The <strong>Gini coefficient</strong> is a numerical measure of inequality derived from the Lorenz Curve:
+            <div className="my-4 p-4 rounded-lg bg-slate-900/50 border border-cyan-500/20">
+              <p className="text-center text-white/80 text-sm font-mono mb-2">
+                <InlineMath math="\text{Gini Coefficient} = \frac{A}{A + B}" />
               </p>
-              <div className="bg-primary/10 p-4 rounded-lg text-center mb-4">
-                <p className="text-lg font-mono font-semibold">
-                  Gini = Area between Lorenz Curve and Line of Equality / Total Area under Line of Equality
-                </p>
-              </div>
-              <ul className="list-disc list-inside space-y-2 text-sm">
-                <li><strong>Gini = 0:</strong> Perfect equality (everyone has the same income)</li>
-                <li><strong>Gini = 1:</strong> Perfect inequality (one person has all income)</li>
-                <li><strong>Typical range:</strong> 0.25-0.35 for Nordic countries, 0.45-0.65 for highly unequal countries</li>
-              </ul>
-            </AnalysisBlock>
-
-            <NoteCard title="Causes of Income Inequality" className="mt-6 mb-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold text-primary mb-2">Market Forces</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Wage differentials based on skills/education</li>
-                    <li>Globalization and technological change</li>
-                    <li>Returns to capital vs labor</li>
-                    <li>Winner-take-all markets</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary mb-2">Structural Factors</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Unequal access to education</li>
-                    <li>Inheritance and wealth accumulation</li>
-                    <li>Discrimination and barriers</li>
-                    <li>Tax and transfer policies</li>
-                  </ul>
-                </div>
-              </div>
-            </NoteCard>
-          </ContentSection>
-
-          {/* Barriers to Development */}
-          <ContentSection title="Barriers to Economic Development">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              Developing countries face numerous obstacles that hinder their path to prosperity. Understanding these barriers is essential for designing effective development strategies.
-            </p>
-
-            <div className="space-y-4 mb-6">
-              <NoteCard title="1. Poverty Trap & Vicious Cycles">
-                <p className="text-sm text-muted-foreground mb-2">
-                  Low income → Low savings → Low investment → Low productivity → Low income
-                </p>
-                <p className="text-sm">
-                  Countries caught in poverty traps cannot generate sufficient domestic savings to finance the investment needed for growth.
-                </p>
-              </NoteCard>
-
-              <NoteCard title="2. Lack of Physical Capital">
-                <p className="text-sm text-muted-foreground mb-2">
-                  Insufficient infrastructure: roads, ports, electricity, telecommunications.
-                </p>
-                <p className="text-sm">
-                  Without basic infrastructure, production costs are high, markets remain fragmented, and foreign investment is deterred.
-                </p>
-              </NoteCard>
-
-              <NoteCard title="3. Human Capital Deficiency">
-                <p className="text-sm text-muted-foreground mb-2">
-                  Low education levels, poor health outcomes, brain drain.
-                </p>
-                <p className="text-sm">
-                  A poorly educated, unhealthy workforce cannot adopt new technologies or improve productivity. Skilled workers emigrate to developed countries.
-                </p>
-              </NoteCard>
-
-              <NoteCard title="4. Institutional Weaknesses">
-                <p className="text-sm text-muted-foreground mb-2">
-                  Corruption, weak rule of law, insecure property rights, political instability.
-                </p>
-                <p className="text-sm">
-                  Poor governance deters investment, misallocates resources, and perpetuates inequality.
-                </p>
-              </NoteCard>
-
-              <NoteCard title="5. Primary Product Dependency">
-                <p className="text-sm text-muted-foreground mb-2">
-                  Reliance on commodity exports with volatile prices and declining terms of trade.
-                </p>
-                <p className="text-sm">
-                  The Prebisch-Singer hypothesis suggests that primary product prices decline relative to manufactured goods over time, trapping commodity exporters in poverty.
-                </p>
-              </NoteCard>
-
-              <NoteCard title="6. Debt Burden">
-                <p className="text-sm text-muted-foreground mb-2">
-                  High external debt diverts resources from development to debt servicing.
-                </p>
-                <p className="text-sm">
-                  Interest payments reduce funds available for education, health, and infrastructure investment.
-                </p>
-              </NoteCard>
-            </div>
-          </ContentSection>
-
-          {/* Strategies for Development */}
-          <ContentSection title="Development Strategies">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              Different approaches to development have been tried with varying degrees of success.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Inward-Looking Strategies">
-                <h4 className="font-semibold text-primary mb-2">Import Substitution Industrialization (ISI)</h4>
-                <p className="text-sm text-muted-foreground mb-2">
-                  Protect domestic industries from foreign competition through tariffs and quotas to develop local manufacturing capacity.
-                </p>
-                <p className="text-sm text-green-600">✓ Develops domestic industry, reduces import dependence</p>
-                <p className="text-sm text-red-600 mt-1">✗ Inefficiency, lack of competition, limited scale, retaliation</p>
-              </NoteCard>
-
-              <NoteCard title="Outward-Looking Strategies">
-                <h4 className="font-semibold text-primary mb-2">Export-Led Growth</h4>
-                <p className="text-sm text-muted-foreground mb-2">
-                  Focus on producing goods for export markets, using comparative advantage and economies of scale to drive growth.
-                </p>
-                <p className="text-sm text-green-600">✓ Access to large markets, technology transfer, competition drives efficiency</p>
-                <p className="text-sm text-red-600 mt-1">✗ Vulnerability to external shocks, race to bottom, environmental costs</p>
-              </NoteCard>
+              <p className="text-center text-white/60 text-xs">
+                Where <strong>A</strong> = area between Line of Equality and Lorenz Curve; <strong>B</strong> = area under Lorenz Curve
+              </p>
             </div>
 
-            <NoteCard title="Role of Foreign Aid" type="application" className="mb-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold text-primary mb-2">Arguments For</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>Fills savings-investment gap</li>
-                    <li>Finances essential public goods</li>
-                    <li>Provides technical expertise</li>
-                    <li>Humanitarian obligation of rich countries</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary mb-2">Arguments Against</h4>
-                  <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>May create dependency</li>
-                    <li>Can prop up corrupt governments</li>
-                    <li>Often tied to donor interests</li>
-                    <li>May distort local markets</li>
-                  </ul>
-                </div>
-              </div>
-            </NoteCard>
-          </ContentSection>
+            <KuznetsCurveDiagram />
 
-          {/* Globalization */}
-          <ContentSection title="Globalization & Development">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              <strong>Globalization</strong> refers to the increasing integration of economies through trade, investment, technology, and migration. It has profound implications for development.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <NoteCard title="Benefits of Globalization">
-                <ul className="list-disc list-inside text-sm space-y-2">
-                  <li><strong>Trade gains:</strong> Specialization based on comparative advantage</li>
-                  <li><strong>FDI inflows:</strong> Capital, technology, and jobs</li>
-                  <li><strong>Knowledge transfer:</strong> Access to global ideas and innovations</li>
-                  <li><strong>Consumer benefits:</strong> Lower prices, greater variety</li>
-                  <li><strong>Growth acceleration:</strong> Integration with global value chains</li>
-                </ul>
-              </NoteCard>
-
-              <NoteCard title="Costs of Globalization" type="exam-tip">
-                <ul className="list-disc list-inside text-sm space-y-2">
-                  <li><strong>Increased inequality:</strong> Winners and losers within countries</li>
-                  <li><strong>Job displacement:</strong> Competition from low-wage economies</li>
-                  <li><strong>Vulnerability:</strong> Exposure to external shocks and contagion</li>
-                  <li><strong>Cultural erosion:</strong> Homogenization of cultures</li>
-                  <li><strong>Environmental damage:</strong> Race to bottom on regulations</li>
-                </ul>
-              </NoteCard>
-            </div>
-          </ContentSection>
-
-          {/* Trading Blocs */}
-          <ContentSection title="Trading Blocs & Regional Integration">
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              Countries often form regional trading agreements to reduce barriers among members while maintaining common policies toward non-members.
-            </p>
-
-            <NoteCard title="Types of Trading Blocs" className="mb-6">
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 px-2 py-1 rounded text-sm font-semibold min-w-[120px]">Free Trade Area</div>
-                  <p className="text-sm text-muted-foreground">Members eliminate tariffs between themselves but maintain independent external tariffs (e.g., NAFTA/USMCA)</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 px-2 py-1 rounded text-sm font-semibold min-w-[120px]">Customs Union</div>
-                  <p className="text-sm text-muted-foreground">FTA + common external tariff on non-members (e.g., Southern African Customs Union)</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 px-2 py-1 rounded text-sm font-semibold min-w-[120px]">Common Market</div>
-                  <p className="text-sm text-muted-foreground">Customs Union + free movement of labor and capital (e.g., early European Community)</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 px-2 py-1 rounded text-sm font-semibold min-w-[120px]">Economic Union</div>
-                  <p className="text-sm text-muted-foreground">Common Market + harmonized economic policies (e.g., European Union)</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 px-2 py-1 rounded text-sm font-semibold min-w-[120px]">Monetary Union</div>
-                  <p className="text-sm text-muted-foreground">Economic Union + common currency and central bank (e.g., Eurozone)</p>
-                </div>
-              </div>
-            </NoteCard>
-
-            <AnalysisBlock title="Trade Creation vs Trade Diversion">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold text-green-600 mb-2">Trade Creation (Good)</h4>
-                  <p className="text-sm">
-                    When bloc formation leads to replacement of higher-cost domestic production with lower-cost imports from a member country. This improves efficiency and welfare.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-red-600 mb-2">Trade Diversion (Bad)</h4>
-                  <p className="text-sm">
-                    When trade shifts from a lower-cost non-member to a higher-cost member because of preferential tariffs. This reduces global efficiency.
-                  </p>
-                </div>
-              </div>
-              <p className="text-sm mt-4">
-                <strong>Net welfare effect:</strong> Trading blocs are beneficial if trade creation exceeds trade diversion.
+            <AnalysisBlock title="The Kuznets Hypothesis: Critical Evaluation (AO4)">
+              <p className="text-sm text-foreground/80 text-justify">
+                Simon Kuznets (1955) proposed that income inequality follows an <em>inverted-U</em> trajectory during economic development: inequality initially rises during early industrialisation (as a modern, high-wage sector emerges alongside traditional, low-productivity agriculture—the 'dual economy' structure analysed by Arthur Lewis) before eventually declining as the modern sector absorbs surplus labour, education spreads, and progressive taxation/welfare states emerge. <strong>However</strong>, the empirical evidence for this hypothesis is contested. Cross-country data reveals enormous variation in inequality trajectories; some East Asian economies (South Korea, Taiwan) achieved 'growth with equity' through land reform and education investment, while Latin American nations exhibited persistent high inequality despite substantial growth episodes. The policy implication is profound: inequality is not an 'iron law' of development but is shaped by policy choices—labour market institutions, fiscal systems, asset redistribution, and human capital investment can all modify the growth-inequality relationship. The Kuznets Curve, therefore, should be understood not as a deterministic prediction but as a <em>conditional relationship</em> mediated by political economy and institutional context.
               </p>
             </AnalysisBlock>
           </ContentSection>
 
-          {/* Exam Tips */}
-          <ContentSection title="Exam Preparation">
-            <ExamTipBox title="Evaluating Development Policies">
-              <p className="mb-2">When discussing development strategies:</p>
-              <ol className="list-decimal list-inside space-y-1 text-sm">
-                <li><strong>Context matters:</strong> What works in one country may not work in another</li>
-                <li><strong>Time horizons:</strong> Short-run costs vs long-run gains</li>
-                <li><strong>Distribution:</strong> Who benefits and who loses?</li>
-                <li><strong>Sustainability:</strong> Environmental and social impacts</li>
-                <li><strong>Institutions:</strong> Governance capacity to implement policies</li>
-                <li><strong>External factors:</strong> Global economic conditions, commodity prices</li>
+          {/* Section 3: Balance of Payments Correction */}
+          <ContentSection title="Section 8.3: Policies to Correct Balance of Payments Disequilibrium">
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              A persistent <strong>Current Account deficit</strong> represents a situation where a nation's expenditure on imports of goods, services, and income payments abroad exceeds its receipts from exports and income inflows—requiring financing through capital account inflows (foreign investment, borrowing) or depletion of foreign exchange reserves. While short-run deficits may be benign or even beneficial (reflecting productive investment financed by foreign savings), persistent and large deficits generate vulnerability: dependence on capital inflows that may reverse suddenly, accumulation of external debt requiring future servicing, and potential pressure on the exchange rate. Corrective policies fall into two broad categories: <strong>Expenditure-Reducing</strong> policies that decrease overall domestic spending (and hence imports), and <strong>Expenditure-Switching</strong> policies that redirect spending from foreign to domestic goods.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-3 mb-4">
+              <NoteCard title="Expenditure-Reducing Policies" className="mb-0">
+                <p className="text-sm text-muted-foreground mb-2">
+                  <strong>Mechanism:</strong> Reduce aggregate demand to lower import expenditure.
+                </p>
+                <ul className="list-disc list-inside text-xs space-y-1">
+                  <li><strong>Contractionary Fiscal Policy:</strong> Reduced government spending, higher taxes → ↓AD → ↓Y → ↓M</li>
+                  <li><strong>Contractionary Monetary Policy:</strong> Higher interest rates → ↓C, ↓I → ↓AD → ↓M</li>
+                </ul>
+                <p className="text-xs text-red-400 mt-2 italic">
+                  Trade-off: These policies impose recessionary costs—higher unemployment, lower growth—to achieve external balance.
+                </p>
+              </NoteCard>
+
+              <NoteCard title="Expenditure-Switching Policies" type="exam-tip" className="mb-0">
+                <p className="text-sm text-muted-foreground mb-2">
+                  <strong>Mechanism:</strong> Make domestic goods relatively cheaper/foreign goods dearer.
+                </p>
+                <ul className="list-disc list-inside text-xs space-y-1">
+                  <li><strong>Currency Depreciation/Devaluation:</strong> ↓ER → Exports cheaper, imports dearer</li>
+                  <li><strong>Protectionist Measures:</strong> Tariffs, quotas raise import prices</li>
+                  <li><strong>Export Subsidies:</strong> Lower export prices in foreign markets</li>
+                </ul>
+                <p className="text-xs text-cyan-400 mt-2 italic">
+                  Advantage: Can improve CA without directly reducing domestic output—switching, not shrinking.
+                </p>
+              </NoteCard>
+            </div>
+
+            <AnalysisBlock title="The Marshall-Lerner Condition & J-Curve Effect (AO3)">
+              <p className="text-sm text-foreground/80 text-justify mb-2">
+                The effectiveness of currency depreciation in improving the Current Account depends critically on the <strong>Marshall-Lerner Condition</strong>: depreciation will improve the trade balance if and only if the sum of the price elasticities of demand for exports and imports exceeds unity:
+              </p>
+              <div className="text-center my-3">
+                <BlockMath math="|PED_X| + |PED_M| > 1" />
+              </div>
+              <p className="text-sm text-foreground/80 text-justify mb-2">
+                <strong>Chain of Reasoning:</strong> When the domestic currency depreciates, export prices fall in foreign currency terms (making exports more competitive) while import prices rise in domestic currency terms (making imports more expensive). If demand is sufficiently elastic, the volume effect (more exports, fewer imports) will outweigh the adverse price effect (higher import prices in domestic terms), generating net improvement in the trade balance. <strong>However</strong>, in the short run, demand is typically <em>inelastic</em>: existing contracts are fixed, consumers and firms cannot immediately substitute, and search costs delay adjustment. This produces the characteristic <strong>J-Curve effect</strong>: the Current Account initially <em>worsens</em> following depreciation (as the value effect dominates the volume effect), before eventually improving as elasticities increase over time (12-24 months typically).
+              </p>
+            </AnalysisBlock>
+
+            <JCurveMarshallLernerDiagram />
+
+            <NoteCard title="Senior Examiner's Evaluation: Limits of Depreciation (AO4)" type="concept" className="mb-2">
+              <p className="text-sm text-foreground/80 text-justify">
+                While depreciation can improve the Current Account when the Marshall-Lerner condition is satisfied, several limitations constrain its effectiveness as a policy tool. <strong>First</strong>, depreciation raises import prices, directly contributing to <em>imported inflation</em>—higher costs for imported raw materials and intermediate goods feed through to domestic prices, eroding competitiveness gains and imposing welfare costs on consumers. <strong>Second</strong>, trading partners may retaliate with competitive devaluations, initiating a 'beggar-thy-neighbour' dynamic that leaves all parties worse off. <strong>Third</strong>, for many developing economies with limited export diversification, supply-side constraints (infrastructure bottlenecks, quality standards) may prevent firms from expanding export volumes even when price competitiveness improves. <strong>Fourth</strong>, where external debt is denominated in foreign currency, depreciation increases the domestic currency value of debt obligations, potentially triggering a debt crisis. The conclusion is that depreciation is a <em>conditional</em> tool whose efficacy depends on structural characteristics—elasticity conditions, supply capacity, inflation pass-through, and external debt exposure.
+              </p>
+            </NoteCard>
+          </ContentSection>
+
+          {/* Section 4: Exchange Rate Systems */}
+          <ContentSection title="Section 8.4: Exchange Rate Systems: Fixed, Floating, and Managed">
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              The <strong>exchange rate</strong>—the price of one currency in terms of another—serves as a critical macroeconomic variable linking domestic and international markets, influencing trade competitiveness, capital flows, inflation, and monetary policy transmission. Nations must choose an <em>exchange rate regime</em> that determines how this price is set: through market forces (floating), government intervention (fixed), or a combination (managed float). Each system presents distinct trade-offs that carry profound implications for macroeconomic management and development strategy.
+            </p>
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              Under a <strong>Free-Floating (Flexible) Exchange Rate</strong> system, the exchange rate is determined entirely by market forces—the intersection of supply and demand for the currency in foreign exchange markets. Demand for the domestic currency derives from foreigners seeking to purchase exports, invest in domestic assets, or engage in speculation; supply derives from domestic residents seeking foreign currency for imports, foreign investment, or speculation. When demand exceeds supply, the currency <em>appreciates</em>; when supply exceeds demand, it <em>depreciates</em>. The floating system provides <strong>automatic stabilisation</strong>: a Current Account deficit generates excess supply of domestic currency (as import payments exceed export receipts), causing depreciation that improves competitiveness and corrects the imbalance. This automatic adjustment mechanism frees monetary policy for domestic objectives (the central bank can set interest rates for internal balance without defending a fixed parity) and insulates the economy from certain external shocks.
+            </p>
+
+            <ExchangeRateDiagram />
+
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              Under a <strong>Fixed Exchange Rate</strong> system, the government or central bank commits to maintaining the exchange rate at a predetermined level (a 'peg') by intervening in foreign exchange markets. If market forces would otherwise cause depreciation (excess supply of domestic currency), the central bank must <em>sell foreign exchange reserves and buy domestic currency</em> to maintain the peg; if appreciation pressure exists, it must <em>buy foreign exchange and sell domestic currency</em>. This system provides <strong>exchange rate certainty</strong> that facilitates international trade and investment, imposes <strong>anti-inflationary discipline</strong> (the commitment to the peg constrains monetary expansion), and anchors expectations in economies with weak credibility. However, it requires adequate foreign exchange reserves to defend the peg, sacrifices monetary policy autonomy (interest rates must be adjusted to maintain the peg rather than for domestic stabilisation), and may lead to <em>speculative attacks</em> if markets perceive the peg as unsustainable.
+            </p>
+
+            <FixedExchangeRateDiagram />
+
+            <AnalysisBlock title="The Impossible Trinity (Trilemma) – AO3">
+              <p className="text-sm text-foreground/80 text-justify mb-2">
+                The <strong>Mundell-Fleming Trilemma</strong> articulates a fundamental constraint on macroeconomic policy: it is impossible to simultaneously achieve all three of the following objectives:
+              </p>
+              <div className="grid md:grid-cols-3 gap-2 my-3">
+                <div className="text-center p-2 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
+                  <p className="font-semibold text-cyan-400 text-sm">Fixed Exchange Rate</p>
+                  <p className="text-xs text-muted-foreground">Stable currency peg</p>
+                </div>
+                <div className="text-center p-2 bg-amber-500/10 rounded-lg border border-amber-500/30">
+                  <p className="font-semibold text-amber-400 text-sm">Free Capital Mobility</p>
+                  <p className="text-xs text-muted-foreground">Open capital account</p>
+                </div>
+                <div className="text-center p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/30">
+                  <p className="font-semibold text-emerald-400 text-sm">Independent Monetary Policy</p>
+                  <p className="text-xs text-muted-foreground">Autonomous interest rates</p>
+                </div>
+              </div>
+              <p className="text-sm text-foreground/80 text-justify">
+                <strong>Chain of Reasoning:</strong> If capital is freely mobile and the exchange rate is fixed, any attempt to lower domestic interest rates below world rates triggers capital outflow → excess supply of domestic currency → depreciation pressure → central bank must raise rates to defend the peg, eliminating monetary autonomy. Nations must therefore choose: (1) Fixed rate + capital mobility → sacrifice monetary independence (e.g., Eurozone members); (2) Fixed rate + monetary autonomy → impose capital controls (e.g., China historically); (3) Capital mobility + monetary autonomy → allow floating rates (e.g., UK, USA). This framework explains why many developing economies pursuing fixed pegs have experienced currency crises when speculative capital flows overwhelmed their reserves.
+              </p>
+            </AnalysisBlock>
+          </ContentSection>
+
+          {/* Section 5: Characteristics of Developing Economies */}
+          <ContentSection title="Section 8.5: Characteristics of Economies at Different Levels of Development">
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              Economies at different stages of development exhibit systematic structural differences that both reflect and perpetuate development gaps. Understanding these characteristics—the <strong>dual economy</strong> structure, demographic patterns, sectoral composition, and institutional frameworks—is essential for designing appropriate development strategies and evaluating policy interventions. The contrast between <em>More Economically Developed Countries (MEDCs)</em> and <em>Less Economically Developed Countries (LEDCs)</em> illuminates both the challenges facing developing nations and the structural transformations that successful development entails.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-3 mb-4">
+              <NoteCard title="Characteristics of LEDCs" className="mb-0">
+                <ul className="list-disc list-inside text-xs space-y-1">
+                  <li><strong>Sectoral Structure:</strong> Large primary sector (agriculture, extractives); small industrial base</li>
+                  <li><strong>Demographics:</strong> High fertility rates, young dependency ratios, rapid population growth</li>
+                  <li><strong>Dual Economy:</strong> Modern formal sector coexists with large informal/subsistence sector</li>
+                  <li><strong>Low Savings Rates:</strong> Limited capital accumulation; dependence on external finance</li>
+                  <li><strong>Primary Export Dependency:</strong> Narrow export base; vulnerability to commodity price shocks</li>
+                  <li><strong>Institutional Weakness:</strong> Corruption, weak property rights, limited state capacity</li>
+                  <li><strong>Human Capital Gaps:</strong> Low educational attainment; health deficits; brain drain</li>
+                </ul>
+              </NoteCard>
+
+              <NoteCard title="Characteristics of MEDCs" type="concept" className="mb-0">
+                <ul className="list-disc list-inside text-xs space-y-1">
+                  <li><strong>Sectoral Structure:</strong> Services-dominated economy; advanced manufacturing</li>
+                  <li><strong>Demographics:</strong> Low fertility; ageing population; old-age dependency burden</li>
+                  <li><strong>Integrated Economy:</strong> Formal employment predominates; comprehensive welfare systems</li>
+                  <li><strong>High Savings & Investment:</strong> Deep financial markets; access to capital</li>
+                  <li><strong>Diversified Exports:</strong> Manufactures, services, technology; terms of trade advantage</li>
+                  <li><strong>Strong Institutions:</strong> Rule of law, secure property rights, effective governance</li>
+                  <li><strong>Human Capital Abundance:</strong> Universal education; advanced health systems</li>
+                </ul>
+              </NoteCard>
+            </div>
+
+            <HarrodDomarDiagram />
+
+            <AnalysisBlock title="The Lewis Dual-Sector Model (AO3)">
+              <p className="text-sm text-foreground/80 text-justify">
+                Arthur Lewis's seminal model conceptualises developing economies as comprising two distinct sectors: a <strong>traditional agricultural sector</strong> characterised by surplus labour (marginal productivity approaching zero), subsistence wages, and low capital intensity; and a <strong>modern capitalist sector</strong> (industry/urban) with higher productivity, capital accumulation, and profit-driven expansion. <strong>Chain of Reasoning:</strong> The modern sector can draw labour from the traditional sector at the subsistence wage (plus a small premium for urban costs) without facing rising labour costs—an 'unlimited supply of labour' that sustains high profits and capital accumulation. This drives self-reinforcing growth until surplus labour is exhausted, at which point wages begin rising (the 'Lewis Turning Point'). The model explains rapid industrialisation in economies like China and highlights the importance of <em>structural transformation</em>—the reallocation of labour from low-productivity to high-productivity sectors—as a driver of development. <strong>Limitations</strong> include its assumption that capital accumulation automatically generates employment, neglect of technological progress and human capital, and the reality that urban unemployment (not absorption) often characterises developing economies.
+              </p>
+            </AnalysisBlock>
+
+            <PrebischSingerDiagram />
+
+            <NoteCard title="The Prebisch-Singer Hypothesis: Policy Implications (AO4)" type="exam-tip" className="mb-2">
+              <p className="text-sm text-foreground/80 text-justify">
+                Raúl Prebisch and Hans Singer independently argued that the <strong>terms of trade</strong> for primary commodity exporters tend to decline secularly relative to manufactured goods exporters. The mechanism operates through several channels: (1) <strong>Low income elasticity of demand (YED)</strong> for primary products—as global incomes rise, demand for food and raw materials grows more slowly than for manufactures and services (Engel's Law); (2) <strong>Technological substitution</strong>—synthetic materials replace natural commodities; (3) <strong>Asymmetric market power</strong>—manufacturers in developed nations can maintain prices through oligopolistic structures, while commodity markets are competitive. <strong>Policy Implication:</strong> This hypothesis provided intellectual justification for <em>Import Substitution Industrialisation (ISI)</em>—the deliberate promotion of domestic manufacturing through tariff protection to escape the 'primary products trap.' While ISI achieved some successes (Latin American industrialisation), its limitations—inefficiency, lack of competition, balance of payments crises—led to subsequent liberalisation. Modern development strategy emphasises <strong>diversification</strong> (export sophistication) and <strong>value addition</strong> (processing commodities domestically) rather than autarkic protection.
+              </p>
+            </NoteCard>
+          </ContentSection>
+
+          {/* Section 6: Globalisation */}
+          <ContentSection title="Section 8.6: Globalisation – Trends, Drivers, and Development Impact">
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              <strong>Globalisation</strong> refers to the increasing integration and interdependence of national economies through the intensification of cross-border flows of goods, services, capital, technology, and (to a lesser extent) labour. This process, accelerating dramatically since the 1980s, has been driven by multiple reinforcing factors: <strong>technological change</strong> (containerisation, telecommunications, digital platforms) that dramatically reduced transaction costs; <strong>policy liberalisation</strong> (trade agreements, capital account opening, deregulation) that removed barriers to international exchange; and <strong>organisational innovation</strong> (global value chains, multinational corporation strategies, outsourcing) that fragmented production across borders. The development implications of globalisation are contested, generating both enthusiastic advocacy (emphasising efficiency gains, technology transfer, poverty reduction) and critical analysis (highlighting inequality, vulnerability, and sovereignty erosion).
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-3 mb-4">
+              <NoteCard title="Benefits of Globalisation for Development" className="mb-0">
+                <ul className="list-disc list-inside text-xs space-y-1">
+                  <li><strong>Comparative Advantage Gains:</strong> Specialisation improves allocative efficiency; consumers access cheaper, diverse goods</li>
+                  <li><strong>Foreign Direct Investment (FDI):</strong> Capital inflows finance investment; technology and management practices transfer</li>
+                  <li><strong>Global Value Chain Integration:</strong> Developing nations can specialise in labour-intensive segments; learn-by-exporting</li>
+                  <li><strong>Poverty Reduction:</strong> Export-oriented growth created millions of manufacturing jobs (China, Vietnam, Bangladesh)</li>
+                  <li><strong>Knowledge Diffusion:</strong> Access to global ideas, technologies, best practices accelerates catch-up</li>
+                </ul>
+              </NoteCard>
+
+              <NoteCard title="Costs & Risks of Globalisation" type="exam-tip" className="mb-0">
+                <ul className="list-disc list-inside text-xs space-y-1">
+                  <li><strong>Increased Inequality:</strong> Skilled workers/capital owners gain; low-skilled workers in MEDCs face deindustrialisation</li>
+                  <li><strong>External Vulnerability:</strong> Integration exposes economies to global shocks; 'sudden stops' of capital</li>
+                  <li><strong>Race to the Bottom:</strong> Competition for FDI may erode labour standards, environmental regulations, tax bases</li>
+                  <li><strong>Structural Unemployment:</strong> Import competition displaces workers; adjustment costs concentrated</li>
+                  <li><strong>Sovereignty Constraints:</strong> Policy space narrowed by trade agreements, investor protections, capital mobility</li>
+                </ul>
+              </NoteCard>
+            </div>
+
+            <AnalysisBlock title="Chain of Analysis: Multinational Corporations (MNCs) and Development (AO3/AO4)">
+              <p className="text-sm text-foreground/80 text-justify">
+                <strong>Positive Chain:</strong> MNC investment brings capital, technology, and management expertise → generates employment (direct and through supply chain linkages) → raises labour productivity and wages → increases tax revenues for host government → demonstration effects and labour mobility spread knowledge to domestic firms → enhances export capacity and foreign exchange earnings. <strong>Negative Chain:</strong> MNCs may repatriate profits rather than reinvest locally → utilise transfer pricing to minimise tax liabilities → import capital equipment rather than source domestically (limiting linkages) → compete with and potentially crowd out domestic firms → exert bargaining power to extract favourable regulatory treatment → create enclave economies with limited development spillovers. <strong>Evaluation:</strong> The net impact depends critically on host country policies: local content requirements, joint venture mandates, infrastructure co-investment agreements, and effective tax administration can enhance developmental benefits, while weak governance and excessive concessions may allow value extraction without commensurate contribution to development. The distributional consequences—who gains and who loses from MNC presence—require careful analysis beyond aggregate GDP impacts.
+              </p>
+            </AnalysisBlock>
+          </ContentSection>
+
+          {/* Section 7: Trading Blocs */}
+          <ContentSection title="Section 8.7: Trading Blocs & Regional Integration">
+            <p className="text-foreground/90 leading-relaxed text-justify mb-1">
+              <strong>Regional Trading Agreements (RTAs)</strong> represent preferential arrangements through which groups of countries reduce trade barriers amongst themselves while maintaining distinct (or common) policies toward non-members. These arrangements have proliferated dramatically since the 1990s, with virtually every WTO member participating in at least one RTA. The analytical framework for evaluating regional integration—distinguishing <strong>trade creation</strong> from <strong>trade diversion</strong>—derives from Jacob Viner's pioneering work and remains central to assessing whether such agreements enhance or diminish global welfare.
+            </p>
+
+            <NoteCard title="Hierarchy of Regional Integration" className="mb-4">
+              <div className="space-y-2">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 px-2 py-1 rounded text-xs font-semibold min-w-[110px]">Free Trade Area</div>
+                  <p className="text-xs text-muted-foreground">Members eliminate tariffs between themselves; each maintains <em>independent</em> external tariffs (e.g., USMCA, EFTA)</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 px-2 py-1 rounded text-xs font-semibold min-w-[110px]">Customs Union</div>
+                  <p className="text-xs text-muted-foreground">FTA + <strong>Common External Tariff (CET)</strong> on non-members (e.g., SACU, Mercosur)</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 px-2 py-1 rounded text-xs font-semibold min-w-[110px]">Common Market</div>
+                  <p className="text-xs text-muted-foreground">Customs Union + <strong>free movement of factors</strong> (labour, capital) (e.g., early European Community)</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 px-2 py-1 rounded text-xs font-semibold min-w-[110px]">Economic Union</div>
+                  <p className="text-xs text-muted-foreground">Common Market + <strong>harmonised economic policies</strong> (regulations, fiscal coordination) (e.g., EU Single Market)</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 px-2 py-1 rounded text-xs font-semibold min-w-[110px]">Monetary Union</div>
+                  <p className="text-xs text-muted-foreground">Economic Union + <strong>common currency</strong> and central bank (e.g., Eurozone)</p>
+                </div>
+              </div>
+            </NoteCard>
+
+            <TradeCreationDiagram />
+            <TradeDiversionDiagram />
+
+            <AnalysisBlock title="Trade Creation vs Trade Diversion: Welfare Analysis (AO3)">
+              <p className="text-sm text-foreground/80 text-justify mb-2">
+                <strong>Trade Creation</strong> occurs when the formation of a trading bloc leads to replacement of higher-cost <em>domestic</em> production with lower-cost <em>member country</em> imports. This represents an efficiency gain: resources are reallocated toward activities where the bloc possesses comparative advantage. The welfare gain comprises a <em>production effect</em> (resources released from inefficient import-competing sectors) and a <em>consumption effect</em> (lower prices enable higher consumption). <strong>Trade Diversion</strong> occurs when bloc formation causes replacement of lower-cost imports from efficient <em>non-member</em> producers with higher-cost imports from <em>member</em> producers who now benefit from preferential tariff treatment. This represents an efficiency loss: trade is diverted from the globally most efficient source to a less efficient (but tariff-privileged) source.
+              </p>
+              <p className="text-sm text-foreground/80 text-justify">
+                <strong>Net Welfare Effect:</strong> A trading bloc improves global welfare if trade creation exceeds trade diversion; it reduces welfare if diversion dominates. Key determinants include: (1) <em>Initial tariff levels</em>—higher pre-integration tariffs create greater scope for creation; (2) <em>Cost differentials</em>—smaller differences between member and non-member costs limit diversion losses; (3) <em>Breadth of membership</em>—larger blocs encompassing more efficient producers reduce diversion risk; (4) <em>Complementarity vs. competition</em>—blocs among economies with similar production structures generate more diversion than those with complementary structures.
+              </p>
+            </AnalysisBlock>
+
+            <NoteCard title="Senior Examiner's Conclusion: Second-Best Theory & Trading Blocs (AO4)" type="concept">
+              <p className="text-sm text-foreground/80 text-justify">
+                The welfare analysis of trading blocs illustrates a fundamental insight from <strong>'second-best' theory</strong>: in a world already distorted by tariffs and other trade barriers, removing some barriers (preferential liberalisation) while retaining others (external tariffs) does not necessarily improve welfare. Free trade—the first-best solution—would eliminate the diversion problem entirely. Regional blocs represent a <em>second-best</em> approach whose net effect depends on the specific configuration of tariffs, cost structures, and trade patterns. For developing economies, bloc participation offers both opportunities (market access, bargaining power, policy coordination) and risks (premature liberalisation, reduced policy flexibility, lock-in to inefficient regional suppliers). The conclusion for examiners is that blanket pronouncements about 'blocs are good/bad' are inadequate; rigorous analysis requires specification of <em>which</em> bloc, <em>which</em> member, and <em>which</em> sector under consideration.
+              </p>
+            </NoteCard>
+          </ContentSection>
+
+          {/* Exam Preparation */}
+          <ContentSection title="Examination Preparation: Development & Global Economics">
+            <ExamTipBox title="Command Word Intelligence: 'Evaluate' Questions on Development Policy">
+              <p className="mb-2 text-sm">When answering A2 evaluation questions on development:</p>
+              <ol className="list-decimal list-inside space-y-1 text-xs">
+                <li><strong>Identify the policy/phenomenon:</strong> What intervention or process is being evaluated?</li>
+                <li><strong>Establish the analytical chain (AO3):</strong> How does the mechanism operate? What are the causal links?</li>
+                <li><strong>Specify conditions for success:</strong> Under what circumstances does the policy work well?</li>
+                <li><strong>Identify limitations and trade-offs:</strong> What constraints, costs, or unintended consequences exist?</li>
+                <li><strong>Consider distributional effects:</strong> Who gains and who loses? Is the impact equitable?</li>
+                <li><strong>Assess time horizons:</strong> Short-run vs long-run effects; adjustment costs vs steady-state outcomes.</li>
+                <li><strong>Provide a weighted conclusion:</strong> On balance, is the intervention effective? Under what conditions?</li>
               </ol>
             </ExamTipBox>
-          </ContentSection>
 
-          {/* Chapter Summary */}
-          <ContentSection title="Chapter Summary">
-            <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-foreground mb-4">Key Takeaways</h3>
-              <div className="grid md:grid-cols-2 gap-4 text-sm">
+            <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 rounded-xl mt-4">
+              <h3 className="text-lg font-semibold text-foreground mb-3 font-playfair">Chapter Summary: Key Analytical Chains</h3>
+              <div className="grid md:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <h4 className="font-semibold text-primary mb-2">Development Concepts</h4>
+                  <h4 className="font-semibold text-primary mb-1">Development Concepts</h4>
                   <ul className="list-disc list-inside space-y-1">
-                    <li>Growth ≠ Development (HDI captures broader welfare)</li>
-                    <li>Lorenz Curve and Gini measure inequality</li>
-                    <li>Poverty traps create vicious cycles</li>
-                    <li>Multiple barriers: capital, institutions, human capital</li>
+                    <li>Growth ≠ Development (HDI captures multidimensional welfare)</li>
+                    <li>Gini/Lorenz measure inequality; Kuznets Curve is conditional, not deterministic</li>
+                    <li>Harrod-Domar: g = s/k; financing gap central to development strategy</li>
+                    <li>Prebisch-Singer: declining ToT for primary exporters → diversification imperative</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-primary mb-2">Globalization & Trade</h4>
+                  <h4 className="font-semibold text-primary mb-1">International Economics</h4>
                   <ul className="list-disc list-inside space-y-1">
-                    <li>Globalization has winners and losers</li>
-                    <li>Trading blocs: FTA → Customs Union → Common Market → Union</li>
-                    <li>Trade creation vs trade diversion</li>
-                    <li>Development strategies: ISI vs export-led growth</li>
+                    <li>Marshall-Lerner: |PEDₓ| + |PEDₘ| &gt; 1 for depreciation to improve CA</li>
+                    <li>J-Curve: short-run worsening before long-run improvement</li>
+                    <li>Trilemma: fixed rate + capital mobility + monetary autonomy impossible</li>
+                    <li>Trading blocs: net welfare = trade creation − trade diversion</li>
                   </ul>
                 </div>
               </div>
