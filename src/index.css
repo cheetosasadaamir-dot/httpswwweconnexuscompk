@@ -534,6 +534,19 @@
     color: hsl(var(--neon-cyan));
     text-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.5);
   }
+
+  /* Chat diagram container styles */
+  .chat-diagrams-container {
+    @apply rounded-lg p-3;
+    background: hsl(var(--space-base) / 0.5);
+    border: 0.5px solid hsl(var(--primary) / 0.2);
+  }
+
+  .chat-diagrams-container .glass-card {
+    @apply p-3;
+    transform: scale(0.92);
+    transform-origin: top left;
+  }
 }
 
 @keyframes float {
