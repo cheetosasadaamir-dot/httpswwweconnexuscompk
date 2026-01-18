@@ -90,14 +90,14 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-3 group">
             <motion.img
               src={logoImage}
-              alt="A2/AS Economics Portal Logo"
+              alt="Econova Logo"
               className="h-10 w-10 object-contain"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />
             <div className="hidden sm:block">
-              <span className="font-serif text-xl font-semibold text-silver-bright group-hover:text-gradient transition-all">
-                MacroMicro
+              <span className="font-serif text-xl font-semibold text-gradient group-hover:text-secondary transition-all">
+                Econova
               </span>
             </div>
           </Link>
