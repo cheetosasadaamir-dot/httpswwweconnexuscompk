@@ -154,7 +154,18 @@ const BalanceOfPayments = () => {
 
               <JCurveMarshallLernerDiagram />
 
-              <p className="text-foreground/90 leading-relaxed mb-4">
+              {/* Zero-Gap Logic Chain: J-Curve */}
+              <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-cyan rounded-r-lg">
+                <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: The J-Curve Effect (A2 Standard)</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed text-justify">
+                  <strong className="text-foreground">Variable Change:</strong> Currency depreciates (↓ER) → 
+                  <strong className="text-foreground"> Short-Run Impact (Inelastic Period):</strong> Export and import volumes fixed by existing contracts; quantity response minimal → Higher import prices (in domestic currency) on unchanged volume → Trade balance worsens (value effect {'>'} volume effect) → 
+                  <strong className="text-foreground"> Medium-Term Adjustment:</strong> Contracts expire; consumers and firms seek substitutes; new suppliers identified (6-18 months) → PED rises as search costs diminish → 
+                  <strong className="text-foreground"> Long-Run Equilibrium:</strong> <InlineMath math="|PED_X| + |PED_M| > 1" /> (Marshall-Lerner satisfied) → Volume effect dominates → Export volumes rise, import volumes fall → Trade balance improves beyond original level → <strong>J-Curve complete</strong>.
+                </p>
+              </div>
+
+              <p className="text-foreground/90 leading-relaxed mb-4 mt-4">
                 In the <strong>short run</strong>, the price elasticity of demand for both exports and imports is characteristically low—demand is inelastic. This inelasticity stems from several sources: existing trade contracts, often denominated in foreign currency and extending months into the future, fix quantities regardless of price changes; information lags delay consumer and producer awareness of relative price shifts; search costs impede the identification of domestic substitutes for previously imported goods; and supply-side constraints limit the ability of domestic producers to rapidly scale up output to meet increased export demand. Consequently, immediately following depreciation, the economy continues to export approximately the same quantities (now at lower foreign currency prices) while importing approximately the same quantities (now at higher domestic currency prices). The result is a deterioration in the trade balance—the trough of the J-Curve—as the value effect of more expensive imports dominates the negligible volume adjustment.
               </p>
 
@@ -220,6 +231,14 @@ const BalanceOfPayments = () => {
               <div className="mt-4 pt-4 border-t border-white/10">
                 <p className="text-sm text-foreground/70 italic">
                   <strong className="text-cyan-400">Examiner's Final Evaluation:</strong> "The Balance of Payments is not merely an accounting statement but a window into a nation's structural competitiveness, investment attractiveness, and long-run sustainability. Candidates scoring top marks will demonstrate that deficits and surpluses carry welfare implications only in context—that a deficit financing productive investment may be preferable to a surplus reflecting anaemic domestic demand, and that the path to external balance must navigate the treacherous straits between policy conflict, time lags, and the ever-present risk of imported inflation."
+                </p>
+              </div>
+              
+              {/* Senior Examiner's Comprehensive Evaluation */}
+              <div className="mt-4 p-4 bg-slate-800/50 border border-amber-500/30 rounded-lg">
+                <h4 className="font-serif font-semibold text-amber-400 text-sm mb-2">Comprehensive AO4 Evaluation: Policy Trade-offs in BoP Correction</h4>
+                <p className="text-sm text-foreground/90 leading-relaxed text-justify">
+                  <strong>Ultimately, no single policy corrects a Current Account deficit without imposing costs elsewhere.</strong> Expenditure-reducing policies (↓G, ↑T, ↑r) impose <em>recessionary costs</em>—higher unemployment, lower growth—sacrificing internal balance for external balance. Expenditure-switching via depreciation risks <em>imported inflation</em> and retaliation. Supply-side improvements require <em>long time horizons</em> (5-10 years for education/infrastructure effects). The optimal policy mix therefore <em>depends on</em>: (1) whether the deficit is structural (requires supply-side) or cyclical (may self-correct); (2) the economy's position in the business cycle (contractionary policies during recession are counterproductive); (3) the composition of imports (essential commodities are price-inelastic); (4) the availability of foreign financing (deficits are sustainable while capital inflows continue). The 1997 Asian Financial Crisis and 2010 Eurozone Debt Crisis demonstrate the catastrophic consequences when these dependencies are misjudged.
                 </p>
               </div>
             </div>
