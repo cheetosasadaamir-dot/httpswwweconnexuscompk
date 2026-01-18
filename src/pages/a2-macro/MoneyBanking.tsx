@@ -146,6 +146,17 @@ const MoneyBanking = () => {
 
           <LiquidityPreferenceDiagram />
 
+          {/* Zero-Gap Chain of Analysis: Liquidity Preference */}
+          <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-cyan rounded-r-lg">
+            <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: Money Market Equilibrium (A2 Standard)</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed text-justify">
+              <strong className="text-foreground">Variable Change:</strong> Central bank increases money supply via Open Market Operations → 
+              <strong className="text-foreground"> Direct Market Impact:</strong> At prevailing interest rate, excess supply of money emerges (<InlineMath math="M^s > M^d" />) → 
+              <strong className="text-foreground"> Secondary Transmission:</strong> Agents attempt to eliminate excess money balances by purchasing bonds → Bond demand rises → Bond prices rise (<InlineMath math="\uparrow P_B" />) → Since <InlineMath math="r = \frac{Coupon}{P_B}" />, yields fall → 
+              <strong className="text-foreground"> Final Macro Equilibrium:</strong> Interest rate falls until <InlineMath math="M^s = M^d" /> at new lower equilibrium rate <InlineMath math="r_1 < r_0" />.
+            </p>
+          </div>
+
           {/* The Liquidity Trap */}
           <h3 className="font-serif text-lg font-semibold mt-6 mb-3">2. The Liquidity Trap: The Limit of Monetary Policy</h3>
           
@@ -165,6 +176,17 @@ const MoneyBanking = () => {
           </div>
 
           <LiquidityTrapDiagram />
+
+          {/* Zero-Gap Chain of Analysis: Liquidity Trap */}
+          <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-orange rounded-r-lg">
+            <h4 className="font-serif font-semibold text-cambridge-orange text-sm mb-2">Zero-Gap Logic Chain: The Liquidity Trap (A2 Standard)</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed text-justify">
+              <strong className="text-foreground">Variable Change:</strong> Interest rates reach "floor" level (near zero lower bound) → 
+              <strong className="text-foreground"> Direct Market Impact:</strong> All agents unanimously expect interest rates to rise in future → Expected bond price fall (<InlineMath math="P_B^{expected} \downarrow" />) → 
+              <strong className="text-foreground"> Secondary Transmission:</strong> No agent willing to hold bonds (capital loss risk); perfectly elastic demand for money as agents hold infinite cash → Money demand curve becomes horizontal → 
+              <strong className="text-foreground"> Final Macro Equilibrium:</strong> Any increase in <InlineMath math="M^s" /> is absorbed as idle balances → <InlineMath math="\Delta r = 0" /> → Investment remains stagnant (<InlineMath math="I" /> unchanged) → <strong>Monetary policy becomes completely ineffective</strong>.
+            </p>
+          </div>
 
           {/* Senior Examiner's Conclusion */}
           <div className="mt-6 p-4 bg-gradient-to-r from-cambridge-orange/10 to-transparent border-l-4 border-cambridge-orange rounded-lg">
@@ -306,6 +328,33 @@ const MoneyBanking = () => {
           </div>
 
           <MonetaryTransmissionDiagram />
+
+          {/* Zero-Gap Logic Chain: Full Transmission Mechanism */}
+          <div className="mt-0 p-4 bg-gradient-to-r from-cambridge-cyan/10 via-cambridge-magenta/10 to-cambridge-green/10 border border-border rounded-lg">
+            <h4 className="font-serif font-semibold text-foreground text-sm mb-2">Comprehensive Transmission Chain (A2 Standard)</h4>
+            <div className="text-xs text-muted-foreground leading-relaxed space-y-2">
+              <p className="text-justify">
+                <span className="inline-block w-16 text-cambridge-cyan font-semibold">Stage 1:</span> 
+                Central bank action → <InlineMath math="\uparrow M^s" /> via OMO/QE → Excess liquidity in banking system
+              </p>
+              <p className="text-justify">
+                <span className="inline-block w-16 text-cambridge-magenta font-semibold">Stage 2:</span>
+                Liquidity Preference mechanism → <InlineMath math="\uparrow M^s \Rightarrow" /> excess cash → Buy bonds → <InlineMath math="\uparrow P_B \Rightarrow \downarrow r" />
+              </p>
+              <p className="text-justify">
+                <span className="inline-block w-16 text-cambridge-green font-semibold">Stage 3:</span>
+                MEC/Investment response → More projects satisfy <InlineMath math="MEC > r" /> → <InlineMath math="\uparrow I" /> (new factories, machinery, R&D)
+              </p>
+              <p className="text-justify">
+                <span className="inline-block w-16 text-cambridge-orange font-semibold">Stage 4:</span>
+                Aggregate Demand shift → <InlineMath math="\uparrow I" /> is autonomous injection → AD curve shifts right → Multiplier effect: <InlineMath math="\Delta Y = k \times \Delta I" />
+              </p>
+              <p className="text-justify">
+                <span className="inline-block w-16 text-primary font-semibold">Stage 5:</span>
+                Macro outcomes → <InlineMath math="\uparrow Y" />, <InlineMath math="\uparrow" /> Employment; price effects depend on AS elasticity (Keynesian horizontal vs. Classical vertical)
+              </p>
+            </div>
+          </div>
 
           {/* The Full Transmission Chain */}
           <h3 className="font-serif text-lg font-semibold mt-6 mb-3">The Five-Stage Transmission Chain</h3>
@@ -646,7 +695,7 @@ const MoneyBanking = () => {
 
           {/* Final Comprehensive Conclusion */}
           <div className="mt-6 p-5 bg-gradient-to-r from-cambridge-orange/15 via-cambridge-magenta/10 to-cambridge-cyan/10 border border-cambridge-orange/30 rounded-lg">
-            <h4 className="font-serif font-semibold text-cambridge-orange mb-3">Comprehensive A2 Evaluation (AO4)</h4>
+            <h4 className="font-serif font-semibold text-cambridge-orange mb-3">Comprehensive A2 Evaluation: Monetary Policy Effectiveness (AO4)</h4>
             <div className="prose prose-invert max-w-none">
               <p className="text-sm text-foreground/90 leading-relaxed text-justify mb-3">
                 <strong>Ultimately, the effectiveness of monetary policy is contingent upon the economic environment in which 
@@ -658,16 +707,24 @@ const MoneyBanking = () => {
                 interest-inelastic, and bank credit creation seizes up. Under these conditions, monetary policy becomes 
                 analogous to "pushing on a string"—expansionary measures fail to generate the intended stimulus.
               </p>
+              <p className="text-sm text-foreground/90 leading-relaxed text-justify mb-3">
+                <strong>Key Depends-On Factors:</strong> (1) <em>State of Business Confidence:</em> Keynes's "Animal Spirits" determine whether cheap credit translates into actual investment—pessimistic firms hoard cash regardless of interest rates. (2) <em>Interest Elasticity of Money Demand:</em> The closer to the Liquidity Trap, the larger the <InlineMath math="\Delta M^s" /> needed for a given <InlineMath math="\Delta r" />. (3) <em>Bank Willingness to Lend:</em> Credit crunches see the multiplier collapse as banks tighten standards. (4) <em>Crowding Out:</em> If government borrowing absorbs the new money, private investment may not increase despite <InlineMath math="\downarrow r" />.
+              </p>
               <p className="text-sm text-foreground/90 leading-relaxed text-justify">
                 This analysis provides the intellectual foundation for Keynes's advocacy of <strong>Discretionary Fiscal 
                 Policy</strong> as the necessary complement to—and, in crisis conditions, substitute for—monetary 
                 intervention. When private sector demand is deficient and monetary transmission is impaired, only direct 
                 government spending (<InlineMath math="G" />) or tax cuts can inject the autonomous expenditure needed to 
-                activate the multiplier and restore the economy to full employment equilibrium. As Keynes famously observed, 
-                <em> "in the long run we are all dead"</em>—the social costs of prolonged involuntary unemployment cannot 
-                be tolerated while waiting for self-correcting market mechanisms that may never materialize.
+                activate the multiplier and restore the economy to full employment equilibrium. The asymmetry of monetary policy—effective at restraining booms but weak at stimulating during recessions—remains a central insight for A2 macroeconomic analysis.
               </p>
             </div>
+          </div>
+          
+          {/* Senior Examiner's Final Verdict */}
+          <div className="mt-4 p-4 bg-slate-800/50 border border-amber-500/30 rounded-lg">
+            <p className="text-sm text-foreground/90 leading-relaxed text-justify">
+              <strong className="text-amber-400">Senior Examiner's Final Verdict:</strong> "The transmission mechanism from <InlineMath math="\Delta M^s \rightarrow \Delta Y" /> operates through a five-stage chain vulnerable to breakdown at each junction. The Keynesian critique demonstrates that monetary expansion may be 'pushing on a string' during recessions, while Monetarists emphasise velocity stability and the direct spending channel. A* candidates must evaluate <em>when</em> monetary policy works (normal conditions, credible commitment) versus <em>when</em> it fails (liquidity trap, investment inelasticity, credit freeze), rather than offering simplistic judgments about its general efficacy. The 2008 GFC and post-COVID QE experiments provide empirical case studies demonstrating both the power and the limits of unconventional monetary expansion."
+            </p>
           </div>
         </ContentSection>
 

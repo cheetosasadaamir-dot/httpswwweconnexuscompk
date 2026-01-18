@@ -97,11 +97,31 @@ const Development = () => {
 
             <KuznetsCurveDiagram />
 
+            {/* Zero-Gap Logic Chain: Kuznets Curve */}
+            <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-orange rounded-r-lg">
+              <h4 className="font-serif font-semibold text-cambridge-orange text-sm mb-2">Zero-Gap Logic Chain: The Kuznets Curve (A2 Standard)</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed text-justify">
+                <strong className="text-foreground">Variable Change:</strong> Economy begins industrialisation from low-income agricultural base → 
+                <strong className="text-foreground"> Stage I Rising Inequality:</strong> Dual economy emerges with high-wage modern sector (urban manufacturing) alongside low-wage traditional sector (rural agriculture) → Labour migration is incomplete → Wage dispersion widens → Capital accumulates in industrial elite → Gini coefficient rises → 
+                <strong className="text-foreground"> Stage II Peak:</strong> Modern sector reaches critical mass; labour surplus fully absorbed; tight labour markets compress wages from below → 
+                <strong className="text-foreground"> Stage III Falling Inequality:</strong> Progressive taxation expands as tax base grows; welfare state develops; mass education creates human capital equality → Labour share of national income rises → 
+                <strong className="text-foreground"> Final Equilibrium:</strong> Mature economy with lower inequality and higher mean income than agricultural baseline → <strong>Inverted-U complete (conditional on policy choices)</strong>.
+              </p>
+            </div>
+
             <AnalysisBlock title="The Kuznets Hypothesis: Critical Evaluation (AO4)">
               <p className="text-sm text-foreground/80 text-justify">
                 Simon Kuznets (1955) proposed that income inequality follows an <em>inverted-U</em> trajectory during economic development: inequality initially rises during early industrialisation (as a modern, high-wage sector emerges alongside traditional, low-productivity agriculture—the 'dual economy' structure analysed by Arthur Lewis) before eventually declining as the modern sector absorbs surplus labour, education spreads, and progressive taxation/welfare states emerge. <strong>However</strong>, the empirical evidence for this hypothesis is contested. Cross-country data reveals enormous variation in inequality trajectories; some East Asian economies (South Korea, Taiwan) achieved 'growth with equity' through land reform and education investment, while Latin American nations exhibited persistent high inequality despite substantial growth episodes. The policy implication is profound: inequality is not an 'iron law' of development but is shaped by policy choices—labour market institutions, fiscal systems, asset redistribution, and human capital investment can all modify the growth-inequality relationship. The Kuznets Curve, therefore, should be understood not as a deterministic prediction but as a <em>conditional relationship</em> mediated by political economy and institutional context.
               </p>
             </AnalysisBlock>
+            
+            {/* Senior Examiner's Depends-On Evaluation */}
+            <div className="mt-4 p-4 bg-slate-800/50 border border-amber-500/30 rounded-lg">
+              <h4 className="font-serif font-semibold text-amber-400 text-sm mb-2">Senior Examiner's "Depends-On" Analysis (AO4)</h4>
+              <p className="text-sm text-foreground/90 leading-relaxed text-justify">
+                <strong>The validity of the Kuznets hypothesis depends critically on:</strong> (1) <em>Policy Regime:</em> Countries pursuing active redistribution (land reform, progressive taxation, universal education) can "flatten" or "break" the curve—East Asian NICs provide counter-evidence to Latin American trajectories. (2) <em>Speed of Structural Transformation:</em> Rapid industrialisation compresses the rising phase; slow transformation prolongs inequality. (3) <em>Global Integration:</em> Openness to FDI and trade may accelerate growth but also widen skill premiums, potentially steepening the upward phase. (4) <em>Environmental Kuznets Curve Extension:</em> Similar inverted-U logic applied to pollution suggests environmental degradation peaks mid-development—equally contested empirically. <strong>Conclusion:</strong> A* candidates recognise the Kuznets Curve as a <em>stylised fact subject to policy mediation</em>, not an iron law of development.
+              </p>
+            </div>
           </ContentSection>
 
           {/* Section 3: Balance of Payments Correction */}
@@ -152,6 +172,18 @@ const Development = () => {
             </AnalysisBlock>
 
             <JCurveMarshallLernerDiagram />
+
+            {/* Zero-Gap Logic Chain: J-Curve in Development Context */}
+            <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-cyan rounded-r-lg">
+              <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: Depreciation & Development (A2 Standard)</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed text-justify">
+                <strong className="text-foreground">Policy Action:</strong> Developing country devalues currency to correct CA deficit → 
+                <strong className="text-foreground"> Short-Run (J-Curve Trough):</strong> Inelastic demand + fixed contracts → Import bill rises in domestic currency → Trade balance initially worsens → 
+                <strong className="text-foreground"> Medium-Term Adjustment:</strong> If Marshall-Lerner satisfied (<InlineMath math="|PED_X| + |PED_M| > 1" />), export volumes rise, import volumes fall → Trade balance improves → 
+                <strong className="text-foreground"> Development Complications:</strong> Imported inflation erodes competitiveness gains; foreign-currency debt burden rises; supply-side constraints limit export response; "commodity trap" if export basket is price-inelastic → 
+                <strong className="text-foreground"> Policy Implication:</strong> Depreciation alone insufficient for structural CA correction—requires complementary supply-side investment in export diversification, infrastructure, and human capital.
+              </p>
+            </div>
 
             <NoteCard title="Senior Examiner's Evaluation: Limits of Depreciation (AO4)" type="concept" className="mb-2">
               <p className="text-sm text-foreground/80 text-justify">
