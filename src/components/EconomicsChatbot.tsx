@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2 } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -10,6 +10,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import professorAvatar from '@/assets/professor-avatar.png';
+import { ChatDiagramRenderer, parseDiagramMarkers } from '@/components/chat/DiagramDetector';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -18,10 +19,10 @@ type Message = {
 };
 
 const QUICK_ACTIONS = [
-  { label: 'Comparative Advantage', query: 'Explain the concept of Comparative Advantage with a numerical example' },
-  { label: 'Phillips Curve (NRU)', query: 'Explain the Natural Rate of Unemployment and the Expectations-Augmented Phillips Curve' },
-  { label: 'HDI vs MPI', query: 'Compare HDI and MPI as development indicators according to the 2026-2028 syllabus' },
-  { label: 'Why Study Economics?', query: 'Why should I study Economics? How will it help my career?' },
+  { label: 'Interest Rate Impact', query: 'Explain the impact of an increase in interest rates on AD with a diagram' },
+  { label: 'Trade Creation', query: 'Analyze trade creation in a customs union with welfare effects' },
+  { label: 'Phillips Curve', query: 'Explain the Expectations-Augmented Phillips Curve and NRU' },
+  { label: 'Marshall-Lerner', query: 'Analyze the Marshall-Lerner condition and J-Curve effect' },
 ];
 
 // Command words with AO (Assessment Objective) requirements
@@ -520,23 +521,44 @@ export default function EconomicsChatbot() {
                           <div className="tutor-lesson-header">
                             Syllabus 9708 (2026-2028) | CIE Senior Fellow
                           </div>
-                          <ReactMarkdown
-                            remarkPlugins={[remarkMath]}
-                            rehypePlugins={[rehypeKatex]}
-                            components={{
-                              p: ({ children }) => (
-                                <p className="text-sm leading-relaxed text-foreground mb-1.5">{children}</p>
-                              ),
-                              strong: ({ children }) => (
-                                <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>
-                              ),
-                              code: ({ children }) => (
-                                <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>
-                              ),
-                            }}
-                          >
-                            {msg.content}
-                          </ReactMarkdown>
+                          {(() => {
+                            const { cleanContent, diagrams } = parseDiagramMarkers(msg.content);
+                            return (
+                              <>
+                                {/* Render diagrams first if explicitly marked */}
+                                {diagrams.length > 0 && (
+                                  <div className="mb-4">
+                                    <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                                      <BarChart3 className="w-3 h-3 text-primary" />
+                                      <span className="uppercase tracking-wider font-medium">Visual Analysis</span>
+                                    </div>
+                                    <ChatDiagramRenderer content={msg.content} autoDetect={false} />
+                                  </div>
+                                )}
+                                <ReactMarkdown
+                                  remarkPlugins={[remarkMath]}
+                                  rehypePlugins={[rehypeKatex]}
+                                  components={{
+                                    p: ({ children }) => (
+                                      <p className="text-sm leading-relaxed text-foreground mb-1.5">{children}</p>
+                                    ),
+                                    strong: ({ children }) => (
+                                      <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>
+                                    ),
+                                    code: ({ children }) => (
+                                      <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>
+                                    ),
+                                  }}
+                                >
+                                  {cleanContent}
+                                </ReactMarkdown>
+                                {/* Auto-detect diagrams if none explicitly marked */}
+                                {diagrams.length === 0 && (
+                                  <ChatDiagramRenderer content={msg.content} autoDetect={true} />
+                                )}
+                              </>
+                            );
+                          })()}
                           <CopyButton text={msg.content} />
                         </div>
                       ) : (
