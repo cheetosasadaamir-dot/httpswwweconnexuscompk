@@ -5,11 +5,15 @@ import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
 import LiquidityPreferenceDiagram from '@/components/diagrams/LiquidityPreferenceDiagram';
+import LiquidityTrapDiagram from '@/components/diagrams/LiquidityTrapDiagram';
 import LoanableFundsDiagram from '@/components/diagrams/LoanableFundsDiagram';
 import MonetaryTransmissionDiagram from '@/components/diagrams/MonetaryTransmissionDiagram';
 import CreditMultiplierDiagram from '@/components/diagrams/CreditMultiplierDiagram';
 import QuantityTheoryDiagram from '@/components/diagrams/QuantityTheoryDiagram';
+import MECCurveDiagram from '@/components/diagrams/MECCurveDiagram';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 const MoneyBanking = () => {
   return (
@@ -27,7 +31,8 @@ const MoneyBanking = () => {
             Money, Interest Rate Determination & Monetary Policy
           </h1>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Understanding the role of money, credit creation, interest rate theories, and the transmission mechanism of monetary policy.
+            A rigorous analysis of Keynesian Liquidity Preference, the Monetary Transmission Mechanism, 
+            and the limits of monetary policy in achieving macroeconomic stability.
           </p>
         </div>
 
@@ -36,651 +41,636 @@ const MoneyBanking = () => {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2 text-xs">
             <a href="#topic1" className="p-2 bg-muted/50 rounded hover:bg-muted transition-colors text-center">
               <span className="text-primary font-semibold">Topic 1</span>
-              <p className="text-muted-foreground">Money & Credit Multiplier</p>
+              <p className="text-muted-foreground">Liquidity Preference</p>
             </a>
             <a href="#topic2" className="p-2 bg-muted/50 rounded hover:bg-muted transition-colors text-center">
               <span className="text-primary font-semibold">Topic 2</span>
-              <p className="text-muted-foreground">Liquidity Preference</p>
+              <p className="text-muted-foreground">Money Supply & Interest</p>
             </a>
             <a href="#topic3" className="p-2 bg-muted/50 rounded hover:bg-muted transition-colors text-center">
               <span className="text-primary font-semibold">Topic 3</span>
-              <p className="text-muted-foreground">Loanable Fund Theory</p>
+              <p className="text-muted-foreground">Transmission Mechanism</p>
             </a>
             <a href="#topic4" className="p-2 bg-muted/50 rounded hover:bg-muted transition-colors text-center">
               <span className="text-primary font-semibold">Topic 4</span>
-              <p className="text-muted-foreground">Quantity Theory</p>
+              <p className="text-muted-foreground">Credit Multiplier</p>
             </a>
             <a href="#topic5" className="p-2 bg-muted/50 rounded hover:bg-muted transition-colors text-center">
               <span className="text-primary font-semibold">Topic 5</span>
-              <p className="text-muted-foreground">Monetary Transmission</p>
+              <p className="text-muted-foreground">Policy Evaluation</p>
             </a>
           </div>
         </div>
 
-        {/* TOPIC 1: MONEY AND THE CREDIT MULTIPLIER */}
-        <ContentSection title="Topic 1: Money and the Credit Multiplier" id="topic1">
-          <h3 className="font-serif text-lg font-semibold mb-3">1. Money and the Modern Economy</h3>
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* TOPIC 1: LIQUIDITY PREFERENCE THEORY */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Topic 1: Keynesian Liquidity Preference Theory" id="topic1">
           
-          <div className="overflow-x-auto mb-4">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-32">Term</TableHead>
-                  <TableHead>Description</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="text-sm">
-                <TableRow>
-                  <TableCell className="font-semibold text-primary">Money Supply</TableCell>
-                  <TableCell>The total amount of money in an economy at a particular time.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold text-primary">Liquidity</TableCell>
-                  <TableCell>The ease with which an asset can be converted into cash without incurring a cost.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold text-primary">Monetary Base</TableCell>
-                  <TableCell>The total amount of currency in circulation plus commercial bank reserves held at the central bank.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold text-primary">Narrow Money</TableCell>
-                  <TableCell>Money that can be used directly as a medium of exchange (notes, coins, sight deposits).</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold text-primary">Broad Money</TableCell>
-                  <TableCell>Includes narrow money plus deposits with monetary financial institutions.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold text-primary">Central Bank</TableCell>
-                  <TableCell>A government institution that manages a country's monetary policy and issues currency.</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+          {/* Dense Academic Introduction */}
+          <div className="prose prose-invert max-w-none mb-6">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              <strong className="text-cambridge-cyan">Keynes's Theory of Liquidity Preference</strong> represents a fundamental departure from the Classical 
+              view of interest rate determination. Whereas the Classical Loanable Funds Theory treats the interest rate as the equilibrating 
+              price between saving (the supply of loanable funds) and investment (the demand for loanable funds), Keynes argued that the 
+              interest rate is fundamentally the <strong className="text-cambridge-orange">"price" for parting with liquidity</strong>—the reward 
+              that must be offered to persuade wealth-holders to transfer their assets from money (a perfectly liquid but non-interest-bearing 
+              asset) to bonds (interest-bearing but illiquid assets subject to capital risk). This reconceptualization shifts the analytical 
+              focus from the real market for loanable funds to the <em>money market</em>, where the equilibrium interest rate is determined 
+              by the intersection of the money demand curve (Liquidity Preference, denoted <InlineMath math="L" /> or <InlineMath math="M^d" />) 
+              and the exogenously controlled money supply (<InlineMath math="M^s" />).
+            </p>
           </div>
 
-          <h3 className="font-serif text-lg font-semibold mb-3">2. Credit Multiplier</h3>
+          {/* The Three Motives for Holding Money */}
+          <h3 className="font-serif text-lg font-semibold mb-3">1. The Three Motives for Holding Money (Demand for Money)</h3>
           
-          <NoteCard title="Definition: Credit Multiplier" type="definition">
-            <p className="text-sm">
-              An increase in the amount of money in the economy has a <strong>multiplied effect</strong> on the 
-              amount of credit created by the banks. This is because commercial banks accept deposits from 
-              customers and issue loans with that money. This is how banks make profit. The way in which they 
-              undertake lending has an impact on the quantity of money. Commercial banks know that it is unlikely 
-              that all their customers will want to withdraw their money simultaneously so they will lend some of 
-              the additional deposits to borrowers who are likely to undertake expenditure on goods or services. 
-              As their expenditures work their way back into the banking system, the commercial banks will find 
-              that they can lend out even more and the process continues.
+          <div className="prose prose-invert max-w-none mb-4">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              Keynes identified three distinct motives that determine the aggregate demand for money in an economy. The first two 
+              motives—<strong className="text-cambridge-cyan">Transactions</strong> and <strong className="text-cambridge-magenta">Precautionary</strong>—are 
+              primarily functions of the level of national income (<InlineMath math="Y" />), while the third—the 
+              <strong className="text-cambridge-orange"> Speculative motive</strong>—is critically dependent upon the prevailing rate of interest 
+              (<InlineMath math="r" />) and agents' expectations about future interest rate movements. The total demand for money can 
+              therefore be expressed as <InlineMath math="L = L_1(Y) + L_2(r)" />, where <InlineMath math="L_1" /> represents the 
+              income-related component and <InlineMath math="L_2" /> represents the interest-sensitive speculative component.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-3 mb-6">
+            <div className="glass-card p-4 rounded-lg border-l-2 border-cambridge-cyan">
+              <h4 className="font-serif font-semibold text-cambridge-cyan mb-2">Transactions Motive</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Households and firms hold money as a <strong>medium of exchange</strong> to bridge the gap between income receipts 
+                and expenditure payments. Since wages and salaries are received periodically (weekly, monthly), agents must maintain 
+                cash balances to finance day-to-day transactions. This demand is <strong>directly proportional to national income</strong>: 
+                as <InlineMath math="Y \uparrow" />, the volume and value of transactions rise, necessitating larger money holdings.
+              </p>
+            </div>
+            <div className="glass-card p-4 rounded-lg border-l-2 border-cambridge-magenta">
+              <h4 className="font-serif font-semibold text-cambridge-magenta mb-2">Precautionary Motive</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Beyond planned expenditures, rational agents maintain <strong>contingency reserves</strong> against unforeseen 
+                emergencies—medical expenses, unemployment, or unexpected opportunities. This "rainy day fund" is also 
+                <strong> positively related to income</strong>: wealthier individuals can afford to hold larger precautionary 
+                balances, while businesses maintain liquidity buffers against supply chain disruptions or payment delays.
+              </p>
+            </div>
+            <div className="glass-card p-4 rounded-lg border-l-2 border-cambridge-orange">
+              <h4 className="font-serif font-semibold text-cambridge-orange mb-2">Speculative Motive</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                The <em>speculative demand for money</em> arises from the desire to hold wealth in liquid form to exploit 
+                anticipated changes in bond prices. Since bond prices are <strong>inversely related to interest rates</strong>, 
+                when rates are <strong>high</strong>, agents expect them to fall → bond prices will rise → agents buy bonds now 
+                (low money demand). When rates are <strong>low</strong>, agents expect them to rise → bond prices will fall → 
+                agents hold cash to avoid capital losses (high money demand).
+              </p>
+            </div>
+          </div>
+
+          {/* Critical Analysis: Bond Price-Interest Rate Inverse Relationship */}
+          <AnalysisBlock title="Chain of Analysis: The Bond Price-Interest Rate Inverse Relationship">
+            <div className="prose prose-invert max-w-none">
+              <p className="text-sm leading-relaxed text-justify text-muted-foreground">
+                The inverse relationship between bond prices and interest rates is foundational to understanding speculative demand. 
+                Consider a perpetual bond (consol) that pays a fixed annual coupon of £100. If the market interest rate is 5%, 
+                the present value of this bond is <InlineMath math="P_B = \frac{100}{0.05} = £2000" />. However, if the market 
+                interest rate rises to 10%, the bond's value falls to <InlineMath math="P_B = \frac{100}{0.10} = £1000" />. 
+                Consequently, when interest rates are currently high, bond prices are low—making bonds attractive purchases 
+                since agents anticipate capital gains when rates eventually normalize. This drives the <strong>inverse relationship</strong> 
+                between the interest rate and the quantity of speculative money demanded: <InlineMath math="r \uparrow \Rightarrow P_B \downarrow \Rightarrow" /> 
+                bonds attractive <InlineMath math="\Rightarrow L_2 \downarrow" />.
+              </p>
+            </div>
+          </AnalysisBlock>
+
+          <LiquidityPreferenceDiagram />
+
+          {/* The Liquidity Trap */}
+          <h3 className="font-serif text-lg font-semibold mt-6 mb-3">2. The Liquidity Trap: The Limit of Monetary Policy</h3>
+          
+          <div className="prose prose-invert max-w-none mb-4">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              The <strong className="text-cambridge-orange">Liquidity Trap</strong> represents a critical boundary condition in Keynesian 
+              monetary theory, arising when the interest rate approaches its lower bound (historically considered to be approximately zero, 
+              though recent experience has demonstrated the possibility of slightly negative nominal rates). At this threshold, the 
+              speculative demand for money becomes <strong>perfectly elastic</strong>—the <InlineMath math="M^d" /> curve becomes 
+              horizontal. The economic logic is as follows: when interest rates are extraordinarily low, <em>everyone unanimously expects 
+              rates to rise</em> in the future. Rising interest rates imply falling bond prices, meaning that purchasing bonds at 
+              current low yields exposes wealth-holders to near-certain <strong>capital losses</strong>. Consequently, no matter how 
+              much additional money the central bank injects into the economy, agents will simply <strong>hoard the excess liquidity 
+              as idle balances</strong> rather than purchasing bonds. The transmission mechanism from money supply to lower interest 
+              rates is thereby severed, rendering monetary policy completely inert.
+            </p>
+          </div>
+
+          <LiquidityTrapDiagram />
+
+          {/* Senior Examiner's Conclusion */}
+          <div className="mt-6 p-4 bg-gradient-to-r from-cambridge-orange/10 to-transparent border-l-4 border-cambridge-orange rounded-lg">
+            <h4 className="font-serif font-semibold text-cambridge-orange mb-2">Senior Examiner's Conclusion (AO4)</h4>
+            <p className="text-sm text-foreground/90 leading-relaxed text-justify">
+              <strong>Ultimately, the efficacy of monetary policy is severely compromised during a Liquidity Trap.</strong> When the 
+              demand for money is perfectly elastic, any increase in the money supply is simply hoarded by the public, failing to 
+              lower interest rates further and rendering the transmission mechanism inert. This theoretical insight gained profound 
+              empirical relevance following the 2008 Global Financial Crisis and the COVID-19 pandemic, when central banks in Japan, 
+              the Eurozone, and the United Kingdom found conventional interest rate reductions exhausted and resorted to 
+              <em> Quantitative Easing (QE)</em>—direct asset purchases—as an alternative channel. The existence of the Liquidity 
+              Trap provides the intellectual foundation for <strong>Discretionary Fiscal Policy</strong> as the necessary tool for 
+              stimulating aggregate demand when monetary transmission fails.
+            </p>
+          </div>
+        </ContentSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* TOPIC 2: MONEY SUPPLY AND INTEREST RATE DETERMINATION */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Topic 2: Money Supply & Interest Rate Determination" id="topic2">
+          
+          <div className="prose prose-invert max-w-none mb-6">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              The <strong className="text-cambridge-magenta">Money Supply</strong> (<InlineMath math="M^s" />) represents the total 
+              stock of monetary assets circulating in an economy at a given point in time. In the Keynesian framework, the money 
+              supply is typically treated as <strong>exogenous</strong>—determined independently of the interest rate by central bank 
+              policy decisions. This assumption is represented graphically by a <strong>vertical money supply curve</strong>, 
+              indicating that the quantity of money is fixed at whatever level the monetary authority chooses, regardless of the 
+              prevailing interest rate. This stands in contrast to the <em>endogenous money</em> view of Post-Keynesian economists, 
+              who argue that commercial bank credit creation responds elastically to loan demand, making the money supply at least 
+              partially determined by economic activity itself.
+            </p>
+          </div>
+
+          {/* Money Supply Formula */}
+          <div className="glass-card p-4 rounded-lg mb-6">
+            <h4 className="font-serif font-semibold mb-3 text-center">Narrow Money vs Broad Money</h4>
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <div className="p-3 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20">
+                <p className="font-semibold text-cambridge-cyan mb-1">Narrow Money (M0/M1)</p>
+                <p className="text-xs text-muted-foreground">
+                  Notes and coins in circulation + bank reserves at the central bank + sight deposits (current accounts). 
+                  Represents the most <strong>liquid</strong> form of money, immediately usable as a medium of exchange.
+                </p>
+              </div>
+              <div className="p-3 bg-cambridge-magenta/10 rounded-lg border border-cambridge-magenta/20">
+                <p className="font-semibold text-cambridge-magenta mb-1">Broad Money (M2/M4)</p>
+                <p className="text-xs text-muted-foreground">
+                  Narrow money + time deposits + savings accounts + money market funds. Includes "near money" that can be 
+                  quickly converted to cash but is <strong>less liquid</strong> than narrow money.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Equilibrium Interest Rate Determination */}
+          <h3 className="font-serif text-lg font-semibold mb-3">Equilibrium Interest Rate Determination</h3>
+          
+          <div className="prose prose-invert max-w-none mb-4">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              The <strong>equilibrium interest rate</strong> is determined at the intersection of the Liquidity Preference curve 
+              (<InlineMath math="M^d" />) and the vertical Money Supply curve (<InlineMath math="M^s" />). At this point, the 
+              quantity of money demanded by households and firms exactly equals the quantity supplied by the central bank. 
+              Any deviation from equilibrium triggers automatic adjustment through the <strong>bond market mechanism</strong>.
+            </p>
+          </div>
+
+          <AnalysisBlock title="Chain of Analysis: The Adjustment Mechanism">
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <div className="p-3 bg-destructive/10 rounded-lg border border-destructive/20">
+                <p className="font-semibold text-destructive mb-2">Case 1: Excess Money Supply</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  If <InlineMath math="M^s > M^d" /> at the prevailing interest rate, agents find themselves with more cash than 
+                  they wish to hold. They use this excess liquidity to <strong>purchase bonds</strong>, driving up bond prices. 
+                  As bond prices rise, yields (interest rates) <strong>fall</strong> until <InlineMath math="M^s = M^d" /> at the 
+                  new, lower equilibrium rate.
+                </p>
+              </div>
+              <div className="p-3 bg-cambridge-green/10 rounded-lg border border-cambridge-green/20">
+                <p className="font-semibold text-cambridge-green mb-2">Case 2: Excess Money Demand</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  If <InlineMath math="M^d > M^s" /> at the prevailing interest rate, agents experience a liquidity shortage. 
+                  To obtain cash, they <strong>sell bonds</strong>, driving down bond prices. As bond prices fall, yields 
+                  (interest rates) <strong>rise</strong> until equilibrium is restored where <InlineMath math="M^s = M^d" />.
+                </p>
+              </div>
+            </div>
+          </AnalysisBlock>
+
+          {/* Impact of Central Bank Policy */}
+          <h3 className="font-serif text-lg font-semibold mt-6 mb-3">Impact of Central Bank Monetary Policy</h3>
+          
+          <div className="prose prose-invert max-w-none mb-4">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              When the central bank implements <strong className="text-cambridge-green">Expansionary Monetary Policy</strong> by 
+              increasing the money supply (through Open Market Operations—purchasing government bonds from commercial banks, or 
+              by lowering the reserve requirement ratio), the money supply curve shifts rightward from <InlineMath math="M^s_0" /> 
+              to <InlineMath math="M^s_1" />. At the original equilibrium interest rate <InlineMath math="r_0" />, there is now an 
+              <strong> excess supply of money</strong>. The adjustment mechanism operates as follows: agents use surplus cash to 
+              buy bonds → bond prices rise → interest rates fall → equilibrium is restored at a lower rate <InlineMath math="r_1" /> 
+              where <InlineMath math="M^s_1 = M^d" />.
+            </p>
+          </div>
+
+          <div className="text-center p-4 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20 mb-6">
+            <p className="text-xs text-muted-foreground mb-2">Expansionary Monetary Policy Chain</p>
+            <BlockMath math="\uparrow M^s \rightarrow \text{Excess Liquidity} \rightarrow \text{Buy Bonds} \rightarrow \uparrow P_B \rightarrow \downarrow r" />
+          </div>
+
+          <NoteCard title="Key Insight: The Sensitivity of Interest Rates" type="theory">
+            <p className="text-sm leading-relaxed">
+              The magnitude of the interest rate change resulting from a given change in money supply depends critically on the 
+              <strong> interest elasticity of money demand</strong> (the slope of the <InlineMath math="M^d" /> curve). If money 
+              demand is highly interest-elastic (flat curve), a large increase in <InlineMath math="M^s" /> produces only a 
+              small decline in <InlineMath math="r" />. Conversely, if money demand is interest-inelastic (steep curve), the same 
+              <InlineMath math="M^s" /> increase generates a large fall in interest rates. This elasticity becomes critically 
+              important in the Liquidity Trap, where perfect elasticity renders <InlineMath math="\Delta M^s" /> completely 
+              ineffective in lowering rates.
             </p>
           </NoteCard>
+        </ContentSection>
 
-          <div className="text-center p-3 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20 my-4">
-            <p className="text-xl font-mono font-bold text-cambridge-cyan">
-              Credit Multiplier = 1 / Cash Ratio
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* TOPIC 3: THE MONETARY TRANSMISSION MECHANISM */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Topic 3: The Monetary Transmission Mechanism" id="topic3">
+          
+          <div className="prose prose-invert max-w-none mb-6">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              The <strong className="text-cambridge-cyan">Monetary Transmission Mechanism</strong> describes the multi-stage 
+              process through which changes in the money supply ultimately affect aggregate demand and real economic activity. 
+              This causal chain is the core operational framework through which central banks seek to achieve their macroeconomic 
+              objectives—price stability, full employment, and sustainable growth. The <strong>indirect transmission mechanism</strong> 
+              operates through the money market's impact on interest rates, which subsequently influences interest-sensitive 
+              components of aggregate expenditure, particularly <strong>Investment (<InlineMath math="I" />)</strong> and 
+              <strong> interest-sensitive Consumption (<InlineMath math="C" />)</strong>.
             </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              <strong>Note:</strong> Cash Ratio is the amount of cash the bank holds in liquid form. The smaller the cash ratio the stronger the multiplier.
+          </div>
+
+          <MonetaryTransmissionDiagram />
+
+          {/* The Full Transmission Chain */}
+          <h3 className="font-serif text-lg font-semibold mt-6 mb-3">The Five-Stage Transmission Chain</h3>
+          
+          <div className="space-y-4 mb-6">
+            <div className="glass-card p-4 rounded-lg border-l-2 border-cambridge-cyan">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-8 h-8 flex items-center justify-center bg-cambridge-cyan/20 rounded-full text-cambridge-cyan font-bold">1</span>
+                <h4 className="font-serif font-semibold text-cambridge-cyan">Money Market: Central Bank Action</h4>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed ml-11">
+                The central bank increases the money supply (<InlineMath math="\uparrow M^s" />) through Open Market Operations 
+                (OMO)—purchasing government securities from commercial banks—or Quantitative Easing (direct asset purchases). 
+                This injects reserves into the banking system.
+              </p>
+            </div>
+
+            <div className="glass-card p-4 rounded-lg border-l-2 border-cambridge-magenta">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-8 h-8 flex items-center justify-center bg-cambridge-magenta/20 rounded-full text-cambridge-magenta font-bold">2</span>
+                <h4 className="font-serif font-semibold text-cambridge-magenta">Money Market: Interest Rate Adjustment</h4>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed ml-11">
+                Excess money supply creates surplus liquidity → agents buy bonds → bond prices rise → market interest rates 
+                fall (<InlineMath math="\downarrow r" />). This is the <strong>Liquidity Preference adjustment mechanism</strong>.
+              </p>
+            </div>
+
+            <div className="glass-card p-4 rounded-lg border-l-2 border-cambridge-green">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-8 h-8 flex items-center justify-center bg-cambridge-green/20 rounded-full text-cambridge-green font-bold">3</span>
+                <h4 className="font-serif font-semibold text-cambridge-green">Capital Goods Market: Investment Response</h4>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed ml-11">
+                Lower interest rates reduce the <strong>cost of borrowing</strong> for firms. Investment projects that were 
+                previously unprofitable (where <InlineMath math="MEC < r" />) now become viable. Investment rises 
+                (<InlineMath math="\uparrow I" />) as the Marginal Efficiency of Capital now exceeds the reduced interest rate 
+                for more projects.
+              </p>
+            </div>
+
+            <div className="glass-card p-4 rounded-lg border-l-2 border-cambridge-orange">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-8 h-8 flex items-center justify-center bg-cambridge-orange/20 rounded-full text-cambridge-orange font-bold">4</span>
+                <h4 className="font-serif font-semibold text-cambridge-orange">Goods Market: Aggregate Demand Shift</h4>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed ml-11">
+                Increased investment (<InlineMath math="\uparrow I" />) represents an autonomous injection into the circular flow. 
+                The AD curve shifts rightward. Additionally, lower interest rates boost consumption (<InlineMath math="\uparrow C" />) 
+                by reducing the reward for saving and lowering mortgage/debt servicing costs.
+              </p>
+            </div>
+
+            <div className="glass-card p-4 rounded-lg border-l-2 border-primary">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-8 h-8 flex items-center justify-center bg-primary/20 rounded-full text-primary font-bold">5</span>
+                <h4 className="font-serif font-semibold text-primary">Macroeconomic Outcomes: Y, P, Employment</h4>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed ml-11">
+                The rightward AD shift increases real GDP (<InlineMath math="\uparrow Y" />) and employment. The price level 
+                impact depends on the economy's position on the AS curve: if spare capacity exists (horizontal Keynesian range), 
+                output rises without inflation; if near full employment, prices rise proportionally.
+              </p>
+            </div>
+          </div>
+
+          {/* Mathematical Summary */}
+          <div className="text-center p-4 bg-gradient-to-r from-cambridge-cyan/10 via-cambridge-magenta/10 to-cambridge-green/10 rounded-lg border border-border mb-6">
+            <p className="text-xs text-muted-foreground mb-2">Complete Monetary Transmission Chain</p>
+            <BlockMath math="\uparrow M^s \rightarrow \downarrow r \rightarrow \uparrow I, \uparrow C \rightarrow \uparrow AD \rightarrow \uparrow Y, \uparrow P, \uparrow \text{Employment}" />
+          </div>
+
+          {/* The Marginal Efficiency of Capital */}
+          <h3 className="font-serif text-lg font-semibold mt-6 mb-3">The Role of the Marginal Efficiency of Capital (MEC)</h3>
+          
+          <div className="prose prose-invert max-w-none mb-4">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              The <strong className="text-cambridge-green">Marginal Efficiency of Capital (MEC)</strong> is the rate of return 
+              that an additional unit of capital is expected to yield over its lifetime. Firms compare the MEC of potential 
+              investment projects against the market interest rate: if <InlineMath math="MEC > r" />, the project is profitable 
+              and will be undertaken; if <InlineMath math="MEC < r" />, the project is rejected. The <strong>MEC curve</strong> 
+              is downward sloping because of diminishing returns—as more capital is accumulated, the marginal product of each 
+              additional unit declines. The effectiveness of monetary policy depends critically on the <strong>interest elasticity 
+              of investment demand</strong>—the slope of the MEC curve.
+            </p>
+          </div>
+
+          <MECCurveDiagram />
+
+          {/* Three Transmission Channels */}
+          <h3 className="font-serif text-lg font-semibold mt-6 mb-3">The Three Transmission Channels</h3>
+          
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="glass-card p-4 rounded-lg">
+              <h4 className="font-serif font-semibold text-cambridge-cyan mb-2">Direct Channel</h4>
+              <div className="text-xs font-mono text-center p-2 bg-cambridge-cyan/10 rounded mb-2">
+                ↑Mˢ → More liquidity → ↑C, ↑I → ↑AD
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Monetarists argue that excess money balances directly stimulate spending on goods and services, 
+                bypassing the interest rate mechanism entirely.
+              </p>
+            </div>
+            <div className="glass-card p-4 rounded-lg">
+              <h4 className="font-serif font-semibold text-cambridge-magenta mb-2">Indirect Channel</h4>
+              <div className="text-xs font-mono text-center p-2 bg-cambridge-magenta/10 rounded mb-2">
+                ↑Mˢ → ↓r → ↑I (via MEC) → ↑AD
+              </div>
+              <p className="text-xs text-muted-foreground">
+                The Keynesian transmission works through the interest rate: lower rates make more investment 
+                projects profitable by pushing the cost of borrowing below the MEC.
+              </p>
+            </div>
+            <div className="glass-card p-4 rounded-lg">
+              <h4 className="font-serif font-semibold text-cambridge-green mb-2">Exchange Rate Channel</h4>
+              <div className="text-xs font-mono text-center p-2 bg-cambridge-green/10 rounded mb-2">
+                ↓r → Capital outflow → ↓ER → ↑(X-M)
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Lower domestic interest rates reduce the return on domestic assets, causing capital outflows. 
+                This depreciates the currency, boosting net exports and AD.
+              </p>
+            </div>
+          </div>
+
+          {/* Senior Examiner's Conclusion */}
+          <div className="mt-6 p-4 bg-gradient-to-r from-cambridge-green/10 to-transparent border-l-4 border-cambridge-green rounded-lg">
+            <h4 className="font-serif font-semibold text-cambridge-green mb-2">Senior Examiner's Conclusion (AO4)</h4>
+            <p className="text-sm text-foreground/90 leading-relaxed text-justify">
+              <strong>In conclusion, even if interest rates fall, the impact on AD depends on the Marginal Efficiency of 
+              Investment (MEI).</strong> During a deep recession, business pessimism—what Keynes termed "Animal Spirits"—may 
+              make investment <strong>highly interest-inelastic</strong>. If firms lack confidence in future demand, no amount 
+              of cheap credit will induce them to expand capacity. This is the phenomenon of <strong>"pushing on a string"</strong>: 
+              monetary expansion fails to stimulate recovery because the transmission breaks down at the investment stage. 
+              This asymmetry—monetary policy being more effective at slowing an overheated economy than stimulating a depressed 
+              one—provides further justification for active fiscal intervention during recessions.
+            </p>
+          </div>
+        </ContentSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* TOPIC 4: CREDIT CREATION AND THE MONEY MULTIPLIER */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Topic 4: Credit Creation & The Money Multiplier" id="topic4">
+          
+          <div className="prose prose-invert max-w-none mb-6">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              The <strong className="text-cambridge-cyan">Credit Multiplier</strong> describes the process by which commercial 
+              banks amplify the monetary base through the fractional reserve banking system. When the central bank injects 
+              additional reserves into the banking system (through OMO or direct lending), banks do not hold the entirety as 
+              idle reserves. Instead, they retain only a fraction (<strong>the cash or reserve ratio</strong>) to meet 
+              anticipated withdrawal demands and lend out the remainder. These loans become deposits at other banks, which 
+              in turn lend out a portion, creating a cascade of deposit creation that multiplies the original injection 
+              several-fold.
+            </p>
+          </div>
+
+          <div className="text-center p-4 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20 mb-6">
+            <p className="text-xs text-muted-foreground mb-2">Credit Multiplier Formula</p>
+            <BlockMath math="\text{Credit Multiplier} = \frac{1}{\text{Cash Ratio}} = \frac{1}{R}" />
+            <p className="text-xs text-muted-foreground mt-3">
+              <strong>Example:</strong> If banks maintain a 10% reserve ratio, the multiplier = 
+              <InlineMath math="\frac{1}{0.10} = 10" />. A £100 deposit can support up to £1,000 in total deposits.
             </p>
           </div>
 
           <CreditMultiplierDiagram />
 
-          <div className="mt-4 p-3 bg-muted/30 rounded-lg">
-            <h4 className="font-semibold text-sm mb-2">Example: 10% Cash Ratio</h4>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableBody className="text-xs">
-                  <TableRow>
-                    <TableCell className="font-medium">Banks receive an extra $100 in deposits</TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Cash + $10</TableCell>
-                    <TableCell>New loans + $90</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">Banks receive an extra $90 in deposits</TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Cash + $9</TableCell>
-                    <TableCell>New loans + $81</TableCell>
-                  </TableRow>
-                  <TableRow className="font-bold bg-muted/50">
-                    <TableCell>Total cash $100</TableCell>
-                    <TableCell>Final position: Total loans $900, Total deposits $1,000</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </div>
+          {/* Example Calculation */}
+          <div className="mt-6 p-4 bg-muted/30 rounded-lg">
+            <h4 className="font-semibold text-sm mb-3">Worked Example: Credit Creation with 10% Reserve Ratio</h4>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="text-xs">Round</TableHead>
+                  <TableHead className="text-xs">New Deposits</TableHead>
+                  <TableHead className="text-xs">Reserves Held (10%)</TableHead>
+                  <TableHead className="text-xs">New Loans</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody className="text-xs">
+                <TableRow>
+                  <TableCell className="font-medium">1</TableCell>
+                  <TableCell>£100.00</TableCell>
+                  <TableCell>£10.00</TableCell>
+                  <TableCell>£90.00</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">2</TableCell>
+                  <TableCell>£90.00</TableCell>
+                  <TableCell>£9.00</TableCell>
+                  <TableCell>£81.00</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">3</TableCell>
+                  <TableCell>£81.00</TableCell>
+                  <TableCell>£8.10</TableCell>
+                  <TableCell>£72.90</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">...</TableCell>
+                  <TableCell>...</TableCell>
+                  <TableCell>...</TableCell>
+                  <TableCell>...</TableCell>
+                </TableRow>
+                <TableRow className="font-bold bg-cambridge-cyan/10">
+                  <TableCell>Final</TableCell>
+                  <TableCell>£1,000.00</TableCell>
+                  <TableCell>£100.00</TableCell>
+                  <TableCell>£900.00</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
             <p className="text-xs text-muted-foreground mt-2">
-              The bank has a cash ratio of 10%. If extra cash of $100 is deposited in the bank, 
-              it will have $10 cash and $90 loans. The process continues until total deposits reach $1,000.
+              The initial £100 deposit creates £1,000 in total deposits and £900 in total loans through successive rounds 
+              of lending. The money supply has expanded tenfold relative to the original monetary base injection.
             </p>
           </div>
-        </ContentSection>
 
-        {/* TOPIC 2: LIQUIDITY PREFERENCE THEORY */}
-        <ContentSection title="Topic 2: Liquidity Preference Theory" id="topic2">
-          <NoteCard title="Keynes's Liquidity Preference" type="theory">
-            <p className="text-sm">
-              Individuals hold their financial wealth in two types of assets: <strong>bonds</strong> and <strong>cash</strong>.
-            </p>
-            <ul className="text-sm mt-2 space-y-1">
-              <li><strong>Bonds:</strong> Not liquid and take time to be converted into cash but bondholders receive interest payments.</li>
-              <li><strong>Cash:</strong> Cash doesn't guarantee interest payment but is liquid and allows flexibility in use as a medium of exchange.</li>
-            </ul>
-          </NoteCard>
-
-          <NoteCard title="Bond Price-Interest Rate Relationship" type="formula">
-            <p className="text-sm mb-2">
-              <strong>Note:</strong> Market interest rates move <strong>inversely</strong> with the market value of a fixed interest rate bond. 
-              Assuming a bond is issued and subscribed at an annual interest rate of 6% and an increase in the market interest rate to 7% 
-              at a later date forces initial subscribers to get rid of these bonds, which now sell at a reduced price. On the other hand, 
-              decreased market interest rates render older bonds with higher fixed interest rates more attractive hence increasing their market value.
-            </p>
-            <div className="grid grid-cols-2 gap-2 text-sm mt-3">
-              <div className="p-2 bg-destructive/10 rounded text-center">
-                <span className="font-semibold">Interest Rate ↑</span>
-                <br />
-                <span className="text-destructive">Price of Bonds ↓</span>
-              </div>
-              <div className="p-2 bg-cambridge-green/10 rounded text-center">
-                <span className="font-semibold">Interest Rate ↓</span>
-                <br />
-                <span className="text-cambridge-green">Price of Bonds ↑</span>
-              </div>
-            </div>
-          </NoteCard>
-
-          <h3 className="font-serif text-lg font-semibold mt-4 mb-3">1. Demand for Money</h3>
-          <p className="text-sm text-muted-foreground mb-3">
-            Individuals demand money for <strong>THREE</strong> reasons:
-          </p>
-
-          <div className="space-y-3">
-            <NoteCard title="1. Transaction Motive" type="application">
-              <p className="text-sm">
-                Individuals hold money to meet day-to-day transactional needs like buying groceries, paying utilities, etc. 
-                The demand for money under this motive is <strong>directly related to income</strong> – as income rises, 
-                the quantity of money demanded for transactions increases.
-              </p>
-            </NoteCard>
-
-            <NoteCard title="2. Precautionary Motive" type="application">
-              <p className="text-sm">
-                Individuals hold money for <strong>unexpected contingencies</strong> or emergencies. This motive is also 
-                <strong> directly related to income</strong> – higher income means people can afford to hold more money 
-                as a precaution against unforeseen events.
-              </p>
-            </NoteCard>
-
-            <NoteCard title="3. Speculative Motive" type="application">
-              <p className="text-sm">
-                When interest rates are <strong>high</strong>, people expect them to fall → They expect bond prices to 
-                <strong> rise</strong> → People keep bonds instead of cash → Quantity demanded for money <strong>falls</strong>.
-              </p>
-              <p className="text-sm mt-2">
-                When interest rates are <strong>low</strong>, people expect them to rise → They expect bond prices to 
-                <strong> fall</strong> → People keep cash instead of bonds → Quantity demanded for money <strong>rises</strong>.
-              </p>
-              <p className="text-xs text-muted-foreground mt-2">
-                <strong>Note:</strong> When we add all three curves (transaction, precautionary and speculative) we get 
-                the combined demand curve for money. The shape of the added curve would be the same as the speculative 
-                demand for money curve.
-              </p>
-            </NoteCard>
-          </div>
-
-          <div className="mt-4 p-3 bg-muted/30 rounded-lg">
-            <h4 className="font-semibold text-sm mb-2">Factors Affecting Demand for Money</h4>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="text-xs">Factor</TableHead>
-                  <TableHead className="text-xs">Effect on Quantity Demanded for Money</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="text-xs">
-                <TableRow>
-                  <TableCell>1. Income Level</TableCell>
-                  <TableCell>Income ↑ → Qd for Money ↑ | Income ↓ → Qd for Money ↓</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>2. Price Level</TableCell>
-                  <TableCell>Price Level ↑ → Qd for Money ↑ | Price Level ↓ → Qd for Money ↓</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>3. Credit Cards</TableCell>
-                  <TableCell>Credit cards are money substitutes. More credit cards → Qd for Money ↓</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>4. Frequency of Payments</TableCell>
-                  <TableCell>Frequency ↑ → Qd for Money ↑ | Frequency ↓ → Qd for Money ↓</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-
-          <h3 className="font-serif text-lg font-semibold mt-4 mb-3">2. Supply of Money</h3>
-          <NoteCard title="Money Supply" type="theory">
-            <p className="text-sm">
-              The money supply is determined by the central bank and is assumed to be <strong>indifferent to the interest rate</strong>. 
-              Therefore, the money supply curve is drawn as a <strong>vertical line</strong> (perfectly inelastic with respect to interest rates).
-            </p>
-          </NoteCard>
-
-          <h3 className="font-serif text-lg font-semibold mt-4 mb-3">3. Equilibrium Interest Rate</h3>
-          <LiquidityPreferenceDiagram />
-
-          <div className="mt-4 space-y-3">
-            <NoteCard title="Equilibrium Determination" type="theory">
-              <p className="text-sm">
-                The equilibrium interest rate is determined where <strong>Md = Ms</strong> (Money demand equals Money supply). 
-                This is the point of intersection between the LP curve and the vertical money supply curve.
-              </p>
-            </NoteCard>
-
-            <div className="grid md:grid-cols-2 gap-3">
-              <div className="p-3 border border-destructive/30 rounded-lg bg-destructive/5">
-                <h5 className="font-semibold text-destructive text-sm mb-1">Interest Rate &lt; Equilibrium</h5>
-                <p className="text-xs text-muted-foreground">
-                  At the interest rate below R, demand for money exceeds supply. Hence people tend to 
-                  <strong> sell bonds</strong> to overcome the shortage of cash. Increased supply of bonds lowers 
-                  the market value of bonds and <strong>increases</strong> the market interest rates to the equilibrium point.
-                </p>
-              </div>
-              <div className="p-3 border border-cambridge-green/30 rounded-lg bg-cambridge-green/5">
-                <h5 className="font-semibold text-cambridge-green text-sm mb-1">Interest Rate &gt; Equilibrium</h5>
-                <p className="text-xs text-muted-foreground">
-                  At the interest rate above R, demand for money is less than supply. People <strong>buy bonds</strong> to 
-                  utilize the excess cash they have. Increased demand for bonds raises their market value and 
-                  <strong> lowers</strong> the market interest rates to the equilibrium point.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <h3 className="font-serif text-lg font-semibold mt-4 mb-3">4. Impact of Changes in Money Supply on Interest Rates</h3>
-          <AnalysisBlock title="Money Supply Shifts">
-            <div className="grid md:grid-cols-2 gap-3 text-sm">
-              <div>
-                <p className="font-medium text-cambridge-green mb-1">Increase in Money Supply (Ms → Ms₁)</p>
-                <p className="text-xs text-muted-foreground">
-                  Government's decision to raise money supply or credit creation by commercial banks shifts the supply 
-                  curve for money from MS to MS₁. Demand for money falls short of money supply at R and extra liquidity 
-                  encourages households to <strong>buy bonds</strong>, raising their prices. This results in the interest rate 
-                  to <strong>fall to R₁</strong>.
-                </p>
-              </div>
-              <div>
-                <p className="font-medium text-destructive mb-1">Decrease in Money Supply</p>
-                <p className="text-xs text-muted-foreground">
-                  A decrease in money supply creates a shortage of liquidity. Households <strong>sell bonds</strong> to 
-                  obtain cash, lowering bond prices and <strong>raising</strong> interest rates to the new equilibrium.
-                </p>
-              </div>
-            </div>
-          </AnalysisBlock>
-
-          <h3 className="font-serif text-lg font-semibold mt-4 mb-3">5. Impact of Changes in Money Demand on Interest Rates</h3>
-          <AnalysisBlock title="Money Demand Shifts">
-            <div className="grid md:grid-cols-2 gap-3 text-sm">
-              <div>
-                <p className="font-medium text-cambridge-orange mb-1">Increase in Money Demand (L → L₁)</p>
-                <p className="text-xs text-muted-foreground">
-                  Initially the equilibrium is at R. The demand for money shifts to L₁. Here the demand for money is 
-                  more than the supply. Hence consumers would start to <strong>sell bonds</strong>. When supply of bonds 
-                  increases the price of bonds drops. This <strong>increases</strong> the interest rate to R₁.
-                </p>
-              </div>
-              <div>
-                <p className="font-medium text-cambridge-cyan mb-1">Decrease in Money Demand (L → L₂)</p>
-                <p className="text-xs text-muted-foreground">
-                  Initially the equilibrium is at R. The demand for money shifts to L₂. Here the demand for money is 
-                  less than the supply. Hence consumers would start to <strong>buy bonds</strong>. When demand for bonds 
-                  increases the price of bonds increases. This <strong>decreases</strong> the interest rate to R₂.
-                </p>
-              </div>
-            </div>
-          </AnalysisBlock>
-
-          <ExamTipBox title="Limitations of Liquidity Preference Theory" variant="silver">
+          <ExamTipBox title="Factors Limiting the Credit Multiplier in Practice" variant="gold">
             <ul className="text-xs space-y-1">
-              <li>• The LP-Theory assumes money supply is constant, but in the long-run money supply does change.</li>
-              <li>• It focuses only on short-term interest rates and ignores long-term rates.</li>
-              <li>• The theory may not hold in a liquidity trap when interest rates are extremely low.</li>
-              <li>• It ignores the role of commercial bank lending in determining interest rates.</li>
+              <li>• <strong>Cash drains:</strong> If the public withdraws cash rather than re-depositing, the multiplier is reduced.</li>
+              <li>• <strong>Excess reserves:</strong> Banks may hold reserves above the required minimum during uncertainty.</li>
+              <li>• <strong>Lack of creditworthy borrowers:</strong> Banks may be unable to find profitable lending opportunities.</li>
+              <li>• <strong>Regulatory capital requirements:</strong> Basel III rules constrain bank lending capacity.</li>
             </ul>
           </ExamTipBox>
         </ContentSection>
 
-        {/* TOPIC 3: LOANABLE FUND THEORY */}
-        <ContentSection title="Topic 3: Loanable Fund Theory" id="topic3">
-          <h3 className="font-serif text-lg font-semibold mb-3">1. Demand for Loanable Funds (Investment)</h3>
-          <p className="text-sm text-muted-foreground mb-3">
-            The demand for loanable funds comes from firms and households who wish to borrow for investment purposes. 
-            The demand curve is <strong>downward sloping</strong> because lower interest rates make borrowing cheaper, 
-            encouraging more investment.
-          </p>
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* TOPIC 5: POLICY EVALUATION & LIMITATIONS */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Topic 5: Policy Evaluation & The Limits of Monetary Policy" id="topic5">
+          
+          <div className="prose prose-invert max-w-none mb-6">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              The evaluation of monetary policy effectiveness requires a careful analysis of the potential 
+              <strong className="text-cambridge-orange"> breakdowns in the transmission mechanism</strong> and the conditions 
+              under which conventional monetary tools may fail to achieve their intended objectives. A comprehensive A2-level 
+              evaluation must address both the theoretical limitations identified by Keynes and the empirical challenges 
+              observed in contemporary central banking practice.
+            </p>
+          </div>
 
-          <div className="p-3 bg-muted/30 rounded-lg mb-4">
-            <h4 className="font-semibold text-sm mb-2">Factors Causing a Shift in Demand for Loanable Funds</h4>
+          {/* Monetarist vs Keynesian Debate */}
+          <h3 className="font-serif text-lg font-semibold mb-3">The Monetarist-Keynesian Debate</h3>
+          
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="glass-card p-4 rounded-lg border border-cambridge-cyan/30">
+              <h4 className="font-serif font-semibold text-cambridge-cyan mb-3">Monetarist View</h4>
+              <ul className="text-xs space-y-2 text-muted-foreground">
+                <li>• Money demand is <strong>interest-inelastic</strong>: changes in <InlineMath math="M^s" /> cause large 
+                changes in <InlineMath math="r" /></li>
+                <li>• Investment is <strong>interest-elastic</strong>: lower rates significantly boost <InlineMath math="I" /></li>
+                <li>• The economy operates near full employment: <InlineMath math="\uparrow AD \Rightarrow \uparrow P" /> (inflation)</li>
+                <li>• Velocity (<InlineMath math="V" />) is stable: <InlineMath math="MV = PY \Rightarrow M \propto P" /></li>
+                <li>• <strong>Monetary policy is potent</strong>; fiscal policy crowds out private spending</li>
+              </ul>
+            </div>
+            <div className="glass-card p-4 rounded-lg border border-cambridge-magenta/30">
+              <h4 className="font-serif font-semibold text-cambridge-magenta mb-3">Keynesian View</h4>
+              <ul className="text-xs space-y-2 text-muted-foreground">
+                <li>• Money demand can be <strong>highly interest-elastic</strong> (Liquidity Trap)</li>
+                <li>• Investment depends on <strong>business confidence</strong>, not just interest rates</li>
+                <li>• Economies can persist at <strong>under-employment equilibrium</strong> with spare capacity</li>
+                <li>• Velocity is <strong>unstable</strong>: varies inversely with interest rates and economic conditions</li>
+                <li>• <strong>Fiscal policy is essential</strong> when monetary transmission breaks down</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Limitations Table */}
+          <h3 className="font-serif text-lg font-semibold mb-3">Systematic Limitations of Monetary Policy</h3>
+          
+          <div className="overflow-x-auto mb-6">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="text-xs">Factor</TableHead>
-                  <TableHead className="text-xs">Description</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="text-xs">
-                <TableRow>
-                  <TableCell className="font-medium">1. Consumer and Business Confidence</TableCell>
-                  <TableCell>Confidence ↑ → Demand for Loans ↑</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">2. Technology and Infrastructure</TableCell>
-                  <TableCell>
-                    Wherever technology in the economy increases, people and firms prefer to acquire more of it. 
-                    This encourages the demand for loans to instantly acquire that technology. Technology ↑ → Demand for Loans ↑
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">3. Availability of Quality Raw Materials</TableCell>
-                  <TableCell>Quality Raw Materials ↓ → Demand for Loans ↓</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-
-          <h3 className="font-serif text-lg font-semibold mb-3">2. Supply of Loanable Funds (Savings)</h3>
-          <p className="text-sm text-muted-foreground mb-3">
-            The supply of loanable funds comes from savers who deposit money in banks. The supply curve is 
-            <strong> upward sloping</strong> because higher interest rates encourage more saving.
-          </p>
-
-          <div className="p-3 bg-muted/30 rounded-lg mb-4">
-            <h4 className="font-semibold text-sm mb-2">Factors Causing a Shift in Supply of Loanable Funds</h4>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="text-xs">Factor</TableHead>
-                  <TableHead className="text-xs">Description</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="text-xs">
-                <TableRow>
-                  <TableCell className="font-medium">1. Savings Culture</TableCell>
-                  <TableCell>Savings Culture ↑ → Supply of Loans ↑</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-medium">2. Bank Policies</TableCell>
-                  <TableCell>Banks Stricter → Supply of Loans ↓</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-
-          <h3 className="font-serif text-lg font-semibold mb-3">3. Equilibrium in the Loanable Funds Market</h3>
-          <LoanableFundsDiagram />
-
-          <NoteCard title="Equilibrium Determination" type="theory">
-            <p className="text-sm">
-              The equilibrium real interest rate is determined where the <strong>supply of loanable funds</strong> 
-              (savings) equals the <strong>demand for loanable funds</strong> (investment). Changes in either 
-              curve will shift the equilibrium, affecting both the interest rate and the quantity of loans.
-            </p>
-          </NoteCard>
-        </ContentSection>
-
-        {/* TOPIC 4: QUANTITY THEORY OF MONEY */}
-        <ContentSection title="Topic 4: Quantity Theory of Money (QTM)" id="topic4">
-          <NoteCard title="Definition: Quantity Theory of Money" type="definition">
-            <p className="text-sm">
-              QTM presents one of the most important theories of <strong>inflation</strong> according to which 
-              the following equation holds:
-            </p>
-          </NoteCard>
-
-          <div className="text-center p-4 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20 my-4">
-            <p className="text-2xl font-mono font-bold text-cambridge-cyan">MV = PT</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-3 mb-4">
-            <div className="p-2 bg-muted/30 rounded-lg">
-              <span className="font-bold text-cambridge-cyan">M</span>
-              <span className="text-sm text-muted-foreground"> = Stock of Money</span>
-            </div>
-            <div className="p-2 bg-muted/30 rounded-lg">
-              <span className="font-bold text-cambridge-magenta">V</span>
-              <span className="text-sm text-muted-foreground"> = Velocity of Circulation (How many times money changes hands)</span>
-            </div>
-            <div className="p-2 bg-muted/30 rounded-lg">
-              <span className="font-bold text-cambridge-orange">P</span>
-              <span className="text-sm text-muted-foreground"> = Price Level</span>
-            </div>
-            <div className="p-2 bg-muted/30 rounded-lg">
-              <span className="font-bold text-cambridge-green">T</span>
-              <span className="text-sm text-muted-foreground"> = Volume of goods and services (National Real Income)</span>
-            </div>
-          </div>
-
-          <QuantityTheoryDiagram />
-
-          <NoteCard title="Monetarist Assumption" type="theory">
-            <p className="text-sm">
-              The Quantity Theory assumes that <strong>V (velocity)</strong> and <strong>T (transactions/output)</strong> 
-              are constant in the short run. Therefore:
-            </p>
-            <div className="text-center p-2 bg-muted/30 rounded mt-2 font-mono text-sm">
-              If V and T are constant: M↑ → P↑ (proportionally)
-            </div>
-          </NoteCard>
-
-          <ExamTipBox title="Keynesian Criticism on the QTM" variant="gold">
-            <ul className="text-xs space-y-2">
-              <li>
-                <strong>Velocity is not constant:</strong> The assumption of velocity of circulation remaining unchanged 
-                with changes in Ms is unrealistic. Increased Ms decreases interest rates and the opportunity cost of 
-                holding cash. As a result, people use their cash slowly thus <strong>decreasing velocity of circulation</strong>. 
-                Money supply is inversely proportional to the velocity of circulation.
-              </li>
-              <li>
-                <strong>Unemployed resources:</strong> Demand-side economists believe that unemployed resources and 
-                excess capacity always have little or no impact on the price level. With spare capacity, increased 
-                money supply leads to higher output, not just higher prices. (Refer to the Keynesian LRAS diagram)
-              </li>
-            </ul>
-          </ExamTipBox>
-        </ContentSection>
-
-        {/* TOPIC 5: MONETARY TRANSMISSION MECHANISM */}
-        <ContentSection title="Topic 5: Monetary Transmission Mechanism" id="topic5">
-          <h3 className="font-serif text-lg font-semibold mb-3">1. Money Supply Changes</h3>
-          <p className="text-sm text-muted-foreground mb-3">
-            Policies that the government/central bank can use:
-          </p>
-          <div className="grid md:grid-cols-2 gap-2 mb-4">
-            <div className="p-2 bg-cambridge-green/10 rounded-lg text-center">
-              <span className="font-semibold text-cambridge-green text-sm">1. Expansionary Monetary Policy</span>
-              <p className="text-xs text-muted-foreground">↑ Money Supply</p>
-            </div>
-            <div className="p-2 bg-destructive/10 rounded-lg text-center">
-              <span className="font-semibold text-destructive text-sm">2. Contractionary Monetary Policy</span>
-              <p className="text-xs text-muted-foreground">↓ Money Supply</p>
-            </div>
-          </div>
-
-          <h3 className="font-serif text-lg font-semibold mb-3">2. Expansionary Monetary Policy</h3>
-          <p className="text-sm text-muted-foreground mb-3">
-            Increase in Ms can be understood in <strong>THREE</strong> ways:
-          </p>
-
-          <MonetaryTransmissionDiagram />
-
-          <div className="space-y-3 mt-4">
-            <NoteCard title="1. Direct Monetary Transmission Mechanism" type="theory">
-              <div className="font-mono text-sm text-center p-2 bg-muted/30 rounded mb-2">
-                Ms↑ → More money to Spend → C↑, I↑ → AE/AD↑ → [P↑, Y↑, Employment↑]
-              </div>
-              <p className="text-xs text-muted-foreground">
-                <strong>Monetarists believe:</strong> The link between money supply and AD is not only indirect but 
-                also <strong>direct</strong> – with excess liquidity, households and firms spend more on goods and services.
-              </p>
-            </NoteCard>
-
-            <NoteCard title="2. Quantity Theory of Money" type="theory">
-              <p className="text-sm">
-                According to the QTM: <strong>MV = PT</strong>, where 'V' & 'T' are constant, 
-                hence <strong>M↑ → P↑</strong> (proportionally).
-              </p>
-            </NoteCard>
-
-            <NoteCard title="3. Indirect Monetary Transmission Mechanism" type="theory">
-              <div className="space-y-2">
-                <div className="p-2 bg-cambridge-cyan/10 rounded-lg">
-                  <h5 className="font-semibold text-cambridge-cyan text-sm">Step 1: Money Market</h5>
-                  <p className="text-xs text-muted-foreground">
-                    An increase in money supply creates excess liquidity. At the old interest rate, there is now 
-                    more money than people want to hold. Households buy bonds, raising bond prices and 
-                    <strong> lowering interest rates</strong>.
-                  </p>
-                </div>
-                <div className="p-2 bg-cambridge-magenta/10 rounded-lg">
-                  <h5 className="font-semibold text-cambridge-magenta text-sm">Step 2: Capital Goods Market</h5>
-                  <p className="text-xs text-muted-foreground">
-                    The low interest rate will <strong>increase</strong> the amount of investment because the cost 
-                    of borrowing has decreased. More investment projects are now profitable (MEC &gt; r). The extent 
-                    of increase in investment depends on the <strong>interest rate elasticity of investment</strong>.
-                  </p>
-                </div>
-                <div className="p-2 bg-cambridge-green/10 rounded-lg">
-                  <h5 className="font-semibold text-cambridge-green text-sm">Step 3: Goods Market</h5>
-                  <p className="text-xs text-muted-foreground">
-                    With increased investment, there is an increase in AD. This leads to higher output, 
-                    employment, and possibly higher prices (depending on spare capacity/full employment).
-                  </p>
-                </div>
-              </div>
-            </NoteCard>
-          </div>
-
-          <AnalysisBlock title="Monetarist vs Keynesian View on Transmission">
-            <div className="grid md:grid-cols-2 gap-3 text-xs">
-              <div className="p-2 bg-cambridge-cyan/10 rounded-lg">
-                <h5 className="font-semibold text-cambridge-cyan mb-1">Monetarist View</h5>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• Demand for money is <strong>interest inelastic</strong> → any increase in Ms leads to a large fall in r</li>
-                  <li>• Strong link between Ms and AD (both direct and indirect)</li>
-                  <li>• Investment is not vulnerable to expectation changes</li>
-                  <li>• Economy is at/near full employment → ↑AD leads to inflation</li>
-                </ul>
-              </div>
-              <div className="p-2 bg-cambridge-magenta/10 rounded-lg">
-                <h5 className="font-semibold text-cambridge-magenta mb-1">Keynesian View</h5>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• Demand for money can be <strong>interest elastic</strong> (liquidity trap)</li>
-                  <li>• Weak link between Ms and AD in a recession</li>
-                  <li>• Investment depends heavily on business confidence</li>
-                  <li>• Spare capacity means ↑AD leads to ↑Y, not just ↑P</li>
-                </ul>
-              </div>
-            </div>
-          </AnalysisBlock>
-
-          <h3 className="font-serif text-lg font-semibold mt-4 mb-3">3. Quantitative Easing (QE)</h3>
-          <NoteCard title="Definition: Quantitative Easing" type="definition">
-            <p className="text-sm">
-              When the rate of interest is very low, a central bank may decide to try to increase aggregate demand 
-              by engaging in <strong>quantitative easing</strong>. This involves a central bank <strong>buying 
-              government bonds</strong> from financial institutions, including commercial banks, in order to 
-              increase investment and consumer expenditure and so aggregate demand and thereby economic activity.
-            </p>
-          </NoteCard>
-
-          <h3 className="font-serif text-lg font-semibold mt-4 mb-3">4. Limitations of Monetary Policy</h3>
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="text-xs">Limitation</TableHead>
-                  <TableHead className="text-xs">Description</TableHead>
+                  <TableHead className="text-xs w-1/4">Limitation</TableHead>
+                  <TableHead className="text-xs">Mechanism of Failure</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody className="text-xs">
                 <TableRow>
                   <TableCell className="font-semibold text-cambridge-orange">1. Liquidity Trap</TableCell>
                   <TableCell>
-                    At very low interest rates, people hoard money instead of spending. Further increases in 
-                    money supply have no effect on interest rates or AD.
+                    At the zero lower bound, <InlineMath math="M^d" /> becomes perfectly elastic. Agents hoard additional 
+                    money rather than purchasing bonds, severing the link between <InlineMath math="M^s" /> and 
+                    <InlineMath math="r" />. Monetary expansion fails to lower interest rates.
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="font-semibold text-cambridge-orange">2. Time Lags</TableCell>
+                  <TableCell className="font-semibold text-cambridge-orange">2. Investment Inelasticity</TableCell>
                   <TableCell>
-                    There are delays between implementing monetary policy and its effect on the price level 
-                    (recognition lag, implementation lag, response lag).
+                    During recessions, business pessimism ("Animal Spirits") makes investment unresponsive to lower rates. 
+                    If firms lack confidence in future demand, they will not borrow regardless of how cheap credit becomes.
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="font-semibold text-cambridge-orange">3. Uncertainty</TableCell>
+                  <TableCell className="font-semibold text-cambridge-orange">3. Time Lags</TableCell>
                   <TableCell>
-                    Political instability, business confidence, and external shocks can reduce policy effectiveness.
+                    <strong>Recognition lag:</strong> time to identify the problem. <strong>Implementation lag:</strong> time 
+                    to change policy. <strong>Transmission lag:</strong> 18-24 months for full effects on output and prices.
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="font-semibold text-cambridge-orange">4. Reliability of Data</TableCell>
+                  <TableCell className="font-semibold text-cambridge-orange">4. Asset Price Bubbles</TableCell>
                   <TableCell>
-                    Economic forecasting relies on data that may be inaccurate or outdated.
+                    Prolonged low interest rates may fuel speculative bubbles in housing and financial markets rather than 
+                    productive investment, creating financial instability risks.
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="font-semibold text-cambridge-orange">5. Interest Elasticity of Investment</TableCell>
+                  <TableCell className="font-semibold text-cambridge-orange">5. Bank Lending Behaviour</TableCell>
                   <TableCell>
-                    If investment is interest inelastic, changes in interest rates will have little effect on 
-                    employment and prices.
+                    Even with ample reserves, banks may tighten credit standards during uncertainty, hoarding liquidity 
+                    rather than lending. The credit multiplier collapses.
                   </TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </div>
-        </ContentSection>
 
-        {/* Chapter Summary */}
-        <ContentSection title="Chapter Summary">
-          <div className="glass-card p-4">
-            <h3 className="font-serif text-lg text-gradient mb-3">Key Takeaways</h3>
-            <ul className="space-y-1.5 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <strong>Credit Multiplier = 1 / Cash Ratio</strong> – Banks create money through lending.
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <strong>Liquidity Preference Theory:</strong> Three motives for holding money – transactions, precautionary, speculative.
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <strong>Bond prices and interest rates move inversely.</strong> Higher r → Lower bond prices.
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <strong>Loanable Funds Theory:</strong> Interest rate determined by supply (savings) and demand (investment) for loans.
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <strong>Quantity Theory (MV = PT):</strong> With V and T constant, changes in M cause proportional changes in P.
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <strong>Monetary Transmission:</strong> ↑Ms → ↓r → ↑I → ↑AD → ↑Y, ↑P, ↑Employment.
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <strong>Limitations:</strong> Liquidity trap, time lags, uncertainty, and interest elasticity of investment.
-              </li>
-            </ul>
+          {/* Quantitative Easing */}
+          <h3 className="font-serif text-lg font-semibold mb-3">Quantitative Easing: Unconventional Monetary Policy</h3>
+          
+          <div className="prose prose-invert max-w-none mb-4">
+            <p className="text-sm leading-relaxed text-justify text-foreground/90">
+              When conventional interest rate policy is exhausted at the zero lower bound, central banks may resort to 
+              <strong className="text-cambridge-green"> Quantitative Easing (QE)</strong>—the large-scale purchase of 
+              government bonds and other financial assets directly from the private sector. Unlike OMO, which targets 
+              short-term rates, QE aims to reduce <strong>long-term yields</strong>, lower corporate borrowing costs, 
+              boost asset prices (creating wealth effects), and signal the central bank's commitment to accommodative 
+              policy. However, QE remains controversial: critics argue it primarily benefits asset owners, exacerbates 
+              wealth inequality, and risks future inflation when the central bank eventually unwinds its balance sheet.
+            </p>
+          </div>
+
+          {/* Final Comprehensive Conclusion */}
+          <div className="mt-6 p-5 bg-gradient-to-r from-cambridge-orange/15 via-cambridge-magenta/10 to-cambridge-cyan/10 border border-cambridge-orange/30 rounded-lg">
+            <h4 className="font-serif font-semibold text-cambridge-orange mb-3">Comprehensive A2 Evaluation (AO4)</h4>
+            <div className="prose prose-invert max-w-none">
+              <p className="text-sm text-foreground/90 leading-relaxed text-justify mb-3">
+                <strong>Ultimately, the effectiveness of monetary policy is contingent upon the economic environment in which 
+                it operates.</strong> During normal economic conditions—when interest rates are positive, investment is 
+                reasonably interest-elastic, and banks are willing to lend—the monetary transmission mechanism functions 
+                adequately, and central banks can influence aggregate demand through interest rate adjustments. However, 
+                during severe recessions or financial crises, multiple links in the transmission chain may simultaneously 
+                break down: the Liquidity Trap renders rate cuts ineffective, business pessimism makes investment 
+                interest-inelastic, and bank credit creation seizes up. Under these conditions, monetary policy becomes 
+                analogous to "pushing on a string"—expansionary measures fail to generate the intended stimulus.
+              </p>
+              <p className="text-sm text-foreground/90 leading-relaxed text-justify">
+                This analysis provides the intellectual foundation for Keynes's advocacy of <strong>Discretionary Fiscal 
+                Policy</strong> as the necessary complement to—and, in crisis conditions, substitute for—monetary 
+                intervention. When private sector demand is deficient and monetary transmission is impaired, only direct 
+                government spending (<InlineMath math="G" />) or tax cuts can inject the autonomous expenditure needed to 
+                activate the multiplier and restore the economy to full employment equilibrium. As Keynes famously observed, 
+                <em> "in the long run we are all dead"</em>—the social costs of prolonged involuntary unemployment cannot 
+                be tolerated while waiting for self-correcting market mechanisms that may never materialize.
+              </p>
+            </div>
           </div>
         </ContentSection>
+
       </motion.div>
     </Layout>
   );
