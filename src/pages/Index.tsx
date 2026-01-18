@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
-import FluidGraphiteBackground from '@/components/FluidGraphiteBackground';
-import ScholarDustParticles from '@/components/ScholarDustParticles';
+import EconomicKineticBackground from '@/components/EconomicKineticBackground';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EconomicGlobe from '@/components/EconomicGlobe';
@@ -36,8 +35,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative">
-      <FluidGraphiteBackground />
-      <ScholarDustParticles />
+      <EconomicKineticBackground />
       <Header />
 
       <main className="relative z-20">
