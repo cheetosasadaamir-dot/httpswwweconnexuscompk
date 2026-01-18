@@ -61,9 +61,9 @@ const Index = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-6"
                 >
-                  <span className="section-title">Master the</span>
+                <span className="section-title">MASTER THE</span>
                   <br />
-                  <span className="text-foreground">Economy in 4D</span>
+                  <span className="text-foreground">ECONOMICS IN 4D</span>
                 </motion.h1>
 
                 <motion.p
