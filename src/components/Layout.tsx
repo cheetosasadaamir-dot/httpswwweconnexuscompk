@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import EconomicKineticBackground from './EconomicKineticBackground';
+import ThreeJsMarketEngine from './ThreeJsMarketEngine';
 import FloatingDock from './FloatingDock';
 import Footer from './Footer';
 
@@ -11,7 +11,7 @@ interface LayoutProps {
 const Layout = ({ children, showSidebar = true }: LayoutProps) => {
   return (
     <div className="min-h-screen">
-      <EconomicKineticBackground />
+      <ThreeJsMarketEngine />
       <FloatingDock />
       <main className="relative z-20 pt-24 lg:pt-28">
         {children}

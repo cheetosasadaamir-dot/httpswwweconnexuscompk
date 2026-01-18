@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
-import EconomicKineticBackground from '@/components/EconomicKineticBackground';
+import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EconomicGlobe from '@/components/EconomicGlobe';
@@ -35,7 +35,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative">
-      <EconomicKineticBackground />
+      <ThreeJsMarketEngine />
       <Header />
 
       <main className="relative z-20">
