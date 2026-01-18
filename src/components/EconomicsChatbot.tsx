@@ -19,10 +19,12 @@ type Message = {
 };
 
 const QUICK_ACTIONS = [
-  { label: 'Interest Rate Impact', query: 'Explain the impact of an increase in interest rates on AD with a diagram' },
-  { label: 'Trade Creation', query: 'Analyze trade creation in a customs union with welfare effects' },
-  { label: 'Phillips Curve', query: 'Explain the Expectations-Augmented Phillips Curve and NRU' },
-  { label: 'Marshall-Lerner', query: 'Analyze the Marshall-Lerner condition and J-Curve effect' },
+  { label: 'J-Curve & Marshall-Lerner', query: 'Explain the J-Curve effect and Marshall-Lerner condition with diagrams. Include the full transmission chain.' },
+  { label: 'Liquidity Trap', query: 'Analyze the Keynesian Liquidity Trap and why monetary policy becomes ineffective. Show the diagram.' },
+  { label: 'Phillips Curve & NRU', query: 'Explain the Expectations-Augmented Phillips Curve and Natural Rate of Unemployment with diagram' },
+  { label: 'Harrod-Domar Model', query: 'Derive the Harrod-Domar growth model (g=s/k) and evaluate its limitations for development' },
+  { label: 'Kinked Demand', query: 'Analyze the Kinked Demand Curve model of oligopoly. Why does price rigidity occur?' },
+  { label: 'Gini & Lorenz', query: 'Calculate and interpret the Gini Coefficient using the Lorenz Curve diagram' },
 ];
 
 // Command words with AO (Assessment Objective) requirements
@@ -495,7 +497,7 @@ export default function EconomicsChatbot() {
                   <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">Prof. Econs</p>
                   <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">CIE Senior Fellow • 2026-2028 Syllabus</p>
                   <p className="text-sm mt-1 opacity-70 font-serif">Your Senior Cambridge Examiner is ready</p>
-                  <p className="text-xs mt-2 opacity-50">NRU, Phillips Curve, HDI, MPI, Marshall-Lerner...</p>
+                  <p className="text-xs mt-2 opacity-50">J-Curve, Liquidity Trap, Harrod-Domar, Gini, Marshall-Lerner...</p>
                 </div>
               </div>
             ) : (
@@ -600,7 +602,7 @@ export default function EconomicsChatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about Multiplier, NRU, J-Curve, Development indicators..."
+                placeholder="Ask about J-Curve, Liquidity Trap, Harrod-Domar, Gini, Marshall-Lerner..."
                 disabled={isLoading}
                 className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans"
               />
