@@ -1,77 +1,97 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 
-interface GridNode {
+// ============ INTERFACES ============
+interface VoxelNode {
   x: number;
   y: number;
   z: number;
   baseX: number;
   baseY: number;
   connections: number[];
+  pulsePhase: number;
 }
 
-interface DataParticle {
+interface BlockchainNode {
   x: number;
   y: number;
-  targetX: number;
-  targetY: number;
-  progress: number;
+  z: number;
+  size: number;
+  pulsePhase: number;
+  connections: number[];
+  active: boolean;
+}
+
+interface Candlestick {
+  x: number;
+  y: number;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  bullish: boolean;
+  opacity: number;
+  phase: number;
   speed: number;
-  color: 'cyan' | 'gold';
-  trail: { x: number; y: number }[];
 }
 
-interface BezierCurve {
-  startX: number;
-  startY: number;
-  cp1X: number;
-  cp1Y: number;
-  cp2X: number;
-  cp2Y: number;
-  endX: number;
-  endY: number;
-  phase: number;
+interface TrendLine {
+  points: { x: number; y: number }[];
+  color: 'cyan' | 'crimson';
   opacity: number;
-  color: string;
-  direction: 1 | -1;
+  phase: number;
+  speed: number;
 }
 
-interface FinancialSymbol {
-  type: 'candlestick' | 'trendline';
+interface TickerItem {
+  symbol: string;
+  price: number;
+  change: number;
   x: number;
-  y: number;
-  opacity: number;
-  phase: number;
-  data: number[];
 }
 
+// ============ COMPONENT ============
 const EconomicKineticBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const scrollRef = useRef(0);
   const timeRef = useRef(0);
   const mouseRef = useRef({ x: 0, y: 0 });
-  const gridRef = useRef<GridNode[]>([]);
-  const particlesRef = useRef<DataParticle[]>([]);
-  const curvesRef = useRef<BezierCurve[]>([]);
-  const symbolsRef = useRef<FinancialSymbol[]>([]);
-  const lastSymbolTimeRef = useRef(0);
   const frameRef = useRef<number>(0);
+  
+  // Data refs
+  const voxelGridRef = useRef<VoxelNode[]>([]);
+  const blockchainNodesRef = useRef<BlockchainNode[]>([]);
+  const candlesticksRef = useRef<Candlestick[]>([]);
+  const trendLinesRef = useRef<TrendLine[]>([]);
+  const tickerRef = useRef<TickerItem[]>([]);
+  
+  // Performance state
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Colors from the 5D theme
+  // Color palette - Bloomberg Terminal meets premium education
   const colors = {
-    obsidian: '#040404',
-    charcoal: '#121212',
+    obsidian: '#030303',
+    charcoal: '#0a0a0a',
+    deepCharcoal: '#121212',
     cyan: '#00d4ff',
-    cyanGlow: 'rgba(0, 212, 255, 0.15)',
+    cyanGlow: 'rgba(0, 212, 255, 0.2)',
+    cyanMuted: 'rgba(0, 212, 255, 0.08)',
     gold: '#d4a020',
-    goldGlow: 'rgba(212, 160, 32, 0.12)',
-    gridLine: 'rgba(255, 255, 255, 0.03)',
-    gridNode: 'rgba(255, 255, 255, 0.06)',
+    goldGlow: 'rgba(212, 160, 32, 0.15)',
+    crimson: '#dc2626',
+    crimsonGlow: 'rgba(220, 38, 38, 0.15)',
+    gridLine: 'rgba(255, 255, 255, 0.025)',
+    gridNode: 'rgba(255, 255, 255, 0.04)',
+    blockchainHex: 'rgba(0, 212, 255, 0.12)',
+    smartContract: 'rgba(212, 160, 32, 0.08)',
   };
 
-  const initializeElements = useCallback((width: number, height: number) => {
-    // Initialize 5D Grid Nodes
-    const gridSpacing = 80;
-    const nodes: GridNode[] = [];
+  // Initialize all visual elements
+  const initializeElements = useCallback((width: number, height: number, lowPower: boolean) => {
+    const particleMultiplier = lowPower ? 0.4 : 1;
+
+    // ===== 5D VOXEL GRID =====
+    const gridSpacing = lowPower ? 120 : 80;
+    const nodes: VoxelNode[] = [];
     const cols = Math.ceil(width / gridSpacing) + 2;
     const rows = Math.ceil(height / gridSpacing) + 2;
 
@@ -82,72 +102,136 @@ const EconomicKineticBackground = () => {
         const index = row * cols + col;
         const connections: number[] = [];
 
-        // Connect to right and bottom neighbors
+        // Connect to neighbors for infinite Z-axis effect
         if (col < cols - 1) connections.push(index + 1);
         if (row < rows - 1) connections.push(index + cols);
-        // Diagonal connections for 5D effect
         if (col < cols - 1 && row < rows - 1) connections.push(index + cols + 1);
+        if (col > 0 && row < rows - 1) connections.push(index + cols - 1);
 
         nodes.push({
-          x,
-          y,
-          z: Math.random() * 0.5 + 0.5,
+          x, y,
+          z: Math.random() * 0.8 + 0.2,
           baseX: x,
           baseY: y,
           connections,
+          pulsePhase: Math.random() * Math.PI * 2,
         });
       }
     }
-    gridRef.current = nodes;
+    voxelGridRef.current = nodes;
 
-    // Initialize Data Stream Particles
-    const particleCount = Math.floor((width * height) / 25000);
-    particlesRef.current = Array.from({ length: particleCount }, () => {
-      const startNode = nodes[Math.floor(Math.random() * nodes.length)];
-      const endNode = nodes[Math.floor(Math.random() * nodes.length)];
+    // ===== BLOCKCHAIN HEXAGONAL NODES =====
+    const blockchainCount = Math.floor(15 * particleMultiplier);
+    blockchainNodesRef.current = Array.from({ length: blockchainCount }, (_, i) => {
+      const x = Math.random() * width;
+      const y = Math.random() * height;
+      const connections: number[] = [];
+      
+      // Random connections to other nodes
+      for (let j = 0; j < 3; j++) {
+        const target = Math.floor(Math.random() * blockchainCount);
+        if (target !== i && !connections.includes(target)) {
+          connections.push(target);
+        }
+      }
+
       return {
-        x: startNode.x,
-        y: startNode.y,
-        targetX: endNode.x,
-        targetY: endNode.y,
-        progress: Math.random(),
-        speed: 0.001 + Math.random() * 0.002,
-        color: Math.random() > 0.5 ? 'cyan' : 'gold',
-        trail: [],
-      } as DataParticle;
+        x, y,
+        z: Math.random() * 0.6 + 0.4,
+        size: 20 + Math.random() * 15,
+        pulsePhase: Math.random() * Math.PI * 2,
+        connections,
+        active: Math.random() > 0.7,
+      };
     });
 
-    // Initialize Dynamic Bezier Curves (Supply/Demand style)
-    curvesRef.current = Array.from({ length: 6 }, (_, i) => ({
-      startX: Math.random() * width * 0.3,
-      startY: height * 0.2 + Math.random() * height * 0.6,
-      cp1X: width * 0.3 + Math.random() * width * 0.2,
-      cp1Y: Math.random() * height,
-      cp2X: width * 0.5 + Math.random() * width * 0.2,
-      cp2Y: Math.random() * height,
-      endX: width * 0.7 + Math.random() * width * 0.3,
-      endY: height * 0.2 + Math.random() * height * 0.6,
+    // ===== FLOATING CANDLESTICKS =====
+    const candleCount = Math.floor(6 * particleMultiplier);
+    candlesticksRef.current = Array.from({ length: candleCount }, () => ({
+      x: width + Math.random() * 200,
+      y: height * 0.15 + Math.random() * height * 0.7,
+      open: 30 + Math.random() * 40,
+      high: 0,
+      low: 0,
+      close: 0,
+      bullish: Math.random() > 0.45,
+      opacity: 0.04 + Math.random() * 0.04,
       phase: Math.random() * Math.PI * 2,
-      opacity: 0.03 + Math.random() * 0.04,
-      color: i % 2 === 0 ? colors.cyan : colors.gold,
-      direction: (i % 2 === 0 ? 1 : -1) as 1 | -1,
+      speed: 0.15 + Math.random() * 0.1,
+    })).map(c => {
+      const move = 10 + Math.random() * 25;
+      c.close = c.bullish ? c.open + move : c.open - move;
+      c.high = Math.max(c.open, c.close) + Math.random() * 15;
+      c.low = Math.min(c.open, c.close) - Math.random() * 15;
+      return c;
+    });
+
+    // ===== TREND LINES =====
+    const trendCount = Math.floor(4 * particleMultiplier);
+    trendLinesRef.current = Array.from({ length: trendCount }, () => {
+      const pointCount = 8 + Math.floor(Math.random() * 6);
+      const startX = width + 50;
+      const startY = height * 0.2 + Math.random() * height * 0.6;
+      const isBullish = Math.random() > 0.45;
+      
+      const points = Array.from({ length: pointCount }, (_, i) => ({
+        x: startX - i * 40,
+        y: startY + (isBullish ? -1 : 1) * i * 8 + (Math.random() - 0.5) * 30,
+      }));
+
+      return {
+        points,
+        color: isBullish ? 'cyan' : 'crimson',
+        opacity: 0.06 + Math.random() * 0.04,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.2 + Math.random() * 0.15,
+      } as TrendLine;
+    });
+
+    // ===== LIVE TICKER =====
+    const tickerSymbols = [
+      { symbol: 'BTC/USD', base: 67500 },
+      { symbol: 'ETH/USD', base: 3450 },
+      { symbol: 'S&P 500', base: 5230 },
+      { symbol: 'GOLD', base: 2340 },
+      { symbol: 'EUR/USD', base: 1.085 },
+      { symbol: 'NASDAQ', base: 16720 },
+      { symbol: 'DOW', base: 39850 },
+      { symbol: 'XAU/USD', base: 2355 },
+    ];
+
+    tickerRef.current = tickerSymbols.map((item, i) => ({
+      symbol: item.symbol,
+      price: item.base + (Math.random() - 0.5) * item.base * 0.02,
+      change: (Math.random() - 0.48) * 4,
+      x: i * 180,
     }));
 
-    // Initialize Financial Symbols (empty - will spawn periodically)
-    symbolsRef.current = [];
   }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
+    // Detect mobile for low-power mode
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768 || 
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      setIsMobile(mobile);
+      return mobile;
+    };
+
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initializeElements(canvas.width, canvas.height);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.scale(dpr, dpr);
+      initializeElements(window.innerWidth, window.innerHeight, checkMobile());
     };
 
     resizeCanvas();
@@ -163,47 +247,36 @@ const EconomicKineticBackground = () => {
     };
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
-    const spawnFinancialSymbol = (width: number, height: number) => {
-      const type = Math.random() > 0.5 ? 'candlestick' : 'trendline';
-      const symbol: FinancialSymbol = {
-        type,
-        x: width * 0.2 + Math.random() * width * 0.6,
-        y: height * 0.2 + Math.random() * height * 0.6,
-        opacity: 0,
-        phase: 0,
-        data: type === 'candlestick'
-          ? Array.from({ length: 8 }, () => Math.random() * 60 + 20)
-          : Array.from({ length: 12 }, (_, i) => 50 + Math.sin(i * 0.5) * 30 + Math.random() * 10),
-      };
-      symbolsRef.current.push(symbol);
-    };
+    // ========== DRAWING FUNCTIONS ==========
 
-    const drawGrid = (ctx: CanvasRenderingContext2D, time: number) => {
-      const nodes = gridRef.current;
-      const scroll = scrollRef.current * 0.0002;
+    const drawVoxelGrid = (time: number, width: number, height: number) => {
+      const nodes = voxelGridRef.current;
+      const scroll = scrollRef.current * 0.0001;
       const mouse = mouseRef.current;
 
-      // Update node positions with parallax and mouse influence
+      // Update positions with 5D parallax and mouse reaction
       nodes.forEach((node) => {
-        const parallax = node.z * 0.3;
-        const mouseInfluenceX = (mouse.x - node.baseX) * 0.002 * parallax;
-        const mouseInfluenceY = (mouse.y - node.baseY) * 0.002 * parallax;
+        const depthFactor = node.z;
+        const mouseDistX = mouse.x - node.baseX;
+        const mouseDistY = mouse.y - node.baseY;
+        
+        // Inverse parallax - move opposite to mouse for 3D depth
+        const mouseInfluenceX = -mouseDistX * 0.003 * depthFactor;
+        const mouseInfluenceY = -mouseDistY * 0.003 * depthFactor;
 
-        node.x = node.baseX 
-          + Math.sin(time * 0.2 + node.baseX * 0.005) * 3 * node.z
-          + mouseInfluenceX * 8
-          + scroll * 20 * (1 - parallax);
-        node.y = node.baseY 
-          + Math.cos(time * 0.15 + node.baseY * 0.005) * 3 * node.z
-          + mouseInfluenceY * 8
-          + scroll * 15 * (1 - parallax);
+        // Infinite Z-axis drift
+        const zDrift = Math.sin(time * 0.08 + node.pulsePhase) * 4 * depthFactor;
+        
+        node.x = node.baseX + mouseInfluenceX * 12 + scroll * 30 * depthFactor + zDrift;
+        node.y = node.baseY + mouseInfluenceY * 12 + scroll * 20 * depthFactor;
       });
 
-      // Draw grid lines
-      ctx.strokeStyle = colors.gridLine;
-      ctx.lineWidth = 0.5;
-
+      // Draw grid with depth-based opacity
       nodes.forEach((node) => {
+        const nodeOpacity = 0.015 + node.z * 0.02;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${nodeOpacity})`;
+        ctx.lineWidth = 0.5;
+
         node.connections.forEach((connIndex) => {
           const connNode = nodes[connIndex];
           if (!connNode) return;
@@ -213,268 +286,249 @@ const EconomicKineticBackground = () => {
           ctx.lineTo(connNode.x, connNode.y);
           ctx.stroke();
         });
-      });
 
-      // Draw grid nodes with subtle glow
-      nodes.forEach((node) => {
-        const glowSize = 2 + node.z * 2;
-        const gradient = ctx.createRadialGradient(
-          node.x, node.y, 0,
-          node.x, node.y, glowSize * 3
-        );
-        gradient.addColorStop(0, colors.gridNode);
+        // Subtle node glow
+        const glowIntensity = 0.5 + Math.sin(time * 0.5 + node.pulsePhase) * 0.3;
+        const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 6 * node.z);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${0.03 * glowIntensity})`);
         gradient.addColorStop(1, 'transparent');
-
+        
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(node.x, node.y, glowSize * 3, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, 6 * node.z, 0, Math.PI * 2);
         ctx.fill();
       });
     };
 
-    const drawDataStreams = (ctx: CanvasRenderingContext2D, _time: number) => {
-      const particles = particlesRef.current;
-      const nodes = gridRef.current;
+    const drawBlockchainNodes = (time: number, width: number) => {
+      const nodes = blockchainNodesRef.current;
+      const scroll = scrollRef.current * 0.0002;
 
-      particles.forEach((particle) => {
-        // Update particle position along path
-        particle.progress += particle.speed;
+      nodes.forEach((node, index) => {
+        // Drift with scroll visibility
+        const visibility = 1 - Math.abs(scroll * 50 - index * 0.3) * 0.1;
+        if (visibility <= 0) return;
 
-        if (particle.progress >= 1) {
-          // Pick new target
-          particle.progress = 0;
-          particle.x = particle.targetX;
-          particle.y = particle.targetY;
-          const newTarget = nodes[Math.floor(Math.random() * nodes.length)];
-          particle.targetX = newTarget.x;
-          particle.targetY = newTarget.y;
-          particle.trail = [];
-        }
+        const pulse = 0.7 + Math.sin(time * 0.8 + node.pulsePhase) * 0.3;
+        const size = node.size * pulse;
 
-        // Interpolate position
-        const t = particle.progress;
-        const easeT = t * t * (3 - 2 * t); // Smooth step
-        const newX = particle.x + (particle.targetX - particle.x) * easeT;
-        const newY = particle.y + (particle.targetY - particle.y) * easeT;
-
-        // Add to trail
-        particle.trail.push({ x: newX, y: newY });
-        if (particle.trail.length > 15) particle.trail.shift();
-
-        // Draw trail
-        if (particle.trail.length > 1) {
-          const particleColor = particle.color === 'cyan' ? colors.cyan : colors.gold;
-          const glowColor = particle.color === 'cyan' ? colors.cyanGlow : colors.goldGlow;
-
-          ctx.strokeStyle = glowColor;
-          ctx.lineWidth = 3;
-          ctx.lineCap = 'round';
-          ctx.beginPath();
-          ctx.moveTo(particle.trail[0].x, particle.trail[0].y);
-          particle.trail.forEach((point) => ctx.lineTo(point.x, point.y));
-          ctx.stroke();
-
-          ctx.strokeStyle = particleColor;
-          ctx.lineWidth = 1;
-          ctx.globalAlpha = 0.6;
-          ctx.beginPath();
-          ctx.moveTo(particle.trail[0].x, particle.trail[0].y);
-          particle.trail.forEach((point) => ctx.lineTo(point.x, point.y));
-          ctx.stroke();
-          ctx.globalAlpha = 1;
-        }
-
-        // Draw particle head
-        const headColor = particle.color === 'cyan' ? colors.cyan : colors.gold;
-        const headX = particle.trail[particle.trail.length - 1]?.x || newX;
-        const headY = particle.trail[particle.trail.length - 1]?.y || newY;
-
-        const headGradient = ctx.createRadialGradient(headX, headY, 0, headX, headY, 6);
-        headGradient.addColorStop(0, headColor);
-        headGradient.addColorStop(0.5, `${headColor}66`);
-        headGradient.addColorStop(1, 'transparent');
-
-        ctx.fillStyle = headGradient;
+        // Draw hexagon
         ctx.beginPath();
-        ctx.arc(headX, headY, 6, 0, Math.PI * 2);
+        for (let i = 0; i < 6; i++) {
+          const angle = (Math.PI / 3) * i - Math.PI / 6;
+          const hx = node.x + Math.cos(angle) * size;
+          const hy = node.y + Math.sin(angle) * size;
+          if (i === 0) ctx.moveTo(hx, hy);
+          else ctx.lineTo(hx, hy);
+        }
+        ctx.closePath();
+
+        // Fill with glow
+        const hexGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, size * 1.5);
+        hexGradient.addColorStop(0, node.active ? colors.cyanMuted : colors.blockchainHex);
+        hexGradient.addColorStop(0.6, node.active ? 'rgba(0, 212, 255, 0.04)' : 'rgba(0, 212, 255, 0.02)');
+        hexGradient.addColorStop(1, 'transparent');
+        
+        ctx.fillStyle = hexGradient;
         ctx.fill();
+
+        ctx.strokeStyle = node.active ? colors.cyanGlow : colors.blockchainHex;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Draw "smart contract" connection lines (appear/disappear with scroll)
+        if (visibility > 0.5) {
+          node.connections.forEach((targetIndex) => {
+            const target = nodes[targetIndex];
+            if (!target) return;
+
+            const connectionPhase = (Math.sin(time * 0.3 + index * 0.5) + 1) / 2;
+            if (connectionPhase > 0.4) {
+              ctx.strokeStyle = colors.smartContract;
+              ctx.lineWidth = 1;
+              ctx.setLineDash([4, 8]);
+              ctx.beginPath();
+              ctx.moveTo(node.x, node.y);
+              ctx.lineTo(target.x, target.y);
+              ctx.stroke();
+              ctx.setLineDash([]);
+            }
+          });
+        }
+
+        // Toggle active state occasionally
+        if (Math.random() < 0.002) {
+          node.active = !node.active;
+        }
       });
     };
 
-    const drawDynamicCurves = (ctx: CanvasRenderingContext2D, time: number, width: number, height: number) => {
-      const curves = curvesRef.current;
+    const drawCandlesticks = (time: number, width: number) => {
+      const candles = candlesticksRef.current;
 
-      curves.forEach((curve) => {
-        // Animate control points slowly
-        const phaseOffset = time * 0.1 * curve.direction + curve.phase;
-        const wave1 = Math.sin(phaseOffset) * 50;
-        const wave2 = Math.cos(phaseOffset * 0.7) * 40;
+      candles.forEach((candle) => {
+        // Move left across screen
+        candle.x -= candle.speed;
+        
+        // Reset when off screen
+        if (candle.x < -100) {
+          candle.x = width + 100 + Math.random() * 200;
+          candle.y = window.innerHeight * 0.15 + Math.random() * window.innerHeight * 0.7;
+          candle.bullish = Math.random() > 0.45;
+          const move = 10 + Math.random() * 25;
+          candle.open = 30 + Math.random() * 40;
+          candle.close = candle.bullish ? candle.open + move : candle.open - move;
+          candle.high = Math.max(candle.open, candle.close) + Math.random() * 15;
+          candle.low = Math.min(candle.open, candle.close) - Math.random() * 15;
+        }
 
-        const animatedCp1Y = curve.cp1Y + wave1;
-        const animatedCp2Y = curve.cp2Y + wave2;
+        const color = candle.bullish ? colors.cyan : colors.crimson;
+        const glow = candle.bullish ? colors.cyanGlow : colors.crimsonGlow;
 
-        // Draw the curve with glow
-        ctx.strokeStyle = curve.color;
+        ctx.globalAlpha = candle.opacity;
+
+        // Wick with glow
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 8;
+        ctx.strokeStyle = color;
         ctx.lineWidth = 1.5;
-        ctx.globalAlpha = curve.opacity;
+        ctx.beginPath();
+        ctx.moveTo(candle.x, candle.y - candle.high);
+        ctx.lineTo(candle.x, candle.y - candle.low);
+        ctx.stroke();
 
-        // Glow layer
-        ctx.shadowColor = curve.color;
-        ctx.shadowBlur = 20;
+        // Body
+        const bodyTop = Math.max(candle.open, candle.close);
+        const bodyHeight = Math.abs(candle.close - candle.open) || 2;
+        
+        ctx.fillStyle = color;
+        ctx.fillRect(candle.x - 6, candle.y - bodyTop, 12, bodyHeight);
+        
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+      });
+    };
+
+    const drawTrendLines = (time: number, width: number) => {
+      const lines = trendLinesRef.current;
+
+      lines.forEach((line) => {
+        // Move points left
+        line.points.forEach((point) => {
+          point.x -= line.speed;
+        });
+
+        // Reset when off screen
+        if (line.points[line.points.length - 1].x < -50) {
+          const pointCount = line.points.length;
+          const startX = width + 50;
+          const startY = window.innerHeight * 0.2 + Math.random() * window.innerHeight * 0.6;
+          const isBullish = line.color === 'cyan';
+          
+          line.points = Array.from({ length: pointCount }, (_, i) => ({
+            x: startX - i * 40,
+            y: startY + (isBullish ? -1 : 1) * i * 8 + (Math.random() - 0.5) * 30,
+          }));
+        }
+
+        const color = line.color === 'cyan' ? colors.cyan : colors.crimson;
+        
+        ctx.globalAlpha = line.opacity;
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.5;
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 10;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
 
         ctx.beginPath();
-        ctx.moveTo(
-          curve.startX + Math.sin(time * 0.05) * 20,
-          curve.startY + wave1 * 0.5
-        );
-        ctx.bezierCurveTo(
-          curve.cp1X + Math.cos(time * 0.08) * 15,
-          animatedCp1Y,
-          curve.cp2X + Math.sin(time * 0.06) * 15,
-          animatedCp2Y,
-          curve.endX + Math.cos(time * 0.04) * 20,
-          curve.endY + wave2 * 0.5
-        );
+        line.points.forEach((point, i) => {
+          // Add subtle wave motion
+          const waveY = Math.sin(time * 0.5 + i * 0.3 + line.phase) * 3;
+          if (i === 0) ctx.moveTo(point.x, point.y + waveY);
+          else ctx.lineTo(point.x, point.y + waveY);
+        });
         ctx.stroke();
 
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
-
-        // Occasionally draw intersection points
-        if (Math.sin(time * 0.3 + curve.phase) > 0.9) {
-          const intersectX = width * 0.5 + Math.sin(curve.phase) * 100;
-          const intersectY = height * 0.5 + Math.cos(curve.phase) * 100;
-
-          const intersectGradient = ctx.createRadialGradient(
-            intersectX, intersectY, 0,
-            intersectX, intersectY, 15
-          );
-          intersectGradient.addColorStop(0, `${curve.color}33`);
-          intersectGradient.addColorStop(1, 'transparent');
-
-          ctx.fillStyle = intersectGradient;
-          ctx.beginPath();
-          ctx.arc(intersectX, intersectY, 15, 0, Math.PI * 2);
-          ctx.fill();
-        }
       });
     };
 
-    const drawFinancialSymbols = (ctx: CanvasRenderingContext2D, time: number) => {
-      const symbols = symbolsRef.current;
+    const drawLiveTicker = (time: number, width: number, height: number) => {
+      const ticker = tickerRef.current;
+      const tickerY = height - 25;
+      const tickerSpeed = 0.5;
 
-      symbols.forEach((symbol, index) => {
-        // Update phase (fade in, hold, fade out)
-        symbol.phase += 0.005;
-
-        // Calculate opacity (fade in for first 20%, hold 60%, fade out last 20%)
-        if (symbol.phase < 0.2) {
-          symbol.opacity = symbol.phase * 5;
-        } else if (symbol.phase > 0.8) {
-          symbol.opacity = (1 - symbol.phase) * 5;
-        } else {
-          symbol.opacity = 1;
+      // Update ticker positions
+      ticker.forEach((item, i) => {
+        item.x -= tickerSpeed;
+        
+        // Wrap around
+        if (item.x < -180) {
+          item.x = width + 20;
+          // Update price with small fluctuation
+          item.price += (Math.random() - 0.5) * item.price * 0.001;
+          item.change += (Math.random() - 0.5) * 0.1;
         }
+      });
 
-        // Remove completed symbols
-        if (symbol.phase >= 1) {
-          symbolsRef.current.splice(index, 1);
-          return;
-        }
+      // Draw ticker background blur
+      ctx.fillStyle = 'rgba(3, 3, 3, 0.7)';
+      ctx.fillRect(0, height - 50, width, 50);
 
-        ctx.globalAlpha = symbol.opacity * 0.08;
-
-        if (symbol.type === 'candlestick') {
-          // Draw candlestick pattern
-          const candleWidth = 12;
-          const spacing = 18;
-          symbol.data.forEach((value, i) => {
-            const x = symbol.x - (symbol.data.length * spacing) / 2 + i * spacing;
-            const open = value;
-            const close = value + (Math.random() - 0.5) * 20;
-            const high = Math.max(open, close) + Math.random() * 10;
-            const low = Math.min(open, close) - Math.random() * 10;
-
-            const isBullish = close > open;
-            ctx.strokeStyle = isBullish ? colors.cyan : colors.gold;
-            ctx.fillStyle = isBullish ? colors.cyan : colors.gold;
-
-            // Wick
-            ctx.beginPath();
-            ctx.moveTo(x + candleWidth / 2, symbol.y - high);
-            ctx.lineTo(x + candleWidth / 2, symbol.y - low);
-            ctx.stroke();
-
-            // Body
-            ctx.fillRect(
-              x,
-              symbol.y - Math.max(open, close),
-              candleWidth,
-              Math.abs(close - open) || 2
-            );
-          });
-        } else {
-          // Draw trendline pattern
-          ctx.strokeStyle = colors.cyan;
-          ctx.lineWidth = 1.5;
-          ctx.beginPath();
-
-          symbol.data.forEach((value, i) => {
-            const x = symbol.x - 100 + i * 20;
-            const y = symbol.y - value + Math.sin(time * 0.5 + i * 0.3) * 5;
-
-            if (i === 0) {
-              ctx.moveTo(x, y);
-            } else {
-              ctx.lineTo(x, y);
-            }
-          });
-
-          ctx.stroke();
-
-          // Add trend arrow
-          const lastX = symbol.x + 100;
-          const lastY = symbol.y - symbol.data[symbol.data.length - 1];
-          ctx.beginPath();
-          ctx.moveTo(lastX, lastY);
-          ctx.lineTo(lastX - 8, lastY - 5);
-          ctx.moveTo(lastX, lastY);
-          ctx.lineTo(lastX - 8, lastY + 5);
-          ctx.stroke();
-        }
-
+      // Draw ticker items
+      ctx.font = '11px "JetBrains Mono", monospace';
+      ticker.forEach((item) => {
+        const isPositive = item.change >= 0;
+        const color = isPositive ? colors.cyan : colors.crimson;
+        
+        ctx.globalAlpha = 0.7;
+        
+        // Symbol
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.fillText(item.symbol, item.x, tickerY);
+        
+        // Price
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        const priceText = item.price < 10 ? item.price.toFixed(4) : item.price.toFixed(2);
+        ctx.fillText(priceText, item.x + 70, tickerY);
+        
+        // Change
+        ctx.fillStyle = color;
+        const changeText = `${isPositive ? '+' : ''}${item.change.toFixed(2)}%`;
+        ctx.fillText(changeText, item.x + 135, tickerY);
+        
         ctx.globalAlpha = 1;
       });
     };
 
+    // ========== MAIN ANIMATION LOOP ==========
     const animate = () => {
-      timeRef.current += 0.016; // ~60fps
+      timeRef.current += 0.016;
       const time = timeRef.current;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
-      // Radial gradient background (Obsidian center, Charcoal edges)
-      const centerGradient = ctx.createRadialGradient(
-        canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) * 0.7
+      // Deep 5D radial gradient background
+      const bgGradient = ctx.createRadialGradient(
+        width / 2, height / 2, 0,
+        width / 2, height / 2, Math.max(width, height) * 0.8
       );
-      centerGradient.addColorStop(0, colors.obsidian);
-      centerGradient.addColorStop(0.4, '#080808');
-      centerGradient.addColorStop(0.7, '#0e0e0e');
-      centerGradient.addColorStop(1, colors.charcoal);
+      bgGradient.addColorStop(0, colors.obsidian);
+      bgGradient.addColorStop(0.3, '#050505');
+      bgGradient.addColorStop(0.6, colors.charcoal);
+      bgGradient.addColorStop(1, colors.deepCharcoal);
 
-      ctx.fillStyle = centerGradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, width, height);
 
-      // Draw all layers
-      drawGrid(ctx, time);
-      drawDynamicCurves(ctx, time, canvas.width, canvas.height);
-      drawDataStreams(ctx, time);
-      drawFinancialSymbols(ctx, time);
-
-      // Spawn financial symbol every ~30 seconds
-      if (time - lastSymbolTimeRef.current > 30) {
-        spawnFinancialSymbol(canvas.width, canvas.height);
-        lastSymbolTimeRef.current = time;
-      }
+      // Draw all layers (back to front)
+      drawVoxelGrid(time, width, height);
+      drawTrendLines(time, width);
+      drawCandlesticks(time, width);
+      drawBlockchainNodes(time, width);
+      drawLiveTicker(time, width, height);
 
       frameRef.current = requestAnimationFrame(animate);
     };
@@ -487,42 +541,43 @@ const EconomicKineticBackground = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(frameRef.current);
     };
-  }, [initializeElements]);
+  }, [initializeElements, isMobile]);
 
   return (
     <>
-      {/* Deep 5D radial background */}
+      {/* Deep obsidian base */}
       <div 
         className="fixed inset-0 z-0"
         style={{
-          background: `radial-gradient(ellipse at center, ${colors.obsidian} 0%, #080808 35%, #0e0e0e 60%, ${colors.charcoal} 100%)`,
+          background: `radial-gradient(ellipse at center, ${colors.obsidian} 0%, #050505 40%, ${colors.charcoal} 80%, ${colors.deepCharcoal} 100%)`,
         }}
       />
 
-      {/* Main kinetic canvas */}
+      {/* Main kinetic canvas - hardware accelerated */}
       <canvas
         ref={canvasRef}
         className="fixed inset-0 z-[1]"
         style={{
-          opacity: 0.9,
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}
       />
 
-      {/* Subtle noise texture */}
+      {/* Premium noise texture overlay */}
       <div 
         className="fixed inset-0 z-[2] pointer-events-none"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          opacity: 0.02,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          opacity: 0.018,
           mixBlendMode: 'overlay',
         }}
       />
 
-      {/* Deep vignette for 5D depth */}
+      {/* Deep vignette for 5D depth perception */}
       <div 
         className="fixed inset-0 z-[3] pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse at center, transparent 0%, transparent 30%, rgba(0,0,0,0.5) 100%)`,
+          background: `radial-gradient(ellipse at center, transparent 0%, transparent 25%, rgba(0,0,0,0.6) 100%)`,
         }}
       />
     </>
