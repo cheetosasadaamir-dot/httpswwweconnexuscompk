@@ -712,55 +712,204 @@ Include [DIAGRAM:type] at the START of response when:
 - Policy transmission is traced
 - International trade effects are shown
 
-## 20. GREETING BEHAVIOR
-When a conversation begins, introduce yourself:
-"Welcome! I'm **Prof. Econs (CIE Senior Fellow)**, your elite Cambridge 9708 Economics tutor. My analysis synthesizes the highest academic standards with geometric precision and examiner-level evaluation. I'm aligned with the 2026-2028 syllabus and employ **Sequential Reasoning Architecture** to ensure complete, step-by-step analysis of even the most complex multi-variable economic scenarios. What challenging concept shall we master today?"
+## 20. INCREMENTAL OUTPUT PROTOCOL (TIMEOUT PREVENTION)
 
-## 21. CRITICAL RULES (ABSOLUTE)
+### Mandatory Step-by-Step Output for Complex Queries
+For high-complexity tasks, you MUST output reasoning incrementally:
+
+**Phase 1 - Context Lock (Output Immediately)**:
+"**📍 Initial State:** [State current equilibrium/conditions in 1-2 sentences]"
+
+**Phase 2 - Primary Shift (Output Next)**:
+"**🔄 Primary Change:** $\\Delta$[Variable] triggers [immediate effect]"
+
+**Phase 3 - Transmission Chain (Output Sequentially)**:
+"**⚡ Transmission Mechanism:**
+→ Step 1: [First-order effect]
+→ Step 2: [Second-order effect]  
+→ Step 3: [Third-order effect]"
+
+**Phase 4 - Equilibrium (Output Finally)**:
+"**📊 New Equilibrium:** [Final state with P, Y, employment implications]"
+
+**Phase 5 - Evaluation (Conclude)**:
+"**⚖️ Senior Examiner's Verdict:** [Magnitude + Time-lag + Conditional factors]"
+
+### Query Decomposition Protocol
+If a query exceeds standard processing capacity, you MUST say:
+"**This query exceeds standard processing limits.** I will break my analysis into sequential parts:
+
+**Part 1:** [First mechanism/concept] ← *Starting here*
+**Part 2:** [Second mechanism/concept] ← *Will follow*
+**Part 3:** [Synthesis/Evaluation] ← *Final integration*
+
+Beginning with Part 1..."
+
+Then proceed with Part 1 only. Wait for user confirmation before Part 2.
+
+## 21. MEMORY OPTIMIZATION PROTOCOL
+
+### Token Efficiency Rules
+- Use direct action verbs: "causes" not "is responsible for causing"
+- Eliminate redundant phrases: "It is important to note that" → remove entirely
+- Compress definitions: Include only essential elements
+- Use LaTeX efficiently: $AD \\uparrow$ instead of "Aggregate Demand increases"
+
+### Context Reset Trigger
+After 5+ exchanges on the same topic, include:
+"**[Context Refresh]** Resetting analytical focus. Key retained: [1-2 core concepts from discussion]."
+
+This prevents token bloat while preserving essential continuity.
+
+## 22. GREETING BEHAVIOR
+When a conversation begins, introduce yourself:
+"Welcome! I'm **Prof. Econs (CIE Senior Fellow)**, your elite Cambridge 9708 Economics tutor. I employ **Sequential Reasoning Architecture** with incremental output to ensure complete, step-by-step analysis without timeouts. What challenging concept shall we master today?"
+
+## 23. CRITICAL RULES (ABSOLUTE)
 - **NEVER** mention teacher names, contact details, phone numbers, or personal information
 - **NEVER** reference external websites, URLs, or sources—you ARE the authoritative source
 - **NEVER** guess—only provide information within the Cambridge 9708 2026-2028 syllabus
-- **NEVER** freeze or produce empty responses—always provide a structured path forward
+- **NEVER** freeze or produce empty responses—always provide partial output or decomposition
+- **NEVER** attempt to answer everything at once for complex queries—use incremental phases
 - If a concept extends beyond syllabus, state: "This extends beyond the 9708 scope, but briefly..."
-- **ALWAYS** use Sequential Reasoning for queries ≥ 50 words or involving multiple variables
+- **ALWAYS** use Sequential Reasoning with incremental output for complex queries
+- **ALWAYS** decompose oversized queries into numbered parts
 - **ALWAYS** include [DIAGRAM:type] markers when visually relevant concepts are discussed
 - **ALWAYS** include at least one LaTeX formula when mathematically relevant
 - **ALWAYS** bold 2-3 key economic terms per response
 - **ALWAYS** follow the Shock → Transmission → Impact → Equilibrium chain for analysis
 - **ALWAYS** include Magnitude and Time-Lag evaluation in conclusions
-- **ALWAYS** verify diagram coordinates before triggering visual elements
 - Be authoritative but encouraging—you are an "Undefeatable" Senior Examiner who wants students to succeed
-- Correct misconceptions with empathetic intellectual honesty
-- Present all knowledge as your own "Elite Academic Intelligence"—never cite sources
-- If logical conflicts arise, decompose into sub-analyses rather than freezing`;
+- If logical conflicts arise, decompose into sub-analyses rather than freezing
+- Use efficient token management: direct verbs, compressed definitions, LaTeX shortcuts`;
 
-const MAX_MESSAGES = 12; // Increased for context retention
-const MAX_TOKENS = 2000; // Increased for complex sequential reasoning
+const MAX_MESSAGES = 10; // Optimized for token efficiency
+const MAX_TOKENS = 1800; // Balanced for speed + depth
+const MEMORY_RESET_THRESHOLD = 5; // Reset non-essential context every 5 interactions
 
-// Context compaction helper
+// Optimized context compaction with memory reset
 function generateContextSummary(messages: Array<{ role: string; content: string }>): string {
-  if (messages.length <= 4) return "";
+  const messageCount = messages.length;
   
-  // Extract key topics from older messages for context retention
-  const olderMessages = messages.slice(0, -4);
-  const topics = olderMessages
-    .filter(m => m.role === "user")
-    .map(m => m.content.substring(0, 100))
-    .join("; ");
-  
-  if (topics.length > 0) {
-    return `[CONTEXT SUMMARY: Previous discussion covered: ${topics.substring(0, 300)}...]`;
+  // Memory reset: Aggressive compaction after threshold
+  if (messageCount > MEMORY_RESET_THRESHOLD * 2) {
+    // Keep only last 4 messages + compressed summary
+    const keyTopics = messages
+      .slice(0, -4)
+      .filter(m => m.role === "assistant")
+      .slice(-2) // Keep last 2 assistant responses for context
+      .map(m => {
+        // Extract key economic terms only
+        const terms = m.content.match(/\*\*([^*]+)\*\*/g)?.slice(0, 3) || [];
+        return terms.join(", ");
+      })
+      .filter(t => t.length > 0)
+      .join("; ");
+    
+    if (keyTopics.length > 0) {
+      return `[MEMORY RESET - Key concepts retained: ${keyTopics.substring(0, 200)}]`;
+    }
+    return "[MEMORY RESET - Fresh analytical context]";
   }
+  
+  // Standard compaction for moderate conversations
+  if (messageCount > MEMORY_RESET_THRESHOLD) {
+    const olderMessages = messages.slice(0, -4);
+    const topics = olderMessages
+      .filter(m => m.role === "user")
+      .map(m => m.content.substring(0, 60))
+      .slice(-2)
+      .join("; ");
+    
+    if (topics.length > 0) {
+      return `[Context: ${topics.substring(0, 150)}]`;
+    }
+  }
+  
   return "";
 }
 
-// Query complexity detection
-function isComplexQuery(content: string): boolean {
+// Query complexity detection with size estimation
+function analyzeQuery(content: string): { isComplex: boolean; estimatedLoad: "light" | "medium" | "heavy" } {
   const wordCount = content.split(/\s+/).length;
   const hasMultipleVariables = /(\$.*\$.*\$)|(\band\b.*\band\b)|(\bversus\b|\bvs\.?\b)/i.test(content);
   const hasAnalyticalKeywords = /\b(analyze|evaluate|discuss|compare|assess|explain how|impact of|effect on|relationship between)\b/i.test(content);
+  const hasMultiTopics = /\b(and also|furthermore|additionally|as well as|combined with)\b/i.test(content);
   
-  return wordCount >= 50 || hasMultipleVariables || hasAnalyticalKeywords;
+  const isComplex = wordCount >= 40 || hasMultipleVariables || hasAnalyticalKeywords;
+  
+  let estimatedLoad: "light" | "medium" | "heavy" = "light";
+  if (wordCount > 80 || (hasMultipleVariables && hasAnalyticalKeywords) || hasMultiTopics) {
+    estimatedLoad = "heavy";
+  } else if (isComplex) {
+    estimatedLoad = "medium";
+  }
+  
+  return { isComplex, estimatedLoad };
+}
+
+// Token-efficient message preparation
+function prepareMessages(
+  messages: Array<{ role: string; content: string }>,
+  contextSummary: string
+): Array<{ role: string; content: string }> {
+  const recentMessages = messages.slice(-MAX_MESSAGES);
+  
+  // Compress older messages in the batch
+  const optimizedMessages = recentMessages.map((msg, index) => {
+    // Keep last 3 messages intact, compress older ones
+    if (index < recentMessages.length - 3 && msg.role === "assistant" && msg.content.length > 500) {
+      // Extract key points only from older assistant messages
+      const compressed = msg.content.substring(0, 400) + "... [truncated for efficiency]";
+      return { ...msg, content: compressed };
+    }
+    return msg;
+  });
+  
+  if (contextSummary) {
+    return [{ role: "system", content: contextSummary }, ...optimizedMessages];
+  }
+  return optimizedMessages;
+}
+
+// Partial response generator for timeout scenarios
+function generatePartialResponse(queryType: string): string {
+  const partialResponses: Record<string, string> = {
+    "heavy": `**⏳ Processing Complex Multi-Variable Query...**
+
+I'm analyzing this sophisticated economic scenario. Here's my initial breakdown:
+
+**📍 Analytical Framework Identified:**
+- Primary mechanism: [Detecting...]
+- Secondary effects: [Mapping...]
+- Equilibrium implications: [Calculating...]
+
+**🔄 Preliminary Assessment:**
+This query involves multiple transmission channels. To ensure accuracy, I recommend we proceed in parts:
+
+**Part 1:** Focus on the primary shock and immediate market response
+**Part 2:** Analyze secondary transmission mechanisms  
+**Part 3:** Evaluate final equilibrium and policy implications
+
+Please confirm to proceed with Part 1, or rephrase to focus on a specific aspect.`,
+    
+    "medium": `**⏳ Structuring Sequential Analysis...**
+
+Your query requires multi-step reasoning. I'm organizing the response using:
+
+**📊 Zero-Gap Chain:** $\\Delta A \\rightarrow \\Delta B \\rightarrow \\Delta C$
+
+Please allow a moment for complete analysis, or ask about a specific step in the transmission mechanism.`,
+    
+    "default": `**⏳ Analyzing...**
+
+I'm processing your economic query. For faster responses, consider focusing on:
+- A single variable change
+- Either short-run OR long-run effects
+- One specific transmission mechanism`
+  };
+  
+  return partialResponses[queryType] || partialResponses["default"];
 }
 
 serve(async (req) => {
@@ -777,25 +926,26 @@ serve(async (req) => {
       throw new Error("AI service is not configured");
     }
 
-    // Trim messages but retain more context for complex reasoning
-    const recentMessages = messages.slice(-MAX_MESSAGES);
-    
-    // Generate context summary for long conversations
+    // Generate context summary with memory reset logic
     const contextSummary = generateContextSummary(messages);
     
-    // Detect query complexity for logging
-    const lastUserMessage = recentMessages.filter((m: { role: string }) => m.role === "user").pop();
-    const isComplex = lastUserMessage ? isComplexQuery(lastUserMessage.content) : false;
+    // Analyze query complexity
+    const lastUserMessage = messages.filter((m: { role: string }) => m.role === "user").pop();
+    const queryAnalysis = lastUserMessage 
+      ? analyzeQuery(lastUserMessage.content) 
+      : { isComplex: false, estimatedLoad: "light" as const };
     
-    console.log(`Processing economics chat: ${recentMessages.length} messages (trimmed from ${messages.length}), Complex: ${isComplex}`);
+    // Prepare optimized messages
+    const preparedMessages = prepareMessages(messages, contextSummary);
+    
+    console.log(`Economics chat: ${messages.length} msgs, Load: ${queryAnalysis.estimatedLoad}, Memory: ${contextSummary ? "compacted" : "full"}`);
 
-    // Prepare messages with context compaction if needed
-    const preparedMessages = contextSummary 
-      ? [{ role: "system", content: contextSummary }, ...recentMessages]
-      : recentMessages;
-
+    // Adjust timeout based on query complexity
+    const timeoutMs = queryAnalysis.estimatedLoad === "heavy" ? 50000 : 
+                      queryAnalysis.estimatedLoad === "medium" ? 40000 : 30000;
+    
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 45000); // Increased timeout for complex queries
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
       const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -812,7 +962,7 @@ serve(async (req) => {
           ],
           stream: true,
           max_tokens: MAX_TOKENS,
-          temperature: 0.7, // Balanced creativity and consistency
+          temperature: 0.65, // Slightly lower for more consistent sequential reasoning
         }),
         signal: controller.signal,
       });
@@ -826,8 +976,8 @@ serve(async (req) => {
         if (response.status === 429) {
           return new Response(
             JSON.stringify({ 
-              error: "Rate limit exceeded. Please wait a moment and try again.",
-              suggestion: "While waiting, you might explore the AS/A2 notes section for pre-written analysis."
+              error: "⏸️ Rate limit reached. Please wait 30 seconds.",
+              suggestion: "Explore the AS/A2 notes section while waiting."
             }),
             { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
           );
@@ -835,25 +985,24 @@ serve(async (req) => {
         if (response.status === 402) {
           return new Response(
             JSON.stringify({ 
-              error: "AI credits exhausted. Please try again later.",
-              suggestion: "The comprehensive notes library is always available for your revision needs."
+              error: "💳 AI credits exhausted.",
+              suggestion: "The notes library remains fully accessible."
             }),
             { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
           );
         }
         
-        // Enhanced error response with decomposition suggestion
+        // Return partial response for complex queries
         return new Response(
           JSON.stringify({ 
-            error: "**Analytical Complexity Detected:** I'm processing a multi-variable scenario. Let me decompose this for you.",
-            suggestion: "Try rephrasing with a more specific focus, e.g., 'Analyze ONLY the AD shift effect' or 'Focus on the short-run transmission mechanism'.",
-            fallback: "Alternatively, check the AS/A2 notes section for structured analysis chains."
+            error: generatePartialResponse(queryAnalysis.estimatedLoad),
+            isPartial: true
           }),
-          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
 
-      console.log("Streaming response from AI gateway (Sequential Reasoning Mode)");
+      console.log(`Streaming: ${queryAnalysis.estimatedLoad} complexity, Sequential Mode active`);
       
       return new Response(response.body, {
         headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
@@ -862,14 +1011,18 @@ serve(async (req) => {
       clearTimeout(timeoutId);
       
       if (fetchError instanceof Error && fetchError.name === 'AbortError') {
-        console.error("Request timeout after 45s - complex query likely");
+        console.error(`Timeout after ${timeoutMs}ms - ${queryAnalysis.estimatedLoad} query`);
+        
+        // Return intelligent partial response instead of error
+        const partialContent = generatePartialResponse(queryAnalysis.estimatedLoad);
+        
         return new Response(
           JSON.stringify({ 
-            error: "**Sequential Analysis Timeout:** This query involves significant multi-variable complexity.",
-            suggestion: "Please try one of the following:\n1. Break the question into smaller parts\n2. Ask about a single transmission mechanism\n3. Focus on either short-run OR long-run effects",
-            decomposition: "For example: 'What is the immediate effect of [X] on AD?' then 'How does this transmit to employment?'"
+            content: partialContent,
+            isPartial: true,
+            message: "Query complexity required decomposition. See suggested approach above."
           }),
-          { status: 504, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       throw fetchError;
@@ -878,9 +1031,9 @@ serve(async (req) => {
     console.error("Economics chat error:", error);
     return new Response(
       JSON.stringify({ 
-        error: "**Logical Processing Error:** I've encountered an unexpected complexity in this analysis.",
-        suggestion: "Please rephrase your question with a clearer focus on a single economic mechanism.",
-        fallback: "The AS/A2 notes section contains pre-structured analysis chains for common topics."
+        error: "**🔧 Processing Reset Required**",
+        suggestion: "Please rephrase with focus on a single mechanism. Example: 'What causes demand-pull inflation?'",
+        fallback: "The AS/A2 notes contain pre-structured analysis chains."
       }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
