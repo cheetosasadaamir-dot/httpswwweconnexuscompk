@@ -286,38 +286,71 @@ export default function EconomicsChatbot() {
       let assistantContent = '';
       let hasStartedContent = false;
       const assistantId = generateId();
-      let lastChunkTime = Date.now();
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         
         // Reset connection status on receiving data
-        lastChunkTime = Date.now();
-        if (!isConnected) setIsConnected(true);
+        setIsConnected(true);
         
-        textBuffer += decoder.decode(value, { stream: true });
+        const chunk = decoder.decode(value, { stream: true });
+        textBuffer += chunk;
 
-        let newlineIndex: number;
-        while ((newlineIndex = textBuffer.indexOf('\n')) !== -1) {
-          let line = textBuffer.slice(0, newlineIndex);
-          textBuffer = textBuffer.slice(newlineIndex + 1);
+        // Process complete lines
+        const lines = textBuffer.split('\n');
+        textBuffer = lines.pop() || ''; // Keep incomplete line in buffer
 
-          if (line.endsWith('\r')) line = line.slice(0, -1);
-          if (line.startsWith(':') || line.trim() === '') continue;
-          if (!line.startsWith('data: ')) continue;
-
-          const jsonStr = line.slice(6).trim();
-          if (jsonStr === '[DONE]') break;
+        for (const rawLine of lines) {
+          const line = rawLine.trim();
+          
+          // Skip empty lines, comments, and processing messages
+          if (!line || line.startsWith(':')) continue;
+          
+          // Must be a data line
+          if (!line.startsWith('data:')) continue;
+          
+          const jsonStr = line.slice(5).trim();
+          if (jsonStr === '[DONE]') continue;
+          if (!jsonStr) continue;
 
           try {
             const parsed = JSON.parse(jsonStr);
-            const content = parsed.choices?.[0]?.delta?.content as string | undefined;
-            if (content) {
+            const content = parsed.choices?.[0]?.delta?.content;
+            
+            if (typeof content === 'string' && content.length > 0) {
               if (!hasStartedContent) {
                 setIsTyping(false);
                 hasStartedContent = true;
               }
+              
+              assistantContent += content;
+              
+              setMessages(prev => {
+                const existingIdx = prev.findIndex(m => m.id === assistantId);
+                if (existingIdx !== -1) {
+                  return prev.map((m, i) => 
+                    i === existingIdx ? { ...m, content: assistantContent } : m
+                  );
+                }
+                return [...prev, { role: 'assistant', content: assistantContent, id: assistantId }];
+              });
+            }
+          } catch {
+            // Invalid JSON - skip this line
+            continue;
+          }
+        }
+      }
+      
+      // Handle any remaining content in buffer
+      if (textBuffer.trim() && textBuffer.startsWith('data:')) {
+        const jsonStr = textBuffer.slice(5).trim();
+        if (jsonStr && jsonStr !== '[DONE]') {
+          try {
+            const parsed = JSON.parse(jsonStr);
+            const content = parsed.choices?.[0]?.delta?.content;
+            if (typeof content === 'string' && content.length > 0) {
               assistantContent += content;
               setMessages(prev => {
                 const existingIdx = prev.findIndex(m => m.id === assistantId);
@@ -330,9 +363,7 @@ export default function EconomicsChatbot() {
               });
             }
           } catch {
-            // Incomplete JSON, continue
-            textBuffer = line + '\n' + textBuffer;
-            break;
+            // Invalid JSON at end - ignore
           }
         }
       }
