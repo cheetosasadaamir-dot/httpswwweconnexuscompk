@@ -119,23 +119,34 @@ const ExamGuidance = () => {
   );
 };
 
-// Typing animation dots component
-const TypingIndicator = () => (
-  <div className="flex items-center gap-1.5">
-    <span className="text-xs text-[hsl(43,72%,53%)] font-medium font-serif">Prof. Econs is preparing response</span>
-    {[0, 1, 2].map((i) => (
+// Typing animation dots component with live connection indicator
+const TypingIndicator = ({ isConnected = true }: { isConnected?: boolean }) => (
+  <div className="flex items-center gap-2">
+    {/* Live connection pulse */}
+    <motion.div
+      className="w-2 h-2 rounded-full"
+      style={{ backgroundColor: isConnected ? 'hsl(142, 71%, 45%)' : 'hsl(0, 84%, 60%)' }}
+      animate={{ 
+        scale: isConnected ? [1, 1.3, 1] : 1,
+        opacity: isConnected ? [0.7, 1, 0.7] : 0.5
+      }}
+      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+    />
+    <span className="text-xs text-[hsl(43,72%,53%)] font-medium font-serif">
+      {isConnected ? 'Prof. Econs is typing...' : 'Reconnecting...'}
+    </span>
+    {isConnected && [0, 1, 2].map((i) => (
       <motion.span
         key={i}
         className="w-1.5 h-1.5 rounded-full bg-[hsl(43,72%,53%)]"
         animate={{ 
-          y: [0, -6, 0],
-          opacity: [0.4, 1, 0.4],
-          scale: [1, 1.2, 1]
+          y: [0, -4, 0],
+          opacity: [0.5, 1, 0.5]
         }}
         transition={{
-          duration: 1,
+          duration: 0.6,
           repeat: Infinity,
-          delay: i * 0.15,
+          delay: i * 0.1,
           ease: "easeInOut"
         }}
       />
@@ -187,9 +198,11 @@ export default function EconomicsChatbot() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [isConnected, setIsConnected] = useState(true);
   const [retryCount, setRetryCount] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const streamTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Auto-scroll on new messages
   useEffect(() => {
@@ -201,20 +214,29 @@ export default function EconomicsChatbot() {
     }
   }, [messages, isTyping]);
 
-  // Cleanup abort controller on unmount
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
+      }
+      if (streamTimeoutRef.current) {
+        clearTimeout(streamTimeoutRef.current);
       }
     };
   }, []);
 
   const streamChat = useCallback(async (userMessages: Message[]) => {
     setIsTyping(true);
+    setIsConnected(true);
     
     // Create new abort controller for this request
     abortControllerRef.current = new AbortController();
+    
+    // Stream timeout - if no content after 15s, show reconnecting
+    streamTimeoutRef.current = setTimeout(() => {
+      setIsConnected(false);
+    }, 15000);
     
     try {
       const resp = await fetch(CHAT_URL, {
@@ -229,21 +251,28 @@ export default function EconomicsChatbot() {
         signal: abortControllerRef.current.signal,
       });
 
+      // Clear connection check on response
+      if (streamTimeoutRef.current) {
+        clearTimeout(streamTimeoutRef.current);
+        streamTimeoutRef.current = null;
+      }
+
       if (!resp.ok) {
         setIsTyping(false);
+        setIsConnected(true);
         const errorData = await resp.json().catch(() => ({}));
         
         if (resp.status === 429) {
-          throw new Error('Rate limit exceeded. Please wait a moment.');
+          throw new Error('Rate limit exceeded. Please wait 30 seconds.');
         }
         if (resp.status === 402) {
-          throw new Error('AI credits exhausted. Please try again later.');
+          throw new Error('AI credits exhausted. Check the notes section.');
         }
         if (resp.status === 504) {
-          throw new Error('Analysis timeout. Please try a simpler question.');
+          throw new Error('Try a simpler question. Focus on one concept.');
         }
         
-        throw new Error(errorData.error || 'I am refining my analysis. Please rephrase your question.');
+        throw new Error(errorData.error || errorData.suggestion || 'Please rephrase your question.');
       }
 
       if (!resp.body) {
@@ -257,10 +286,15 @@ export default function EconomicsChatbot() {
       let assistantContent = '';
       let hasStartedContent = false;
       const assistantId = generateId();
+      let lastChunkTime = Date.now();
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
+        
+        // Reset connection status on receiving data
+        lastChunkTime = Date.now();
+        if (!isConnected) setIsConnected(true);
         
         textBuffer += decoder.decode(value, { stream: true });
 
@@ -296,7 +330,7 @@ export default function EconomicsChatbot() {
               });
             }
           } catch {
-            // Incomplete JSON, keep in buffer
+            // Incomplete JSON, continue
             textBuffer = line + '\n' + textBuffer;
             break;
           }
@@ -304,18 +338,24 @@ export default function EconomicsChatbot() {
       }
       
       setIsTyping(false);
+      setIsConnected(true);
       setRetryCount(0);
     } catch (error) {
       setIsTyping(false);
+      setIsConnected(true);
+      
+      if (streamTimeoutRef.current) {
+        clearTimeout(streamTimeoutRef.current);
+        streamTimeoutRef.current = null;
+      }
       
       if (error instanceof Error && error.name === 'AbortError') {
-        // Request was cancelled, don't show error
         return;
       }
       
       throw error;
     }
-  }, []);
+  }, [isConnected]);
 
   const handleSend = async (query?: string) => {
     const messageText = query || input.trim();
@@ -586,7 +626,7 @@ export default function EconomicsChatbot() {
                     >
                       <TutorAvatar />
                       <div className="tutor-message-ai rounded-xl px-3 py-2.5">
-                        <TypingIndicator />
+                        <TypingIndicator isConnected={isConnected} />
                       </div>
                     </motion.div>
                   )}
