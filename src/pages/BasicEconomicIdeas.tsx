@@ -3,6 +3,7 @@ import Layout from '@/components/Layout';
 import ContentSection from '@/components/ContentSection';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
 import PPCConceptDiagram from '@/components/diagrams/PPCConceptDiagram';
 import FactorsOfProductionDiagram from '@/components/diagrams/FactorsOfProductionDiagram';
 import PPCShiftsDiagram from '@/components/diagrams/PPCShiftsDiagram';
@@ -33,6 +34,20 @@ const BasicEconomicIdeas = () => {
           </p>
         </div>
 
+        {/* Key Takeaways Summary */}
+        <KeyTakeaways
+          title="Key Takeaways: Basic Economic Ideas"
+          takeaways={[
+            "Scarcity (unlimited wants vs. limited resources) is the fundamental economic problem facing all societies.",
+            "Opportunity cost is the value of the next best alternative foregone when a choice is made.",
+            "The four factors of production—Land, Labour, Capital, Enterprise—earn Rent, Wages, Interest, and Profit respectively.",
+            "The PPC shows maximum output combinations; points ON the curve are productively efficient, points INSIDE are inefficient.",
+            "Outward PPC shifts represent economic growth (increased capacity); movements along the curve represent reallocation.",
+            "Positive statements are testable facts ('what is'); Normative statements are value judgments ('what ought to be').",
+            "Free markets use the price mechanism; Command economies use central planning; Mixed economies combine both."
+          ]}
+        />
+
         {/* Syllabus Overview */}
         <div className="glass-card p-4 mb-6">
           <h3 className="font-serif text-lg font-semibold mb-2">Syllabus Coverage (CIE 9708)</h3>
@@ -56,6 +71,18 @@ const BasicEconomicIdeas = () => {
             <p className="text-sm leading-relaxed text-muted-foreground">
               The discipline of <strong className="text-foreground">Economics</strong> is fundamentally concerned with a single, immutable problem: the allocation of <strong className="text-primary">scarce resources</strong> among competing uses to satisfy <strong className="text-secondary">unlimited human wants</strong>. This tension between finite means and infinite ends defines what economists term the <strong className="text-foreground">Basic Economic Problem</strong>, or more precisely, the <strong className="text-destructive">Problem of Scarcity</strong>. Resources—whether natural (land, minerals, forests), human (labour, skills, entrepreneurship), or man-made (capital, machinery, infrastructure)—exist in limited quantities at any given point in time. Yet human desires for goods and services are, by their nature, insatiable; the satisfaction of one want merely gives rise to another. It is this fundamental asymmetry that necessitates <em>choice</em>: because we cannot have everything, we must decide what to produce, how to produce it, and for whom to produce it. Every society, regardless of its political structure or level of development, confronts this problem. The study of economics is, at its core, the study of how these choices are made and what their consequences are.
             </p>
+
+            {/* Step-by-Step Analysis: Scarcity Chain */}
+            <div className="p-4 bg-charcoal-deep/50 rounded-lg border border-primary/30 my-4">
+              <h4 className="font-semibold text-primary text-sm mb-2">Step-by-Step Analysis: The Scarcity Chain</h4>
+              <div className="text-xs text-muted-foreground space-y-1">
+                <p><strong className="text-cyan-400">Step 1:</strong> <strong>Scarcity</strong> exists because resources (factors of production) are finite, but human wants are infinite and recurring.</p>
+                <p><strong className="text-cyan-400">Step 2:</strong> Scarcity forces <strong>Choice</strong>—individuals, firms, and governments must decide <em>which</em> wants to satisfy and <em>which</em> to leave unsatisfied.</p>
+                <p><strong className="text-cyan-400">Step 3:</strong> Every choice involves a <strong>Trade-off</strong>—choosing one option means sacrificing another; resources devoted to healthcare cannot simultaneously produce education.</p>
+                <p><strong className="text-cyan-400">Step 4:</strong> The trade-off creates <strong>Opportunity Cost</strong>—defined as the value of the <em>next best alternative foregone</em> when a choice is made.</p>
+                <p><strong className="text-cyan-400">Step 5:</strong> Opportunity cost generates the <strong>Three Fundamental Questions</strong>: What to produce? How to produce? For whom to produce?</p>
+              </div>
+            </div>
 
             <div className="p-4 bg-primary/10 rounded-lg border border-primary/30 text-center">
               <p className="text-lg font-semibold text-foreground mb-2">The Economic Problem in a Sentence</p>
@@ -255,9 +282,50 @@ const BasicEconomicIdeas = () => {
           <div className="glass-card p-5 space-y-4">
             <h3 className="font-serif text-xl text-gradient">Facts vs. Value Judgments in Economic Analysis</h3>
             
+            {/* Key Definition Box */}
+            <div className="grid md:grid-cols-2 gap-4 my-4">
+              <div className="p-4 rounded-lg border border-cyan-500/30 bg-cyan-500/5">
+                <h4 className="font-semibold text-cyan-400 text-sm mb-2">Positive Statement (CIE Definition)</h4>
+                <p className="text-xs text-muted-foreground">A statement of <strong>fact</strong> that can be tested and <strong>verified or falsified</strong> by reference to empirical data. It describes "what is" or "what will happen if." Example: "A 10% rise in price will reduce quantity demanded by 15%."</p>
+              </div>
+              <div className="p-4 rounded-lg border border-amber-500/30 bg-amber-500/5">
+                <h4 className="font-semibold text-amber-400 text-sm mb-2">Normative Statement (CIE Definition)</h4>
+                <p className="text-xs text-muted-foreground">A statement of <strong>opinion</strong> or value judgment that cannot be tested empirically. It expresses "what ought to be" based on ethical, political, or philosophical views. Example: "The government <em>should</em> increase income tax."</p>
+              </div>
+            </div>
+
             <p className="text-sm leading-relaxed text-muted-foreground">
               A fundamental methodological distinction in economics separates <strong className="text-cambridge-cyan">Positive Statements</strong> from <strong className="text-cambridge-orange">Normative Statements</strong>. <strong>Positive statements</strong> are <em>objective</em>, factual claims about "what is" or "what would happen if." They can, in principle, be <strong>tested, verified, or falsified</strong> by reference to empirical evidence. For example: "An increase in the minimum wage will reduce employment among low-skilled workers" is a positive statement—regardless of whether it is true or false, it is a testable hypothesis about the relationship between two variables. <strong>Normative statements</strong>, in contrast, are <em>subjective</em> claims about "what ought to be" or "what should happen." They contain <strong>value judgments</strong> that cannot be proven or disproven by facts alone. For example: "The government <em>should</em> raise the minimum wage to reduce poverty" is a normative statement—it reflects an ethical position about fairness and the role of government, not a testable hypothesis.
             </p>
+
+            {/* Advanced Analysis: The Bridge Between Positive and Normative */}
+            <div className="p-4 bg-charcoal-deep/50 rounded-lg border border-amber-500/30 my-4">
+              <h4 className="font-semibold text-amber-400 text-sm mb-2">Advanced Analysis: The Policy Bridge</h4>
+              <p className="text-xs text-muted-foreground mb-2">
+                <strong className="text-silver-bright">Economic policy formation requires both types of statements:</strong>
+              </p>
+              <div className="text-xs text-muted-foreground space-y-1">
+                <p><strong className="text-cyan-400">Step 1 (Positive):</strong> Economists analyze "If we raise the minimum wage to £15/hour, employment will fall by X%."</p>
+                <p><strong className="text-cyan-400">Step 2 (Positive):</strong> Economists estimate "Remaining workers will see income rise by Y%."</p>
+                <p><strong className="text-amber-400">Step 3 (Normative):</strong> Policymakers judge "Is the trade-off acceptable? Is reducing inequality worth the job losses?"</p>
+                <p><strong className="text-primary">Conclusion:</strong> The <em>analysis</em> is positive; the <em>decision</em> is normative. Conflating the two leads to poor policy debates.</p>
+              </div>
+            </div>
+
+            {/* Identification Keywords */}
+            <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
+              <h4 className="font-semibold text-primary text-sm mb-2">Examiner Tip: Identifying Keywords</h4>
+              <div className="grid md:grid-cols-2 gap-4 text-xs">
+                <div>
+                  <p className="text-cyan-400 font-semibold mb-1">Normative Keywords (Value Judgments):</p>
+                  <p className="text-muted-foreground">should, ought to, must, fair, unfair, better, worse, right, wrong, desirable, undesirable</p>
+                </div>
+                <div>
+                  <p className="text-emerald-400 font-semibold mb-1">Positive Keywords (Facts):</p>
+                  <p className="text-muted-foreground">is, will, would, does, has, leads to, causes, results in, increases, decreases</p>
+                </div>
+              </div>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="p-4 rounded-lg border" style={{ backgroundColor: 'hsl(180 100% 50% / 0.05)', borderColor: 'hsl(180 100% 50% / 0.3)' }}>
