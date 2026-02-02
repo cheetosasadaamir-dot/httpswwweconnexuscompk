@@ -905,6 +905,81 @@ const ADASEquilibrium = () => {
           </div>
         </ContentSection>
 
+        {/* Examiner Traps & Command Word Focus */}
+        <ContentSection title="Examiner Guidance: Common Errors & Command Words">
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {/* Examiner Traps */}
+            <div className="glass-card p-6 border-l-4 border-amber-500">
+              <h4 className="font-semibold text-amber-400 mb-4">⚠️ Common Examiner Traps</h4>
+              <div className="space-y-3 text-sm">
+                <div className="p-3 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 1: Movement vs Shift Confusion</p>
+                  <p className="text-muted-foreground">A change in GPL causes a <em>movement along</em> AD/AS. Only non-price factors cause <em>shifts</em>. Writing "AD shifts left because prices rise" is incorrect.</p>
+                </div>
+                <div className="p-3 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 2: Ignoring Short-Run vs Long-Run</p>
+                  <p className="text-muted-foreground">A rightward AD shift increases both P and Y in the <strong>short run</strong>. In the <strong>long run</strong>, SRAS adjusts (wages rise) → P increases further but Y returns to Yfe.</p>
+                </div>
+                <div className="p-3 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 3: LRAS ≠ SRAS Determinants</p>
+                  <p className="text-muted-foreground">SRAS shifts due to <em>costs</em> (wages, oil, imports). LRAS shifts due to <em>productive capacity</em> (labour, capital, technology). Don't conflate them.</p>
+                </div>
+                <div className="p-3 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 4: "More AD = Better"</p>
+                  <p className="text-muted-foreground">At/beyond Yfe, ↑AD is purely inflationary with minimal output gains. Only supply-side improvements enable sustainable growth.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Command Word Focus */}
+            <div className="glass-card p-6 border-l-4 border-primary">
+              <h4 className="font-semibold text-primary mb-4">📝 Command Word Strategies</h4>
+              <div className="space-y-3 text-sm">
+                <div className="p-3 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">"Analyse" (AO3)</p>
+                  <p className="text-muted-foreground">Show complete chains of reasoning. Example: ↑Consumer confidence → ↑C → AD shifts right → Excess demand at P₀ → ↑GPL → New equilibrium E₁ at higher P and Y.</p>
+                </div>
+                <div className="p-3 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">"Evaluate" / "Discuss" (AO4)</p>
+                  <p className="text-muted-foreground">Consider: (1) SR vs LR effects, (2) economy's position on AS curve, (3) size of multiplier, (4) time lags, (5) counter-arguments. Use phrases like "However...", "On balance...", "The extent depends on..."</p>
+                </div>
+                <div className="p-3 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">"Explain" (AO1/AO2)</p>
+                  <p className="text-muted-foreground">Define the concept → Describe the mechanism → Link to diagram. Always reference the AD/AS model when explaining macroeconomic outcomes.</p>
+                </div>
+                <div className="p-3 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">"To what extent" (AO4)</p>
+                  <p className="text-muted-foreground">Requires balanced evaluation with a justified conclusion. Consider magnitude, time horizon, and ceteris paribus assumptions being violated.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Real-World Application */}
+          <div className="glass-card p-6 bg-gradient-to-br from-primary/5 to-transparent">
+            <h4 className="font-semibold text-primary mb-4">📌 Real-World Case Study: COVID-19 Shock (2020)</h4>
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <div className="p-4 bg-muted/30 rounded-lg">
+                <h5 className="font-semibold text-cambridge-cyan mb-2">Demand Shock</h5>
+                <p className="text-muted-foreground leading-relaxed">
+                  Lockdowns reduced C (consumer spending collapsed), I (investment postponed due to uncertainty), 
+                  and X (global trade froze). AD shifted sharply leftward → recessionary gap opened → unemployment rose to 5.2% (UK).
+                </p>
+              </div>
+              <div className="p-4 bg-muted/30 rounded-lg">
+                <h5 className="font-semibold text-cambridge-orange mb-2">Supply Shock</h5>
+                <p className="text-muted-foreground leading-relaxed">
+                  Factory closures, supply chain disruptions, and worker shortages shifted SRAS leftward simultaneously. 
+                  This explains why inflation initially rose despite falling output—a mild stagflation effect.
+                </p>
+              </div>
+            </div>
+            <div className="mt-4 p-3 bg-muted/40 rounded-lg font-mono text-xs text-center">
+              COVID = Simultaneous leftward AD shift + leftward SRAS shift → Deep recession with supply-side inflation pressures
+            </div>
+          </div>
+        </ContentSection>
+
         {/* Chapter Summary */}
         <ContentSection title="Chapter Summary">
           <div className="glass-card p-8">
@@ -921,7 +996,7 @@ const ADASEquilibrium = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-bold mt-0.5">3</span>
-                  <span>SRAS is upward sloping because sticky wages make production more profitable when prices rise; LRAS is vertical at full employment output.</span>
+                  <span>SRAS is upward sloping because sticky wages make production more profitable when prices rise; LRAS is vertical at full employment output (Yfe).</span>
                 </li>
               </ul>
               <ul className="space-y-4 text-muted-foreground">
@@ -935,7 +1010,7 @@ const ADASEquilibrium = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center text-secondary text-sm font-bold mt-0.5">6</span>
-                  <span>Understanding shifts vs. movements along curves is crucial for policy analysis and exam success.</span>
+                  <span>Always distinguish: (a) movement vs shift, (b) SRAS vs LRAS determinants, (c) short-run vs long-run effects for exam precision.</span>
                 </li>
               </ul>
             </div>

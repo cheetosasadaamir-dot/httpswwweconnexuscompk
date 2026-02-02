@@ -242,6 +242,29 @@ const BalanceOfPayments = () => {
                 </p>
               </div>
             </div>
+
+            {/* Examiner Traps */}
+            <div className="p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg mt-4">
+              <h4 className="font-semibold text-amber-400 mb-2 text-sm">⚠️ Common Examiner Traps</h4>
+              <div className="grid md:grid-cols-2 gap-3 text-xs text-muted-foreground">
+                <div>
+                  <p className="font-semibold text-foreground mb-1">Trap 1: "BoP Must Balance"</p>
+                  <p>The OVERALL BoP always balances (double-entry). But CURRENT account and FINANCIAL account are mirror images—a CA deficit means FA surplus (capital inflow).</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-1">Trap 2: "Deficit = Bad"</p>
+                  <p>Deficit financing investment in productive capacity (FDI inflows) is sustainable. Deficit financing consumption (debt for imports) is problematic. Context matters.</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-1">Trap 3: J-Curve Timing</p>
+                  <p>Depreciation causes IMMEDIATE worsening (contracts fixed) before EVENTUAL improvement (if Marshall-Lerner satisfied). Candidates often forget the short-run deterioration.</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-1">Trap 4: Primary vs Secondary Income</p>
+                  <p>Primary income = factor returns (dividends, interest, wages). Secondary income = transfers (remittances, aid). Don't confuse these current account components.</p>
+                </div>
+              </div>
+            </div>
           </ContentSection>
 
         </motion.div>

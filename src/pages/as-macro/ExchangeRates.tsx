@@ -28,25 +28,43 @@ const ExchangeRates = () => {
           {/* Topic 1: Introduction to Exchange Rates */}
           <ContentSection title="Topic 1: Introduction to Exchange Rates" id="introduction" className="mb-4">
             <p className="text-foreground/90 leading-relaxed mb-3">
-              An exchange rate is the price of one currency expressed in terms of another currency. It determines how much of one currency can be obtained for a unit of another. For example, if the Pakistani Rupee (PKR) to US Dollar (USD) exchange rate is 107.3, it means that 1 USD can be exchanged for 107.3 PKR. Exchange rates are fundamental to international trade and finance, as they directly affect the price of exports and imports, the value of foreign investments, and the overall competitiveness of an economy.
+              An <strong className="text-primary">exchange rate</strong> is formally defined as the price of one currency expressed in terms of another currency—the rate at which one currency can be exchanged for another in the foreign exchange (forex) market. This concept is fundamental to international trade and finance, as exchange rates directly affect export competitiveness, import costs, capital flows, and the overall external position of an economy.
             </p>
 
-            <NoteCard title="Key Exchange Rate Terminology" type="definition" className="mb-3">
+            {/* SPICED Mnemonic Box */}
+            <div className="glass-card p-4 mb-4 border-l-4 border-secondary">
+              <h4 className="font-semibold text-secondary mb-2">📚 Memory Device: SPICED (Hot Money Flows)</h4>
+              <p className="text-sm text-muted-foreground mb-3">
+                Use this mnemonic to remember how interest rate differentials affect exchange rates through capital flows:
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                <div className="p-2 bg-muted/30 rounded"><strong className="text-primary">S</strong>trong</div>
+                <div className="p-2 bg-muted/30 rounded"><strong className="text-primary">P</strong>ound</div>
+                <div className="p-2 bg-muted/30 rounded"><strong className="text-primary">I</strong>ncreases</div>
+                <div className="p-2 bg-muted/30 rounded"><strong className="text-primary">C</strong>apital</div>
+                <div className="p-2 bg-muted/30 rounded"><strong className="text-primary">E</strong>xports</div>
+                <div className="p-2 bg-muted/30 rounded"><strong className="text-primary">D</strong>ecrease</div>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                <strong>Chain:</strong> ↑UK interest rates → ↑Demand for £ (capital inflows) → £ appreciates → UK exports more expensive → ↓Export volume
+              </p>
+            </div>
+
+            <NoteCard title="Key Exchange Rate Terminology (CIE 9708)" type="definition" className="mb-3">
               <div className="space-y-2 text-sm">
-                <p><strong className="text-primary">Nominal Exchange Rate:</strong> The rate at which one currency can be exchanged for another in the foreign exchange market. This is the commonly quoted rate seen in currency markets and banks.</p>
-                <p><strong className="text-primary">Real Exchange Rate:</strong> The nominal exchange rate adjusted for the relative price levels between two countries. It measures the price of domestic products in terms of foreign products, providing a more accurate picture of international competitiveness. The formula is: Real Exchange Rate = Nominal Exchange Rate × (Domestic Price Level / Foreign Price Level).</p>
-                <p><strong className="text-primary">Effective Exchange Rate (Trade-Weighted Index):</strong> A weighted average of a country's exchange rate against a basket of its major trading partners' currencies. This provides a more comprehensive measure of a currency's overall strength or weakness in global trade.</p>
+                <p><strong className="text-primary">Nominal Exchange Rate:</strong> The rate at which one currency can be exchanged for another at a given moment in the forex market. This is the headline rate quoted by banks and currency traders.</p>
+                <p><strong className="text-primary">Real Exchange Rate (RER):</strong> The nominal rate adjusted for relative price levels between countries. It measures international competitiveness—the price of domestic goods relative to foreign goods. Formula: <span className="font-mono bg-muted/30 px-1 rounded">RER = ER × (Pd/Pf)</span></p>
+                <p><strong className="text-primary">Effective Exchange Rate (Trade-Weighted Index):</strong> A weighted average of a currency's value against a basket of trading partners' currencies, where weights reflect trade shares. Provides a more comprehensive measure of overall currency strength.</p>
               </div>
             </NoteCard>
 
-            <div className="bg-muted/30 rounded-lg p-3 mb-3">
-              <h4 className="font-semibold text-sm mb-2">Sample Exchange Rates (Illustrative)</h4>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="flex justify-between"><span>1 USD =</span><span className="font-mono">107.3 PKR</span></div>
-                <div className="flex justify-between"><span>1 EUR =</span><span className="font-mono">124 PKR</span></div>
-                <div className="flex justify-between"><span>1 GBP =</span><span className="font-mono">139 PKR</span></div>
-                <div className="flex justify-between"><span>1 AED =</span><span className="font-mono">29.05 PKR</span></div>
-              </div>
+            {/* Examiner Trap */}
+            <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-sm mb-3">
+              <span className="font-semibold text-amber-400">⚠️ Examiner Trap:</span>
+              <span className="text-muted-foreground ml-2">
+                A nominal appreciation does NOT necessarily mean improved competitiveness. If domestic inflation exceeds foreign inflation, 
+                the <strong>real</strong> exchange rate may have appreciated even more than the nominal rate suggests.
+              </span>
             </div>
           </ContentSection>
 
@@ -171,27 +189,40 @@ const ExchangeRates = () => {
               </div>
             </NoteCard>
 
-            <NoteCard title="Short-Run Consequences of Depreciation/Devaluation" type="exam-tip" className="mb-3">
+            <NoteCard title="Short-Run Effects of Depreciation (J-Curve Period)" type="exam-tip" className="mb-3">
               <div className="space-y-2 text-sm">
-                <p><strong className="text-primary">Effect on Balance of Trade:</strong> In the short run, a depreciation would lead to expensive imports and cheaper exports. However, because demand is inelastic in the short run (contracts are fixed, limited substitutes), the trade balance initially worsens—leading to a deficit.</p>
-                <p><strong className="text-primary">Effect on Aggregate Demand:</strong> Export earnings fall and import payments increase (X↓, M↑). This leads to lower AD initially as net exports deteriorate.</p>
-                <p><strong className="text-primary">Effect on Demand-Pull Inflation:</strong> This will slow down demand-pull inflation because AD will decrease in the short run due to the worsening trade balance.</p>
-                <p><strong className="text-primary">Effect on National Income & Employment:</strong> Since the AD is low, it will reduce national income and hence cause unemployment in the economy in the short term.</p>
-                <p><strong className="text-primary">Effect on Cost-Push Inflation:</strong> If the country imports raw materials, depreciation will increase cost-push inflation because imports are now more expensive, raising production costs.</p>
-                <p><strong className="text-primary">Effect on Standard of Living:</strong> The standard of living will fall since fewer imports would be available, leading to less choice and higher prices for consumers.</p>
+                <p><strong className="text-primary">Trade Balance:</strong> Initially <span className="text-destructive">worsens</span>. In the SR, demand is price inelastic (contracts fixed, limited substitutes). Higher import prices on unchanged volumes → trade balance deteriorates.</p>
+                <p><strong className="text-primary">Aggregate Demand:</strong> Falls initially as net exports (X-M) decline in value terms.</p>
+                <p><strong className="text-primary">Cost-Push Inflation:</strong> <span className="text-destructive">Rises</span>. If the country imports raw materials (oil, components), depreciation immediately raises production costs → SRAS shifts left.</p>
+                <p><strong className="text-primary">Living Standards:</strong> <span className="text-destructive">Fall</span>. Imported consumer goods more expensive; reduced real purchasing power.</p>
+              </div>
+              <div className="mt-3 p-2 bg-muted/40 rounded font-mono text-xs">
+                <strong>SR Chain:</strong> ↓ER → ↑Pm → Unchanged Qm → ↑(P×Q)m → Trade balance worsens
               </div>
             </NoteCard>
 
-            <NoteCard title="Long-Run Consequences of Depreciation/Devaluation" type="theory" className="mb-3">
+            <NoteCard title="Long-Run Effects of Depreciation (Post J-Curve)" type="theory" className="mb-3">
               <div className="space-y-2 text-sm">
-                <p><strong className="text-primary">Effect on Balance of Trade:</strong> In the long run, as demand becomes more elastic, the trade balance improves. Exports increase in volume (cheaper for foreigners) and imports decrease (more expensive for domestic consumers).</p>
-                <p><strong className="text-primary">Effect on Aggregate Demand:</strong> As net exports improve (X↑, M↓), AD increases, stimulating economic growth.</p>
-                <p><strong className="text-primary">Effect on Demand-Pull Inflation:</strong> The increase in AD may cause demand-pull inflation as the economy expands.</p>
-                <p><strong className="text-primary">Effect on National Income & Employment:</strong> Higher AD leads to increased output and employment in the long run.</p>
-                <p><strong className="text-primary">Effect on Cost-Push Inflation:</strong> May persist if the country remains dependent on imported raw materials.</p>
-                <p><strong className="text-primary">Effect on Standard of Living:</strong> The standard of living may improve as employment rises and the economy grows, though import prices remain elevated.</p>
+                <p><strong className="text-primary">Trade Balance:</strong> <span className="text-cambridge-green">Improves</span> (if Marshall-Lerner satisfied). Demand becomes elastic → export volumes rise, import volumes fall → trade balance improves.</p>
+                <p><strong className="text-primary">Aggregate Demand:</strong> <span className="text-cambridge-green">Increases</span> as (X-M) rises → AD shifts right → higher Y.</p>
+                <p><strong className="text-primary">Employment:</strong> <span className="text-cambridge-green">Rises</span> in export industries and import-competing sectors.</p>
+                <p><strong className="text-primary">Demand-Pull Inflation:</strong> <span className="text-destructive">Risk increases</span>. Rising AD may cause inflationary pressure, especially near full employment.</p>
+              </div>
+              <div className="mt-3 p-2 bg-muted/40 rounded font-mono text-xs">
+                <strong>LR Chain:</strong> ↓ER → ↓Px (in foreign currency) → ↑Qx + ↓Qm → ↑(X-M) → ↑AD → ↑Y, ↑Employment
               </div>
             </NoteCard>
+
+            {/* Real-World Example */}
+            <div className="p-4 bg-primary/5 rounded-lg border border-primary/20 text-sm mb-3">
+              <h4 className="font-semibold text-primary mb-2">📌 Real-World Example: UK Pound Post-Brexit Referendum (June 2016)</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                The pound depreciated ~15% against the dollar immediately after the Brexit vote. In the <span className="text-cambridge-orange">short run</span>, 
+                UK import costs surged, contributing to inflation rising from 0.5% to 2.9% by 2017. In the <span className="text-cambridge-green">medium term</span>, 
+                UK exports became more competitive—the FTSE 100 (heavily weighted towards exporters) reached record highs. This exemplifies the J-Curve: 
+                initial pain followed by improved trade balance.
+              </p>
+            </div>
 
             <JCurveDiagram />
 

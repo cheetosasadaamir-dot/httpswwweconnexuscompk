@@ -311,10 +311,80 @@ const Inflation = () => {
           </ExamTipBox>
         </ContentSection>
 
+        {/* Examiner Traps & Real-World Examples */}
+        <ContentSection title="Examiner Guidance: Inflation Analysis" className="mb-4">
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            {/* Examiner Traps */}
+            <div className="glass-card p-5 border-l-4 border-amber-500">
+              <h4 className="font-semibold text-amber-400 mb-3 text-sm">⚠️ Common Examiner Traps</h4>
+              <div className="space-y-2 text-xs">
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 1: Confusing Inflation with High Prices</p>
+                  <p className="text-muted-foreground">Inflation is the <em>rate of change</em> of prices. A country can have low inflation but high prices, or high inflation with initially low prices.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 2: Disinflation ≠ Deflation</p>
+                  <p className="text-muted-foreground">Disinflation = falling inflation rate (still positive). Deflation = negative inflation (falling GPL). These are categorically different.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 3: "Inflation is Always Bad"</p>
+                  <p className="text-muted-foreground">Moderate inflation (2%) can stimulate spending, reduce real debt burdens, and allow relative price adjustments. Zero inflation removes this flexibility.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 4: Ignoring Context for Winners/Losers</p>
+                  <p className="text-muted-foreground">Whether inflation helps or harms depends on whether it's <em>anticipated</em> or <em>unanticipated</em>. Anticipated inflation can be built into contracts.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Real-World Examples */}
+            <div className="glass-card p-5 border-l-4 border-primary">
+              <h4 className="font-semibold text-primary mb-3 text-sm">📌 Real-World Case Studies</h4>
+              <div className="space-y-2 text-xs">
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Demand-Pull: USA 2021-22</p>
+                  <p className="text-muted-foreground">$5 trillion pandemic stimulus + pent-up savings → AD surged. CPI reached 9.1% (June 2022). Near-full employment meant most of ↑AD translated to ↑P rather than ↑Y.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Cost-Push: UK 2022-23</p>
+                  <p className="text-muted-foreground">Russia-Ukraine war → ↑Energy prices → SRAS shifted left. UK inflation hit 11.1% while growth stagnated at 0.4%—textbook stagflation.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Hyperinflation: Zimbabwe 2008</p>
+                  <p className="text-muted-foreground">Excessive money printing to finance government deficits. Peak 79.6 billion % per month. Currency abandoned in favour of USD—complete monetary collapse.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Deflation: Japan 1990s-2000s</p>
+                  <p className="text-muted-foreground">"Lost Decades" of falling prices, stagnant wages, and the liquidity trap. Despite near-zero rates, firms and households hoarded cash rather than spend.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Command Word Guidance */}
+          <div className="glass-card p-5 bg-gradient-to-br from-secondary/5 to-transparent">
+            <h4 className="font-semibold text-secondary mb-3">📝 Answering Inflation Questions</h4>
+            <div className="grid md:grid-cols-3 gap-3 text-xs">
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <p className="font-semibold text-foreground mb-1">"Analyse the causes of..."</p>
+                <p className="text-muted-foreground">Identify type (demand-pull/cost-push) → Show chain (↑AD or ↓SRAS) → Reference diagram → State equilibrium change (P₀→P₁, Y₀→Y₁)</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <p className="font-semibold text-foreground mb-1">"Evaluate the effects on..."</p>
+                <p className="text-muted-foreground">Consider: SR vs LR, anticipated vs unanticipated, winners vs losers, magnitude of inflation, open vs closed economy effects.</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <p className="font-semibold text-foreground mb-1">"Discuss policies to control..."</p>
+                <p className="text-muted-foreground">Match policy to cause (demand-side for demand-pull, supply-side for cost-push). Evaluate effectiveness, time lags, trade-offs.</p>
+              </div>
+            </div>
+          </div>
+        </ContentSection>
+
         {/* Chapter Summary */}
         <ContentSection title="Chapter Summary">
           <div className="glass-card p-5">
-            <h3 className="font-serif text-lg text-gradient mb-3">Key Takeaways – Price Stability</h3>
+            <h3 className="font-serif text-lg text-gradient mb-3">Key Takeaways – Price Stability (CIE 9708)</h3>
             <ul className="space-y-1.5 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
@@ -322,7 +392,7 @@ const Inflation = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <strong>Demand-pull inflation:</strong> ↑ AD near Y<sub>fe</sub> → excess demand → firms bid for scarce factors → ↑ GPL; associated with economic growth.
+                <strong>Demand-pull inflation:</strong> ↑ AD near Yfe → excess demand → firms bid for scarce factors → ↑ GPL; associated with economic growth.
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
@@ -330,19 +400,19 @@ const Inflation = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <strong>Quantity Theory (MV = PY):</strong> With V and Y stable, ↑ M → ↑ P; monetarist view that inflation is "always and everywhere a monetary phenomenon."
+                <strong>Quantity Theory (MV = PY):</strong> With V and Y stable, ↑ M → ↑ P; monetarist view that inflation is "always a monetary phenomenon."
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <strong>Consequences:</strong> Internal redistribution (debtors gain, creditors lose), external competitiveness loss, menu/shoe-leather costs, business uncertainty.
+                <strong>Consequences:</strong> Internal redistribution (debtors gain, creditors lose), external competitiveness loss, menu/shoe-leather costs, uncertainty.
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <strong>Deflation:</strong> Good (↑ AS) vs Bad (↓ AD); debt deflation spiral, zero lower bound constraint on monetary policy.
+                <strong>Deflation:</strong> Good (↑ AS via productivity) vs Bad (↓ AD via debt spiral); zero lower bound constraint on policy effectiveness.
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <strong>Policy:</strong> Contractionary fiscal/monetary to combat inflation; expansionary + QE to combat deflation; 2% target as optimal buffer.
+                <strong>2% Target:</strong> Optimal buffer against deflation while limiting inflation costs; central banks use forward guidance to anchor expectations.
               </li>
             </ul>
           </div>
