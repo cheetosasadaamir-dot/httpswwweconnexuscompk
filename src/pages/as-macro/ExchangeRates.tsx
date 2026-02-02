@@ -5,9 +5,20 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import ExchangeRateShiftsDiagram from '@/components/diagrams/ExchangeRateShiftsDiagram';
 import FixedExchangeRateDiagram from '@/components/diagrams/FixedExchangeRateDiagram';
 import JCurveDiagram from '@/components/diagrams/JCurveDiagram';
+
+const exchangeRateTakeaways = [
+  "Exchange rate = price of one currency in terms of another; determined by demand and supply in forex market",
+  "SPICED mnemonic: Strong Pound Increases Capital, Exports Decrease (↑r → ↑Demand for £ → £ appreciates → ↓X)",
+  "Floating rates: automatic BoP correction but volatility and speculation risks; no need for large reserves",
+  "Fixed rates: stability for trade but requires large reserves; loses monetary policy independence",
+  "Depreciation effects: Short-run worsens trade balance (J-Curve); Long-run improves if Marshall-Lerner condition met (PED_x + PED_m > 1)",
+  "Real Exchange Rate (RER) = Nominal ER × (Pd/Pf) — measures true international competitiveness",
+];
 
 const ExchangeRates = () => {
   return (
@@ -21,8 +32,14 @@ const ExchangeRates = () => {
           <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
             Exchange Rates
           </h1>
-          <p className="text-lg text-muted-foreground mb-6">
+          <p className="text-lg text-muted-foreground mb-4">
             AS Level Macroeconomics • Chapter 4
+          </p>
+
+          {/* Key Takeaways Summary */}
+          <KeyTakeaways takeaways={exchangeRateTakeaways} />
+
+          <p className="text-lg text-muted-foreground mb-6">
           </p>
 
           {/* Topic 1: Introduction to Exchange Rates */}

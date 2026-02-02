@@ -4,6 +4,8 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import TermsOfTradeDiagram from '@/components/diagrams/TermsOfTradeDiagram';
 import ComparativeAdvantageTableDiagram from '@/components/diagrams/ComparativeAdvantageTableDiagram';
 import TradingPossibilityCurveDiagram from '@/components/diagrams/TradingPossibilityCurveDiagram';
@@ -13,6 +15,15 @@ import TradeCreationDiagram from '@/components/diagrams/TradeCreationDiagram';
 import TradeDiversionDiagram from '@/components/diagrams/TradeDiversionDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+
+const tradeTakeaways = [
+  "Absolute Advantage: producing more output with same inputs; Comparative Advantage: lower opportunity cost (basis for mutually beneficial trade)",
+  "If PPCs are parallel (identical opportunity costs), there is NO basis for mutually beneficial trade — a critical examiner trap",
+  "Terms of Trade (ToT) = (Export Price Index / Import Price Index) × 100; ↑ToT = fewer exports needed per import unit",
+  "Tariffs create deadweight welfare loss; consumer surplus falls, producer surplus rises, government gains revenue, but net welfare falls",
+  "Infant Industry argument: temporary protection for new industries to achieve economies of scale — must have exit strategy",
+  "Trade Creation (welfare gain) vs Trade Diversion (welfare loss) — key distinction when evaluating regional trading blocs",
+];
 
 const InternationalTrade = () => {
   return (
@@ -33,6 +44,9 @@ const InternationalTrade = () => {
             The Theoretical Foundations of Trade, Comparative Advantage, the Terms of Trade, and the Economic Consequences of Protectionism.
           </p>
         </div>
+
+        {/* Key Takeaways Summary */}
+        <KeyTakeaways takeaways={tradeTakeaways} />
 
         {/* Topics Overview */}
         <div className="glass-card p-4 mb-6">

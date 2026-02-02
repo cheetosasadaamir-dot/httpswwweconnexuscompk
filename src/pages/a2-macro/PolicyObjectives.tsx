@@ -5,10 +5,21 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import LafferCurveDiagram from '@/components/diagrams/LafferCurveDiagram';
 import FiscalPolicyADDiagram from '@/components/diagrams/FiscalPolicyADDiagram';
 import SupplySidePolicyDiagram from '@/components/diagrams/SupplySidePolicyDiagram';
 import LiquidityPreferenceDiagram from '@/components/diagrams/LiquidityPreferenceDiagram';
+
+const policyObjectivesTakeaways = [
+  "8 Macroeconomic Objectives: Price stability, Full employment, Economic growth, BoP stability, Redistribution, Environment, Productivity, Market failure correction",
+  "Phillips Curve Trade-off: ↓Unemployment ↔ ↑Inflation; Stagflation breaks this relationship (↑U and ↑P together)",
+  "Fiscal Policy: ↑G or ↓T → ↑AD (expansionary); Multiplier k = 1/(MPS + MPT + MPM); Time lags of 2+ years",
+  "Crowding Out: ↑G financed by borrowing → ↑r → ↓Private Investment — Monetarist critique of fiscal policy",
+  "Laffer Curve: tax revenue rises then falls as tax rate increases; optimal rate maximizes revenue",
+  "Stop-Go Cycle: growth triggers BoP deficit → contraction → recovery → growth → repeat (policy instability)",
+];
 
 const PolicyObjectives = () => {
   return (
@@ -30,6 +41,9 @@ const PolicyObjectives = () => {
           <p className="text-lg text-muted-foreground mb-6">
             Comprehensive analysis of fiscal, monetary, and supply-side policies with chain-of-reasoning evaluation.
           </p>
+
+          {/* Key Takeaways Summary */}
+          <KeyTakeaways takeaways={policyObjectivesTakeaways} />
 
           {/* Topic 1: Government Macroeconomic Objectives */}
           <ContentSection title="Topic 1: Government Macroeconomic Objectives">
@@ -249,9 +263,17 @@ const PolicyObjectives = () => {
                     </p>
                   </div>
                   <div className="p-2 bg-muted/30 rounded-lg">
+                    <h5 className="font-semibold mb-1">Structural vs Cyclical Deficits</h5>
+                    <p className="text-muted-foreground">
+                      <strong>Cyclical Deficit:</strong> Caused by the business cycle — recessions reduce tax revenues (↓Y → ↓T) and increase spending (unemployment benefits) automatically. Self-corrects as economy recovers. <strong>Structural Deficit:</strong> Exists even at full employment — reflects permanent imbalance between G and T. Requires deliberate policy action to correct. Critical distinction for assessing fiscal sustainability.
+                    </p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-2 mt-2">
+                  <div className="p-2 bg-muted/30 rounded-lg">
                     <h5 className="font-semibold mb-1">National Debt Burden</h5>
                     <p className="text-muted-foreground">
-                      Persistent budget deficits accumulate into national debt. Interest payments on debt divert resources from productive spending. Future generations may face higher taxes to service debt, reducing their consumption possibilities and potentially slowing long-term growth.
+                      Persistent budget deficits accumulate into national debt. Interest payments divert resources from productive spending. <strong>Debt-to-GDP ratio</strong> is key metric: sustainable if growth rate {'>'} interest rate. Future generations face higher taxes or reduced services to service debt.
                     </p>
                   </div>
                 </div>

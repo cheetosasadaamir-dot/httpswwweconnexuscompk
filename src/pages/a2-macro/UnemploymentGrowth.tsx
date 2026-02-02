@@ -4,9 +4,20 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import PhillipsCurveDiagram from '@/components/diagrams/PhillipsCurveDiagram';
 import ClassicalUnemploymentDiagram from '@/components/diagrams/ClassicalUnemploymentDiagram';
 import CyclicalUnemploymentDiagram from '@/components/diagrams/CyclicalUnemploymentDiagram';
+
+const unemploymentTakeaways = [
+  "Unemployment Rate = (Unemployed ÷ Labour Force) × 100; measured by Claimant Count or Labour Force Survey (ILO standard)",
+  "Frictional (voluntary, between jobs), Structural (skills mismatch), Seasonal (predictable patterns), Cyclical (demand-deficient)",
+  "Classical/Real-Wage Unemployment: wages above equilibrium due to unions or minimum wage → Qs > Qd for labour",
+  "NAIRU (Natural Rate): unemployment when AD = AS with no wage pressure; only frictional + structural remain",
+  "Short-Run Phillips Curve: inverse trade-off between inflation and unemployment; Long-Run: vertical at NAIRU (expectations-augmented)",
+  "Supply-side policies reduce NRU (shift LRPC left); Demand-side policies reduce cyclical unemployment (move along SRPC)",
+];
 
 const UnemploymentGrowth = () => {
   return (
@@ -27,6 +38,9 @@ const UnemploymentGrowth = () => {
             Understanding the causes and types of unemployment, measuring joblessness, and the critical trade-off between inflation and unemployment illustrated by the Phillips Curve.
           </p>
         </div>
+
+        {/* Key Takeaways Summary */}
+        <KeyTakeaways takeaways={unemploymentTakeaways} />
 
         {/* Topic 1: Unemployment */}
         <ContentSection title="Topic 1: Unemployment">

@@ -4,10 +4,21 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import ActualPotentialGrowthDiagram from '@/components/diagrams/ActualPotentialGrowthDiagram';
 import BusinessCycleDiagram from '@/components/diagrams/BusinessCycleDiagram';
 import GiniLorenzDiagram from '@/components/diagrams/GiniLorenzDiagram';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+
+const growthTakeaways = [
+  "Actual Growth: increase in real GDP (movement towards PPF); Potential Growth: increase in productive capacity (outward PPF shift / rightward LRAS shift)",
+  "Short-run causes: Expansionary fiscal/monetary policy → ↑AD → ↑Y; Long-run causes: ↑quantity or quality of factors of production",
+  "Harrod-Domar Model: Saving → Investment → Capital Accumulation → Growth; limited in LEDCs due to low saving capacity",
+  "Real GDP per Capita = Real GDP ÷ Population — measures average living standards but ignores distribution",
+  "HDI measures development across 3 dimensions: Health (life expectancy), Education (schooling years), Income (GNI per capita PPP)",
+  "Kuznets Curve: inequality rises then falls during development (inverted-U) — but this is conditional on policy, not deterministic",
+];
 
 const EconomicGrowth = () => {
   return (
@@ -28,6 +39,9 @@ const EconomicGrowth = () => {
             Understanding the distinction between actual and potential growth, measuring living standards, and the structural characteristics of developing versus developed economies.
           </p>
         </div>
+
+        {/* Key Takeaways Summary */}
+        <KeyTakeaways takeaways={growthTakeaways} />
 
         {/* ===== TOPIC 1: ECONOMIC GROWTH ===== */}
         <ContentSection title="Topic 1: Economic Growth">

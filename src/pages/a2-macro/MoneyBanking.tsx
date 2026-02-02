@@ -4,6 +4,8 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import LiquidityPreferenceDiagram from '@/components/diagrams/LiquidityPreferenceDiagram';
 import LiquidityTrapDiagram from '@/components/diagrams/LiquidityTrapDiagram';
 import LoanableFundsDiagram from '@/components/diagrams/LoanableFundsDiagram';
@@ -15,6 +17,15 @@ import MoneySupplyDiagram from '@/components/diagrams/MoneySupplyDiagram';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+
+const moneyBankingTakeaways = [
+  "Liquidity Preference: 3 motives for holding money — Transactions (f(Y)), Precautionary (f(Y)), Speculative (f(r) inverse)",
+  "Bond price inversely related to interest rate: P_B = Coupon/r; when r↑, P_B↓ (capital loss risk)",
+  "Liquidity Trap: at zero lower bound, money demand perfectly elastic — ↑M^s absorbed as idle balances, r cannot fall further, monetary policy ineffective",
+  "Quantity Theory of Money: MV = PY; if V and Y constant, ↑M causes proportional ↑P (Monetarist inflation theory)",
+  "Credit Multiplier = 1/Reserve Ratio; determines how initial deposit creates multiple expansion of bank credit",
+  "Monetary Transmission: ↓r → ↓borrowing cost → ↑C, ↑I → ↑AD → ↑Y (but subject to time lags of 18-24 months)",
+];
 
 const MoneyBanking = () => {
   return (
@@ -36,6 +47,9 @@ const MoneyBanking = () => {
             and the limits of monetary policy in achieving macroeconomic stability.
           </p>
         </div>
+
+        {/* Key Takeaways Summary */}
+        <KeyTakeaways takeaways={moneyBankingTakeaways} />
 
         {/* Topic Navigation */}
         <div className="glass-card p-3 mb-6 rounded-lg">

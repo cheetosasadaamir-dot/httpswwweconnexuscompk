@@ -5,6 +5,8 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import { LorenzCurveDiagram } from '@/components/diagrams/LorenzCurveDiagram';
 import { KuznetsCurveDiagram } from '@/components/diagrams/KuznetsCurveDiagram';
 import { PrebischSingerDiagram } from '@/components/diagrams/PrebischSingerDiagram';
@@ -16,6 +18,15 @@ import TradeCreationDiagram from '@/components/diagrams/TradeCreationDiagram';
 import TradeDiversionDiagram from '@/components/diagrams/TradeDiversionDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+
+const developmentTakeaways = [
+  "Economic Growth ≠ Economic Development; Growth is ↑Real GDP; Development is qualitative improvement in living standards",
+  "HDI combines Health (life expectancy), Education (schooling years), and Income (GNI per capita PPP) — range 0 to 1",
+  "Lorenz Curve shows income distribution; Gini Coefficient = A/(A+B) where A is area between curve and equality line",
+  "Kuznets Curve: inequality rises then falls during development (inverted-U) — conditional on policy choices, not deterministic",
+  "Marshall-Lerner Condition: |PED_x| + |PED_m| > 1 for depreciation to improve trade balance; J-Curve shows short-run worsening before improvement",
+  "Trade Blocs: Free Trade Area → Customs Union → Common Market → Economic Union → Monetary Union (increasing integration)",
+];
 
 const Development = () => {
   return (
@@ -32,6 +43,9 @@ const Development = () => {
           <p className="text-xl text-muted-foreground mb-6">
             A2 Level Macroeconomics • CIE 9708 Syllabus (2026-2028)
           </p>
+
+          {/* Key Takeaways Summary */}
+          <KeyTakeaways takeaways={developmentTakeaways} />
 
           {/* Section 1: Economic Growth vs Development */}
           <ContentSection title="Section 8.1: Economic Growth vs Economic Development">
@@ -288,6 +302,36 @@ const Development = () => {
               <strong>Globalisation</strong> refers to the increasing integration and interdependence of national economies through the intensification of cross-border flows of goods, services, capital, technology, and (to a lesser extent) labour. This process, accelerating dramatically since the 1980s, has been driven by multiple reinforcing factors: <strong>technological change</strong> (containerisation, telecommunications, digital platforms) that dramatically reduced transaction costs; <strong>policy liberalisation</strong> (trade agreements, capital account opening, deregulation) that removed barriers to international exchange; and <strong>organisational innovation</strong> (global value chains, multinational corporation strategies, outsourcing) that fragmented production across borders. The development implications of globalisation are contested, generating both enthusiastic advocacy (emphasising efficiency gains, technology transfer, poverty reduction) and critical analysis (highlighting inequality, vulnerability, and sovereignty erosion).
             </p>
 
+            {/* Causes of Globalisation */}
+            <NoteCard title="The Five Drivers of Globalisation" className="mb-4">
+              <div className="grid md:grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <p className="font-semibold text-primary text-xs">1. Trade Liberalisation</p>
+                    <p className="text-xs text-muted-foreground">GATT/WTO rounds reduced average tariffs from 40% (1947) to {'<'}5% today; bilateral FTAs proliferate</p>
+                  </div>
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <p className="font-semibold text-primary text-xs">2. Capital Account Liberalisation</p>
+                    <p className="text-xs text-muted-foreground">Removal of restrictions on cross-border investment enables FDI and portfolio flows</p>
+                  </div>
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <p className="font-semibold text-primary text-xs">3. Technological Revolution</p>
+                    <p className="text-xs text-muted-foreground">ICT, containerisation, and digital platforms slashed communication and transport costs</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="p-2 bg-secondary/10 rounded-lg">
+                    <p className="font-semibold text-secondary text-xs">4. Transnational Corporations (TNCs)</p>
+                    <p className="text-xs text-muted-foreground">Fragmented production across Global Value Chains; intra-firm trade now ~30% of world trade</p>
+                  </div>
+                  <div className="p-2 bg-secondary/10 rounded-lg">
+                    <p className="font-semibold text-secondary text-xs">5. Institutional Framework</p>
+                    <p className="text-xs text-muted-foreground">WTO dispute resolution, IMF/World Bank conditionality, regional agreements create rule-based trading system</p>
+                  </div>
+                </div>
+              </div>
+            </NoteCard>
+
             <div className="grid md:grid-cols-2 gap-3 mb-4">
               <NoteCard title="Benefits of Globalisation for Development" className="mb-0">
                 <ul className="list-disc list-inside text-xs space-y-1">
@@ -310,10 +354,41 @@ const Development = () => {
               </NoteCard>
             </div>
 
-            <AnalysisBlock title="Chain of Analysis: Multinational Corporations (MNCs) and Development (AO3/AO4)">
-              <p className="text-sm text-foreground/80 text-justify">
-                <strong>Positive Chain:</strong> MNC investment brings capital, technology, and management expertise → generates employment (direct and through supply chain linkages) → raises labour productivity and wages → increases tax revenues for host government → demonstration effects and labour mobility spread knowledge to domestic firms → enhances export capacity and foreign exchange earnings. <strong>Negative Chain:</strong> MNCs may repatriate profits rather than reinvest locally → utilise transfer pricing to minimise tax liabilities → import capital equipment rather than source domestically (limiting linkages) → compete with and potentially crowd out domestic firms → exert bargaining power to extract favourable regulatory treatment → create enclave economies with limited development spillovers. <strong>Evaluation:</strong> The net impact depends critically on host country policies: local content requirements, joint venture mandates, infrastructure co-investment agreements, and effective tax administration can enhance developmental benefits, while weak governance and excessive concessions may allow value extraction without commensurate contribution to development. The distributional consequences—who gains and who loses from MNC presence—require careful analysis beyond aggregate GDP impacts.
+            {/* LEDCs vs MEDCs Analysis */}
+            <AnalysisBlock title="Globalisation: Asymmetric Impacts on LEDCs vs MEDCs (AO3/AO4)">
+              <div className="space-y-3 text-sm text-foreground/80">
+                <p className="text-justify">
+                  <strong className="text-cambridge-cyan">For LEDCs (Benefits):</strong> Access to MEDC markets enables export-led growth; FDI provides scarce capital and technology transfer; integration into global value chains creates manufacturing employment; remittances from migrant workers provide foreign exchange; access to imported capital goods accelerates industrialisation.
+                </p>
+                <p className="text-justify">
+                  <strong className="text-cambridge-orange">For LEDCs (Costs):</strong> "Commodity trap" — primary exporters face declining ToT (Prebisch-Singer); volatile capital flows trigger boom-bust cycles; infant industries cannot compete against established MNCs; brain drain depletes human capital; environmental degradation as pollution-intensive industries relocate; conditionality from IFIs constrains policy autonomy.
+                </p>
+                <p className="text-justify">
+                  <strong className="text-cambridge-green">For MEDCs (Benefits):</strong> Access to cheaper consumer goods raises real wages; offshoring reduces production costs; investment income flows from overseas assets; expanded export markets for services and high-tech manufactures; migration addresses demographic challenges.
+                </p>
+                <p className="text-justify">
+                  <strong className="text-destructive">For MEDCs (Costs):</strong> Deindustrialisation destroys manufacturing jobs; wage stagnation for low-skilled workers widens inequality; tax base erosion as corporations shift profits offshore; immigration pressures create political backlash; cultural homogenisation concerns.
+                </p>
+              </div>
+            </AnalysisBlock>
+
+            <ExaminerTrap 
+              trap="Assuming globalisation benefits all countries equally. This ignores that LEDCs often lack the institutional capacity, infrastructure, and human capital to capture gains, while facing asymmetric bargaining power against TNCs and MEDCs."
+              correction="Always specify which type of country (LEDC/MEDC), which sector (tradeable/non-tradeable), and which group (skilled/unskilled workers, capital owners) when evaluating globalisation's distributional impacts."
+            />
+
+            <AnalysisBlock title="Chain of Analysis: Transnational Corporations (TNCs) and Development (AO3/AO4)">
+              <p className="text-sm text-foreground/80 text-justify mb-3">
+                <strong>Positive Chain:</strong> TNC investment brings capital, technology, and management expertise → generates employment (direct and through supply chain linkages) → raises labour productivity and wages → increases tax revenues for host government → demonstration effects and labour mobility spread knowledge to domestic firms → enhances export capacity and foreign exchange earnings.
               </p>
+              <p className="text-sm text-foreground/80 text-justify mb-3">
+                <strong>Negative Chain:</strong> TNCs may repatriate profits rather than reinvest locally → utilise transfer pricing to minimise tax liabilities → import capital equipment rather than source domestically (limiting backward linkages) → compete with and potentially crowd out domestic firms → exert bargaining power to extract favourable regulatory treatment → create enclave economies with limited development spillovers.
+              </p>
+              <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+                <p className="text-xs text-foreground/90">
+                  <strong className="text-amber-400">Senior Examiner's Evaluation:</strong> The net impact depends critically on host country policies: <em>local content requirements</em>, joint venture mandates, infrastructure co-investment agreements, and effective tax administration can enhance developmental benefits, while weak governance and excessive concessions may allow value extraction without commensurate contribution to development. The distributional consequences—who gains and who loses from TNC presence—require careful analysis beyond aggregate GDP impacts.
+                </p>
+              </div>
             </AnalysisBlock>
           </ContentSection>
 

@@ -3,6 +3,8 @@ import Layout from '@/components/Layout';
 import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import InflationDiagrams from '@/components/diagrams/InflationDiagrams';
 import MoneySupplyDiagram from '@/components/diagrams/MoneySupplyDiagram';
 import ADInflationStagesDiagram from '@/components/diagrams/ADInflationStagesDiagram';
@@ -11,6 +13,15 @@ import CostPushStagflationDiagram from '@/components/diagrams/CostPushStagflatio
 import DemandPullInflationDiagram from '@/components/diagrams/DemandPullInflationDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+
+const inflationTakeaways = [
+  "Inflation is a sustained increase in the General Price Level (GPL), measured by CPI, causing a fall in the purchasing power of money",
+  "Demand-Pull Inflation: Excess AD → Competition for scarce resources → Factor prices rise → GPL rises (AD shifts right)",
+  "Cost-Push Inflation: Rising input costs (wages, oil, imports) → SRAS shifts left → Stagflation (↑P and ↓Y simultaneously)",
+  "The Quantity Theory of Money (MV = PY) states that if V and Y are constant, ↑M causes proportional ↑P",
+  "CPI biases include substitution bias, quality bias, new goods bias, and outlet substitution bias—causing overstatement of true inflation",
+  "Menu costs (repricing) and shoe-leather costs (transaction costs) represent deadweight losses from inflation",
+];
 
 const Inflation = () => {
   return (
@@ -31,6 +42,9 @@ const Inflation = () => {
             A comprehensive analysis of the nature, measurement, causes, and macroeconomic consequences of inflation and deflation within the aggregate demand and supply framework.
           </p>
         </div>
+
+        {/* Key Takeaways Summary */}
+        <KeyTakeaways takeaways={inflationTakeaways} />
 
         {/* ═══════════════════════════════════════════════════════════════════
             SECTION 4.6.1: DEFINITIONAL FOUNDATIONS (AO1)

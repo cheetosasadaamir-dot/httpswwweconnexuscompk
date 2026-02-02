@@ -3,6 +3,8 @@ import Layout from '@/components/Layout';
 import ContentSection from '@/components/ContentSection';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 import FiscalPolicyShiftDiagram from '@/components/diagrams/FiscalPolicyShiftDiagram';
 import MonetaryPolicyTransmissionDiagram from '@/components/diagrams/MonetaryPolicyTransmissionDiagram';
 import SupplySideLRASDiagram from '@/components/diagrams/SupplySideLRASDiagram';
@@ -10,6 +12,15 @@ import PolicyConflictsDiagram from '@/components/diagrams/PolicyConflictsDiagram
 import MultiplierDiagram from '@/components/diagrams/MultiplierDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+
+const policyTakeaways = [
+  "Fiscal Policy: manipulation of G and T to shift AD; Multiplier k = 1/(1-MPC) = 1/(MPS+MPT+MPM)",
+  "Monetary Policy: manipulation of interest rates to affect C and I; transmission: ↓r → ↓borrowing cost → ↑C, ↑I → ↑AD",
+  "Supply-Side Policies: shift LRAS rightward by improving quantity/quality of factors; Market-based vs Interventionist",
+  "Time Lags: Recognition (3-6 months), Implementation (6-12 months), Response (12-18 months) — total delay can exceed 2 years",
+  "Crowding Out: ↑G financed by borrowing → ↑r → ↓Private Investment — partially offsets fiscal stimulus",
+  "Liquidity Trap: at zero lower bound, monetary policy becomes ineffective as demand for money is perfectly elastic",
+];
 
 const MacroeconomicPolicy = () => {
   return (
@@ -43,6 +54,9 @@ const MacroeconomicPolicy = () => {
             <p>6. Time Lags and Limitations of Policy</p>
           </div>
         </div>
+
+        {/* Key Takeaways Summary */}
+        <KeyTakeaways takeaways={policyTakeaways} />
 
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         {/* SECTION 1: FISCAL POLICY */}
