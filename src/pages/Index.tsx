@@ -3,7 +3,7 @@ import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-r
 import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import EconomicGlobe from '@/components/EconomicGlobe';
+import CryptoLogo4D from '@/components/CryptoLogo4D';
 import KnowledgePillars from '@/components/KnowledgePillars';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
@@ -109,7 +109,7 @@ const Index = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="flex-1 flex justify-center"
               >
-                <EconomicGlobe />
+                <CryptoLogo4D />
               </motion.div>
             </div>
           </div>
