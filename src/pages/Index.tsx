@@ -3,7 +3,6 @@ import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-r
 import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import CryptoLogo4D from '@/components/CryptoLogo4D';
 import KnowledgePillars from '@/components/KnowledgePillars';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
@@ -39,77 +38,64 @@ const Index = () => {
 
       <main className="relative z-20">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center pt-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-24">
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-              {/* Text Content */}
-              <div className="flex-1 text-center lg:text-left">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
-                >
-                  <Sparkles className="w-4 h-4 text-secondary" />
-                  <span className="text-sm text-muted-foreground">Elite A-Level Economics Portal</span>
-                </motion.div>
-
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-6"
-                >
-                <span className="section-title">MASTER THE</span>
-                  <br />
-                  <span className="text-foreground">ECONOMICS IN 4D</span>
-                </motion.h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0 mb-10"
-                >
-                  Elite A-Level notes, interactive diagrams, and AI-powered insights. 
-                  Designed for clarity, built for top grades.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-                >
-                  <Button
-                    size="lg"
-                    onClick={() => scrollToNotesRepository()}
-                    className="cta-amber-glow relative overflow-hidden bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 py-6 text-lg font-medium rounded-xl group cursor-pointer"
-                  >
-                    <motion.span
-                      className="absolute inset-0 bg-gradient-to-r from-secondary via-amber-400 to-secondary opacity-0 group-hover:opacity-100 transition-opacity"
-                      animate={{
-                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                      }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      style={{ backgroundSize: '200% 200%' }}
-                    />
-                    <span className="relative flex items-center gap-2">
-                      Start Learning
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Button>
-                </motion.div>
-              </div>
-
-              {/* 3D Globe */}
+        <section className="min-h-[70vh] flex items-center pt-20">
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+            <div className="text-center">
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex-1 flex justify-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
               >
-                <CryptoLogo4D />
+                <Sparkles className="w-4 h-4 text-secondary" />
+                <span className="text-sm text-muted-foreground">Elite A-Level Economics Portal</span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-8"
+              >
+                <span className="section-title">MASTER THE</span>
+                <br />
+                <span className="text-foreground">ECONOMICS IN 4D</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-12"
+              >
+                Elite A-Level notes, interactive diagrams, and AI-powered insights. 
+                Designed for clarity, built for top grades.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+              >
+                <Button
+                  size="lg"
+                  onClick={() => scrollToNotesRepository()}
+                  className="cta-amber-glow relative overflow-hidden bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 py-6 text-lg font-medium rounded-xl group cursor-pointer"
+                >
+                  <motion.span
+                    className="absolute inset-0 bg-gradient-to-r from-secondary via-amber-400 to-secondary opacity-0 group-hover:opacity-100 transition-opacity"
+                    animate={{
+                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    style={{ backgroundSize: '200% 200%' }}
+                  />
+                  <span className="relative flex items-center gap-2">
+                    Start Learning
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Button>
               </motion.div>
             </div>
           </div>
