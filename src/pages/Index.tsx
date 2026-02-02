@@ -7,6 +7,7 @@ import EconomicGlobe from '@/components/EconomicGlobe';
 import KnowledgePillars from '@/components/KnowledgePillars';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
+import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
@@ -189,6 +190,14 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Silver Divider */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        </div>
+
+        {/* World Economics Section */}
+        <WorldEconomicsSection />
 
         {/* Silver Divider */}
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
