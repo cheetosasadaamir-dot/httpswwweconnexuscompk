@@ -151,6 +151,24 @@ export default {
           "50%": { transform: "translateX(20px) translateY(-10px)" },
           "100%": { transform: "translateX(0) translateY(0)" },
         },
+        // Premium spring animations
+        "spring-bounce": {
+          "0%": { transform: "translateY(0) scale(1)" },
+          "40%": { transform: "translateY(-8px) scale(1.02)" },
+          "60%": { transform: "translateY(-4px) scale(1.01)" },
+          "80%": { transform: "translateY(-2px) scale(1.005)" },
+          "100%": { transform: "translateY(0) scale(1)" },
+        },
+        "spring-scale": {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+          "75%": { transform: "scale(0.98)" },
+          "100%": { transform: "scale(1)" },
+        },
+        "data-pulse": {
+          "0%, 100%": { opacity: "0.6", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -163,6 +181,9 @@ export default {
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
         twinkle: "twinkle 2s ease-in-out infinite",
         "nebula-drift": "nebula-drift 30s ease-in-out infinite",
+        "spring-bounce": "spring-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "spring-scale": "spring-scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "data-pulse": "data-pulse 2s ease-in-out infinite",
       },
       spacing: {
         compact: "0.25rem",
