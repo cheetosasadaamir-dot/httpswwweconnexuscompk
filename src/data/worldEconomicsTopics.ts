@@ -1936,6 +1936,659 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     evaluation: 'Ceiling prices help consumers who successfully purchase but harm those who face shortages. Long-run effects worsen the situation: low prices discourage supply (landlords exit rental market, producers reduce investment). Rent controls, for example, reduce housing quality and availability over time—"the best way to destroy a city, short of bombing" (Assar Lindbeck).',
     formula: 'P_{\\text{max}} < P_e \\Rightarrow Q_d > Q_s \\text{ (shortage)}',
     realWorldExample: 'The UK energy price cap limits what suppliers can charge households. When wholesale prices exceeded the cap in 2022, suppliers faced losses, some went bankrupt, and the government provided £60 billion in subsidies to prevent market collapse.'
+  },
+  // ==================== PHASE 5: ADVANCED EVALUATION TOPICS (C-D) ====================
+  {
+    id: 'central-planned-economy',
+    title: 'Central Planned Economy',
+    category: 'policy',
+    definition: 'An economic system where the government or central authority makes all decisions regarding production, distribution, and pricing of goods and services. Resources are allocated through administrative directives rather than market mechanisms.',
+    keyPoints: [
+      'State ownership of the means of production',
+      'Central planning agency sets output targets and prices',
+      'No profit motive—production aims to meet social objectives',
+      'Eliminates market failures but creates government failures'
+    ],
+    analysis: 'Central authority assesses national needs → Sets production quotas for each industry → Allocates resources to meet targets → Prices set administratively (often below cost for essentials) → No price signals → Information problem: planners cannot know local conditions → Misallocation of resources → Chronic shortages of consumer goods, surpluses of unwanted goods.',
+    evaluation: 'Central planning avoids inequality and unemployment but suffers from the "calculation problem" (Hayek/Mises): without market prices, planners cannot efficiently allocate resources. Lack of incentives leads to low productivity and innovation. The collapse of the USSR demonstrated the long-run unsustainability of pure central planning.',
+    realWorldExample: 'The Soviet Gosplan set 5-year production targets for 24 million products. Despite detailed planning, chronic shortages (bread queues) coexisted with surpluses (unsold tractors). The system collapsed in 1991.'
+  },
+  {
+    id: 'ceteris-paribus',
+    title: 'Ceteris Paribus',
+    category: 'theory',
+    definition: 'A Latin phrase meaning "all other things being equal" or "holding other factors constant." This assumption allows economists to isolate the effect of one variable on another by assuming all other relevant factors remain unchanged.',
+    keyPoints: [
+      'Essential for economic model-building and causal analysis',
+      'Allows isolation of one relationship (e.g., price and quantity demanded)',
+      'A simplifying assumption—rarely holds in the real world',
+      'When ceteris paribus fails, multiple variables shift simultaneously'
+    ],
+    analysis: 'Demand curve shows: ↑ Price → ↓ Quantity demanded, ceteris paribus → This isolates the price effect → If income also rises simultaneously, both curves shift → Net effect on quantity is ambiguous → Without ceteris paribus, we cannot identify cause and effect.',
+    evaluation: 'Ceteris paribus is methodologically necessary but empirically unrealistic. In dynamic economies, multiple variables change simultaneously. Econometric techniques (regression analysis) attempt to control for confounding variables, but perfect isolation is impossible. Models should be stress-tested by relaxing this assumption.',
+    formula: '\\frac{\\partial Q_d}{\\partial P} < 0 \\text{, ceteris paribus}',
+    realWorldExample: 'The law of demand assumes ceteris paribus. But during the 2020 pandemic, both price and income changed simultaneously—making it difficult to isolate why consumption patterns shifted.'
+  },
+  {
+    id: 'chicago-school',
+    title: 'Chicago School of Economics',
+    category: 'theory',
+    definition: 'A neoclassical school of economic thought emphasizing free markets, monetarism, and minimal government intervention. Associated with Milton Friedman, it stresses rational expectations, the inefficiency of fiscal policy, and the primacy of monetary policy for macroeconomic stability.',
+    keyPoints: [
+      'Markets are self-correcting; government intervention causes distortions',
+      'Monetarism: inflation is always a monetary phenomenon (MV=PY)',
+      'Rational expectations: agents anticipate policy, rendering it ineffective',
+      'Friedman\'s permanent income hypothesis challenges Keynesian consumption theory'
+    ],
+    analysis: 'Government announces fiscal expansion → Rational agents expect future tax increases to pay for it → ↑ Saving today (Ricardian Equivalence) → ↓ Consumption → Fiscal multiplier ≈ 0 → Policy is ineffective → Only unanticipated monetary shocks affect real variables in the short run.',
+    evaluation: 'The Chicago School provides powerful critiques of Keynesian demand management but underestimates market failures and income inequality. The 2008 financial crisis exposed the dangers of excessive deregulation (a Chicago prescription) and rehabilitated Keynesian fiscal policy as a stabilization tool.',
+    realWorldExample: 'Friedman advised Pinochet\'s Chile (1970s-80s), implementing free-market "shock therapy." GDP grew but inequality soared. The experiment remains controversial—economic growth vs. social costs.'
+  },
+  {
+    id: 'choice-architecture',
+    title: 'Choice Architecture & Nudge Theory',
+    category: 'policy',
+    definition: 'The design of environments in which people make choices, structured to influence decisions in predictable ways without restricting options. "Nudges" are interventions that steer behavior while preserving freedom of choice (Thaler & Sunstein).',
+    keyPoints: [
+      'Based on behavioral economics: agents have bounded rationality',
+      'Default options powerfully influence outcomes (status quo bias)',
+      'Framing effects: how choices are presented matters',
+      'Libertarian paternalism: guide behavior without coercion'
+    ],
+    analysis: 'Old policy: organ donation requires opt-in → Low registration rates (inertia/status quo bias) → Switch to opt-out (presumed consent) → Registration rates jump to >90% → Same choice, different architecture → Behavioral intervention "nudges" socially optimal outcome without mandates.',
+    evaluation: 'Nudges are cost-effective but limited. They work for passive decisions (pensions, organ donation) but not for strong preferences (smoking, diet). Critics argue nudges are paternalistic ("who decides what\'s optimal?") and may erode individual autonomy. For major externalities (carbon emissions), traditional regulation may be necessary.',
+    realWorldExample: 'The UK\'s auto-enrollment pension scheme (2012) increased workplace pension participation from 55% to 88% by making saving the default option.'
+  },
+  {
+    id: 'classical-unemployment',
+    title: 'Classical Unemployment (Real Wage Unemployment)',
+    category: 'macro',
+    definition: 'Unemployment caused by real wages being held above the market-clearing level, creating a surplus of labor. This occurs when wages are inflexible downward due to minimum wages, trade union power, or efficiency wage considerations.',
+    keyPoints: [
+      'Real wage (W/P) exceeds equilibrium level',
+      'Labor supply exceeds labor demand at the prevailing wage',
+      'Caused by: minimum wages, union bargaining, efficiency wages',
+      'Solution: reduce real wages or improve labor market flexibility'
+    ],
+    analysis: 'Equilibrium wage = £10/hour at full employment → Minimum wage set at £12/hour → At £12: Labor supply = 10 million, Labor demand = 8 million → Unemployment = 2 million → Workers priced out of the market → Classical economists prescribe wage cuts or deregulation to clear the market.',
+    evaluation: 'Classical unemployment ignores demand-side factors emphasized by Keynesians. During recessions, cutting wages reduces aggregate demand further (paradox of thrift in labor markets). Empirically, moderate minimum wage increases often have minimal disemployment effects (Card & Krueger studies), challenging classical predictions.',
+    formula: '\\frac{W}{P} > \\left(\\frac{W}{P}\\right)^* \\Rightarrow L^s > L^d \\text{ (unemployment)}',
+    realWorldExample: 'Spain\'s labor market rigidities (high severance pay, union power) contributed to 25%+ unemployment during the Eurozone crisis, while more flexible UK labor markets recovered faster.'
+  },
+  {
+    id: 'cobweb-theory',
+    title: 'Cobweb Theory (Price Fluctuations)',
+    category: 'theory',
+    definition: 'A dynamic model explaining price volatility in markets with production lags (especially agriculture). Producers base planting decisions on current prices but harvest in the future, leading to systematic over/under-production cycles.',
+    keyPoints: [
+      'Production lag between decision and output (e.g., crop planting)',
+      'Adaptive expectations: producers use last period\'s price to plan',
+      'Creates cyclical price instability: boom-bust patterns',
+      'Three outcomes: convergent, divergent, or perpetual oscillations'
+    ],
+    analysis: 'Year 1: High price → Farmers plant large crop → Year 2: Bumper harvest → Supply floods market → Price crashes → Year 2 decision: Low price → Farmers reduce planting → Year 3: Shortage → Price spikes → Cycle repeats. If supply elasticity > demand elasticity, oscillations diverge explosively.',
+    evaluation: 'Cobweb dynamics depend on relative elasticities. Inelastic demand + elastic supply = explosive oscillations (agriculture). The model assumes naive expectations—if farmers are rational and forward-looking, they would anticipate the cycle and dampen it. Futures markets and government buffer stocks can stabilize prices.',
+    formula: 'Q_t^s = f(P_{t-1}) \\text{ (supply lags price by one period)}',
+    realWorldExample: 'The "hog cycle" in pig farming: high pork prices → more breeding → 18 months later, oversupply → price crash → farmers exit → shortage → prices rise again. Cycles of 3-4 years observed historically.'
+  },
+  {
+    id: 'cognitive-bias',
+    title: 'Cognitive Bias in Economics',
+    category: 'theory',
+    definition: 'Systematic patterns of deviation from rationality in human judgment and decision-making. Cognitive biases challenge the neoclassical assumption of homo economicus and form the foundation of behavioral economics.',
+    keyPoints: [
+      'Loss aversion: losses hurt more than equivalent gains please',
+      'Anchoring: over-reliance on first piece of information',
+      'Confirmation bias: seeking evidence that confirms prior beliefs',
+      'Present bias (hyperbolic discounting): overweighting immediate rewards'
+    ],
+    analysis: 'Homo economicus would maximize expected utility → But real agents exhibit: Status quo bias (inertia) → Mental accounting (treating money differently based on source) → Herding (following the crowd) → Overconfidence (systematic overestimation of own abilities) → These biases cause market inefficiencies and asset bubbles.',
+    evaluation: 'Behavioral insights improve policy design (nudges) but don\'t replace rational choice theory for most market analysis. Biases may cancel out at the aggregate level, or arbitrage may eliminate mispricings. The challenge is determining when biases are systematic enough to warrant intervention.',
+    realWorldExample: 'The dot-com bubble (1999-2000) exhibited herding and overconfidence—investors piled into loss-making tech stocks believing "this time is different." When the bubble burst, $5 trillion in market value evaporated.'
+  },
+  {
+    id: 'command-economy',
+    title: 'Command Economy',
+    category: 'policy',
+    definition: 'An economic system in which a central authority (typically the state) determines production, investment, prices, and distribution of goods. Synonymous with a centrally planned economy, it represents the opposite extreme from a pure market economy.',
+    keyPoints: [
+      'Government owns and controls factors of production',
+      'Production decisions based on state priorities, not consumer demand',
+      'Prices are set administratively, not by supply and demand',
+      'Aims: full employment, equality, strategic objectives (military, infrastructure)'
+    ],
+    analysis: 'State sets priority: heavy industry (steel, military) over consumer goods → Resources directed to factories, not shops → Full employment achieved (no involuntary unemployment) → But consumer goods scarce → Black markets emerge → Without profit signals, no incentive to innovate or improve quality → Long-run stagnation.',
+    evaluation: 'Command economies can mobilize resources rapidly (USSR\'s WWII industrialization) but fail at complex resource allocation. The "calculation debate" (Mises vs. Lange) showed that without market prices, rational economic calculation is impossible. Mixed economies attempt to combine planning benefits with market efficiency.',
+    realWorldExample: 'North Korea\'s command economy allocates resources to military and elite consumption while the general population faces chronic food shortages. GDP per capita is ~$1,800 vs. South Korea\'s ~$35,000.'
+  },
+  {
+    id: 'compensated-demand-curve',
+    title: 'Compensated (Hicksian) Demand Curve',
+    category: 'theory',
+    definition: 'A demand curve showing how quantity demanded changes with price when the consumer is compensated to remain on the same indifference curve (constant utility). It isolates the pure substitution effect, removing the income effect.',
+    keyPoints: [
+      'Holds utility constant, not income (unlike Marshallian demand)',
+      'Shows only the substitution effect of a price change',
+      'Always downward-sloping (substitution effect is always negative)',
+      'Used to calculate Compensating Variation (CV) and Equivalent Variation (EV)'
+    ],
+    analysis: 'Price of X rises → Marshallian demand: quantity falls due to substitution + income effects → Hicksian demand: compensate consumer to maintain original utility → Now only substitution effect remains → Hicksian demand is steeper (smaller response) than Marshallian for normal goods.',
+    evaluation: 'Compensated demand curves are theoretically rigorous but unobservable—we cannot actually compensate consumers. They are essential for welfare economics (deadweight loss calculation) because they measure welfare changes at constant utility, avoiding the "path dependence" problem of consumer surplus.',
+    formula: 'h(p, \\bar{u}) = \\arg\\min_x \\{p \\cdot x : U(x) \\geq \\bar{u}\\}',
+    realWorldExample: 'When calculating the welfare cost of a sugar tax, economists use compensated demand to measure the "pure" distortion, abstracting from the income reduction that also affects consumption.'
+  },
+  {
+    id: 'compensating-equivalent-variation',
+    title: 'Compensating & Equivalent Variation',
+    category: 'theory',
+    definition: 'Two measures of welfare change from price changes. Compensating Variation (CV): the income adjustment needed AFTER a price change to restore original utility. Equivalent Variation (EV): the income adjustment BEFORE a price change that would yield the new utility level.',
+    keyPoints: [
+      'CV: How much compensation restores original welfare (ex-post)',
+      'EV: How much income change equals the welfare effect (ex-ante)',
+      'For price increases: CV > Consumer Surplus change > EV',
+      'CV and EV bracket the consumer surplus measure'
+    ],
+    analysis: 'Price of X rises → Consumer worse off → CV asks: "How much extra income would restore original utility?" (move back to original indifference curve) → EV asks: "How much income reduction would have made them equally worse off without the price change?" (move to new indifference curve via income alone).',
+    evaluation: 'CV and EV are theoretically superior to consumer surplus (which assumes constant marginal utility of income) but require knowledge of the utility function. For small price changes, all three measures approximately equal. For large changes or non-marginal projects (e.g., building a dam), CV/EV are essential for accurate cost-benefit analysis.',
+    formula: 'CV = e(p_1, u_0) - e(p_0, u_0) \\quad EV = e(p_1, u_1) - e(p_0, u_1)',
+    realWorldExample: 'To evaluate whether to build a new highway, transport economists use EV to measure how much residents would pay to avoid noise pollution—their willingness to pay reflects the welfare loss.'
+  },
+  {
+    id: 'compensating-wage-differential',
+    title: 'Compensating Wage Differential',
+    category: 'theory',
+    definition: 'The additional wage paid to workers to compensate for undesirable, risky, or unpleasant working conditions. Workers require higher pay to accept jobs with negative non-pecuniary characteristics, equalizing net advantages across occupations.',
+    keyPoints: [
+      'Equalizes total utility (pecuniary + non-pecuniary) across jobs',
+      'Higher wages for: danger, unsociable hours, unpleasant conditions',
+      'Lower wages for: prestige, job satisfaction, good location',
+      'Adam Smith\'s "net advantages" theory of wage determination'
+    ],
+    analysis: 'Office job pays £40,000 (pleasant conditions) → Oil rig job requires workers → Same skill level but dangerous, remote, unsociable → Rig must pay £80,000 to attract workers → £40,000 differential compensates for non-pecuniary disutility → In equilibrium, workers are indifferent between the two.',
+    evaluation: 'Compensating differentials assume perfect labor market information and mobility. In practice, workers may be unaware of risks (asbestos exposure historically) or trapped in dangerous jobs due to lack of alternatives. Government safety regulation may be justified when information asymmetries exist.',
+    formula: 'W_{\\text{dirty}} - W_{\\text{clean}} = \\text{Disutility of conditions}',
+    realWorldExample: 'NHS nurses often accept lower pay than private sector equivalents due to job satisfaction and public service motivation. The non-pecuniary benefits offset the wage gap.'
+  },
+  {
+    id: 'compensation-principle-externalities',
+    title: 'Compensation Principle for Externalities',
+    category: 'market-failure',
+    definition: 'The Kaldor-Hicks criterion for evaluating policy changes: a policy is efficient if winners could hypothetically compensate losers and still be better off. Unlike Pareto efficiency, actual compensation need not occur.',
+    keyPoints: [
+      'Extends Pareto criterion to allow policies with losers',
+      'Winners\' gains exceed losers\' losses (potential Pareto improvement)',
+      'Compensation is hypothetical, not required',
+      'Used in cost-benefit analysis of public projects'
+    ],
+    analysis: 'New airport: Travelers gain £100m welfare → Local residents lose £30m (noise) → Net social gain = £70m → Kaldor-Hicks efficient: travelers COULD compensate residents and still gain £70m → But if compensation is not paid, residents are worse off → Efficiency without equity.',
+    evaluation: 'The compensation principle ignores distribution—a project benefiting billionaires at the expense of the poor could pass the test. Without actual compensation, "efficient" projects may be politically illegitimate. Some economists argue actual compensation should be required for social acceptability.',
+    formula: '\\sum \\text{Gains} > \\sum \\text{Losses} \\Rightarrow \\text{Kaldor-Hicks efficient}',
+    realWorldExample: 'HS2 (UK high-speed rail) passes Kaldor-Hicks tests (time savings exceed costs) but faces local opposition. Actual compensation (soundproofing, property buyouts) is offered to make the project politically viable.'
+  },
+  {
+    id: 'competition-commission-uk',
+    title: 'Competition Commission UK (Now CMA)',
+    category: 'policy',
+    definition: 'The Competition and Markets Authority (CMA), formed in 2014 by merging the Competition Commission and OFT, is the UK\'s primary competition regulator. It investigates mergers, market dominance, and anti-competitive practices.',
+    keyPoints: [
+      'Investigates mergers that may reduce competition',
+      'Can block or modify mergers that harm consumers',
+      'Examines market dominance and abuse of market power',
+      'Enforces consumer protection and fair trading laws'
+    ],
+    analysis: 'Proposed merger: Two supermarkets combine → CMA assesses: Will prices rise? Will choice decrease? Will barriers to entry increase? → If "Substantial Lessening of Competition" (SLC) found → CMA may: block merger, require asset sales (divestiture), or impose behavioral remedies.',
+    evaluation: 'The CMA faces challenges: globalization (tech giants operate across borders), dynamic markets (competition evolves rapidly), and resource constraints. Critics argue it\'s too slow and reactive. Others say aggressive intervention may deter beneficial mergers and investment.',
+    realWorldExample: 'The CMA blocked Microsoft\'s acquisition of Activision initially (2023), citing concerns about cloud gaming competition, before approving a restructured deal. It blocked Sainsbury\'s-Asda merger (2019) entirely.'
+  },
+  {
+    id: 'competition-policy',
+    title: 'Competition Policy',
+    category: 'policy',
+    definition: 'Government policies designed to promote competition, prevent monopoly abuse, and protect consumer welfare. Includes merger control, anti-cartel enforcement, and regulation of dominant firms\' behavior.',
+    keyPoints: [
+      'Merger control: blocking or modifying anti-competitive mergers',
+      'Anti-trust: prohibiting cartels, price-fixing, market sharing',
+      'Abuse of dominance: preventing predatory pricing, exclusive dealing',
+      'Market investigations: examining systematically uncompetitive markets'
+    ],
+    analysis: 'Without competition policy → Firms collude or merge → ↑ Market concentration → ↑ Prices, ↓ Output → Consumer surplus transfers to producer surplus → Deadweight loss created → With policy: Cartels fined (up to 10% of global turnover in EU) → Mergers blocked → Competition maintained → P closer to MC, allocative efficiency preserved.',
+    evaluation: 'Competition policy is essential but imperfect. The "consumer welfare standard" is criticized for ignoring: worker exploitation, supplier power, and long-term innovation effects. Some argue for a broader "competition for competition\'s sake" standard. Others contend that large firms achieve efficiencies that benefit consumers (Schumpeterian view).',
+    formula: 'HHI = \\sum_{i=1}^{n} s_i^2 \\text{ (merger thresholds often based on HHI)}',
+    realWorldExample: 'The EU fined Google €2.4 billion (2017) for abusing search dominance by favoring its own shopping service. This was the largest antitrust fine in EU history at the time.'
+  },
+  {
+    id: 'competitive-devaluation',
+    title: 'Competitive Devaluation (Currency Wars)',
+    category: 'trade',
+    definition: 'A deliberate policy of reducing a currency\'s exchange rate to gain export competitiveness at trading partners\' expense. When multiple countries pursue this simultaneously, it becomes a "currency war" with beggar-thy-neighbor effects.',
+    keyPoints: [
+      'Aim: boost exports by making them cheaper in foreign currency',
+      'Methods: lowering interest rates, QE, direct forex intervention',
+      'Zero-sum globally: one country\'s gain is another\'s loss',
+      'Risk: retaliation, trade wars, race to the bottom'
+    ],
+    analysis: 'Country A devalues its currency → Exports cheaper, imports dearer → Current account improves (if Marshall-Lerner holds) → But Country B\'s exports now less competitive → B retaliates with its own devaluation → Net effect: both currencies lower relative to rest of world, but no competitive gain between A and B.',
+    evaluation: 'Competitive devaluation was a major cause of 1930s protectionism. Post-war institutions (IMF, G20) discourage it. However, unconventional monetary policy (QE) has exchange rate effects that blur the line between legitimate stimulus and currency manipulation.',
+    realWorldExample: 'The US accused China of currency manipulation for years, claiming the yuan was artificially undervalued to boost Chinese exports. In 2019, the US formally labeled China a "currency manipulator" during trade tensions.'
+  },
+  {
+    id: 'competitive-markets',
+    title: 'Competitive Markets',
+    category: 'theory',
+    definition: 'Markets characterized by numerous buyers and sellers, homogeneous products, free entry and exit, and perfect information. In perfectly competitive markets, firms are price-takers and earn only normal profits in the long run.',
+    keyPoints: [
+      'Price-taking: no single firm can influence market price',
+      'Homogeneous products: perfect substitutes',
+      'Free entry/exit: no barriers, no sunk costs',
+      'Perfect information: all agents know prices and quality'
+    ],
+    analysis: 'Many firms produce identical wheat → Market price = £200/ton → If one firm charges £201, it sells nothing (consumers switch) → Each firm takes price as given → Profit-maximizes at MC = P → If P > ATC, supernormal profits attract entry → Supply ↑ → Price falls until P = ATC → Long-run equilibrium: normal profits only.',
+    evaluation: 'Perfect competition is a theoretical benchmark, not a real-world description. Most markets have some product differentiation, information asymmetries, or barriers to entry. However, "contestable markets" (low entry barriers) may behave competitively even with few firms. The model\'s value is normative—showing what efficiency looks like.',
+    formula: 'P = MC = \\min(ATC) \\text{ (long-run equilibrium)}',
+    realWorldExample: 'Agricultural commodity markets (wheat, corn) approximate perfect competition: many small farmers, standardized grades, global price information. Individual farmers are price-takers.'
+  },
+  {
+    id: 'competitive-tendering',
+    title: 'Competitive Tendering',
+    category: 'policy',
+    definition: 'A procurement process where government contracts are awarded to the firm offering the best value (lowest cost meeting specifications) through competitive bidding. Used to introduce market discipline into public service provision.',
+    keyPoints: [
+      'Aims to reduce costs and improve efficiency in public services',
+      'Contractors compete on price and quality',
+      'Requires clear specification of service standards',
+      'Transfer of risk from government to private provider'
+    ],
+    analysis: 'Previously: In-house refuse collection, no competition → Costs = £10m/year → Competitive tender introduced → Private firms bid → Winning bid = £7m/year → Cost savings of £3m → But quality must be monitored → If specifications are poor, "race to the bottom" on quality → Need robust contract management.',
+    evaluation: 'Competitive tendering works well for standardized services (refuse, cleaning) but is problematic for complex services requiring flexibility (social care). Short-term cost savings may come at the expense of worker conditions (lower wages, worse job security). Transaction costs of tendering and monitoring can erode savings.',
+    realWorldExample: 'NHS contracted cleaning services to private firms via competitive tendering. Cost savings occurred, but some hospitals reported reduced cleanliness. The COVID-19 pandemic highlighted vulnerabilities in outsourced supply chains.'
+  },
+  {
+    id: 'complementary-goods',
+    title: 'Complementary Goods',
+    category: 'theory',
+    definition: 'Goods that are consumed together, where an increase in the consumption of one leads to an increase in the consumption of the other. The cross-price elasticity of demand (XED) for complements is negative.',
+    keyPoints: [
+      'XED < 0: price of one rises → demand for the other falls',
+      'Strong complements: cars and petrol, printers and ink',
+      'Weak complements: bread and butter',
+      'Complements create interdependent demand curves'
+    ],
+    analysis: 'Price of printers falls (technology improvement) → Demand for printers rises → Derived demand for ink cartridges rises → Ink cartridge demand curve shifts right → Printer companies may sell printers at cost and profit from high-margin ink (razor-razorblade model) → Exploits complementarity for profit maximization.',
+    evaluation: 'Complementarity creates market power opportunities. Firms may "lock in" consumers with cheap initial purchases then exploit them with expensive complements (aftermarket monopoly). Competition policy may need to address bundling and tying arrangements that exploit complementarity.',
+    formula: 'XED_{xy} = \\frac{\\%\\Delta Q_x}{\\%\\Delta P_y} < 0 \\text{ (complements)}',
+    realWorldExample: 'Apple\'s ecosystem relies on complementarity: iPhone, AirPods, Apple Watch, and iCloud are designed to work together. Switching costs keep consumers locked in.'
+  },
+  {
+    id: 'composite-demand',
+    title: 'Composite Demand',
+    category: 'theory',
+    definition: 'Demand for a good that has multiple uses. The total demand is the sum of demands from different uses. A change in demand from one use affects the price and availability for other uses.',
+    keyPoints: [
+      'Good has several different applications',
+      'Total demand = sum of all individual use demands',
+      'Price changes affect all uses simultaneously',
+      'Common in resource markets: land, oil, agricultural products'
+    ],
+    analysis: 'Corn has three uses: food, animal feed, biofuels → Government mandates ↑ biofuel use → Demand for corn in biofuels ↑ → Corn price rises → Less corn available at higher price for food and feed → Food prices rise → Animal feed costs ↑ → Meat prices rise → Policy for one use cascades to all others.',
+    evaluation: 'Composite demand creates policy trade-offs. Promoting one use (biofuels for environmental reasons) may harm other uses (food security). Markets allocate based on willingness to pay—the highest-value use gets the resource—but this may conflict with social priorities (food for the poor vs. fuel for cars).',
+    realWorldExample: 'The US corn ethanol mandate diverted corn from food to fuel, contributing to the 2007-08 global food price crisis. Tortilla prices doubled in Mexico, causing "tortilla riots."'
+  },
+  {
+    id: 'concentration-ratios',
+    title: 'Concentration Ratios & Market Structure',
+    category: 'theory',
+    definition: 'Measures of market concentration indicating the degree of dominance by the largest firms. The n-firm concentration ratio (CR_n) is the combined market share of the n largest firms. Higher ratios indicate less competition.',
+    keyPoints: [
+      'CR4, CR5: combined share of top 4 or 5 firms',
+      'CR > 60%: oligopolistic market',
+      'Herfindahl-Hirschman Index (HHI) provides more nuance',
+      'Used by competition authorities to assess market power'
+    ],
+    analysis: 'Market with 100 firms, each with 1% share → CR4 = 4% (fragmented, competitive) → After consolidation: 4 firms each with 20% → CR4 = 80% (concentrated, oligopolistic) → Fewer firms → ↑ Likelihood of tacit collusion → ↓ Price competition → ↑ Prices, ↓ Consumer welfare.',
+    evaluation: 'Concentration ratios are crude—they ignore: size distribution of top firms, import competition, potential entry, and market definition. Two markets with CR4 = 80% may have very different competitive dynamics (one with 20-20-20-20 vs. 60-10-5-5). HHI addresses some issues but not all.',
+    formula: 'CR_n = \\sum_{i=1}^{n} s_i \\quad HHI = \\sum_{i=1}^{N} s_i^2 \\times 10000',
+    realWorldExample: 'UK groceries: Tesco, Sainsbury\'s, Asda, Morrisons → CR4 ≈ 65%. This triggers CMA scrutiny of any merger among these players.'
+  },
+  {
+    id: 'constant-prices',
+    title: 'Constant Prices (Real Terms)',
+    category: 'macro',
+    definition: 'Values adjusted for inflation by using prices from a fixed base year. Constant prices remove the effect of inflation, allowing comparison of real (volume) changes over time. Contrast with current/nominal prices.',
+    keyPoints: [
+      'Removes inflation distortion from time-series data',
+      'GDP at constant prices = Real GDP',
+      'Enables comparison of "apples to apples" across years',
+      'Base year prices used as the standard'
+    ],
+    analysis: 'Nominal GDP 2020: £2 trillion, 2023: £2.4 trillion → 20% nominal growth → But inflation = 15% over period → Real GDP growth = 20% - 15% ≈ 5% → Constant prices reveal true output expansion. If nominal growth < inflation, real GDP is falling despite higher nominal figures.',
+    evaluation: 'Constant price calculations require a price index, which involves methodological choices (how to weight items, handle quality changes, new products). CPI and GDP deflator may give different answers. "Hedonic adjustment" for quality improvements is controversial—critics say it overstates real growth.',
+    formula: '\\text{Real Value} = \\frac{\\text{Nominal Value}}{\\text{Price Index}} \\times 100',
+    realWorldExample: 'UK Real GDP fell 9.3% in 2020 (COVID) then grew 7.5% in 2021. Nominal figures would have been distorted by the inflation surge in 2021, masking the recovery scale.'
+  },
+  {
+    id: 'constant-returns-to-scale',
+    title: 'Constant Returns to Scale',
+    category: 'theory',
+    definition: 'A production characteristic where a proportional increase in all inputs leads to the same proportional increase in output. Doubling all inputs exactly doubles output. LRAC is horizontal in this range.',
+    keyPoints: [
+      'Homogeneous of degree one: f(λK, λL) = λf(K, L)',
+      'LRAC is constant (neither economies nor diseconomies of scale)',
+      'Often assumed in theoretical models (Cobb-Douglas with α + β = 1)',
+      'Firms can replicate production at any scale'
+    ],
+    analysis: 'Factory produces 100 units with 10 workers and 5 machines → With constant returns: 20 workers and 10 machines → 200 units → No economies or diseconomies → LRAC remains flat → Optimal firm size is indeterminate → Market structure depends on demand, not cost advantages.',
+    evaluation: 'Pure constant returns are rare. Most production exhibits increasing returns at low output (specialization gains) and decreasing returns at high output (coordination problems). Constant returns may apply over an intermediate range—the "flat" portion of the U-shaped LRAC curve.',
+    formula: 'f(\\lambda K, \\lambda L) = \\lambda f(K, L) \\text{ for all } \\lambda > 0',
+    realWorldExample: 'Franchising models (McDonald\'s, Subway) assume approximate constant returns—each outlet can be replicated at similar cost per unit. This allows decentralized expansion without diseconomies.'
+  },
+  {
+    id: 'consumer-durables',
+    title: 'Consumer Durables',
+    category: 'macro',
+    definition: 'Goods purchased by households that provide utility over an extended period (typically more than three years), such as cars, appliances, and furniture. Durable spending is highly cyclical and interest-rate sensitive.',
+    keyPoints: [
+      'Long-lived goods: cars, refrigerators, furniture',
+      'Purchase is discretionary and deferrable',
+      'Highly sensitive to interest rates and confidence',
+      'Major component of consumer spending volatility'
+    ],
+    analysis: 'Recession hits → Income uncertainty ↑ → Consumers defer durable purchases (keep old car another year) → ↓ Durable demand → ↑ Inventory accumulation → Manufacturers cut production → Multiplier effects → Deeper recession. Durables amplify business cycles.',
+    evaluation: 'Durables are a leading indicator of the business cycle. Their sensitivity to credit conditions means monetary policy (interest rates) strongly affects this sector. However, pent-up demand creates strong recovery once confidence returns—durables lead both recessions and recoveries.',
+    realWorldExample: 'UK car sales fell 29% in 2020 (COVID) as consumers deferred purchases. In 2021, pent-up demand met supply shortages (semiconductor chips), causing price spikes and long waiting lists.'
+  },
+  {
+    id: 'consumer-sovereignty',
+    title: 'Consumer Sovereignty',
+    category: 'theory',
+    definition: 'The principle that consumer preferences determine what is produced in a market economy. Firms respond to consumer demand to maximize profits, effectively making consumers the "sovereigns" of the economic system.',
+    keyPoints: [
+      'Consumers "vote" with their spending',
+      'Firms are "servants" responding to demand',
+      'Implies optimal allocation if preferences are well-informed',
+      'Challenged by: advertising, behavioral biases, information failures'
+    ],
+    analysis: 'Consumers want organic food → Demand for organic rises → Price rises → Profit opportunity signals farmers → Farmers switch to organic → Supply rises → Organic becomes mainstream → Consumer preferences have reshaped production. Market mechanism translates preferences into outcomes.',
+    evaluation: 'Consumer sovereignty is limited by: producer influence (advertising creates preferences), information asymmetry (consumers can\'t evaluate complex products), and behavioral biases (consumers make "mistakes"). Merit/demerit goods suggest some preferences should be overridden (paternalism). True sovereignty requires informed, rational consumers.',
+    realWorldExample: 'The rise of plant-based meat (Beyond Meat, Impossible Foods) reflects changing consumer preferences for sustainable protein. Demand shifted production away from traditional meat.'
+  },
+  {
+    id: 'consumer-producer-surplus-advanced',
+    title: 'Consumer & Producer Surplus (Advanced)',
+    category: 'theory',
+    definition: 'Consumer surplus is the difference between what consumers are willing to pay and what they actually pay. Producer surplus is the difference between the price received and the minimum price sellers would accept. Together, they measure total welfare.',
+    keyPoints: [
+      'Consumer surplus: area under demand curve, above price',
+      'Producer surplus: area above supply curve, below price',
+      'Total welfare = CS + PS (maximized at competitive equilibrium)',
+      'Deadweight loss: welfare lost when market is distorted'
+    ],
+    analysis: 'Competitive equilibrium: P = £10, Q = 100 → Consumer surplus = area below demand curve, above £10 → Producer surplus = area above supply curve, below £10 → Total surplus maximized → Now impose a £3 tax → Price rises to £12 → Quantity falls to 80 → CS and PS both shrink → Tax revenue = £3 × 80 = £240 → But welfare loss > tax revenue → Deadweight loss created.',
+    evaluation: 'Surplus measures assume: constant marginal utility of income (dubious), no externalities, and well-defined demand curves. For large price changes, compensating/equivalent variation are superior measures. Despite limitations, CS/PS provide intuitive welfare analysis for policy evaluation.',
+    formula: 'CS = \\int_0^Q [D(q) - P] \\, dq \\quad PS = \\int_0^Q [P - S(q)] \\, dq',
+    realWorldExample: 'Estimating the welfare cost of tariffs: A 25% steel tariff raises prices, reducing consumer surplus. The loss exceeds the gain to domestic producers and tariff revenue—the difference is deadweight loss.'
+  },
+  {
+    id: 'consumption-externality',
+    title: 'Consumption Externality',
+    category: 'market-failure',
+    definition: 'A spillover effect from consumption that affects third parties not involved in the transaction. Positive consumption externalities (e.g., vaccinations) are underconsumed; negative consumption externalities (e.g., alcohol) are overconsumed.',
+    keyPoints: [
+      'Divergence between private and social benefit/cost of consumption',
+      'Positive externality: MSB > MPB (underconsumption)',
+      'Negative externality: MSC > MPC (overconsumption)',
+      'Market failure: price mechanism ignores third-party effects'
+    ],
+    analysis: 'Vaccination: Private benefit = immunity for individual → Social benefit = herd immunity for community → MSB > MPB → At market price, too few vaccinate → Free-rider problem (benefit from others\' vaccination without cost) → Subsidy or mandate needed to reach social optimum.',
+    evaluation: 'Identifying and measuring consumption externalities is difficult. The "social optimum" depends on value judgments about whose benefits/costs count. Pigouvian subsidies/taxes require accurate externality measurement, which is often contentious (e.g., value of reduced COVID transmission).',
+    formula: 'MSB = MPB + MEB \\text{ (positive externality)} \\quad Q^* > Q_m',
+    realWorldExample: 'The UK provides free flu vaccinations to at-risk groups, recognizing that private vaccination decisions undervalue the positive externality of reduced transmission to vulnerable populations.'
+  },
+  {
+    id: 'contagion-economics',
+    title: 'Contagion (Financial & Economic)',
+    category: 'macro',
+    definition: 'The spread of economic or financial crises from one country or sector to others through trade, financial, or psychological channels. Contagion can cause crises to cascade globally, even to fundamentally sound economies.',
+    keyPoints: [
+      'Trade channel: recession in one country reduces its imports from others',
+      'Financial channel: bank exposure to failing assets spreads losses',
+      'Confidence channel: fear spreads, causing capital flight and panic',
+      'Can be "pure" (fundamentally unrelated) or "fundamental" (shared vulnerabilities)'
+    ],
+    analysis: 'Thai baht crisis (1997) → Investors reassess "emerging market risk" → Sell Korean, Indonesian, Malaysian assets → Capital flight from all Asian economies → Currency collapses cascade → Even fundamentally sound countries hit (contagion) → Self-fulfilling panic creates real economic damage.',
+    evaluation: 'Contagion challenges the efficient markets hypothesis—crisis spread may be irrational. However, it reveals hidden correlations (common lenders, similar vulnerabilities). IMF intervention aims to halt contagion by restoring confidence before panic becomes self-fulfilling.',
+    realWorldExample: 'The 2008 Lehman Brothers collapse triggered global contagion: US mortgage losses → European bank exposure → Credit freeze worldwide → Global trade collapse → Even commodity exporters (Australia, Brazil) suffered despite no direct exposure.'
+  },
+  {
+    id: 'contingent-liabilities',
+    title: 'Contingent Liabilities',
+    category: 'macro',
+    definition: 'Potential financial obligations that may arise depending on the outcome of future uncertain events. Government contingent liabilities include loan guarantees, deposit insurance, and implicit commitments to bail out systemically important institutions.',
+    keyPoints: [
+      'Off-balance sheet: not recorded as current liabilities',
+      'Become actual liabilities if certain conditions occur',
+      'Government examples: bank bailouts, pension deficits, nuclear cleanup',
+      'Can suddenly materialize, causing fiscal crisis'
+    ],
+    analysis: 'Government provides implicit guarantee to banks → Banks take more risk (moral hazard) → Crisis occurs → Government must honor implicit guarantee → Contingent liability becomes actual debt → Example: UK bank bailouts 2008: £500 billion in guarantees, £137 billion in actual support → National debt surged.',
+    evaluation: 'Contingent liabilities make fiscal positions appear healthier than they are. Stress testing (what if house prices fall 30%?) is essential for fiscal sustainability analysis. Some contingent liabilities are essentially certain (aging population pension costs) but are excluded from official debt figures, distorting fiscal comparisons.',
+    realWorldExample: 'Ireland\'s government guaranteed all bank deposits and senior debt in 2008. When banks failed, this contingent liability of €440 billion crystallized, causing Ireland\'s debt-to-GDP ratio to soar from 25% to 120%.'
+  },
+  {
+    id: 'convergence-criteria-euro',
+    title: 'Convergence Criteria (Maastricht Criteria)',
+    category: 'trade',
+    definition: 'The five criteria EU member states must meet to adopt the Euro: inflation within 1.5% of the three best performers, budget deficit ≤3% of GDP, debt ≤60% of GDP, exchange rate stability for 2 years, and long-term interest rates within 2% of the three lowest.',
+    keyPoints: [
+      'Inflation: ≤1.5 percentage points above three lowest inflation rates',
+      'Deficit: ≤3% of GDP (fiscal discipline)',
+      'Debt: ≤60% of GDP or declining satisfactorily',
+      'ERM II membership: 2 years without severe tensions',
+      'Interest rates: ≤2 percentage points above three lowest rates'
+    ],
+    analysis: 'Criteria designed for: fiscal discipline (deficit/debt) → Price stability (inflation) → Financial integration (interest rates) → Exchange rate stability (ERM II) → Countries meeting criteria are "converged" and can join monetary union without asymmetric shocks.',
+    evaluation: 'The criteria were politically applied: Greece joined despite falsified data, Italy exceeded the debt ratio. Post-crisis, many Eurozone members consistently violate the 3% deficit and 60% debt rules. The Stability and Growth Pact enforcement is weak, undermining the original convergence logic.',
+    formula: '\\text{Deficit} \\leq 3\\% \\text{ of GDP} \\quad \\text{Debt} \\leq 60\\% \\text{ of GDP}',
+    realWorldExample: 'Greece joined the Euro in 2001, later revealed to have used Goldman Sachs derivatives to hide true debt levels. When the truth emerged in 2010, Greece triggered the Eurozone debt crisis.'
+  },
+  {
+    id: 'core-inflation',
+    title: 'Core Inflation',
+    category: 'macro',
+    definition: 'A measure of underlying inflation that excludes volatile components like food and energy prices. Core inflation reveals the persistent trend in prices, helping central banks distinguish temporary shocks from embedded inflation.',
+    keyPoints: [
+      'Excludes: food, energy (volatile commodities)',
+      'Reveals underlying price pressures',
+      'Central banks focus on core for policy decisions',
+      'Headline inflation can diverge significantly from core'
+    ],
+    analysis: 'Oil price shock → Headline CPI jumps 6% → But core CPI remains 2% → Shock is temporary (will reverse or stabilize) → Central bank should not tighten aggressively → If core rises (second-round effects: wage demands), then tightening is warranted → Core distinguishes signal from noise.',
+    evaluation: 'Core inflation is useful but imperfect: food and energy are real costs for households (especially the poor). Persistent commodity price rises can feed into core via wage-price spirals. Central banks must balance: responding to core (avoiding policy errors) vs. headline (maintaining credibility and inflation expectations).',
+    formula: '\\text{Core CPI} = \\text{Headline CPI} - \\text{Food \\& Energy}',
+    realWorldExample: 'In 2022, UK headline inflation reached 11% (energy shock) while core was ~5%. The Bank of England faced a dilemma: respond to headline (risking recession) or core (risking unanchored expectations).'
+  },
+  {
+    id: 'cost-principle',
+    title: 'Cost Principle (Historical Cost)',
+    category: 'theory',
+    definition: 'An accounting principle requiring assets to be recorded at their original purchase price rather than current market value. Conservative and verifiable, but may misrepresent economic value when prices change significantly.',
+    keyPoints: [
+      'Assets recorded at acquisition cost',
+      'Depreciation reduces book value over time',
+      'Ignores market value changes (appreciation or impairment)',
+      'Contrasts with fair value (mark-to-market) accounting'
+    ],
+    analysis: 'Firm buys land in 1990 for £1 million → Land now worth £10 million → Balance sheet shows £1 million (historical cost) → Book value significantly understates economic value → Firm appears weaker than it is → But value is verifiable and objective (no estimation required).',
+    evaluation: 'Historical cost is reliable but not relevant for decision-making. Fair value accounting is relevant but subjective (who determines market value for illiquid assets?). The 2008 crisis saw debate: did mark-to-market cause fire sales by forcing banks to recognize losses, or did historical cost hide losses?',
+    realWorldExample: 'During the 2008 crisis, banks argued that marking mortgage-backed securities to market (fair value) forced recognition of losses that were temporary, exacerbating the panic. FASB relaxed rules in 2009.'
+  },
+  {
+    id: 'costs-of-production',
+    title: 'Costs of Production',
+    category: 'theory',
+    definition: 'All expenses incurred by a firm in producing goods or services. Includes fixed costs (invariant with output), variable costs (change with output), and opportunity costs. Cost structure determines supply decisions and market structure.',
+    keyPoints: [
+      'Fixed costs (FC): rent, salaries, capital depreciation—do not vary with output',
+      'Variable costs (VC): raw materials, wages—vary with output',
+      'Total cost (TC) = FC + VC',
+      'Marginal cost (MC): additional cost of one more unit'
+    ],
+    analysis: 'Firm produces 100 units: FC = £10,000, VC = £5,000, TC = £15,000 → Average cost = £150/unit → If output rises to 120: FC = £10,000 (unchanged), VC = £6,200 → TC = £16,200 → AC = £135/unit → Spreading fixed costs: economies of scale → MC determines profit-maximizing output where MC = MR.',
+    evaluation: 'Cost analysis assumes well-defined production functions and input prices. In practice: joint costs (allocating shared costs between products), opportunity costs (accounting vs. economic profit), and long-run vs. short-run cost structures complicate analysis. Sunk costs should be ignored for forward-looking decisions.',
+    formula: 'TC = FC + VC \\quad AC = \\frac{TC}{Q} \\quad MC = \\frac{\\Delta TC}{\\Delta Q}',
+    realWorldExample: 'Airlines have high fixed costs (aircraft, crew training) and low marginal costs (fuel, food per passenger). This drives aggressive price competition to fill seats—any revenue above marginal cost contributes to covering fixed costs.'
+  },
+  {
+    id: 'credit-default-swap',
+    title: 'Credit Default Swap (CDS)',
+    category: 'macro',
+    definition: 'A financial derivative that functions like insurance against default. The buyer pays a premium to the seller, who compensates the buyer if a reference entity (borrower) defaults. CDS spreads indicate perceived credit risk.',
+    keyPoints: [
+      'Buyer pays periodic premium for default protection',
+      'Seller pays out if reference entity defaults',
+      'Can be used for hedging or speculation',
+      'CDS spreads = market-implied default probability'
+    ],
+    analysis: 'Bank holds Greek government bonds → Buys CDS protection → Pays 500 basis points annually → If Greece defaults, CDS seller compensates losses → Risk transferred from bank to CDS seller → But: Who is the seller? If AIG (as in 2008), seller may not be able to pay → Systemic risk.',
+    evaluation: 'CDS can improve risk management but also enable speculation and moral hazard. Banks holding protection may be less motivated to monitor borrowers. The concentration of CDS selling (AIG wrote $500 billion in CDS) created systemic risk that required government bailout. Post-2008 reforms require central clearing and collateral posting.',
+    formula: 'CDS \\text{ Spread} \\approx \\frac{\\text{Default Probability} \\times \\text{Loss Given Default}}{1 - \\text{Recovery Rate}}',
+    realWorldExample: 'AIG sold CDS protection on mortgage-backed securities. When subprime mortgages defaulted, AIG faced $180 billion in claims it couldn\'t pay, requiring a US government bailout to prevent global financial collapse.'
+  },
+  {
+    id: 'criticism-austrian-economics',
+    title: 'Criticism of Austrian Economics',
+    category: 'theory',
+    definition: 'Critiques of the Austrian school (Mises, Hayek) which emphasizes methodological individualism, skepticism of mathematical modeling, and opposition to central banking. Critics argue Austrian economics is unscientific and its policy prescriptions harmful.',
+    keyPoints: [
+      'Rejects empirical testing: praxeology is non-falsifiable',
+      'Ignores beneficial roles of government and central banks',
+      'Ideological: free-market conclusions built into assumptions',
+      'Policy prescriptions (no intervention) exacerbate crises'
+    ],
+    analysis: 'Austrian view: recessions are necessary corrections of malinvestments caused by artificially low interest rates → Central bank intervention prolongs adjustment → Criticism: "Liquidationist" approach in 1930s (Mellon: "liquidate, liquidate") deepened the Depression → Active policy (New Deal, WWII spending) ended it.',
+    evaluation: 'Austrian insights on spontaneous order and knowledge problems are valuable. However, rejecting empiricism limits scientific progress. Austrian explanations of business cycles (credit expansion) have some validity but oversimplify financial crises. The dismissal of all government action ignores market failures and coordination problems.',
+    realWorldExample: 'Austrian economists predicted the 2008 housing bubble (credit expansion) but their policy prescription (let banks fail, no stimulus) was rejected. Countries that followed Keynesian stimulus (US, UK) recovered faster than those pursuing austerity.'
+  },
+  {
+    id: 'criticism-free-market',
+    title: 'Criticism of Free Market Economics',
+    category: 'theory',
+    definition: 'Critiques of laissez-faire capitalism arguing that unregulated markets create inequality, exploit workers, damage the environment, and are prone to instability. Critics advocate for government intervention to address market failures.',
+    keyPoints: [
+      'Market failures: externalities, public goods, information asymmetry',
+      'Inequality: concentration of wealth without redistribution',
+      'Power imbalances: employer-worker, large-small firms',
+      'Instability: boom-bust cycles, financial crises'
+    ],
+    analysis: 'Free market produces: Pareto efficiency (given initial endowments) → But initial endowments are inherited/unequal → Markets amplify inequality → No mechanism for public goods → Environmental externalities ignored → Financial markets prone to bubbles → Requires government: redistribution, regulation, stabilization.',
+    evaluation: 'Free markets are powerful wealth-creation mechanisms but require institutional frameworks (property rights, contract enforcement) and correction for failures. The debate is not "market vs. government" but "what combination?" Nordic countries combine free trade and labor markets with strong redistribution and public services.',
+    realWorldExample: 'The 2008 financial crisis demonstrated free market failures: deregulated banks took excessive risks, externalities (systemic risk) were ignored, and government intervention was required to prevent collapse.'
+  },
+  {
+    id: 'criticism-keynesian',
+    title: 'Criticism of Keynesian Economics',
+    category: 'theory',
+    definition: 'Critiques of Keynesian demand-management policies, arguing they: cause inflation, crowd out private investment, create unsustainable debt, and ignore supply-side constraints. Monetarists and New Classical economists led these criticisms.',
+    keyPoints: [
+      'Inflationary: demand stimulus causes inflation when near full employment',
+      'Crowding out: government borrowing raises interest rates, reduces private investment',
+      'Debt accumulation: deficits become permanent, unsustainable',
+      'Time lags: fiscal policy is too slow (recognition, implementation, impact lags)'
+    ],
+    analysis: 'Keynesian prescription: ↑ G in recession → Monetarist critique: ↑ G requires borrowing → ↑ Bond supply → ↓ Bond prices → ↑ Interest rates → ↓ Private investment → Net stimulus ≈ 0 (full crowding out) → New Classical: Rational agents expect future taxes → ↑ Saving (Ricardian Equivalence) → Multiplier ≈ 0.',
+    evaluation: 'Keynesian policies worked well 1945-1970 but contributed to 1970s stagflation (Phillips Curve breakdown). The critique prompted useful refinements: supply-side considerations, central bank independence, fiscal rules. However, 2008-09 demonstrated Keynesian policies remain effective when interest rates hit zero and private demand collapses.',
+    realWorldExample: 'The 1970s stagflation (high inflation + high unemployment) discredited pure Keynesianism. Volcker\'s monetarist approach (tight money, accepting recession) broke inflation, validating non-Keynesian prescriptions for that context.'
+  },
+  {
+    id: 'criticism-thatcher-economics',
+    title: 'Criticism of Thatcherism',
+    category: 'policy',
+    definition: 'Critiques of the economic policies of UK Prime Minister Margaret Thatcher (1979-1990), including monetarism, privatization, deregulation, and anti-union legislation. Critics argue these policies increased inequality and deindustrialized the UK.',
+    keyPoints: [
+      'Deindustrialization: manufacturing employment collapsed',
+      'Inequality: Gini coefficient rose sharply',
+      'Regional divide: North-South gap widened',
+      'Social costs: mass unemployment, community breakdown'
+    ],
+    analysis: 'Monetarist policy (high interest rates) → Strong pound → Export uncompetitive → Manufacturing collapsed → 3 million unemployed (1982) → Regions dependent on heavy industry devastated → Coal, steel, shipbuilding communities never recovered → Critics: "Creative destruction" without adequate support for losers.',
+    evaluation: 'Thatcherite reforms modernized the UK economy (inflation controlled, productivity rose, flexible labor markets) but created permanent scars. Some policies (selling council housing, privatizing utilities) had mixed effects. The debate continues: necessary modernization or ideologically-driven destruction of communities?',
+    realWorldExample: 'The 1984-85 miners\' strike was a watershed. The defeat of the NUM ended large-scale coal mining in Britain. Former mining communities (South Wales, Yorkshire) experienced decades of economic decline and health problems.'
+  },
+  {
+    id: 'criticisms-bank-of-england',
+    title: 'Criticisms of the Bank of England',
+    category: 'policy',
+    definition: 'Critiques of UK central bank policy, including: failure to prevent asset bubbles, exacerbating inequality through QE, forecasting errors, and slow response to inflation. Critics span left (inequality) and right (inflation).',
+    keyPoints: [
+      'Missed 2008 crisis: failed to identify financial stability risks',
+      'QE: inflated asset prices, benefiting wealthy owners',
+      'Forecasting: consistently underestimated inflation 2021-22',
+      'Mandate: too narrow (inflation only) or too broad?'
+    ],
+    analysis: 'QE mechanism: BoE buys bonds → ↑ Bond prices → ↑ Wealth of bondholders (wealthy) → ↓ Interest rates → ↑ House prices → Owners gain, renters lose → Savings accounts yield nothing → Pensioners harmed → Wealth inequality widens → Monetary policy distributional effects ignored.',
+    evaluation: 'The BoE faces impossible trade-offs: price stability vs. financial stability vs. distributional neutrality. Post-2008 reforms added financial stability mandate (FPC). However, the 2022 inflation surge (BoE behind the curve) and the 2022 pension fund crisis (LDI intervention required) raised questions about competence and mandate clarity.',
+    realWorldExample: 'In late 2022, the BoE had to intervene to prevent a pension fund collapse triggered by LDI strategies and rising gilt yields. Critics asked why it failed to anticipate this systemic risk.'
+  },
+  {
+    id: 'criticisms-eu',
+    title: 'Criticisms of the European Union',
+    category: 'trade',
+    definition: 'Economic critiques of EU institutions and policies, including: democratic deficit, over-regulation, one-size-fits-all monetary policy, and barriers to global trade. Both Eurosceptics and pro-reform Europeans voice criticisms.',
+    keyPoints: [
+      'Democratic deficit: unelected Commission, complex decision-making',
+      'Over-regulation: red tape burdens businesses',
+      'Monetary straitjacket: ECB policy suits Germany, not periphery',
+      'Trade diversion: customs union may divert from efficient non-EU suppliers'
+    ],
+    analysis: 'Single monetary policy: ECB sets rates for 20 economies → Germany needs higher rates (strong growth) → Greece needs lower rates (recession) → Compromise satisfies neither → Periphery stuck in recession without devaluation option → Internal devaluation (wage cuts) is politically and economically painful.',
+    evaluation: 'The EU provides genuine benefits: single market (trade creation), peace, regulatory harmonization. But the Eurozone is a flawed optimum currency area (OCA): insufficient labor mobility, no fiscal transfers, asymmetric shocks. Reform (fiscal union, Eurobonds) is politically difficult due to national interests.',
+    realWorldExample: 'The Eurozone crisis (2010-15) exposed structural flaws: Greece, Ireland, Portugal, Spain, and Cyprus required bailouts. Austerity conditions sparked political backlash (Syriza, Podemos) and the rise of Euroscepticism.'
+  },
+  {
+    id: 'criticisms-imf',
+    title: 'Criticisms of the IMF',
+    category: 'trade',
+    definition: 'Critiques of International Monetary Fund policies, particularly its conditional lending (structural adjustment programs). Critics argue IMF conditions are ideologically biased toward austerity and liberalization, worsening crises in developing countries.',
+    keyPoints: [
+      'Pro-cyclical: austerity during recessions deepens downturns',
+      'One-size-fits-all: "Washington Consensus" imposed regardless of context',
+      'Moral hazard: bailouts encourage risky lending/borrowing',
+      'Governance: voting weighted toward rich countries'
+    ],
+    analysis: 'Country in crisis → IMF loan conditional on: fiscal austerity, privatization, trade liberalization, floating exchange rate → Short-term: stabilization achieved → Long-term: social spending cut → Health/education deteriorate → Inequality rises → Growth undermined → "IMF riots" in response to conditions.',
+    evaluation: 'The IMF has evolved: post-2008, it acknowledged austerity multipliers were underestimated and advocated more fiscal space. However, institutional inertia and creditor country influence persist. The IMF\'s "lender of last resort" role remains essential, but reform of governance and conditions continues to be debated.',
+    formula: '\\text{IMF Quota} \\propto \\text{GDP, Trade, Reserves} \\text{ (voting power)}',
+    realWorldExample: 'Argentina\'s 2001 crisis followed years of IMF-supported policies. The economy collapsed despite meeting conditions. The subsequent default and devaluation—contrary to IMF advice—restored growth, suggesting alternative approaches work.'
+  },
+  {
+    id: 'criticisms-euro',
+    title: 'Criticisms of the Euro',
+    category: 'trade',
+    definition: 'Economic arguments against the single European currency, focusing on loss of monetary sovereignty, asymmetric shocks without adjustment mechanisms, and the "one-size-fits-all" problem of a single interest rate for diverse economies.',
+    keyPoints: [
+      'Loss of monetary policy: no devaluation, no independent interest rates',
+      'Optimum Currency Area (OCA) criteria not met: low labor mobility, no fiscal union',
+      'Asymmetric shocks: periphery vs. core need different policies',
+      'Competitiveness imbalances: German surpluses, peripheral deficits'
+    ],
+    analysis: 'Pre-Euro: Greek drachma depreciates → Exports competitive → Trade balance adjusts → Post-Euro: no devaluation option → Must reduce wages instead (internal devaluation) → Politically difficult, economically destructive → Prolonged recession → Debt spirals → Exit ("Grexit") discussed.',
+    evaluation: 'The Euro has benefits: transaction cost savings, price transparency, European integration. But without fiscal union (transfers from surplus to deficit regions) or labor mobility (Greeks moving to Germany), it lacks adjustment mechanisms. The US dollar works because of federal fiscal transfers and high interstate labor mobility—Europe lacks both.',
+    realWorldExample: 'The Eurozone crisis required bailouts totaling €500+ billion. Greece\'s GDP fell 25%—comparable to the Great Depression. The Euro prevented the normal adjustment (devaluation) that would have occurred with a national currency.'
+  },
+  {
+    id: 'crowding-in-effect',
+    title: 'Crowding In Effect',
+    category: 'macro',
+    definition: 'The phenomenon where government spending, particularly on infrastructure, stimulates private sector investment rather than displacing it. The opposite of crowding out, it occurs when public investment increases profitability and confidence.',
+    keyPoints: [
+      'Government investment creates profitable opportunities for private sector',
+      'Improved infrastructure reduces private costs (transport, utilities)',
+      'Confidence effect: stable demand encourages private investment',
+      'Multiplier exceeds simple Keynesian model when crowding in occurs'
+    ],
+    analysis: 'Government builds new road → Transport costs for firms ↓ → New locations become profitable → Private investment follows → Factories, warehouses built along corridor → Employment and income rise → Further consumption and investment → Crowding in amplifies the initial public investment.',
+    evaluation: 'Crowding in depends on the type of spending: productive infrastructure (roads, broadband) crowds in; consumption spending (transfers) may crowd out. It also depends on economic conditions: near full employment, crowding out dominates; in recession, crowding in is more likely. The interest rate effect (crowding out) vs. accelerator effect (crowding in) determines the net impact.',
+    formula: '\\Delta I_{\\text{private}} = f(\\Delta I_{\\text{public}}, \\text{spare capacity, confidence})',
+    realWorldExample: 'The development of London\'s Canary Wharf followed government investment in the Jubilee Line extension. Public transport infrastructure unlocked private commercial real estate investment worth billions.'
   }
 ];
 
