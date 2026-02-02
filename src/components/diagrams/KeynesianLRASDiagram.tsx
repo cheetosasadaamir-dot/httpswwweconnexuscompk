@@ -5,6 +5,13 @@ interface KeynesianLRASDiagramProps {
   title?: string;
 }
 
+/**
+ * Keynesian LRAS Diagram
+ * CIE 9708 Standard: THREE distinct phases reflecting varying degrees of spare capacity
+ * Phase 1: Perfectly Elastic (deep recession, spare capacity)
+ * Phase 2: Upward Sloping (approaching full employment, bottlenecks)
+ * Phase 3: Perfectly Inelastic (full capacity at Yf)
+ */
 const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,16 +33,15 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
     return () => observer.disconnect();
   }, []);
 
-  // Cambridge standard colors
-  const lrasCurve = 'hsl(185 100% 50%)'; // Electric Cyan - LRAS
-  const adCurve1 = 'hsl(142 76% 45%)'; // Green - AD1
-  const adCurve2 = 'hsl(300 100% 60%)'; // Neon Magenta - AD2
-  const adCurve3 = 'hsl(45 93% 55%)'; // Gold - AD3
-  const equilibriumPoint = 'hsl(45 93% 55%)'; // Gold
-  const axisColor = 'hsl(220 14% 75%)';
+  // CIE 9708 Standard Colors
+  const lrasCurve = 'hsl(var(--cambridge-cyan))'; // Keynesian LRAS
+  const adCurve1 = 'hsl(142 76% 45%)'; // Green - AD1 (elastic region)
+  const adCurve2 = 'hsl(var(--secondary))'; // AD2 (intermediate)
+  const adCurve3 = 'hsl(45 93% 55%)'; // Gold - AD3 (inelastic)
+  const axisColor = 'hsl(var(--silver))';
   const gridColor = 'hsl(220 14% 20%)';
-  const labelColor = 'hsl(220 14% 90%)';
-  const phaseColor = 'hsl(220 14% 50%)';
+  const labelColor = 'hsl(var(--foreground))';
+  const phaseColor = 'hsl(var(--muted-foreground))';
 
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -47,70 +53,90 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
   };
 
   return (
-    <div ref={containerRef} className="w-full">
-      {title && (
-        <h4 className="font-serif text-lg text-silver-bright mb-4 text-center">{title}</h4>
-      )}
+    <div ref={containerRef} className="glass-card p-6">
+      {/* Header with CIE Standard Definition */}
+      <div className="mb-4">
+        {title && (
+          <h4 className="font-serif text-lg text-gradient mb-2">{title}</h4>
+        )}
+        <p className="text-muted-foreground text-sm">
+          Keynesian view: LRAS has <strong>three distinct phases</strong> reflecting spare capacity, bottlenecks, and full employment
+        </p>
+      </div>
+
+      {/* Formal Definition Box */}
+      <div className="mb-4 p-4 bg-[hsl(var(--cambridge-cyan))]/10 border border-[hsl(var(--cambridge-cyan))]/30 rounded-lg">
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          <span className="font-semibold text-[hsl(var(--cambridge-cyan))]">Keynesian LRAS:</span>{' '}
+          The Keynesian view rejects the vertical LRAS of Classical economics. Instead, the economy can settle at 
+          equilibrium <em>below</em> full employment for extended periods due to <strong>wage and price rigidities</strong>. 
+          The shape reflects: (1) <strong>Elastic phase</strong> — high unemployment, firms can expand without raising prices; 
+          (2) <strong>Intermediate phase</strong> — bottlenecks emerge, both P and Y rise; 
+          (3) <strong>Inelastic phase</strong> — full capacity at Y<sub>f</sub>, only prices rise.
+        </p>
+      </div>
+
       <svg viewBox="0 0 550 420" className="w-full h-auto">
         {/* Grid */}
-        <g stroke={gridColor} strokeWidth="0.5" opacity="0.3">
-          {[80, 120, 160, 200, 240, 280, 320].map((y) => (
-            <line key={`h-${y}`} x1="80" y1={y} x2="500" y2={y} />
-          ))}
-          {[120, 180, 240, 300, 360, 420, 480].map((x) => (
-            <line key={`v-${x}`} x1={x} y1="60" x2={x} y2="350" />
-          ))}
-        </g>
+        <defs>
+          <pattern id="grid-keynesian" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke={gridColor} strokeWidth="0.3" opacity="0.15" />
+          </pattern>
+          <marker id="arrow-keynesian" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill={axisColor} />
+          </marker>
+        </defs>
+        <rect x="80" y="60" width="420" height="290" fill="url(#grid-keynesian)" />
 
-        {/* Phase regions - subtle shading */}
+        {/* Phase regions - subtle shading with CIE standard colors */}
         <motion.rect
           x="80"
           y="270"
           width="120"
           height="80"
           fill="hsl(142 76% 45%)"
-          opacity="0.1"
+          opacity="0.12"
+          rx="4"
           initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 0.1 } : { opacity: 0 }}
+          animate={isVisible ? { opacity: 0.12 } : { opacity: 0 }}
           transition={{ delay: 2, duration: 0.5 }}
         />
         <motion.rect
           x="200"
-          y="150"
+          y="140"
           width="140"
-          height="200"
+          height="210"
           fill="hsl(45 93% 55%)"
-          opacity="0.08"
+          opacity="0.1"
+          rx="4"
           initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 0.08 } : { opacity: 0 }}
+          animate={isVisible ? { opacity: 0.1 } : { opacity: 0 }}
           transition={{ delay: 2.2, duration: 0.5 }}
         />
         <motion.rect
           x="340"
-          y="80"
+          y="60"
           width="60"
-          height="270"
-          fill="hsl(0 84% 60%)"
-          opacity="0.08"
+          height="290"
+          fill="hsl(var(--destructive))"
+          opacity="0.1"
+          rx="4"
           initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 0.08 } : { opacity: 0 }}
+          animate={isVisible ? { opacity: 0.1 } : { opacity: 0 }}
           transition={{ delay: 2.4, duration: 0.5 }}
         />
 
-        {/* Axes */}
-        <g stroke={axisColor} strokeWidth="2">
-          <line x1="80" y1="60" x2="80" y2="350" />
-          <line x1="80" y1="350" x2="500" y2="350" />
-          <polygon points="80,60 75,72 85,72" fill={axisColor} />
-          <polygon points="500,350 488,345 488,355" fill={axisColor} />
-        </g>
+        {/* Axes with arrows */}
+        <line x1="80" y1="60" x2="80" y2="350" stroke={axisColor} strokeWidth="2" />
+        <line x1="80" y1="350" x2="500" y2="350" stroke={axisColor} strokeWidth="2" markerEnd="url(#arrow-keynesian)" />
+        <polygon points="80,60 75,72 85,72" fill={axisColor} />
 
-        {/* Axis labels - Cambridge standard Macro notation */}
-        <text x="30" y="205" fill={labelColor} fontSize="16" fontFamily="Cinzel" transform="rotate(-90, 30, 205)">
-          Price Level (P)
+        {/* Axis labels - CIE 9708 Standard Notation */}
+        <text x="28" y="205" fill={labelColor} fontSize="13" fontWeight="600" transform="rotate(-90, 28, 205)">
+          General Price Level (GPL)
         </text>
-        <text x="290" y="395" fill={labelColor} fontSize="16" fontFamily="Cinzel" textAnchor="middle">
-          Real Output (Y)
+        <text x="290" y="390" fill={labelColor} fontSize="13" fontWeight="600" textAnchor="middle">
+          Real National Output / Real GDP (Y)
         </text>
 
         {/* Keynesian LRAS - Three phases */}
@@ -364,24 +390,61 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
 
       {/* Legend and explanation */}
       <div className="grid md:grid-cols-3 gap-4 mt-6 text-sm">
-        <div className="glass-card p-4 border-l-2" style={{ borderColor: adCurve1 }}>
-          <h5 className="font-semibold text-silver-bright mb-1">Phase 1: Elastic</h5>
-          <p className="text-muted-foreground text-xs">
-            Deep recession with spare capacity. AD increases → Y rises, P constant.
+        <div className="glass-card p-4 border-l-4" style={{ borderColor: adCurve1 }}>
+          <h5 className="font-semibold text-[hsl(142_76%_45%)] mb-2">Phase 1: Perfectly Elastic</h5>
+          <p className="text-muted-foreground text-xs leading-relaxed mb-2">
+            Deep recession with high unemployment and idle capacity. Firms can hire unemployed workers 
+            at existing wages → output expands without price pressure.
           </p>
+          <div className="font-mono text-xs bg-muted/40 p-2 rounded">
+            ↑AD → ↑Y, P constant
+          </div>
         </div>
-        <div className="glass-card p-4 border-l-2" style={{ borderColor: adCurve2 }}>
-          <h5 className="font-semibold text-silver-bright mb-1">Phase 2: Intermediate</h5>
-          <p className="text-muted-foreground text-xs">
-            Approaching full employment. AD increases → both Y and P rise.
+        <div className="glass-card p-4 border-l-4" style={{ borderColor: adCurve2 }}>
+          <h5 className="font-semibold text-secondary mb-2">Phase 2: Upward Sloping</h5>
+          <p className="text-muted-foreground text-xs leading-relaxed mb-2">
+            Approaching full employment. Labour shortages in some sectors → wage rises → 
+            bottlenecks in production → firms raise prices to cover costs.
           </p>
+          <div className="font-mono text-xs bg-muted/40 p-2 rounded">
+            ↑AD → ↑Y and ↑P
+          </div>
         </div>
-        <div className="glass-card p-4 border-l-2" style={{ borderColor: adCurve3 }}>
-          <h5 className="font-semibold text-silver-bright mb-1">Phase 3: Inelastic</h5>
-          <p className="text-muted-foreground text-xs">
-            Full capacity at Yf. AD increases → only P rises (pure inflation).
+        <div className="glass-card p-4 border-l-4" style={{ borderColor: adCurve3 }}>
+          <h5 className="font-semibold text-[hsl(45_93%_55%)] mb-2">Phase 3: Perfectly Inelastic</h5>
+          <p className="text-muted-foreground text-xs leading-relaxed mb-2">
+            Full capacity at Y<sub>f</sub>. All factors employed → physical limit to production → 
+            extra demand creates only demand-pull inflation.
           </p>
+          <div className="font-mono text-xs bg-muted/40 p-2 rounded">
+            ↑AD → P rises, Y constant at Y<sub>f</sub>
+          </div>
         </div>
+      </div>
+
+      {/* Examiner Comparison Box */}
+      <div className="mt-4 p-4 bg-muted/30 rounded-lg text-sm">
+        <h4 className="font-semibold text-primary mb-2">Classical vs Keynesian Debate</h4>
+        <div className="grid md:grid-cols-2 gap-4 text-xs text-muted-foreground">
+          <div>
+            <span className="font-semibold text-[hsl(var(--cambridge-green))]">Classical/Monetarist:</span> LRAS is always 
+            vertical → economy self-corrects to Y<sub>f</sub> → demand-side policies only affect prices.
+          </div>
+          <div>
+            <span className="font-semibold text-[hsl(var(--cambridge-cyan))]">Keynesian:</span> LRAS has elastic section → 
+            economy can be stuck below Y<sub>f</sub> → demand-side policies can increase real output without inflation.
+          </div>
+        </div>
+      </div>
+
+      {/* Examiner Trap */}
+      <div className="mt-4 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs">
+        <span className="font-semibold text-amber-400">⚠️ Exam Tip:</span>
+        <span className="text-muted-foreground ml-2">
+          When drawing Keynesian LRAS, ensure three <strong>clearly distinguishable sections</strong>: 
+          a horizontal section (spare capacity), a curved upward section (bottlenecks), 
+          and a vertical section (full capacity). Label each phase explicitly.
+        </span>
       </div>
     </div>
   );
