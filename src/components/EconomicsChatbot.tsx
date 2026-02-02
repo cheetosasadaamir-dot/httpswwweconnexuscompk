@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, BarChart3, AlertCircle, TrendingUp } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -10,7 +10,6 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import professorAvatar from '@/assets/professor-avatar.png';
-import { ChatDiagramRenderer, parseDiagramMarkers } from '@/components/chat/DiagramDetector';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -22,12 +21,12 @@ type Message = {
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error';
 
 const QUICK_ACTIONS = [
-  { label: 'J-Curve & Marshall-Lerner', query: 'Explain the J-Curve effect and Marshall-Lerner condition with diagrams. Include the full transmission chain.' },
-  { label: 'Liquidity Trap', query: 'Analyze the Keynesian Liquidity Trap and why monetary policy becomes ineffective. Show the diagram.' },
-  { label: 'Phillips Curve & NRU', query: 'Explain the Expectations-Augmented Phillips Curve and Natural Rate of Unemployment with diagram' },
-  { label: 'Harrod-Domar Model', query: 'Derive the Harrod-Domar growth model (g=s/k) and evaluate its limitations for development' },
-  { label: 'Kinked Demand', query: 'Analyze the Kinked Demand Curve model of oligopoly. Why does price rigidity occur?' },
-  { label: 'Gini & Lorenz', query: 'Calculate and interpret the Gini Coefficient using the Lorenz Curve diagram' },
+  { label: 'J-Curve Effect', query: 'Explain the J-Curve effect and why the current account worsens before improving after depreciation.' },
+  { label: 'Liquidity Trap', query: 'Analyze the Keynesian Liquidity Trap and why monetary policy becomes ineffective at the zero lower bound.' },
+  { label: 'Phillips Curve', query: 'Explain the Expectations-Augmented Phillips Curve and the concept of NAIRU.' },
+  { label: 'Harrod-Domar', query: 'Derive the Harrod-Domar growth model (g=s/k) and evaluate its limitations for developing economies.' },
+  { label: 'Kinked Demand', query: 'Analyze the Kinked Demand Curve model and explain price rigidity in oligopolistic markets.' },
+  { label: 'Marshall-Lerner', query: 'Explain the Marshall-Lerner condition and when devaluation improves the trade balance.' },
 ];
 
 // Command words with AO (Assessment Objective) requirements
@@ -48,14 +47,14 @@ const generateId = () => `msg_${Date.now()}_${Math.random().toString(36).slice(2
 
 // Premium loading state messages
 const LOADING_STATES = [
-  'Analyzing market data...',
-  'Processing economic variables...',
-  'Evaluating transmission mechanisms...',
+  'Analyzing economic variables...',
+  'Processing transmission mechanisms...',
   'Constructing analytical framework...',
   'Synthesizing A-Level concepts...',
+  'Evaluating policy implications...',
 ];
 
-// Prof. Econs Avatar Component with generated logo
+// Prof. Econs Avatar Component
 const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   const sizeClasses = {
     sm: 'w-8 h-8',
@@ -307,10 +306,10 @@ export default function EconomicsChatbot() {
       setStreamState('analyzing');
     }, 5000);
     
-    // After 20s, show error state
+    // After 25s, show error state
     streamTimeoutRef.current = setTimeout(() => {
       setStreamState('error');
-    }, 20000);
+    }, 25000);
     
     try {
       const resp = await fetch(CHAT_URL, {
@@ -566,7 +565,7 @@ export default function EconomicsChatbot() {
             Stuck on a Concept?
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-            Ask the Cambridge A-Level Economics Professor
+            Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode
           </p>
         </motion.div>
 
@@ -595,7 +594,7 @@ export default function EconomicsChatbot() {
           {/* Academic Banner */}
           <div className="tutor-header-banner relative flex items-center justify-between">
             <p className="tutor-header-title">Cambridge A-Level Economics • 9708</p>
-            <span className="text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">2026-2028 Syllabus</span>
+            <span className="text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">Text Analysis Mode</span>
           </div>
 
           {/* Header with Clear Button */}
@@ -640,16 +639,16 @@ export default function EconomicsChatbot() {
 
           <ScrollArea 
             ref={scrollRef}
-            className="h-[280px] lg:h-[360px] p-3 lg:p-4 relative"
+            className="h-[320px] lg:h-[400px] p-3 lg:p-4 relative"
           >
             {messages.length === 0 ? (
               <div className="h-full flex items-center justify-center text-center">
                 <div className="text-muted-foreground">
                   <TutorAvatar size="lg" />
                   <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">Prof. Econs</p>
-                  <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">CIE Senior Fellow • 2026-2028 Syllabus</p>
+                  <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">CIE Senior Fellow • Text Analysis Mode</p>
                   <p className="text-sm mt-1 opacity-70 font-serif">Your Senior Cambridge Examiner is ready</p>
-                  <p className="text-xs mt-2 opacity-50">J-Curve, Liquidity Trap, Harrod-Domar, Gini, Marshall-Lerner...</p>
+                  <p className="text-xs mt-2 opacity-50">Ask follow-up questions — I remember our conversation!</p>
                 </div>
               </div>
             ) : (
@@ -663,7 +662,7 @@ export default function EconomicsChatbot() {
                   >
                     {msg.role === 'assistant' && <TutorAvatar />}
                     <div
-                      className={`max-w-[85%] rounded-xl px-3 py-2.5 ${
+                      className={`max-w-[90%] rounded-xl px-3 py-2.5 ${
                         msg.role === 'user'
                           ? 'tutor-message-user text-foreground'
                           : 'tutor-message-ai text-foreground'
@@ -675,44 +674,37 @@ export default function EconomicsChatbot() {
                           <div className="tutor-lesson-header">
                             Syllabus 9708 (2026-2028) | CIE Senior Fellow
                           </div>
-                          {(() => {
-                            const { cleanContent, diagrams } = parseDiagramMarkers(msg.content);
-                            return (
-                              <>
-                                {/* Render diagrams first if explicitly marked */}
-                                {diagrams.length > 0 && (
-                                  <div className="mb-4">
-                                    <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                                      <BarChart3 className="w-3 h-3 text-primary" />
-                                      <span className="uppercase tracking-wider font-medium">Visual Analysis</span>
-                                    </div>
-                                    <ChatDiagramRenderer content={msg.content} autoDetect={false} />
-                                  </div>
-                                )}
-                                <ReactMarkdown
-                                  remarkPlugins={[remarkMath]}
-                                  rehypePlugins={[rehypeKatex]}
-                                  components={{
-                                    p: ({ children }) => (
-                                      <p className="text-sm leading-relaxed text-foreground mb-1.5">{children}</p>
-                                    ),
-                                    strong: ({ children }) => (
-                                      <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>
-                                    ),
-                                    code: ({ children }) => (
-                                      <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>
-                                    ),
-                                  }}
-                                >
-                                  {cleanContent}
-                                </ReactMarkdown>
-                                {/* Auto-detect diagrams if none explicitly marked */}
-                                {diagrams.length === 0 && (
-                                  <ChatDiagramRenderer content={msg.content} autoDetect={true} />
-                                )}
-                              </>
-                            );
-                          })()}
+                          <ReactMarkdown
+                            remarkPlugins={[remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                            components={{
+                              p: ({ children }) => (
+                                <p className="text-sm leading-relaxed text-foreground mb-2">{children}</p>
+                              ),
+                              strong: ({ children }) => (
+                                <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>
+                              ),
+                              code: ({ children }) => (
+                                <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>
+                              ),
+                              blockquote: ({ children }) => (
+                                <blockquote className="border-l-2 border-[hsl(185,100%,50%)] pl-3 my-2 italic text-muted-foreground bg-[hsl(185,100%,50%)]/5 py-2 rounded-r">
+                                  {children}
+                                </blockquote>
+                              ),
+                              h3: ({ children }) => (
+                                <h3 className="text-sm font-bold text-[hsl(43,72%,53%)] mt-3 mb-1">{children}</h3>
+                              ),
+                              ul: ({ children }) => (
+                                <ul className="list-disc list-inside space-y-1 text-sm">{children}</ul>
+                              ),
+                              li: ({ children }) => (
+                                <li className="text-foreground/90">{children}</li>
+                              ),
+                            }}
+                          >
+                            {msg.content}
+                          </ReactMarkdown>
                           <CopyButton text={msg.content} />
                         </div>
                       ) : (
@@ -754,7 +746,7 @@ export default function EconomicsChatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about J-Curve, Liquidity Trap, Harrod-Domar, Gini, Marshall-Lerner..."
+                placeholder="Ask a question or follow up on our discussion..."
                 disabled={isLoading}
                 className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans"
               />
