@@ -7,6 +7,8 @@ import AnalysisBlock from '@/components/AnalysisBlock';
 import CostCurvesDiagram from '@/components/diagrams/CostCurvesDiagram';
 import EconomiesOfScaleDiagram from '@/components/diagrams/EconomiesOfScaleDiagram';
 import RevenueCurvesDiagram from '@/components/diagrams/RevenueCurvesDiagram';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
 
 const ProductionCosts = () => {
   return (
@@ -15,6 +17,17 @@ const ProductionCosts = () => {
       title="Production, Costs, Revenues and Profits"
       subtitle="A2 Microeconomics — Theory of the Firm Foundations"
     >
+      {/* Key Takeaways */}
+      <KeyTakeaways
+        takeaways={[
+          "Law of Diminishing Returns: In the short run, as more variable inputs are added to fixed inputs, marginal product eventually falls.",
+          "MC cuts both AVC and ATC at their minimum points—this is a universal mathematical relationship, not a coincidence.",
+          "Short-run cost curves (AFC, AVC, ATC, MC) are derived from production (MP, AP) curves—they are mirror images.",
+          "LRAC is the 'envelope curve' of SRAC curves. It falls (economies of scale), is flat (constant returns), then rises (diseconomies of scale).",
+          "Minimum Efficient Scale (MES): The lowest output at which LRAC is minimized—determines industry concentration.",
+          "For price makers: MR curve has twice the slope of AR (demand) curve; TR is maximized where MR = 0."
+        ]}
+      />
       {/* Introduction */}
       <ContentSection title="Understanding Production and Costs">
         <p className="text-silver leading-relaxed mb-6">
@@ -651,6 +664,102 @@ const ProductionCosts = () => {
         </AnalysisBlock>
         <AnalysisBlock title="Critical Evaluation" type="evaluation">
           <p>The MC = MR rule assumes firms have perfect information about their cost and revenue curves—an unrealistic assumption for many real businesses. Alternative objectives (revenue maximization, satisficing, market share growth) may better explain actual firm behavior. Additionally, the model assumes profit maximization is the sole goal, ignoring stakeholder considerations, ethical constraints, and managerial discretion in modern corporations.</p>
+        </AnalysisBlock>
+
+        <ExaminerTrap
+          trap="Students assume ALL firms maximize profit and apply MC = MR universally without questioning whether this is the actual objective."
+          correction="Many firms pursue ALTERNATIVE objectives: Revenue maximization (where MR = 0), Sales maximization (output where AR = AC), Satisficing (acceptable rather than maximum profit), or Managerial objectives (growth, perks). Always discuss which objective applies before applying the decision rule."
+        />
+      </ContentSection>
+
+      {/* Topic 6: Objectives of Firms */}
+      <ContentSection title="Topic 6: Alternative Objectives of Firms">
+        <p className="text-silver leading-relaxed mb-6">
+          While neoclassical economics assumes profit maximization, behavioral and managerial theories propose that firms may pursue 
+          alternative objectives. Understanding these alternatives is crucial for evaluating firm behavior and market outcomes.
+        </p>
+
+        <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+              <h5 className="text-emerald-400 font-medium mb-2">1. Profit Maximization</h5>
+              <p className="text-silver text-sm mb-2">
+                <strong>Rule:</strong> Produce where MC = MR
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Traditional assumption. Firm maximizes the difference between TR and TC. 
+                Most applicable to owner-managed firms where owners directly benefit from profits.
+              </p>
+            </div>
+
+            <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+              <h5 className="text-blue-400 font-medium mb-2">2. Revenue Maximization (Baumol)</h5>
+              <p className="text-silver text-sm mb-2">
+                <strong>Rule:</strong> Produce where MR = 0
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Managers may maximize revenue (subject to minimum profit constraint) to boost prestige, salary, and job security. 
+                Results in higher output and lower price than profit maximization.
+              </p>
+            </div>
+
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
+              <h5 className="text-amber-400 font-medium mb-2">3. Sales Maximization</h5>
+              <p className="text-silver text-sm mb-2">
+                <strong>Rule:</strong> Produce where AR = AC (break-even)
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Maximize output subject to covering all costs (normal profit). Often used to maximize market share 
+                or achieve economies of scale. Higher output than revenue maximization.
+              </p>
+            </div>
+
+            <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
+              <h5 className="text-purple-400 font-medium mb-2">4. Satisficing (Simon)</h5>
+              <p className="text-silver text-sm mb-2">
+                <strong>Rule:</strong> Achieve "acceptable" levels of profit
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Bounded rationality means managers cannot optimize perfectly. They aim for satisfactory 
+                (rather than maximum) outcomes across multiple objectives—profit, growth, stakeholder welfare.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/30 rounded-xl p-6 mt-6">
+            <h4 className="text-primary font-semibold mb-3">Principal-Agent Problem</h4>
+            <p className="text-silver text-sm leading-relaxed">
+              In large corporations, <strong>ownership is divorced from control</strong>. Shareholders (principals) delegate decision-making 
+              to managers (agents). Managers may pursue their own interests (salary, perks, empire-building) rather than shareholder profit. 
+              Solutions include: performance-related pay, stock options, takeover threats, and non-executive directors. 
+              This explains why real firm behavior may deviate from profit maximization.
+            </p>
+          </div>
+        </div>
+
+        <AnalysisBlock title="AO3 Chain: Output Comparison Across Objectives" type="analysis">
+          <p>
+            Starting from profit maximization (MC = MR), compare output levels:
+            <strong className="text-cyan-400"> Profit Max:</strong> Q₁ where MC = MR; lowest output, highest price →
+            <strong className="text-cyan-400"> Revenue Max:</strong> Q₂ where MR = 0; output is HIGHER than Q₁ (TR is maximized at unit-elastic point) →
+            <strong className="text-cyan-400"> Sales Max:</strong> Q₃ where AR = AC; HIGHEST output (all profit sacrificed for volume) →
+            <strong className="text-cyan-400"> Ranking:</strong> Q₁ &lt; Q₂ &lt; Q₃. As firms move from profit to sales maximization, 
+            output rises and price falls—benefiting consumers but reducing profitability.
+          </p>
+        </AnalysisBlock>
+
+        <AnalysisBlock title="Critical Evaluation: Which Objective Applies?" type="evaluation">
+          <p>
+            The applicable objective "depends on" several factors:
+            <strong className="text-amber-400"> (1) Ownership structure:</strong> Owner-managed firms likely profit maximize; 
+            corporations with dispersed ownership may satisfice or pursue managerial objectives.
+            <strong className="text-amber-400"> (2) Market competition:</strong> Firms in competitive markets MUST profit maximize 
+            to survive; monopolies have more freedom to pursue alternatives.
+            <strong className="text-amber-400"> (3) Time horizon:</strong> Short-run behavior may differ from long-run; 
+            firms may sacrifice short-term profit for market share (predatory pricing).
+            <strong className="text-amber-400"> (4) Stakeholder pressure:</strong> Modern CSR concerns may lead firms 
+            to balance profit with environmental and social objectives.
+          </p>
         </AnalysisBlock>
       </ContentSection>
 
