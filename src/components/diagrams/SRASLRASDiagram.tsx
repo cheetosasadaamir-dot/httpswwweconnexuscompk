@@ -74,9 +74,9 @@ const SRASLRASDiagram = () => {
     <div ref={containerRef} className="glass-card p-6">
       <div className="flex flex-wrap justify-between items-center mb-4 gap-4">
         <div>
-          <h3 className="font-serif text-xl text-gradient">Short-Run and Long-Run Aggregate Supply</h3>
+          <h3 className="font-serif text-xl text-gradient">Short-Run vs Long-Run Aggregate Supply</h3>
           <p className="text-muted-foreground text-sm mt-1">
-            SRAS is upward sloping; LRAS is vertical at potential output (Y*)
+            SRAS upward sloping (sticky wages); LRAS vertical at full employment output (Yfe/Y*)
           </p>
         </div>
         <Button
@@ -84,8 +84,17 @@ const SRASLRASDiagram = () => {
           size="sm"
           onClick={() => setShowAnnotations(!showAnnotations)}
         >
-          {showAnnotations ? "Hide" : "Show"} Labels
+          {showAnnotations ? "Hide" : "Show"} Keynesian Ranges
         </Button>
+      </div>
+      
+      {/* Examiner Tip */}
+      <div className="mb-4 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs">
+        <span className="font-semibold text-amber-400">⚠️ Examiner Trap:</span>
+        <span className="text-muted-foreground ml-2">
+          LRAS is vertical because in the long run all prices (including wages) are flexible. 
+          A change in GPL does not change real wages, so there's no incentive to produce more/less.
+        </span>
       </div>
       
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full max-w-lg mx-auto">
@@ -262,22 +271,38 @@ const SRASLRASDiagram = () => {
         </div>
       </div>
 
-      {/* Explanation */}
+      {/* Explanation - Enhanced with examiner-approved reasoning */}
       <div className="mt-5 grid md:grid-cols-2 gap-4 text-sm">
         <div className="p-4 bg-[hsl(var(--cambridge-orange))]/10 rounded-lg border border-[hsl(var(--cambridge-orange))]/20">
-          <h4 className="font-semibold text-[hsl(var(--cambridge-orange))] mb-2">SRAS: Upward Sloping</h4>
-          <p className="text-muted-foreground leading-relaxed">
-            In the short run, money wages are sticky. As prices rise, real wages fall, making 
-            labour cheaper and increasing firms' willingness to produce more output.
+          <h4 className="font-semibold text-[hsl(var(--cambridge-orange))] mb-2">SRAS: Upward Sloping (Money Wage Rigidity)</h4>
+          <p className="text-muted-foreground leading-relaxed mb-2">
+            In the short run, <strong>money wages are sticky</strong> due to contracts, menu costs, and imperfect information. 
+            As GPL rises, real wages fall (W/P↓), making labour cheaper → firms expand output.
           </p>
+          <div className="font-mono text-xs bg-muted/30 p-2 rounded">
+            ↑P → ↓(W/P) → ↓Real labour cost → ↑Quantity supplied
+          </div>
         </div>
         <div className="p-4 bg-[hsl(var(--cambridge-green))]/10 rounded-lg border border-[hsl(var(--cambridge-green))]/20">
-          <h4 className="font-semibold text-[hsl(var(--cambridge-green))] mb-2">LRAS: Vertical at Y*</h4>
-          <p className="text-muted-foreground leading-relaxed">
-            In the long run, all prices including wages are flexible. Real wages remain unchanged 
-            regardless of price level, so output stays at potential (full employment).
+          <h4 className="font-semibold text-[hsl(var(--cambridge-green))] mb-2">LRAS: Vertical at Yfe (Full Flexibility)</h4>
+          <p className="text-muted-foreground leading-relaxed mb-2">
+            In the long run, all prices (including wages) are fully flexible. Workers demand higher nominal wages 
+            when GPL rises → real wage unchanged → no incentive to vary output.
           </p>
+          <div className="font-mono text-xs bg-muted/30 p-2 rounded">
+            ↑P → ↑W (proportionally) → W/P constant → Y stays at Yfe
+          </div>
         </div>
+      </div>
+
+      {/* Real-World Example */}
+      <div className="mt-4 p-4 bg-primary/5 rounded-lg border border-primary/20 text-sm">
+        <h4 className="font-semibold text-primary mb-2">📌 Real-World Application: UK Post-COVID Recovery (2021-22)</h4>
+        <p className="text-muted-foreground leading-relaxed">
+          As demand surged post-lockdown, the UK operated on the <span className="text-cambridge-orange">steep portion of SRAS</span> 
+          (near full employment). Firms struggled to expand output → excess demand was absorbed primarily through 
+          price increases rather than output gains → CPI inflation reached 11.1% by October 2022.
+        </p>
       </div>
     </div>
   );

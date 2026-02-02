@@ -391,19 +391,67 @@ const InternationalTrade = () => {
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
-        {/* CHAPTER SUMMARY / CONCLUSION */}
-        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* Examiner Traps */}
+        <ContentSection title="Examiner Guidance: International Trade">
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <div className="glass-card p-5 border-l-4 border-amber-500">
+              <h4 className="font-semibold text-amber-400 mb-3 text-sm">⚠️ Common Examiner Traps</h4>
+              <div className="space-y-2 text-xs">
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 1: Absolute vs Comparative Advantage</p>
+                  <p className="text-muted-foreground">A country with absolute advantage in BOTH goods should still specialise based on comparative advantage. Trade benefits both—this is Ricardo's key insight.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 2: Parallel PPCs = No Trade Gains</p>
+                  <p className="text-muted-foreground">If two countries have identical opportunity cost ratios (parallel PPCs), there is NO basis for mutually beneficial trade. This is frequently tested.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 3: "Improved ToT is Always Good"</p>
+                  <p className="text-muted-foreground">If ToT improves due to falling export demand (not rising prices), export VOLUME falls. If PED {'>'} 1, total export revenue falls—worse outcome.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trap 4: Tariff Revenue = Consumer Loss</p>
+                  <p className="text-muted-foreground">Tariff revenue goes to government, but consumer surplus loss is GREATER. The deadweight loss triangles represent pure welfare loss to society.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="glass-card p-5 border-l-4 border-primary">
+              <h4 className="font-semibold text-primary mb-3 text-sm">📌 Real-World Examples</h4>
+              <div className="space-y-2 text-xs">
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Comparative Advantage: Bangladesh Textiles</p>
+                  <p className="text-muted-foreground">Bangladesh has lower opportunity cost in labour-intensive textiles (abundant cheap labour). Exports $40bn/year despite lower absolute productivity than China.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Tariff War: US-China 2018-2020</p>
+                  <p className="text-muted-foreground">Trump's tariffs on $360bn of Chinese goods led to retaliation. US consumers paid higher prices; China diversified supply chains. Both economies lost.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Trade Creation: EU Single Market</p>
+                  <p className="text-muted-foreground">Elimination of internal tariffs allowed specialisation—German autos, French agriculture, Italian textiles. Intra-EU trade grew from 47% to 64% of total.</p>
+                </div>
+                <div className="p-2 bg-muted/30 rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Infant Industry Success: South Korea</p>
+                  <p className="text-muted-foreground">Protected auto and electronics sectors in 1970s-80s. Hyundai, Samsung now globally competitive. Rare successful case—most infant industries never "grow up."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ContentSection>
+
+        {/* Chapter Synthesis */}
         <ContentSection title="Chapter Synthesis">
           <div className="glass-card p-5">
             <h3 className="font-serif text-xl text-gradient mb-4">The Definitive Conclusion</h3>
             
             <p className="text-sm leading-relaxed text-muted-foreground">
-              The theory of international trade, grounded in David Ricardo's principle of <strong className="text-foreground">Comparative Advantage</strong>, demonstrates that <strong>mutually beneficial trade is possible even when one country has an absolute advantage in all goods</strong>, provided opportunity cost ratios differ. Through specialisation and trade, nations can consume beyond their domestic Production Possibility Curves, achieving higher levels of welfare than under autarky. The <strong className="text-secondary">Terms of Trade</strong> determines how the gains from trade are distributed between trading partners, with its significance contingent upon the cause of its movement and the price elasticity of demand for exports and imports. However, free trade remains a <em>theoretical ideal</em> frequently violated in practice. Governments impose <strong className="text-foreground">tariffs, quotas, subsidies, and non-tariff barriers</strong> for a range of political, strategic, and economic reasons—some legitimate (infant industries, national security, anti-dumping), many not (rent-seeking, political expediency). Each protectionist instrument distorts the price mechanism, generates <strong className="text-destructive">deadweight welfare losses</strong>, and risks triggering retaliatory measures that escalate into destructive trade wars. Regional <strong className="text-foreground">Trading Blocs</strong> represent a partial solution, liberalising trade among members but potentially diverting trade away from more efficient non-members.
+              The theory of international trade, grounded in David Ricardo's principle of <strong className="text-foreground">Comparative Advantage</strong>, demonstrates that <strong>mutually beneficial trade is possible even when one country has an absolute advantage in all goods</strong>, provided opportunity cost ratios differ. Through specialisation and trade, nations can consume beyond their domestic Production Possibility Curves, achieving higher levels of welfare than under autarky. The <strong className="text-secondary">Terms of Trade</strong> determines how the gains from trade are distributed between trading partners, with its significance contingent upon the cause of its movement and the price elasticity of demand for exports and imports. However, free trade remains a <em>theoretical ideal</em> frequently violated in practice. Governments impose <strong className="text-foreground">tariffs, quotas, subsidies, and non-tariff barriers</strong> for a range of political, strategic, and economic reasons—some legitimate (infant industries, national security, anti-dumping), many not (rent-seeking, political expediency). Each protectionist instrument distorts the price mechanism, generates <strong className="text-destructive">deadweight welfare losses</strong>, and risks triggering retaliatory measures that escalate into destructive trade wars.
             </p>
 
             <div className="mt-4 p-4 bg-secondary/10 rounded-lg border border-secondary/30">
               <p className="text-sm text-secondary font-semibold italic">
-                "Ultimately, while Comparative Advantage suggests that free trade maximises global welfare, real-world trade is distorted by transport costs, non-homogeneous goods, and political imperatives. Protectionism, while providing short-term relief for domestic industries, often leads to a 'beggar-thy-neighbour' spiral that reduces global allocative efficiency. The optimal policy mix combines multilateral trade liberalisation (WTO), targeted and time-limited support for genuinely nascent industries, and robust competition policy to prevent the abuse of protection."
+                "Ultimately, while Comparative Advantage suggests that free trade maximises global welfare, real-world trade is distorted by transport costs, non-homogeneous goods, and political imperatives. The optimal policy combines multilateral trade liberalisation (WTO) with targeted, time-limited support for genuinely nascent industries."
               </p>
             </div>
           </div>

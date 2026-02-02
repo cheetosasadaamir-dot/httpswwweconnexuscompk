@@ -193,10 +193,39 @@ const MacroeconomicPolicy = () => {
             <h3 className="font-serif text-xl text-gradient">The Impossibility of Simultaneous Achievement</h3>
             
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Governments pursue four primary macroeconomic objectives: <strong className="text-cambridge-green">economic growth</strong>, <strong className="text-cambridge-cyan">low unemployment</strong>, <strong className="text-cambridge-orange">price stability (low inflation)</strong>, and <strong className="text-cambridge-magenta">Balance of Payments equilibrium</strong>. However, pursuing one objective frequently impairs the achievement of another. The <strong className="text-foreground">Phillips Curve</strong> relationship illustrates the short-run trade-off between inflation and unemployment: expansionary policies that reduce unemployment tend to increase inflation, while contractionary policies that reduce inflation tend to increase unemployment. The <strong className="text-foreground">Growth-Current Account conflict</strong> arises because higher national income (Y) increases demand for imports through the Marginal Propensity to Import (MPM), worsening the current account. The <strong className="text-foreground">Growth-Inflation conflict</strong> occurs when rapid demand-led growth outstrips the economy's productive capacity, generating demand-pull inflation. These trade-offs force policymakers to <em>prioritise</em>, and the choice of priority is as much a political judgement as an economic calculation.
+              Governments pursue four primary macroeconomic objectives: <strong className="text-cambridge-green">economic growth</strong>, <strong className="text-cambridge-cyan">low unemployment</strong>, <strong className="text-cambridge-orange">price stability (low inflation)</strong>, and <strong className="text-cambridge-magenta">Balance of Payments equilibrium</strong>. However, pursuing one objective frequently impairs the achievement of another. The <strong className="text-foreground">Phillips Curve</strong> relationship illustrates the short-run trade-off between inflation and unemployment: expansionary policies that reduce unemployment tend to increase inflation, while contractionary policies that reduce inflation tend to increase unemployment.
             </p>
 
             <PolicyConflictsDiagram />
+
+            {/* Examiner Trap Box */}
+            <div className="p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+              <h4 className="font-semibold text-amber-400 mb-2 text-sm">⚠️ Examiner Trap: Short-Run vs Long-Run Phillips Curve</h4>
+              <p className="text-xs text-muted-foreground">
+                The SR Phillips Curve trade-off holds only temporarily. In the <strong>long run</strong>, as inflation expectations adjust, 
+                the economy returns to the Natural Rate of Unemployment (NRU). The LR Phillips Curve is <strong>vertical</strong> at the NRU—
+                there is no permanent trade-off. Attempts to hold unemployment below NRU cause <em>accelerating</em> inflation (NAIRU concept).
+              </p>
+            </div>
+          </div>
+
+          {/* Real-World Policy Examples */}
+          <div className="glass-card p-5 mt-4">
+            <h4 className="font-semibold text-primary mb-3">📌 Real-World Policy Case Studies</h4>
+            <div className="grid md:grid-cols-3 gap-3 text-xs">
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <p className="font-semibold text-foreground mb-1">Fiscal: UK Furlough Scheme (2020)</p>
+                <p className="text-muted-foreground">£70bn spent paying 80% of wages for 11.7m workers. Prevented mass unemployment during COVID lockdowns. Deficit rose to 15% of GDP—largest since WWII.</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <p className="font-semibold text-foreground mb-1">Monetary: Fed Rate Hikes (2022-23)</p>
+                <p className="text-muted-foreground">Fed raised rates from 0% to 5.25% in 18 months to combat 9% inflation. Caused bank failures (SVB), mortgage rate shock, but core inflation fell to 3.5%.</p>
+              </div>
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <p className="font-semibold text-foreground mb-1">Supply-Side: German Apprenticeships</p>
+                <p className="text-muted-foreground">Dual education system trains 1.5m apprentices/year. Youth unemployment at 5.3% vs EU average of 14%. Human capital investment → LRAS shifts right.</p>
+              </div>
+            </div>
           </div>
         </ContentSection>
 
@@ -204,8 +233,20 @@ const MacroeconomicPolicy = () => {
         <ContentSection title="Final Synthesis">
           <div className="glass-card p-5 border-l-4 border-primary">
             <p className="text-sm leading-relaxed text-foreground/90">
-              <strong className="text-primary font-serif text-lg">Senior Examiner's Conclusion:</strong> Ultimately, the effectiveness of any macroeconomic policy is constrained by <strong>Time Lags</strong> (recognition, implementation, and response lags), the <strong>Degree of Spare Capacity</strong> in the economy, and the <strong>State of Expectations</strong> among households and firms. In a deep recession characterised by a <em>Liquidity Trap</em>, monetary policy may become ineffective ("pushing on a string"), making fiscal policy the more potent tool for recovery—as Keynes argued in the 1930s. Conversely, in an economy operating near full capacity, expansionary demand-side policies simply generate inflation, making supply-side reforms essential for sustainable growth. The optimal policy mix depends on the specific macroeconomic context: the cause of the problem (demand-side or supply-side shock), the current position in the business cycle, and the relative importance society places on competing objectives. No single policy is universally superior; the art of macroeconomic management lies in judicious selection and timing.
+              <strong className="text-primary font-serif text-lg">Senior Examiner's Conclusion:</strong> Ultimately, the effectiveness of any macroeconomic policy is constrained by <strong>Time Lags</strong> (recognition, implementation, and response lags), the <strong>Degree of Spare Capacity</strong> in the economy, and the <strong>State of Expectations</strong> among households and firms. In a deep recession characterised by a <em>Liquidity Trap</em>, monetary policy may become ineffective ("pushing on a string"), making fiscal policy the more potent tool for recovery. Conversely, in an economy operating near full capacity, expansionary demand-side policies simply generate inflation, making supply-side reforms essential for sustainable growth. The optimal policy mix depends on the specific macroeconomic context: the cause of the problem (demand-side or supply-side shock), the current position in the business cycle, and the relative importance society places on competing objectives.
             </p>
+          </div>
+
+          {/* Policy Selection Framework */}
+          <div className="glass-card p-5 mt-4 bg-gradient-to-br from-secondary/5 to-transparent">
+            <h4 className="font-semibold text-secondary mb-3">📝 Exam Answer Framework: Policy Selection</h4>
+            <div className="text-xs text-muted-foreground space-y-2">
+              <p><strong>Step 1:</strong> Identify the problem (demand-side: recession/inflation OR supply-side: stagflation/low productivity)</p>
+              <p><strong>Step 2:</strong> Select appropriate policy tool(s) matched to the problem cause</p>
+              <p><strong>Step 3:</strong> Explain the transmission mechanism using chains of analysis</p>
+              <p><strong>Step 4:</strong> Evaluate limitations (time lags, crowding out, liquidity trap, side effects)</p>
+              <p><strong>Step 5:</strong> Consider policy mix—rarely is a single instrument optimal</p>
+            </div>
           </div>
         </ContentSection>
       </motion.div>

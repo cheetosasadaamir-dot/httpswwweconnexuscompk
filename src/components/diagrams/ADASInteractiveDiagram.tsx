@@ -152,12 +152,22 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
           stroke="hsl(var(--silver))" strokeWidth="2"
         />
 
-        {/* Axis Labels */}
-        <text x={margin.left + chartWidth / 2} y={height - 10} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="14" fontWeight="500">
-          Real GDP (Y)
+        {/* Axis Labels - CIE 9708 Standard */}
+        <text x={margin.left + chartWidth / 2} y={height - 10} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="500">
+          Real National Output / Real GDP (Y)
         </text>
-        <text x={15} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="14" fontWeight="500" transform={`rotate(-90, 15, ${margin.top + chartHeight / 2})`}>
-          Price Level (P)
+        <text x={15} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="500" transform={`rotate(-90, 15, ${margin.top + chartHeight / 2})`}>
+          General Price Level (GPL)
+        </text>
+
+        {/* Full Employment Marker on X-axis */}
+        <line 
+          x1={xScale(lrasX)} y1={yScale(0)}
+          x2={xScale(lrasX)} y2={yScale(0) + 8}
+          stroke="hsl(var(--cambridge-green))" strokeWidth="2"
+        />
+        <text x={xScale(lrasX)} y={yScale(0) + 20} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="10" fontWeight="600">
+          Yfe (Y*)
         </text>
 
         {/* LRAS (vertical) */}
@@ -362,18 +372,30 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
         >
           {showDemandShock && (
             <div>
-              <h4 className="font-semibold text-primary mb-2">Positive Demand Shock</h4>
-              <p>An increase in AD (e.g., from ↑G or ↓taxes) shifts AD rightward to AD₁. 
-              This leads to higher output (Y₀ → Y₁) and higher prices (P₀ → P₁). 
-              The closer to full employment, the more inflationary the effect.</p>
+              <h4 className="font-semibold text-primary mb-2">Positive Demand Shock (Demand-Pull Inflation)</h4>
+              <p className="mb-2">An increase in AD (e.g., ↑G, ↓taxes, ↑consumer confidence, ↓interest rates) shifts AD rightward to AD₁. 
+              This leads to higher output (Y₀ → Y₁) and higher prices (P₀ → P₁).</p>
+              <div className="p-2 bg-muted/40 rounded text-xs font-mono">
+                <strong>Chain:</strong> ↑AD → Excess demand at P₀ → Firms bid for scarce factors → ↑GPL → Movement along SRAS to E₁
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                <strong>SR vs LR:</strong> In the <span className="text-primary">short run</span>, both Y and P rise. In the <span className="text-cambridge-green">long run</span>, 
+                if Y₁ exceeds Yfe, wages adjust upward → SRAS shifts left → P rises further but Y returns to Yfe.
+              </p>
             </div>
           )}
           {showSupplyShock && (
             <div>
-              <h4 className="font-semibold text-destructive mb-2">Negative Supply Shock (Stagflation)</h4>
-              <p>An increase in production costs (e.g., oil prices) shifts SRAS leftward to SRAS₁. 
-              This causes stagflation: lower output (Y₀ → Y₁) combined with higher prices (P₀ → P₁). 
-              Both unemployment rises and inflation worsens.</p>
+              <h4 className="font-semibold text-destructive mb-2">Negative Supply Shock → Stagflation</h4>
+              <p className="mb-2">An increase in production costs (e.g., 1973 OPEC oil shock, 2022 energy crisis) shifts SRAS leftward to SRAS₁. 
+              This causes <strong>stagflation</strong>: lower output (Y₀ → Y₁) combined with higher prices (P₀ → P₁).</p>
+              <div className="p-2 bg-muted/40 rounded text-xs font-mono">
+                <strong>Chain:</strong> ↑Oil prices → ↑Unit costs → SRAS shifts left → At every price level, firms supply less → Simultaneous ↑P and ↓Y
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                <strong>Policy Dilemma:</strong> Expansionary policy to restore Y worsens inflation; contractionary policy to control P deepens recession. 
+                <span className="text-cambridge-orange"> This is why stagflation is considered the "worst of both worlds."</span>
+              </p>
             </div>
           )}
         </motion.div>
