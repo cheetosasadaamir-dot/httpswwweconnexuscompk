@@ -4,6 +4,7 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import ExamTipBox from '@/components/ExamTipBox';
 import AnalysisBlock from '@/components/AnalysisBlock';
+import KeyTakeaways from '@/components/KeyTakeaways';
 import GlossaryTooltip from '@/components/GlossaryTooltip';
 import DemandSupplyDiagram from '@/components/diagrams/DemandSupplyDiagram';
 import MarketEquilibriumInteractive from '@/components/diagrams/MarketEquilibriumInteractive';
@@ -21,7 +22,19 @@ const PriceSystem = () => {
       title="The Price System"
       subtitle="Understanding how prices allocate resources through the interaction of demand and supply forces."
     >
-      {/* Section 2.1: The Law of Demand */}
+      {/* Key Takeaways Summary */}
+      <KeyTakeaways
+        title="Key Takeaways: The Price System"
+        takeaways={[
+          "Demand is downward-sloping due to the Substitution Effect and Income Effect; Supply is upward-sloping due to rising marginal costs.",
+          "A change in own price causes a movement along the curve; non-price factors cause shifts of the curve.",
+          "Equilibrium occurs where Qd = Qs; excess demand pushes price up, excess supply pushes price down.",
+          "The price mechanism performs three functions: Signalling, Rationing, and Incentive.",
+          "Consumer surplus = area above price, below demand curve; Producer surplus = area below price, above supply curve.",
+          "Indirect taxes shift supply left (by tax amount); Subsidies shift supply right (by subsidy amount).",
+          "Tax incidence depends on relative elasticities—inelastic side bears more burden."
+        ]}
+      />
       <ContentSection 
         title="2.1 The Law of Demand" 
         subtitle="The Inverse Relationship Between Price and Quantity Demanded"
@@ -134,6 +147,21 @@ const PriceSystem = () => {
 
         <NoteCard title="Non-Price Determinants of Demand" type="theory" delay={100}>
           <p className="mb-3">Factors that cause the demand curve to <strong>shift</strong> (not move along):</p>
+          
+          {/* Step-by-Step Analysis: Demand Shift Chain */}
+          <div className="p-4 bg-charcoal-deep/50 rounded-lg border border-cyan-500/30 mb-4">
+            <h5 className="font-semibold text-cyan-400 text-sm mb-2">Step-by-Step Analysis: A Demand Shift</h5>
+            <p className="text-xs text-muted-foreground mb-2">Example: Consumer incomes rise in the economy</p>
+            <div className="text-xs text-muted-foreground space-y-1">
+              <p><strong className="text-cyan-400">Step 1:</strong> Real disposable income rises → consumers have greater purchasing power.</p>
+              <p><strong className="text-cyan-400">Step 2:</strong> At <strong>every price level</strong>, consumers are now willing and able to buy more of normal goods.</p>
+              <p><strong className="text-cyan-400">Step 3:</strong> The demand curve shifts <strong>rightward</strong> from D₁ to D₂.</p>
+              <p><strong className="text-cyan-400">Step 4:</strong> At the original price P₁, there is now <strong>excess demand</strong> (Qd &gt; Qs).</p>
+              <p><strong className="text-cyan-400">Step 5:</strong> Excess demand creates upward pressure on price → price rises to new equilibrium P₂.</p>
+              <p><strong className="text-cyan-400">Step 6:</strong> New equilibrium: higher price (P₂ &gt; P₁) and higher quantity (Q₂ &gt; Q₁).</p>
+            </div>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-cyan-400 font-semibold">Income</span>
@@ -143,25 +171,31 @@ const PriceSystem = () => {
               </p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
-              <span className="text-cyan-400 font-semibold">Substitutes</span>
-              <p className="text-xs text-muted-foreground mt-1">↑ Price of substitute → ↑ Demand for this good</p>
+              <span className="text-cyan-400 font-semibold">Price of Substitutes</span>
+              <p className="text-xs text-muted-foreground mt-1">↑ Price of substitute → ↑ Demand for this good<br /><em>(Positive XED relationship)</em></p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
-              <span className="text-cyan-400 font-semibold">Complements</span>
-              <p className="text-xs text-muted-foreground mt-1">↑ Price of complement → ↓ Demand for this good</p>
+              <span className="text-cyan-400 font-semibold">Price of Complements</span>
+              <p className="text-xs text-muted-foreground mt-1">↑ Price of complement → ↓ Demand for this good<br /><em>(Negative XED relationship)</em></p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-cyan-400 font-semibold">Tastes/Preferences</span>
-              <p className="text-xs text-muted-foreground mt-1">Advertising, trends, fashion → Shift demand</p>
+              <p className="text-xs text-muted-foreground mt-1">Advertising, health scares, fashion trends → Shift demand curve</p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-cyan-400 font-semibold">Population</span>
-              <p className="text-xs text-muted-foreground mt-1">↑ Population → ↑ Market demand</p>
+              <p className="text-xs text-muted-foreground mt-1">↑ Population → ↑ Market demand<br />Demographics also matter (aging population → healthcare demand)</p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-cyan-400 font-semibold">Expectations</span>
-              <p className="text-xs text-muted-foreground mt-1">Expected future price rise → ↑ Current demand</p>
+              <p className="text-xs text-muted-foreground mt-1">Expected future price rise → ↑ Current demand<br />(Stock-piling behavior)</p>
             </div>
+          </div>
+          
+          {/* Examiner Trap */}
+          <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg mt-4">
+            <p className="text-xs text-amber-400 font-semibold mb-1">⚠️ Examiner Trap:</p>
+            <p className="text-xs text-muted-foreground">A change in the good's <strong>own price</strong> causes a <em>movement along</em> the demand curve, not a shift. Only non-price factors shift the curve. Using "demand increases" when you mean "quantity demanded increases" loses marks.</p>
           </div>
         </NoteCard>
       </ContentSection>
@@ -235,31 +269,60 @@ const PriceSystem = () => {
 
         <NoteCard title="Non-Price Determinants of Supply" type="theory" delay={100}>
           <p className="mb-3">Factors that cause the supply curve to <strong>shift</strong>:</p>
+          
+          {/* Step-by-Step Analysis: Supply Shift Chain */}
+          <div className="p-4 bg-charcoal-deep/50 rounded-lg border border-magenta-500/30 mb-4">
+            <h5 className="font-semibold text-magenta-400 text-sm mb-2">Step-by-Step Analysis: An Indirect Tax on Supply</h5>
+            <p className="text-xs text-muted-foreground mb-2">Example: Government imposes a £2 per unit tax on cigarettes</p>
+            <div className="text-xs text-muted-foreground space-y-1">
+              <p><strong className="text-magenta-400">Step 1:</strong> Tax → ↑ Cost of production by £2 per unit (production becomes more expensive).</p>
+              <p><strong className="text-magenta-400">Step 2:</strong> At <strong>every price level</strong>, producers are willing to supply less (or need higher prices to supply the same quantity).</p>
+              <p><strong className="text-magenta-400">Step 3:</strong> Supply curve shifts <strong>leftward/upward</strong> from S₁ to S₂ (by the amount of the tax).</p>
+              <p><strong className="text-magenta-400">Step 4:</strong> At original price P₁, there is now <strong>excess demand</strong> (Qd &gt; Qs).</p>
+              <p><strong className="text-magenta-400">Step 5:</strong> Price rises to new equilibrium P₂, but typically by <em>less than</em> the full tax amount.</p>
+              <p><strong className="text-magenta-400">Step 6:</strong> New equilibrium: higher price (P₂ &gt; P₁) and lower quantity (Q₂ &lt; Q₁).</p>
+              <p><strong className="text-primary">Tax Incidence:</strong> The burden is shared between consumers (higher price) and producers (lower margin) based on relative elasticities.</p>
+            </div>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-magenta-400 font-semibold">Costs of Production</span>
-              <p className="text-xs text-muted-foreground mt-1">↑ Wage costs, raw materials → ↓ Supply (shift left)</p>
+              <p className="text-xs text-muted-foreground mt-1">↑ Wage costs, raw materials, energy → ↓ Supply (shift left)<br />↓ Costs → ↑ Supply (shift right)</p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-magenta-400 font-semibold">Technology</span>
-              <p className="text-xs text-muted-foreground mt-1">Improved technology → ↑ Supply (shift right)</p>
+              <p className="text-xs text-muted-foreground mt-1">Improved technology → ↓ Unit costs → ↑ Supply (shift right)<br />Enables more output from same inputs</p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-magenta-400 font-semibold">Indirect Taxes</span>
-              <p className="text-xs text-muted-foreground mt-1">↑ Tax → ↓ Supply (shift left/up)</p>
+              <p className="text-xs text-muted-foreground mt-1">↑ Tax → ↓ Supply (shift left/up)<br />VAT, excise duties, carbon tax</p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-magenta-400 font-semibold">Subsidies</span>
-              <p className="text-xs text-muted-foreground mt-1">↑ Subsidy → ↑ Supply (shift right/down)</p>
+              <p className="text-xs text-muted-foreground mt-1">↑ Subsidy → ↑ Supply (shift right/down)<br />Reduces effective production cost</p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-magenta-400 font-semibold">Number of Firms</span>
-              <p className="text-xs text-muted-foreground mt-1">More firms in market → ↑ Market supply</p>
+              <p className="text-xs text-muted-foreground mt-1">Entry of new firms → ↑ Market supply<br />Exit of firms → ↓ Market supply</p>
             </div>
             <div className="p-3 rounded-lg bg-muted/50 border border-muted">
               <span className="text-magenta-400 font-semibold">Weather/Natural Events</span>
-              <p className="text-xs text-muted-foreground mt-1">Poor harvest → ↓ Agricultural supply</p>
+              <p className="text-xs text-muted-foreground mt-1">Drought → ↓ Agricultural supply<br />Bumper harvest → ↑ Supply</p>
             </div>
+          </div>
+
+          {/* Text-Based Diagram Description */}
+          <div className="p-4 bg-primary/10 rounded-lg border border-primary/30 mt-4">
+            <h5 className="font-semibold text-primary text-sm mb-2">Text-Based Diagram: Leftward Supply Shift</h5>
+            <p className="text-xs text-muted-foreground">
+              <strong>Original Equilibrium (E₁):</strong> Supply curve S₁ intersects Demand at price P₁ and quantity Q₁.<br />
+              <strong>After Shift:</strong> Supply curve shifts left to S₂ (due to increased costs or tax).<br />
+              <strong>New Equilibrium (E₂):</strong> At price P₂ (higher) and quantity Q₂ (lower).<br />
+              <strong>Consumer Surplus:</strong> Decreases (higher price paid).<br />
+              <strong>Producer Surplus:</strong> Changes depend on elasticities and cost increase.<br />
+              <strong>Welfare Loss:</strong> Triangle between E₁ and E₂ represents deadweight loss.
+            </p>
           </div>
         </NoteCard>
       </ContentSection>

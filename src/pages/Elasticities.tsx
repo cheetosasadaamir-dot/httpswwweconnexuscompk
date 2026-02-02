@@ -3,6 +3,7 @@ import ContentSection from '@/components/ContentSection';
 import NoteCard from '@/components/NoteCard';
 import ExamTipBox from '@/components/ExamTipBox';
 import AnalysisBlock from '@/components/AnalysisBlock';
+import KeyTakeaways from '@/components/KeyTakeaways';
 import GlossaryTooltip from '@/components/GlossaryTooltip';
 import { ElasticityDiagram, AllElasticityDiagrams } from '@/components/diagrams/ElasticityDiagrams';
 import YEDXEDDiagram from '@/components/diagrams/YEDXEDDiagram';
@@ -15,7 +16,19 @@ const Elasticities = () => {
       title="Elasticities"
       subtitle="Measuring the responsiveness of demand and supply to changes in price, income, and related goods."
     >
-      {/* Section 1: Price Elasticity of Demand (PED) */}
+      {/* Key Takeaways Summary */}
+      <KeyTakeaways
+        title="Key Takeaways: Elasticities"
+        takeaways={[
+          "PED = (% ΔQd) / (% ΔP); always negative but expressed as absolute value. Elastic (>1), Inelastic (<1), Unitary (=1).",
+          "Determinants of PED: substitutes available, proportion of income, necessity vs luxury, time period, habit/addiction.",
+          "PED and Revenue: Elastic demand → cut price to raise TR; Inelastic demand → raise price to raise TR.",
+          "YED = (% ΔQd) / (% ΔY); Positive = Normal good (Luxury >1, Necessity <1); Negative = Inferior good.",
+          "XED = (% ΔQd of A) / (% ΔP of B); Positive = Substitutes; Negative = Complements; Zero = Unrelated.",
+          "PES = (% ΔQs) / (% ΔP); always positive. Determinants: time period, spare capacity, factor mobility, stocks.",
+          "Tax incidence: Consumer share = PES/(PES+|PED|); Inelastic side bears greater tax burden."
+        ]}
+      />
       <ContentSection 
         title="Price Elasticity of Demand (PED)" 
         subtitle="Measuring the Responsiveness of Quantity Demanded to Price Changes"

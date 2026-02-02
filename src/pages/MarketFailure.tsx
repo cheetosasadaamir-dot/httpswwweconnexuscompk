@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import ChapterLayout from '@/components/ChapterLayout';
+import KeyTakeaways from '@/components/KeyTakeaways';
 import MarketFailureExternalityDiagram from '@/components/diagrams/MarketFailureExternalityDiagram';
 import NegativeProductionExternalityDiagram from '@/components/diagrams/NegativeProductionExternalityDiagram';
 import PositiveConsumptionExternalityDiagram from '@/components/diagrams/PositiveConsumptionExternalityDiagram';
@@ -16,6 +17,20 @@ const MarketFailure = () => {
       title="Market Failure"
       subtitle="Analyzing the failure of the price mechanism, externalities, public goods, and government intervention in achieving allocative efficiency"
     >
+      {/* Key Takeaways Summary */}
+      <KeyTakeaways
+        title="Key Takeaways: Market Failure"
+        takeaways={[
+          "Market failure occurs when free markets fail to achieve allocative efficiency (MSB = MSC).",
+          "Externalities: MSC = MPC + MEC (costs); MSB = MPB + MEB (benefits). Divergence creates welfare loss.",
+          "Negative externalities → overproduction (Qm > Q*); Positive externalities → under-consumption (Qm < Q*).",
+          "Public goods are non-excludable and non-rivalrous → Free-Rider Problem → complete market failure.",
+          "Merit goods are under-consumed due to information failure; Demerit goods are over-consumed.",
+          "Pigouvian taxes internalize externalities: set tax = MEC to shift MPC to MSC.",
+          "Government failure risk: imperfect information, admin costs, unintended consequences, regulatory capture."
+        ]}
+      />
+
       {/* Section 1: Defining Efficiency and Market Failure */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
@@ -163,18 +178,51 @@ const MarketFailure = () => {
           3. Public Goods, Merit Goods, and Information Failure
         </h2>
 
-        {/* Public Goods - Dense Analysis */}
+        {/* Public Goods - Dense Analysis with Step-by-Step */}
         <div className="glass-card p-5 rounded-xl mb-4">
           <h3 className="text-lg font-semibold text-cyan-400 mb-3 flex items-center gap-2">
             <ShieldAlert className="w-5 h-5" />
             Pure Public Goods: Non-Excludability and Non-Rivalry
           </h3>
+          
+          {/* Key Definitions */}
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <div className="p-3 rounded-lg border border-cyan-500/30 bg-cyan-500/5">
+              <h4 className="font-semibold text-cyan-400 text-sm mb-1">Non-Excludability (CIE Definition)</h4>
+              <p className="text-xs text-muted-foreground">Once a good is provided, it is <strong>impossible or prohibitively costly</strong> to prevent anyone from consuming it, regardless of whether they have paid. This creates the <strong>Free-Rider Problem</strong>.</p>
+            </div>
+            <div className="p-3 rounded-lg border border-primary/30 bg-primary/5">
+              <h4 className="font-semibold text-primary text-sm mb-1">Non-Rivalry (CIE Definition)</h4>
+              <p className="text-xs text-muted-foreground">One person's consumption <strong>does not reduce</strong> the quantity or quality available to others. The marginal cost of an additional user is <strong>zero</strong>.</p>
+            </div>
+          </div>
+          
           <p className="text-muted-foreground text-justify leading-relaxed mb-3">
-            <strong className="text-cyan-400">Pure Public Goods</strong> represent a case of complete market failure: the private market will fail to provide these goods entirely, not merely in sub-optimal quantities. Public goods possess two defining characteristics. First, they are <strong className="text-primary">Non-Excludable</strong>: once the good is provided, it is impossible (or prohibitively costly) to prevent anyone from consuming it, regardless of whether they have paid. Second, they are <strong className="text-secondary">Non-Rivalrous</strong>: one person's consumption of the good does not diminish the quantity or quality available to others; the marginal cost of an additional user is zero. National defense is the canonical example: if a country is protected from invasion, all citizens benefit equally, and it is impossible to exclude any individual from this protection, nor does one citizen's consumption of "security" reduce the security available to others. Street lighting, lighthouses, and public fireworks displays exhibit similar properties. The consequence of non-excludability is the <strong className="text-amber-400">Free-Rider Problem</strong>: rational, self-interested individuals will attempt to consume the good without paying, knowing they cannot be excluded. If everyone reasons this way, no one will voluntarily pay, and the private market has no incentive to provide the good—despite the clear social benefit. This represents a fundamental coordination failure that only collective action (typically through government provision funded by taxation) can resolve. It is important to note that many goods described as "public goods" in common parlance are actually <strong className="text-muted-foreground">Quasi-Public Goods</strong> that exhibit one but not both characteristics (e.g., a congested road is non-excludable but rivalrous; a cinema is non-rivalrous but excludable through ticket sales).
+            <strong className="text-cyan-400">Pure Public Goods</strong> represent a case of <strong>complete market failure</strong>: the private market will fail to provide these goods entirely, not merely in sub-optimal quantities. Public goods possess two defining characteristics. First, they are <strong className="text-primary">Non-Excludable</strong>: once the good is provided, it is impossible (or prohibitively costly) to prevent anyone from consuming it, regardless of whether they have paid. Second, they are <strong className="text-secondary">Non-Rivalrous</strong>: one person's consumption of the good does not diminish the quantity or quality available to others; the marginal cost of an additional user is zero. National defense is the canonical example: if a country is protected from invasion, all citizens benefit equally, and it is impossible to exclude any individual from this protection, nor does one citizen's consumption of "security" reduce the security available to others. Street lighting, lighthouses, and public fireworks displays exhibit similar properties.
           </p>
+
+          {/* Step-by-Step Analysis: Free-Rider Problem */}
+          <div className="p-4 bg-charcoal-deep/50 rounded-lg border border-cyan-500/30 mb-3">
+            <h4 className="font-semibold text-cyan-400 text-sm mb-2">Step-by-Step Analysis: The Free-Rider Problem</h4>
+            <div className="text-xs text-muted-foreground space-y-1">
+              <p><strong className="text-cyan-400">Step 1:</strong> Public goods are non-excludable → individuals can consume without paying.</p>
+              <p><strong className="text-cyan-400">Step 2:</strong> Rational, self-interested individuals realize they will benefit even if they don't contribute.</p>
+              <p><strong className="text-cyan-400">Step 3:</strong> Each individual has an incentive to "free-ride" on others' contributions.</p>
+              <p><strong className="text-cyan-400">Step 4:</strong> If everyone reasons this way, <strong>no one voluntarily pays</strong>.</p>
+              <p><strong className="text-cyan-400">Step 5:</strong> Private firms cannot recover costs → <strong>no incentive to provide the good</strong>.</p>
+              <p><strong className="text-primary">Result:</strong> Complete market failure—socially valuable goods are not produced despite positive social benefit.</p>
+              <p><strong className="text-secondary">Solution:</strong> Government provision funded by compulsory taxation (collective action).</p>
+            </div>
+          </div>
+
+          {/* Quasi-Public Goods */}
+          <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+            <p className="text-xs text-amber-400 font-semibold mb-1">Examiner Note: Quasi-Public Goods</p>
+            <p className="text-xs text-muted-foreground">Many goods described as "public" are actually <strong>Quasi-Public Goods</strong>—they exhibit one but not both characteristics. Examples: A congested road is non-excludable but <em>rivalrous</em> (adds to congestion); A cinema is non-rivalrous (empty seats cost nothing extra) but <em>excludable</em> (through ticket sales). True public goods satisfying both conditions are rare.</p>
+          </div>
         </div>
 
-        {/* Merit and Demerit Goods - Dense Analysis */}
+        {/* Merit and Demerit Goods - Enhanced Dense Analysis */}
         <div className="grid md:grid-cols-2 gap-4 mb-4">
           <Card className="glass-card border-green-400/30">
             <CardHeader className="pb-2">
@@ -183,11 +231,29 @@ const MarketFailure = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground text-justify leading-relaxed">
-                <strong className="text-green-400">Merit goods</strong> are goods that society deems intrinsically desirable and which would be under-consumed if left to free market forces. The under-consumption arises primarily from <strong className="text-amber-400">Information Failure</strong>: consumers underestimate the private benefits of consumption (due to "myopia" or short-termism) or are unaware of the positive externalities generated. Education, healthcare, vaccinations, and museums are typical examples. An 18-year-old may undervalue the future income gains from attending university, leading to under-investment in human capital. The "paternalistic" argument for government intervention holds that the state, possessing superior information about long-term consequences, is justified in encouraging consumption beyond the level individuals would freely choose—through subsidies, direct provision, or even legal compulsion (as with mandatory schooling). The key analytical link is the wedge between <InlineMath math="MPB" /> (which guides private decisions) and the "true" private benefit (which includes long-term effects the consumer fails to perceive).
+              <p className="text-sm text-muted-foreground text-justify leading-relaxed mb-3">
+                <strong className="text-green-400">Merit goods</strong> are goods that society deems intrinsically desirable and which would be <strong>under-consumed</strong> if left to free market forces. The under-consumption arises primarily from <strong className="text-amber-400">Information Failure</strong>: consumers underestimate the private benefits of consumption (due to "myopia" or short-termism) or are unaware of the positive externalities generated.
+              </p>
+              
+              {/* Step-by-Step Chain */}
+              <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/20 mb-2">
+                <p className="text-xs text-green-400 font-semibold mb-1">Chain of Analysis: Education as a Merit Good</p>
+                <div className="text-xs text-muted-foreground space-y-0.5">
+                  <p><strong>Step 1:</strong> Young person underestimates future income gains from university (myopia).</p>
+                  <p><strong>Step 2:</strong> Also unaware of external benefits to society (innovation, lower crime, stronger democracy).</p>
+                  <p><strong>Step 3:</strong> MPB (perceived) &lt; True MPB → Individual consumes less than optimal.</p>
+                  <p><strong>Step 4:</strong> MSB &gt; MPB → Society values education more than individual does.</p>
+                  <p><strong>Step 5:</strong> Market equilibrium at Qm &lt; Q* (socially optimal).</p>
+                  <p><strong>Solution:</strong> Subsidies, free provision, or compulsory consumption (schooling laws).</p>
+                </div>
+              </div>
+              
+              <p className="text-xs text-muted-foreground">
+                <strong>Examples:</strong> Education, healthcare, vaccinations, museums, libraries
               </p>
             </CardContent>
           </Card>
+          
           <Card className="glass-card border-destructive/30">
             <CardHeader className="pb-2">
               <CardTitle className="text-base text-destructive flex items-center gap-2">
@@ -195,11 +261,53 @@ const MarketFailure = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground text-justify leading-relaxed">
-                <strong className="text-destructive">Demerit goods</strong> are the converse of merit goods: they are goods that society deems harmful and which would be over-consumed if left to free market forces. The over-consumption stems from consumers underestimating the private costs (particularly long-term health consequences) and ignoring the negative externalities imposed on others. Tobacco, alcohol, and addictive drugs are classic examples. A young person beginning to smoke may fail to appreciate the future costs of addiction, cancer, and reduced life expectancy; they certainly do not account for the costs imposed on passive smokers or the burden on public healthcare systems. Demerit goods thus combine <strong className="text-amber-400">Information Failure</strong> (consumers are not fully informed or are "irrationally" short-sighted) with <strong className="text-cyan-400">Negative Externalities</strong>. The policy response typically involves a combination of indirect taxation (to "internalize" the externality), regulation (such as banning smoking in public places), and information campaigns (such as graphic health warnings on cigarette packets). The challenge for policymakers is balancing the reduction in welfare loss against concerns about individual liberty and the regressive nature of "sin taxes."
+              <p className="text-sm text-muted-foreground text-justify leading-relaxed mb-3">
+                <strong className="text-destructive">Demerit goods</strong> are the converse of merit goods: they are goods that society deems harmful and which would be <strong>over-consumed</strong> if left to free market forces. The over-consumption stems from consumers underestimating the private costs (particularly long-term health consequences) and ignoring negative externalities.
+              </p>
+              
+              {/* Step-by-Step Chain */}
+              <div className="p-3 bg-red-500/10 rounded-lg border border-red-500/20 mb-2">
+                <p className="text-xs text-red-400 font-semibold mb-1">Chain of Analysis: Tobacco as a Demerit Good</p>
+                <div className="text-xs text-muted-foreground space-y-0.5">
+                  <p><strong>Step 1:</strong> Young smoker underestimates addiction risk and future cancer costs.</p>
+                  <p><strong>Step 2:</strong> Also ignores external costs: passive smoking, NHS burden, lost productivity.</p>
+                  <p><strong>Step 3:</strong> MPC (perceived) &lt; True MPC → Individual consumes more than privately optimal.</p>
+                  <p><strong>Step 4:</strong> MSC &gt; MPC → Society bears costs individual ignores.</p>
+                  <p><strong>Step 5:</strong> Market equilibrium at Qm &gt; Q* (socially optimal).</p>
+                  <p><strong>Solution:</strong> Indirect taxes, regulation (smoking bans), information campaigns.</p>
+                </div>
+              </div>
+              
+              <p className="text-xs text-muted-foreground">
+                <strong>Examples:</strong> Tobacco, alcohol, gambling, illicit drugs, high-sugar foods
               </p>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Information Failure Block */}
+        <div className="glass-card p-5 rounded-xl mb-4">
+          <h3 className="text-lg font-semibold text-amber-400 mb-3 flex items-center gap-2">
+            <BookOpen className="w-5 h-5" />
+            Information Failure: The Root Cause
+          </h3>
+          <p className="text-muted-foreground text-justify leading-relaxed mb-3">
+            <strong className="text-amber-400">Information Failure</strong> (or Asymmetric Information) occurs when one party in a transaction possesses more or better information than the other, or when consumers lack complete information about the costs and benefits of their consumption decisions. This market failure underlies both merit and demerit goods problems and extends to broader market contexts.
+          </p>
+          <div className="grid md:grid-cols-2 gap-3">
+            <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+              <h5 className="font-semibold text-amber-400 text-sm mb-1">Imperfect Information (Consumer Side)</h5>
+              <p className="text-xs text-muted-foreground">
+                Consumers may lack knowledge about product quality, long-term health effects, or true benefits. Example: Patients cannot assess medical treatment quality; food buyers cannot evaluate nutritional content.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+              <h5 className="font-semibold text-cyan-400 text-sm mb-1">Asymmetric Information</h5>
+              <p className="text-xs text-muted-foreground">
+                One party knows more than the other. <strong>Adverse Selection:</strong> Used car sellers know defects buyers don't (Akerlof's "Lemons"). <strong>Moral Hazard:</strong> Insured people take more risks because they don't bear full costs.
+              </p>
+            </div>
+          </div>
         </div>
       </motion.section>
 
