@@ -92,60 +92,166 @@ const DIAGRAM_COMPONENTS = {
 
 type DiagramType = keyof typeof DIAGRAM_COMPONENTS;
 
-// Topic detection patterns with priority ranking
-// Higher priority = more specific concepts that should take precedence
-// Enhanced with multi-source intelligence patterns
+// Topic detection patterns with priority ranking - Full CIE 9708 Syllabus Coverage
+// Priority 10: Highly specific A2 concepts
+// Priority 8: Major macro/micro frameworks
+// Priority 6: Core AD/AS and welfare
+// Priority 4: Foundational concepts
 const TOPIC_PATTERNS: { pattern: RegExp; diagram: DiagramType; priority: number }[] = [
-  // HIGHEST PRIORITY (10) - Very specific concepts requiring exact diagrams
-  { pattern: /marshall[-\s]?lerner|(\|PED_?[XM]\|.*>\s*1)|devaluation.*trade\s*balance|elasticity.*depreciation/i, diagram: 'marshall-lerner', priority: 10 },
-  { pattern: /j[-\s]?curve|short[-\s]?run.*worsening|BoP.*worsens.*improves|current\s*account.*deteriorates|worsens\s*before\s*improves/i, diagram: 'j-curve', priority: 10 },
-  { pattern: /trade\s*creation|customs\s*union.*welfare\s*gain|bloc.*efficiency|member\s*country.*tariff\s*removal/i, diagram: 'trade-creation', priority: 10 },
-  { pattern: /trade\s*diversion|customs\s*union.*welfare\s*loss|CET.*diversion|higher[-\s]?cost\s*member/i, diagram: 'trade-diversion', priority: 10 },
-  { pattern: /kuznets\s*curve|inequality.*development.*inverted|inverted[-\s]?U|development.*inequality.*falls/i, diagram: 'kuznets-curve', priority: 10 },
-  { pattern: /phillips\s*curve|inflation.*unemployment\s*trade[-\s]?off|SRPC|LRPC|NRU|NAIRU|natural\s*rate\s*of\s*unemployment/i, diagram: 'phillips-curve', priority: 10 },
-  { pattern: /liquidity\s*trap|perfectly\s*elastic\s*money\s*demand|horizontal\s*L\s*curve|monetary\s*policy.*ineffective/i, diagram: 'liquidity-trap', priority: 10 },
-  { pattern: /liquidity\s*preference|interest\s*rate\s*determination|speculative\s*demand|transactionary\s*motive|precautionary\s*motive/i, diagram: 'liquidity-preference', priority: 10 },
-  { pattern: /harrod[-\s]?domar|savings.*investment.*growth|warranted\s*growth|g\s*=\s*s\/k|capital[-\s]?output\s*ratio/i, diagram: 'harrod-domar', priority: 10 },
-  { pattern: /world\s*price.*welfare|free\s*trade.*surplus|import.*consumer\s*surplus|Pw.*trade/i, diagram: 'world-price-welfare', priority: 10 },
-  { pattern: /kinked\s*demand|oligopoly.*price\s*rigidity|discontinuous\s*MR|price\s*stickiness.*oligopoly/i, diagram: 'kinked-demand', priority: 10 },
-  { pattern: /monopolistic.*long[-\s]?run|AR\s*tangent\s*to\s*AC|normal\s*profit.*monopolistic|product\s*differentiation.*long[-\s]?run/i, diagram: 'monopolistic-competition', priority: 10 },
-  { pattern: /monopsony|single\s*buyer.*labour|MCL.*above.*ACL|wage.*below.*MRP|labour\s*market\s*exploitation/i, diagram: 'labor-market', priority: 10 },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PRIORITY 10 - A2 ADVANCED CONCEPTS (Highly Specific)
+  // ═══════════════════════════════════════════════════════════════════════════
   
-  // HIGH PRIORITY (8) - Major macro/micro concepts
-  { pattern: /demand[-\s]?pull\s*inflation|AD\s*shift.*right.*inflation|excessive\s*AD|spending\s*outstrips\s*capacity/i, diagram: 'demand-pull-inflation', priority: 8 },
+  // International Economics - Exchange Rates
+  { pattern: /marshall[-\s]?lerner|(\|PED_?[XM]\|.*>\s*1)|devaluation.*elasticity|sum\s*of\s*elasticities/i, diagram: 'marshall-lerner', priority: 10 },
+  { pattern: /j[-\s]?curve|worsens?\s*before\s*improv|BoP.*worsens.*improves|current\s*account.*deteriorat|time\s*lag.*devaluation/i, diagram: 'j-curve', priority: 10 },
+  { pattern: /terms\s*of\s*trade|ToT|export.*import.*price\s*ratio|commodity.*price.*developing/i, diagram: 'comparative-advantage', priority: 10 },
+  
+  // Trade Blocs & Integration
+  { pattern: /trade\s*creation|customs\s*union.*welfare\s*gain|tariff\s*removal.*member|efficiency.*bloc/i, diagram: 'trade-creation', priority: 10 },
+  { pattern: /trade\s*diversion|CET.*welfare\s*loss|higher[-\s]?cost\s*member|external\s*tariff.*divert/i, diagram: 'trade-diversion', priority: 10 },
+  
+  // Development Economics
+  { pattern: /kuznets\s*curve|inequality.*inverted[-\s]?U|development.*inequality.*falls|structural\s*transformation/i, diagram: 'kuznets-curve', priority: 10 },
+  { pattern: /harrod[-\s]?domar|g\s*=\s*s\/k|savings.*gap|capital[-\s]?output\s*ratio|warranted\s*growth/i, diagram: 'harrod-domar', priority: 10 },
+  { pattern: /lewis\s*model|dual\s*sector|unlimited\s*labour|subsistence.*modern\s*sector/i, diagram: 'labor-market', priority: 10 },
+  
+  // Phillips Curve Analysis
+  { pattern: /phillips\s*curve|inflation.*unemployment\s*trade[-\s]?off|SRPC|LRPC|NAIRU|expectations[-\s]?augmented/i, diagram: 'phillips-curve', priority: 10 },
+  { pattern: /natural\s*rate.*unemployment|NRU|vertical\s*LRPC|adaptive\s*expectations/i, diagram: 'phillips-curve', priority: 10 },
+  
+  // Money & Banking - Liquidity
+  { pattern: /liquidity\s*trap|horizontal\s*L[PM]\s*curve|zero\s*lower\s*bound|monetary\s*policy.*ineffective/i, diagram: 'liquidity-trap', priority: 10 },
+  { pattern: /liquidity\s*preference|speculative\s*demand.*money|transactionary|precautionary\s*motive/i, diagram: 'liquidity-preference', priority: 10 },
+  { pattern: /quantity\s*theory|MV\s*=\s*PY|fisher\s*equation|velocity.*money/i, diagram: 'money-supply', priority: 10 },
+  
+  // Market Structures - Oligopoly & Game Theory
+  { pattern: /kinked\s*demand|price\s*rigidity.*oligopoly|discontinuous\s*MR|sticky\s*prices.*oligopol/i, diagram: 'kinked-demand', priority: 10 },
+  { pattern: /game\s*theory|prisoner'?s?\s*dilemma|nash\s*equilibrium|dominant\s*strategy|collusion.*cartel/i, diagram: 'kinked-demand', priority: 10 },
+  { pattern: /contestable\s*market|hit[-\s]?and[-\s]?run|sunk\s*costs.*entry|potential\s*competition/i, diagram: 'perfect-competition', priority: 10 },
+  
+  // Labour Market - Monopsony
+  { pattern: /monopsony|single\s*buyer.*labour|MCL.*above.*ACL|wage.*below.*MRP|labour\s*exploitation/i, diagram: 'labor-market', priority: 10 },
+  { pattern: /trade\s*union|collective\s*bargaining|bilateral\s*monopoly.*labour|union.*wage\s*mark[-\s]?up/i, diagram: 'labor-market', priority: 10 },
+  { pattern: /wage\s*differential|compensating\s*differential|human\s*capital.*wage|MRP.*labour\s*demand/i, diagram: 'labor-market', priority: 10 },
+  
+  // Efficiency Types
+  { pattern: /allocative\s*efficiency|P\s*=\s*MC|marginal\s*social\s*benefit|resources.*optimal/i, diagram: 'consumer-producer-surplus', priority: 10 },
+  { pattern: /productive\s*efficiency|minimum\s*AC|lowest\s*cost.*production|on\s*the\s*PPC/i, diagram: 'cost-curves', priority: 10 },
+  { pattern: /dynamic\s*efficiency|innovation.*investment|R&D.*long[-\s]?run|supernormal.*reinvest/i, diagram: 'monopoly', priority: 10 },
+  { pattern: /x[-\s]?inefficiency|organisational\s*slack|managerial.*inefficien|lack.*competitive\s*pressure/i, diagram: 'monopoly', priority: 10 },
+  
+  // Taxation - Laffer Curve
+  { pattern: /laffer\s*curve|tax\s*rate.*revenue.*inverted|prohibitive\s*range|optimal\s*tax\s*rate/i, diagram: 'fiscal-policy', priority: 10 },
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PRIORITY 8 - MAJOR FRAMEWORKS
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  // Inflation Types
+  { pattern: /demand[-\s]?pull\s*inflation|AD\s*shift.*right.*inflation|excessive\s*spending|overheating\s*economy/i, diagram: 'demand-pull-inflation', priority: 8 },
   { pattern: /cost[-\s]?push\s*inflation|SRAS\s*shift.*left|stagflation|supply[-\s]?side\s*shock|oil\s*price\s*shock/i, diagram: 'cost-push-inflation', priority: 8 },
+  { pattern: /hyperinflation|money\s*supply.*inflation|monetary\s*financing|printing\s*money/i, diagram: 'money-supply', priority: 8 },
+  
+  // Multiplier Effects
   { pattern: /multiplier\s*effect|k\s*=|1\/(1[-\s]?MPC)|MPW|marginal\s*propensity|injection.*rounds/i, diagram: 'multiplier', priority: 8 },
-  { pattern: /monetary\s*policy.*transmission|interest\s*rate.*AD|transmission\s*mechanism|base\s*rate.*effect/i, diagram: 'monetary-transmission', priority: 8 },
-  { pattern: /fiscal\s*policy|government\s*spending.*AD|taxation.*AD|budget.*deficit|crowding\s*out/i, diagram: 'fiscal-policy', priority: 8 },
-  { pattern: /comparative\s*advantage|specialization.*trade|opportunity\s*cost.*trade|gains\s*from\s*trade|ricardian\s*trade/i, diagram: 'comparative-advantage', priority: 8 },
-  { pattern: /tariff|quota|protectionism|deadweight\s*loss.*trade|import\s*restriction|infant\s*industry/i, diagram: 'tariff-deadweight', priority: 8 },
-  { pattern: /credit\s*multiplier|money\s*creation|reserve\s*ratio|fractional\s*reserve|bank\s*creates\s*money/i, diagram: 'credit-multiplier', priority: 8 },
+  { pattern: /accelerator|induced\s*investment|capital.*output.*growth|investment.*volatile/i, diagram: 'multiplier', priority: 8 },
+  
+  // Policy Transmission
+  { pattern: /monetary\s*policy.*transmission|interest\s*rate.*AD|base\s*rate.*effect|QE.*transmission/i, diagram: 'monetary-transmission', priority: 8 },
+  { pattern: /fiscal\s*policy|government\s*spending.*AD|budget.*deficit|crowding\s*out|automatic\s*stabilisers/i, diagram: 'fiscal-policy', priority: 8 },
+  { pattern: /supply[-\s]?side\s*policy|LRAS.*shift|productivity.*potential|deregulation.*privatisation/i, diagram: 'as-shift', priority: 8 },
+  
+  // Trade Theory
+  { pattern: /comparative\s*advantage|opportunity\s*cost.*trade|gains\s*from\s*trade|ricardian|specialisation/i, diagram: 'comparative-advantage', priority: 8 },
+  { pattern: /absolute\s*advantage|more\s*output.*same\s*resources|adam\s*smith.*trade/i, diagram: 'comparative-advantage', priority: 8 },
+  { pattern: /tariff|quota|protectionism|deadweight\s*loss.*trade|infant\s*industry/i, diagram: 'tariff-deadweight', priority: 8 },
+  
+  // Money Creation
+  { pattern: /credit\s*multiplier|money\s*creation|reserve\s*ratio|fractional\s*reserve|deposit.*multiplier/i, diagram: 'credit-multiplier', priority: 8 },
+  
+  // Income Distribution
   { pattern: /gini\s*coefficient|lorenz\s*curve|income\s*distribution|inequality\s*measure|A\/(A\s*\+\s*B)/i, diagram: 'lorenz-curve', priority: 8 },
   
-  // MEDIUM-HIGH PRIORITY (6) - Core AD/AS and welfare concepts
-  { pattern: /aggregate\s*demand.*shift|AD\s*shift|increase\s*in\s*AD|decrease\s*in\s*AD|components\s*of\s*AD/i, diagram: 'ad-shift', priority: 6 },
-  { pattern: /SRAS.*LRAS|aggregate\s*supply.*shift|AS\s*shift|supply[-\s]?side|classical.*keynesian\s*AS/i, diagram: 'as-shift', priority: 6 },
-  { pattern: /AD[-\/]?AS.*equilibrium|macroeconomic\s*equilibrium|GPL.*real\s*output|national\s*equilibrium|demand\s*equals\s*supply\s*macro/i, diagram: 'adas-equilibrium', priority: 6 },
-  { pattern: /consumer\s*surplus|producer\s*surplus|welfare\s*analysis|total\s*surplus|area\s*below\s*demand/i, diagram: 'consumer-producer-surplus', priority: 6 },
-  { pattern: /externality|MSC|MSB|MPC|MPB|market\s*failure.*social|welfare\s*loss|third[-\s]?party\s*effects/i, diagram: 'externalities', priority: 6 },
-  { pattern: /price\s*elasticity|PED|elastic.*inelastic|%ΔQ.*%ΔP|responsiveness|revenue.*elasticity/i, diagram: 'price-elasticity', priority: 6 },
-  { pattern: /output\s*gap|recessionary\s*gap|inflationary\s*gap|Y[_\s]*(fe|potential)|full\s*employment.*gap/i, diagram: 'output-gaps', priority: 6 },
+  // Market Structures
+  { pattern: /monopolistic.*competition|product\s*differentiation|AR\s*tangent.*AC|brand.*loyalty/i, diagram: 'monopolistic-competition', priority: 8 },
+  { pattern: /natural\s*monopoly|economies\s*of\s*scale.*barrier|subadditive\s*costs|utility.*regulation/i, diagram: 'monopoly', priority: 8 },
   
-  // MEDIUM PRIORITY (4) - General micro/macro concepts  
-  { pattern: /demand.*supply.*equilibrium|market\s*equilibrium|P\s*=\s*MC|price\s*mechanism|invisible\s*hand/i, diagram: 'demand-supply', priority: 4 },
-  { pattern: /shift.*demand\s*curve|demand\s*curve.*shift|determinants\s*of\s*demand|non[-\s]?price\s*factors/i, diagram: 'demand-shift', priority: 4 },
-  { pattern: /PPC|production\s*possibility|opportunity\s*cost.*frontier|productive\s*potential|scarcity.*choice/i, diagram: 'ppc', priority: 4 },
-  { pattern: /economic\s*growth.*PPC|PPC.*shift.*outward|potential\s*output.*increase|technological\s*progress.*PPC/i, diagram: 'ppc-shifts', priority: 4 },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PRIORITY 6 - CORE AD/AS & WELFARE
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  // AD/AS Framework
+  { pattern: /aggregate\s*demand.*shift|AD\s*shift|increase\s*in\s*AD|decrease\s*in\s*AD|C\s*\+\s*I\s*\+\s*G/i, diagram: 'ad-shift', priority: 6 },
+  { pattern: /SRAS.*LRAS|aggregate\s*supply.*shift|AS\s*shift|classical.*keynesian\s*AS/i, diagram: 'as-shift', priority: 6 },
+  { pattern: /AD[-\/]?AS.*equilibrium|macroeconomic\s*equilibrium|GPL.*real\s*output|national\s*income\s*equilibrium/i, diagram: 'adas-equilibrium', priority: 6 },
+  { pattern: /keynesian\s*cross|45[-\s]?degree|AE\s*=\s*Y|injection.*withdrawal/i, diagram: 'multiplier', priority: 6 },
+  
+  // Welfare Economics
+  { pattern: /consumer\s*surplus|producer\s*surplus|welfare\s*analysis|total\s*surplus|area\s*below\s*demand/i, diagram: 'consumer-producer-surplus', priority: 6 },
+  { pattern: /deadweight\s*loss|DWL|welfare\s*loss.*triangle|allocative.*inefficiency/i, diagram: 'consumer-producer-surplus', priority: 6 },
+  { pattern: /externality|MSC|MSB|MPC|MPB|market\s*failure.*social|third[-\s]?party\s*effects/i, diagram: 'externalities', priority: 6 },
+  { pattern: /negative\s*externality|pollution|social\s*cost.*private|overproduction|pigouvian\s*tax/i, diagram: 'externalities', priority: 6 },
+  { pattern: /positive\s*externality|merit\s*good|education.*healthcare|underconsumption|subsidy.*correction/i, diagram: 'externalities', priority: 6 },
+  { pattern: /public\s*good|non[-\s]?excludable|non[-\s]?rival|free[-\s]?rider|government\s*provision/i, diagram: 'externalities', priority: 6 },
+  
+  // Elasticity
+  { pattern: /price\s*elasticity|PED|elastic.*inelastic|%ΔQ.*%ΔP|responsiveness.*price/i, diagram: 'price-elasticity', priority: 6 },
+  { pattern: /income\s*elasticity|YED|normal.*inferior\s*good|luxury.*necessity/i, diagram: 'price-elasticity', priority: 6 },
+  { pattern: /cross[-\s]?elasticity|XED|substitute.*complement|positive.*XED.*negative/i, diagram: 'price-elasticity', priority: 6 },
+  { pattern: /supply\s*elasticity|PES|time\s*period.*elasticity|factor\s*mobility/i, diagram: 'price-elasticity', priority: 6 },
+  
+  // Output Gaps
+  { pattern: /output\s*gap|recessionary\s*gap|inflationary\s*gap|actual.*potential\s*output|Y[_\s]*fe/i, diagram: 'output-gaps', priority: 6 },
+  { pattern: /deflationary\s*gap|negative\s*output\s*gap|spare\s*capacity|below\s*full\s*employment/i, diagram: 'output-gaps', priority: 6 },
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PRIORITY 4 - FOUNDATIONAL CONCEPTS
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  // Basic Market Equilibrium
+  { pattern: /demand.*supply.*equilibrium|market\s*equilibrium|price\s*mechanism|invisible\s*hand/i, diagram: 'demand-supply', priority: 4 },
+  { pattern: /shift.*demand\s*curve|demand\s*curve.*shift|determinants\s*of\s*demand|ceteris\s*paribus/i, diagram: 'demand-shift', priority: 4 },
+  { pattern: /shift.*supply\s*curve|supply\s*curve.*shift|determinants\s*of\s*supply/i, diagram: 'demand-supply', priority: 4 },
+  { pattern: /movement\s*along|extension.*contraction|change\s*in\s*quantity\s*demanded/i, diagram: 'demand-supply', priority: 4 },
+  
+  // PPC & Opportunity Cost
+  { pattern: /PPC|PPF|production\s*possibility|opportunity\s*cost.*frontier|scarcity.*choice/i, diagram: 'ppc', priority: 4 },
+  { pattern: /economic\s*growth.*PPC|PPC.*shift.*outward|potential\s*output.*increase/i, diagram: 'ppc-shifts', priority: 4 },
+  
+  // Circular Flow
   { pattern: /circular\s*flow|injections.*leakages|income\s*flow|expenditure\s*flow|withdrawal/i, diagram: 'circular-flow', priority: 4 },
+  
+  // Business Cycle
   { pattern: /business\s*cycle|boom.*recession|economic\s*cycle|trade\s*cycle|peak.*trough/i, diagram: 'business-cycle', priority: 4 },
+  
+  // Market Structures - Basic
   { pattern: /monopoly|price\s*maker|MC\s*=\s*MR|supernormal\s*profit|barriers\s*to\s*entry/i, diagram: 'monopoly', priority: 4 },
-  { pattern: /perfect\s*competition|price\s*taker|normal\s*profit.*long[-\s]?run|homogeneous\s*products|many\s*buyers\s*sellers/i, diagram: 'perfect-competition', priority: 4 },
+  { pattern: /perfect\s*competition|price\s*taker|normal\s*profit.*long[-\s]?run|homogeneous\s*products/i, diagram: 'perfect-competition', priority: 4 },
+  
+  // Cost Curves
+  { pattern: /cost\s*curves?|MC|AC|AVC|AFC|economies\s*of\s*scale|short[-\s]?run\s*costs|U[-\s]?shaped/i, diagram: 'cost-curves', priority: 4 },
+  { pattern: /marginal\s*cost|average\s*cost|total\s*cost|variable\s*cost|fixed\s*cost/i, diagram: 'cost-curves', priority: 4 },
+  
+  // Exchange Rates - Basic
   { pattern: /exchange\s*rate|depreciation|appreciation|currency.*value|floating\s*exchange/i, diagram: 'exchange-rate', priority: 4 },
+  { pattern: /fixed\s*exchange|pegged|central\s*bank.*intervention|currency\s*board/i, diagram: 'fixed-exchange-rate', priority: 4 },
+  
+  // Labour Market - Basic
   { pattern: /labor\s*market|labour\s*market|wage\s*determination|MRP|derived\s*demand.*labour/i, diagram: 'labor-market', priority: 4 },
-  { pattern: /unemployment|frictional|structural|cyclical|hysteresis/i, diagram: 'unemployment', priority: 4 },
-  { pattern: /utility|marginal\s*utility|TU|MU|equi[-\s]?marginal|diminishing\s*utility|law\s*of\s*diminishing/i, diagram: 'utility', priority: 4 },
-  { pattern: /indifference\s*curve|budget\s*line|consumer\s*choice|optimal\s*consumption|tangency.*budget/i, diagram: 'indifference-curves', priority: 4 },
-  { pattern: /cost\s*curves|MC|AC|AVC|AFC|economies\s*of\s*scale|short[-\s]?run\s*costs|long[-\s]?run\s*costs/i, diagram: 'cost-curves', priority: 4 },
+  
+  // Unemployment Types
+  { pattern: /frictional\s*unemployment|job\s*search|transitional|between\s*jobs/i, diagram: 'unemployment', priority: 4 },
+  { pattern: /structural\s*unemployment|mismatch|occupational.*geographical|technological\s*change/i, diagram: 'unemployment', priority: 4 },
+  { pattern: /cyclical\s*unemployment|demand[-\s]?deficient|recession.*unemployment/i, diagram: 'unemployment', priority: 4 },
+  
+  // Utility Theory
+  { pattern: /utility|marginal\s*utility|TU|MU|equi[-\s]?marginal|diminishing\s*utility/i, diagram: 'utility', priority: 4 },
+  { pattern: /indifference\s*curve|budget\s*line|consumer\s*choice|optimal\s*consumption|tangency/i, diagram: 'indifference-curves', priority: 4 },
+  
+  // Balance of Payments
+  { pattern: /balance\s*of\s*payments|BoP|current\s*account|capital\s*account|financial\s*account/i, diagram: 'exchange-rate', priority: 4 },
+  { pattern: /trade\s*deficit|trade\s*surplus|visible.*invisible|net\s*exports/i, diagram: 'exchange-rate', priority: 4 },
 ];
 
 // Loading component for diagrams
