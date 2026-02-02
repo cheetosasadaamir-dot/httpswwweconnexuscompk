@@ -3741,6 +3741,645 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     evaluation: 'Some frictional unemployment is efficient: it allows better worker-job matching, raising productivity. Policies to eliminate frictional unemployment (forcing workers to accept first offer) would reduce match quality and long-run output. However, excessively long search (due to information failures or generous benefits) is inefficient. The rise of online job platforms (LinkedIn, Indeed) has likely reduced frictional duration. Universal Basic Income debates partly concern whether to subsidize longer search (better matches) or faster acceptance (lower measured unemployment).',
     formula: 'u^* = u_f + u_s + u_c \\quad \\text{(Natural rate = frictional + structural + cyclical at equilibrium)}',
     realWorldExample: 'A graduate spending 3 months finding their first professional role, or a worker taking 6 weeks between jobs to find a better fit, represents frictional unemployment. The UK\'s flexible labor market has relatively short frictional spells compared to more regulated European markets.'
+  },
+  // ========== PHASE 9: TAX, TRADE, LABOR & MODERN FINANCE ==========
+  {
+    id: 'tax-competition',
+    title: 'Tax Competition',
+    category: 'policy',
+    definition: 'The competitive lowering of tax rates by governments to attract mobile capital, businesses, and high-net-worth individuals from other jurisdictions. Tax competition can lead to a "race to the bottom" where all countries reduce taxes, potentially underfunding public services.',
+    keyPoints: [
+      'Capital mobility enables tax arbitrage between jurisdictions',
+      'Race to the bottom: Countries undercut each other on corporate tax rates',
+      'Winners: Mobile capital, multinational corporations',
+      'Losers: Immobile factors (labor, land), public services',
+      'OECD global minimum tax (15%) attempts to limit tax competition'
+    ],
+    analysis: 'Country A cuts corporate tax to 12.5% (Ireland) → MNCs relocate profits to A → Country B loses tax revenue → B cuts taxes to compete → All countries end with lower rates → Tax burden shifts to immobile factors (labor, consumption) → Public services underfunded or inequality rises. Game theory: Prisoners\' dilemma—all countries worse off but individual incentive to defect.',
+    evaluation: 'Tax competition has efficiency benefits: it constrains wasteful government spending and encourages efficient tax systems. But it also erodes the tax base, particularly for smaller countries unable to compete. The 2021 OECD global minimum tax (Pillar Two) represents international coordination to limit the race to the bottom. However, enforcement is challenging, and countries can compete on other margins (subsidies, regulations). The optimal balance between competition and coordination remains contested.',
+    formula: '\\text{Nash Equilibrium: } t^* < t_{\\text{cooperative}} \\quad \\text{(Suboptimal tax rates)}',
+    realWorldExample: 'Ireland\'s 12.5% corporate tax rate attracted Apple, Google, and other tech giants, creating the "Double Irish" tax structure. The OECD global minimum tax (15%, effective 2024) aims to reduce such competition, though Ireland negotiated exemptions for existing arrangements.'
+  },
+  {
+    id: 'tax-havens',
+    title: 'Tax Havens',
+    category: 'policy',
+    definition: 'Jurisdictions that offer low or zero tax rates, strict banking secrecy, and minimal financial regulation to attract foreign capital. Tax havens enable legal tax avoidance and illegal tax evasion, reducing tax revenues in higher-tax countries and contributing to global inequality.',
+    keyPoints: [
+      'Characteristics: Low/zero taxes, secrecy, no information exchange, shell companies',
+      'Examples: Cayman Islands, British Virgin Islands, Luxembourg, Switzerland (historically)',
+      'Enable profit shifting by MNCs (transfer pricing, intellectual property)',
+      'Estimated $8-10 trillion held in offshore accounts globally',
+      'OECD Base Erosion and Profit Shifting (BEPS) targets tax haven abuse'
+    ],
+    analysis: 'MNC earns £100m profit in UK → Creates subsidiary in tax haven → Licenses IP to UK subsidiary at inflated price → UK profits reduced to £10m (taxed at 25%) → £90m profit appears in tax haven (taxed at 0%) → UK loses £22.5m in tax revenue. Aggregate effect: Tax base erosion in high-tax countries → Either higher taxes on immobile factors or reduced public spending.',
+    evaluation: 'Tax havens impose negative externalities on other countries (lost revenue, inequality). But defining "haven" is contested—low taxes are not inherently illegitimate. Sovereignty arguments suggest countries can set their own tax policies. The distinction between legal avoidance and illegal evasion matters: transparency initiatives (CRS, automatic information exchange) target evasion, while minimum taxes target avoidance. Small island economies argue they have few other competitive advantages—eliminating tax competition could harm their development.',
+    realWorldExample: 'The Panama Papers (2016) and Paradise Papers (2017) revealed widespread use of tax havens by corporations and wealthy individuals. The UK\'s Crown Dependencies (Jersey, Guernsey, Isle of Man) and Overseas Territories (Cayman Islands, BVI) are major tax havens, creating tensions over Britain\'s anti-avoidance rhetoric.'
+  },
+  {
+    id: 'technical-efficiency',
+    title: 'Technical Efficiency Definition',
+    category: 'theory',
+    definition: 'A firm achieves technical efficiency when it produces the maximum possible output from a given set of inputs, or equivalently, uses the minimum inputs to produce a given output. Operating on the production possibility frontier indicates technical efficiency; points inside the frontier indicate technical inefficiency.',
+    keyPoints: [
+      'Maximum output from given inputs (or minimum inputs for given output)',
+      'On the PPF/isoquant = technically efficient; inside = technically inefficient',
+      'Distinct from allocative efficiency (producing the right mix of goods)',
+      'Sources of inefficiency: X-inefficiency, poor management, outdated technology',
+      'Necessary but not sufficient for economic efficiency'
+    ],
+    analysis: 'Firm uses 10 workers and 5 machines → Could produce 100 units (technically efficient) or 80 units (20% inefficient). Inefficiency arises from: poor work organization, inadequate training, obsolete equipment, or managerial slack (X-inefficiency). On a PPF diagram: Point on the curve = technically efficient; point inside = wasted resources. Technical efficiency is achieved when MPL/w = MPK/r (isocost tangent to isoquant).',
+    evaluation: 'Technical efficiency is a minimum requirement but does not guarantee overall efficiency. A firm can be technically efficient (on its PPF) while producing the wrong goods (allocatively inefficient) or at the wrong scale (not achieving minimum LRAC). Competition promotes technical efficiency by punishing slack firms. Monopolies, protected industries, and public sector organizations may exhibit persistent technical inefficiency due to lack of competitive pressure.',
+    formula: 'TE = \\frac{\\text{Actual Output}}{\\text{Maximum Possible Output}} \\leq 1',
+    realWorldExample: 'British Leyland (1970s nationalized car manufacturer) exemplified technical inefficiency: overstaffing, poor work practices, and outdated machinery meant output per worker was far below competitors. Privatization and foreign competition in the 1980s forced efficiency improvements or exit.'
+  },
+  {
+    id: 'technological-unemployment',
+    title: 'Technological Unemployment',
+    category: 'macro',
+    definition: 'Unemployment caused by the replacement of human labor with machines, automation, or artificial intelligence. While technology creates new jobs, technological unemployment occurs when the pace of job destruction exceeds job creation, or when displaced workers lack skills for new roles.',
+    keyPoints: [
+      'Structural unemployment: Skills mismatch as old jobs disappear',
+      'Historical precedent: Luddites, agricultural mechanization, manufacturing automation',
+      'AI and robotics accelerating displacement in routine cognitive and manual tasks',
+      'Compensation effects: New industries, products, and jobs emerge',
+      'Transition costs: Retraining, relocation, income support during adjustment'
+    ],
+    analysis: 'Automation replaces routine tasks → Demand for routine workers falls → These workers become unemployed → If new jobs require different skills (occupational immobility), unemployment persists → Structural unemployment rises. Long run: Technology increases productivity → Lower prices → Higher real incomes → Demand for new goods/services → New jobs created. But short-run transition is painful for displaced workers.',
+    evaluation: 'Historically, technology has not caused permanent mass unemployment—compensation mechanisms have created new jobs. But AI may be different: it can perform non-routine cognitive tasks, threatening middle-class jobs previously considered safe. The question is speed: if displacement is faster than adaptation, transitional unemployment could be prolonged. Policy responses: investment in education/retraining, portable benefits, Universal Basic Income (contested), or slowing automation (politically difficult).',
+    formula: '\\Delta L_d = f(\\Delta \\text{Technology}, \\text{Elasticity of Substitution})',
+    realWorldExample: 'Self-checkout machines replaced 7 million retail cashier jobs globally (2010-2020). Warehousing (Amazon robots), driving (autonomous vehicles), and legal research (AI document review) face similar disruption. The UK\'s declining manufacturing employment (from 30% to 8% of workforce since 1970) partly reflects technological displacement.'
+  },
+  {
+    id: 'thatcher-economic-policies',
+    title: 'Thatcher\'s Economic Policies',
+    category: 'policy',
+    definition: 'The free-market, supply-side economic reforms implemented by UK Prime Minister Margaret Thatcher (1979-1990). Characterized by monetarism, privatization, deregulation, tax cuts, trade union reform, and reduced government intervention—collectively known as "Thatcherism" or neoliberalism.',
+    keyPoints: [
+      'Monetarism: Controlling money supply to reduce inflation (targeting M3)',
+      'Privatization: Selling state-owned enterprises (BT, British Gas, BA)',
+      'Deregulation: Reducing barriers to entry, financial deregulation (Big Bang 1986)',
+      'Trade union reform: Reducing union power (1984-85 miners\' strike)',
+      'Tax reform: Lower marginal rates (top rate from 83% to 40%)'
+    ],
+    analysis: 'High inflation (1970s) → Thatcher adopts monetarism → Tight monetary policy → Interest rates rise to 17% → Demand falls → Inflation drops (from 18% to 4%) BUT unemployment triples (to 3 million). Simultaneously: Supply-side reforms → Privatization improves efficiency → Deregulation increases competition → Tax cuts incentivize work and enterprise → LRAS shifts right → Long-run growth potential increases.',
+    evaluation: 'Thatcher\'s policies remain deeply contested. Supporters credit her with ending stagflation, reviving entrepreneurship, and modernizing the economy. Critics point to deindustrialization, regional inequality, weakened social safety net, and the 1980s recession. The empirical evidence is mixed: UK productivity growth improved relative to Europe, but income inequality rose sharply (Gini coefficient from 0.25 to 0.34). The legacy shapes contemporary debates on austerity, inequality, and the role of the state.',
+    realWorldExample: 'The 1984-85 miners\' strike tested Thatcher\'s resolve against union power. The government\'s victory accelerated pit closures and deindustrialization in Northern England and Wales. Meanwhile, financial deregulation transformed the City of London into a global financial center—with consequences revealed in the 2008 crisis.'
+  },
+  {
+    id: 'accelerator-effect',
+    title: 'The Accelerator Effect',
+    category: 'macro',
+    definition: 'An economic theory stating that investment spending is determined by the rate of change of national income, not its level. A small change in consumer demand leads to a proportionally larger change in investment demand, amplifying business cycle fluctuations.',
+    keyPoints: [
+      'Investment = f(ΔY), not f(Y) directly',
+      'Capital-output ratio (v): Amount of capital needed per unit of output',
+      'Small ↑ in demand → Large ↑ in investment; small ↓ → Large ↓ in investment',
+      'Explains volatility of investment relative to consumption',
+      'Combines with multiplier to create multiplier-accelerator model'
+    ],
+    analysis: 'Economy at equilibrium with K/Y ratio = 3 → Demand rises by £100m → Firms need £300m additional capital to meet demand → Investment rises by £300m (accelerator effect). But if demand growth slows from 5% to 3% → Required investment falls → Negative accelerator → Investment collapses even though demand is still growing. This explains why investment is far more volatile than consumption.',
+    evaluation: 'The accelerator model is simplified: it assumes fixed capital-output ratio and full capacity utilization. In reality, firms hold spare capacity, can vary utilization, and form expectations about future demand (flexible accelerator). Financial constraints and uncertainty also matter—firms may not invest even if demand rises. However, the core insight holds: investment responds to changes in demand, amplifying cycles. The multiplier-accelerator interaction can generate endogenous business cycles.',
+    formula: 'I_t = v \\cdot \\Delta Y_t = v \\cdot (Y_t - Y_{t-1})',
+    realWorldExample: 'The 2008-09 recession saw UK business investment fall 25%—far more than the 6% GDP decline—illustrating the accelerator in reverse. Conversely, post-COVID recovery in 2021 saw investment surge as demand grew rapidly.'
+  },
+  {
+    id: 'coase-theorem',
+    title: 'The Coase Theorem Explained',
+    category: 'market-failure',
+    definition: 'An economic proposition stating that if property rights are well-defined and transaction costs are zero, private bargaining will lead to an efficient allocation of resources regardless of the initial assignment of property rights. Externality problems can be solved through negotiation without government intervention.',
+    keyPoints: [
+      'Transaction costs = 0 → Efficient outcome achieved through bargaining',
+      'Initial property rights allocation affects distribution but not efficiency',
+      'Challenges Pigouvian intervention as the only solution to externalities',
+      'Limitations: High transaction costs, many parties, ill-defined property rights',
+      'Foundation of law and economics movement'
+    ],
+    analysis: 'Factory pollutes river → Fishermen lose £10,000 → Factory gains £15,000 from pollution. If fishermen have property right to clean water: Factory pays £10,001-£14,999 compensation → Pollution continues efficiently. If factory has right to pollute: Fishermen pay £10,001-£14,999 to stop pollution → But they only value clean water at £10,000 → Pollution continues. Either way, efficient outcome (pollution, since net benefit positive) is reached through bargaining.',
+    evaluation: 'The Coase theorem is theoretically elegant but practically limited. Transaction costs are rarely zero: finding and negotiating with all affected parties, enforcing agreements, and verifying compliance is costly. When externalities affect many people (air pollution), coordination is impossible. When property rights are unclear (climate change), bargaining cannot occur. The theorem\'s value is diagnostic: it identifies transaction costs and property rights as the key barriers to private solutions, guiding where intervention is needed.',
+    formula: '\\text{If } TC = 0 \\text{ and } PR \\text{ defined} \\implies \\text{Efficiency via bargaining}',
+    realWorldExample: 'Ranchers and farmers in the American West historically negotiated grazing rights and crop damage compensation privately (as Coase documented). But global externalities like climate change involve billions of parties and undefined property rights—Coasian bargaining is impossible, requiring international coordination.'
+  },
+  {
+    id: 'gross-vs-net-pay',
+    title: 'The Difference Between Gross and Net Pay',
+    category: 'theory',
+    definition: 'Gross pay is the total earnings before any deductions; net pay (take-home pay) is what remains after mandatory deductions (income tax, National Insurance, pension contributions) and voluntary deductions (student loan repayments, union dues). The gap between gross and net represents the tax wedge.',
+    keyPoints: [
+      'Gross pay: Total earnings (salary, overtime, bonuses) before deductions',
+      'Net pay: Take-home pay after all deductions',
+      'Mandatory deductions: Income tax, NICs, pension auto-enrollment',
+      'Tax wedge: Gross minus net as percentage—affects labor supply decisions',
+      'Marginal vs. average tax rate: Different incentive effects'
+    ],
+    analysis: 'Worker earns £50,000 gross → Pays £7,486 income tax + £4,964 NIC + £2,500 pension → Net pay = £35,050 → Tax wedge = 30%. The wedge affects behavior: High marginal rates → Reduced incentive to work extra hours (substitution effect) → But income effect may dominate (work more to maintain consumption). Employers also pay NICs (13.8%) on top of gross wages, widening the true wedge.',
+    evaluation: 'The gross-net gap matters for labor supply, migration decisions, and tax morale. High tax wedges in Europe (40-50%) vs. US (30-35%) may explain differences in hours worked. However, gross-net comparisons ignore public services received: Scandinavian workers pay high taxes but receive healthcare, education, and childcare. The "net social wage" (net pay + public services) may narrow the gap. Progressive systems impose higher marginal rates on additional income, potentially distorting work incentives at high incomes.',
+    formula: '\\text{Net Pay} = \\text{Gross Pay} - \\text{Income Tax} - \\text{NICs} - \\text{Pension} - \\text{Other}',
+    realWorldExample: 'A UK worker earning £100,000 gross keeps approximately £67,000 net (33% tax wedge). At £150,000, the effective marginal rate reaches 62% (including NIC and loss of personal allowance), creating significant disincentives for additional work or pay rises.'
+  },
+  {
+    id: 'nairu-vs-natural-rate',
+    title: 'The Difference Between NAIRU and the Natural Rate of Unemployment',
+    category: 'macro',
+    definition: 'The Natural Rate of Unemployment (NRU) is the equilibrium unemployment rate in a perfectly functioning labor market, comprising frictional and structural unemployment. NAIRU (Non-Accelerating Inflation Rate of Unemployment) is the unemployment rate consistent with stable inflation—often used interchangeably but with subtle theoretical differences.',
+    keyPoints: [
+      'Natural Rate: Unemployment when labor market is in equilibrium (Friedman)',
+      'NAIRU: Unemployment rate where inflation neither accelerates nor decelerates',
+      'Both exclude cyclical unemployment (demand-deficient)',
+      'Natural Rate is supply-side concept; NAIRU is inflation-anchored',
+      'In practice, often used interchangeably but not identical'
+    ],
+    analysis: 'Natural Rate: Determined by structural factors (mismatch, search frictions, minimum wages) → Labor market clears at this rate → No involuntary unemployment. NAIRU: If U < NAIRU → Wage pressure → Cost-push inflation → Inflation accelerates. If U > NAIRU → Slack → Inflation decelerates. The Phillips Curve is vertical at NAIRU in the long run. The concepts converge if inflation expectations are anchored, but diverge during inflationary shocks.',
+    evaluation: 'Both concepts are unobservable and must be estimated—estimates vary widely and change over time. The UK\'s NAIRU has fallen from ~8% (1980s) to ~4% (2020s), reflecting labor market reforms. But recent experience challenges the framework: unemployment fell to 3.5% (2022) without accelerating inflation, suggesting NAIRU may have fallen further or the relationship has weakened. Hysteresis effects (prolonged unemployment raises NAIRU) and globalization (wage pressure muted by international competition) complicate the simple model.',
+    formula: '\\text{NAIRU}: U^* \\text{ where } \\frac{d\\pi}{dt} = 0',
+    realWorldExample: 'The Fed\'s estimate of US NAIRU fell from 6% (1990s) to 4.1% (2020), reflecting declining union power and increased labor market flexibility. The UK\'s Office for Budget Responsibility estimates UK NAIRU at approximately 4.5%.'
+  },
+  {
+    id: 'role-of-firms',
+    title: 'The Role of Firms in the Economy',
+    category: 'theory',
+    definition: 'Firms are economic agents that combine factors of production (land, labor, capital, enterprise) to produce goods and services for sale. They transform inputs into outputs, allocate resources, provide employment, generate income, drive innovation, and create value for shareholders and society.',
+    keyPoints: [
+      'Production: Transform inputs into outputs (goods and services)',
+      'Employment: Hire labor and pay wages (largest source of household income)',
+      'Investment: Accumulate capital, driving productivity and growth',
+      'Innovation: Develop new products, processes, and technologies',
+      'Profit motive: Guides resource allocation toward highest-value uses'
+    ],
+    analysis: 'Firms observe market prices → Allocate resources to maximize profit → This aligns private incentives with social efficiency (under perfect competition) → Profitable firms attract resources; unprofitable firms release them → Dynamic reallocation raises productivity. Simultaneously: Firms pay wages → Households earn income → Households consume → Revenue returns to firms (circular flow).',
+    evaluation: 'The profit motive promotes efficiency but can conflict with social welfare: externalities, market power, and short-termism distort outcomes. Stakeholder capitalism (considering employees, communities, environment) challenges shareholder primacy but raises governance questions. Different firm types (sole traders, partnerships, corporations) have different incentives and capabilities. The Coasian theory explains firm boundaries: firms internalize transactions when market coordination is too costly.',
+    realWorldExample: 'Apple exemplifies multiple firm roles: employs 160,000 workers (employment), invests $20bn annually in R&D (innovation), generates $400bn revenue (production), and returns $100bn to shareholders (value creation). But criticism of tax practices, labor conditions in supply chains, and environmental impact illustrates tensions between profit and social responsibility.'
+  },
+  {
+    id: 'third-party',
+    title: 'Third Party (Externalities)',
+    category: 'market-failure',
+    definition: 'A third party is an individual or group not directly involved in an economic transaction but affected by its consequences. Third-party effects are externalities—costs or benefits imposed on parties outside the market exchange, causing divergence between private and social costs/benefits.',
+    keyPoints: [
+      'Not a buyer or seller in the transaction',
+      'Bears costs (negative externality) or receives benefits (positive externality)',
+      'Cannot influence the transaction terms (no market power)',
+      'Existence of third-party effects → Market failure',
+      'Solutions: Pigouvian taxes/subsidies, regulation, property rights (Coase)'
+    ],
+    analysis: 'Factory (seller) sells goods to consumer (buyer) → Production creates pollution → Local residents (third parties) suffer health costs → Residents are not compensated and have no say in production decisions → Social cost > Private cost → Too much produced → Deadweight loss. Third-party costs are external to the transaction but real to those affected.',
+    evaluation: 'Third-party analysis is fundamental to market failure theory but raises measurement challenges: how to quantify health costs, amenity loss, or ecosystem damage? Who counts as affected (direct neighbors vs. global climate)? Threshold effects (noise below a level may not harm) complicate linear analysis. The Coase theorem suggests third parties could bargain with producers—but transaction costs often prevent this, justifying intervention. Network effects represent positive third-party benefits that may justify subsidies.',
+    realWorldExample: 'Heathrow Airport expansion benefits airlines (sellers) and passengers (buyers) but imposes noise, pollution, and congestion on local residents (third parties). Planning processes attempt to incorporate third-party interests, but compensation is often inadequate.'
+  },
+  {
+    id: 'tight-fiscal-policy',
+    title: 'Tight Fiscal Policy',
+    category: 'policy',
+    definition: 'A contractionary fiscal stance where the government reduces spending (G) and/or increases taxes (T) to reduce aggregate demand, cool an overheating economy, reduce inflation, or address a budget deficit. Also known as fiscal consolidation or austerity.',
+    keyPoints: [
+      'Instruments: ↓ Government spending, ↑ Tax rates, ↓ Transfer payments',
+      'Effect: ↓ Aggregate Demand → ↓ Inflation and/or ↓ Output',
+      'Negative multiplier: ΔY = k × ΔG (k > 1, so output falls more than G cut)',
+      'Used to: Control inflation, reduce deficit, restore "fiscal space"',
+      'Austerity debates: Self-defeating in recession? Necessary for credibility?'
+    ],
+    analysis: 'Government cuts spending by £10bn → Direct ↓ AD by £10bn → Multiplier effect: Reduced incomes → ↓ Consumption → Further ↓ AD → Total ↓ Y = £10bn × 1.5 = £15bn. If economy is overheating: ↓ AD → ↓ Inflationary pressure. If economy is weak: ↓ AD → ↑ Unemployment, ↓ Growth.',
+    evaluation: 'Tight fiscal policy is appropriate when the economy is overheating or when debt is unsustainably high. But timing matters: austerity during a recession (when multipliers are large and monetary policy is constrained) can be self-defeating—falling GDP reduces tax revenue, worsening the deficit. The UK\'s 2010-2015 austerity is contested: supporters credit it with restoring credibility and low borrowing costs; critics argue it prolonged the post-2008 stagnation. Distributional effects also matter—spending cuts often fall on vulnerable groups.',
+    formula: '\\Delta Y = k \\times (-\\Delta G) \\quad \\text{where } k = \\frac{1}{1-MPC(1-t)+MPM}',
+    realWorldExample: 'Greece implemented severe austerity (2010-2018) as a condition of EU/IMF bailouts: public sector wages cut 30%, pensions cut 40%, GDP fell 25%. Critics argue austerity caused the depression it was meant to cure; supporters argue default would have been worse.'
+  },
+  {
+    id: 'tight-monetary-policy',
+    title: 'Tight Monetary Policy',
+    category: 'policy',
+    definition: 'A contractionary monetary stance where the central bank raises interest rates and/or reduces money supply to reduce aggregate demand, control inflation, and cool an overheating economy. The opposite of accommodative (loose) monetary policy.',
+    keyPoints: [
+      'Instruments: ↑ Base interest rate, ↓ Quantitative Easing (QT), ↑ Reserve requirements',
+      'Transmission: ↑ r → ↓ C (mortgages, credit) → ↓ I (cost of capital) → ↓ AD',
+      'Exchange rate channel: ↑ r → Hot money inflows → ↑ Exchange rate → ↓ Net exports',
+      'Time lags: 12-24 months for full effect on inflation',
+      'Pain before gain: Output and employment fall before inflation drops'
+    ],
+    analysis: 'Central bank raises base rate from 0.5% to 5% → Mortgage costs rise → Households ↓ consumption → Business borrowing costs rise → Firms ↓ investment → AD shifts left → Inflationary pressure eases. Simultaneously: Higher rates attract foreign capital → Currency appreciates → Imports cheaper, exports dearer → Net exports fall → Further ↓ AD. But: Employment falls during adjustment period.',
+    evaluation: 'Tight monetary policy is the primary tool against inflation, but it operates with long and variable lags. The 2022-23 rate hikes (UK: 0.1% to 5.25%) took 18+ months to affect inflation. Distributional effects: Mortgage holders and debtors suffer; savers benefit. Asset prices fall, potentially causing financial instability (SVB collapse, UK pension crisis). The optimal speed of tightening balances inflation control against recession risk and financial stability.',
+    formula: '\\Delta r \\to \\Delta C/I \\to \\Delta AD \\to \\Delta Y/P \\quad \\text{(with 12-24 month lags)}',
+    realWorldExample: 'The Bank of England raised rates 14 consecutive times (Dec 2021 - Aug 2023), from 0.1% to 5.25%, to combat 11% inflation. By late 2023, inflation fell to 4%—but mortgage costs tripled, housing transactions collapsed, and recession risks rose.'
+  },
+  {
+    id: 'time-lags',
+    title: 'Time Lags in Economic Policy',
+    category: 'policy',
+    definition: 'The delays between an economic shock, the recognition of the problem, the implementation of policy, and the policy\'s effect on the economy. Time lags complicate macroeconomic management and can cause policies to be destabilizing rather than stabilizing.',
+    keyPoints: [
+      'Recognition lag: Time to identify the problem (data collection, analysis)',
+      'Decision lag: Time for policymakers to agree on response (political process)',
+      'Implementation lag: Time to enact the policy (legislation, execution)',
+      'Impact lag: Time for policy to affect economy (transmission mechanisms)',
+      'Monetary policy: Short decision lag, long impact lag (12-24 months)',
+      'Fiscal policy: Long decision lag, shorter impact lag'
+    ],
+    analysis: 'Recession begins (January) → Data shows contraction (April: recognition lag) → Government debates response (May-July: decision lag) → Spending program announced (August: implementation lag) → Contracts signed, spending begins (October-December) → Multiplier effects work through economy (next year: impact lag). By the time policy affects output, the economy may have recovered—stimulus then causes overheating.',
+    evaluation: 'Time lags are why "fine-tuning" the economy is difficult. Policies designed for today\'s problems may hit an economy that has already changed. Rules-based policy (inflation targets, fiscal rules) reduces decision lags but sacrifices flexibility. Automatic stabilizers (progressive taxes, welfare) work immediately but may be insufficient for large shocks. Forward-looking policy (responding to forecasts) risks acting on incorrect predictions. The case for policy restraint rests partly on time lag uncertainty.',
+    realWorldExample: 'The 2009 fiscal stimulus in the UK (VAT cut, car scrappage) was designed to fight recession but largely took effect as recovery was underway. Similarly, 2022-23 rate hikes targeted 2021-22 inflation—by the time they bite fully, supply-side inflation may have faded naturally.'
+  },
+  {
+    id: 'time-value-of-money',
+    title: 'Time Value of Money Explained',
+    category: 'macro',
+    definition: 'The principle that money available today is worth more than the same amount in the future due to its potential earning capacity. This fundamental concept underlies interest rates, discounting, investment appraisal, and financial valuation. A pound today can be invested to earn interest, making it more valuable than a pound received later.',
+    keyPoints: [
+      'Present Value (PV): Today\'s value of a future sum',
+      'Future Value (FV): Value of today\'s sum at a future date',
+      'Discount rate (r): The rate used to convert future to present value',
+      'Opportunity cost: Money today can earn returns; money later cannot',
+      'Foundation of NPV, IRR, bond pricing, and financial decision-making'
+    ],
+    analysis: '£100 today invested at 5% → £105 in one year → £100 today = £105 next year. Therefore: £100 received next year is worth £100/1.05 = £95.24 today (present value). Higher discount rates → Lower present values → Future cash flows less valuable. Investment decisions: NPV = Σ PV(cash flows) − Initial cost. If NPV > 0, investment creates value.',
+    evaluation: 'The time value of money is theoretically sound but raises practical issues. The "correct" discount rate is contested: risk-free rate, WACC, or social discount rate? Long-term projects (infrastructure, climate) are highly sensitive to discount rate choice—small changes dramatically affect NPV. Behavioral economics shows people are time-inconsistent: hyperbolic discounting means we discount near-future more than theory predicts. This affects savings, health decisions, and climate policy.',
+    formula: 'FV = PV \\times (1 + r)^n; \\quad PV = \\frac{FV}{(1 + r)^n}; \\quad NPV = \\sum_{t=0}^{n} \\frac{CF_t}{(1+r)^t}',
+    realWorldExample: 'Climate change economics hinges on discount rates. The Stern Review (2006) used 1.4% discount rate → Climate action urgently needed (high PV of future damages). Nordhaus used 4.5% → Less urgency (low PV of distant damages). Same future damages, radically different policy conclusions.'
+  },
+  {
+    id: 'token-money',
+    title: 'Token Money',
+    category: 'macro',
+    definition: 'Money whose face value exceeds its intrinsic value as a commodity. Unlike commodity money (gold coins worth their metal content), token money has value because of trust in the issuer and its acceptability in exchange. Modern fiat currency and bank deposits are forms of token money.',
+    keyPoints: [
+      'Face value > Intrinsic value (paper, base metal coins)',
+      'Value derived from: Legal tender status, acceptability, trust in issuer',
+      'Fiat money: Declared legal tender by government decree',
+      'Seigniorage: Profit from issuing token money (face value − production cost)',
+      'Risk: Loss of confidence → Currency collapse (hyperinflation)'
+    ],
+    analysis: 'Government prints £10 note (cost: 3p) → Declares it legal tender → Public accepts it for £10 of goods → Value derives from collective acceptance and legal backing, not paper content. Seigniorage = £10 − £0.03 = £9.97 profit. If government overissues → Inflation → Public loses confidence → Demand for money falls → Velocity increases → Price spiral → Potential currency collapse.',
+    evaluation: 'Token money enables flexible monetary policy (can expand money supply for stabilization) but requires institutional credibility. Independent central banks, inflation targets, and fiscal discipline maintain confidence. Historical failures (Continental currency, assignats, Zimbabwe dollar) show the fragility of unbacked money. Cryptocurrency proponents argue token money is fundamentally unsound; defenders note fiat currencies have successfully functioned for 50+ years since gold standard\'s end.',
+    formula: '\\text{Seigniorage} = \\text{Face Value} - \\text{Production Cost}',
+    realWorldExample: 'UK coins (except pre-1992 coppers) are token money—a £2 coin contains metals worth ~6p. The Bank of England issues polymer notes costing 7p each. The entire UK money supply (M4: £3 trillion) is token money backed only by institutional credibility.'
+  },
+  {
+    id: 'total-utility',
+    title: 'Total Utility',
+    category: 'theory',
+    definition: 'The total satisfaction or benefit derived from consuming a given quantity of a good or service. Total utility increases with consumption but at a decreasing rate (diminishing marginal utility). It is maximized when the consumer allocates income such that marginal utility per pound is equalized across all goods.',
+    keyPoints: [
+      'TU = Sum of marginal utilities from each unit consumed',
+      'Increases with consumption (more is better, up to satiation)',
+      'Increases at decreasing rate (diminishing marginal utility)',
+      'Maximized when MU/P equal across all goods (equimarginal principle)',
+      'Cardinal vs. ordinal utility: TU assumes measurable satisfaction'
+    ],
+    analysis: '1st slice of pizza: MU = 10 → TU = 10. 2nd slice: MU = 8 → TU = 18. 3rd slice: MU = 5 → TU = 23. 4th slice: MU = 2 → TU = 25. 5th slice: MU = 0 → TU = 25 (satiation). 6th slice: MU = −3 → TU = 22 (overindulgence). Consumer stops where MU = 0 if good is free; where MU = P if paying.',
+    evaluation: 'Total utility is a useful pedagogical concept but raises measurement issues. Cardinal utility (assigning numerical satisfaction levels) is philosophically contested—can we really measure and compare happiness? Ordinal utility (ranking preferences) avoids this but limits analysis. Behavioral economics shows preferences are context-dependent, violating stable utility assumptions. Despite limitations, utility theory provides the foundation for demand curves, consumer surplus, and welfare analysis.',
+    formula: 'TU = \\sum_{i=1}^{n} MU_i; \\quad \\text{Max TU when } \\frac{MU_x}{P_x} = \\frac{MU_y}{P_y} \\text{ for all goods}',
+    realWorldExample: 'Buffet restaurants exploit diminishing marginal utility: customers overestimate value before eating (high expected TU) but experience rapid MU decline → Perceived "deal" but actual consumption limited by satiation. The fixed price captures consumer surplus from early high-MU units.'
+  },
+  {
+    id: 'trade-barriers',
+    title: 'Trade Barriers',
+    category: 'trade',
+    definition: 'Government-imposed restrictions on the free exchange of goods and services between countries. Trade barriers include tariffs (taxes on imports), quotas (quantity limits), subsidies to domestic producers, and non-tariff barriers (regulations, standards, bureaucratic delays). They protect domestic industries but reduce global efficiency.',
+    keyPoints: [
+      'Tariffs: Taxes on imports (raise price, generate revenue)',
+      'Quotas: Quantity limits (create scarcity rent for quota holders)',
+      'Subsidies: Payments to domestic producers (lower their costs artificially)',
+      'Non-tariff barriers: Regulations, standards, licensing, customs delays',
+      'Effects: ↓ Imports, ↑ Domestic production, ↑ Prices, ↓ Consumer surplus'
+    ],
+    analysis: 'Tariff imposed on imported steel → Domestic price rises above world price → Consumers pay more → Domestic producers gain (protected from competition) → Government gains tariff revenue → But deadweight loss created (allocative inefficiency). Total welfare typically falls, though distribution changes (consumers lose, producers and government gain).',
+    evaluation: 'Trade barriers are economically inefficient but politically attractive. They protect visible domestic jobs at the expense of diffuse consumer costs. Infant industry arguments have theoretical merit but are prone to capture by mature industries. Retaliation risks spiral into trade wars (Smoot-Hawley 1930). Modern protectionism emphasizes non-tariff barriers (harder to measure and challenge). WTO rules constrain but don\'t eliminate barriers. The optimal policy is usually targeted support for adjustment (retraining, relocation) rather than protection.',
+    formula: 'DWL_{tariff} = \\frac{1}{2} \\times t \\times (Q_1 - Q_2) + \\frac{1}{2} \\times t \\times (Q_4 - Q_3)',
+    realWorldExample: 'The US-China trade war (2018-2021) saw average US tariffs on Chinese goods rise from 3% to 19%. Studies found American consumers bore 90%+ of tariff costs through higher prices. Retaliatory Chinese tariffs hit US farmers, requiring $28bn in government subsidies.'
+  },
+  {
+    id: 'trade-creation',
+    title: 'Trade Creation',
+    category: 'trade',
+    definition: 'An economic benefit of customs unions and free trade areas where member countries shift from high-cost domestic production to lower-cost imports from partner countries. Trade creation increases economic efficiency by allowing specialization according to comparative advantage within the bloc.',
+    keyPoints: [
+      'Occurs when tariff removal enables cheaper partner imports',
+      'Replaces inefficient domestic production with efficient partner production',
+      'Increases allocative efficiency within the trading bloc',
+      'Consumer surplus rises (lower prices); producer surplus falls (more competition)',
+      'Net welfare gain if trade creation > trade diversion'
+    ],
+    analysis: 'Before customs union: UK produces widgets at £10; France at £8 (but £8 + £3 tariff = £11 to UK buyers) → UK buys domestic. After union: Tariff removed → UK imports from France at £8 → UK consumers gain £2 per widget → UK resources freed for goods where UK has comparative advantage → Both countries gain from specialization.',
+    evaluation: 'Trade creation is unambiguously welfare-improving—it represents gains from trade. The magnitude depends on: (1) cost differences between members, (2) elasticity of demand/supply, (3) initial tariff levels. Large, diverse blocs with high initial tariffs see more trade creation. However, trade creation must be weighed against trade diversion to assess overall customs union welfare effect. Dynamic effects (competition, innovation, economies of scale) may exceed static trade creation gains.',
+    formula: '\\Delta W_{creation} = \\frac{1}{2} \\times \\Delta P \\times \\Delta Q \\quad \\text{(Consumer surplus gain)}',
+    realWorldExample: 'EU membership enabled UK consumers to access French wine, German cars, and Spanish produce at lower prices than domestic alternatives. Post-Brexit tariffs and non-tariff barriers reversed some trade creation, raising consumer prices.'
+  },
+  {
+    id: 'trade-diversion',
+    title: 'Trade Diversion',
+    category: 'trade',
+    definition: 'An economic cost of customs unions where member countries shift imports from efficient non-member producers to less efficient member producers. Trade diversion occurs because the common external tariff makes member products artificially cheaper than superior non-member alternatives.',
+    keyPoints: [
+      'Shift from low-cost non-member to higher-cost member supplier',
+      'Caused by preferential tariff treatment for members',
+      'Reduces global efficiency (resources misallocated)',
+      'Loss of tariff revenue on diverted imports',
+      'Net welfare effect of customs union: Trade creation − Trade diversion'
+    ],
+    analysis: 'Before customs union: UK imports textiles from Bangladesh (£5) with £2 tariff = £7. After joining EU customs union: EU textiles cost £6 (no tariff), Bangladesh still £5 + £2 = £7. UK switches to EU imports (£6 < £7). But true cost: UK now pays £6 vs. £5 before (ignoring tariff). Global efficiency falls—resources in EU textiles could produce more value elsewhere. Plus: UK loses £2 tariff revenue.',
+    evaluation: 'Trade diversion is a real cost of preferential trade agreements. It matters most when: (1) non-members are significantly more efficient, (2) common external tariff is high, (3) member countries\' costs are similar. The EU\'s Common Agricultural Policy created substantial trade diversion—European consumers paid above-world prices while efficient non-EU farmers were excluded. Viner\'s analysis (1950) showed customs unions are not necessarily welfare-improving; the net effect depends on creation vs. diversion balance.',
+    formula: '\\Delta W_{diversion} = (P_{member} - P_{world}) \\times Q_{diverted} + \\text{Lost tariff revenue}',
+    realWorldExample: 'EU sugar policy diverts imports from low-cost producers (Brazil, Thailand) to higher-cost EU beet farmers. UK consumers paid 2-3x world sugar prices. Post-Brexit, UK can negotiate FTAs with efficient sugar producers, reversing diversion.'
+  },
+  {
+    id: 'trade-liberalisation',
+    title: 'Trade Liberalisation',
+    category: 'trade',
+    definition: 'The reduction or elimination of trade barriers (tariffs, quotas, regulations) to allow freer movement of goods and services between countries. Trade liberalization is promoted by the WTO and implemented through multilateral agreements (GATT rounds), regional blocs (EU, USMCA), and bilateral FTAs.',
+    keyPoints: [
+      'Multilateral (WTO), regional (customs unions, FTAs), bilateral approaches',
+      'Benefits: Lower prices, greater variety, competition, specialization gains',
+      'Costs: Adjustment costs for displaced workers/industries, inequality',
+      'GATT/WTO rounds reduced average tariffs from 40% (1947) to 4% (2020)',
+      'Backlash: Populist movements, Trump tariffs, Brexit'
+    ],
+    analysis: 'Tariffs reduced → Import prices fall → Consumers gain (lower prices, more choice) → Inefficient domestic producers face competition → Resources reallocate to sectors of comparative advantage → Productivity rises → Long-run GDP gains. But: Short-run adjustment costs—displaced workers, stranded capital, regional decline. Winners (consumers, exporters) are diffuse; losers (protected industries) are concentrated and politically vocal.',
+    evaluation: 'Trade liberalization has generated enormous gains—the post-1945 trade expansion contributed to unprecedented global growth. But gains are unevenly distributed: capital and skilled labor benefit more than unskilled labor; coastal cities more than industrial heartlands. Failure to compensate losers has fueled political backlash (Brexit, Trump). The case for liberalization remains strong, but must be paired with adjustment assistance, retraining, and redistribution. The "China shock" literature shows localized trade costs can be severe and persistent.',
+    realWorldExample: 'China\'s WTO accession (2001) accelerated trade liberalization. US consumers gained $260,000 per job lost to import competition—but gains were spread across 300 million consumers while losses concentrated in manufacturing towns. This asymmetry drove the 2016 political backlash.'
+  },
+  {
+    id: 'trade-not-aid',
+    title: 'Trade Not Aid',
+    category: 'trade',
+    definition: 'An approach to international development arguing that enabling developing countries to trade freely is more effective than providing foreign aid. The argument emphasizes that trade creates sustainable income, employment, and growth, while aid creates dependency and distorts markets.',
+    keyPoints: [
+      'Trade generates income, employment, and self-sustaining growth',
+      'Aid can create dependency, distort markets, and fund corruption',
+      'Developed country protectionism (agriculture, textiles) harms LDC exporters',
+      'Fair trade vs. free trade: Ensuring LDC farmers capture value',
+      'Critiques: LDCs may lack capacity to compete; trade alone insufficient'
+    ],
+    analysis: 'Developed countries provide $150bn aid annually → But agricultural subsidies ($300bn) exclude LDC farmers from markets → Each $1 in aid offset by $2 in lost exports. Trade-focused approach: Remove barriers → LDCs export where they have comparative advantage (agriculture, textiles) → Export revenue finances development → Sustainable growth without dependency.',
+    evaluation: 'The trade-not-aid argument has merit but oversimplifies. Trade is necessary but not sufficient for development—complementary investments in infrastructure, education, and institutions are needed. Many LDCs lack the productive capacity or infrastructure to exploit market access. Aid can build this capacity if well-designed. The choice is not binary: trade access + targeted aid for capacity building is optimal. Fair trade initiatives address power imbalances but reach only a fraction of producers.',
+    realWorldExample: 'Bangladesh\'s garment industry illustrates trade-based development: exports grew from $32m (1984) to $40bn (2023), employing 4 million workers and driving poverty reduction. This vastly exceeded aid flows. But labor conditions and factory safety (Rana Plaza 2013) show trade alone doesn\'t guarantee good development.'
+  },
+  {
+    id: 'trade-sanctions',
+    title: 'Trade Sanctions',
+    category: 'trade',
+    definition: 'Economic penalties imposed by one or more countries on a target country, typically to achieve political objectives. Sanctions include trade embargoes, asset freezes, financial restrictions, and targeted measures against individuals. They aim to impose economic costs that force policy changes without military action.',
+    keyPoints: [
+      'Trade embargoes: Banning imports/exports with target country',
+      'Financial sanctions: Freezing assets, blocking banking access (SWIFT)',
+      'Targeted sanctions: Against specific individuals/entities (oligarchs)',
+      'Goals: Deter aggression, punish behavior, force policy change',
+      'Effectiveness debated: Often hurt populations more than regimes'
+    ],
+    analysis: 'Sanctions imposed → Target country\'s exports blocked → Export revenue falls → Currency depreciates → Imports become expensive → Living standards fall → (Theory) Public pressure forces regime change. But: Regime diverts resources from population to maintain power; alternative trading partners emerge; sanctions create rally-around-flag effect.',
+    evaluation: 'Sanctions are politically attractive (action without war) but empirically mixed. Comprehensive embargoes (Cuba, North Korea) failed to change regimes for decades. Targeted sanctions (Russia 2022) impose costs but haven\'t reversed invasion. Humanitarian costs (Iraq 1990s, Venezuela) raise ethical concerns. Sanctions work best when: (1) target is economically dependent on sanctioners, (2) costs are concentrated on elites, (3) credible path to sanctions relief exists. They are most effective as part of broader diplomatic strategy.',
+    formula: '\\text{Effectiveness} = f(\\text{Economic Integration, Regime Type, Coalition Unity, Clarity of Demands})',
+    realWorldExample: 'Western sanctions on Russia (2022-) froze $300bn in reserves, banned exports, and excluded major banks from SWIFT. Russia\'s GDP fell 2.1% (2022), less than predicted. Oil revenues continued via India/China. The sanctions impose costs but haven\'t changed policy—illustrating the limits of economic pressure against determined regimes.'
+  },
+  {
+    id: 'trade-weighted-index',
+    title: 'Trade Weighted Index (Effective Exchange Rate)',
+    category: 'trade',
+    definition: 'A measure of a country\'s currency value against a basket of currencies of its major trading partners, weighted by the share of trade with each partner. Unlike bilateral rates, the trade-weighted index (TWI) captures overall competitiveness and the economy-wide impact of exchange rate movements.',
+    keyPoints: [
+      'Basket of currencies weighted by trade shares',
+      'Captures overall competitiveness, not just bilateral rates',
+      'Real Effective Exchange Rate (REER) adjusts for relative price levels',
+      'Rising TWI = Appreciation (less competitive); Falling TWI = Depreciation',
+      'Central banks and policymakers monitor TWI for policy decisions'
+    ],
+    analysis: '£ rises 10% vs. € (eurozone = 50% UK trade) → Bilateral appreciation significant. £ falls 20% vs. $ (US = 10% UK trade) → Bilateral depreciation. Net TWI effect: (0.5 × 10%) + (0.1 × −20%) = 3% appreciation. The TWI captures the weighted average, reflecting true competitiveness change better than any single bilateral rate.',
+    evaluation: 'The TWI is more economically meaningful than bilateral rates but has limitations: (1) Trade weights are backward-looking and change slowly, (2) Weights don\'t capture competition in third markets (UK competes with Germany for US sales), (3) Services trade increasingly matters but is harder to weight. REER is more accurate for competitiveness analysis but requires comparable price data. For the UK, the eurozone dominance (50%+ weight) means £/€ drives the TWI.',
+    formula: 'TWI = \\prod_i \\left(\\frac{e_i}{e_{i,base}}\\right)^{w_i} \\times 100 \\quad \\text{where } \\sum w_i = 1',
+    realWorldExample: 'The UK\'s TWI fell 25% after the Brexit referendum (2016), making UK exports more competitive globally. The BoE monitors the TWI to assess imported inflation and overall competitiveness—a key input to monetary policy decisions.'
+  },
+  {
+    id: 'trading-blocs',
+    title: 'Trading Blocs – Pros and Cons',
+    category: 'trade',
+    definition: 'A group of countries that agree to reduce or eliminate trade barriers among members while maintaining barriers against non-members. Trading blocs range from Free Trade Areas (FTAs) to Customs Unions, Common Markets, and full Economic Unions. Examples include the EU, USMCA, ASEAN, and Mercosur.',
+    keyPoints: [
+      'Types: FTA (no internal tariffs), Customs Union (+common external tariff), Common Market (+factor mobility), Economic Union (+policy harmonization)',
+      'Pros: Trade creation, economies of scale, bargaining power, political integration',
+      'Cons: Trade diversion, loss of sovereignty, external exclusion, regulatory burden',
+      'Deepening vs. widening trade-off (EU expansion vs. integration)',
+      'Regionalism vs. multilateralism (WTO) debate'
+    ],
+    analysis: 'Formation of bloc → Internal tariffs removed → Trade creation (efficient member production replaces domestic) → But common external tariff may cause trade diversion (inefficient member replaces efficient non-member). Larger market → Economies of scale → Lower costs. Collective bargaining with third parties (EU can negotiate better terms than Luxembourg alone). Political spillover → Deeper integration over time.',
+    evaluation: 'Trading blocs can be welfare-improving (if trade creation dominates) or welfare-reducing (if trade diversion dominates). The EU represents the deepest integration but also the greatest sovereignty loss and regulatory complexity. NAFTA/USMCA shows deep integration possible without political union. Trading blocs may undermine multilateral liberalization (WTO Doha Round stalled partly due to regional alternatives). The optimal bloc balances internal gains against external exclusion costs.',
+    realWorldExample: 'The EU single market (1992) created the world\'s largest integrated economy. Benefits: Intra-EU trade doubled; cross-border supply chains; labor mobility. Costs: Regulatory harmonization burdens small firms; loss of independent trade policy; political tensions over sovereignty (Brexit).'
+  },
+  {
+    id: 'trading-possibility-frontier',
+    title: 'Trading Possibility Frontier (Consumption Possibility Frontier)',
+    category: 'trade',
+    definition: 'A curve showing the combinations of goods a country can consume after specializing according to comparative advantage and trading at the world price ratio. Unlike the production possibility frontier (PPF), which shows production options, the trading possibility frontier shows consumption options—which exceed the PPF when trade is possible.',
+    keyPoints: [
+      'PPF: Maximum production combinations given resources',
+      'TPF/CPF: Maximum consumption combinations given trade opportunity',
+      'TPF lies outside PPF → Trade enables consumption beyond production',
+      'Slope of TPF = World price ratio (terms of trade)',
+      'Gains from trade: Gap between TPF and PPF'
+    ],
+    analysis: 'Country specializes in good X (comparative advantage) → Produces on PPF at specialization point → Trades X for Y at world prices → Consumption point lies outside PPF, on TPF. The steeper the world price ratio (favorable terms of trade), the further TPF lies from PPF. Maximum gains when country can fully specialize and trade at favorable terms.',
+    evaluation: 'The TPF elegantly illustrates gains from trade: consuming beyond what you can produce. But the model assumes: (1) Constant costs or clear comparative advantage, (2) No transport costs, (3) Flexible resource reallocation. In practice, adjustment costs, incomplete specialization, and transport costs reduce gains. The terms of trade determine distribution of gains—developing countries with inelastic export demand may see gains captured by trading partners. Still, the core insight holds: trade expands consumption possibilities.',
+    formula: 'TPF: C_Y = \\frac{P_X}{P_Y} \\times (Q_X - C_X) \\quad \\text{(Trading from production point)}',
+    realWorldExample: 'Oil-exporting countries (Saudi Arabia) have PPFs heavily weighted toward oil. By trading oil at world prices, they consume far more manufactured goods than domestic production could ever provide. Their TPF lies dramatically outside their PPF.'
+  },
+  {
+    id: 'traditional-theory-of-firm',
+    title: 'Traditional Theory of the Firm',
+    category: 'theory',
+    definition: 'The neoclassical model of firm behavior assuming that firms are rational profit maximizers operating in competitive markets. The firm produces where marginal cost equals marginal revenue (MC=MR) to maximize the difference between total revenue and total cost. This model underlies microeconomic analysis of markets.',
+    keyPoints: [
+      'Single objective: Profit maximization (π = TR − TC)',
+      'Decision rule: Produce where MR = MC',
+      'Perfect information about costs, revenues, and market conditions',
+      'Entrepreneur makes all decisions (no principal-agent problems)',
+      'Short run: At least one factor fixed; Long run: All factors variable'
+    ],
+    analysis: 'Firm identifies demand curve → Calculates MR (∂TR/∂Q) → Calculates MC (∂TC/∂Q) → Produces quantity where MR = MC → Prices according to demand curve → Profit = (P − ATC) × Q. In competitive market: P = MR = MC. In monopoly: P > MR = MC (markup over marginal cost).',
+    evaluation: 'The traditional theory is elegant but unrealistic. Modern firms face: (1) Uncertainty—future costs and revenues unknown, (2) Principal-agent problems—managers may pursue different goals than owners (growth, prestige, quiet life), (3) Bounded rationality—limited information processing capacity, (4) Stakeholder pressures—not just shareholders. Alternative theories: Sales revenue maximization (Baumol), Growth maximization (Marris), Managerial utility (Williamson), Satisficing (Simon). Despite limitations, MR=MC remains the benchmark for understanding pricing and output decisions.',
+    formula: '\\max_{Q} \\pi = TR(Q) - TC(Q); \\quad \\frac{d\\pi}{dQ} = MR - MC = 0 \\implies MR = MC',
+    realWorldExample: 'Oil companies illustrate MC=MR reasoning: they compare extraction costs (MC) against oil prices (MR) to decide which wells to operate. When prices fall below MC, marginal wells are shut. But non-profit motives (market share, reserves replacement) also influence decisions.'
+  },
+  {
+    id: 'transaction-costs',
+    title: 'Transaction Costs',
+    category: 'theory',
+    definition: 'The costs of making an economic exchange beyond the price of the good itself, including search costs, negotiation costs, contracting costs, monitoring costs, and enforcement costs. Transaction costs explain why markets sometimes fail and why firms exist—to economize on transaction costs that would be incurred through market exchange.',
+    keyPoints: [
+      'Search costs: Finding trading partners, comparing options',
+      'Negotiation costs: Bargaining over terms',
+      'Contracting costs: Drawing up and documenting agreements',
+      'Monitoring costs: Ensuring compliance with agreements',
+      'Enforcement costs: Resolving disputes, legal action',
+      'Coase: Firms exist to minimize transaction costs vs. market exchange'
+    ],
+    analysis: 'Firm needs component → Option A: Buy on market (search suppliers, negotiate price, write contract, monitor quality, enforce warranty) → Transaction costs = £10. Option B: Make in-house (no market transaction but management/coordination costs) → Internal costs = £8. If internal costs < transaction costs → Firm integrates (vertical integration). If transaction costs < internal costs → Firm uses market.',
+    evaluation: 'Transaction cost economics (Coase, Williamson) explains firm boundaries, vertical integration, and institutional evolution. High transaction costs → More integration. But transaction costs are hard to measure and sometimes invoked to explain any observed arrangement (circular reasoning). The theory assumes firms minimize costs but ignores power, history, and path dependence. Digital platforms have dramatically reduced many transaction costs (search, matching), enabling new market-based coordination (gig economy, peer-to-peer).',
+    formula: '\\text{Total Cost} = \\text{Production Cost} + \\text{Transaction Cost}',
+    realWorldExample: 'Uber reduced transaction costs in taxi markets: search (app finds drivers), trust (ratings substitute for knowledge), payment (automatic, no cash). This enabled market coordination that previously required firm organization (taxi fleets) or high friction (street hailing).'
+  },
+  {
+    id: 'types-of-takeovers',
+    title: 'Types of Takeovers',
+    category: 'theory',
+    definition: 'A takeover (acquisition) is when one company purchases controlling interest in another. Takeovers are classified by the relationship between acquirer and target: horizontal (same industry), vertical (supply chain), conglomerate (unrelated), and by the attitude of the target: friendly (agreed) or hostile (resisted).',
+    keyPoints: [
+      'Horizontal: Same industry competitors (economies of scale, market power)',
+      'Vertical: Supply chain integration (backward = suppliers; forward = distributors)',
+      'Conglomerate: Unrelated businesses (diversification, financial engineering)',
+      'Friendly: Target board recommends; Hostile: Target board resists',
+      'Motives: Synergies, market power, empire building, asset stripping'
+    ],
+    analysis: 'Horizontal: Firm A acquires rival B → Combined firm has economies of scale (↓ ATC) and ↑ market power (↑ prices) → Efficiency gains may be offset by reduced competition. Vertical: Manufacturer acquires supplier → Secures input supply, eliminates double marginalization → But reduces market access for competing manufacturers. Conglomerate: Firm acquires unrelated business → Diversification reduces risk but may destroy value if no synergies.',
+    evaluation: 'Takeovers can create or destroy value. Synergies (cost savings, revenue enhancement) justify acquisitions if greater than premium paid. But evidence shows acquirers often overpay: winner\'s curse, managerial hubris, empire-building incentives. Target shareholders gain (premium); acquirer shareholders often lose. Competition authorities scrutinize horizontal takeovers for anti-competitive effects. Private equity takeovers raise concerns about asset stripping and employment. The market for corporate control can discipline inefficient management but also encourages short-termism.',
+    formula: '\\text{Acquisition Premium} = \\frac{\\text{Offer Price} - \\text{Pre-announcement Price}}{\\text{Pre-announcement Price}}',
+    realWorldExample: 'Facebook\'s acquisition of Instagram (2012, $1bn) and WhatsApp (2014, $19bn) were horizontal takeovers eliminating potential competitors and gaining network effects. The FTC later sued to unwind them as anti-competitive—illustrating the market power concerns with horizontal consolidation.'
+  },
+  {
+    id: 'utility-maximisation',
+    title: 'Utility Maximisation',
+    category: 'theory',
+    definition: 'The principle that rational consumers allocate their limited income to maximize total satisfaction (utility) from consumption. Utility is maximized when the marginal utility per pound spent is equal across all goods purchased—the equimarginal principle. This underlies the derivation of demand curves.',
+    keyPoints: [
+      'Consumer objective: Maximize utility subject to budget constraint',
+      'Equimarginal principle: MUₓ/Pₓ = MUᵧ/Pᵧ for all goods',
+      'If MUₓ/Pₓ > MUᵧ/Pᵧ → Buy more X, less Y (until equality restored)',
+      'Diminishing marginal utility ensures equilibrium exists',
+      'Cardinal utility (measurable) vs. ordinal utility (rankings only)'
+    ],
+    analysis: 'Consumer has £100 budget, can buy apples (£2) or bananas (£1). Initially: MUₐ = 20, MU_b = 8 → MUₐ/Pₐ = 10, MU_b/P_b = 8 → Buy more apples. After more apples: MUₐ falls to 16 → MUₐ/Pₐ = 8 = MU_b/P_b → Equilibrium. Consumer cannot increase utility by reallocating between goods.',
+    evaluation: 'Utility maximization is theoretically elegant but behaviorally unrealistic. Consumers exhibit bounded rationality, inconsistent preferences, status quo bias, and framing effects. The cardinal utility assumption (measurable satisfaction) is philosophically contested. Modern consumer theory uses ordinal utility (preference rankings) and indifference curves, avoiding interpersonal utility comparisons. Despite limitations, the equimarginal principle provides intuition for how consumers respond to price changes (substitution effect) and underlies demand curve derivation.',
+    formula: '\\max U(X, Y) \\text{ s.t. } P_X \\cdot X + P_Y \\cdot Y = M; \\quad \\text{Solution: } \\frac{MU_X}{P_X} = \\frac{MU_Y}{P_Y}',
+    realWorldExample: 'Subscription services (Netflix, Spotify) price to equate marginal utility across consumer segments. £10.99/month is calibrated so that MU/P for entertainment equals that of alternatives—maximizing subscribers while capturing willingness to pay.'
+  },
+  {
+    id: 'variable-costs',
+    title: 'Variable Costs',
+    category: 'theory',
+    definition: 'Costs that change in proportion to the level of output produced. Variable costs include raw materials, direct labor (hourly wages), energy, and packaging. Unlike fixed costs, variable costs are zero when output is zero and increase as production rises. Total cost = Fixed costs + Variable costs.',
+    keyPoints: [
+      'Change with output level (TVC = f(Q))',
+      'Zero when Q = 0; increase as Q rises',
+      'Examples: Raw materials, piece-rate labor, energy, shipping',
+      'Average Variable Cost (AVC) = TVC/Q',
+      'Marginal Cost often reflects variable cost changes (MC = ΔTVC/ΔQ)'
+    ],
+    analysis: 'Bakery produces bread: Flour (£0.50/loaf), labor (£0.30/loaf), energy (£0.10/loaf) → TVC = £0.90 × Q. If Q = 100, TVC = £90. If Q = 200, TVC = £180. Fixed costs (rent, equipment) unchanged. In short run, firm covers variable costs first—if P > AVC, producing reduces losses. Shutdown point: P = AVC.',
+    evaluation: 'The fixed/variable distinction is clearer in theory than practice. Some costs are "semi-variable" (electricity has fixed and variable components). Labor may be fixed in short run (contracts, firing costs) but variable in long run. Digital products have near-zero variable costs after development—the economics of software differs fundamentally from manufacturing. High variable cost industries (commodities) have thin margins; low variable cost industries (digital) have potentially enormous margins at scale.',
+    formula: 'TC = TFC + TVC; \\quad AVC = \\frac{TVC}{Q}; \\quad MC = \\frac{dTVC}{dQ}',
+    realWorldExample: 'Airlines have high fixed costs (aircraft, slots) and moderate variable costs (fuel, crew per flight). During COVID, planes were grounded—fixed costs continued but variable costs fell to near zero. Low-cost carriers like Ryanair have lower fixed costs per seat, enabling lower prices and higher utilization.'
+  },
+  {
+    id: 'vulture-capitalism',
+    title: 'Vulture Capitalism',
+    category: 'macro',
+    definition: 'A pejorative term for aggressive private equity or distressed debt investment strategies that seek profit from struggling companies or assets. Vulture capitalism involves buying distressed debt at deep discounts, acquiring companies for asset stripping, or imposing cost cuts that may harm employees and communities.',
+    keyPoints: [
+      'Distressed debt investing: Buy bonds at pennies on the dollar, demand full repayment',
+      'Asset stripping: Acquire company, sell valuable assets, discard remainder',
+      'Leveraged buyouts: Load company with debt, extract dividends, leave weakened',
+      'Critics: Destroys jobs, communities, long-term value for short-term gain',
+      'Defenders: Reallocates resources from failing firms, provides liquidity'
+    ],
+    analysis: 'Private equity acquires struggling retailer (£100m debt-financed) → Sells property portfolio (£60m) → Pays special dividend (£40m) → Cuts staff and investment → Retailer weakens further → Eventually collapses → PE firm extracted £100m while destroying jobs. Alternatively: PE firm turns around company, improves efficiency, creates value—same techniques, different outcome.',
+    evaluation: 'Vulture capitalism exists on a spectrum from legitimate distressed investing to value destruction. Buying distressed debt at discounts provides liquidity to markets and imposes market discipline on debtors (including sovereigns). But aggressive tactics can destroy going-concern value, harm employees, and socialize costs while privatizing gains. Regulatory responses: Tighter LBO rules, longer holding period requirements, greater transparency. The challenge is distinguishing productive restructuring from extraction.',
+    realWorldExample: 'Debenhams (UK department store) collapsed after private equity ownership loaded it with debt, extracted property value via sale-leaseback, and left it unable to invest. 12,000 jobs lost. Similarly, Toys "R" Us collapsed under PE debt burden. These cases fuel criticism of vulture capitalism, though defenders argue the underlying businesses were already failing.'
+  },
+  {
+    id: 'wage-price-spiral',
+    title: 'Wage-Price Spiral',
+    category: 'macro',
+    definition: 'A self-reinforcing cycle where rising wages lead to higher production costs, causing firms to raise prices, which in turn leads workers to demand higher wages to maintain real purchasing power. The spiral can embed inflation expectations and make inflation persistent, requiring aggressive monetary policy to break.',
+    keyPoints: [
+      'Wage ↑ → Costs ↑ → Prices ↑ → Real wages fall → Wage demands ↑ → Repeat',
+      'Inflation expectations become embedded (adaptive expectations)',
+      'Second-round effects: Initial shock propagates through economy',
+      'Breaking the spiral requires credible disinflation (recession)',
+      '1970s stagflation driven partly by wage-price spirals'
+    ],
+    analysis: 'Oil shock → Energy costs rise 50% → Firms raise prices → Workers see 10% inflation → Unions demand 10% wage increase → Labor costs rise → Firms raise prices again → Inflation persists at 10% even after oil shock fades. Each round: Wages chase prices, prices incorporate wages → Spiral embeds expected inflation into contracts.',
+    evaluation: 'Wage-price spirals require institutional features that sustain them: powerful unions, indexed contracts, backward-looking wage setting. Declining union density and globalized labor markets have weakened spiral dynamics since the 1980s. The 2022-23 inflation did not generate a classic spiral—real wages fell significantly, partly because unions are weaker. Central bank credibility matters: if workers believe inflation will return to target, they don\'t demand compensating wage increases. The spiral is a risk but not inevitable.',
+    formula: 'w_t = w_{t-1} + \\alpha(\\pi_{t-1}) + \\beta(U^* - U_t); \\quad \\pi_t = \\pi_{t-1} + \\gamma(w_t - \\text{productivity})',
+    realWorldExample: 'UK inflation in the 1970s reached 25%, partly due to wage-price spirals. Unions negotiated inflation-matching wage rises; firms passed costs to prices. The Thatcher government broke the spiral through tight monetary policy (17% interest rates), high unemployment, and trade union reform—a painful but effective disinflation.'
+  },
+  {
+    id: 'vibe-recession',
+    title: 'Vibe Recession (Vibecession)',
+    category: 'macro',
+    definition: 'A phenomenon where consumer sentiment and public mood reflect recessionary pessimism despite positive macroeconomic indicators such as GDP growth, low unemployment, and rising wages. The term captures the disconnect between objective economic data and subjective economic experience, suggesting traditional metrics may miss important aspects of wellbeing.',
+    keyPoints: [
+      'Consumer sentiment negative despite positive headline data',
+      'Possible causes: Inflation eroding real gains, inequality, media negativity, psychological factors',
+      'Social media amplifies negative perceptions',
+      'Traditional metrics (GDP, unemployment) may miss distributional effects',
+      'Behavioral economics: Losses loom larger than gains (loss aversion)'
+    ],
+    analysis: 'GDP grows 2%, unemployment at 3.5%, wages rising 4% → Traditional view: Strong economy. But: Inflation at 6% → Real wages falling → Housing costs up 30% in 3 years → Savings depleted by pandemic → Social media feeds negative news → Consumer sentiment at recessionary levels. The "vibe" reflects lived experience that aggregate data obscures.',
+    evaluation: 'Vibe recessions challenge economists to look beyond headline figures. Possible explanations: (1) Median experience differs from mean (inequality), (2) Inflation hits necessities hardest (regressive), (3) Asset prices (housing) create wealth for owners but costs for renters, (4) Negativity bias in media and social media, (5) Pandemic trauma lingers psychologically. Policy implications: Focus on median incomes, housing affordability, and distributional metrics alongside GDP. The vibe may be data—subjective wellbeing matters.',
+    realWorldExample: 'The 2023 US economy showed 2.5% GDP growth, 3.7% unemployment, and 4% wage growth—yet consumer sentiment was at levels typically associated with recessions. The disconnect was attributed to high inflation (especially food and gas), pandemic-era price anchoring, and political polarization affecting economic perceptions.'
+  },
+  {
+    id: 'x-inefficiency',
+    title: 'X-Inefficiency',
+    category: 'market-failure',
+    definition: 'The difference between the efficient behavior of firms assumed in economic theory and their observed behavior in practice. Coined by Harvey Leibenstein (1966), X-inefficiency refers to organizational slack, managerial waste, and failure to minimize costs—typically arising from lack of competitive pressure in monopolistic or protected markets.',
+    keyPoints: [
+      'Firms operate inside their cost frontier (above minimum possible cost)',
+      'Sources: Managerial slack, poor motivation, organizational inertia, empire building',
+      'More prevalent in: Monopolies, state-owned enterprises, regulated industries',
+      'Competition reduces X-inefficiency (forces cost minimization)',
+      'Distinct from allocative inefficiency (wrong output mix)'
+    ],
+    analysis: 'Monopolist has no competitive pressure → Managers pursue quiet life, excess staffing, perks → Costs rise above minimum → Firm operates inside production frontier. If competition introduced: Rivals with lower costs enter → Monopolist forced to cut costs or lose market share → X-inefficiency eliminated. Contestable markets discipline behavior even without actual entry.',
+    evaluation: 'X-inefficiency is empirically significant: studies find monopolists have 5-15% higher costs than comparable competitive firms. Privatization often reduces costs through competition and profit incentives. But causation is contested: are monopolists inefficient because they\'re monopolists, or do efficient firms become monopolists? X-inefficiency is hard to measure directly (how do we know minimum possible costs?). The concept explains observed behavior but remains somewhat vague theoretically.',
+    formula: 'X\\text{-inefficiency} = \\frac{\\text{Actual Cost} - \\text{Minimum Cost}}{\\text{Minimum Cost}}',
+    realWorldExample: 'British Telecom (pre-privatization) exemplified X-inefficiency: overstaffing, slow service, limited innovation. Post-privatization (1984) and with competition (Mercury, mobile operators), employment fell 50% while service improved dramatically—competitive pressure eliminated organizational slack.'
+  },
+  {
+    id: 'yen-carry-trade',
+    title: 'Yen Carry Trade',
+    category: 'macro',
+    definition: 'An investment strategy that borrows in a low-interest-rate currency (historically the Japanese yen) to invest in higher-yielding assets elsewhere. Profits come from the interest rate differential, but the strategy is exposed to exchange rate risk—if the funding currency appreciates, losses can exceed interest gains.',
+    keyPoints: [
+      'Borrow in low-rate currency (¥), invest in high-rate assets ($, EM)',
+      'Profit: Interest differential − Exchange rate movements − Transaction costs',
+      'Yen depreciation amplifies gains; yen appreciation creates losses',
+      'Leverage amplifies both gains and losses',
+      'Unwind risk: Mass exit can cause currency spikes and market instability'
+    ],
+    analysis: 'Hedge fund borrows ¥1bn at 0.1% → Converts to $ (¥150/$) → Invests in US Treasuries at 5% → Earns 4.9% spread. If yen weakens to ¥160/$ → Repays cheaper → Additional 6.7% gain. Total return: ~11.6%. But if yen strengthens to ¥140/$ → Repayment costs 7.1% more → Loses 2.2% despite positive carry. Leveraged positions can be wiped out by modest yen appreciation.',
+    evaluation: 'Carry trades are profitable on average (interest differential is compensation for currency risk) but subject to periodic violent reversals. Carry trade unwinds amplify currency volatility—positions are similar across investors, so exits are correlated. The 2008 crisis saw massive yen appreciation as carry trades unwound. Carry trades may also distort monetary policy transmission—low Japanese rates fund global speculation rather than domestic investment. For individual investors, currency risk typically outweighs interest gains.',
+    formula: '\\text{Return} = (i_{\\text{invest}} - i_{\\text{fund}}) + \\frac{\\Delta e}{e} \\times \\text{Leverage}',
+    realWorldExample: 'The August 2024 yen carry trade unwind saw the yen surge 10% in days as leveraged positions were forced to close. Global equity markets fell 5-10% as risk assets were sold to repay yen borrowings—demonstrating how carry trade dynamics transmit across asset classes.'
+  },
+  {
+    id: 'yield-curve-control',
+    title: 'Yield Curve Control (YCC)',
+    category: 'policy',
+    definition: 'A monetary policy tool where a central bank targets a specific yield on government bonds (typically 10-year maturity) by committing to buy or sell unlimited quantities to maintain that yield. YCC aims to keep borrowing costs low even after short-term rates hit zero, extending monetary stimulus along the yield curve.',
+    keyPoints: [
+      'Central bank sets target yield for specific maturity (e.g., 10-year)',
+      'Commits to unlimited bond purchases to enforce target',
+      'Extends policy stimulus beyond short rates (zero lower bound)',
+      'Bank of Japan: YCC since 2016 (0% on 10-year JGBs)',
+      'Risks: Large balance sheet, loss of market signaling, exit difficulty'
+    ],
+    analysis: 'Short-term rate at 0% (lower bound) → Long-term yields still positive (term premium, inflation expectations) → Central bank announces 10-year yield target of 0.5% → Commits to buy unlimited bonds if yield rises above target → Investors know central bank is buyer of last resort → Yields stay at/below target → Borrowing costs for government, firms, households remain low across maturities.',
+    evaluation: 'YCC is powerful but controversial. Benefits: Caps government borrowing costs, provides policy stimulus beyond short rates, can stabilize financial markets. Costs: Central bank balance sheet expands massively, market price signals are suppressed (yields no longer reflect risk), exit is difficult (selling bonds would crash prices), fiscal dominance risk (central bank hostage to government financing needs). The Bank of Japan\'s experience shows YCC can persist for years but creates distortions; the 2023 widening of the YCC band caused yen volatility.',
+    formula: 'r_{10Y} \\leq r^* \\implies \\text{BoJ buys bonds until target met}',
+    realWorldExample: 'Bank of Japan introduced YCC in September 2016, targeting 0% on 10-year JGBs. By 2023, BoJ owned over 50% of outstanding JGBs. When it widened the target band (0.5% to 1%), markets saw it as policy normalization—yen appreciated 5% in days, showing how YCC suppresses market signals until suddenly released.'
+  },
+  {
+    id: 'zombie-firm',
+    title: 'Zombie Firm',
+    category: 'macro',
+    definition: 'A company that is able to service its debt but cannot repay principal, and survives only through continued refinancing or forbearance. Zombie firms are typically unprofitable, have low productivity, and persist because ultra-low interest rates and bank forbearance allow them to avoid bankruptcy.',
+    keyPoints: [
+      'Cannot cover interest from profits (ICR < 1) but survives via refinancing',
+      'Low productivity, limited investment, no growth',
+      'Prevalence increased with ultra-low interest rates post-2008',
+      'Congestion effects: Tie up resources that could go to productive firms',
+      'Japan\'s "lost decade" partly attributed to zombie lending'
+    ],
+    analysis: 'Interest rates at 1% → Unprofitable firm can service debt → Bank extends loan (avoids writing off loss) → Firm survives but doesn\'t invest or innovate → Productive firms cannot get labor/capital (congestion) → Economy-wide productivity growth slows. When rates rise → Zombie firms cannot service debt → Defaults spike → Banks take losses → Financial stress.',
+    evaluation: 'Zombie firms impose costs beyond their own inefficiency: they depress wages (can\'t compete for labor), crowd out investment (absorb capital), and reduce business dynamism. But mass zombie failure would cause unemployment and financial instability—the trade-off is painful adjustment vs. prolonged stagnation. The COVID-19 support schemes may have created new zombies; rising rates in 2022-23 will test firm viability. Optimal policy: targeted support for viable firms, orderly exit for non-viable ones—but distinguishing them in real-time is difficult.',
+    formula: 'ICR = \\frac{EBIT}{\\text{Interest Expense}} < 1 \\text{ (persistently) } \\implies \\text{Zombie}',
+    realWorldExample: 'The Bank of England estimated 5-10% of UK firms were zombies pre-COVID, rising after 2020 support measures. As interest rates rose to 5%+ in 2023, corporate insolvencies hit 30-year highs—partly reflecting zombie firms finally failing. Japan\'s 1990s banking crisis created widespread zombie lending, contributing to two decades of stagnation.'
   }
 ];
 
