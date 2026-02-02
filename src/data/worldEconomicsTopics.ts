@@ -3439,6 +3439,308 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     evaluation: 'Externalities justify intervention but don\'t guarantee it succeeds. Government failure (information problems, regulatory capture, unintended consequences) may worsen outcomes. The Coase theorem highlights that private bargaining can work—but transaction costs are often prohibitive for diffuse externalities (climate change affects billions). Optimal policy matches the instrument to the externality: taxes for known, measurable costs; quantity limits for uncertain, catastrophic risks.',
     formula: '\\text{DWL} = \\frac{1}{2} \\times (MEC) \\times (Q_m - Q^*)',
     realWorldExample: 'COVID-19 illustrated both types: negative externality (infection spreads to others → masks/lockdowns), positive externality (vaccination protects others → subsidies and mandates). Policy responses attempted to internalize these externalities.'
+  },
+  // ========== PHASE 8: LABOR, FISCAL & MARKET PSYCHOLOGY ==========
+  {
+    id: 'factor-immobility',
+    title: 'Factor Immobility',
+    category: 'theory',
+    definition: 'The inability or difficulty of factors of production (land, labor, capital, enterprise) to move between industries, occupations, or geographical locations in response to changes in demand. Factor immobility is a key cause of structural unemployment and regional inequality.',
+    keyPoints: [
+      'Geographical immobility: Workers cannot/will not relocate (housing costs, family ties, regional attachment)',
+      'Occupational immobility: Workers lack skills for new industries (retraining costs, qualifications)',
+      'Capital immobility: Machinery specific to one industry cannot be repurposed',
+      'Causes persistent unemployment even when vacancies exist elsewhere',
+      'Creates labor market mismatches: vacancies in one sector, unemployment in another'
+    ],
+    analysis: 'Industry A declines (e.g., coal mining) → Workers laid off → New jobs exist in Industry B (e.g., tech) but require different skills (occupational barrier) and are in different regions (geographical barrier) → Workers remain unemployed despite vacancies → Structural unemployment persists → Regional deprivation deepens. The labor market does not clear because supply cannot adjust to demand shifts.',
+    evaluation: 'Factor immobility justifies active labor market policies: retraining programs, relocation subsidies, housing market reform. However, government programs often fail—retraining is expensive and workers may resist relocation. The decline of Northern England versus the South East illustrates persistent immobility. Some immobility is rational: workers value community and stability. Policy should reduce barriers (improve housing supply, portable pensions) rather than force mobility.',
+    realWorldExample: 'The UK\'s "North-South divide" reflects decades of factor immobility. Former industrial areas (Yorkshire, Wales) face persistent unemployment while London has labor shortages. High housing costs in the South prevent Northern workers from relocating to available jobs.'
+  },
+  {
+    id: 'factors-affecting-job-choice',
+    title: 'Factors Affecting Choice of Job/Occupation',
+    category: 'theory',
+    definition: 'The economic and non-economic variables that influence an individual\'s decision to enter a particular occupation or accept a specific job. These factors determine labor supply in different sectors and explain wage differentials across occupations.',
+    keyPoints: [
+      'Pecuniary (monetary) factors: Wages, bonuses, pensions, job security',
+      'Non-pecuniary factors: Working conditions, job satisfaction, status, flexibility, location',
+      'Human capital: Education and training requirements, barriers to entry',
+      'Net advantages theory: Workers compare total utility (monetary + non-monetary) across jobs',
+      'Compensating wage differentials: Unpleasant jobs pay more to attract workers'
+    ],
+    analysis: 'Worker evaluates Job A (£40,000, stressful) vs. Job B (£35,000, fulfilling) → If non-pecuniary benefits of B exceed £5,000 in utility, worker chooses B → Explains why some sectors (teaching, charity) have wage discounts → Dangerous or unpleasant jobs (mining, sewage work) require wage premiums to attract workers → Market equilibrates when net advantages are equalized across occupations.',
+    evaluation: 'The net advantages theory assumes perfect information and mobility—neither holds in practice. Workers face imperfect knowledge of job conditions, geographical constraints, and occupational barriers (qualifications). Labor market segmentation creates "good jobs" (stable, well-paid) and "bad jobs" (precarious, low-paid) with limited mobility between segments. Gender and racial discrimination also distort occupational choice, concentrating certain groups in lower-paid sectors.',
+    formula: 'W_A + \\text{Non-pecuniary}_A = W_B + \\text{Non-pecuniary}_B \\quad \\text{(Net Advantages Equilibrium)}',
+    realWorldExample: 'Investment banking offers high salaries but long hours and stress. Many graduates choose lower-paid careers in the public sector or NGOs for better work-life balance and job satisfaction—demonstrating the trade-off between pecuniary and non-pecuniary factors.'
+  },
+  {
+    id: 'factors-of-production',
+    title: 'Factors of Production – Definition & Explanation',
+    category: 'theory',
+    definition: 'The four categories of economic resources used in the production of goods and services: Land (natural resources), Labour (human effort), Capital (man-made resources), and Enterprise (entrepreneurship). Each factor receives a corresponding reward: rent, wages, interest, and profit respectively.',
+    keyPoints: [
+      'Land: All natural resources (soil, minerals, water, climate) – Reward: Rent',
+      'Labour: Physical and mental human effort – Reward: Wages/Salaries',
+      'Capital: Man-made aids to production (machinery, buildings, infrastructure) – Reward: Interest',
+      'Enterprise: Risk-taking and organization of other factors – Reward: Profit',
+      'Factors are scarce relative to wants → Creates the basic economic problem'
+    ],
+    analysis: 'Entrepreneur (Enterprise) identifies market opportunity → Combines Land (raw materials), Labour (workers), and Capital (equipment) → Produces output → Revenue covers factor payments (rent, wages, interest) → Residual = Profit for entrepreneur. If Profit > 0, resources are attracted to this use; if Profit < 0, resources exit. Price signals allocate factors across the economy.',
+    evaluation: 'The four-factor model is foundational but simplified. Modern economies require refinement: Human capital (skilled labor) differs from unskilled labor; Financial capital differs from physical capital; Information and technology may constitute a "fifth factor." Factor mobility and substitutability determine how production responds to price changes. Capital accumulation drives long-run growth (Solow model), while human capital explains productivity differences (endogenous growth theory).',
+    formula: 'Q = f(L, K, N, E) \\quad \\text{where L=Land, K=Capital, N=Labour, E=Enterprise}',
+    realWorldExample: 'A coffee shop combines Land (leased premises), Labour (baristas), Capital (espresso machines, furniture), and Enterprise (the owner\'s vision and risk-taking). Each factor receives payment: rent to landlord, wages to staff, interest on equipment loans, profit to the entrepreneur.'
+  },
+  {
+    id: 'fear-greed-index',
+    title: 'Fear and Greed Index – Explained',
+    category: 'macro',
+    definition: 'A market sentiment indicator (popularized by CNN) that measures investor emotions on a scale from 0 (Extreme Fear) to 100 (Extreme Greed). It aggregates seven market signals to gauge whether stocks are overvalued (greed) or undervalued (fear), providing a contrarian investment signal.',
+    keyPoints: [
+      'Components: Stock price momentum, stock price strength, stock price breadth, put/call ratio, junk bond demand, market volatility (VIX), safe haven demand',
+      'Extreme Fear (0-25): Market undervalued, potential buying opportunity (contrarian signal)',
+      'Extreme Greed (75-100): Market overvalued, potential correction imminent',
+      'Behavioral finance application: Markets driven by psychology, not just fundamentals',
+      'Warren Buffett: "Be fearful when others are greedy, and greedy when others are fearful"'
+    ],
+    analysis: 'Market crash → VIX spikes → Put/call ratio rises → Safe haven demand (bonds, gold) increases → Fear index drops to "Extreme Fear" → Panic selling creates undervaluation → Contrarian investors buy → Prices recover. Conversely: Bull market → Greed dominates → Investors chase returns → Valuations stretched → Index hits "Extreme Greed" → Correction follows.',
+    evaluation: 'Sentiment indicators are useful but imperfect. "Extreme Fear" can persist during genuine crises (2008), and "Extreme Greed" can continue for years (1990s tech bubble). The index is backward-looking—it describes current sentiment, not future returns. Behavioral biases (herding, overconfidence) are real, but exploiting them requires timing skill. For most investors, a contrarian signal complements but does not replace fundamental analysis.',
+    realWorldExample: 'During the COVID crash (March 2020), the Fear and Greed Index hit single digits (Extreme Fear). Investors who bought at that point saw the S&P 500 more than double within 18 months. In contrast, Extreme Greed readings preceded the 2022 correction.'
+  },
+  {
+    id: 'financial-dysmorphia',
+    title: 'Financial Dysmorphia',
+    category: 'macro',
+    definition: 'A modern behavioral economics concept describing the distorted perception of one\'s financial situation—typically feeling "broke" despite having substantial wealth. It reflects the psychological disconnect between objective financial position and subjective financial anxiety, often driven by social comparison and lifestyle inflation.',
+    keyPoints: [
+      'Parallels body dysmorphia: distorted self-perception despite objective evidence',
+      'Causes: Social media comparison, lifestyle creep, moving goalposts, hedonic adaptation',
+      'High earners affected: Six-figure salaries feeling financially insecure',
+      'Relative income matters more than absolute income for subjective wellbeing',
+      'Consumption patterns rise with income, maintaining constant "financial anxiety"'
+    ],
+    analysis: 'Income ↑ → Expectations ↑ → Spending ↑ (lifestyle inflation) → Reference group changes (now compare to even wealthier peers) → Perceived "gap to comfortable" unchanged → Despite doubling income, individual feels no more secure. Hedonic treadmill: temporary satisfaction from consumption fades, requiring ever-higher spending for same utility.',
+    evaluation: 'Financial dysmorphia challenges the assumption that higher income increases welfare. Once basic needs are met, relative position and social comparison dominate subjective wellbeing (Easterlin paradox). Policy implications: income redistribution may improve aggregate welfare if it reduces inequality-driven anxiety. Individual implications: focusing on absolute goals (savings rate, security) rather than relative status may reduce financial anxiety.',
+    realWorldExample: 'Surveys show many UK households earning £100,000+ describe themselves as "just getting by." Rising housing costs, private school fees, and aspirational consumption (influenced by social media) create perpetual financial anxiety despite objectively high incomes.'
+  },
+  {
+    id: 'fiscal-drag',
+    title: 'Fiscal Drag (Bracket Creep)',
+    category: 'policy',
+    definition: 'An automatic tightening of fiscal policy that occurs when inflation pushes nominal incomes into higher tax brackets while real incomes remain unchanged. If tax thresholds are not adjusted for inflation, the government\'s real tax revenue increases without explicit policy action, effectively raising the tax burden.',
+    keyPoints: [
+      'Progressive tax systems: Higher incomes face higher marginal rates',
+      'Inflation raises nominal wages → Workers pushed into higher brackets',
+      'Real income unchanged but tax burden rises → Disposable income falls',
+      'Acts as an automatic fiscal tightener during inflation',
+      'Solution: Index tax thresholds to inflation (automatic uprating)'
+    ],
+    analysis: 'Worker earns £50,000 (basic rate) → 5% inflation → Nominal wage rises to £52,500 (if indexed) → But tax thresholds frozen → £2,500 taxed at higher rate (40%) → Real post-tax income falls → Worker is worse off in real terms despite nominal wage rise. Aggregate effect: ↓ Disposable income → ↓ Consumption → ↓ AD → Contractionary fiscal stance without policy action.',
+    evaluation: 'Fiscal drag is a "stealth tax"—governments benefit from higher revenues without announcing tax rises. It erodes the progressivity rationale: workers pay more without being genuinely better off. However, it also provides automatic stabilization during inflationary booms (↓ AD dampens inflation). The UK froze thresholds (2022-2028), raising £30bn through fiscal drag—criticized as regressive as it hits middle earners moving into higher brackets.',
+    formula: '\\text{Real Tax Burden} \\uparrow \\text{ if } \\frac{\\Delta \\text{Threshold}}{\\text{Threshold}} < \\pi',
+    realWorldExample: 'UK income tax thresholds were frozen at £12,570 (personal allowance) and £50,270 (higher rate) from 2021-2028. With 10%+ inflation in 2022-23, millions of workers were dragged into higher brackets—fiscal drag raised billions in "hidden" tax revenue.'
+  },
+  {
+    id: 'fiscal-illusion',
+    title: 'Fiscal Illusion',
+    category: 'policy',
+    definition: 'A behavioral economics concept where taxpayers systematically underestimate the true tax burden or overestimate the benefits of government spending. This cognitive bias allows governments to extract more revenue than informed citizens would willingly pay, distorting democratic fiscal choices.',
+    keyPoints: [
+      'Complexity illusion: Complicated tax systems obscure true burden',
+      'Indirect taxes less "visible" than direct taxes (VAT vs. income tax)',
+      'Deficit spending hides current costs (future generations pay)',
+      'Citizens overvalue concentrated benefits, undervalue diffuse costs',
+      'First analyzed by Italian economist Amilcare Puviani (1903)'
+    ],
+    analysis: 'Government raises revenue via indirect taxes (fuel duty, VAT embedded in prices) → Taxpayers don\'t perceive full burden (unlike visible income tax deductions) → Voters underestimate cost of government → Demand for public spending exceeds willingness to pay if costs were transparent → Government grows larger than optimal. Similarly: Deficit financing → Benefits today, costs deferred → Voters support spending without perceiving future tax burden.',
+    evaluation: 'Fiscal illusion has normative implications: if citizens are systematically misinformed, revealed preferences (voting) may not represent true preferences. This challenges public choice theory\'s assumption of rational voters. Counter-argument: voters are "rationally ignorant"—the cost of understanding tax systems exceeds the benefit. Transparency reforms (clear tax breakdowns, deficit accounting) may reduce illusion but face political resistance from beneficiaries of opacity.',
+    realWorldExample: 'The UK\'s VAT (20%) is embedded in prices and rarely noticed. A visible "tax receipt" showing where each tax pound goes was introduced in 2015 to combat fiscal illusion—but evidence on its effectiveness is mixed.'
+  },
+  {
+    id: 'fiscal-neutrality',
+    title: 'Fiscal Neutrality',
+    category: 'policy',
+    definition: 'A principle of taxation stating that the tax system should not distort economic decisions—it should raise revenue without altering relative prices, resource allocation, or behavior beyond what is necessary. A fiscally neutral tax minimizes deadweight loss and lets market prices guide choices.',
+    keyPoints: [
+      'Neutral taxes: Lump-sum taxes (same payment regardless of behavior)',
+      'Non-neutral taxes: Change relative prices → Alter behavior → Create deadweight loss',
+      'Perfect neutrality is impossible in practice (all taxes affect some margin)',
+      'Trade-off: Neutrality vs. redistribution, externality correction, revenue adequacy',
+      'Broad-based taxes with low rates are more neutral than narrow taxes with high rates'
+    ],
+    analysis: 'Tax on good X → Price of X rises relative to Y → Consumers substitute toward Y → Quantity of X falls → Resources reallocated away from X → Deadweight loss created. Neutral alternative: Lump-sum tax → No price distortion → No substitution effect → No DWL. But lump-sum taxes are regressive and politically unpopular. In practice, broad-based consumption taxes (VAT) with few exemptions approach neutrality.',
+    evaluation: 'Perfect fiscal neutrality conflicts with other policy goals. Pigouvian taxes deliberately distort behavior (tobacco, carbon taxes) to correct externalities. Progressive income taxes pursue redistribution but distort labor-leisure choices. The Ramsey rule suggests taxing inelastic goods more heavily (minimizes DWL) but this may be regressive (basic necessities are inelastic). Optimal tax design balances neutrality, equity, revenue, and simplicity.',
+    formula: 'DWL = \\frac{1}{2} \\times t^2 \\times \\frac{Q}{P} \\times PED',
+    realWorldExample: 'The Mirrlees Review (2011) recommended reforming UK taxes toward greater neutrality: a single rate of VAT with cash compensation for low earners, aligning capital and income tax rates to prevent arbitrage, and taxing housing consistently with other assets.'
+  },
+  {
+    id: 'fiscal-stance',
+    title: 'Fiscal Stance (Expansionary vs. Contractionary)',
+    category: 'policy',
+    definition: 'The overall direction and magnitude of fiscal policy\'s impact on the economy, measured by whether the government is injecting demand (expansionary/loose) or withdrawing demand (contractionary/tight). Key indicators include the budget deficit/surplus and the cyclically-adjusted (structural) balance.',
+    keyPoints: [
+      'Expansionary: G > T → Budget deficit → Injects demand → ↑ AD → Used in recessions',
+      'Contractionary: T > G → Budget surplus → Withdraws demand → ↓ AD → Used to cool overheating',
+      'Cyclically-adjusted balance: Removes automatic stabilizer effects to show policy intent',
+      'Fiscal impulse: Change in structural balance year-on-year (Δ stance)',
+      'Austerity: Sustained contractionary stance to reduce debt'
+    ],
+    analysis: 'Recession → Output gap negative → Government adopts expansionary stance: ↑G and/or ↓T → Budget deficit widens → Multiplier effect: ΔY = k × ΔG → AD shifts right → Output gap closes → But debt accumulates. Boom → Output gap positive → Contractionary stance: ↓G and/or ↑T → Budget surplus → ↓ AD → Prevents overheating and inflation → Debt repaid.',
+    evaluation: 'Measuring fiscal stance is contested. Headline deficits reflect automatic stabilizers (welfare spending rises in recession), not discretionary policy. The structural balance isolates policy choices but depends on estimated potential output (itself uncertain). The fiscal multiplier varies with economic conditions: large in recession, small near full employment. Austerity debates center on whether contractionary stance in a weak economy is self-defeating (↓Y → ↓Tax revenue → Deficit persists).',
+    formula: '\\text{Fiscal Impulse} = -(\\Delta \\text{Structural Balance as \\% of GDP})',
+    realWorldExample: 'The UK\'s 2010-2015 austerity represented a sharp contractionary stance: public spending cut while taxes rose, reducing the structural deficit. Critics argue this prolonged the post-2008 recovery; supporters argue it restored fiscal credibility and lowered borrowing costs.'
+  },
+  {
+    id: 'fisher-effect',
+    title: 'Fisher Effect',
+    category: 'macro',
+    definition: 'An economic theory proposed by Irving Fisher stating that the nominal interest rate equals the real interest rate plus expected inflation. It implies that nominal rates adjust one-for-one with expected inflation, leaving real rates unchanged in the long run.',
+    keyPoints: [
+      'Fisher equation: i = r + πᵉ (nominal = real + expected inflation)',
+      'Exact form: (1 + i) = (1 + r)(1 + πᵉ)',
+      'Implies nominal rates reflect inflation expectations',
+      'Real interest rate determined by productivity and time preference (supply-side factors)',
+      'Basis for inflation-indexed bonds (TIPS, UK index-linked gilts)'
+    ],
+    analysis: 'Expected inflation ↑ by 2% → Lenders demand 2% higher nominal rate to maintain real return → Nominal rate rises from 5% to 7% → Real rate unchanged at 3% → Borrowing/saving decisions unaffected by pure inflation changes. This explains why high-inflation countries have high nominal rates but not necessarily high real rates.',
+    evaluation: 'The Fisher Effect holds approximately in the long run but breaks down in the short run. Sticky expectations, money illusion, and monetary policy lags mean nominal rates adjust slowly. Central banks exploit this: by cutting nominal rates faster than inflation expectations fall, they reduce real rates and stimulate demand. The "Neo-Fisher Effect" (controversial) suggests raising nominal rates might increase inflation via expectations—challenging conventional monetary policy transmission.',
+    formula: 'r = i - \\pi^e \\quad \\text{or exactly:} \\quad 1 + r = \\frac{1 + i}{1 + \\pi^e}',
+    realWorldExample: 'UK 10-year gilt yields rose from 1% to 4.5% (2021-2023) as inflation expectations surged. Real yields (measured by index-linked gilts) rose less, confirming the Fisher Effect: much of the nominal rate increase reflected higher expected inflation.'
+  },
+  {
+    id: 'fixed-capital-formation',
+    title: 'Fixed Capital Formation',
+    category: 'macro',
+    definition: 'Investment in physical capital assets—machinery, equipment, buildings, infrastructure—that will be used in production over multiple years. Gross Fixed Capital Formation (GFCF) is a key component of GDP and a leading indicator of future productive capacity and economic growth.',
+    keyPoints: [
+      'GFCF = Gross investment in fixed assets (before depreciation)',
+      'Net investment = GFCF − Depreciation (capital consumption)',
+      'Components: Business investment, residential construction, government infrastructure',
+      'Determinant of future LRAS: More capital → Higher potential output',
+      'Measured at constant prices to track real investment trends'
+    ],
+    analysis: 'Firms expect ↑ demand → MEC > interest rate → ↑ GFCF → Capital stock grows → Labor productivity rises (K/L ratio ↑) → LRAS shifts right → Potential output increases. Multiplier effect: Investment spending generates income → ↑ C → Further ↑ AD. Accelerator: ↑ GDP → ↑ required capital → ↑ Investment → Amplifies business cycle.',
+    evaluation: 'Investment is the most volatile GDP component—it amplifies cycles via the multiplier-accelerator interaction. Low UK investment (relative to peers) is blamed for poor productivity growth. Causes include short-termism, Brexit uncertainty, and high cost of capital. Government can boost GFCF via: lower corporate taxes, investment allowances (super-deduction), public infrastructure spending, or reducing planning barriers. Quality of investment matters as much as quantity—R&D investment yields higher returns than property speculation.',
+    formula: 'I_{net} = GFCF - \\delta K \\quad \\text{where } \\delta = \\text{depreciation rate}',
+    realWorldExample: 'UK GFCF as % of GDP has consistently lagged Germany, France, and the US. The 2021-2023 "super-deduction" (130% capital allowances) aimed to boost business investment but had modest impact amid economic uncertainty.'
+  },
+  {
+    id: 'fixed-costs',
+    title: 'Fixed Costs',
+    category: 'theory',
+    definition: 'Costs that do not vary with the level of output in the short run. They must be paid regardless of production volume, including zero output. Fixed costs include rent, loan interest, insurance, and salaried staff. They contrast with variable costs, which change with output.',
+    keyPoints: [
+      'Fixed in short run, but all costs become variable in long run',
+      'Total Fixed Cost (TFC) is constant at all output levels',
+      'Average Fixed Cost (AFC) = TFC/Q → Falls continuously as output rises (spreading)',
+      'Examples: Rent, insurance, depreciation, permanent staff salaries',
+      'Creates economies of scale: Higher Q → Lower AFC → Lower ATC'
+    ],
+    analysis: 'Firm has TFC = £10,000. At Q=100, AFC = £100. At Q=1,000, AFC = £10. At Q=10,000, AFC = £1. As output expands, fixed costs are "spread" over more units → AFC falls asymptotically toward zero → Source of internal economies of scale. But if Q falls below breakeven, firm still pays TFC → Losses accumulate quickly.',
+    evaluation: 'The fixed/variable distinction is time-dependent. In the very short run, most costs are fixed (contracts, leases). In the long run, all costs are variable (can exit, relocate, resize). High fixed costs create: (1) Barriers to entry (need large upfront investment), (2) Incentive for price discrimination (cover fixed costs, then price at marginal cost), (3) Natural monopoly conditions (if average costs fall throughout market range). Digital businesses have near-zero marginal costs but high fixed costs (development, R&D).',
+    formula: 'TC = TFC + TVC; \\quad AFC = \\frac{TFC}{Q}; \\quad \\frac{dTFC}{dQ} = 0',
+    realWorldExample: 'Airlines have high fixed costs (aircraft, airport slots, permanent staff). This explains aggressive price competition to fill seats—once fixed costs are covered, any revenue above marginal cost (fuel, food) adds to profit. Empty seats have zero marginal revenue but full fixed cost burden.'
+  },
+  {
+    id: 'flexible-wages',
+    title: 'Flexible Wages Definition',
+    category: 'theory',
+    definition: 'A labor market condition where wages adjust freely to changes in labor supply and demand, clearing the market and eliminating involuntary unemployment. Classical and new classical economists assume wage flexibility; Keynesians emphasize wage rigidity (stickiness) as a cause of unemployment.',
+    keyPoints: [
+      'Classical view: Wages flexible → Labor market clears → No involuntary unemployment',
+      'Keynesian view: Wages sticky downward → Surplus labor persists → Unemployment',
+      'Sources of rigidity: Minimum wages, unions, contracts, efficiency wages, social norms',
+      'Real wage rigidity (W/P sticky) vs. Nominal wage rigidity (W sticky)',
+      'Flexible wages required for natural rate hypothesis and LRAS stability'
+    ],
+    analysis: '↓ Labor demand (recession) → Excess supply of labor at current wage → If wages flexible: W falls → Quantity demanded rises → Market clears → Full employment restored. If wages rigid: W unchanged → Unemployment persists → Keynesian involuntary unemployment. The speed of wage adjustment determines how quickly the economy returns to full employment after shocks.',
+    evaluation: 'Perfect wage flexibility is unrealistic. Downward nominal wage rigidity is well-documented: workers resist pay cuts (loss aversion), firms fear morale effects (efficiency wage theory), and contracts fix wages for periods. However, real wages can fall if prices rise while nominal wages are frozen (fiscal drag equivalent). Policy implications: if wages are sticky, monetary/fiscal policy can affect real output; if flexible, only inflation results. The debate shapes views on austerity and stimulus.',
+    formula: 'W^* = W_0 + \\lambda(L^d - L^s) \\quad \\text{(Wage adjustment)}',
+    realWorldExample: 'During COVID-19, the UK furlough scheme prevented mass layoffs but also prevented wage adjustment. When reopening occurred, labor shortages emerged as wages had not fallen to clear the reduced-demand market—followed by rapid wage increases in hospitality and logistics.'
+  },
+  {
+    id: 'flight-from-money',
+    title: 'Flight From Money',
+    category: 'macro',
+    definition: 'A phenomenon during hyperinflation where individuals and businesses rapidly convert currency holdings into real assets (goods, property, foreign currency) to preserve purchasing power. As money loses value hourly or daily, holding cash becomes irrational, accelerating velocity and worsening inflation.',
+    keyPoints: [
+      'Occurs during hyperinflation (typically >50% monthly inflation)',
+      'Money loses its store of value function → Held for shortest possible time',
+      'Velocity of money (V) explodes as money changes hands rapidly',
+      'Reinforcing spiral: Flight → ↑ V → ↑ P → More flight',
+      'Leads to dollarization, barter, and breakdown of monetary system'
+    ],
+    analysis: 'Inflation = 100% per month → Holding £100 cash loses £50 purchasing power in 2 weeks → Rational response: spend/convert immediately → Everyone spends simultaneously → ↑ Demand for goods → Prices rise faster → V increases → MV = PY: with V unstable, monetary policy loses traction. Self-fulfilling: Expectations of inflation → Flight → Actual inflation.',
+    evaluation: 'Flight from money marks the collapse of fiat currency credibility. Restoration requires: (1) Fiscal reform (end deficit monetization), (2) New currency (often pegged to stable anchor), (3) Independent central bank credibility. Historical hyperinflations (Weimar 1923, Zimbabwe 2008, Venezuela 2018) ended only with complete monetary regime change. The psychological damage persists: German inflation memory shapes ECB\'s inflation-aversion decades later.',
+    formula: 'MV = PY \\implies \\text{If } V \\to \\infty, \\text{ then } P \\to \\infty \\text{ even with constant M}',
+    realWorldExample: 'In Zimbabwe (2008), prices doubled every 24 hours at peak. Workers demanded daily pay and spent immediately. Foreign currency (USD) replaced the Zim dollar for transactions. The flight from money ended only when the domestic currency was abandoned entirely.'
+  },
+  {
+    id: 'floating-exchange-rates',
+    title: 'Floating Exchange Rates Definition',
+    category: 'trade',
+    definition: 'An exchange rate regime where currency values are determined by market forces of supply and demand in the foreign exchange market, without direct central bank intervention. The rate fluctuates continuously based on trade flows, capital movements, interest differentials, and speculative activity.',
+    keyPoints: [
+      'Market-determined: Supply and demand set the rate',
+      'Automatic adjustment: Trade deficits → Currency depreciation → Improved competitiveness',
+      'Monetary policy autonomy: Central bank can set interest rates independently',
+      'Volatility: Rates fluctuate, creating uncertainty for trade and investment',
+      'Most major currencies float: USD, EUR, GBP, JPY'
+    ],
+    analysis: 'Current account deficit → Imports > Exports → Selling domestic currency to buy foreign → Supply of £ increases → £ depreciates → Exports cheaper, imports dearer → Demand for exports ↑, demand for imports ↓ → Trade balance improves (assuming Marshall-Lerner holds). Simultaneously: Higher interest rates → Capital inflows → Demand for £ ↑ → £ appreciates.',
+    evaluation: 'Floating rates provide shock absorption and policy autonomy but introduce volatility. Exchange rate uncertainty raises transaction costs (hedging) and may deter trade/investment. Overshooting (Dornbusch model): rates can deviate substantially from fundamentals before correcting. Speculation can destabilize rather than stabilize. Managed floats (central bank intervention at extremes) attempt to capture benefits of both fixed and floating systems. For small open economies, floating offers less autonomy than theory suggests—pass-through to domestic prices is rapid.',
+    formula: 'e = f(i - i^*, \\pi^e, CA, \\text{risk}, \\text{speculation})',
+    realWorldExample: 'The £ fell 25% against the $ after the Brexit referendum (June 2016). The floating rate absorbed the shock—exports became more competitive, limiting the GDP impact. But import prices rose, contributing to inflation. A fixed rate would have required either reserve depletion or recession.'
+  },
+  {
+    id: 'framing-effect',
+    title: 'Framing Effect (Cognitive Bias)',
+    category: 'theory',
+    definition: 'A cognitive bias where people\'s decisions are influenced by how information is presented (framed) rather than by the objective facts alone. Equivalent options can lead to different choices depending on whether outcomes are framed as gains or losses. This violates the rationality assumption of neoclassical economics.',
+    keyPoints: [
+      'Loss framing vs. gain framing → Different decisions for identical outcomes',
+      'Loss aversion: Losses loom larger than equivalent gains (Kahneman & Tversky)',
+      'Reference point matters: "90% fat-free" vs. "10% fat" affects choice',
+      'Exploited in marketing, policy design (nudges), and political messaging',
+      'Challenges Expected Utility Theory: preferences are inconsistent'
+    ],
+    analysis: 'Option A: "200 people will be saved" (gain frame) vs. Option B: "400 people will die" (loss frame) → Same outcome, but people choose A when gain-framed and risk-seeking alternatives when loss-framed. In economics: "5% discount for cash" (gain) vs. "5% surcharge for credit" (loss) → Framing affects payment method choice despite economic equivalence.',
+    evaluation: 'Framing effects challenge the rational agent model. If preferences depend on presentation, not just outcomes, welfare analysis becomes problematic. Policy implications: "nudge" interventions exploit framing to steer behavior (opt-out pensions, calorie labels). Ethical concerns: is it paternalistic manipulation or benign choice architecture? Firms exploit framing for profit (subscription traps, decoy pricing). Financial literacy education may reduce but not eliminate framing effects.',
+    realWorldExample: 'Organ donation rates differ dramatically between opt-in (10-15%) and opt-out (85-90%) systems across Europe—the default framing shapes choices despite identical options. The UK switched to opt-out in 2020, increasing potential donors.'
+  },
+  {
+    id: 'free-rider-problem',
+    title: 'Free Rider Problem Definition',
+    category: 'market-failure',
+    definition: 'A market failure that occurs with public goods (and some common resources) where individuals can benefit from a good without paying for it. Because non-payers cannot be excluded, rational individuals understate their willingness to pay, leading to under-provision or non-provision by private markets.',
+    keyPoints: [
+      'Arises from non-excludability of public goods',
+      'Rational strategy: Let others pay, enjoy benefits for free',
+      'Leads to under-provision: Private firms cannot capture full social benefit',
+      'Collective action problem: Individually rational but collectively irrational',
+      'Solutions: Government provision (taxation), regulation, social norms'
+    ],
+    analysis: 'Public good (e.g., street lighting) benefits all residents → Each resident thinks: "If others pay, I benefit anyway; if I pay alone, it\'s not worth it" → All residents reason identically → No one pays → Good is not provided → Social welfare loss. The Nash equilibrium is non-provision, despite everyone being better off with the good.',
+    evaluation: 'The free rider problem justifies government provision of public goods via taxation—coercion solves the collective action failure. However, government provision has costs: taxation distortions, bureaucratic inefficiency, and preference misrepresentation (voters can\'t reveal true WTP). Partial solutions: voluntary contributions (Wikipedia), excludable substitutes (gated communities), and social/moral sanctions (shaming). The severity of free riding depends on group size—small groups may overcome it through reputation and reciprocity.',
+    formula: '\\sum_{i=1}^n MRS_i = MRT \\quad \\text{(Samuelson condition for optimal public good provision)}',
+    realWorldExample: 'National defense is the classic public good. No private firm would provide it—citizens would free ride on others\' protection. Hence, defense is tax-funded. Similarly, lighthouses were historically cited as public goods, though Coase showed many were privately provided via port fees (excludability via ports).'
+  },
+  {
+    id: 'frictional-unemployment',
+    title: 'Frictional Unemployment',
+    category: 'macro',
+    definition: 'Short-term unemployment arising from the time taken for workers to search for and transition between jobs. It occurs even in a healthy economy with full employment, as workers voluntarily leave jobs, enter the workforce, or seek better matches. Frictional unemployment is part of the natural rate of unemployment.',
+    keyPoints: [
+      'Search unemployment: Time to find suitable job match',
+      'Voluntary and short-term (weeks to months, not years)',
+      'Exists at "full employment" (NAIRU includes frictional unemployment)',
+      'Reflects labor market dynamism and information imperfections',
+      'Reduced by: Job centers, online platforms, better information flow'
+    ],
+    analysis: 'Worker quits Job A → Searches for better Job B → During search period, counted as unemployed → Eventually finds Job B → Exits unemployment. Aggregate level: Constant flow of workers through frictional unemployment as economy churns → Some frictional unemployment always exists → Part of natural rate. If matching improves (better job platforms), frictional duration falls → Natural rate falls → LRAS shifts right.',
+    evaluation: 'Some frictional unemployment is efficient: it allows better worker-job matching, raising productivity. Policies to eliminate frictional unemployment (forcing workers to accept first offer) would reduce match quality and long-run output. However, excessively long search (due to information failures or generous benefits) is inefficient. The rise of online job platforms (LinkedIn, Indeed) has likely reduced frictional duration. Universal Basic Income debates partly concern whether to subsidize longer search (better matches) or faster acceptance (lower measured unemployment).',
+    formula: 'u^* = u_f + u_s + u_c \\quad \\text{(Natural rate = frictional + structural + cyclical at equilibrium)}',
+    realWorldExample: 'A graduate spending 3 months finding their first professional role, or a worker taking 6 weeks between jobs to find a better fit, represents frictional unemployment. The UK\'s flexible labor market has relatively short frictional spells compared to more regulated European markets.'
   }
 ];
 
