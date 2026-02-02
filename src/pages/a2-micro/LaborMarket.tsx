@@ -1,6 +1,9 @@
 import Layout from '@/components/Layout';
 import NoteCard from '@/components/NoteCard';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
+import AnalysisBlock from '@/components/AnalysisBlock';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LaborMarketDiagram from '@/components/diagrams/LaborMarketDiagram';
@@ -35,6 +38,18 @@ const LaborMarket = () => {
             government policy, wage differentials, and the concepts of economic rent and transfer earnings.
           </p>
         </header>
+
+        {/* Key Takeaways */}
+        <KeyTakeaways
+          takeaways={[
+            "MRP = MPP × MR is the firm's demand for labor. Profit maximization occurs where MRP = MFC (or MRP = W in perfect competition).",
+            "In perfect competition: W = MFC = AFC = S (perfectly elastic supply to the firm). The market sets the wage; firm is a wage taker.",
+            "Monopsony: MCL > ACL because hiring more workers requires raising wages for ALL workers. Result: lower wages AND lower employment than competition.",
+            "Trade unions can INCREASE both wages and employment in a monopsony by setting a wage floor within the 'zone of bargaining.'",
+            "Wage differentials arise from: skill differences (human capital), compensating differentials, barriers to entry, discrimination, and regional factors.",
+            "Economic Rent = Payment above transfer earnings (minimum needed to keep a factor in its current use)."
+          ]}
+        />
 
         {/* Topic 1: Perfectly Competitive Labor Market */}
         <section id="perfect-labor-market" className="mb-16">
@@ -363,6 +378,21 @@ const LaborMarket = () => {
           </div>
         </section>
 
+        <AnalysisBlock title="AO3 Chain: Labor Demand and the MRP Curve" type="analysis">
+          <p>
+            <strong className="text-cyan-400">Starting Point:</strong> Firm operates with fixed capital and diminishing returns →
+            <strong className="text-cyan-400"> Production Function:</strong> As more labor is hired, MPP initially rises then falls (Law of Diminishing Returns) →
+            <strong className="text-cyan-400"> Revenue Impact:</strong> MRP = MPP × MR; in perfect competition, MR = P, so MRP = MPP × P →
+            <strong className="text-cyan-400"> Demand Curve Derivation:</strong> Since MPP eventually falls, MRP falls; the MRP curve IS the labor demand curve →
+            <strong className="text-cyan-400"> Employment Decision:</strong> Firm hires where MRP = MFC (or MRP = W in competition); beyond this, extra worker costs more than they contribute.
+          </p>
+        </AnalysisBlock>
+
+        <ExaminerTrap
+          trap="Students draw the MRP curve incorrectly or confuse it with the product market demand curve. They may also forget that MRP depends on BOTH productivity AND product price."
+          correction="The MRP curve slopes downward due to diminishing marginal product, NOT because of demand conditions. MRP = MPP × MR: if EITHER productivity OR product price changes, the entire MRP curve shifts. A rise in product demand shifts MRP rightward, increasing labor demand."
+        />
+
         {/* Topic 2: Monopsony */}
         <section id="monopsony" className="mb-16">
           <h2 className="text-3xl font-serif font-bold text-silver-bright mb-6 flex items-center gap-3">
@@ -486,6 +516,36 @@ const LaborMarket = () => {
               </div>
             </div>
           </div>
+
+          <AnalysisBlock title="AO3 Chain: Monopsony Exploitation" type="analysis">
+            <p>
+              <strong className="text-cyan-400">Market Structure:</strong> Single employer dominates local labor market (e.g., NHS as major nurse employer) →
+              <strong className="text-cyan-400"> Supply Curve:</strong> Firm faces upward-sloping supply; must raise wage to attract more workers →
+              <strong className="text-cyan-400"> Cost Divergence:</strong> Raising wage for new worker requires raising it for ALL workers, so MCL &gt; ACL (supply curve) →
+              <strong className="text-cyan-400"> Profit Maximization:</strong> Monopsonist hires where MRP = MCL, but pays wage from SUPPLY curve at that quantity →
+              <strong className="text-cyan-400"> Result:</strong> Workers paid W<sub>mon</sub> (below MRP) and L<sub>mon</sub> employed (below competitive level). 
+              The gap between MRP and wage represents "exploitation" captured as profit.
+            </p>
+          </AnalysisBlock>
+
+          <AnalysisBlock title="Critical Evaluation: Is Monopsony Always Bad?" type="evaluation">
+            <p>
+              While monopsony creates exploitation in the textbook model, real-world evaluation is more nuanced:
+              <strong className="text-amber-400"> (1) Efficiency wage theory:</strong> Some monopsonists pay ABOVE the competitive wage 
+              to reduce turnover, increase productivity, and attract better workers—countering the exploitation prediction.
+              <strong className="text-amber-400"> (2) Dynamic effects:</strong> Monopsonist employers may invest in worker training 
+              (since workers have fewer outside options), potentially increasing human capital and long-run productivity.
+              <strong className="text-amber-400"> (3) Countervailing power:</strong> Unions can offset monopsony power, 
+              potentially achieving competitive outcomes through bilateral bargaining.
+              <strong className="text-amber-400"> (4) Minimum wage paradox:</strong> In monopsony markets, 
+              moderate minimum wages can INCREASE employment by eliminating the MCL &gt; W gap—contradicting standard competitive analysis.
+            </p>
+          </AnalysisBlock>
+
+          <ExaminerTrap
+            trap="Students draw monopsony diagrams with MCL below the supply curve, or fail to show the divergence between the wage paid and MRP."
+            correction="MCL is ALWAYS above the supply curve (ACL) in monopsony because hiring an extra worker requires raising wages for ALL workers. The wage is read from the SUPPLY curve at the employment level where MRP = MCL, NOT from the MCL curve."
+          />
         </section>
 
         {/* Topic 3: Trade Union Intervention */}

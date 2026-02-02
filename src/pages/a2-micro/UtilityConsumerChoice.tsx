@@ -4,6 +4,9 @@ import UtilityDiagram from '@/components/diagrams/UtilityDiagram';
 import BudgetIndifferenceDiagram from '@/components/diagrams/BudgetIndifferenceDiagram';
 import IncomeSubstitutionDiagram from '@/components/diagrams/IncomeSubstitutionDiagram';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
+import AnalysisBlock from '@/components/AnalysisBlock';
 
 const UtilityConsumerChoice = () => {
   return (
@@ -12,6 +15,16 @@ const UtilityConsumerChoice = () => {
       title="Utility and Consumer Choice"
       subtitle="Understanding rational consumer behavior through marginal analysis, budget constraints, and indifference curve theory"
     >
+      {/* Key Takeaways */}
+      <KeyTakeaways
+        takeaways={[
+          "Total Utility (TU) rises at a decreasing rate; Marginal Utility (MU) diminishes as consumption increases—the Law of Diminishing Marginal Utility.",
+          "Consumer equilibrium occurs where MUₓ/Pₓ = MUᵧ/Pᵧ—the Equi-Marginal Principle ensures utility is maximized per dollar spent.",
+          "The Budget Line shows affordable combinations; its slope = -Pₓ/Pᵧ. Income changes shift the line; price changes pivot it.",
+          "Indifference Curves are convex to origin (diminishing MRS), cannot intersect, and higher curves = higher utility.",
+          "Price changes create Substitution Effect (always negative) and Income Effect (direction depends on normal/inferior/Giffen goods)."
+        ]}
+      />
       {/* Topic 1: Marginal Utility */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
@@ -54,6 +67,23 @@ const UtilityConsumerChoice = () => {
             </div>
           </CardContent>
         </Card>
+
+        <AnalysisBlock title="Marginal Utility Analysis" type="analysis">
+          <p>
+            The relationship between Total and Marginal Utility follows a precise mathematical pattern: 
+            <strong className="text-primary"> when MU &gt; 0, TU rises</strong>; 
+            <strong className="text-secondary"> when MU = 0, TU is maximized</strong>; 
+            <strong className="text-destructive"> when MU &lt; 0, TU falls</strong>. 
+            This pattern explains consumer satiation—the point beyond which additional consumption becomes undesirable. 
+            The declining MU curve demonstrates why demand curves slope downward: as consumers acquire more units, 
+            the additional satisfaction from each unit falls, so they are only willing to pay lower prices for additional units.
+          </p>
+        </AnalysisBlock>
+
+        <ExaminerTrap
+          trap="Many students incorrectly state that 'utility decreases' as consumption increases. This confuses TU with MU."
+          correction="Total Utility continues to INCREASE (at a decreasing rate) while Marginal Utility DECREASES. TU only decreases after MU becomes negative—after the point of satiation."
+        />
       </motion.section>
 
       {/* Equi-Marginal Principle */}
@@ -98,6 +128,29 @@ const UtilityConsumerChoice = () => {
             </div>
           </CardContent>
         </Card>
+
+        <AnalysisBlock title="Equi-Marginal Principle: AO3 Chain of Analysis" type="analysis">
+          <p>
+            <strong className="text-cyan-400">Initial Disequilibrium:</strong> Suppose MUₓ/Pₓ &gt; MUᵧ/Pᵧ — 
+            the consumer gets more "bang for buck" from Good X →
+            <strong className="text-cyan-400"> Reallocation:</strong> Consumer shifts expenditure from Y toward X →
+            <strong className="text-cyan-400"> Diminishing MU:</strong> As more X is consumed, MUₓ falls; 
+            as less Y is consumed, MUᵧ rises →
+            <strong className="text-cyan-400"> Equilibrium Restoration:</strong> Adjustment continues until 
+            MUₓ/Pₓ = MUᵧ/Pᵧ — no further reallocation can increase total utility.
+          </p>
+        </AnalysisBlock>
+
+        <AnalysisBlock title="Critical Evaluation: Limitations of Cardinal Utility" type="evaluation">
+          <p>
+            The marginal utility approach assumes consumers can assign <strong>numerical values</strong> to utility (cardinal measurement), 
+            which is psychologically unrealistic. Real consumers cannot say "this coffee gives me 50 utils." 
+            The <strong className="text-amber-400">ordinal utility approach</strong> (indifference curves) overcomes this by only requiring 
+            consumers to rank preferences—a more realistic assumption. Additionally, the model assumes stable preferences and 
+            rational behavior, ignoring <strong>bounded rationality</strong>, habit formation, and emotional decision-making 
+            studied in behavioral economics. The Equi-Marginal Principle also assumes divisible goods and ignores transaction costs.
+          </p>
+        </AnalysisBlock>
       </motion.section>
 
       {/* Topic 2: Budget Line and Indifference Curves */}
@@ -121,6 +174,41 @@ const UtilityConsumerChoice = () => {
         </div>
 
         <BudgetIndifferenceDiagram />
+
+        <Card className="mt-8 glass-card border-border">
+          <CardHeader>
+            <CardTitle className="text-silver-bright">Text-Based Geometric Logic: Budget Constraints</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+                <h4 className="font-semibold text-green-400 mb-2">Income Increase (M₁ → M₂)</h4>
+                <p className="text-sm text-muted-foreground">
+                  Budget line shifts <strong>parallel outward</strong>. X-intercept moves from M₁/Pₓ to M₂/Pₓ; 
+                  Y-intercept from M₁/Pᵧ to M₂/Pᵧ. Slope unchanged (−Pₓ/Pᵧ). Consumer can now reach higher indifference curves.
+                </p>
+              </div>
+              <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
+                <h4 className="font-semibold text-red-400 mb-2">Price of X Falls (Pₓ₁ → Pₓ₂)</h4>
+                <p className="text-sm text-muted-foreground">
+                  Budget line <strong>pivots outward</strong> from fixed Y-intercept. X-intercept extends from M/Pₓ₁ to M/Pₓ₂. 
+                  Line becomes flatter (slope magnitude decreases). Consumer can now afford more X at any given Y.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <AnalysisBlock title="Indifference Curve Properties: Mathematical Foundations" type="analysis">
+          <p>
+            The <strong>Marginal Rate of Substitution (MRS)</strong> equals the slope of the indifference curve at any point: 
+            MRS = ΔY/ΔX = MUₓ/MUᵧ. The <strong>convexity</strong> reflects diminishing MRS—as a consumer has more X and less Y, 
+            they are willing to give up less Y for each additional unit of X. At the optimal consumption bundle, 
+            the budget line is <strong>tangent</strong> to the highest attainable indifference curve, meaning: 
+            MRS = Pₓ/Pᵧ, which can be rearranged to MUₓ/Pₓ = MUᵧ/Pᵧ (the Equi-Marginal Principle). 
+            This elegant proof shows the geometric and algebraic approaches yield identical equilibrium conditions.
+          </p>
+        </AnalysisBlock>
       </motion.section>
 
       {/* Income and Substitution Effects */}
@@ -161,6 +249,36 @@ const UtilityConsumerChoice = () => {
             </div>
           </CardContent>
         </Card>
+
+        <AnalysisBlock title="AO3 Chain: Price Fall and the Total Effect" type="analysis">
+          <p>
+            <strong className="text-cyan-400">Price Change:</strong> Price of Good X falls (Pₓ₁ → Pₓ₂) →
+            <strong className="text-cyan-400"> Budget Line Pivots:</strong> Line rotates outward from Y-intercept; X becomes relatively cheaper →
+            <strong className="text-cyan-400"> Substitution Effect (Hicksian):</strong> Consumer moves along the SAME indifference curve 
+            from point A to hypothetical point B, substituting toward X (always positive for a price fall) →
+            <strong className="text-cyan-400"> Income Effect:</strong> Real income rises; consumer moves from B to C on a HIGHER indifference curve. 
+            For normal goods, this reinforces the substitution effect (buy more X). For inferior goods, it partially offsets it. 
+            For Giffen goods, the negative income effect dominates, producing an upward-sloping demand curve.
+          </p>
+        </AnalysisBlock>
+
+        <AnalysisBlock title="Critical Evaluation: Behavioral Economics Challenge" type="evaluation">
+          <p>
+            Traditional consumer choice theory assumes <strong>perfect rationality</strong>—consumers consistently maximize utility 
+            given budget constraints. However, <strong className="text-amber-400">behavioral economics</strong> reveals systematic deviations: 
+            <strong>Framing effects</strong> show choices depend on how options are presented; 
+            <strong>Loss aversion</strong> (Kahneman & Tversky) demonstrates losses hurt more than equivalent gains please; 
+            <strong>Hyperbolic discounting</strong> explains why consumers make time-inconsistent choices (preferring $100 today over $110 tomorrow, 
+            but $110 in 31 days over $100 in 30 days). The <strong>"nudge" theory</strong> (Thaler & Sunstein) suggests 
+            policymakers can design choice architectures to steer consumers toward better decisions without restricting options. 
+            These insights suggest indifference curve analysis is a useful approximation but not a complete model of human behavior.
+          </p>
+        </AnalysisBlock>
+
+        <ExaminerTrap
+          trap="Students often conflate Giffen and Veblen goods as 'goods with upward-sloping demand.' The mechanisms are entirely different."
+          correction="Giffen goods have upward-sloping demand due to the INCOME EFFECT dominating for staple inferior goods among low-income consumers. Veblen goods have upward-sloping demand due to CONSPICUOUS CONSUMPTION—high prices signal status (a psychological/social phenomenon, not an income effect). A Giffen good must be inferior; a Veblen good is typically a luxury."
+        />
       </motion.section>
     </ChapterLayout>
   );
