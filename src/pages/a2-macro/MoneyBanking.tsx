@@ -11,6 +11,7 @@ import MonetaryTransmissionDiagram from '@/components/diagrams/MonetaryTransmiss
 import CreditMultiplierDiagram from '@/components/diagrams/CreditMultiplierDiagram';
 import QuantityTheoryDiagram from '@/components/diagrams/QuantityTheoryDiagram';
 import MECCurveDiagram from '@/components/diagrams/MECCurveDiagram';
+import MoneySupplyDiagram from '@/components/diagrams/MoneySupplyDiagram';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
@@ -222,26 +223,8 @@ const MoneyBanking = () => {
             </p>
           </div>
 
-          {/* Money Supply Formula */}
-          <div className="glass-card p-4 rounded-lg mb-6">
-            <h4 className="font-serif font-semibold mb-3 text-center">Narrow Money vs Broad Money</h4>
-            <div className="grid md:grid-cols-2 gap-4 text-sm">
-              <div className="p-3 bg-cambridge-cyan/10 rounded-lg border border-cambridge-cyan/20">
-                <p className="font-semibold text-cambridge-cyan mb-1">Narrow Money (M0/M1)</p>
-                <p className="text-xs text-muted-foreground">
-                  Notes and coins in circulation + bank reserves at the central bank + sight deposits (current accounts). 
-                  Represents the most <strong>liquid</strong> form of money, immediately usable as a medium of exchange.
-                </p>
-              </div>
-              <div className="p-3 bg-cambridge-magenta/10 rounded-lg border border-cambridge-magenta/20">
-                <p className="font-semibold text-cambridge-magenta mb-1">Broad Money (M2/M4)</p>
-                <p className="text-xs text-muted-foreground">
-                  Narrow money + time deposits + savings accounts + money market funds. Includes "near money" that can be 
-                  quickly converted to cash but is <strong>less liquid</strong> than narrow money.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Money Supply Diagram - NEW */}
+          <MoneySupplyDiagram />
 
           {/* Equilibrium Interest Rate Determination */}
           <h3 className="font-serif text-lg font-semibold mb-3">Equilibrium Interest Rate Determination</h3>
