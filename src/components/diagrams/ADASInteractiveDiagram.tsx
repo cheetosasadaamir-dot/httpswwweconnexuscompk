@@ -6,6 +6,16 @@ interface ADASInteractiveDiagramProps {
   title?: string;
 }
 
+/**
+ * AD/AS Interactive Model - CIE 9708 Exam Standard
+ * 
+ * Geometric Standards:
+ * - AD: Downward sloping (Wealth Effect, Interest Rate Effect, International Trade Effect)
+ * - SRAS: Upward sloping (sticky wages → rising marginal costs)
+ * - LRAS: Perfectly vertical at Yf (Classical/Monetarist view)
+ * 
+ * Axis Labels: General Price Level (GPL) vs Real National Output (Y)
+ */
 const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagramProps) => {
   const [showDemandShock, setShowDemandShock] = useState(false);
   const [showSupplyShock, setShowSupplyShock] = useState(false);
@@ -29,9 +39,9 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
     return () => observer.disconnect();
   }, []);
 
-  const width = 500;
-  const height = 400;
-  const margin = { top: 40, right: 40, bottom: 60, left: 60 };
+  const width = 520;
+  const height = 420;
+  const margin = { top: 45, right: 50, bottom: 65, left: 70 };
   const chartWidth = width - margin.left - margin.right;
   const chartHeight = height - margin.top - margin.bottom;
 
@@ -39,37 +49,39 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
   const xScale = (val: number) => margin.left + (val / 100) * chartWidth;
   const yScale = (val: number) => margin.top + chartHeight - (val / 100) * chartHeight;
 
-  // AD curve (downward sloping)
+  // AD curve (downward sloping - CIE standard)
+  // Reflects: Wealth Effect, Interest Rate Effect, Trade Effect
   const adPoints = [
-    { x: 15, y: 85 },
-    { x: 30, y: 65 },
-    { x: 50, y: 50 },
-    { x: 70, y: 38 },
-    { x: 85, y: 28 },
+    { x: 12, y: 88 },
+    { x: 28, y: 68 },
+    { x: 48, y: 50 },
+    { x: 68, y: 36 },
+    { x: 88, y: 25 },
   ];
 
-  // Shifted AD (rightward)
-  const adShiftedPoints = adPoints.map(p => ({ x: p.x + 15, y: p.y }));
+  // Shifted AD (rightward - positive demand shock)
+  const adShiftedPoints = adPoints.map(p => ({ x: p.x + 18, y: p.y }));
 
-  // SRAS curve (upward sloping, curved)
+  // SRAS curve (upward sloping - sticky wages in short run)
+  // Increasingly steep as approaching capacity constraints
   const srasPoints = [
-    { x: 15, y: 20 },
-    { x: 35, y: 35 },
-    { x: 50, y: 50 },
-    { x: 65, y: 68 },
-    { x: 75, y: 85 },
+    { x: 12, y: 18 },
+    { x: 30, y: 30 },
+    { x: 48, y: 45 },
+    { x: 62, y: 62 },
+    { x: 72, y: 82 },
   ];
 
-  // Shifted SRAS (leftward/upward)
-  const srasShiftedPoints = srasPoints.map(p => ({ x: p.x - 12, y: p.y + 8 }));
+  // Shifted SRAS (leftward/upward - negative supply shock)
+  const srasShiftedPoints = srasPoints.map(p => ({ x: p.x - 14, y: p.y + 10 }));
 
-  // LRAS (vertical line)
-  const lrasX = 65;
+  // LRAS position - Perfectly vertical at full employment (Classical view)
+  const lrasX = 62;
 
   // Equilibrium points
-  const eq0 = { x: 50, y: 50 }; // Original equilibrium
-  const eq1 = { x: 60, y: 58 }; // After AD increase
-  const eq2 = { x: 42, y: 58 }; // After SRAS decrease
+  const eq0 = { x: 48, y: 45 }; // Original equilibrium (AD ∩ SRAS at Yf vicinity)
+  const eq1 = { x: 60, y: 55 }; // After AD increase (demand-pull inflation)
+  const eq2 = { x: 38, y: 55 }; // After SRAS decrease (stagflation)
 
   const pathFromPoints = (points: { x: number; y: number }[]) => {
     if (points.length === 0) return '';
@@ -103,7 +115,12 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
   return (
     <div ref={containerRef} className="glass-card p-6">
       <div className="flex flex-wrap justify-between items-center mb-4 gap-4">
-        <h3 className="font-serif text-xl text-gradient">{title}</h3>
+        <div>
+          <h3 className="font-serif text-xl text-gradient">{title}</h3>
+          <p className="text-muted-foreground text-sm mt-1">
+            Classical model: Vertical LRAS at Y<sub>f</sub> (full employment output)
+          </p>
+        </div>
         <div className="flex gap-2 flex-wrap">
           <Button
             variant={showDemandShock ? "default" : "outline"}
@@ -135,64 +152,69 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
         {/* Grid */}
         <defs>
           <pattern id="grid-adas" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.2" />
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.12" />
           </pattern>
+          <marker id="arrow-adas" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--silver))" />
+          </marker>
         </defs>
         <rect x={margin.left} y={margin.top} width={chartWidth} height={chartHeight} fill="url(#grid-adas)" />
 
-        {/* Axes */}
+        {/* Axes with arrows */}
         <line 
           x1={margin.left} y1={margin.top + chartHeight} 
-          x2={margin.left + chartWidth} y2={margin.top + chartHeight} 
+          x2={margin.left + chartWidth + 15} y2={margin.top + chartHeight} 
           stroke="hsl(var(--silver))" strokeWidth="2"
+          markerEnd="url(#arrow-adas)"
         />
         <line 
-          x1={margin.left} y1={margin.top} 
-          x2={margin.left} y2={margin.top + chartHeight} 
+          x1={margin.left} y1={margin.top + chartHeight} 
+          x2={margin.left} y2={margin.top - 15} 
           stroke="hsl(var(--silver))" strokeWidth="2"
+          markerEnd="url(#arrow-adas)"
         />
 
-        {/* Axis Labels - CIE 9708 Standard */}
-        <text x={margin.left + chartWidth / 2} y={height - 10} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="500">
+        {/* CIE 9708 Standard Axis Labels */}
+        <text x={margin.left + chartWidth / 2} y={height - 15} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="600">
           Real National Output / Real GDP (Y)
         </text>
-        <text x={15} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="500" transform={`rotate(-90, 15, ${margin.top + chartHeight / 2})`}>
+        <text x={20} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="600" transform={`rotate(-90, 20, ${margin.top + chartHeight / 2})`}>
           General Price Level (GPL)
         </text>
 
         {/* Full Employment Marker on X-axis */}
         <line 
           x1={xScale(lrasX)} y1={yScale(0)}
-          x2={xScale(lrasX)} y2={yScale(0) + 8}
+          x2={xScale(lrasX)} y2={yScale(0) + 10}
           stroke="hsl(var(--cambridge-green))" strokeWidth="2"
         />
-        <text x={xScale(lrasX)} y={yScale(0) + 20} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="10" fontWeight="600">
-          Yfe (Y*)
+        <text x={xScale(lrasX)} y={yScale(0) + 24} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="12" fontWeight="700">
+          Y<tspan baselineShift="sub" fontSize="9">f</tspan> (Y*)
         </text>
 
-        {/* LRAS (vertical) */}
+        {/* LRAS - Perfectly Vertical at Yf (Classical/Monetarist) */}
         <motion.line
-          x1={xScale(lrasX)} y1={yScale(90)}
-          x2={xScale(lrasX)} y2={yScale(10)}
+          x1={xScale(lrasX)} y1={yScale(95)}
+          x2={xScale(lrasX)} y2={yScale(8)}
           stroke="hsl(var(--cambridge-green))"
-          strokeWidth="3"
+          strokeWidth="3.5"
           initial={{ opacity: 0 }}
           animate={isVisible ? { opacity: 1 } : {}}
           transition={{ delay: 0.5 }}
         />
-        <text x={xScale(lrasX) + 5} y={yScale(92)} fill="hsl(var(--cambridge-green))" fontSize="12" fontWeight="600">LRAS</text>
+        <text x={xScale(lrasX) + 8} y={yScale(97)} fill="hsl(var(--cambridge-green))" fontSize="14" fontWeight="700">LRAS</text>
 
         {/* Original SRAS */}
         <motion.path
           d={pathFromPoints(srasPoints)}
           fill="none"
           stroke="hsl(var(--cambridge-orange))"
-          strokeWidth="3"
+          strokeWidth="3.5"
           variants={curveVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         />
-        <text x={xScale(78)} y={yScale(88)} fill="hsl(var(--cambridge-orange))" fontSize="12" fontWeight="600">SRAS</text>
+        <text x={xScale(76)} y={yScale(88)} fill="hsl(var(--cambridge-orange))" fontSize="14" fontWeight="700">SRAS</text>
 
         {/* Shifted SRAS (supply shock) */}
         {showSupplyShock && (

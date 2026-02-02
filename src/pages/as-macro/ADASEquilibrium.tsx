@@ -8,6 +8,8 @@ import ADASInteractiveDiagram from '@/components/diagrams/ADASInteractiveDiagram
 import ADCurveDiagram from '@/components/diagrams/ADCurveDiagram';
 import ADShiftDiagram from '@/components/diagrams/ADShiftDiagram';
 import SRASLRASDiagram from '@/components/diagrams/SRASLRASDiagram';
+import ClassicalLRASDiagram from '@/components/diagrams/ClassicalLRASDiagram';
+import KeynesianLRASDiagram from '@/components/diagrams/KeynesianLRASDiagram';
 import ADASEquilibriumDiagram from '@/components/diagrams/ADASEquilibriumDiagram';
 import DemandPullInflationDiagram from '@/components/diagrams/DemandPullInflationDiagram';
 import CostPushStagflationDiagram from '@/components/diagrams/CostPushStagflationDiagram';
@@ -690,6 +692,74 @@ const ADASEquilibrium = () => {
 
           {/* SRAS and LRAS Diagram */}
           <SRASLRASDiagram />
+        </ContentSection>
+
+        {/* Classical vs Keynesian LRAS - CIE 9708 Syllabus Integration */}
+        <ContentSection title="The LRAS Debate: Classical vs Keynesian Views">
+          <div className="glass-card p-6 mb-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-l-4 border-primary">
+            <h4 className="font-serif text-xl font-semibold text-gradient mb-4">Why This Matters for CIE 9708</h4>
+            <p className="text-muted-foreground leading-relaxed text-justify mb-3">
+              The shape of the LRAS curve is <strong>the fundamental dividing line</strong> between Classical/Monetarist 
+              and Keynesian macroeconomics. Your choice of LRAS shape determines your policy recommendations:
+            </p>
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <div className="p-4 bg-[hsl(var(--cambridge-green))]/10 rounded-lg">
+                <h5 className="font-semibold text-[hsl(var(--cambridge-green))] mb-2">If LRAS is Vertical (Classical)</h5>
+                <p className="text-muted-foreground">
+                  → Demand-side policies only affect prices, not output<br/>
+                  → Focus on supply-side policies to shift LRAS<br/>
+                  → Economy self-corrects to Y<sub>f</sub> via wage flexibility
+                </p>
+              </div>
+              <div className="p-4 bg-[hsl(var(--cambridge-cyan))]/10 rounded-lg">
+                <h5 className="font-semibold text-[hsl(var(--cambridge-cyan))] mb-2">If LRAS has Elastic Region (Keynesian)</h5>
+                <p className="text-muted-foreground">
+                  → Demand-side policies can increase real output<br/>
+                  → Economy can be stuck below Y<sub>f</sub> indefinitely<br/>
+                  → Government intervention justified during recessions
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Classical LRAS Diagram */}
+          <ClassicalLRASDiagram title="Classical/Monetarist LRAS: Vertical at Full Employment" />
+
+          {/* Keynesian LRAS Diagram */}
+          <div className="mt-8">
+            <KeynesianLRASDiagram title="Keynesian LRAS: Three Distinct Phases" />
+          </div>
+
+          {/* Actual vs Potential Growth Integration */}
+          <div className="mt-8 p-6 glass-card border-l-4 border-secondary">
+            <h4 className="font-serif text-lg font-semibold text-secondary mb-4">Transmission Mechanism: Actual vs Potential Growth</h4>
+            <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div className="p-4 bg-[hsl(var(--cambridge-cyan))]/10 rounded-lg">
+                <h5 className="font-semibold text-[hsl(var(--cambridge-cyan))] mb-3">Actual Growth (AD Shift)</h5>
+                <p className="text-muted-foreground leading-relaxed mb-3">
+                  Movement <em>toward</em> existing capacity. Output rises from below Y<sub>f</sub> toward Y<sub>f</sub>.
+                </p>
+                <div className="font-mono text-xs bg-muted/40 p-2 rounded mb-2">
+                  ↓Interest rates → ↑I, ↑C → AD shifts right → Y rises toward Y<sub>f</sub>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  <strong>Limitation:</strong> Cannot exceed Y<sub>f</sub> sustainably — beyond this, only inflation occurs.
+                </p>
+              </div>
+              <div className="p-4 bg-[hsl(var(--cambridge-green))]/10 rounded-lg">
+                <h5 className="font-semibold text-[hsl(var(--cambridge-green))] mb-3">Potential Growth (LRAS/PPC Shift)</h5>
+                <p className="text-muted-foreground leading-relaxed mb-3">
+                  Expansion of the economy's <em>maximum sustainable output</em>. Y<sub>f</sub> itself increases.
+                </p>
+                <div className="font-mono text-xs bg-muted/40 p-2 rounded mb-2">
+                  ↑K (investment) → ↑MPL → ↑Potential output → LRAS shifts right
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  <strong>Sources:</strong> ↑L (labour), ↑K (capital), ↑Technology, ↑Human capital, Institutional improvement.
+                </p>
+              </div>
+            </div>
+          </div>
         </ContentSection>
 
         {/* Precision Equilibrium Diagram */}

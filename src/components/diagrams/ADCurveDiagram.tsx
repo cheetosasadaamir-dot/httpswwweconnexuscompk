@@ -1,6 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+/**
+ * AD Curve Diagram - CIE 9708 Exam Standard
+ * 
+ * Shows the three transmission mechanisms explaining downward slope:
+ * 1. Wealth Effect (Pigou Effect)
+ * 2. Interest Rate Effect (Keynes Effect)
+ * 3. International Trade Effect
+ */
 const ADCurveDiagram = () => {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,9 +30,9 @@ const ADCurveDiagram = () => {
     return () => observer.disconnect();
   }, []);
 
-  const width = 520;
-  const height = 380;
-  const margin = { top: 40, right: 50, bottom: 60, left: 70 };
+  const width = 540;
+  const height = 400;
+  const margin = { top: 45, right: 55, bottom: 65, left: 75 };
   const chartWidth = width - margin.left - margin.right;
   const chartHeight = height - margin.top - margin.bottom;
 
@@ -32,14 +40,14 @@ const ADCurveDiagram = () => {
   const xScale = (val: number) => margin.left + (val / 100) * chartWidth;
   const yScale = (val: number) => margin.top + chartHeight - (val / 100) * chartHeight;
 
-  // AD curve points (downward sloping)
+  // AD curve points (downward sloping - convex shape)
   const adPoints = [
-    { x: 10, y: 90 },
-    { x: 25, y: 72 },
-    { x: 40, y: 58 },
-    { x: 55, y: 46 },
-    { x: 70, y: 36 },
-    { x: 85, y: 28 },
+    { x: 10, y: 92 },
+    { x: 22, y: 75 },
+    { x: 38, y: 58 },
+    { x: 55, y: 44 },
+    { x: 72, y: 32 },
+    { x: 90, y: 22 },
   ];
 
   const pathFromPoints = (points: { x: number; y: number }[]) => {
@@ -67,22 +75,22 @@ const ADCurveDiagram = () => {
   };
 
   // Key points for annotations
-  const pointHigh = { x: 25, y: 72 };
-  const pointLow = { x: 70, y: 36 };
+  const pointHigh = { x: 22, y: 75 };
+  const pointLow = { x: 72, y: 32 };
 
   return (
     <div ref={containerRef} className="glass-card p-6">
-      <h3 className="font-serif text-xl text-gradient mb-4">The Aggregate Demand Curve</h3>
+      <h3 className="font-serif text-xl text-gradient mb-2">The Aggregate Demand Curve</h3>
       <p className="text-muted-foreground text-sm mb-4">
-        The AD curve shows the inverse relationship between the general price level and the 
-        quantity of real GDP demanded. At higher price levels, less output is demanded.
+        AD shows the <strong>inverse relationship</strong> between GPL and real output demanded, 
+        operating through three transmission mechanisms.
       </p>
       
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full max-w-lg mx-auto">
         {/* Grid */}
         <defs>
           <pattern id="grid-ad" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.15" />
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.12" />
           </pattern>
           <marker id="arrowhead-ad" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
             <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--silver))" />
@@ -93,23 +101,23 @@ const ADCurveDiagram = () => {
         {/* Axes with arrows */}
         <line 
           x1={margin.left} y1={margin.top + chartHeight} 
-          x2={margin.left + chartWidth + 10} y2={margin.top + chartHeight} 
+          x2={margin.left + chartWidth + 15} y2={margin.top + chartHeight} 
           stroke="hsl(var(--silver))" strokeWidth="2"
           markerEnd="url(#arrowhead-ad)"
         />
         <line 
           x1={margin.left} y1={margin.top + chartHeight} 
-          x2={margin.left} y2={margin.top - 10} 
+          x2={margin.left} y2={margin.top - 15} 
           stroke="hsl(var(--silver))" strokeWidth="2"
           markerEnd="url(#arrowhead-ad)"
         />
 
-        {/* Axis Labels */}
-        <text x={margin.left + chartWidth / 2} y={height - 15} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="500">
+        {/* CIE 9708 Standard Axis Labels */}
+        <text x={margin.left + chartWidth / 2} y={height - 15} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="600">
           Real National Output / Real GDP (Y)
         </text>
-        <text x={20} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="500" transform={`rotate(-90, 20, ${margin.top + chartHeight / 2})`}>
-          General Price Level (P)
+        <text x={22} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="600" transform={`rotate(-90, 22, ${margin.top + chartHeight / 2})`}>
+          General Price Level (GPL)
         </text>
 
         {/* AD Curve */}
@@ -117,7 +125,7 @@ const ADCurveDiagram = () => {
           d={pathFromPoints(adPoints)}
           fill="none"
           stroke="hsl(var(--cambridge-cyan))"
-          strokeWidth="3.5"
+          strokeWidth="4"
           variants={curveVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
@@ -125,10 +133,10 @@ const ADCurveDiagram = () => {
 
         {/* AD Label */}
         <motion.text 
-          x={xScale(88)} 
-          y={yScale(26)} 
+          x={xScale(93)} 
+          y={yScale(20)} 
           fill="hsl(var(--cambridge-cyan))" 
-          fontSize="14" 
+          fontSize="15" 
           fontWeight="700"
           initial={{ opacity: 0 }}
           animate={isVisible ? { opacity: 1 } : {}}
@@ -199,16 +207,62 @@ const ADCurveDiagram = () => {
         </motion.g>
       </svg>
 
-      {/* Explanation */}
+      {/* Three Transmission Mechanisms */}
+      <div className="mt-6 grid md:grid-cols-3 gap-3 text-xs">
+        <div className="p-3 bg-primary/10 rounded-lg border border-primary/20">
+          <h5 className="font-semibold text-primary mb-2">1. Wealth Effect (Pigou)</h5>
+          <p className="text-muted-foreground leading-relaxed mb-2">
+            ↓GPL → ↑ real value of money → consumers feel wealthier → ↑C
+          </p>
+          <div className="font-mono text-xs bg-muted/40 p-1.5 rounded">
+            ↓P → ↑(M/P) → ↑Wealth → ↑C → ↑AD
+          </div>
+        </div>
+        <div className="p-3 bg-secondary/10 rounded-lg border border-secondary/20">
+          <h5 className="font-semibold text-secondary mb-2">2. Interest Rate Effect</h5>
+          <p className="text-muted-foreground leading-relaxed mb-2">
+            ↓GPL → less money needed for transactions → excess money → ↓r → ↑I, ↑C
+          </p>
+          <div className="font-mono text-xs bg-muted/40 p-1.5 rounded">
+            ↓P → ↓Md → ↓r → ↑I → ↑AD
+          </div>
+        </div>
+        <div className="p-3 bg-accent/10 rounded-lg border border-accent/20">
+          <h5 className="font-semibold text-accent mb-2">3. Trade Effect</h5>
+          <p className="text-muted-foreground leading-relaxed mb-2">
+            ↓GPL → domestic goods cheaper relative to imports → ↑X, ↓M
+          </p>
+          <div className="font-mono text-xs bg-muted/40 p-1.5 rounded">
+            ↓P → ↑Competitiveness → ↑(X-M) → ↑AD
+          </div>
+        </div>
+      </div>
+
+      {/* Key Points Explanation */}
       <div className="mt-4 p-4 bg-muted/30 rounded-lg text-sm">
-        <p className="leading-relaxed">
-          <strong>At high prices (P₁):</strong> Real output demanded is low (Y₁) due to reduced purchasing power, 
-          less competitive exports, and higher interest rates.
-        </p>
-        <p className="mt-2 leading-relaxed">
-          <strong>At low prices (P₂):</strong> Real output demanded is high (Y₂) due to wealth effect, improved 
-          competitiveness, and lower interest rates.
-        </p>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <p className="leading-relaxed">
+              <strong className="text-primary">At P₁ (high price):</strong> Real output demanded is low (Y₁) — 
+              reduced purchasing power, uncompetitive exports, higher interest rates all depress spending.
+            </p>
+          </div>
+          <div>
+            <p className="leading-relaxed">
+              <strong className="text-secondary">At P₂ (low price):</strong> Real output demanded is high (Y₂) — 
+              wealth effect, improved competitiveness, and lower interest rates stimulate spending.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Examiner Trap */}
+      <div className="mt-4 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs">
+        <span className="font-semibold text-amber-400">⚠️ Common Error:</span>
+        <span className="text-muted-foreground ml-2">
+          Do NOT explain AD's downward slope using <em>substitution between goods</em> (microeconomic reasoning). 
+          At the aggregate level, there's no substitute for "all output" — use the three macro transmission mechanisms above.
+        </span>
       </div>
     </div>
   );
