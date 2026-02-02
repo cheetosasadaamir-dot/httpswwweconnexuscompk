@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
 import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
@@ -6,7 +5,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EconomicGlobe from '@/components/EconomicGlobe';
 import KnowledgePillars from '@/components/KnowledgePillars';
-import InteractivePPCEngine from '@/components/InteractivePPCEngine';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
 import { Button } from '@/components/ui/button';
@@ -142,43 +140,6 @@ const Index = () => {
             </motion.div>
 
             <KnowledgePillars />
-          </div>
-        </section>
-
-        {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
-        </div>
-
-        {/* Interactive Visualization Section */}
-        <section className="py-24 lg:py-32">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full glass-card text-sm text-muted-foreground mb-6">
-                Interactive Learning
-              </span>
-              <h2 className="font-serif text-4xl lg:text-5xl font-bold section-title mb-4">
-                Interactive Visualization
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Don't just read about economics—experience it. Interact with our diagrams to see concepts come alive.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="glass-card p-8 lg:p-12"
-            >
-              <InteractivePPCEngine />
-            </motion.div>
           </div>
         </section>
 
