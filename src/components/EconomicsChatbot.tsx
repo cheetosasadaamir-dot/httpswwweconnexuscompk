@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, BarChart3 } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, BarChart3, AlertCircle, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -16,7 +16,10 @@ type Message = {
   role: 'user' | 'assistant';
   content: string;
   id: string;
+  isError?: boolean;
 };
+
+type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error';
 
 const QUICK_ACTIONS = [
   { label: 'J-Curve & Marshall-Lerner', query: 'Explain the J-Curve effect and Marshall-Lerner condition with diagrams. Include the full transmission chain.' },
@@ -43,6 +46,15 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-ch
 // Generate unique ID for messages
 const generateId = () => `msg_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
+// Premium loading state messages
+const LOADING_STATES = [
+  'Analyzing market data...',
+  'Processing economic variables...',
+  'Evaluating transmission mechanisms...',
+  'Constructing analytical framework...',
+  'Synthesizing A-Level concepts...',
+];
+
 // Prof. Econs Avatar Component with generated logo
 const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   const sizeClasses = {
@@ -52,7 +64,7 @@ const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   };
   
   return (
-    <div className={`${sizeClasses[size]} rounded-full flex-shrink-0 overflow-hidden ring-2 ring-[hsl(43,72%,53%)]/50 shadow-lg`}>
+    <div className={`${sizeClasses[size]} rounded-full flex-shrink-0 overflow-hidden ring-2 ring-neon-gold/50 shadow-lg shadow-neon-gold/20`}>
       <img 
         src={professorAvatar} 
         alt="Prof. Econs" 
@@ -119,40 +131,95 @@ const ExamGuidance = () => {
   );
 };
 
-// Typing animation dots component with live connection indicator
-const TypingIndicator = ({ isConnected = true }: { isConnected?: boolean }) => (
-  <div className="flex items-center gap-2">
-    {/* Live connection pulse */}
-    <motion.div
-      className="w-2 h-2 rounded-full"
-      style={{ backgroundColor: isConnected ? 'hsl(142, 71%, 45%)' : 'hsl(0, 84%, 60%)' }}
-      animate={{ 
-        scale: isConnected ? [1, 1.3, 1] : 1,
-        opacity: isConnected ? [0.7, 1, 0.7] : 0.5
-      }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-    />
-    <span className="text-xs text-[hsl(43,72%,53%)] font-medium font-serif">
-      {isConnected ? 'Prof. Econs is typing...' : 'Reconnecting...'}
-    </span>
-    {isConnected && [0, 1, 2].map((i) => (
-      <motion.span
-        key={i}
-        className="w-1.5 h-1.5 rounded-full bg-[hsl(43,72%,53%)]"
-        animate={{ 
-          y: [0, -4, 0],
-          opacity: [0.5, 1, 0.5]
-        }}
-        transition={{
-          duration: 0.6,
-          repeat: Infinity,
-          delay: i * 0.1,
-          ease: "easeInOut"
-        }}
-      />
-    ))}
-  </div>
-);
+// Premium typing animation with stream state awareness
+const TypingIndicator = ({ streamState = 'connecting' }: { streamState?: StreamState }) => {
+  const [loadingMessage, setLoadingMessage] = useState(LOADING_STATES[0]);
+  const [messageIndex, setMessageIndex] = useState(0);
+
+  useEffect(() => {
+    if (streamState === 'connecting' || streamState === 'analyzing') {
+      const interval = setInterval(() => {
+        setMessageIndex(prev => (prev + 1) % LOADING_STATES.length);
+      }, 2500);
+      return () => clearInterval(interval);
+    }
+  }, [streamState]);
+
+  useEffect(() => {
+    setLoadingMessage(LOADING_STATES[messageIndex]);
+  }, [messageIndex]);
+
+  const getStateColor = () => {
+    switch (streamState) {
+      case 'streaming': return 'hsl(142, 71%, 45%)';
+      case 'analyzing': return 'hsl(43, 72%, 53%)';
+      case 'error': return 'hsl(0, 84%, 60%)';
+      default: return 'hsl(185, 100%, 50%)';
+    }
+  };
+
+  const getStateText = () => {
+    switch (streamState) {
+      case 'streaming': return 'Prof. Econs is typing...';
+      case 'analyzing': return loadingMessage;
+      case 'error': return 'Reconnecting...';
+      default: return 'Connecting to Prof. Econs...';
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-3">
+      {/* Premium pulse indicator */}
+      <div className="relative">
+        <motion.div
+          className="w-2.5 h-2.5 rounded-full"
+          style={{ backgroundColor: getStateColor() }}
+          animate={{ 
+            scale: [1, 1.4, 1],
+            opacity: [0.6, 1, 0.6]
+          }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute inset-0 w-2.5 h-2.5 rounded-full"
+          style={{ backgroundColor: getStateColor() }}
+          animate={{ scale: [1, 2, 2], opacity: [0.4, 0, 0] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: "easeOut" }}
+        />
+      </div>
+      
+      <span className="text-xs font-medium font-sans" style={{ color: getStateColor() }}>
+        {getStateText()}
+      </span>
+      
+      {streamState !== 'error' && (
+        <div className="flex gap-1">
+          {[0, 1, 2].map((i) => (
+            <motion.span
+              key={i}
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ backgroundColor: getStateColor() }}
+              animate={{ 
+                y: [0, -5, 0],
+                opacity: [0.4, 1, 0.4]
+              }}
+              transition={{
+                duration: 0.7,
+                repeat: Infinity,
+                delay: i * 0.12,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
+      )}
+      
+      {streamState === 'analyzing' && (
+        <TrendingUp className="w-3.5 h-3.5 text-neon-gold animate-pulse" />
+      )}
+    </div>
+  );
+};
 
 // Copy button component
 const CopyButton = ({ text }: { text: string }) => {
@@ -197,12 +264,12 @@ export default function EconomicsChatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
-  const [isConnected, setIsConnected] = useState(true);
+  const [streamState, setStreamState] = useState<StreamState>('idle');
   const [retryCount, setRetryCount] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
   const streamTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const analyzeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Auto-scroll on new messages
   useEffect(() => {
@@ -212,7 +279,7 @@ export default function EconomicsChatbot() {
         scrollElement.scrollTop = scrollElement.scrollHeight;
       }
     }
-  }, [messages, isTyping]);
+  }, [messages, streamState]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -223,20 +290,27 @@ export default function EconomicsChatbot() {
       if (streamTimeoutRef.current) {
         clearTimeout(streamTimeoutRef.current);
       }
+      if (analyzeTimeoutRef.current) {
+        clearTimeout(analyzeTimeoutRef.current);
+      }
     };
   }, []);
 
   const streamChat = useCallback(async (userMessages: Message[]) => {
-    setIsTyping(true);
-    setIsConnected(true);
+    setStreamState('connecting');
     
     // Create new abort controller for this request
     abortControllerRef.current = new AbortController();
     
-    // Stream timeout - if no content after 15s, show reconnecting
+    // After 5s of no content, show premium "analyzing" state
+    analyzeTimeoutRef.current = setTimeout(() => {
+      setStreamState('analyzing');
+    }, 5000);
+    
+    // After 20s, show error state
     streamTimeoutRef.current = setTimeout(() => {
-      setIsConnected(false);
-    }, 15000);
+      setStreamState('error');
+    }, 20000);
     
     try {
       const resp = await fetch(CHAT_URL, {
@@ -251,15 +325,18 @@ export default function EconomicsChatbot() {
         signal: abortControllerRef.current.signal,
       });
 
-      // Clear connection check on response
+      // Clear timeouts on response
       if (streamTimeoutRef.current) {
         clearTimeout(streamTimeoutRef.current);
         streamTimeoutRef.current = null;
       }
+      if (analyzeTimeoutRef.current) {
+        clearTimeout(analyzeTimeoutRef.current);
+        analyzeTimeoutRef.current = null;
+      }
 
       if (!resp.ok) {
-        setIsTyping(false);
-        setIsConnected(true);
+        setStreamState('idle');
         const errorData = await resp.json().catch(() => ({}));
         
         if (resp.status === 429) {
@@ -276,7 +353,7 @@ export default function EconomicsChatbot() {
       }
 
       if (!resp.body) {
-        setIsTyping(false);
+        setStreamState('idle');
         throw new Error('No response body');
       }
 
@@ -291,8 +368,10 @@ export default function EconomicsChatbot() {
         const { done, value } = await reader.read();
         if (done) break;
         
-        // Reset connection status on receiving data
-        setIsConnected(true);
+        // Reset to streaming state on receiving data
+        if (streamState !== 'streaming') {
+          setStreamState('streaming');
+        }
         
         const chunk = decoder.decode(value, { stream: true });
         textBuffer += chunk;
@@ -320,7 +399,7 @@ export default function EconomicsChatbot() {
             
             if (typeof content === 'string' && content.length > 0) {
               if (!hasStartedContent) {
-                setIsTyping(false);
+                setStreamState('streaming');
                 hasStartedContent = true;
               }
               
@@ -368,16 +447,18 @@ export default function EconomicsChatbot() {
         }
       }
       
-      setIsTyping(false);
-      setIsConnected(true);
+      setStreamState('idle');
       setRetryCount(0);
     } catch (error) {
-      setIsTyping(false);
-      setIsConnected(true);
+      setStreamState('idle');
       
       if (streamTimeoutRef.current) {
         clearTimeout(streamTimeoutRef.current);
         streamTimeoutRef.current = null;
+      }
+      if (analyzeTimeoutRef.current) {
+        clearTimeout(analyzeTimeoutRef.current);
+        analyzeTimeoutRef.current = null;
       }
       
       if (error instanceof Error && error.name === 'AbortError') {
@@ -386,7 +467,7 @@ export default function EconomicsChatbot() {
       
       throw error;
     }
-  }, [isConnected]);
+  }, [streamState]);
 
   const handleSend = async (query?: string) => {
     const messageText = query || input.trim();
@@ -442,7 +523,7 @@ export default function EconomicsChatbot() {
     }
     setMessages([]);
     setIsLoading(false);
-    setIsTyping(false);
+    setStreamState('idle');
     setRetryCount(0);
     toast.success('Chat cleared');
   };
@@ -648,7 +729,7 @@ export default function EconomicsChatbot() {
                 
                 {/* Typing indicator */}
                 <AnimatePresence>
-                  {isTyping && (
+                  {streamState !== 'idle' && (
                     <motion.div
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -657,7 +738,7 @@ export default function EconomicsChatbot() {
                     >
                       <TutorAvatar />
                       <div className="tutor-message-ai rounded-xl px-3 py-2.5">
-                        <TypingIndicator isConnected={isConnected} />
+                        <TypingIndicator streamState={streamState} />
                       </div>
                     </motion.div>
                   )}

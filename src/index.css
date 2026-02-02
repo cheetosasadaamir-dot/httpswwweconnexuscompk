@@ -567,7 +567,53 @@
   }
 }
 
+/* ===== PREMIUM MICRO-INTERACTIONS ===== */
 @layer utilities {
+  /* Spring animation for buttons and cards */
+  .spring-hover {
+    @apply transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .spring-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+  
+  .spring-hover:active {
+    transform: translateY(-1px) scale(0.98);
+  }
+
+  /* Premium glassmorphism with sharp 1px border */
+  .glass-premium {
+    background: rgba(12, 12, 12, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+      0 25px 60px rgba(0, 0, 0, 0.5),
+      0 10px 30px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* Financial terminal style border */
+  .terminal-border {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 0 30px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Deep radial gradient for 5D depth */
+  .depth-gradient {
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(15, 25, 35, 0.8) 0%,
+      rgba(8, 12, 18, 0.9) 30%,
+      rgba(4, 6, 10, 0.95) 60%,
+      rgba(2, 3, 5, 1) 100%
+    );
+  }
+
   .leading-relaxed-plus {
     line-height: 1.85;
   }
@@ -613,6 +659,30 @@
     @apply p-3;
     transform: scale(0.92);
     transform-origin: top left;
+  }
+
+  /* Performance-optimized blur (reduced for mobile) */
+  @media (max-width: 768px) {
+    .glass-card,
+    .glass-frosted,
+    .tutor-glassmorphism,
+    .glass-premium {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .spring-hover:hover {
+      transform: none;
+    }
+    
+    .animate-float,
+    .animate-glow,
+    .animate-pulse-slow {
+      animation: none;
+    }
   }
 }
 
