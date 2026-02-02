@@ -53,38 +53,38 @@ const asLevelTopics = [
 const a2LevelTopics = [
   {
     title: 'Utility & Consumer Choice',
-    description: 'Marginal utility, indifference curves, and budget constraints',
+    description: 'Marginal utility, indifference curves, budget constraints, and equimarginal principle',
     href: '/a2-micro/utility-consumer-choice',
     icon: Users,
     chapter: 1,
   },
   {
     title: 'Production, Costs & Profits',
-    description: 'Law of diminishing returns, economies of scale, cost curves',
+    description: 'Law of diminishing returns, economies of scale, cost curves, and revenue analysis',
     href: '/a2-micro/production-costs',
     icon: Factory,
     chapter: 2,
   },
   {
+    title: 'Market Structures',
+    description: 'Perfect competition, monopoly, oligopoly, monopolistic competition, game theory, X-efficiency, contestable markets',
+    href: '/a2-micro/market-structures',
+    icon: ShoppingCart,
+    chapter: 3,
+  },
+  {
     title: 'Economic Efficiency',
-    description: 'Allocative, productive, and dynamic efficiency',
+    description: 'Allocative, productive, dynamic efficiency, and Pareto optimality',
     href: '/a2-micro/economic-efficiency',
     icon: Target,
     chapter: 4,
   },
   {
-    title: 'Market Structures',
-    description: 'Perfect competition, monopoly, oligopoly, monopolistic competition',
-    href: '/a2-micro/market-structures',
-    icon: ShoppingCart,
-    chapter: 5,
-  },
-  {
     title: 'Labor Market',
-    description: 'MRP theory, wage determination, monopsony, trade unions',
+    description: 'MRP theory, wage determination, monopsony, trade unions, and wage differentials',
     href: '/a2-micro/labor-market',
     icon: Briefcase,
-    chapter: 6,
+    chapter: 5,
   },
 ];
 
