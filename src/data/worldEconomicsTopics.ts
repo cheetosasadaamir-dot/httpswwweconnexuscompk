@@ -631,6 +631,688 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     evaluation: 'The distinction between avoidable and unavoidable costs is crucial for rational decision-making. Sunk costs (past, irrecoverable) should be ignored; only avoidable costs matter for forward-looking decisions.',
     formula: '\\text{Shutdown condition: } P < AVC \\text{ (short run)}',
     realWorldExample: 'Airlines during COVID-19 faced this decision: grounding planes avoided variable costs (fuel, crew) but fixed costs (leases, maintenance) continued—many entered bankruptcy.'
+  },
+  // ===== PHASE 2: BANKING, MONETARY, AND ADVANCED THEORY =====
+  {
+    id: 'bank-notes-coins-uk',
+    title: 'Bank Notes and Coins in UK',
+    category: 'macro',
+    definition: 'Physical currency issued by the Bank of England (notes) and the Royal Mint (coins), representing the narrowest measure of money (M0). Notes are liabilities of the central bank, while coins are liabilities of the Treasury.',
+    keyPoints: [
+      'Notes issued by Bank of England are legal tender in England and Wales',
+      'Scottish and Northern Irish banks can issue notes backed by BoE deposits',
+      'Coins are produced by the Royal Mint and are legal tender up to certain limits',
+      'Physical cash represents only ~3% of total money supply (M4)'
+    ],
+    analysis: 'Central bank prints notes → Commercial banks exchange reserves for cash → Public withdraws cash from ATMs → Cash enters circulation → If velocity of cash ↑, spending ↑ → AD shifts right. However, the rise of digital payments is causing a structural decline in cash usage.',
+    evaluation: 'Cash provides anonymity and financial inclusion for the unbanked, but it facilitates tax evasion and criminal activity. Central banks face a dilemma: eliminating cash improves monetary control but raises privacy and inclusion concerns.',
+    realWorldExample: 'Sweden has nearly eliminated cash (only 1% of transactions), while the UK still sees significant cash use, particularly among older demographics and small businesses.'
+  },
+  {
+    id: 'bank-of-england',
+    title: 'Bank of England',
+    category: 'macro',
+    definition: 'The central bank of the United Kingdom, established in 1694 and nationalized in 1946. It is responsible for monetary policy, financial stability, and acting as the lender of last resort. The Monetary Policy Committee (MPC) sets the base rate.',
+    keyPoints: [
+      'Operational independence granted in 1997 (sets interest rates)',
+      'Inflation target: 2% CPI (symmetric target)',
+      'Functions: Monetary policy, prudential regulation (via PRA), financial stability',
+      'Lender of last resort during banking crises'
+    ],
+    analysis: 'MPC assesses inflation outlook → If inflation > 2% target, ↑ base rate → ↑ Cost of borrowing → ↓ C and I → ↓ AD → Disinflationary pressure. The transmission mechanism operates through interest rate, exchange rate, asset price, and expectations channels.',
+    evaluation: 'Central bank independence is credited with anchoring inflation expectations. However, critics argue the BoE has been captured by financial sector interests and that its QE policies have exacerbated wealth inequality by inflating asset prices.',
+    formula: 'r = r^* + \\pi^e + \\alpha(\\pi - \\pi^T) + \\beta(Y - Y^*)',
+    realWorldExample: 'The BoE raised base rates from 0.1% to 5.25% between 2021-2023 to combat post-COVID inflation—the fastest tightening cycle in modern history.'
+  },
+  {
+    id: 'bank-regulation-uk',
+    title: 'Bank Regulation UK',
+    category: 'policy',
+    definition: 'The framework of rules and oversight governing UK banks, designed to ensure financial stability, protect depositors, and prevent systemic crises. Key regulators include the Prudential Regulation Authority (PRA), Financial Conduct Authority (FCA), and Financial Policy Committee (FPC).',
+    keyPoints: [
+      'Basel III: International standards for capital adequacy and liquidity',
+      'PRA (part of BoE): Microprudential regulation of individual banks',
+      'FPC: Macroprudential regulation (systemic risks, countercyclical buffers)',
+      'FSCS: Deposit insurance up to £85,000 per person, per institution'
+    ],
+    analysis: 'Bank takes excessive risks → If no regulation, moral hazard (too big to fail) → Systemic crisis → Basel III requires ↑ capital buffers → Banks must hold Tier 1 capital ≥8% of RWA → ↓ Leverage → ↓ Systemic risk → But ↓ Lending capacity.',
+    evaluation: 'Tighter regulation reduces crisis probability but may constrain credit creation, slowing economic growth. There is a trade-off between financial stability and economic dynamism. Shadow banking may grow to circumvent regulation.',
+    formula: 'CAR = \\frac{\\text{Tier 1 + Tier 2 Capital}}{\\text{Risk-Weighted Assets}} \\geq 8\\%',
+    realWorldExample: 'After the 2008 crisis, UK banks like RBS required government bailouts. Subsequent regulation (ring-fencing) separated retail and investment banking to protect depositors.'
+  },
+  {
+    id: 'big-four-uk-banks',
+    title: 'Big Four UK Banks',
+    category: 'macro',
+    definition: 'The four largest retail banks in the UK: Barclays, HSBC, Lloyds Banking Group, and NatWest Group. They collectively control ~70% of UK current accounts, raising concerns about oligopolistic market structure and barriers to entry.',
+    keyPoints: [
+      'Oligopoly structure: High market concentration, barriers to entry',
+      'Network effects and switching costs lock in customers',
+      'CMA has mandated Open Banking to increase competition',
+      'Subject to ring-fencing rules separating retail and investment arms'
+    ],
+    analysis: 'High concentration → Limited price competition (similar interest rates) → Potential tacit collusion → Consumer welfare ↓ (higher fees, lower savings rates) → CMA intervenes with Open Banking → ↑ Data portability → ↑ Contestability → New entrants (Monzo, Starling) can compete.',
+    evaluation: 'Despite regulatory efforts, the Big Four retain dominance due to brand trust and economies of scale. Challenger banks struggle to achieve profitability at scale. The market demonstrates characteristics of a "contestable oligopoly" rather than perfect competition.',
+    realWorldExample: 'Open Banking (2018) allowed fintech apps to access bank data with customer consent, enabling services like instant balance checks and payment initiation—increasing competitive pressure on incumbents.'
+  },
+  {
+    id: 'boe-exchange-rates',
+    title: 'Bank of England and Exchange Rates',
+    category: 'trade',
+    definition: 'While the UK operates a floating exchange rate regime, the Bank of England can influence the pound\'s value through interest rate decisions and, rarely, direct forex intervention. Higher UK rates attract capital inflows, appreciating sterling.',
+    keyPoints: [
+      'Floating rate: Market-determined, BoE does not target a specific rate',
+      'Interest rate differentials: ↑ UK rates → Hot money inflows → ↑ £',
+      'Rare intervention: BoE may buy/sell forex to smooth volatility',
+      'Exchange rate affects import prices, inflation, and competitiveness'
+    ],
+    analysis: 'BoE ↑ base rate → ↑ UK interest rate relative to US/EU → Investors buy GBP to access higher returns → ↑ Demand for GBP → £ appreciates → ↓ Import prices → ↓ Cost-push inflation → But ↓ Export competitiveness → ↑ Trade deficit (J-Curve adjustment period).',
+    evaluation: 'A strong pound benefits consumers (cheaper imports) but harms exporters. The BoE must balance inflation control (favoring appreciation) with export competitiveness (favoring depreciation). In practice, the exchange rate is a byproduct of monetary policy, not a target.',
+    formula: '\\text{Interest Rate Parity: } \\frac{F}{S} = \\frac{1 + r_d}{1 + r_f}',
+    realWorldExample: 'After the 2016 Brexit referendum, the pound fell 15% as markets priced in lower growth expectations—demonstrating how confidence shocks override interest differentials.'
+  },
+  {
+    id: 'base-rates',
+    title: 'Base Rates (Definition & Explanation)',
+    category: 'macro',
+    definition: 'The official interest rate set by the Bank of England\'s Monetary Policy Committee (MPC), at which it lends to commercial banks. It serves as the benchmark for all other interest rates in the economy and is the primary tool of monetary policy.',
+    keyPoints: [
+      'MPC meets 8 times per year to set the rate',
+      'Commercial banks borrow at base rate, then lend at base rate + margin',
+      'Changes transmit to mortgages, savings rates, and business loans',
+      'Zero Lower Bound (ZLB): Rates cannot go significantly below 0%'
+    ],
+    analysis: 'MPC ↓ base rate → Commercial banks ↓ lending rates → ↓ Cost of mortgages and business loans → ↑ Consumer spending (refinancing, new purchases) → ↑ Business investment (lower hurdle rate for projects) → ↑ AD → Multiplier effect → ↑ Real GDP.',
+    evaluation: 'Base rate changes work with a lag (18-24 months). Near the ZLB, conventional monetary policy is exhausted—requiring unconventional tools (QE, forward guidance). Transmission also depends on bank willingness to lend and consumer confidence.',
+    formula: 'r_{\\text{market}} = r_{\\text{base}} + \\text{risk premium} + \\text{margin}',
+    realWorldExample: 'The BoE cut base rates from 5% to 0.5% during the 2008 crisis, then to 0.1% in 2020—reaching the effective lower bound both times.'
+  },
+  {
+    id: 'basis-points',
+    title: 'Basis Points',
+    category: 'macro',
+    definition: 'A unit of measurement equal to 1/100th of a percentage point (0.01%). Used in finance and monetary policy to express precise changes in interest rates, yields, or spreads. 100 basis points (bps) = 1 percentage point.',
+    keyPoints: [
+      '1 bp = 0.01%, 25 bps = 0.25%, 100 bps = 1%',
+      'Standard unit for discussing rate changes (avoids ambiguity)',
+      'Used for interest rates, bond yields, credit spreads, fee structures',
+      'Precision matters: a 50bp change in rates significantly affects mortgage payments'
+    ],
+    analysis: 'MPC raises rates by 50 bps (0.5%) → On a £200,000 mortgage, annual cost rises by ~£600-1000 → ↓ Disposable income → ↓ Consumption → ↓ AD. The cumulative effect of multiple 25-75bp hikes can be substantial for indebted households.',
+    evaluation: 'The use of basis points reflects the high sensitivity of financial markets to small rate changes. A 25bp hike may seem minor but signals central bank intent—expectations effects can be larger than the direct interest rate impact.',
+    formula: '1 \\text{ bp} = 0.01\\% = 0.0001',
+    realWorldExample: 'When the Fed raised rates by 75 bps in 2022 (the largest hike since 1994), it signaled aggressive inflation-fighting intent, causing global market volatility.'
+  },
+  {
+    id: 'bond-market-interest-rates',
+    title: 'Bond Market and Interest Rates',
+    category: 'macro',
+    definition: 'The market for debt securities (bonds) issued by governments and corporations. Bond prices and interest rates (yields) have an inverse relationship: when bond prices fall, yields rise, and vice versa. This relationship is central to understanding monetary policy transmission.',
+    keyPoints: [
+      'Inverse relationship: ↑ Bond prices → ↓ Yields (and vice versa)',
+      'Government bonds (gilts) are risk-free benchmarks',
+      'Yield curve: Plots yields across different maturities (typically upward-sloping)',
+      'Central bank bond purchases (QE) raise prices, lowering yields'
+    ],
+    analysis: 'Existing bond pays £50 annual coupon, face value £1000 (5% yield) → Market rate falls to 3% → New bonds pay only 3% → Existing bond becomes more attractive → Demand ↑ → Price rises to ~£1667 → Yield falls to match market (50/1667 ≈ 3%).',
+    evaluation: 'The bond market is crucial for transmitting monetary policy. QE works by buying bonds, raising prices, lowering yields, and pushing investors into riskier assets. However, this can inflate asset bubbles and distort market signals about risk.',
+    formula: 'Yield = \\frac{\\text{Coupon Payment}}{\\text{Market Price}} \\times 100',
+    realWorldExample: 'In September 2022, the UK "mini-budget" caused gilt yields to spike as markets lost confidence in fiscal sustainability—forcing the BoE to intervene with emergency bond purchases.'
+  },
+  {
+    id: 'barter-economy',
+    title: 'Barter Economy',
+    category: 'theory',
+    definition: 'An economic system where goods and services are exchanged directly for other goods and services, without using money as a medium of exchange. It requires a "double coincidence of wants" for trade to occur.',
+    keyPoints: [
+      'Double coincidence of wants: Both parties must want what the other has',
+      'Extremely inefficient: High transaction costs, no store of value',
+      'Explains the emergence of money as a solution to barter inefficiencies',
+      'Still exists in informal economies and during currency crises'
+    ],
+    analysis: 'Farmer has wheat, wants shoes → Must find cobbler who wants wheat → If cobbler wants meat, no trade occurs → High search and transaction costs → Limited specialization possible → Low productivity → Money emerges as a universal medium, eliminating the double coincidence problem.',
+    evaluation: 'Barter systems demonstrate why money is essential for complex economies. However, barter can resurface during hyperinflation (when money loses value) or in peer-to-peer exchanges (modern "sharing economy" platforms).',
+    realWorldExample: 'During Zimbabwe\'s hyperinflation (2008), businesses resorted to barter as the Zimbabwean dollar became worthless—bread was traded for fuel, and wages were paid in groceries.'
+  },
+  {
+    id: 'basic-economic-problem',
+    title: 'Basic Economic Problem',
+    category: 'theory',
+    definition: 'The fundamental challenge of allocating scarce resources among unlimited wants. Scarcity forces societies to make choices, giving rise to the study of economics. Every choice involves an opportunity cost.',
+    keyPoints: [
+      'Scarcity: Resources (land, labor, capital) are finite',
+      'Unlimited wants: Human desires exceed available resources',
+      'Choice: Must decide what, how, and for whom to produce',
+      'Opportunity cost: The next best alternative forgone'
+    ],
+    analysis: 'Society has limited resources → Cannot satisfy all wants → Must prioritize → Choosing to build hospitals means fewer schools (opportunity cost) → This trade-off is illustrated by the Production Possibility Curve (PPC) → Points inside the PPC represent inefficiency; on the curve represents productive efficiency.',
+    evaluation: 'The basic economic problem is universal—even wealthy nations face scarcity. However, the nature of scarcity evolves: advanced economies face time scarcity and environmental limits rather than basic resource constraints.',
+    formula: 'OC = \\frac{\\text{Units of Good Y Forgone}}{\\text{Units of Good X Gained}}',
+    realWorldExample: 'Government budget decisions exemplify the basic economic problem: every £1 spent on defense is £1 not spent on healthcare—forcing explicit trade-offs.'
+  },
+  {
+    id: 'base-year',
+    title: 'Base Year',
+    category: 'macro',
+    definition: 'A reference year against which economic statistics (like GDP, price indices) are measured to adjust for inflation and enable real comparisons over time. Data from other years is expressed relative to the base year, which is typically set to 100.',
+    keyPoints: [
+      'Used to calculate real GDP (removing inflation effects)',
+      'Base year index = 100; other years compared relatively',
+      'Periodically updated to reflect current consumption patterns',
+      'Essential for measuring economic growth accurately'
+    ],
+    analysis: 'Nominal GDP 2024 = £2.5tn → GDP deflator (base 2015 = 100) is 120 → Real GDP (2015 prices) = £2.5tn / 1.2 = £2.08tn → This allows comparison with 2015 GDP to measure real growth, removing the inflation illusion.',
+    evaluation: 'Base year choice matters: an outdated base year may overweight declining sectors. The ONS regularly rebases (chain-linking) to maintain accuracy. However, quality improvements in goods are difficult to capture, potentially understating real growth.',
+    formula: 'Real\\ GDP = \\frac{Nominal\\ GDP}{GDP\\ Deflator} \\times 100',
+    realWorldExample: 'The UK rebased its GDP calculations to 2019 prices in 2023, changing historical growth estimates slightly as weights shifted to reflect modern consumption patterns.'
+  },
+  {
+    id: 'basic-rate-income-tax',
+    title: 'Basic Rate of Income Tax',
+    category: 'policy',
+    definition: 'The standard rate of income tax applied to earnings above the personal allowance threshold in the UK. As of 2024, the basic rate is 20% on income between £12,570 and £50,270, forming part of a progressive tax structure.',
+    keyPoints: [
+      'Progressive structure: Higher earners pay higher marginal rates',
+      'Fiscal drag: If thresholds not updated, inflation pushes more into higher bands',
+      'Work incentives: High marginal rates may reduce labor supply',
+      'Primary source of government revenue (~30% of total receipts)'
+    ],
+    analysis: 'Worker earns £30,000 → First £12,570 tax-free (personal allowance) → Next £17,430 taxed at 20% = £3,486 tax → Effective rate = 11.6% (lower than marginal rate) → Progressive taxation reduces post-tax income inequality.',
+    evaluation: 'While progressive taxes promote vertical equity, high marginal rates create substitution effects (leisure for work). The optimal tax rate balances equity and efficiency—the Laffer Curve suggests rates above a threshold reduce revenue.',
+    formula: 'Tax = (Income - Allowance) \\times Rate',
+    realWorldExample: 'Frozen tax thresholds during high inflation (2022-24) created significant fiscal drag, pulling millions of workers into higher bands—an implicit tax increase.'
+  },
+  {
+    id: 'benefit-principle',
+    title: 'Benefit Principle',
+    category: 'policy',
+    definition: 'A principle of taxation stating that individuals should pay taxes in proportion to the benefits they receive from public goods and services. It contrasts with the "ability to pay" principle and is the theoretical basis for hypothecated taxes.',
+    keyPoints: [
+      'Pay according to benefits received, not ability',
+      'Challenges: Public goods are non-excludable (can\'t link benefit to payment)',
+      'Applied through hypothecated taxes (fuel duty → roads)',
+      'Problem: Would require the poor to pay more for police/defense'
+    ],
+    analysis: 'User charges for roads (tolls) → Those who drive more, pay more → Directly links payment to benefit → Efficient allocation (internalizes congestion externality) → But excludes low-income users → Horizontal equity achieved, vertical equity violated.',
+    evaluation: 'The benefit principle is efficient but inequitable. It cannot fund pure public goods (defense, justice) where benefits are diffuse and non-excludable. A hybrid approach—benefit taxes for club goods, ability-based taxes for public goods—is most practical.',
+    realWorldExample: 'National Insurance in the UK is partly benefit-based: contributions "earn" entitlement to the state pension—linking payment to future benefits.'
+  },
+  {
+    id: 'benefits-in-kind',
+    title: 'Benefits in Kind',
+    category: 'policy',
+    definition: 'Non-cash compensation provided by employers to employees, such as company cars, private health insurance, or gym memberships. These are taxable as they constitute additional income, with values calculated using HMRC rules.',
+    keyPoints: [
+      'Taxed as income; employer must file P11D forms',
+      'Common examples: Company cars, health insurance, loans below market rate',
+      'Class 1A NICs payable by employer on value of benefits',
+      'Can be used for tax optimization (some benefits taxed favorably)'
+    ],
+    analysis: 'Employer provides company car worth £8,000/year in taxable benefit → Employee in 40% band pays £3,200 additional tax → But if paid as salary, employee and employer both pay NICs → BIK may be more tax-efficient for both parties.',
+    evaluation: 'Benefits in kind can distort compensation structures, encouraging non-cash payments to avoid tax. HMRC continuously updates valuation rules to close loopholes, but complexity creates compliance costs and potential for avoidance.',
+    realWorldExample: 'Electric company cars have very low benefit-in-kind rates (2% in 2024) to incentivize green choices—demonstrating how tax policy shapes behavior.'
+  },
+  {
+    id: 'bear-market',
+    title: 'Bear Market',
+    category: 'macro',
+    definition: 'A market condition characterized by a sustained decline in asset prices, typically defined as a fall of 20% or more from recent highs. Bear markets reflect widespread pessimism and often precede or accompany economic recessions.',
+    keyPoints: [
+      'Definition: ≥20% decline from recent peak',
+      'Causes: Recession fears, rising interest rates, external shocks',
+      'Negative wealth effect: ↓ Asset prices → ↓ Consumer spending',
+      'Contrasts with Bull Market (sustained price rises)'
+    ],
+    analysis: 'Economic uncertainty ↑ → Investors sell equities → Prices fall → Negative wealth effect → ↓ Consumer confidence → ↓ C (consumption) → ↓ AD → Firms cut investment (↓ I) → Self-reinforcing cycle → Potential recession.',
+    evaluation: 'Bear markets are painful but serve a corrective function—deflating bubbles and reallocating capital from overvalued sectors. Central bank intervention (rate cuts, QE) can shorten bear markets but may create moral hazard and zombie firms.',
+    realWorldExample: 'The 2022 bear market saw the S&P 500 fall 25% as the Fed aggressively raised rates to combat inflation—ending the post-2009 bull run.'
+  },
+  {
+    id: 'black-market',
+    title: 'Black Market in Economics',
+    category: 'market-failure',
+    definition: 'An illegal market where goods or services are traded outside of official channels, often to evade taxes, regulations, or price controls. Black markets emerge when legal supply fails to meet demand at the controlled price.',
+    keyPoints: [
+      'Caused by: Price ceilings, prohibitions, high taxes, rationing',
+      'Prices typically exceed legal market prices',
+      'No consumer protection, quality control, or legal recourse',
+      'Represents allocative inefficiency and lost tax revenue'
+    ],
+    analysis: 'Government imposes price ceiling below equilibrium → Quantity demanded > Quantity supplied → Shortage emerges → Sellers meet excess demand illegally at higher prices → Black market clears the market but at efficiency cost (resources spent evading enforcement).',
+    evaluation: 'Black markets signal that price controls are creating distortions. While they provide goods to willing buyers, they foster criminality, evade taxation, and often exploit vulnerable populations. The solution is addressing the underlying market failure, not prohibition.',
+    realWorldExample: 'Rent controls in cities like San Francisco and Berlin have created black markets for housing, with under-the-table payments ("key money") to secure scarce apartments.'
+  },
+  {
+    id: 'bid-ask-spread',
+    title: 'Bid-Ask Spread',
+    category: 'macro',
+    definition: 'The difference between the highest price a buyer is willing to pay (bid) and the lowest price a seller is willing to accept (ask) for an asset. It represents the transaction cost and profit margin for market makers.',
+    keyPoints: [
+      'Bid = Buying price; Ask = Selling price',
+      'Narrow spreads indicate liquid, efficient markets',
+      'Wide spreads indicate illiquidity, uncertainty, or low volume',
+      'Market makers profit from the spread'
+    ],
+    analysis: 'GBP/USD quote: Bid 1.2500, Ask 1.2502 → Spread = 2 pips (0.0002) → Trader buys at 1.2502 → Immediately selling = 1.2500 → Loss of 2 pips → Spread is the cost of immediate execution → Wider spreads in volatile or illiquid markets.',
+    evaluation: 'The bid-ask spread reflects market efficiency. High-frequency trading has compressed spreads in major markets (improving efficiency) but may increase volatility during stress. Regulators monitor spreads as indicators of market health.',
+    formula: 'Spread = Ask - Bid',
+    realWorldExample: 'During the March 2020 COVID crash, bid-ask spreads in corporate bond markets widened dramatically, indicating severe illiquidity—prompting Fed intervention.'
+  },
+  {
+    id: 'bilateral-trade',
+    title: 'Bilateral Trade',
+    category: 'trade',
+    definition: 'Trade agreements or flows between two countries, as opposed to multilateral trade involving multiple nations. Bilateral deals set tariffs, quotas, and regulatory standards for trade between the specific partner countries.',
+    keyPoints: [
+      'Faster to negotiate than multilateral deals',
+      'Can create trade diversion (away from efficient non-partners)',
+      'May include non-trade provisions (IP, services, investment)',
+      'Growing trend as WTO multilateral rounds stall'
+    ],
+    analysis: 'Country A and B sign FTA → Tariffs between A and B fall to zero → Trade creation: A imports from more efficient B instead of domestic production → But trade diversion: A may import from less efficient B instead of more efficient C (non-member) → Net welfare effect ambiguous.',
+    evaluation: 'Bilateral deals offer flexibility but fragment the global trading system. The "spaghetti bowl" of overlapping bilateral agreements creates complexity and diverts attention from multilateral liberalization. Still, they can be stepping stones to broader integration.',
+    realWorldExample: 'Post-Brexit, the UK pursued bilateral deals with Australia, New Zealand, and Japan—opting for speed over the comprehensive access of EU membership.'
+  },
+  {
+    id: 'bilateral-monopoly',
+    title: 'Bilateral Monopoly',
+    category: 'market-failure',
+    definition: 'A market structure with a single seller (monopoly) facing a single buyer (monopsony). The equilibrium price and quantity are indeterminate—determined by bargaining power rather than market forces.',
+    keyPoints: [
+      'Monopoly wants high price; Monopsony wants low price',
+      'Outcome depends on relative bargaining power',
+      'Common in labor markets (union vs. single employer)',
+      'May result in more efficient outcomes than pure monopoly or monopsony'
+    ],
+    analysis: 'Monopoly sets price where MR = MC (high price) → Monopsony sets price where MC_L = MRP_L (low price) → Actual price is between these extremes → Bargaining determines who captures the surplus → Total output may approach competitive levels if bargaining is efficient.',
+    evaluation: 'Bilateral monopoly can paradoxically improve efficiency compared to one-sided market power. The monopsony buyer counteracts monopoly pricing, and vice versa. However, bargaining costs and potential for deadlock remain concerns.',
+    realWorldExample: 'Wage negotiations between the National Union of Mineworkers and the National Coal Board (pre-privatization) exemplified bilateral monopoly in the UK labor market.'
+  },
+  {
+    id: 'black-monday-1987',
+    title: 'Black Monday (Stock Market Crash)',
+    category: 'macro',
+    definition: 'October 19, 1987—the single largest one-day percentage decline in stock market history, with the Dow Jones Industrial Average falling 22.6%. The crash was triggered by computerized trading (program trading) and spread globally.',
+    keyPoints: [
+      'Dow fell 508 points (22.6%) in one day',
+      'Program trading amplified selling (portfolio insurance strategies)',
+      'Contagion: Global markets crashed simultaneously',
+      'Led to introduction of circuit breakers and trading halts'
+    ],
+    analysis: 'US trade deficit concerns + rising interest rates → Selling pressure → Portfolio insurance programs automatically sold futures as prices fell → Selling begat more selling (positive feedback loop) → Liquidity evaporated → Prices collapsed → Circuit breakers did not exist to halt trading.',
+    evaluation: 'Black Monday revealed the systemic risks of algorithmic trading. Regulators responded with circuit breakers (trading halts) and improved coordination. The economy did not enter recession—suggesting financial markets can decouple from real activity in the short run.',
+    realWorldExample: 'The VIX "fear index" was created after Black Monday to measure market volatility, becoming a key indicator of investor sentiment and market stress.'
+  },
+  {
+    id: 'black-thursday-1929',
+    title: 'Black Thursday 1929',
+    category: 'macro',
+    definition: 'October 24, 1929—the first day of the Wall Street Crash that marked the beginning of the Great Depression. Panic selling overwhelmed the market, though bankers temporarily stabilized prices before the collapse continued on Black Tuesday (October 29).',
+    keyPoints: [
+      '12.9 million shares traded—unprecedented volume',
+      'Margin trading amplified losses (investors borrowed to buy stocks)',
+      'Preceded by speculative bubble in equities',
+      'Triggered the Great Depression (GDP fell 30%, unemployment reached 25%)'
+    ],
+    analysis: 'Speculative bubble in 1920s → Stocks bought on margin (10% down) → Prices peaked, then fell → Margin calls forced liquidation → Selling begat more selling → Wealth destruction → ↓ C (negative wealth effect) → Bank failures → ↓ Money supply → ↓ AD → Depression.',
+    evaluation: 'The 1929 crash demonstrated the dangers of leveraged speculation and the absence of deposit insurance (bank runs). Keynesian analysis suggests fiscal stimulus was needed, but Hoover\'s austerity deepened the depression. Lessons informed post-2008 policy responses.',
+    realWorldExample: 'The Glass-Steagall Act (1933) separated commercial and investment banking in response to the crash—a regulation partially repealed in 1999 and blamed by some for the 2008 crisis.'
+  },
+  {
+    id: 'black-wednesday-erm',
+    title: 'Black Wednesday (ERM Crisis)',
+    category: 'trade',
+    definition: 'September 16, 1992—the day the UK was forced to withdraw from the European Exchange Rate Mechanism (ERM) after failing to defend the pound\'s peg to the Deutsche Mark. The crisis cost the Treasury £3.4 billion and humiliated the Conservative government.',
+    keyPoints: [
+      'UK joined ERM in 1990 at DM 2.95, with ±6% bands',
+      'German reunification caused high German interest rates',
+      'UK forced to match high rates despite recession—unsustainable',
+      'Speculators (George Soros) bet billions against the pound'
+    ],
+    analysis: 'UK recession → Pound overvalued at DM 2.95 → Speculators sold £ expecting devaluation → BoE raised rates to 12%, then 15% (to attract capital inflows) → Intervention failed (forex reserves depleted) → UK suspended ERM membership → £ fell 15% → Monetary policy regained independence.',
+    evaluation: 'Black Wednesday demonstrated the "impossible trinity": the UK could not maintain a fixed exchange rate, free capital flows, and independent monetary policy simultaneously. Post-ERM, the UK adopted inflation targeting with a floating rate—a more sustainable framework.',
+    realWorldExample: 'George Soros reportedly made £1 billion profit from shorting the pound—earning the nickname "the man who broke the Bank of England."'
+  },
+  {
+    id: 'bill-of-exchange',
+    title: 'Bill of Exchange',
+    category: 'macro',
+    definition: 'A written, unconditional order by one party (drawer) directing another party (drawee) to pay a specific sum to a third party (payee) at a specified future date. Bills of exchange are negotiable instruments used in trade finance.',
+    keyPoints: [
+      'Used to finance international trade (exporter draws on importer)',
+      'Can be discounted for immediate cash at a bank',
+      'Maturity typically 30-180 days',
+      'Creates a form of short-term credit'
+    ],
+    analysis: 'Exporter sells goods to importer → Exporter draws bill for £100,000 payable in 90 days → Importer accepts → Exporter can hold to maturity or discount at bank (receives ~£98,000 immediately) → Bank collects £100,000 at maturity → Trade is financed without immediate cash transfer.',
+    evaluation: 'Bills of exchange reduce trade finance costs and risks, but require trust and legal enforceability. In modern trade, letters of credit and open account terms have partially displaced bills, though they remain common in commodity trading.',
+    realWorldExample: 'The London money market historically specialized in discounting bills of exchange—establishing the City as a global financial center in the 19th century.'
+  },
+  {
+    id: 'government-bills',
+    title: 'Government Bills (Treasury Bills)',
+    category: 'macro',
+    definition: 'Short-term government securities with maturities of one year or less, sold at a discount to face value and redeemed at par at maturity. The UK Treasury issues T-bills to manage short-term government borrowing needs.',
+    keyPoints: [
+      'Zero-coupon: Sold below face value, redeemed at par',
+      'Maturities: 1, 3, 6, or 12 months typically',
+      'Considered risk-free: Backed by government\'s taxing power',
+      'Used by central banks for open market operations'
+    ],
+    analysis: 'Government needs short-term funding → Issues T-bill with £100 face value at £99 (1% discount) → Investor buys for £99 → Receives £100 at maturity → Return = 1% (annualized: ~4% for 3-month bill) → BoE can buy/sell T-bills to adjust money supply.',
+    evaluation: 'T-bills are the safest, most liquid short-term investment, setting the "risk-free rate" benchmark. However, yields are low—often below inflation, causing real value erosion for risk-averse investors.',
+    formula: 'Yield = \\frac{Face\\ Value - Purchase\\ Price}{Purchase\\ Price} \\times \\frac{365}{Days\\ to\\ Maturity}',
+    realWorldExample: 'During the COVID-19 crisis, the UK dramatically increased T-bill issuance to fund the furlough scheme and NHS spending—managing cash flow before longer-term gilts were sold.'
+  },
+  {
+    id: 'baumols-cost-disease',
+    title: 'Baumol\'s Cost Disease',
+    category: 'theory',
+    definition: 'A phenomenon identified by William Baumol where wages rise in sectors with no productivity growth because workers must be paid competitively with high-productivity sectors. This explains why services like healthcare and education become relatively more expensive over time.',
+    keyPoints: [
+      'Productivity growth in manufacturing > services',
+      'Service sector wages must match manufacturing to attract workers',
+      'Unit labor costs rise in low-productivity sectors',
+      'Explains the long-run rise in healthcare and education costs relative to goods'
+    ],
+    analysis: 'Manufacturing productivity ↑ 3% annually → Manufacturing wages ↑ 3% (maintaining unit costs) → Healthcare productivity ↑ 0.5% → Healthcare wages must also ↑ 3% (to compete for workers) → Healthcare unit labor costs ↑ 2.5% annually → Healthcare prices rise faster than goods prices.',
+    evaluation: 'Baumol\'s cost disease is not truly a "disease"—it reflects successful productivity growth in progressive sectors. The solution is not to suppress service sector wages but to accept that services will absorb a growing share of GDP as living standards rise.',
+    formula: '\\frac{\\Delta W_{service}}{W_{service}} = \\frac{\\Delta W_{mfg}}{W_{mfg}} \\implies \\frac{\\Delta ULC_{service}}{ULC_{service}} > 0',
+    realWorldExample: 'A string quartet requires four musicians for a 30-minute piece—same as 200 years ago. But musicians\' wages have risen with the general economy, making live classical music increasingly expensive relative to recorded music.'
+  },
+  {
+    id: 'behavioural-economics',
+    title: 'Behavioural Economics',
+    category: 'theory',
+    definition: 'A field combining psychology and economics to study how cognitive biases, heuristics, and social factors influence economic decisions. It challenges the neoclassical assumption of perfectly rational, utility-maximizing agents.',
+    keyPoints: [
+      'Key concepts: Bounded rationality, Loss aversion, Framing, Nudges',
+      'Prospect Theory: People weigh losses more than equivalent gains (~2:1)',
+      'Heuristics: Mental shortcuts that lead to systematic biases',
+      'Policy application: Libertarian paternalism (nudges)'
+    ],
+    analysis: 'Rational agent: evaluates options using expected utility → Behavioral agent: uses heuristics (anchoring, availability) → Subject to biases (present bias, overconfidence) → Decisions deviate systematically from rational predictions → Nudges can "correct" behavior without restricting choice.',
+    evaluation: 'Behavioural economics explains market anomalies (bubbles, under-saving) but risks paternalism—who decides the "correct" behavior? Critics argue it can be used to manipulate rather than help. The field has transformed policy design (auto-enrollment pensions) but faces replication challenges.',
+    formula: 'V(x) = x^{\\alpha} \\text{ for gains}; V(x) = -\\lambda(-x)^{\\beta} \\text{ for losses, } \\lambda > 1',
+    realWorldExample: 'Auto-enrollment in UK workplace pensions (2012) exploited default bias: participation rose from 55% to 90% without mandating saving—a classic nudge application.'
+  },
+  {
+    id: 'behavioural-theories-firm',
+    title: 'Behavioural Theories of the Firm',
+    category: 'theory',
+    definition: 'Theories that challenge the profit-maximization assumption, suggesting firms are coalitions of groups (managers, workers, shareholders) with conflicting goals. Key theories include Satisficing (Simon), Sales Maximization (Baumol), and Managerial Utility (Williamson).',
+    keyPoints: [
+      'Satisficing: Firms seek "good enough" profits, not maximum',
+      'Sales Maximization: Managers maximize revenue subject to profit constraint',
+      'Managerial Utility: Managers maximize perks, staff, discretionary spending',
+      'Principal-Agent Problem: Shareholders (principals) vs. Managers (agents)'
+    ],
+    analysis: 'Shareholders want profit max → Managers prefer empire building (larger firms = more prestige) → Without monitoring, managers set output where AR = AC (normal profit, max sales) rather than MR = MC → Divorice of ownership and control creates agency costs.',
+    evaluation: 'Behavioral theories explain real firm behavior better than profit maximization, especially in large corporations. However, competitive pressure, takeover threats, and performance-linked pay can align managerial and shareholder interests. The profit-max model remains useful for competitive markets.',
+    realWorldExample: 'Enron executives maximized short-term share price (and bonuses) through accounting fraud rather than genuine profit—a pathological form of agency problem.'
+  },
+  {
+    id: 'bertrand-competition',
+    title: 'Bertrand Competition',
+    category: 'theory',
+    definition: 'A model of oligopoly where firms compete on price rather than quantity (contrasting with Cournot competition). With homogeneous products and no capacity constraints, Bertrand competition produces the perfectly competitive outcome: P = MC.',
+    keyPoints: [
+      'Firms simultaneously set prices; consumers buy from lowest-priced firm',
+      'Homogeneous products: Entire market goes to lower-priced firm',
+      'Nash equilibrium: Both firms set P = MC (no profit possible)',
+      'Bertrand Paradox: Just two firms produce competitive outcome'
+    ],
+    analysis: 'Firm A sets P = £10 (above MC = £5) → Firm B undercuts to £9.99, captures entire market → A responds with £9.98 → Price war continues until P = MC = £5 → Neither firm can profitably undercut → Nash equilibrium at P = MC → Zero supernormal profit despite duopoly.',
+    evaluation: 'The Bertrand Paradox seems unrealistic—real duopolies earn profits. Relaxing assumptions (product differentiation, capacity constraints, repeated games with tacit collusion) restores more realistic outcomes. But Bertrand explains fierce price competition in commodity markets.',
+    formula: 'p^*_A = p^*_B = MC \\implies \\pi_A = \\pi_B = 0',
+    realWorldExample: 'The supermarket price war on milk and bread exemplifies Bertrand-style competition—homogeneous products lead to wafer-thin margins despite high market concentration.'
+  },
+  {
+    id: 'bounded-rationality',
+    title: 'Bounded Rationality',
+    category: 'theory',
+    definition: 'Herbert Simon\'s concept that human rationality is limited by cognitive capacity, available information, and time constraints. Rather than optimizing, decision-makers "satisfice"—seeking solutions that are "good enough" rather than optimal.',
+    keyPoints: [
+      'Cognitive limitations: Cannot process all information',
+      'Information costs: Gathering data takes time and resources',
+      'Satisficing: Accept first option meeting minimum criteria',
+      'Challenges homo economicus (perfectly rational agent assumption)'
+    ],
+    analysis: 'Perfectly rational agent: Evaluates all options, maximizes utility → Boundedly rational agent: Uses heuristics (rules of thumb) → Stops searching when "good enough" option found → Saves decision costs but may miss better alternatives → Explains sticky wages, prices, and inertia in markets.',
+    evaluation: 'Bounded rationality is more realistic than perfect rationality but harder to model. It explains market inefficiencies but doesn\'t predict specific outcomes. Modern behavioral economics builds on Simon\'s foundation with more precise models of cognitive bias.',
+    realWorldExample: 'Job seekers don\'t evaluate every vacancy—they satisfice by accepting the first offer meeting their reservation wage, potentially missing better opportunities.'
+  },
+  {
+    id: 'asian-financial-crisis-1997',
+    title: 'Asian Financial Crisis 1997',
+    category: 'macro',
+    definition: 'A financial crisis that began in Thailand in July 1997 and spread to South Korea, Indonesia, Malaysia, and the Philippines. It was triggered by the collapse of the Thai baht\'s peg and revealed vulnerabilities from excessive short-term foreign borrowing and asset bubbles.',
+    keyPoints: [
+      'Triggered by Thailand abandoning the baht\'s dollar peg',
+      'Causes: Current account deficits, short-term foreign debt, asset bubbles',
+      'Contagion: Crisis spread rapidly to other Asian economies',
+      'IMF rescue packages with controversial structural adjustment conditions'
+    ],
+    analysis: 'Capital inflows → Credit boom → Asset/property bubbles → Current account deficits financed by short-term foreign borrowing → Confidence loss → Capital flight → Forex reserves depleted defending pegs → Devaluations → Foreign-denominated debt exploded in local terms → Bank failures → Deep recessions (Indonesia GDP -13%).',
+    evaluation: 'The crisis exposed the dangers of fixed exchange rates with open capital accounts (impossible trinity). IMF conditions (austerity, high rates) were criticized for deepening the recession. Post-crisis, Asian economies built massive forex reserves to self-insure—contributing to global imbalances.',
+    formula: '\\text{Short-term Debt} > \\text{Forex Reserves} \\implies \\text{Vulnerability to sudden stops}',
+    realWorldExample: 'Thailand\'s baht fell from 25/USD to 56/USD. Indonesia\'s GDP contracted 13%, and the Suharto regime collapsed. South Korea required a $57bn IMF bailout—then the largest in history.'
+  },
+  {
+    id: 'assembly-line',
+    title: 'Assembly Line Production',
+    category: 'theory',
+    definition: 'A manufacturing process where products move along a line and workers or machines perform specialized, repetitive tasks. Pioneered by Henry Ford for automobile production, it exemplifies the division of labor and economies of scale.',
+    keyPoints: [
+      'Division of labor: Workers specialize in narrow tasks',
+      'Economies of scale: High fixed costs spread over large output',
+      'Reduced unit labor time and costs',
+      'Trade-off: Monotonous work, potential for worker alienation'
+    ],
+    analysis: 'Ford introduces assembly line → Each worker performs one task repeatedly → Learning effects: Workers become faster → Capital substitution: Machines assist workers → Unit production time falls from 12 hours to 93 minutes → ↓ AC → Model T price falls → Mass consumption becomes possible.',
+    evaluation: 'Assembly lines revolutionized manufacturing productivity but raised concerns about worker welfare (monotony, injuries). Toyota\'s Lean Production later improved on Ford\'s model by incorporating worker feedback and flexibility—showing continuous innovation in production methods.',
+    realWorldExample: 'Ford\'s Highland Park plant (1913) reduced Model T production time from 12 hours to 93 minutes, cutting prices from $850 to $300 and making cars accessible to the middle class.'
+  },
+  {
+    id: 'asset-motive-money',
+    title: 'Asset Motive for Holding Money',
+    category: 'macro',
+    definition: 'Part of Keynes\'s liquidity preference theory, the asset (or speculative) motive explains demand for money as a safe asset when bond prices are expected to fall (interest rates rise). Agents hold money to avoid capital losses on bonds.',
+    keyPoints: [
+      'When interest rates are low, bond prices are high',
+      'Agents expect rates to rise (bond prices to fall)',
+      'Holding money avoids capital loss on bonds',
+      'Creates inverse relationship between interest rate and money demand'
+    ],
+    analysis: 'Current rate = 2% (historically low) → Agent expects rates to rise to 4% → If rates rise, bond prices fall → Holding bonds = capital loss → Rational to hold cash (zero return > negative return) → ↑ Speculative demand for money → At very low rates, demand for money becomes very elastic (liquidity trap).',
+    evaluation: 'The asset motive explains why monetary policy becomes ineffective at the zero lower bound (liquidity trap). However, modern finance theory questions whether sophisticated investors hold non-interest-bearing cash—they may shift to short-duration bonds or money market funds instead.',
+    formula: 'L = L_1(Y) + L_2(r) \\text{ where } \\frac{\\partial L_2}{\\partial r} < 0',
+    realWorldExample: 'During 2009-2015, near-zero rates meant the BoE\'s QE purchases added to bank reserves but didn\'t stimulate lending—liquidity was "trapped" as banks preferred safe, liquid assets.'
+  },
+  {
+    id: 'asset-prices',
+    title: 'Asset Prices and Wealth Effect',
+    category: 'macro',
+    definition: 'The market value of assets (property, equities, bonds) and their impact on aggregate demand through the wealth effect. Rising asset prices increase perceived wealth, boosting consumption; falling prices have the opposite effect.',
+    keyPoints: [
+      'Wealth effect: ↑ Asset prices → ↑ Perceived wealth → ↑ C',
+      'Collateral effect: ↑ Property prices → ↑ Borrowing capacity',
+      'Inverse relationship with interest rates: ↓ r → ↑ Asset prices',
+      'Asset bubbles can destabilize the economy'
+    ],
+    analysis: 'BoE ↓ interest rates → ↓ Discount rate for future cash flows → ↑ Present value of assets → ↑ Equity and property prices → ↑ Household wealth → ↑ Consumer confidence → ↑ Consumption (wealth effect) → Homeowners can borrow against equity (collateral effect) → ↑ AD.',
+    evaluation: 'The wealth effect is a key monetary transmission channel but creates risks. Asset price inflation can decouple from fundamentals, creating bubbles. When bubbles burst, the negative wealth effect can trigger severe recessions (2008). Central banks face a dilemma: should they target asset prices?',
+    formula: 'PV = \\sum_{t=1}^{n} \\frac{CF_t}{(1+r)^t}',
+    realWorldExample: 'UK house prices rose 20% in 2021-22, boosting consumer spending through the wealth effect. The subsequent correction tightened household finances as mortgage rates rose.'
+  },
+  {
+    id: 'asset-stripping',
+    title: 'Asset Stripping',
+    category: 'theory',
+    definition: 'The practice of acquiring an undervalued company, selling off its assets for more than the acquisition cost, and often closing the business. Critics argue it destroys productive capacity; proponents claim it reallocates capital to higher-value uses.',
+    keyPoints: [
+      'Targets undervalued companies with valuable assets',
+      'Break-up value > Market capitalization = Opportunity',
+      'May result in job losses and productive capacity destruction',
+      'Can improve allocative efficiency if assets move to better managers'
+    ],
+    analysis: 'Company X market cap = £50m → Assets (property, equipment) worth £80m individually → Raider acquires company → Sells assets separately → Net profit = £30m → Jobs may be lost, but assets now in hands of managers who value them more highly → Allocative efficiency may improve.',
+    evaluation: 'Asset stripping is controversial: it can be value-destroying (short-termism, job losses) or value-creating (releasing trapped assets). The market for corporate control disciplines underperforming management, but leveraged buyouts can load companies with unsustainable debt.',
+    realWorldExample: 'The Hanson Trust in the 1980s was notorious for asset stripping—acquiring conglomerates and selling divisions for profit. Critics blamed raiders for deindustrialization; defenders praised capital reallocation.'
+  },
+  {
+    id: 'assisted-areas',
+    title: 'Assisted Areas (Regional Policy)',
+    category: 'policy',
+    definition: 'Designated geographic regions eligible for government support (grants, tax relief) to address regional economic disparities. In the UK, these include Tier 1 (most disadvantaged) and Tier 2 areas, with support aimed at attracting investment and creating jobs.',
+    keyPoints: [
+      'Supply-side policy to reduce regional inequality',
+      'Support includes: Regional Selective Assistance (RSA), tax breaks, infrastructure',
+      'EU Structural Funds provided significant support pre-Brexit',
+      'Levelling Up agenda aims to reduce North-South divide'
+    ],
+    analysis: 'Region experiences deindustrialization → ↑ Unemployment, ↓ Investment → Designated as Assisted Area → Government offers grants for new factories → ↓ Cost of capital for firms → ↑ Investment → ↑ Employment → Multiplier effects → Agglomeration may develop over time.',
+    evaluation: 'Regional policy can create jobs but may displace activity from elsewhere (zero-sum). Grants may attract footloose firms that leave when subsidies end. Long-run success requires building genuine competitive advantages (skills, infrastructure, clusters)—not just subsidies.',
+    realWorldExample: 'The UK\'s "Levelling Up" fund allocates £4.8bn to disadvantaged areas, focusing on transport, town centers, and skills—attempting to address persistent regional disparities.'
+  },
+  {
+    id: 'asymmetric-information-problem',
+    title: 'Asymmetric Information Problem',
+    category: 'market-failure',
+    definition: 'A situation where one party in a transaction has more or better information than the other, leading to market inefficiencies. The two main consequences are Adverse Selection (pre-transaction) and Moral Hazard (post-transaction).',
+    keyPoints: [
+      'Adverse Selection: Hidden information before transaction (lemons market)',
+      'Moral Hazard: Hidden actions after transaction (insurance)',
+      'Principal-Agent Problem: Agents have more information than principals',
+      'Solutions: Signaling, Screening, Incentive alignment, Regulation'
+    ],
+    analysis: 'Seller knows product quality, buyer doesn\'t → Buyer assumes average quality → Offers average price → High-quality sellers exit (price too low) → Only low-quality remains → Market unravels. Post-transaction: Insured party takes more risks (moral hazard) → Insurer raises premiums → Adverse selection cycle.',
+    evaluation: 'Asymmetric information is pervasive and explains many market failures (credit rationing, insurance markets, labor markets). Market solutions (warranties, deductibles, reputation systems) can mitigate but not eliminate the problem. Regulation (mandatory disclosure, professional licensing) provides additional remedies.',
+    realWorldExample: 'The 2008 financial crisis was partly caused by asymmetric information: mortgage-backed securities were sold without buyers understanding the underlying loan quality—modern "lemons."'
+  },
+  {
+    id: 'atomistic-competition',
+    title: 'Atomistic Competition',
+    category: 'theory',
+    definition: 'A market structure where there are so many small firms ("atoms") that no individual firm can influence the market price. Each firm is a price taker, facing a perfectly elastic demand curve. This is the defining characteristic of perfect competition.',
+    keyPoints: [
+      'Large number of buyers and sellers (atomistic structure)',
+      'Homogeneous products: No differentiation',
+      'Perfect information: All agents know prices and quality',
+      'Free entry and exit: No barriers'
+    ],
+    analysis: 'Market price = £10 → Individual firm faces horizontal demand curve at £10 → AR = MR = £10 → Profit max: Produce where MC = £10 → If P > AC, supernormal profit → New firms enter → Supply shifts right → Price falls → Long-run equilibrium: P = AC (normal profit only).',
+    evaluation: 'Perfect competition is a theoretical benchmark rarely observed in practice. Real markets have product differentiation, barriers to entry, and imperfect information. However, agricultural commodity markets approximate atomistic conditions—many small farmers selling identical wheat at market prices.',
+    formula: 'P = AR = MR \\text{ (perfectly elastic demand)}',
+    realWorldExample: 'Wheat farming approaches atomistic competition: thousands of farmers produce identical grain, take the world price, and cannot individually affect it.'
+  },
+  {
+    id: 'auction-theory',
+    title: 'Auction Theory in Economics',
+    category: 'theory',
+    definition: 'The study of how auctions work and how they affect bidding strategies and outcomes. Key auction types include English (ascending), Dutch (descending), First-price sealed-bid, and Vickrey (second-price sealed-bid). Auction design affects efficiency and revenue.',
+    keyPoints: [
+      'English auction: Ascending price, highest bidder wins',
+      'Dutch auction: Descending price, first bidder wins',
+      'First-price sealed-bid: Highest bidder wins, pays their bid',
+      'Vickrey (second-price): Winner pays second-highest bid → Truthful bidding'
+    ],
+    analysis: 'English auction: Bidders reveal valuations through bidding → Winner pays just above second-highest valuation → Efficient (highest valuer wins). Vickrey: Optimal to bid true valuation (dominant strategy) → Also efficient. First-price: Strategic underbidding ("bid shading") → May not be efficient.',
+    evaluation: 'The Revenue Equivalence Theorem states that under certain conditions, all standard auctions yield the same expected revenue. But real-world factors (risk aversion, asymmetric information, collusion) break equivalence. Auction design matters enormously—poorly designed auctions lose billions.',
+    formula: 'b^*_i = v_i - \\frac{1}{n} \\times v_i \\text{ (first-price bid shading with n bidders)}',
+    realWorldExample: 'The UK 3G spectrum auction (2000) raised £22.5bn—far exceeding expectations—due to clever auction design. The 2020 5G auction used similar principles to allocate valuable spectrum efficiently.'
+  },
+  {
+    id: 'audit-commission',
+    title: 'Audit and Public Sector Oversight',
+    category: 'policy',
+    definition: 'Independent examination of public sector accounts and value-for-money. In the UK, the National Audit Office (NAO) audits central government, while local authority audit arrangements changed after the Audit Commission\'s abolition in 2015.',
+    keyPoints: [
+      'NAO: Audits central government departments for Parliament',
+      'Public Accounts Committee: Scrutinizes NAO reports',
+      'Value-for-money: Assesses economy, efficiency, and effectiveness',
+      'Local audits now contracted to private firms'
+    ],
+    analysis: 'Government department spends £1bn on IT project → NAO audits: Was procurement competitive (economy)? Was delivery on time and budget (efficiency)? Did the system work as intended (effectiveness)? → PAC hearing → Recommendations for improvement → Accountability mechanism.',
+    evaluation: 'Audit ensures accountability but has limitations: auditors can only report, not enforce. The abolition of the Audit Commission weakened local government oversight, with private audit firms facing conflicts of interest. Effective audit requires independence and follow-through on recommendations.',
+    realWorldExample: 'NAO reports on HS2 repeatedly highlighted cost overruns and scope changes, leading to Parliamentary scrutiny and eventual scale-back of the northern leg.'
+  },
+  {
+    id: 'austrian-school',
+    title: 'Austrian School of Economics',
+    category: 'theory',
+    definition: 'A heterodox school of economic thought emphasizing individualism, subjectivism, and market processes. Key figures include Carl Menger, Ludwig von Mises, and Friedrich Hayek. Austrians are skeptical of government intervention and mathematical modeling.',
+    keyPoints: [
+      'Methodological individualism: Only individuals act, not "society"',
+      'Subjective value theory: Value is in the eye of the beholder',
+      'Spontaneous order: Markets emerge from decentralized decisions',
+      'Business cycle theory: Credit expansion causes malinvestment'
+    ],
+    analysis: 'Central bank artificially lowers interest rates → ↓ Cost of borrowing below natural rate → ↑ Malinvestment (projects that only seem profitable at low rates) → Resources misallocated → Eventually, rates rise or malinvestment revealed → Bust follows boom → Austrians advocate for free banking and hard money.',
+    evaluation: 'Austrian economics provides powerful critiques of central planning and explains some aspects of business cycles. However, it is often unfalsifiable (rejecting empirical testing) and offers limited policy guidance beyond "don\'t intervene." Mainstream economics incorporates Austrian insights while retaining mathematical rigor.',
+    realWorldExample: 'Hayek predicted that low interest rates in the 2000s would cause a housing bubble and malinvestment—vindicated by the 2008 crisis. But Austrian aversion to stabilization policy is controversial.'
+  },
+  {
+    id: 'autarky',
+    title: 'Autarky (Economic Self-Sufficiency)',
+    category: 'trade',
+    definition: 'A policy of economic self-sufficiency with no international trade. Under autarky, a country produces all goods domestically, sacrificing the gains from trade and specialization according to comparative advantage.',
+    keyPoints: [
+      'No imports or exports: Complete self-reliance',
+      'Foregoes gains from trade (specialization, comparative advantage)',
+      'May be pursued for national security or ideological reasons',
+      'Results in lower consumption possibilities than free trade'
+    ],
+    analysis: 'Country under autarky: Consumption limited to domestic PPC → Opens to trade: Can specialize in comparative advantage good → Exports and imports → Consumption possibilities expand beyond PPC → Welfare gain from trade. Autarky = Inside CPC (consumption possibility curve); Free trade = On or beyond CPC.',
+    evaluation: 'Pure autarky is economically irrational—it sacrifices welfare gains from trade. However, strategic autarky (self-sufficiency in critical sectors like food, energy, defense) may be justified for national security. Most countries pursue managed trade rather than pure autarky or pure free trade.',
+    realWorldExample: 'North Korea\'s juche (self-reliance) policy approaches autarky, contributing to chronic shortages and low living standards. By contrast, North Korea\'s neighbor South Korea thrived through export-led growth.'
+  },
+  {
+    id: 'automatic-stabilisers',
+    title: 'Automatic Stabilisers',
+    category: 'macro',
+    definition: 'Built-in fiscal mechanisms that automatically moderate economic fluctuations without discretionary policy changes. Progressive taxes and welfare spending rise and fall with the business cycle, dampening booms and cushioning recessions.',
+    keyPoints: [
+      'Progressive taxes: Revenue falls in recession, rises in boom',
+      'Welfare payments: Rise in recession (unemployment benefits), fall in boom',
+      'No legislative action required: Work automatically',
+      'Stabilize AD without policy lags'
+    ],
+    analysis: 'Recession hits → Incomes fall → Progressive tax revenue ↓↓ (people drop into lower bands) → Unemployment rises → Welfare spending ↑ → Government injects net spending into economy automatically → ↑ AD → Dampens recession. The reverse operates in booms: ↑ Tax revenue, ↓ Welfare → Cools overheating.',
+    evaluation: 'Automatic stabilisers are valuable because they avoid policy lags (recognition, decision, implementation). However, they are too weak to prevent deep recessions (2008, 2020 required discretionary stimulus). Their size depends on the progressivity of taxes and generosity of welfare—varies across countries.',
+    formula: '\\Delta G_{auto} = \\Delta TR - \\Delta T = f(\\Delta Y)',
+    realWorldExample: 'During COVID-19, automatic stabilisers provided initial support as Universal Credit claims surged, but the scale of the shock required massive discretionary measures (furlough scheme).'
+  },
+  {
+    id: 'automation',
+    title: 'Automation and Labor Markets',
+    category: 'theory',
+    definition: 'The replacement of human labor with machines or software to perform tasks previously done by workers. Automation increases productivity but raises concerns about structural unemployment and the distribution of gains between capital and labor.',
+    keyPoints: [
+      'Technological unemployment: Jobs eliminated by machines',
+      'Creative destruction: New industries and jobs also created',
+      'Skill-biased technical change: Benefits skilled workers, displaces unskilled',
+      'Long-run impact on labor share of income'
+    ],
+    analysis: 'Firm automates production → ↓ Demand for labor (substitution effect) → ↑ Productivity → ↓ Prices → ↑ Real income → ↑ Demand for other goods (income effect) → New jobs created in other sectors. Net employment effect depends on whether income effect > substitution effect.',
+    evaluation: 'Historically, automation has not caused mass unemployment—new jobs replaced old ones. But AI and advanced robotics may be different (broader substitution). The transition period causes dislocation, requiring retraining and safety nets. The key question is distribution: who captures the productivity gains?',
+    realWorldExample: 'Amazon warehouses use robots for picking and packing, but also employ thousands of humans for tasks robots cannot perform—illustrating complementarity alongside substitution.'
+  },
+  {
+    id: 'autonomous-consumption',
+    title: 'Autonomous Consumption',
+    category: 'macro',
+    definition: 'The level of consumption that occurs regardless of income level, represented by the intercept (C₀) in the Keynesian consumption function. It reflects spending financed by savings, borrowing, or wealth, independent of current income.',
+    keyPoints: [
+      'C₀ in the consumption function: C = C₀ + MPC × Yᵈ',
+      'Represents subsistence spending or dissaving when Y = 0',
+      'Shifts in C₀ shift the entire consumption function',
+      'Influenced by: Wealth, confidence, credit availability, expectations'
+    ],
+    analysis: 'Autonomous consumption C₀ = £10,000 → At Y = 0, consumer spends £10,000 (dissaving) → MPC = 0.8 → At Y = £50,000, C = £10,000 + 0.8(£50,000) = £50,000 → Shift in C₀ (e.g., ↑ wealth) → Entire consumption function shifts up → ↑ AE → Multiplier effect → ↑ Equilibrium Y.',
+    evaluation: 'Autonomous consumption explains why consumption doesn\'t fall to zero in recessions—wealth and borrowing sustain spending. However, the Keynesian model assumes a stable consumption function, challenged by the Permanent Income Hypothesis (consumption depends on lifetime wealth, not current income).',
+    formula: 'C = C_0 + MPC \\times Y_d',
+    realWorldExample: 'During the 2020 lockdowns, households with savings maintained consumption despite income losses—demonstrating autonomous consumption financed by drawing down assets.'
   }
 ];
 
