@@ -448,6 +448,74 @@ export const glossaryTerms: GlossaryTerm[] = [
     level: "A2",
     topic: "Consumer Theory",
     hasDiagram: "UtilityDiagram"
+  },
+  // === NEW ADVANCED A2 TERMS ===
+  {
+    term: "X-Inefficiency",
+    definition: "A concept developed by Harvey Leibenstein (1966) describing the inefficiency that arises when firms operate above their minimum possible cost due to lack of competitive pressure. This organizational slack results from managerial complacency, overstaffing, and weak cost control in monopolistic markets.",
+    examTip: "Distinguish from productive inefficiency (not at min ATC) and allocative inefficiency (P>MC). X-inefficiency means the ATC curve itself is higher than it needs to be. Link to contestable markets as discipline mechanism.",
+    level: "A2",
+    topic: "Market Structures"
+  },
+  {
+    term: "Nash Equilibrium",
+    definition: "A game theory concept describing a stable state where no player can improve their payoff by unilaterally changing their strategy, given the strategies of other players. In oligopoly, Nash equilibrium often results in suboptimal outcomes for all firms (prisoner's dilemma).",
+    examTip: "Nash equilibrium is NOT necessarily the best outcome—explain the dominant strategy logic. Compare Nash equilibrium (both defect) with collusive outcome (both cooperate).",
+    level: "A2",
+    topic: "Market Structures",
+    hasDiagram: "GameTheoryDiagram"
+  },
+  {
+    term: "Contestable Market",
+    definition: "A market characterised by freedom of entry and exit, zero sunk costs, and no incumbent advantages. The threat of 'hit-and-run' entry by potential competitors disciplines incumbent firms to price at average cost, even with few actual competitors.",
+    examTip: "Sunk costs (not barriers to entry) are the key concept. Explain why low sunk costs enable hit-and-run entry. Link to airline deregulation examples.",
+    level: "A2",
+    topic: "Market Structures",
+    hasDiagram: "ContestableMarketsDiagram"
+  },
+  {
+    term: "Sunk Cost",
+    definition: "A cost that has already been incurred and cannot be recovered, regardless of future decisions. In contestable markets theory, high sunk costs prevent hit-and-run entry by making exit costly, allowing incumbents to sustain supernormal profits.",
+    examTip: "Contrast with fixed costs (recoverable on exit) and barriers to entry (prevent entry). Sunk costs matter for EXIT, not entry. Examples: advertising, specialized equipment, R&D.",
+    level: "A2",
+    topic: "Market Structures"
+  },
+  {
+    term: "Dominant Strategy",
+    definition: "In game theory, a strategy that yields the highest payoff for a player regardless of what strategies other players choose. When both players have dominant strategies, the outcome is predictable (Nash equilibrium).",
+    examTip: "Work through payoff matrix row by row: 'If B does X, A gets...If B does Y, A gets...' If one choice always wins, that's the dominant strategy.",
+    level: "A2",
+    topic: "Market Structures"
+  },
+  {
+    term: "Kinked Demand Curve",
+    definition: "A model explaining price rigidity in oligopoly based on asymmetric firm responses: rivals match price cuts but not price increases. This creates a kink in the demand curve and a discontinuity in the MR curve, explaining why prices remain stable despite cost changes.",
+    examTip: "The model explains price rigidity but NOT how the original price was set. Draw the gap in MR curve. Explain why MC can shift within the gap without changing output.",
+    level: "A2",
+    topic: "Market Structures",
+    hasDiagram: "KinkedDemandDiagram"
+  },
+  {
+    term: "Prisoner's Dilemma",
+    definition: "A game theory scenario where two rational players, acting in their own self-interest, reach an outcome that is suboptimal for both. In oligopoly, this explains why cartels break down: each firm has incentive to cheat, even though cooperation benefits all.",
+    examTip: "The 'dilemma' is that individual rationality leads to collective irrationality. Explain why defection is the dominant strategy even when cooperation is better overall.",
+    level: "A2",
+    topic: "Market Structures",
+    hasDiagram: "GameTheoryDiagram"
+  },
+  {
+    term: "Dynamic Efficiency",
+    definition: "Efficiency achieved when firms use supernormal profits to invest in research and development, leading to technological progress, product innovation, and long-run productivity growth. May require market power that contradicts static allocative efficiency.",
+    examTip: "Trade-off: perfect competition achieves static efficiency (P=MC) but may lack R&D funds; monopoly has funds but may lack incentive. Schumpeterian view: monopoly profits drive innovation.",
+    level: "A2",
+    topic: "Efficiency"
+  },
+  {
+    term: "Satisficing",
+    definition: "A decision-making approach where firms aim to achieve satisfactory levels across multiple objectives rather than maximising any single goal. Developed by Herbert Simon, it reflects bounded rationality—managers lack perfect information to optimize.",
+    examTip: "Contrast with profit maximisation (MR=MC). Explain principal-agent problem: managers may satisfice while shareholders want maximisation. Link to divorce of ownership and control.",
+    level: "A2",
+    topic: "Market Structures"
   }
 ];
 

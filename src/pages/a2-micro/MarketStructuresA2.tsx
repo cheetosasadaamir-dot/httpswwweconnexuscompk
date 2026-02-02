@@ -1,12 +1,18 @@
 import Layout from '@/components/Layout';
 import NoteCard from '@/components/NoteCard';
 import ExamTipBox from '@/components/ExamTipBox';
+import KeyTakeaways from '@/components/KeyTakeaways';
+import ExaminerTrap from '@/components/ExaminerTrap';
+import RealWorldExample from '@/components/RealWorldExample';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PerfectCompetitionDiagram from '@/components/diagrams/PerfectCompetitionDiagram';
 import MonopolisticCompetitionDiagram from '@/components/diagrams/MonopolisticCompetitionDiagram';
 import KinkedDemandDiagram from '@/components/diagrams/KinkedDemandDiagram';
 import MonopolyDiagram from '@/components/diagrams/MonopolyDiagram';
+import GameTheoryDiagram from '@/components/diagrams/GameTheoryDiagram';
+import XEfficiencyDiagram from '@/components/diagrams/XEfficiencyDiagram';
+import ContestableMarketsDiagram from '@/components/diagrams/ContestableMarketsDiagram';
 
 const MarketStructuresA2 = () => {
   return (
@@ -36,6 +42,18 @@ const MarketStructuresA2 = () => {
             Monopoly, Contestable Markets, and the various Objectives of Firms.
           </p>
         </header>
+
+        {/* Key Takeaways */}
+        <KeyTakeaways
+          takeaways={[
+            "Perfect competition achieves both allocative (P=MC) and productive (min ATC) efficiency in long-run equilibrium, serving as the efficiency benchmark.",
+            "Monopolistic competition features product differentiation and free entry/exit, leading to normal profits but excess capacity (P > min ATC) in the long run.",
+            "Oligopoly is characterized by interdependence; the kinked demand curve explains price rigidity, while Game Theory (Prisoner's Dilemma) explains cartel instability.",
+            "Monopoly power enables supernormal profits and causes allocative inefficiency (P > MC), but may fund R&D for dynamic efficiency gains.",
+            "Contestable markets theory suggests that the threat of entry (low sunk costs) can discipline monopoly behavior even without actual competition.",
+            "X-inefficiency (Leibenstein) represents organizational slack in monopolies—costs exceeding the technical minimum due to lack of competitive pressure."
+          ]}
+        />
 
         {/* Topic 1: Perfect Competition */}
         <section id="perfect-competition" className="mb-16">
@@ -704,6 +722,28 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
+          {/* Advanced Game Theory Diagram */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <GameTheoryDiagram />
+          </div>
+
+          {/* Examiner Trap */}
+          <ExaminerTrap
+            trap="Students often confuse Nash Equilibrium with the best outcome. They state 'both firms should collude because it gives higher profits' without recognizing the incentive to deviate."
+            correction="Nash Equilibrium is where no firm can improve by unilaterally changing strategy. It may not be the best joint outcome. Explain the dominant strategy reasoning: regardless of rival's choice, cheating always pays more."
+            className="mb-8"
+          />
+
+          {/* Real World Example */}
+          <RealWorldExample
+            title="OPEC Cartel Instability (2020)"
+            description="The Saudi Arabia-Russia price war in March 2020 demonstrated cartel instability. When Russia refused to cut production, Saudi Arabia dramatically increased output, crashing oil prices from $60 to $20/barrel."
+            impact="Classic prisoner's dilemma: each country's dominant strategy was to maximize individual market share rather than honor the collective output restriction, leading to mutual losses before eventual cooperation."
+            type="negative"
+            source="Financial Times, 2020"
+            className="mb-8"
+          />
+
           {/* Non-Price Competition */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <h3 className="text-xl font-semibold text-silver-bright mb-4">Non-Price Competition</h3>
@@ -1076,6 +1116,26 @@ const MarketStructuresA2 = () => {
               </p>
             </div>
           </div>
+
+          {/* Contestable Markets Diagram */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <ContestableMarketsDiagram />
+          </div>
+
+          {/* X-Efficiency Diagram */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <XEfficiencyDiagram />
+          </div>
+
+          {/* Real World Example */}
+          <RealWorldExample
+            title="Airline Deregulation (USA, 1978)"
+            description="The US Airline Deregulation Act removed government control over fares, routes, and entry. Despite concerns about monopolistic behavior, the threat of entry disciplined incumbent airlines."
+            impact="Average fares fell 50% in real terms over 30 years. New entrants like Southwest proved hit-and-run entry viable on many routes. However, hub dominance and frequent flyer programs created partial sunk costs limiting full contestability."
+            type="positive"
+            source="Brookings Institution, 2011"
+            className="mb-8"
+          />
 
           {/* AO3 Logic Chain */}
           <div className="glass-card p-8 rounded-2xl mb-8">
