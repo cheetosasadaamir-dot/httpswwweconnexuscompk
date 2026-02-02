@@ -1313,6 +1313,268 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     evaluation: 'Autonomous consumption explains why consumption doesn\'t fall to zero in recessions—wealth and borrowing sustain spending. However, the Keynesian model assumes a stable consumption function, challenged by the Permanent Income Hypothesis (consumption depends on lifetime wealth, not current income).',
     formula: 'C = C_0 + MPC \\times Y_d',
     realWorldExample: 'During the 2020 lockdowns, households with savings maintained consumption despite income losses—demonstrating autonomous consumption financed by drawing down assets.'
+  },
+  {
+    id: 'brain-drain',
+    title: 'Brain Drain Problem',
+    category: 'macro',
+    definition: 'The emigration of highly skilled, educated, or trained individuals from one country to another, typically from developing to developed nations. This human capital flight reduces the source country\'s productive capacity and tax base.',
+    keyPoints: [
+      'Loss of skilled workers: doctors, engineers, academics, IT professionals',
+      'Push factors: low wages, poor working conditions, political instability',
+      'Pull factors: higher salaries, better opportunities, quality of life',
+      'Creates a negative externality on the source country\'s development'
+    ],
+    analysis: 'Skilled workers emigrate → ↓ Human capital stock in home country → ↓ Productivity and innovation capacity → ↓ Tax revenue (high earners leave) → ↓ LRAS (productive potential falls) → Slowed economic growth → Widening development gap with destination countries.',
+    evaluation: 'Brain drain can be partially offset by remittances and "brain circulation" (returnees bringing skills home). Some argue it incentivizes education (the "brain gain" hypothesis). However, the fiscal cost of training workers who then emigrate represents a significant transfer of resources from poor to rich countries.',
+    realWorldExample: 'Sub-Saharan Africa loses approximately 20,000 skilled professionals annually to developed countries. The NHS relies heavily on foreign-trained doctors, effectively subsidized by developing nations\' education systems.'
+  },
+  {
+    id: 'brand-loyalty',
+    title: 'Brand Loyalty',
+    category: 'theory',
+    definition: 'A consumer\'s consistent preference for one brand over competitors, leading to repeat purchases regardless of price changes. Brand loyalty reduces the price elasticity of demand, enabling firms to charge premium prices and earn supernormal profits.',
+    keyPoints: [
+      'Reduces PED: loyal customers are less price-sensitive',
+      'Created through: advertising, quality, customer experience, habit',
+      'A form of product differentiation and non-price competition',
+      'Creates barriers to entry for new competitors'
+    ],
+    analysis: 'Firm invests in brand building → ↑ Brand loyalty → ↓ PED (demand becomes more inelastic) → Firm can ↑ Price with smaller fall in quantity demanded → ↑ Total revenue → ↑ Profit margins → Acts as a barrier to entry (new entrants must overcome established loyalty).',
+    evaluation: 'Brand loyalty can lead to allocative inefficiency as consumers pay above marginal cost. However, it may reflect genuine quality differences and provides incentives for firms to maintain standards. Behavioral economists note that loyalty often stems from habit and cognitive biases rather than rational evaluation.',
+    formula: 'PED = \\frac{\\%\\Delta Q_d}{\\%\\Delta P} \\text{ (lower absolute value with brand loyalty)}',
+    realWorldExample: 'Apple maintains strong brand loyalty despite premium pricing—iPhone users rarely switch to Android. This inelastic demand allows Apple to earn profit margins exceeding 40% on devices.'
+  },
+  {
+    id: 'break-even-analysis',
+    title: 'Break-Even Analysis',
+    category: 'theory',
+    definition: 'A method of determining the output level at which a firm\'s total revenue equals total cost, resulting in zero economic profit. At the break-even point, the firm covers all costs but earns no supernormal profit.',
+    keyPoints: [
+      'Break-even: TR = TC, or equivalently, P = ATC',
+      'Below break-even: firm makes a loss (TR < TC)',
+      'Above break-even: firm earns supernormal profit (TR > TC)',
+      'Margin of safety = Actual output - Break-even output'
+    ],
+    analysis: 'Fixed Costs = £10,000, Variable Cost per unit = £5, Selling Price = £15 → Contribution per unit = £15 - £5 = £10 → Break-even output = £10,000 ÷ £10 = 1,000 units → At Q = 1,500, profit = (1,500 - 1,000) × £10 = £5,000 supernormal profit.',
+    evaluation: 'Break-even analysis assumes linear cost and revenue functions, which may not hold in practice (economies of scale, quantity discounts). It also assumes single-product firms and ignores opportunity costs. However, it remains a useful decision-making tool for short-run planning.',
+    formula: '\\text{Break-even Units} = \\frac{\\text{Fixed Costs}}{\\text{Selling Price} - \\text{Variable Cost per Unit}}',
+    realWorldExample: 'Airlines use break-even analysis to determine load factors—the percentage of seats that must be sold to cover costs. Low-cost carriers like Ryanair break even at ~70% capacity.'
+  },
+  {
+    id: 'break-even-price',
+    title: 'Break-Even Price',
+    category: 'theory',
+    definition: 'The price at which a firm\'s total revenue equals total cost, meaning P = ATC. At this price, the firm earns normal profit (zero economic/supernormal profit) and just covers all explicit and implicit costs.',
+    keyPoints: [
+      'P = ATC at the break-even price',
+      'Normal profit is included in costs (opportunity cost of capital)',
+      'In long-run perfect competition, P = ATC for all firms',
+      'Below break-even price: economic loss; above: supernormal profit'
+    ],
+    analysis: 'In perfect competition, short-run supernormal profits attract new entrants → ↑ Market supply → ↓ Price → Price falls until P = ATC (minimum efficient scale) → All firms earn only normal profit → No incentive for entry or exit → Long-run equilibrium.',
+    evaluation: 'The break-even price concept assumes profit maximization and accurate cost estimation. In practice, firms may set prices below ATC to gain market share (predatory pricing) or above for value signaling. The break-even point also shifts with changes in fixed costs, variable costs, or productivity.',
+    formula: 'P_{BE} = ATC = \\frac{TC}{Q}',
+    realWorldExample: 'During oil price wars (e.g., 2014-2016), Saudi Arabia produced oil below US shale producers\' break-even prices (~$50/barrel), forcing high-cost producers out of the market.'
+  },
+  {
+    id: 'bretton-woods',
+    title: 'Bretton Woods System',
+    category: 'trade',
+    definition: 'The international monetary system established in 1944, creating fixed exchange rates pegged to the US dollar, which was itself convertible to gold at $35 per ounce. It also established the IMF and World Bank. The system collapsed in 1971 when the US suspended gold convertibility.',
+    keyPoints: [
+      'Fixed but adjustable exchange rates (adjustable peg)',
+      'US dollar as the world reserve currency, backed by gold',
+      'Established IMF (balance of payments support) and World Bank (development)',
+      'Collapsed due to US trade deficits and gold outflows (Triffin Dilemma)'
+    ],
+    analysis: 'Fixed rates → Exchange rate stability → ↓ Currency risk → ↑ International trade and investment → Countries must maintain forex reserves to defend peg → US running persistent deficits → Dollar claims exceed gold reserves → Confidence in convertibility falls → Speculative attacks → Nixon suspends gold window (1971) → System collapses.',
+    evaluation: 'Bretton Woods provided post-war stability and facilitated the "Golden Age" of growth (1950-1973). However, it suffered from the Triffin Dilemma: the reserve currency country must run deficits to supply global liquidity, but deficits undermine confidence in the currency. The "Impossible Trinity" also constrained policy: countries couldn\'t have fixed rates, free capital flows, AND monetary independence.',
+    realWorldExample: 'The collapse began when France demanded gold for its dollar reserves in the 1960s. By 1971, US gold reserves had fallen to $10 billion against $40 billion in foreign dollar claims—an unsustainable position.'
+  },
+  {
+    id: 'broad-money',
+    title: 'Broad Money (M4)',
+    category: 'macro',
+    definition: 'A measure of the money supply that includes narrow money (cash and instant-access deposits) plus less liquid assets such as time deposits, money market funds, and other near-money instruments. In the UK, this is measured as M4.',
+    keyPoints: [
+      'M4 = Notes & coins + all bank deposits + money market instruments',
+      'Broader measure than M0 (base money) or M1 (narrow money)',
+      'Growth in M4 is monitored as a leading indicator of inflation',
+      'Created mainly through commercial bank lending (credit creation)'
+    ],
+    analysis: 'Central bank ↓ interest rates → ↑ Bank lending → ↑ Credit creation → ↑ M4 growth → ↑ AD (more money chasing goods) → Potential inflationary pressure. The Quantity Theory: MV = PY suggests that if V is stable, ↑ M leads to ↑ P (inflation) once Y reaches capacity.',
+    evaluation: 'Monetarists emphasize M4 growth as a key inflation driver. However, velocity (V) has proven unstable, and money demand shifts unpredictably. Central banks now target interest rates rather than monetary aggregates directly, though M4 remains a useful monitoring variable.',
+    formula: 'M4 = M0 + \\text{Bank Deposits} + \\text{Money Market Instruments}',
+    realWorldExample: 'UK M4 growth exceeded 15% annually before the 2008 crisis, signaling excessive credit expansion. Post-2010 M4 growth stagnated despite QE, as banks hoarded reserves rather than lending.'
+  },
+  {
+    id: 'budget-constraints',
+    title: 'Budget Constraints',
+    category: 'theory',
+    definition: 'The limitation on consumption choices imposed by a consumer\'s income and the prices of goods. Graphically represented as a budget line showing all affordable combinations of two goods given fixed income and prices.',
+    keyPoints: [
+      'Budget line equation: P₁X₁ + P₂X₂ = I (or ≤ I)',
+      'Slope = -P₁/P₂ (the opportunity cost of X₁ in terms of X₂)',
+      'Changes in income shift the budget line (parallel shift)',
+      'Changes in one price rotate the budget line around an intercept'
+    ],
+    analysis: 'Consumer has income I = £100, P₁ = £10, P₂ = £5 → Budget line: 10X₁ + 5X₂ = 100 → Max X₁ = 10 units; Max X₂ = 20 units → Slope = -10/5 = -2 → If P₁ falls to £5, the budget line rotates outward along X₁-axis → Consumer can now afford up to 20 units of X₁ → Purchasing power for X₁ increases.',
+    evaluation: 'Budget constraints assume perfect information about prices and rational utility maximization. Behavioral economics challenges this: consumers may not optimize, and credit/borrowing can relax the constraint. Time constraints (opportunity cost of shopping) are also ignored in the basic model.',
+    formula: 'P_1 X_1 + P_2 X_2 \\leq I',
+    realWorldExample: 'Rising energy prices in 2022 rotated household budget constraints, reducing the maximum affordable quantity of heating—forcing trade-offs with food and other essentials (fuel poverty).'
+  },
+  {
+    id: 'budget-surplus',
+    title: 'Budget Surplus',
+    category: 'policy',
+    definition: 'A fiscal position where government tax revenue exceeds government spending in a given period. A budget surplus represents net government saving and reduces the national debt.',
+    keyPoints: [
+      'Budget surplus = Tax Revenue - Government Spending > 0',
+      'Represents contractionary fiscal stance (withdraws demand from economy)',
+      'Can be structural (deliberate) or cyclical (due to boom conditions)',
+      'Surpluses reduce national debt and lower future interest payments'
+    ],
+    analysis: 'Government runs surplus → ↓ Injections into circular flow → ↓ AD → Contractionary effect on GDP → However, ↓ government borrowing → ↓ Demand for loanable funds → ↓ Interest rates → May stimulate private investment ("reverse crowding out") → Net effect depends on relative magnitudes.',
+    evaluation: 'Surpluses during booms are appropriate counter-cyclical policy (building fiscal space for recessions). However, pursuing surpluses during weak growth can worsen recessions (fiscal austerity). The appropriate fiscal stance depends on the output gap and automatic stabilizers.',
+    formula: '\\text{Budget Balance} = T - G - Tr',
+    realWorldExample: 'Germany ran persistent budget surpluses (2014-2019) under the "Schwarze Null" policy, criticized by some economists for reducing European aggregate demand when the Eurozone needed fiscal stimulus.'
+  },
+  {
+    id: 'buffer-stocks',
+    title: 'Buffer Stocks',
+    category: 'policy',
+    definition: 'A price stabilization scheme where an agency buys commodities when prices fall below a floor price (storing them as a "buffer") and sells from stock when prices rise above a ceiling price. Aims to reduce price volatility for primary producers.',
+    keyPoints: [
+      'Intervention mechanism: buy at floor price, sell at ceiling price',
+      'Objectives: stabilize farmer incomes, ensure food security',
+      'Creates a "price band" within which the market operates freely',
+      'Requires storage capacity and significant financial resources'
+    ],
+    analysis: 'Bumper harvest → ↑ Supply → Price falls toward floor → Agency buys surplus at floor price → Supply withdrawn from market → Price stabilized above floor → Farmers\' incomes protected → In poor harvest year, agency sells from stock → ↑ Supply → Price capped at ceiling → Consumers protected.',
+    evaluation: 'Buffer stocks can stabilize volatile agricultural markets. However, they face practical problems: high storage costs, spoilage of perishables, and tendency to accumulate unsustainable surpluses if floor prices are set too high. Many schemes (e.g., International Tin Agreement) have collapsed when funds were exhausted.',
+    realWorldExample: 'The EU\'s CAP historically created "butter mountains" and "wine lakes" through price support schemes—surpluses accumulated when intervention prices exceeded world prices, requiring costly storage and eventual disposal.'
+  },
+  {
+    id: 'building-societies',
+    title: 'Building Societies UK',
+    category: 'macro',
+    definition: 'Mutual financial institutions owned by their members (depositors and borrowers) rather than shareholders. Building societies traditionally focused on mortgage lending funded by retail savings, though their role has diminished since the demutualizations of the 1990s.',
+    keyPoints: [
+      'Mutual ownership: members are owners, not separate shareholders',
+      'No profit maximization imperative—focus on member value',
+      'Regulated by the FCA and PRA under Building Societies Act',
+      'Many converted to banks (demutualised) in the 1990s'
+    ],
+    analysis: 'Mutual structure → No shareholder profit extraction → ↑ Interest rates for savers, ↓ rates for borrowers (compared to banks) → However, limited access to capital markets → Constrained balance sheet growth → Less competitive in wholesale funding → Vulnerability during credit crunches.',
+    evaluation: 'Mutuality offers member-focused service but limits growth capital. The demutualization wave (Halifax, Abbey National, Northern Rock) aimed to access equity markets but exposed former mutuals to shareholder pressure and short-termism. Northern Rock\'s 2007 collapse highlighted the risks of aggressive wholesale funding strategies post-demutualisation.',
+    realWorldExample: 'Nationwide remains the UK\'s largest building society, demonstrating the viability of the mutual model. Its members receive better savings rates and more generous customer service than many bank customers.'
+  },
+  {
+    id: 'bull-market',
+    title: 'Bull Market',
+    category: 'macro',
+    definition: 'A financial market condition characterized by rising asset prices, investor optimism, and expectations of continued gains. Typically defined as a sustained increase of 20% or more from recent lows.',
+    keyPoints: [
+      'Rising prices driven by optimistic expectations',
+      'High trading volumes and increased risk appetite',
+      'Economic expansion typically accompanies bull markets',
+      'Contrasts with Bear Market (falling prices, pessimism)'
+    ],
+    analysis: 'Positive economic data → ↑ Corporate profit expectations → ↑ Share prices → Positive wealth effect → ↑ Consumer confidence and spending (C) → ↑ AD → Reinforces economic growth → ↑ Further profit expectations → Self-reinforcing cycle. Tobin\'s Q rises (market value > replacement cost) → ↑ Investment incentive.',
+    evaluation: 'Bull markets can become detached from fundamentals, creating asset bubbles (irrational exuberance). When expectations become overly optimistic, any negative shock can trigger rapid reversal. The dot-com bubble (1999-2000) exemplifies how sentiment-driven rallies can collapse when fundamentals reassert.',
+    realWorldExample: 'The post-2009 bull market lasted over a decade, driven by low interest rates, QE, and tech sector growth. The S&P 500 rose approximately 400% from its 2009 trough before the COVID-19 shock.'
+  },
+  {
+    id: 'business-cycle',
+    title: 'Business Cycle',
+    category: 'macro',
+    definition: 'The periodic fluctuation of economic activity around the long-term growth trend, consisting of four phases: expansion (boom), peak, contraction (recession), and trough (slump). Cycles are driven by changes in aggregate demand and supply shocks.',
+    keyPoints: [
+      'Four phases: Boom → Peak → Recession → Trough → Recovery',
+      'Boom: high growth, low unemployment, rising inflation',
+      'Recession: negative growth (two consecutive quarters of ↓ GDP)',
+      'Driven by: AD shifts, investment volatility (accelerator), shocks'
+    ],
+    analysis: 'Expansion phase: ↑ Consumer confidence → ↑ C and I → ↑ AD → ↑ Real GDP → ↓ Cyclical unemployment → Economy approaches potential output → ↑ Demand-pull inflation → Peak reached → Eventually, ↑ interest rates or supply shock → ↓ AD → Recession begins → Output gap turns negative → ↑ Unemployment → Trough → Recovery begins.',
+    evaluation: 'Keynesian view: cycles reflect AD instability, justifying counter-cyclical policy. Monetarists: cycles often caused by monetary policy errors. Real Business Cycle theory: cycles reflect rational responses to productivity shocks. Policy debate: should governments smooth cycles (fiscal/monetary intervention) or let markets self-correct?',
+    realWorldExample: 'The UK experienced a classic cycle during 2008-2013: the financial crisis caused a deep recession (GDP fell 6%), followed by a prolonged recovery. The COVID-19 shock in 2020 created the sharpest contraction on record, followed by rapid recovery.'
+  },
+  {
+    id: 'business-ethics',
+    title: 'Business Ethics vs. Profit',
+    category: 'theory',
+    definition: 'The study of appropriate business policies regarding potentially controversial issues such as corporate governance, stakeholder welfare, environmental impact, and social responsibility. Debates whether ethical behavior conflicts with profit maximization.',
+    keyPoints: [
+      'Friedman view: social responsibility of business is to maximize profit',
+      'Stakeholder view: firms should balance interests of all stakeholders',
+      'CSR (Corporate Social Responsibility) as a strategic tool',
+      'Ethical behavior may enhance long-run profits (reputation, loyalty)'
+    ],
+    analysis: 'Firm invests in CSR (ethical sourcing, environmental protection) → Short-run: ↑ Costs, ↓ Profits → Long-run: ↑ Brand reputation → ↑ Consumer loyalty (especially among ethical consumers) → ↑ Demand, ↓ PED → ↑ Pricing power → Potentially ↑ Long-run profits. Also: ↓ Regulatory risk, ↑ Employee morale.',
+    evaluation: 'The ethics-profit trade-off depends on market structure and consumer preferences. In competitive markets with informed consumers, ethical firms may thrive. But in markets with weak regulation and uninformed consumers, unethical behavior may be profit-maximizing. The Principal-Agent problem means managers may pursue ethical goals that don\'t maximize shareholder value.',
+    realWorldExample: 'Patagonia\'s environmental commitment (donating 1% of sales, using recycled materials) has built brand loyalty and premium pricing power, suggesting ethics and profits can align. Conversely, Volkswagen\'s emissions cheating scandal (Dieselgate) showed how unethical behavior can destroy shareholder value when discovered.'
+  },
+  {
+    id: 'buyers-market',
+    title: 'Buyers\' Market',
+    category: 'theory',
+    definition: 'A market condition where supply exceeds demand, giving buyers negotiating power and pushing prices down. Characterized by high inventories, slow sales, and sellers willing to accept lower prices.',
+    keyPoints: [
+      'Excess supply: Qs > Qd at the current price',
+      'Downward pressure on prices as sellers compete',
+      'Buyers have time, choice, and negotiating leverage',
+      'Contrasts with Sellers\' Market (excess demand)'
+    ],
+    analysis: 'Excess supply at current price → Unsold inventory accumulates → Sellers cut prices to clear stock → Price falls toward new equilibrium → Quantity supplied ↓, Quantity demanded ↑ → Eventually equilibrium is restored where Qs = Qd. During adjustment, buyers extract better terms (price reductions, warranties, extras).',
+    evaluation: 'Buyers\' markets redistribute surplus from producers to consumers, improving allocative efficiency when prices were previously above equilibrium. However, prolonged buyers\' markets can cause firm exits and unemployment. In housing markets, buyers\' conditions can trigger negative equity and reduced consumer spending (wealth effect).',
+    realWorldExample: 'The UK housing market shifted to a buyers\' market in 2023 as mortgage rate rises reduced demand. Properties stayed listed longer, asking prices fell, and buyers successfully negotiated discounts—a reversal from the sellers\' market of 2021.'
+  },
+  {
+    id: 'cabotage',
+    title: 'Cabotage',
+    category: 'trade',
+    definition: 'The right of a transportation company to operate services between two points within a country other than its own. Cabotage restrictions protect domestic transport industries from foreign competition.',
+    keyPoints: [
+      'Traditionally restricted to protect national carriers',
+      'EU single market allows cabotage for member states',
+      'Post-Brexit: UK cabotage rights in EU are limited',
+      'Affects road haulage, shipping, and aviation sectors'
+    ],
+    analysis: 'Cabotage restrictions → Foreign trucks cannot carry goods on domestic routes → ↓ Competition in domestic market → ↑ Prices for domestic transport → Inefficiency (empty return journeys) → But: protects domestic hauliers\' employment → Trade-off between efficiency and domestic industry protection.',
+    evaluation: 'Liberalizing cabotage increases efficiency (reduces empty running) and lowers transport costs. However, it may lead to "social dumping"—foreign operators with lower wage costs undercutting domestic firms. The EU\'s compromise allows temporary cabotage but limits operations to prevent permanent displacement.',
+    realWorldExample: 'After Brexit, EU hauliers lost automatic cabotage rights in the UK. This contributed to supply chain disruptions, as trucks that previously made multiple UK deliveries now returned empty, reducing efficiency.'
+  },
+  {
+    id: 'cairns-group',
+    title: 'Cairns Group and WTO',
+    category: 'trade',
+    definition: 'A coalition of 19 agricultural exporting countries that advocates for the liberalization of international trade in agricultural products within World Trade Organization negotiations. Named after Cairns, Australia, where the group was formed in 1986.',
+    keyPoints: [
+      'Members include Australia, Canada, Brazil, Argentina, New Zealand',
+      'Campaigns against agricultural subsidies and protectionism',
+      'Key player in WTO Doha Round negotiations',
+      'Opposes EU CAP and US farm subsidies'
+    ],
+    analysis: 'Cairns Group members have comparative advantage in agriculture → Rich country subsidies distort trade → ↓ World prices for agricultural goods → ↓ Export revenues for efficient producers → ↓ Development in agricultural LDCs → Cairns Group lobbies for subsidy reduction → If successful: ↑ World prices → ↑ Returns for efficient producers.',
+    evaluation: 'The Cairns Group represents efficient agricultural producers harmed by rich-world protectionism. However, its members include both developed (Australia) and developing (Argentina) nations with different interests. Complete liberalization could hurt net food-importing LDCs through higher prices. The failure of the Doha Round shows the difficulty of achieving agricultural reform.',
+    realWorldExample: 'The Cairns Group successfully pushed for the Agreement on Agriculture in the Uruguay Round (1994), which began the process of reducing agricultural subsidies—though EU and US protectionism remains substantial.'
+  },
+  {
+    id: 'call-money',
+    title: 'Call Money',
+    category: 'macro',
+    definition: 'Short-term loans between banks and financial institutions that can be "called" (demanded for repayment) at any time. Call money provides liquidity management in the interbank market and typically carries the lowest interest rates.',
+    keyPoints: [
+      'Overnight or very short-term interbank lending',
+      'Provides daily liquidity management for banks',
+      'Interest rate reflects short-term money market conditions',
+      'Central bank influences call rates through policy rate'
+    ],
+    analysis: 'Bank A has temporary surplus reserves → Lends to Bank B in call money market → Bank B uses funds to meet reserve requirements → Central bank ↑ policy rate → ↑ Opportunity cost of holding reserves → ↑ Call money rate → ↑ All short-term interest rates → Transmission mechanism of monetary policy.',
+    evaluation: 'Call money markets are essential for financial system liquidity but can freeze during crises. In 2008, interbank lending collapsed as banks hoarded liquidity—requiring central bank intervention (lender of last resort). The fragility of short-term funding highlighted by Northern Rock\'s collapse shows systemic risks of reliance on call money.',
+    formula: '\\text{Call Rate} \\approx \\text{Central Bank Policy Rate} + \\text{Risk Premium}',
+    realWorldExample: 'During the 2007-08 crisis, LIBOR (a key call money benchmark) spiked dramatically as banks refused to lend to each other, signaling breakdown of interbank trust. Central banks responded with emergency liquidity facilities.'
   }
 ];
 
