@@ -2589,6 +2589,562 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     evaluation: 'Crowding in depends on the type of spending: productive infrastructure (roads, broadband) crowds in; consumption spending (transfers) may crowd out. It also depends on economic conditions: near full employment, crowding out dominates; in recession, crowding in is more likely. The interest rate effect (crowding out) vs. accelerator effect (crowding in) determines the net impact.',
     formula: '\\Delta I_{\\text{private}} = f(\\Delta I_{\\text{public}}, \\text{spare capacity, confidence})',
     realWorldExample: 'The development of London\'s Canary Wharf followed government investment in the Jubilee Line extension. Public transport infrastructure unlocked private commercial real estate investment worth billions.'
+  },
+  // ========================================
+  // PHASE 6: Currency to Duopoly
+  // ========================================
+  {
+    id: 'currency-convertibility',
+    title: 'Currency Convertibility',
+    category: 'trade',
+    definition: 'The ability to exchange one currency for another without government restrictions. Full convertibility (both current and capital accounts) is a prerequisite for international trade and investment, while partial convertibility restricts capital flows to manage financial stability.',
+    keyPoints: [
+      'Current account convertibility: trade in goods/services unrestricted',
+      'Capital account convertibility: financial flows (investment) unrestricted',
+      'LDCs often maintain partial convertibility to prevent capital flight',
+      'IMF Article VIII requires current account convertibility for members'
+    ],
+    analysis: 'Country removes capital controls → Foreign investors can repatriate profits freely → ↑ FDI inflows (confidence) → But also: hot money can exit rapidly during crisis → Currency volatility ↑ → Central bank needs larger forex reserves to stabilize → Trade-off between openness and stability.',
+    evaluation: 'Full capital account convertibility exposes developing economies to "sudden stops" and speculative attacks. Malaysia\'s capital controls during the 1997 Asian Crisis were initially criticized but later vindicated—they stabilized the economy faster than IMF-prescribed liberalization. The "impossible trinity" shows you cannot have fixed rates, free capital flows, AND independent monetary policy.',
+    formula: '\\text{Impossible Trinity: Pick 2 of 3: } \\{\\text{Fixed } e, \\text{ Free } K, \\text{ Independent } M^s\\}',
+    realWorldExample: 'China maintains partial convertibility—the renminbi is freely convertible for trade (current account) but capital flows are restricted. This allowed China to avoid the 1997 Asian Crisis contagion that devastated fully open economies like Thailand.'
+  },
+  {
+    id: 'currency-substitution',
+    title: 'Currency Substitution (Dollarization)',
+    category: 'trade',
+    definition: 'The phenomenon where residents of a country use a foreign currency (typically the US dollar) alongside or instead of their domestic currency. This can be unofficial (de facto) or official (de jure), and typically occurs in economies with high inflation or currency instability.',
+    keyPoints: [
+      'Caused by loss of confidence in domestic currency (hyperinflation)',
+      'Pros: price stability, reduced transaction costs, lower interest rates',
+      'Cons: loss of seigniorage revenue, no monetary policy, no lender of last resort',
+      'Can be partial (dual circulation) or full (domestic currency abandoned)'
+    ],
+    analysis: 'Domestic inflation → 50% p.a. → Currency loses store of value function → Citizens hold USD for savings → Prices quoted in USD → Contracts written in USD → De facto dollarization → Central bank loses control of money supply → Cannot use monetary policy for stabilization → Fiscal policy becomes the only macro tool.',
+    evaluation: 'Full dollarization provides credibility and stability but eliminates monetary sovereignty. Ecuador (dollarized 2000) stabilized inflation but cannot devalue during commodity price crashes—real wages must fall instead. The loss of seigniorage (printing money revenue) represents 1-5% of GDP for most countries. Optimal for small, trade-dependent economies; costly for large, diverse ones.',
+    formula: '\\text{Seigniorage Loss} = \\frac{\\Delta M}{P} \\times \\text{(foregone when foreign currency adopted)}',
+    realWorldExample: 'Zimbabwe abandoned its hyperinflated currency in 2009, adopting the USD. Inflation fell from 79.6 billion% to single digits. However, Zimbabwe cannot devalue to boost exports—it must rely on productivity gains, which are slow to materialize.'
+  },
+  {
+    id: 'current-account-bop',
+    title: 'Current Account (Balance of Payments)',
+    category: 'trade',
+    definition: 'The component of the Balance of Payments that records transactions in goods (visible trade), services (invisible trade), primary income (investment income, wages), and secondary income (transfers, remittances). A deficit indicates a country is a net borrower from the rest of the world.',
+    keyPoints: [
+      'CA = Trade Balance + Net Services + Net Primary Income + Net Secondary Income',
+      'Deficit: spending on imports > earnings from exports → net borrower',
+      'Must be financed by capital/financial account surplus (foreign borrowing/investment)',
+      'Persistent deficits may signal declining competitiveness or excessive consumption'
+    ],
+    analysis: 'Current Account Deficit → Imports > Exports → Domestic absorption > Domestic production → Gap financed by: selling assets (FDI), borrowing abroad (debt), or depleting forex reserves → Sustainable if financing competitive investment → Unsustainable if financing consumption → Eventually requires adjustment (depreciation or recession).',
+    evaluation: 'Deficits are not inherently bad—if borrowed funds finance productive investment that generates future export capacity, they are sustainable (Lawson Doctrine). However, deficits financing consumption (like the US pre-2008) accumulate external debt. The UK has run deficits for decades, financed by capital inflows—sustainable while the City remains attractive, vulnerable if confidence shifts.',
+    formula: 'CA + KA + FA = 0 \\text{ (BoP identity; FA includes reserves)}',
+    realWorldExample: 'The UK ran a current account deficit of 4.3% of GDP in 2022—financed by capital inflows into London property, finance, and government bonds. Sustainability depends on continued foreign confidence in UK assets.'
+  },
+  {
+    id: 'current-constant-prices',
+    title: 'Current Prices vs. Constant Prices',
+    category: 'macro',
+    definition: 'Current prices (nominal values) measure economic output at prices prevailing in the period measured. Constant prices (real values) measure output at prices of a fixed base year, removing inflation to reveal genuine changes in quantity of goods and services produced.',
+    keyPoints: [
+      'Nominal GDP: value at current market prices (inflated)',
+      'Real GDP: value at base year prices (inflation-adjusted)',
+      'GDP deflator = (Nominal GDP / Real GDP) × 100',
+      'Use constant prices to compare output over time; current prices for contemporary snapshots'
+    ],
+    analysis: 'Nominal GDP ↑ 10% → Does this reflect ↑ real output or ↑ prices? → If inflation = 7%, Real GDP ↑ only ~3% → Constant prices strip out inflation effect → Allow genuine comparison of living standards over time → Essential for calculating real growth rates.',
+    evaluation: 'Constant prices require choosing a base year—the further from the base, the less accurate the comparison (due to changing relative prices and product quality). Chain-linked measures update the base year continuously to address this. Real GDP still ignores non-market activity, environmental degradation, and distributional issues.',
+    formula: '\\text{Real GDP} = \\frac{\\text{Nominal GDP}}{\\text{GDP Deflator}} \\times 100',
+    realWorldExample: 'UK nominal GDP grew 6% in 2022, but CPI inflation was 9%. Real GDP actually contracted—citizens were worse off despite higher nominal incomes. Always use constant prices for welfare comparisons.'
+  },
+  {
+    id: 'deadweight-debt',
+    title: 'Deadweight Debt',
+    category: 'macro',
+    definition: 'Government debt incurred for unproductive purposes (wars, consumption spending, bailouts) that does not generate future income streams to service the debt. Contrasts with reproductive debt, which finances investment yielding future returns.',
+    keyPoints: [
+      'Debt without corresponding productive assets creates future burden',
+      'Funded by future taxation—intergenerational transfer from young to old',
+      'Examples: war debt, cyclical deficits, bank bailouts without equity return',
+      'Distinguished from reproductive debt (infrastructure, education) that generates growth'
+    ],
+    analysis: 'War financed by borrowing → Factories destroyed, not built → Debt remains after war → Must be serviced from future taxation → Reduces future disposable income → ↓ Consumption, ↓ Investment → Drag on economic growth → "Debt overhang" → Classic deadweight burden.',
+    evaluation: 'The distinction matters for fiscal sustainability: reproductive debt (financing roads, education) generates growth that helps repay the debt. Deadweight debt compounds without offsetting growth. However, even "unproductive" spending may be justified—World War II debt was deadweight but historically necessary. Context matters more than rigid classification.',
+    formula: '\\text{Deadweight} = \\text{Total Debt} - \\text{Debt backed by productive assets}',
+    realWorldExample: 'UK national debt peaked at 250% of GDP after World War II—classic deadweight debt. It took until the 1970s to reduce to sustainable levels, partly through inflation eroding real value (financial repression).'
+  },
+  {
+    id: 'debt-burden-ratios',
+    title: 'Debt Burden Ratios',
+    category: 'macro',
+    definition: 'Metrics used to assess a country\'s ability to service external debt, including Debt-to-GDP ratio, Debt-to-Export ratio, and Debt Service Ratio (DSR). These ratios help creditors and policymakers evaluate debt sustainability and default risk.',
+    keyPoints: [
+      'Debt/GDP: stock measure of overall debt burden relative to economy size',
+      'Debt/Exports: indicates ability to earn forex to service external debt',
+      'Debt Service Ratio (DSR): annual payments as % of export earnings',
+      'IMF/World Bank use these for HIPC debt relief eligibility'
+    ],
+    analysis: 'Country borrows in USD → Must repay from export earnings (also USD) → If Debt/Exports > 200%, or DSR > 20%, debt unsustainable → Export revenues consumed by debt payments → No resources for development → Poverty trap → May require debt restructuring or forgiveness.',
+    evaluation: 'Ratios provide warning signals but not thresholds—Japan\'s 260% Debt/GDP is sustainable (yen-denominated, domestically held), while Argentina defaulted at 60% (USD-denominated, foreign-held). Currency composition, creditor identity, and growth trajectory matter more than raw numbers. Context is essential.',
+    formula: '\\text{DSR} = \\frac{\\text{Debt Service (Principal + Interest)}}{\\text{Export Earnings}} \\times 100',
+    realWorldExample: 'Zambia\'s debt service payments reached 40% of government revenue in 2020, forcing default. Compare to Japan, where 260% Debt/GDP remains sustainable because debt is yen-denominated and held domestically—no forex constraint.'
+  },
+  {
+    id: 'debt-crisis-africa',
+    title: 'Debt Crisis – Sub-Saharan Africa',
+    category: 'trade',
+    definition: 'The persistent debt overhang afflicting Sub-Saharan African (SSA) countries since the 1980s, caused by commodity price collapses, adverse terms of trade shocks, and structural adjustment programs that often worsened poverty while failing to restore growth.',
+    keyPoints: [
+      'Origins: 1970s oil shocks, Volcker interest rate hikes (1979-81)',
+      'Commodity prices collapsed → Export earnings fell → Debt/Export ratios exploded',
+      'Structural Adjustment Programs (SAPs) imposed austerity, liberalization',
+      'HIPC Initiative (1996) and MDRI (2005) provided eventual relief'
+    ],
+    analysis: 'SSA countries borrowed in 1970s (low interest rates) → Volcker shock: interest rates tripled → Commodity prices collapsed → Double blow: ↓ export earnings, ↑ debt servicing costs → Debt/Export ratios > 300% → SAPs imposed: cut health, education → Human capital deteriorated → Growth collapsed → "Lost Decades" of development.',
+    evaluation: 'The African debt crisis demonstrated the procyclicality of private lending (lend during booms, withdraw during crises) and the failure of Washington Consensus policies. SAPs prioritized creditor repayment over development. The eventual shift to debt relief (HIPC, MDRI) acknowledged that unpayable debt benefited no one—better to forgive and allow growth than extract payments from impoverished nations.',
+    realWorldExample: 'Tanzania spent 9x more on debt service than on health in the 1990s. After HIPC relief (2001), debt service fell and health/education spending increased—demonstrating the development trade-off of debt burdens.'
+  },
+  {
+    id: 'debt-crisis-latin-america',
+    title: 'Debt Crisis 1980s – Latin America',
+    category: 'trade',
+    definition: 'The financial crisis that erupted in August 1982 when Mexico declared it could not service its external debt, triggering defaults and restructurings across Latin America. The crisis revealed systemic risks of petrodollar recycling and sovereign lending without proper risk assessment.',
+    keyPoints: [
+      'Trigger: Mexico\'s August 1982 moratorium on $80bn debt',
+      'Causes: petrodollar recycling, floating-rate loans, Volcker shock',
+      'Spread: contagion to Brazil, Argentina, Venezuela, others',
+      'Resolution: Brady Plan (1989) exchanged bank loans for tradeable bonds'
+    ],
+    analysis: 'Oil exporters\' surpluses deposited in US banks → Banks recycled to Latin America (petrodollar recycling) → Loans at floating rates (LIBOR + spread) → Volcker raises US rates (1979-81) → LIBOR triples → Latin American debt service explodes → Simultaneously: commodity prices fall → ↓ Export earnings → Cannot service debt → Default cascade → The "Lost Decade."',
+    evaluation: 'The crisis exposed moral hazard in sovereign lending—banks assumed implicit government guarantees. The eventual Brady Plan (1989) restructured debt into tradeable bonds with face value reduction, restarting capital market access. However, the decade was "lost"—per capita GDP in 1990 was below 1980 levels. Lessons: floating-rate debt + commodity dependence + external shocks = explosive combination.',
+    formula: '\\text{Debt Dynamics: } \\dot{d} = (r - g) \\cdot d + \\text{Primary Deficit}',
+    realWorldExample: 'Brazil\'s inflation reached 2,477% in 1993 as the government printed money to service debt. Only the Plano Real (1994) currency reform, combined with restructuring, restored stability. The Lost Decade cost Brazil approximately 15 years of development.'
+  },
+  {
+    id: 'debt-service-ratios',
+    title: 'Debt Service Ratios',
+    category: 'macro',
+    definition: 'The proportion of a country\'s export earnings required to service external debt (principal repayments plus interest). A key indicator of debt sustainability—ratios above 20-25% signal potential repayment difficulties.',
+    keyPoints: [
+      'DSR = (Principal + Interest Payments) / Export Earnings × 100',
+      'World Bank threshold: DSR > 20% indicates vulnerability',
+      'High DSR diverts resources from development to creditor payments',
+      'Affected by global interest rates, commodity prices, exchange rates'
+    ],
+    analysis: 'DSR = 35% → One-third of all export earnings service debt → Only 65% available for imports (capital goods, medicine) → Development constrained → Growth slows → Tax revenues fall → Government cuts spending → Poverty deepens → Yet debt burden remains → Poverty trap created by debt overhang.',
+    evaluation: 'DSR is a flow measure (annual burden) complementing stock measures (Debt/GDP). Countries can reduce DSR by: growing exports faster than debt service, negotiating lower interest rates, debt restructuring, or outright default. The "debt Laffer curve" suggests creditors benefit from partial forgiveness if it restores growth—collecting 50% of a growing pie beats 100% of a shrinking one.',
+    formula: '\\text{DSR} = \\frac{\\text{Annual Debt Service}}{\\text{Annual Export Earnings}} \\times 100',
+    realWorldExample: 'Pakistan\'s DSR reached 40% in 2023, requiring IMF intervention. Each 1% increase in global interest rates adds billions to debt service costs for USD-denominated borrowers—demonstrating the external vulnerability of indebted LDCs.'
+  },
+  {
+    id: 'decreasing-returns-scale',
+    title: 'Decreasing Returns to Scale',
+    category: 'theory',
+    definition: 'A situation where proportionally increasing all inputs leads to a less than proportional increase in output. This indicates diseconomies of scale—the firm has grown beyond its optimal size and experiences coordination failures, bureaucracy, and inefficiency.',
+    keyPoints: [
+      'Doubling inputs leads to < 2× output',
+      'Causes: coordination problems, bureaucracy, communication failures',
+      'Long-run average cost curve slopes upward beyond optimal scale',
+      'Signals firm should consider downsizing or divesting'
+    ],
+    analysis: 'Firm doubles labor + capital → Output rises by only 60% → Average cost per unit ↑ → Firm becomes less competitive → Diseconomies from: communication breakdown (too many layers), principal-agent problems (workers shirk), coordination failures (left hand doesn\'t know what right hand does) → LRAC curve slopes upward.',
+    evaluation: 'Decreasing returns to scale suggest an optimal firm size beyond which growth destroys value. However, managerial innovations (IT systems, decentralized structures) can extend the range of constant or increasing returns. Conglomerates may exhibit decreasing returns while focused firms in the same industry show increasing returns—organizational structure matters as much as raw scale.',
+    formula: 'f(\\lambda K, \\lambda L) < \\lambda \\cdot f(K, L) \\text{ for } \\lambda > 1',
+    realWorldExample: 'British Leyland\'s nationalized conglomerate combined multiple car brands but suffered coordination failures—quality collapsed, costs rose. Privatization and breakup (Jaguar, Land Rover sold separately) restored efficiency by reducing diseconomies of scale.'
+  },
+  {
+    id: 'default-choices-nudges',
+    title: 'Default Choices (Nudge Economics)',
+    category: 'policy',
+    definition: 'A behavioral economics concept where the pre-selected option in a choice architecture significantly influences behavior, as people tend to stick with the default due to inertia, procrastination, or implicit endorsement. Defaults can "nudge" people toward socially beneficial outcomes without restricting freedom.',
+    keyPoints: [
+      'Exploits status quo bias and bounded rationality',
+      'Opt-out systems have higher participation than opt-in',
+      'Libertarian paternalism: shapes choices without mandating outcomes',
+      'Used for pensions (auto-enrollment), organ donation, green energy'
+    ],
+    analysis: 'Pension auto-enrollment (opt-out default) → 90%+ participation vs. 30% with opt-in → Behavioral barrier removed → People still free to opt out but rarely do → ↑ Retirement savings → ↓ Future poverty → Policy goal achieved without mandates → "Nudge" successful.',
+    evaluation: 'Defaults are powerful but raise ethical questions: Who designs the choice architecture? Whose interests do defaults serve? Critics argue nudges are manipulative, undermining autonomy. Proponents counter that no choice is "neutral"—someone must design the form, so why not design it well? The key is transparency about default-setting.',
+    formula: '\\text{Participation Rate}_{\\text{opt-out}} >> \\text{Participation Rate}_{\\text{opt-in}}',
+    realWorldExample: 'UK pension auto-enrollment (2012) increased participation from 55% to 90%. Opt-out rates are typically < 10%. Thaler and Sunstein\'s "Nudge" (2008) influenced government "Nudge Units" in UK, US, and elsewhere.'
+  },
+  {
+    id: 'defined-benefit-scheme',
+    title: 'Defined Benefit Pension Scheme',
+    category: 'policy',
+    definition: 'A pension scheme where the retirement benefit is determined by a formula (typically final salary × years of service × accrual rate), with the employer bearing investment risk. Contrasts with defined contribution schemes where benefits depend on investment returns.',
+    keyPoints: [
+      'Benefit = Final Salary × Years of Service × Accrual Rate (e.g., 1/60th)',
+      'Employer bears longevity and investment risk',
+      'Creates large contingent liabilities on corporate balance sheets',
+      'Declining in private sector due to cost; persists in public sector'
+    ],
+    analysis: 'Worker promised 2/3 final salary after 40 years → Employer must fund this regardless of investment returns → Longevity increases → Pension payouts last longer → Deficit emerges → Employer must inject cash → Diverts resources from investment → Competitive disadvantage vs. firms with defined contribution schemes.',
+    evaluation: 'Defined benefit schemes provide retirement security but create systemic risks. Underfunding (promises exceeding assets) has reached crisis levels in many countries. The shift to defined contribution transfers risk to employees—beneficial for employers but potentially catastrophic for workers who retire during market downturns. Intergenerational tension: current workers fund past promises.',
+    formula: '\\text{Pension} = \\frac{\\text{Years of Service}}{\\text{Accrual Rate}} \\times \\text{Final Salary}',
+    realWorldExample: 'The UK\'s state pension is unfunded (PAYGO)—current workers\' taxes fund current retirees. With rising dependency ratios (more retirees per worker), state pension age has risen from 65 to 68, and further increases are likely. Corporate defined benefit schemes are mostly closed to new members.'
+  },
+  {
+    id: 'absolute-relative-poverty',
+    title: 'Absolute vs. Relative Poverty',
+    category: 'macro',
+    definition: 'Absolute poverty measures income against a fixed threshold (e.g., $2.15/day) representing minimum subsistence needs. Relative poverty measures income relative to the median—typically < 60% of median income—capturing social exclusion and inequality within a society.',
+    keyPoints: [
+      'Absolute: can you meet basic needs? (food, shelter, clothing)',
+      'Relative: can you participate in normal activities of society?',
+      'Absolute poverty can be eliminated; relative poverty persists with inequality',
+      'LDCs focus on absolute; HICs focus on relative poverty'
+    ],
+    analysis: 'Country\'s median income rises from $20k to $40k → Absolute poverty may fall (incomes rise) → But relative poverty threshold rises from $12k to $24k → Those earning $15k move from non-poor to relatively poor → Poverty rate may be unchanged despite economic growth → Growth does not automatically reduce relative poverty.',
+    evaluation: 'Absolute measures allow international comparison but ignore local context (living costs vary). Relative measures capture social exclusion but can never reach zero in an unequal society—even if everyone\'s income doubles, relative poverty persists. Amartya Sen\'s "Capability Approach" offers an alternative: poverty is deprivation of capabilities (health, education, participation) rather than income alone.',
+    formula: '\\text{Relative Poverty Line} = 0.6 \\times \\text{Median Household Income}',
+    realWorldExample: 'China reduced absolute poverty from 88% (1981) to < 1% (2019) by World Bank measures. However, if using a relative poverty line, poverty remains significant—growth was unequal, and 600 million Chinese still earn < $150/month.'
+  },
+  {
+    id: 'comparative-advantage-definition',
+    title: 'Comparative Advantage – Definition',
+    category: 'trade',
+    definition: 'A country has a comparative advantage in producing a good if its opportunity cost (in terms of foregone production of other goods) is lower than in other countries. Trade based on comparative advantage allows all countries to consume beyond their PPCs, even if one country has absolute advantage in everything.',
+    keyPoints: [
+      'Based on relative opportunity costs, not absolute productivity',
+      'Explains why trade benefits all participants, even unequal ones',
+      'Ricardo\'s model: assumes constant costs, perfect competition, two goods/countries',
+      'Dynamic comparative advantage: can be created through policy (infant industry)'
+    ],
+    analysis: 'Country A: 1 cloth = 2 wine foregone (OC of cloth = 2W). Country B: 1 cloth = 0.5 wine foregone (OC of cloth = 0.5W) → B has comparative advantage in cloth → A has comparative advantage in wine → A specializes in wine, B in cloth → Trade at any rate between 0.5W and 2W per cloth → Both gain.',
+    evaluation: 'Ricardian comparative advantage assumes: full employment, factor immobility between countries but mobility within, no transport costs, static technology. In reality: structural unemployment during adjustment, factors are partially mobile internationally (FDI, migration), transport costs matter, and technology changes (dynamic comparative advantage). Comparative advantage is powerful but its assumptions limit real-world precision.',
+    formula: '\\text{Comparative Advantage: } \\frac{OC_A}{OC_B} \\neq 1 \\text{ for any good}',
+    realWorldExample: 'Bangladesh exports garments despite lower productivity in all sectors vs. Germany. Its opportunity cost of garments (in terms of engineering foregone) is lower than Germany\'s—it has comparative advantage in garments. This specialization has driven growth, lifting millions from poverty.'
+  },
+  {
+    id: 'deregulation-definition',
+    title: 'Deregulation – Definition',
+    category: 'policy',
+    definition: 'The removal or reduction of government rules and restrictions on business activity. Deregulation aims to increase competition, lower prices, and improve efficiency by reducing compliance costs and barriers to entry. It is a core supply-side policy.',
+    keyPoints: [
+      'Reduces barriers to entry → ↑ competition → ↓ prices',
+      'Cuts compliance costs → resources freed for productive use',
+      'May increase risk-taking → potential for crises (financial deregulation)',
+      'Often accompanied by privatization of state-owned enterprises'
+    ],
+    analysis: 'Deregulation of airline industry → New entrants (Ryanair, easyJet) → ↑ Competition → ↓ Fares → ↑ Consumer surplus → Incumbent firms forced to cut costs or exit → Productive efficiency ↑ → Dynamic efficiency ↑ (innovation in booking, routes) → But: job losses, service quality concerns, potential safety risks if regulation too lax.',
+    evaluation: 'Deregulation\'s success depends on market structure. In natural monopolies (utilities), deregulation may create private monopoly—worse than public. Financial deregulation (1980s-2000s) increased efficiency but also systemic risk—the 2008 crisis exposed the costs of light-touch regulation. Optimal policy: deregulate competitive markets, regulate where market failure persists.',
+    realWorldExample: 'UK bus deregulation (1986) outside London led to ↓ service, ↑ fares in rural areas (market failure). London\'s regulated franchise model maintained service quality. Deregulation requires market conditions suitable for competition.'
+  },
+  {
+    id: 'housing-market-definition',
+    title: 'Housing Market – Definition',
+    category: 'macro',
+    definition: 'The market for residential property, characterized by heterogeneity, immobility, durability, and significant transaction costs. Housing serves dual functions as consumption good (shelter) and investment asset, making it central to macroeconomic stability and wealth distribution.',
+    keyPoints: [
+      'Supply inelastic in short run (construction takes time, land fixed)',
+      'Demand driven by: income, interest rates, credit availability, expectations',
+      'Price stickiness downward (owners resist selling at loss)',
+      'Wealth effect: ↑ house prices → ↑ consumer confidence → ↑ consumption'
+    ],
+    analysis: '↓ Interest rates → ↓ Mortgage costs → ↑ Demand for housing → Supply fixed short-run → Prices rise → Wealth effect → Homeowners feel richer → ↑ Consumption → ↑ AD → But: first-time buyers priced out → Intergenerational inequality → Rent-seeking landlords capture gains.',
+    evaluation: 'Housing markets exhibit boom-bust cycles with macroeconomic consequences. The 2008 financial crisis originated in US housing (subprime). Policy tools: macroprudential regulation (LTV limits), property taxes (stamp duty), zoning reform (increase supply), social housing. Efficient housing markets require balancing homeowner wealth with affordability and macrofinancial stability.',
+    formula: '\\text{Affordability Ratio} = \\frac{\\text{Median House Price}}{\\text{Median Annual Income}}',
+    realWorldExample: 'UK house prices rose from 4× average income (1997) to 9× (2022). This wealth transfer from young to old entrenches inequality. Japan\'s housing bubble (1989 peak) followed by 30-year deflation shows the macroeconomic risks of housing misallocation.'
+  },
+  {
+    id: 'deflation-definition',
+    title: 'Deflation – Definition',
+    category: 'macro',
+    definition: 'A sustained decrease in the general price level, measured by negative CPI inflation. While appearing beneficial for consumers, deflation typically indicates weak demand, can trigger debt deflation spirals, and is associated with recession and depression.',
+    keyPoints: [
+      'Distinct from disinflation (falling but positive inflation rate)',
+      'Causes: ↓ AD (demand-pull) or ↑ AS (supply-push/benign deflation)',
+      'Debt deflation: ↑ real value of debt → ↓ spending → further deflation',
+      'Monetary policy ineffective at zero lower bound (liquidity trap)'
+    ],
+    analysis: 'Prices fall 2% p.a. → Consumers delay purchases (why buy today what\'s cheaper tomorrow?) → ↓ C → ↓ AD → Firms cut prices further → Deflation deepens → Real value of debt rises → Bankruptcies increase → Banks\' NPLs rise → Credit contracts → Depression risk. This is Fisher\'s Debt Deflation spiral.',
+    evaluation: 'Benign deflation from productivity gains (technology reducing costs) is harmless—even beneficial. Malignant deflation from demand collapse is catastrophic. Central banks target 2% inflation to provide buffer above deflation. Japan\'s "lost decades" (1990s-2010s) show deflation\'s persistence—once expectations anchor on falling prices, escape is extremely difficult.',
+    formula: '\\text{Real Interest Rate} = \\text{Nominal Rate} - \\text{Inflation} \\to \\text{rises as } \\pi < 0',
+    realWorldExample: 'Japan\'s deflation (1999-2012) averaged -0.3% annually. Despite zero interest rates, real rates remained positive, discouraging borrowing and spending. Only massive QE under "Abenomics" (2013) began to reverse deflationary psychology.'
+  },
+  {
+    id: 'deflationary-gap',
+    title: 'Deflationary Gap',
+    category: 'macro',
+    definition: 'The amount by which aggregate expenditure falls short of the level required to achieve full employment equilibrium. On the Keynesian 45-degree diagram, it is the horizontal distance between actual equilibrium income and full employment income. Also called a recessionary gap or negative output gap.',
+    keyPoints: [
+      'AE < Y_f: economy produces below potential',
+      'Results in: unemployment, underutilized capacity, low inflation/deflation',
+      'Closed by: expansionary fiscal policy (↑G, ↓T) or monetary policy (↓r)',
+      'Size of gap determines required injection (accounting for multiplier)'
+    ],
+    analysis: 'Full employment income = £1 trillion. Actual equilibrium = £900bn → Deflationary gap = £100bn → But with multiplier of 2, injection needed = £50bn only → Government ↑ spending by £50bn → Multiplied impact closes gap → Economy reaches full employment without inflation (Keynesian range of SRAS).',
+    evaluation: 'The Keynesian model assumes prices are sticky (horizontal SRAS) and monetary policy may be ineffective (liquidity trap). Closing the gap with fiscal policy may crowd out private investment and increase national debt. Supply-side economists argue the gap should close naturally as wages adjust downward—but this adjustment is slow and socially painful.',
+    formula: '\\text{Deflationary Gap} = Y_f - Y_e \\text{ (in terms of output)}',
+    realWorldExample: 'The UK\'s 2008-09 recession created a deflationary gap of ~8% of GDP. The £200bn fiscal stimulus (and £375bn QE) closed much of this gap by 2013, though critics argued austerity from 2010 prematurely slowed recovery.'
+  },
+  {
+    id: 'deindustrialization',
+    title: 'Deindustrialization',
+    category: 'macro',
+    definition: 'The decline of manufacturing as a share of GDP and employment, typically as economies develop and shift toward services. Can be positive (reflecting rising productivity and comparative advantage in services) or negative (reflecting declining competitiveness and structural unemployment).',
+    keyPoints: [
+      'Manufacturing share of UK employment: 25% (1980) → 8% (2023)',
+      'Positive: Productivity gains allow same output with fewer workers',
+      'Negative: Loss of competitiveness to lower-wage countries',
+      'Creates structural unemployment in former industrial regions'
+    ],
+    analysis: 'Rising productivity in manufacturing → Same output, fewer workers → Workers shift to services → Manufacturing employment falls, output stable → Positive deindustrialization. Alternatively: Rising imports from LDCs → Domestic firms cannot compete → Plant closures → Regional unemployment → Skills mismatch → Structural unemployment → Negative deindustrialization.',
+    evaluation: 'Deindustrialization is inevitable as economies develop, but the transition must be managed. The UK\'s 1980s deindustrialization left lasting scars in former industrial regions (North, Midlands)—lower employment rates, health problems, and political alienation persist 40 years later. Active labor market policies, retraining, and regional investment can smooth the transition.',
+    realWorldExample: 'The UK\'s manufacturing employment fell from 7 million (1970) to 2.5 million (2023). Former coal and steel towns (Barnsley, Redcar) still have employment rates 10-15% below national average—evidence of hysteresis effects from rapid deindustrialization.'
+  },
+  {
+    id: 'demand-curve-formula',
+    title: 'Demand Curve Formula',
+    category: 'theory',
+    definition: 'The mathematical expression of the inverse relationship between price and quantity demanded. The linear demand curve is expressed as Qd = a − bP, where \'a\' is the quantity demanded at zero price (the intercept) and \'b\' is the slope (responsiveness to price).',
+    keyPoints: [
+      'Qd = a − bP: linear demand function',
+      '\'a\' = intercept (quantity at P = 0, theoretical maximum)',
+      '\'b\' = slope (ΔQd/ΔP, always negative for normal goods)',
+      'Inverse form: P = (a/b) − (1/b)Qd for deriving marginal revenue'
+    ],
+    analysis: 'Given Qd = 100 − 2P → At P = 0, Qd = 100 (intercept) → At P = 50, Qd = 0 (choke price) → Slope b = 2 → For every £1 ↑ in price, Qd falls by 2 units → Elasticity varies along curve: elastic at high prices, inelastic at low prices (for linear demand).',
+    evaluation: 'Linear demand is a simplification—real-world demand curves may be convex or concave. The constant elasticity demand curve (Qd = aP^(-ε)) maintains the same PED at all points, which is often more realistic. Econometric estimation of demand functions informs pricing strategy, tax incidence analysis, and market power assessment.',
+    formula: 'Q_d = a - bP \\text{ or inverse: } P = \\frac{a}{b} - \\frac{1}{b}Q_d',
+    realWorldExample: 'Econometric studies estimate UK petrol demand as Qd = 30 − 0.5P (billion liters, £ per liter). With current prices around £1.50, quantity demanded ≈ 29.25bn liters. A 20p tax increase → Qd falls by 0.1bn liters—relatively inelastic.'
+  },
+  {
+    id: 'demand-for-money',
+    title: 'Demand for Money',
+    category: 'macro',
+    definition: 'The amount of wealth individuals and firms wish to hold as liquid money balances rather than illiquid assets. Keynes identified three motives: transactions (daily purchases), precautionary (unexpected expenses), and speculative (awaiting better investment opportunities).',
+    keyPoints: [
+      'Transactions demand: proportional to nominal income (PY)',
+      'Precautionary demand: buffer for unexpected needs',
+      'Speculative demand: inversely related to interest rates',
+      'Money demand function: Md = L(Y, r) where ∂L/∂Y > 0, ∂L/∂r < 0'
+    ],
+    analysis: '↓ Interest rates → ↓ Opportunity cost of holding money → ↑ Speculative money demand → Movement along liquidity preference curve. ↑ Income → ↑ Transactions demand → Shift of LP curve rightward. Money market equilibrium: Ms = Md determines interest rate.',
+    evaluation: 'Keynes\' speculative motive explains liquidity traps: at very low rates, money demand becomes perfectly elastic (everyone expects rates to rise, so hoards cash) → Monetary policy loses traction. Modern monetary theory emphasizes credit creation rather than money demand as the transmission mechanism—banks create money through lending, not vice versa.',
+    formula: 'M_d = L_1(Y) + L_2(r) \\text{ where } L_2\'(r) < 0',
+    realWorldExample: 'During the 2008-09 crisis, money demand surged as precautionary motives dominated—households and firms hoarded cash despite near-zero interest rates. This "dash for cash" frustrated central bank efforts to stimulate spending through rate cuts.'
+  },
+  {
+    id: 'demerit-good-definition',
+    title: 'Demerit Good – Definition',
+    category: 'market-failure',
+    definition: 'A good or service deemed harmful to consumers or society, which would be over-consumed in a free market due to imperfect information or externalities. The social marginal benefit (SMB) is less than the private marginal benefit (PMB), leading to overconsumption.',
+    keyPoints: [
+      'Information failure: consumers underestimate harm (addiction, future costs)',
+      'Negative externalities: harm to third parties (healthcare costs, passive smoking)',
+      'Market equilibrium > socially optimal quantity',
+      'Government intervention: taxes, regulation, bans, education'
+    ],
+    analysis: 'Smoker chooses based on PMB (pleasure now) > PMC (price) → Consumes at Q_m → But SMB < PMB (doesn\'t fully account for health harm, addiction) → And SMC > PMC (passive smoking, NHS costs) → Socially optimal Q* < Q_m → Deadweight loss from overconsumption → Tax internalizes externality, regulation reduces quantity.',
+    evaluation: 'Demerit good classification involves paternalism—the state decides what\'s "bad" for citizens. Libertarians argue adults should choose freely. However, addiction undermines rational choice (bounded rationality), and externalities impose costs on non-consumers. The optimal intervention balances harm reduction with individual liberty.',
+    formula: 'Q^* < Q_m \\text{ because } SMB < PMB \\text{ and/or } SMC > PMC',
+    realWorldExample: 'UK tobacco duty is 16.5% of the retail price plus £5.79 per 20 cigarettes—among the highest in the world. This tax aims to reduce consumption toward the social optimum. Combined with smoking bans (addressing externalities), smoking rates have fallen from 46% (1974) to 13% (2023).'
+  },
+  {
+    id: 'dependency-culture',
+    title: 'Dependency Culture',
+    category: 'policy',
+    definition: 'A social phenomenon where generous welfare benefits allegedly reduce the incentive to seek employment, creating a culture of reliance on state support across generations. Critics argue this perpetuates poverty; defenders argue the concept stigmatizes the poor and ignores structural barriers to work.',
+    keyPoints: [
+      'High replacement ratios (benefits/wages) may discourage work',
+      'Poverty trap: work barely improves income after benefit withdrawal',
+      'Intergenerational: children of benefit recipients may lack work role models',
+      'Contested concept: structural explanations (lack of jobs) vs. behavioral'
+    ],
+    analysis: 'Replacement ratio = 80% → Work barely pays → Marginal tax rate on work approaches 100% (lose benefits) → Rational to remain unemployed → Children grow up in workless households → No work ethic transmitted → Cycle of dependency → Structural unemployment persists despite vacancies.',
+    evaluation: 'Empirical evidence for "dependency culture" is weak—most unemployed actively seek work. The bigger barriers are: skill mismatches, geographic immobility, childcare costs, and discrimination. Universal Credit attempted to reduce marginal tax rates but created new issues (the "taper"). The narrative risks blaming the poor for structural failures—inequality, deindustrialization, and underinvestment in education.',
+    realWorldExample: 'UK\'s Universal Credit reduces the poverty trap by gradually tapering benefits (63p withdrawal per £1 earned). However, the administrative complexity and payment delays have caused hardship, and in-work poverty has risen—suggesting structural issues beyond "culture."'
+  },
+  {
+    id: 'dependency-ratio',
+    title: 'Dependency Ratio',
+    category: 'macro',
+    definition: 'The ratio of dependents (aged 0-14 and 65+) to the working-age population (15-64). A rising dependency ratio—driven by aging populations—strains public finances as fewer workers support more retirees and children.',
+    keyPoints: [
+      'Youth dependency: (0-14 population) / (15-64 population)',
+      'Old-age dependency: (65+ population) / (15-64 population)',
+      'Total dependency: Youth + Old-age ratio',
+      'Rising old-age ratios challenge pension and healthcare systems'
+    ],
+    analysis: '↑ Life expectancy + ↓ Fertility → Population ages → Old-age dependency ratio rises → More pensioners per worker → PAYGO pensions: fewer contributors, more recipients → Either: ↑ contributions (tax workers), ↓ benefits (cut pensions), or ↑ retirement age → Political tension between generations.',
+    evaluation: 'High dependency ratios are not inherently bad—they reflect success (longevity) and choice (smaller families). Policy responses include: raising retirement age, encouraging immigration (working-age), pro-natalist policies, and automation (capital substitutes for labor). Japan (dependency ratio 70%) manages through high saving rates and technology—dependency is a challenge, not a crisis.',
+    formula: '\\text{Total Dependency Ratio} = \\frac{\\text{Population (0-14) + Population (65+)}}{\\text{Population (15-64)}} \\times 100',
+    realWorldExample: 'Japan\'s old-age dependency ratio is 49% (2023)—nearly one retiree per two workers. The UK\'s is 30% and rising. By 2050, most developed countries will have ratios > 50%, requiring fundamental pension and healthcare reform.'
+  },
+  {
+    id: 'derived-demand',
+    title: 'Derived Demand',
+    category: 'theory',
+    definition: 'Demand for a factor of production (labor, capital, land) that arises not from the factor itself but from the demand for the final product it helps produce. The demand for bricklayers is derived from the demand for houses.',
+    keyPoints: [
+      'Factor demand depends on: final product demand, productivity, factor price',
+      'MRP = MPP × MR: firm hires until MRP = Wage',
+      'Derived demand curves are more elastic in the long run (substitution)',
+      'Shifts with: product demand, technology, complementary factor prices'
+    ],
+    analysis: '↑ Demand for new houses → ↑ Price of houses → ↑ MR for builders → ↑ MRP of bricklayers (same MPP, higher MR) → ↑ Demand for bricklayers → Wages rise → Construction employment expands. The derived demand links product markets to factor markets.',
+    evaluation: 'Derived demand explains why factor prices fluctuate with product cycles. Autoworkers\' wages depend on car demand, not their inherent worth. This creates vulnerability—workers in declining industries face falling wages regardless of skill. Elasticity of derived demand depends on: substitutability of factor, share of factor in total cost, elasticity of product demand, and elasticity of supply of other factors (Hicks-Marshall rules).',
+    formula: 'MRP_L = MPP_L \\times MR \\text{ (firms hire until } MRP_L = W)',
+    realWorldExample: 'The decline of UK coal mining reflected derived demand: electricity generators switched to gas (lower cost), → ↓ demand for coal → ↓ demand for miners → Pit closures. 170,000 mining jobs (1984) → 1,000 (2023).'
+  },
+  {
+    id: 'bonds-gilts-treasuries',
+    title: 'Bonds, Gilts, Treasuries, and Securities',
+    category: 'macro',
+    definition: 'Fixed-income debt instruments representing loans to governments or corporations. "Bond" is the generic term; "Gilts" are UK government bonds (gilt-edged, considered very safe); "Treasuries" are US government bonds. "Securities" is a broader term encompassing all tradeable financial instruments.',
+    keyPoints: [
+      'Bonds: issuer pays coupon (interest) and principal at maturity',
+      'Gilts: UK government bonds (various maturities: short, medium, long)',
+      'Treasuries: US government bonds (Bills < 1yr, Notes 2-10yr, Bonds > 10yr)',
+      'Inverse price-yield relationship: ↑ interest rates → ↓ bond prices'
+    ],
+    analysis: 'Government issues £100 gilt, 3% coupon → Pays £3/year → If market rates rise to 4% → New investors demand 4% → Old gilt only pays 3% → Its price must fall to ≈£97.50 to offer competitive yield → ↑ r → ↓ P. Central bank buying gilts (QE) → ↑ P → ↓ yields → Stimulates economy.',
+    evaluation: 'Government bonds are "risk-free" only in nominal terms (governments can print money). Inflation risk remains—holders receive fixed nominal payments while purchasing power erodes. Real yields (nominal minus inflation) can be negative. Gilt markets discipline governments: excessive borrowing → ↑ yields → ↑ debt service costs → "bond vigilantes" force fiscal correction.',
+    formula: '\\text{Yield} = \\frac{\\text{Coupon}}{\\text{Price}} \\text{ (approximately, for simple bonds)}',
+    realWorldExample: 'The "mini-Budget" crisis (September 2022) saw UK gilt yields spike 1.5% in days as markets rejected unfunded tax cuts. The Bank of England intervened with emergency gilt purchases to prevent pension fund collapse—demonstrating bond market power over fiscal policy.'
+  },
+  {
+    id: 'consumption-vs-investment',
+    title: 'Consumption vs. Investment',
+    category: 'macro',
+    definition: 'The fundamental distinction in national income accounting between spending on current satisfaction (consumption: food, entertainment, services) and spending on future productive capacity (investment: machinery, buildings, infrastructure). The allocation between C and I determines growth trajectory.',
+    keyPoints: [
+      'Consumption (C): spending that provides immediate utility',
+      'Investment (I): spending that increases future productive capacity',
+      'Trade-off: ↑ C today → ↓ resources for I → slower future growth',
+      'Savings = Income − Consumption → finances Investment (S = I in closed economy)'
+    ],
+    analysis: 'Country A: saves 30% of GDP → High investment → Rapid capital accumulation → Fast growth → Future consumption higher. Country B: saves 10% → High current consumption → Low investment → Slow growth → Future consumption constrained. Optimal saving rate balances present and future welfare (Ramsey-Solow model).',
+    evaluation: 'The C vs. I trade-off is fundamental to development. East Asian tigers (Japan, Korea, China) achieved high growth through 30-40% saving/investment rates—sacrificing current consumption for future prosperity. However, excessive investment can be wasteful (China\'s ghost cities). The optimal rate depends on diminishing returns to capital and social time preference.',
+    formula: 'Y = C + S \\text{ and } S = I \\text{ (closed economy)}',
+    realWorldExample: 'China\'s investment rate (45% of GDP) vs. US (21%) explains much of the growth differential. However, Chinese investment quality has declined—marginal capital productivity falling as resources flow to unproductive projects (property speculation, SOE inefficiency).'
+  },
+  {
+    id: 'tax-avoidance-evasion',
+    title: 'Tax Avoidance vs. Tax Evasion',
+    category: 'policy',
+    definition: 'Tax avoidance involves legally minimizing tax liability through careful planning and use of allowances. Tax evasion involves illegally concealing income or assets to reduce tax liability. The line between aggressive avoidance and evasion can be blurred.',
+    keyPoints: [
+      'Avoidance: legal (ISAs, pension contributions, incorporating to access lower rates)',
+      'Evasion: illegal (unreported income, offshore hidden accounts, false deductions)',
+      'Aggressive avoidance: legal but contrary to the "spirit" of the law',
+      'Tax gap: difference between tax owed and tax collected'
+    ],
+    analysis: 'Tax avoidance: exploits loopholes → Legal but reduces revenue → Government closes loopholes → New ones found → Cat-and-mouse game. Tax evasion: criminal offense → Penalties include prosecution → But enforcement costly → Underground economy persists → Reduces tax base → Higher rates on compliant taxpayers.',
+    evaluation: 'The distinction matters morally and legally. Avoidance is criticized as unfair (rich can afford advisors) but legal. Evasion is a crime. The debate over multinational corporations (Amazon, Google paying minimal tax through legal structures) has shifted public opinion—"legal but immoral." OECD\'s BEPS (Base Erosion and Profit Shifting) initiative aims to close international loopholes.',
+    formula: '\\text{Tax Gap} = \\text{Tax Owed} - \\text{Tax Collected}',
+    realWorldExample: 'UK tax gap is estimated at £36bn (2021-22)—roughly 5% of total tax liabilities. Of this, evasion accounts for ~£5bn, avoidance ~£1.7bn, and the rest from errors, non-payment, and hidden economy activities.'
+  },
+  {
+    id: 'different-economic-groups',
+    title: 'Different Economic Groups (Stakeholders)',
+    category: 'theory',
+    definition: 'The various participants in an economy whose interests may conflict: consumers (low prices), producers (high profits), workers (high wages), governments (tax revenue, social welfare), and foreign interests (market access). Policy involves balancing these stakeholder interests.',
+    keyPoints: [
+      'Consumers: prefer low prices, high quality, variety',
+      'Producers/Firms: prefer market power, low costs, profit maximization',
+      'Workers: prefer high wages, job security, good conditions',
+      'Government: balances growth, equity, stability, revenue',
+      'Foreign sector: exporters want access, importers want protection'
+    ],
+    analysis: 'Minimum wage ↑ → Workers gain (higher pay) → Consumers may lose (higher prices) → Firms may lose (squeezed margins) or gain (higher demand from workers) → Government: ↓ in-work benefits, ↑ tax revenue → Net effect depends on elasticities and magnitudes → Winners and losers from any policy.',
+    evaluation: 'Economic policy is inherently political because it involves value judgments about whose interests matter. Pareto efficiency (no one can be made better off without making someone worse off) is rarely achievable—most policies create winners and losers. Kaldor-Hicks compensation (winners could compensate losers) is the usual efficiency criterion, but compensation rarely happens in practice.',
+    realWorldExample: 'Brexit created clear stakeholder conflicts: farmers preferred protection (CAP), manufacturers wanted frictionless trade (single market), consumers wanted cheap imports, some workers feared wage competition from EU migrants. The referendum aggregated preferences but could not reconcile them—someone had to lose.'
+  },
+  {
+    id: 'types-of-socialism',
+    title: 'Different Types of Socialism',
+    category: 'theory',
+    definition: 'The spectrum of economic systems involving collective or state ownership of the means of production, ranging from democratic socialism (mixed economy with strong welfare state) to revolutionary socialism (abolition of private property through class struggle) to market socialism (worker cooperatives in market context).',
+    keyPoints: [
+      'Democratic socialism: welfare state, progressive taxation, regulated markets (Scandinavia)',
+      'Market socialism: worker-owned cooperatives competing in markets (Yugoslavia model)',
+      'Command socialism: central planning, state ownership (USSR, Cuba)',
+      'Revolutionary socialism: Marxist, transition through class struggle'
+    ],
+    analysis: 'Market Socialism: Workers own firm → Share profits democratically → No conflict between labor and capital → Incentives aligned → But: underinvestment (workers prefer wages to retained earnings) → Difficulty raising capital (no shares to sell) → May lack dynamism of capitalist competition.',
+    evaluation: 'The 20th century tested various socialisms: command economies collapsed (USSR 1991), democratic socialism thrives (Scandinavia consistently tops quality of life rankings), market socialism remains marginal (Mondragon cooperatives are successful but rare). Pure socialism (no markets, no private property) has not succeeded; hybrid systems combining social ownership, markets, and redistribution appear more viable.',
+    realWorldExample: 'Sweden is a "social democratic" economy: private ownership predominates, but: 45% tax/GDP ratio, universal healthcare/education, strong unions, and high redistribution. This "Nordic model" combines market efficiency with social equity—though critics argue it works only in small, homogeneous societies.'
+  },
+  {
+    id: 'distributive-efficiency',
+    title: 'Distributive Efficiency',
+    category: 'theory',
+    definition: 'An allocation is distributively efficient when resources are distributed to maximize social welfare, not just total output. It requires that goods go to those who value them most and that the resulting distribution is considered equitable by society. Distinct from allocative and productive efficiency.',
+    keyPoints: [
+      'Allocative efficiency: right goods produced (P = MC)',
+      'Productive efficiency: lowest cost production (on PPF)',
+      'Distributive efficiency: fair distribution of output',
+      'Requires value judgments—no objective definition of "fair"'
+    ],
+    analysis: 'Market achieves allocative + productive efficiency → But income distribution determined by initial endowments → If initial distribution is unequal (inherited wealth), so is final distribution → Market outcome may be Pareto efficient but distributively inefficient → Redistribution (taxes, transfers) improves distributive efficiency but may reduce allocative efficiency (distortionary taxes).',
+    evaluation: 'Distributive efficiency involves trade-offs. The Okun "leaky bucket": transferring money from rich to poor loses some (administrative costs, reduced incentives) → How much leakage is acceptable? Rawlsian justice (maximize position of worst-off) suggests high tolerance; Nozickean libertarians reject redistribution entirely. The "optimal" distribution is a political choice, not an economic calculation.',
+    formula: '\\text{Social Welfare} = W(U_1, U_2, ..., U_n) \\text{ (welfare function aggregates utilities)}',
+    realWorldExample: 'UK Gini coefficient: 0.34 (pre-redistribution) → 0.32 (post-tax/transfer). The tax-benefit system redistributes ~£130bn annually, improving distributive efficiency by society\'s revealed preferences—but debates continue over how much redistribution is optimal.'
+  },
+  {
+    id: 'division-of-labour',
+    title: 'Division of Labour',
+    category: 'theory',
+    definition: 'The specialization of workers in specific tasks or stages of production, increasing productivity through: repetition (learning by doing), time savings (no switching between tasks), and innovation (focused improvement). Adam Smith\'s pin factory example is the classic illustration.',
+    keyPoints: [
+      'Smith\'s pin factory: 10 specialized workers produce 48,000 pins/day vs. 10-20 each working alone',
+      'Benefits: ↑ skill, ↓ time wasted, ↑ innovation, enables mechanization',
+      'Costs: monotony, deskilling, alienation, dependency on others',
+      'Extends to international division of labour (comparative advantage)'
+    ],
+    analysis: 'Worker specializes in one task → Repetition builds expertise → Task completion time ↓ → No setup time between tasks → Worker identifies improvements → Tools designed for specific task → Mechanization follows specialization → Productivity multiplied → Lower unit costs → Economic growth.',
+    evaluation: 'Division of labour is the foundation of modern prosperity but creates vulnerabilities. Specialization means dependency—supply chain disruptions (COVID-19, Suez blockage) reveal fragility. Marx critiqued alienation—workers separated from the product of their labour. Modern concerns include gig economy precarity and AI displacing specialized tasks. The benefits are proven; managing the costs is the challenge.',
+    realWorldExample: 'Smith\'s pin factory (1776) showed 240× productivity gains from specialization. Modern equivalents: a Boeing 787 requires 2.3 million components from 5,400 suppliers across 100 countries—extreme division of labour, extreme productivity, extreme complexity.'
+  },
+  {
+    id: 'double-coincidence-wants',
+    title: 'Double Coincidence of Wants',
+    category: 'theory',
+    definition: 'A requirement for barter exchange to occur: both parties must want what the other has at the same time and place. Money eliminates this problem by serving as a medium of exchange, enabling indirect exchange and vastly expanding trade possibilities.',
+    keyPoints: [
+      'Barter requires: you have what I want AND I have what you want',
+      'Extremely limiting: most potential trades cannot occur',
+      'Money solves: sell goods for money, buy whatever you want with money',
+      'Money functions: medium of exchange, store of value, unit of account'
+    ],
+    analysis: 'Farmer has wheat, wants shoes → Cobbler wants bread, not wheat → Trade fails → Introduce money: Farmer sells wheat to baker for money → Buys shoes from cobbler with money → Both trades occur → Money enables specialization → Division of labour expands → Productivity rises → Civilization advances.',
+    evaluation: 'The double coincidence problem explains why all complex societies develop money. Even barter societies used commodity money (cattle, shells, grain) to facilitate trade. Modern money is fiat—valuable only because accepted—but still serves the same function: eliminating the double coincidence requirement. Cryptocurrency attempts to provide money without central authority but faces adoption challenges.',
+    realWorldExample: 'Medieval fairs solved double coincidence through dense markets—many traders, many goods, high probability of matches. But year-round trade required money. The spread of coinage correlated with trade expansion across all civilizations—from ancient Lydia to modern economies.'
+  },
+  {
+    id: 'dual-system-theory',
+    title: 'Dual-System Theory (Dual Economy)',
+    category: 'theory',
+    definition: 'Arthur Lewis\'s model of economic development describing LDCs as having two sectors: a traditional agricultural sector with surplus labor (zero marginal product) and a modern industrial sector. Development occurs as labor migrates from agriculture to industry, driven by wage differentials.',
+    keyPoints: [
+      'Traditional sector: subsistence farming, surplus labor, zero MPL',
+      'Modern sector: capitalist production, rising productivity, wage > subsistence',
+      'Development: labor flows from traditional → modern until surplus exhausted',
+      'Turning point: when agricultural labor becomes scarce, wages rise economy-wide'
+    ],
+    analysis: 'Rural sector has disguised unemployment (MPL = 0) → Urban wage > rural → Labor migrates → Industrial output expands (more workers) → Agricultural output unchanged (surplus labor was unproductive) → Profits reinvested → Capital accumulation → Development sustained → Eventually surplus labor exhausted → Wages rise → Lewis Turning Point reached.',
+    evaluation: 'Lewis model explains early-stage development (UK Industrial Revolution, East Asian tigers, China 1980-2010) but assumes: unlimited urban labor demand, no urban unemployment, constant industrial wages until turning point. In reality, premature deindustrialization, urban informal sectors, and jobless growth complicate the picture. The model works better for manufacturing-led development than service-led.',
+    formula: 'W_{\\text{industry}} > W_{\\text{agriculture}} \\to \\text{Labor migration until } MPL_A > 0',
+    realWorldExample: 'China\'s development (1980-2010) followed Lewis: 300 million rural-urban migrants, manufacturing boom, wages held down by labor surplus. Around 2010, wages accelerated (turning point)—China must now shift from labor-intensive to skill-intensive growth.'
+  },
+  {
+    id: 'duopoly',
+    title: 'Duopoly',
+    category: 'theory',
+    definition: 'A market structure with only two sellers, creating strategic interdependence where each firm\'s optimal decision depends on the other\'s actions. Game theory (Cournot, Bertrand, Stackelberg models) analyzes duopoly outcomes, which typically lie between monopoly and perfect competition.',
+    keyPoints: [
+      'Cournot: firms choose quantities simultaneously → equilibrium between monopoly and competition',
+      'Bertrand: firms choose prices simultaneously → price competition drives to marginal cost',
+      'Stackelberg: leader moves first, follower responds → leader advantage',
+      'Collusion temptation: duopolists may form cartels to act as joint monopoly'
+    ],
+    analysis: 'Cournot duopoly: Each firm maximizes profit given competitor\'s output → Best response functions → Nash equilibrium where neither wants to change → Output > monopoly but < perfect competition → Prices above MC but below monopoly level → Some deadweight loss but less than monopoly.',
+    evaluation: 'Duopoly outcomes depend crucially on assumptions: Bertrand (price competition) is more competitive than Cournot (quantity competition). In practice, tacit collusion is common—firms avoid aggressive competition to maintain profits. Contestability matters: even duopolies may behave competitively if entry is easy. Market dynamics (innovation, network effects) may naturally lead to duopoly in winner-take-most industries.',
+    formula: 'Q_{\\text{Cournot}} = \\frac{2(a-c)}{3b} \\text{ (for linear demand, identical firms)}',
+    realWorldExample: 'The global commercial aircraft market is a duopoly: Boeing and Airbus. They compete on quality and financing but avoid destructive price wars—the classic duopoly dynamic of competitive restraint. Entry barriers (development costs, certification) protect the duopoly structure.'
   }
 ];
 
