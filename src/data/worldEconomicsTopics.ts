@@ -1575,6 +1575,367 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     evaluation: 'Call money markets are essential for financial system liquidity but can freeze during crises. In 2008, interbank lending collapsed as banks hoarded liquidity—requiring central bank intervention (lender of last resort). The fragility of short-term funding highlighted by Northern Rock\'s collapse shows systemic risks of reliance on call money.',
     formula: '\\text{Call Rate} \\approx \\text{Central Bank Policy Rate} + \\text{Risk Premium}',
     realWorldExample: 'During the 2007-08 crisis, LIBOR (a key call money benchmark) spiked dramatically as banks refused to lend to each other, signaling breakdown of interbank trust. Central banks responded with emergency liquidity facilities.'
+  },
+  {
+    id: 'capital-account-bop',
+    title: 'Capital Account (Balance of Payments)',
+    category: 'trade',
+    definition: 'A component of the Balance of Payments recording international capital transfers and the acquisition/disposal of non-produced, non-financial assets (e.g., patents, copyrights, land). Often used interchangeably with the Financial Account, which records investment flows.',
+    keyPoints: [
+      'Records capital transfers (debt forgiveness, migrant transfers)',
+      'Includes non-produced assets: patents, trademarks, land purchases',
+      'Relatively small compared to Current and Financial Accounts',
+      'BoP Identity: Current Account + Capital Account + Financial Account = 0'
+    ],
+    analysis: 'Country receives debt forgiveness → Credit in Capital Account → Improves overall BoP position → Reduces need for Financial Account inflows → ↓ External debt burden → ↓ Future interest payments → Frees resources for domestic investment.',
+    evaluation: 'The Capital Account is often confused with the Financial Account (which records FDI, portfolio investment, and reserve changes). For CIE purposes, focus on the BoP identity: a Current Account deficit must be financed by a Financial Account surplus (capital inflows).',
+    formula: 'CA + KA + FA = 0 \\text{ (BoP Identity)}',
+    realWorldExample: 'The UK Capital Account is typically small—around £2-3 billion annually—compared to the Current Account (approximately -£80 billion deficit) and Financial Account (offsetting surplus).'
+  },
+  {
+    id: 'capital-accumulation',
+    title: 'Capital Accumulation',
+    category: 'macro',
+    definition: 'The process of increasing the stock of capital goods (machinery, equipment, infrastructure) in an economy through investment. Capital accumulation is a key driver of economic growth, increasing the productive capacity and shifting the LRAS/PPC outward.',
+    keyPoints: [
+      'Investment (I) adds to capital stock; depreciation reduces it',
+      'Net Investment = Gross Investment - Depreciation',
+      'Higher savings rate → More funds for investment → Faster accumulation',
+      'Harrod-Domar model: Growth = Savings Rate / Capital-Output Ratio'
+    ],
+    analysis: '↑ Savings rate → ↑ Loanable funds → ↓ Interest rates → ↑ Investment (I) → ↑ Capital stock (K) → ↑ Productive capacity → Outward shift of LRAS and PPC → ↑ Potential GDP → Long-run economic growth.',
+    evaluation: 'Capital accumulation was central to classical growth theory but has diminishing returns (each additional unit of capital adds less output). Endogenous growth theory emphasizes human capital and innovation as more sustainable growth drivers. Over-reliance on capital accumulation can also crowd out consumption, reducing current living standards.',
+    formula: 'K_{t+1} = K_t + I_t - \\delta K_t',
+    realWorldExample: 'China\'s rapid growth (1980-2020) was driven by exceptionally high investment rates (40-50% of GDP)—capital accumulation financed by high household and corporate savings.'
+  },
+  {
+    id: 'capital-consumption',
+    title: 'Capital Consumption',
+    category: 'macro',
+    definition: 'The using up or wearing out of capital goods during production, also known as depreciation. Capital consumption represents the portion of output that must be reinvested just to maintain the existing capital stock.',
+    keyPoints: [
+      'Also called depreciation or capital allowance',
+      'NNP = GNP - Capital Consumption (Net vs. Gross)',
+      'High depreciation reduces sustainable consumption potential',
+      'Replacement investment maintains capital stock; net investment expands it'
+    ],
+    analysis: 'Capital stock = £1 trillion → Annual depreciation rate = 5% → Capital consumption = £50 billion → If Gross Investment = £80 billion → Net Investment = £30 billion → Capital stock grows by £30 billion → Positive contribution to LRAS expansion.',
+    evaluation: 'National income measures should ideally use NNP (Net National Product) rather than GNP, as capital consumption represents a cost of production, not welfare. However, depreciation is difficult to measure accurately—accounting methods (straight-line vs. declining balance) give different values.',
+    formula: 'NNP = GNP - \\text{Depreciation}',
+    realWorldExample: 'US capital consumption averages approximately 15% of GDP annually. Failing infrastructure (roads, bridges) reflects under-investment relative to depreciation—capital stock quality declining.'
+  },
+  {
+    id: 'capital-depreciation',
+    title: 'Capital Depreciation',
+    category: 'macro',
+    definition: 'The decline in the value of capital assets over time due to wear and tear, obsolescence, or aging. Depreciation is both an economic concept (using up of capital) and an accounting practice (spreading asset costs over useful life).',
+    keyPoints: [
+      'Physical depreciation: wear and tear from use',
+      'Economic obsolescence: new technology makes old capital less valuable',
+      'Accounting methods: straight-line, declining balance, units of production',
+      'Tax implications: depreciation allowances reduce taxable profits'
+    ],
+    analysis: 'Machine purchased for £100,000 → 10-year useful life → Annual straight-line depreciation = £10,000 → Book value falls by £10,000 each year → Firm must set aside replacement funds → If not replaced: ↓ Capital stock → ↓ Productive capacity → Potential ↓ LRAS.',
+    evaluation: 'Accelerated depreciation (front-loading the write-off) provides tax incentives for investment by reducing taxable profits in early years. However, it can distort investment decisions and reduce government revenue. Economic depreciation often differs from accounting depreciation—technological obsolescence can make assets worthless before they physically wear out.',
+    formula: '\\text{Straight-line: } D = \\frac{\\text{Cost} - \\text{Salvage Value}}{\\text{Useful Life}}',
+    realWorldExample: 'Smartphones depreciate rapidly (often 50% in year one) due to technological obsolescence, while buildings depreciate slowly (2-3% annually) reflecting physical longevity.'
+  },
+  {
+    id: 'capital-expenditure',
+    title: 'Capital Expenditure',
+    category: 'macro',
+    definition: 'Spending on fixed assets (buildings, machinery, equipment, infrastructure) that provide benefits over multiple years. Capital expenditure (CapEx) adds to the capital stock and is distinct from current/revenue expenditure (day-to-day spending).',
+    keyPoints: [
+      'Creates assets that generate future productive capacity',
+      'Government CapEx: infrastructure, schools, hospitals',
+      'Private CapEx: machinery, factories, technology systems',
+      'CapEx recorded on balance sheet as asset (not expensed immediately)'
+    ],
+    analysis: 'Government ↑ capital expenditure on infrastructure → ↑ AD in short run (construction spending) → In long run: ↓ Transport costs → ↑ Productivity → ↑ LRAS → Multiplier effect on private investment (crowding-in) → Sustained growth.',
+    evaluation: 'Capital expenditure is often the first target for spending cuts during austerity—it\'s easier to defer new projects than cut salaries. However, this short-termism can undermine long-run growth and productivity. The distinction between capital and current spending can also be manipulated for political purposes.',
+    realWorldExample: 'The UK\'s HS2 railway project represents major public capital expenditure (~£100 billion), justified by expected productivity gains from improved connectivity—though cost overruns demonstrate CapEx estimation challenges.'
+  },
+  {
+    id: 'capital-flight',
+    title: 'Capital Flight',
+    category: 'trade',
+    definition: 'The rapid outflow of financial assets and capital from a country, typically triggered by political instability, economic crisis, or unfavorable policy changes. Capital flight causes currency depreciation and depletes foreign exchange reserves.',
+    keyPoints: [
+      'Triggered by: political uncertainty, high inflation, currency fears, tax increases',
+      'Recorded as debit in Financial Account (outflows)',
+      'Causes: currency depreciation, reserve depletion, interest rate spikes',
+      'Distinguishes "hot money" (portfolio flows) from FDI (more stable)'
+    ],
+    analysis: 'Political instability → ↑ Perceived risk → Investors sell domestic assets → ↑ Supply of domestic currency on forex market → Rapid currency depreciation → Central bank uses reserves to defend currency → Reserves depleted → ↑ Interest rates to attract capital → ↓ Investment, ↓ AD → Recession → Further capital flight (vicious cycle).',
+    evaluation: 'Capital controls (restricting outflows) can slow capital flight but damage investor confidence and market access. The "Impossible Trinity" means countries cannot simultaneously have fixed exchange rates, free capital movement, and independent monetary policy—capital flight forces a choice.',
+    realWorldExample: 'Argentina experienced severe capital flight in 2001-02 as confidence collapsed. The peso lost 75% of its value, banks froze deposits ("corralito"), and the economy contracted 11%—demonstrating the destructive potential of capital flight.'
+  },
+  {
+    id: 'capital-gains-tax',
+    title: 'Capital Gains Tax',
+    category: 'policy',
+    definition: 'A tax levied on the profit realized from the sale of assets (shares, property, businesses) when the selling price exceeds the purchase price. CGT aims to tax increases in wealth and reduce incentives for speculation.',
+    keyPoints: [
+      'Taxable event occurs on disposal (sale, gift, transfer)',
+      'Gain = Disposal Price - Acquisition Cost - Allowable Expenses',
+      'Annual exempt amount (tax-free allowance) typically applies',
+      'Different rates may apply: residential property vs. other assets'
+    ],
+    analysis: 'Investor buys shares for £10,000 → Sells for £25,000 → Capital gain = £15,000 → After annual exemption (e.g., £6,000) → Taxable gain = £9,000 → CGT at 20% = £1,800 → Net return = £13,200 → CGT reduces after-tax return on investment → May ↓ incentive to invest.',
+    evaluation: 'CGT promotes vertical equity (taxing wealth increases) but may discourage investment and risk-taking. The "lock-in effect" occurs when investors hold assets to defer tax, reducing market liquidity. Preferential CGT rates (below income tax) are justified as encouraging investment but criticized for favoring the wealthy.',
+    formula: '\\text{CGT} = (\\text{Disposal Price} - \\text{Acquisition Cost}) \\times \\text{Tax Rate}',
+    realWorldExample: 'UK CGT rates are 10%/20% for most assets (basic/higher rate taxpayers) but 18%/28% for residential property. The annual exemption was reduced from £12,300 to £6,000 in 2023, increasing the tax burden on smaller investors.'
+  },
+  {
+    id: 'capital-goods',
+    title: 'Capital Goods',
+    category: 'theory',
+    definition: 'Man-made resources used in the production of other goods and services, including machinery, equipment, factories, and infrastructure. Capital goods are one of the four factors of production and generate a return called interest (or profit on capital).',
+    keyPoints: [
+      'Factor of production: Land, Labor, Capital, Enterprise',
+      'Produced means of production (unlike land, which is natural)',
+      'Durable: provides services over multiple production periods',
+      'Investment creates new capital; depreciation reduces it'
+    ],
+    analysis: 'Firm invests in new machinery (capital goods) → ↑ Capital-labor ratio → ↑ Labor productivity → ↓ Average cost of production → ↑ Competitiveness → ↑ Supply (rightward shift) → In aggregate: ↑ LRAS → Economic growth.',
+    evaluation: 'Capital goods embody technology—new capital is typically more productive than old. However, capital investment requires sacrificing current consumption (opportunity cost on the PPC). The optimal capital stock depends on the interest rate, depreciation rate, and marginal product of capital.',
+    realWorldExample: 'Tesla\'s Gigafactories represent massive capital goods investments—automated production lines that increase output per worker. The factories themselves are capital goods producing consumer goods (electric vehicles).'
+  },
+  {
+    id: 'capital-intensive',
+    title: 'Capital Intensive',
+    category: 'theory',
+    definition: 'A production process or industry that uses a high proportion of capital relative to labor. Capital-intensive industries have high fixed costs, low variable costs per unit, and benefit from economies of scale.',
+    keyPoints: [
+      'High capital-to-labor ratio (K/L)',
+      'High fixed costs, low marginal costs',
+      'Examples: oil refining, semiconductor manufacturing, utilities',
+      'Contrast with labor-intensive: textiles, agriculture, services'
+    ],
+    analysis: 'Capital-intensive production → High fixed costs → Low variable costs → Average cost falls sharply as output increases (spreading fixed costs) → Significant economies of scale → Natural tendency toward oligopoly/monopoly → Barriers to entry (high capital requirements).',
+    evaluation: 'Capital intensity suits stable, high-volume production but lacks flexibility. Labor-intensive methods adapt better to fluctuating demand. The optimal factor mix depends on relative prices: if capital is cheap (low interest rates), capital intensity increases. Developing countries with abundant labor typically favor labor-intensive methods.',
+    formula: '\\text{Capital Intensity} = \\frac{K}{L} \\text{ (Capital per worker)}',
+    realWorldExample: 'Semiconductor fabrication plants ("fabs") cost $10-20 billion to build—among the most capital-intensive facilities in the world. Intel, TSMC, and Samsung dominate due to the massive entry barriers.'
+  },
+  {
+    id: 'capital-requirements',
+    title: 'Capital Requirements',
+    category: 'macro',
+    definition: 'Regulatory rules requiring banks to hold a minimum amount of capital (equity and retained earnings) relative to their risk-weighted assets. Capital requirements aim to ensure banks can absorb losses without becoming insolvent.',
+    keyPoints: [
+      'Basel Accords set international standards (Basel III current framework)',
+      'Tier 1 capital: core equity (shares, retained earnings)',
+      'Risk-weighted assets: loans weighted by default probability',
+      'Minimum ratios: 4.5% CET1, 6% Tier 1, 8% Total Capital'
+    ],
+    analysis: '↑ Capital requirements → Banks must hold more equity per £ of loans → ↓ Return on equity (profits spread over larger capital base) → Banks may ↓ lending to maintain ROE → ↓ Credit availability → ↓ Investment (I) → Contractionary effect. But: ↑ Bank resilience → ↓ Systemic risk → ↓ Probability of financial crisis.',
+    evaluation: 'Higher capital requirements trade off financial stability against credit availability. Post-2008 reforms (Basel III) significantly raised requirements, reducing crisis probability but potentially constraining lending. Countercyclical buffers allow requirements to flex with the economic cycle—higher in booms, relaxed in recessions.',
+    formula: '\\text{Capital Ratio} = \\frac{\\text{Tier 1 Capital}}{\\text{Risk-Weighted Assets}} \\geq 6\\%',
+    realWorldExample: 'UK banks now hold 15-20% capital ratios, compared to 3-5% before 2008. This reduced leverage makes banks safer but also less profitable—average bank ROE fell from 15%+ to under 10%.'
+  },
+  {
+    id: 'capital-labor-ratio',
+    title: 'Capital to Labor Ratio',
+    category: 'theory',
+    definition: 'The amount of capital employed per worker in a production process, measured as K/L. A higher capital-labor ratio indicates more capital-intensive production and typically correlates with higher labor productivity.',
+    keyPoints: [
+      'K/L = Capital stock ÷ Number of workers',
+      'Higher K/L → Higher labor productivity (output per worker)',
+      'Developed countries have higher K/L than developing countries',
+      'Optimal K/L depends on relative factor prices (wage rate vs. interest rate)'
+    ],
+    analysis: 'K/L increases (capital deepening) → Each worker has more equipment → ↑ Marginal product of labor → ↑ Output per worker → ↑ Wages (MPL = real wage in competitive markets) → But: diminishing returns mean each additional unit of K adds less to output.',
+    evaluation: 'The Solow growth model shows that capital deepening alone cannot sustain growth indefinitely due to diminishing returns. Eventually, the marginal product of capital falls to equal the depreciation rate (steady state). Sustained growth requires technological progress that shifts the production function upward.',
+    formula: '\\frac{K}{L} \\text{ where } Y = f(K, L)',
+    realWorldExample: 'US manufacturing has a K/L ratio approximately 10 times that of India. This explains the productivity gap—US workers produce more per hour because they work with more capital equipment.'
+  },
+  {
+    id: 'capital-widening-deepening',
+    title: 'Capital Widening and Deepening',
+    category: 'macro',
+    definition: 'Capital widening increases the capital stock to match a growing labor force (K/L constant). Capital deepening increases capital per worker (K/L rises), boosting labor productivity. Both contribute to economic growth but through different mechanisms.',
+    keyPoints: [
+      'Widening: K grows at same rate as L → K/L unchanged',
+      'Deepening: K grows faster than L → K/L increases → ↑ Productivity',
+      'Widening maintains output per worker; deepening increases it',
+      'Developing countries need widening; developed countries focus on deepening'
+    ],
+    analysis: 'Capital Widening: Labor force grows 2% → Capital must grow 2% to maintain K/L → Output per worker unchanged → GDP grows at same rate as population. Capital Deepening: Capital grows 5%, labor grows 2% → K/L increases → ↑ MPL → ↑ Output per worker → GDP grows faster than population → Rising living standards.',
+    evaluation: 'Developing countries often prioritize capital widening to employ growing populations. Developed countries with stable populations focus on capital deepening for productivity growth. The Harrod-Domar model emphasizes widening (maintaining the capital-output ratio), while Solow emphasizes deepening and technological progress.',
+    formula: '\\text{Widening: } \\Delta K = n \\cdot K \\text{; Deepening: } \\Delta K > n \\cdot K',
+    realWorldExample: 'China\'s growth combined both: massive capital widening (employing rural migrants in factories) and deepening (increasingly sophisticated equipment). As the labor force peaks, China must shift to deepening and innovation for continued growth.'
+  },
+  {
+    id: 'capitalism-vs-socialism',
+    title: 'Capitalism vs. Socialism',
+    category: 'theory',
+    definition: 'Two contrasting economic systems. Capitalism features private ownership of the means of production, market-determined allocation, and profit motivation. Socialism features collective/state ownership, planned allocation, and production for social need rather than profit.',
+    keyPoints: [
+      'Capitalism: Private property, free markets, price mechanism, profit motive',
+      'Socialism: Public ownership, central planning, equitable distribution',
+      'Mixed economies combine elements of both (e.g., UK, Nordic countries)',
+      'The "economic calculation problem" challenges socialist planning'
+    ],
+    analysis: 'Capitalism: Price signals guide resource allocation → Profit incentive drives efficiency → But: market failures (externalities, inequality, monopoly) require correction. Socialism: Planning eliminates market failures → Equitable distribution → But: no price signals → Information problem → Inefficient resource allocation.',
+    evaluation: 'The 20th century provided a natural experiment: capitalist economies generally outperformed socialist ones in growth and living standards. However, pure capitalism generates inequality and instability, while socialism faces the "knowledge problem" (Hayek)—planners cannot replicate the information contained in market prices.',
+    realWorldExample: 'East vs. West Germany (1949-1990) illustrated the systems: both started similarly, but by 1989, West German GDP per capita was 3-4 times higher. Post-transition, former socialist economies faced painful adjustment to market systems.'
+  },
+  {
+    id: 'capitalist-definition',
+    title: 'Capitalist (Definition)',
+    category: 'theory',
+    definition: 'An individual or entity that owns capital goods and employs them in production for profit. In Marxist terminology, the capitalist class (bourgeoisie) owns the means of production and extracts surplus value from workers\' labor.',
+    keyPoints: [
+      'Owns means of production (factories, equipment, financial capital)',
+      'Earns profit/interest as return on capital ownership',
+      'Bears risk: may lose capital if venture fails',
+      'Marxist view: exploits labor by paying wages below value created'
+    ],
+    analysis: 'Capitalist invests £1 million in factory → Employs workers at market wage → Output sold for £1.2 million → Profit = £200,000 → Profit represents return to risk-bearing and entrepreneurship (mainstream view) OR extraction of surplus value from unpaid labor (Marxist view).',
+    evaluation: 'The role of capitalists is debated. Neoclassical economics sees profit as the reward for risk, delayed consumption, and organization. Marxist economics views profit as exploitation—workers create all value but receive only subsistence wages. Modern stakeholder capitalism attempts to balance shareholder returns with worker and social interests.',
+    realWorldExample: 'Venture capitalists epitomize the capitalist role: they provide risk capital to startups, accepting high failure rates in exchange for potential high returns. Their capital enables innovation that might otherwise not occur.'
+  },
+  {
+    id: 'capitalist-economic-system',
+    title: 'Capitalist Economic System',
+    category: 'theory',
+    definition: 'An economic system characterized by private ownership of productive resources, market-based allocation through the price mechanism, profit motivation, and voluntary exchange. Also known as a market economy or free enterprise system.',
+    keyPoints: [
+      'Private property rights: legal ownership of resources and output',
+      'Price mechanism: coordinates supply and demand through market prices',
+      'Profit motive: incentivizes efficiency and innovation',
+      'Consumer sovereignty: consumers determine what is produced through demand'
+    ],
+    analysis: 'Consumer demand signals preferences → ↑ Price where demand exceeds supply → ↑ Profit signals for producers → Resources shift to profitable sectors → Supply expands → Prices stabilize → Efficient allocation without central planning. Competition drives: ↓ Costs, ↑ Quality, Innovation.',
+    evaluation: 'Capitalism excels at efficiency and innovation but fails to provide public goods, correct externalities, or ensure equity. Market failures justify government intervention (regulation, taxation, provision). The optimal system is typically a mixed economy—markets where they work well, government where they fail.',
+    realWorldExample: 'The US represents a relatively pure capitalist system with limited government intervention. Nordic countries combine capitalist production with extensive redistribution. China\'s "state capitalism" blends market mechanisms with significant state ownership and planning.'
+  },
+  {
+    id: 'carbon-price-support',
+    title: 'Carbon Price Support',
+    category: 'market-failure',
+    definition: 'A UK policy supplementing the EU Emissions Trading System (ETS) carbon price with an additional tax to create a higher, more stable carbon price floor. Designed to incentivize low-carbon investment by ensuring a minimum cost of carbon emissions.',
+    keyPoints: [
+      'UK Carbon Price Floor = ETS price + Carbon Price Support rate',
+      'Currently ~£18/tonne CPS on top of UK ETS price',
+      'Aims to provide investment certainty for renewable energy',
+      'Raises costs for fossil fuel electricity generation'
+    ],
+    analysis: '↑ Carbon price → ↑ Cost of coal/gas electricity generation → Relative ↓ cost of renewables → ↑ Investment in wind, solar, nuclear → ↓ Carbon emissions → Externality partially internalized. Also: ↑ Electricity prices → ↓ Demand (efficiency incentive) → Further ↓ emissions.',
+    evaluation: 'The carbon price support successfully accelerated UK coal phase-out (from 40% of generation in 2012 to near-zero by 2023). However, it raised industrial electricity costs, potentially causing "carbon leakage" (production moving to countries with lower carbon prices). Ideally, a global carbon price would prevent leakage.',
+    realWorldExample: 'UK electricity sector emissions fell 70% between 2012-2022, largely due to the carbon price making coal uneconomic. The UK now has among the highest carbon prices globally, driving the transition to renewables.'
+  },
+  {
+    id: 'carbon-tax',
+    title: 'Carbon Tax',
+    category: 'market-failure',
+    definition: 'A tax on carbon dioxide emissions (or the carbon content of fossil fuels) designed to internalize the negative externality of climate change. By making polluters pay the social cost of carbon, it incentivizes emission reductions and clean technology adoption.',
+    keyPoints: [
+      'Pigouvian tax: sets tax equal to Marginal External Cost (MEC)',
+      'Aims to achieve: Marginal Social Cost = Marginal Social Benefit',
+      'Advantages: price certainty, revenue generation, economic efficiency',
+      'Disadvantages: quantity uncertainty, regressive impact, competitiveness concerns'
+    ],
+    analysis: 'Production creates CO₂ emissions → MPC < MSC (external cost not borne by producer) → Market overproduces → Carbon tax = MEC per unit → ↑ Production costs → ↓ Supply → ↓ Quantity to socially optimal level → Deadweight loss eliminated → Allocative efficiency restored.',
+    evaluation: 'A carbon tax is economically efficient (minimizes abatement cost) but faces political resistance. It\'s regressive (hits poor households proportionately harder via higher energy costs)—revenue recycling (dividends to households) can offset this. Quantity is uncertain unlike cap-and-trade; the tax rate must be adjusted if emission targets are missed.',
+    formula: 't^* = MEC \\text{ (Optimal tax equals Marginal External Cost)}',
+    realWorldExample: 'Sweden\'s carbon tax (introduced 1991) is among the world\'s highest at ~$130/tonne. Swedish emissions fell 25% while the economy grew 75%—evidence that carbon taxation can work without harming growth.'
+  },
+  {
+    id: 'carbon-trading',
+    title: 'Carbon Trading (Emissions Trading)',
+    category: 'market-failure',
+    definition: 'A market-based system to reduce emissions where a cap on total emissions is set, allowances are distributed or auctioned, and firms can trade allowances. Also known as cap-and-trade, it creates a carbon price through market forces.',
+    keyPoints: [
+      'Cap: government sets total emissions limit',
+      'Trade: firms buy/sell allowances based on abatement costs',
+      'Low-cost abaters reduce emissions and sell surplus allowances',
+      'High-cost abaters buy allowances rather than abate'
+    ],
+    analysis: 'Cap set at 100 million tonnes → 100 million allowances issued → Firm A: abatement cost £20/t; Firm B: abatement cost £50/t → Market price settles around £35/t → Firm A abates (cheaper than buying) and sells permits → Firm B buys permits (cheaper than abating) → Total abatement at minimum cost.',
+    evaluation: 'Carbon trading achieves emission targets with certainty (unlike carbon tax) but price volatility creates investment uncertainty. The EU ETS price collapsed in 2008-2018 due to over-allocation, weakening incentives. Effective trading requires: tight caps, no free allocation, and link to border adjustment to prevent leakage.',
+    formula: 'P_{\\text{allowance}} = MC_{\\text{abatement}} \\text{ (in equilibrium)}',
+    realWorldExample: 'The EU Emissions Trading System covers ~40% of EU emissions. After reforms tightening the cap, prices rose from €5 (2017) to €80+ (2023), dramatically shifting economics toward renewables and away from coal.'
+  },
+  {
+    id: 'cardinal-ordinal-utility',
+    title: 'Cardinal and Ordinal Utility',
+    category: 'theory',
+    definition: 'Two approaches to measuring utility (satisfaction). Cardinal utility assumes utility can be measured in absolute units ("utils") and compared across individuals. Ordinal utility assumes only that preferences can be ranked (A > B > C) without measuring magnitudes.',
+    keyPoints: [
+      'Cardinal: utility measured in "utils"; assumes interpersonal comparison possible',
+      'Ordinal: only ranking matters; indifference curve analysis',
+      'Modern economics uses ordinal utility (avoids measurement problems)',
+      'Marginal utility derived from indifference curve slopes (MRS)'
+    ],
+    analysis: 'Cardinal approach: Good A gives 50 utils, Good B gives 30 utils → A preferred by 20 utils → Diminishing marginal utility explains downward-sloping demand. Ordinal approach: Consumer prefers bundle (3A, 2B) to (2A, 3B) → Indifference curve through (3A, 2B) lies above curve through (2A, 3B) → Slope of IC = MRS = ratio of marginal utilities.',
+    evaluation: 'Cardinal utility faces the problem that "utils" cannot be measured objectively or compared across people. Ordinal utility avoids this—we only need to observe choices to infer preferences. However, welfare economics (comparing social states) implicitly requires some interpersonal comparison, challenging strict ordinal approaches.',
+    formula: 'MRS_{xy} = \\frac{MU_x}{MU_y} = \\frac{P_x}{P_y} \\text{ (at optimum)}',
+    realWorldExample: 'Revealed preference theory (Samuelson) operationalizes ordinal utility: we infer preferences from actual choices. If a consumer buys bundle A when B was affordable, A is "revealed preferred" to B—no utils required.'
+  },
+  {
+    id: 'cartel',
+    title: 'Cartel',
+    category: 'theory',
+    definition: 'A formal agreement between competing firms to coordinate pricing, output, or market allocation to maximize joint profits. Cartels act as collective monopolists, restricting output and raising prices above competitive levels.',
+    keyPoints: [
+      'Explicit collusion: firms agree on prices/quantities',
+      'Illegal in most jurisdictions (anti-trust/competition law)',
+      'OPEC is a legal intergovernmental cartel (sovereign immunity)',
+      'Inherent instability: each member has incentive to cheat'
+    ],
+    analysis: 'Firms form cartel → Agree to restrict output to Q* and set price at P* (monopoly price) → Joint profits maximized → But: each firm has incentive to cheat (undercut price or exceed quota) → If one cheats, it gains market share at cartel price → If all cheat, cartel collapses → Prisoner\'s dilemma structure.',
+    evaluation: 'Cartels are unstable due to the "incentive to cheat"—game theory predicts defection. Successful cartels require: few members, ability to detect cheating, capacity to punish defectors, and barriers to new entry. OPEC\'s longevity reflects its ability to punish (Saudi Arabia can flood the market) and high entry barriers (geology).',
+    formula: '\\text{Cartel Profit} = (P^* - AC) \\times Q^* > \\text{Competitive Profit}',
+    realWorldExample: 'The lysine cartel (1992-1995) involving ADM and Asian producers fixed prices, raising them 70% above competitive levels. FBI investigation led to $100 million in fines and executive prison sentences—demonstrating both cartel profitability and legal risks.'
+  },
+  {
+    id: 'cash-flow',
+    title: 'Cash Flow in Business',
+    category: 'theory',
+    definition: 'The movement of money into and out of a business over a period. Positive cash flow (inflows > outflows) enables a firm to meet obligations, invest, and grow. Cash flow differs from profit—a profitable firm can fail if cash flow is negative.',
+    keyPoints: [
+      'Cash flow ≠ Profit (timing differences, non-cash items)',
+      'Operating cash flow: from core business activities',
+      'Investing cash flow: capital expenditure, asset sales',
+      'Financing cash flow: debt, equity, dividends'
+    ],
+    analysis: 'Firm makes £100k sales on credit → Profit recorded immediately → But cash not received for 60 days → Meanwhile, suppliers demand payment in 30 days → Cash flow negative despite profit → Firm may become insolvent (unable to pay debts when due) → "Profitable but bust."',
+    evaluation: 'Cash flow management is critical for survival, especially for growing firms (increasing working capital needs) and seasonal businesses. Investors analyze free cash flow (operating cash flow minus CapEx) as the true measure of value creation—profit can be manipulated through accounting, but cash is concrete.',
+    formula: 'FCF = \\text{Operating Cash Flow} - \\text{Capital Expenditure}',
+    realWorldExample: 'Carillion (UK construction firm) reported profits while cash flow was consistently negative—the gap financed by delaying supplier payments. When suppliers demanded payment, Carillion collapsed (2018), destroying £1 billion of pension fund value.'
+  },
+  {
+    id: 'cash-ratio',
+    title: 'Cash Ratio',
+    category: 'macro',
+    definition: 'A liquidity ratio measuring a bank\'s cash and cash equivalents relative to its deposit liabilities. A higher cash ratio indicates greater liquidity but lower profitability (cash earns no interest). Also refers to the reserve ratio in money creation.',
+    keyPoints: [
+      'Cash Ratio = Cash / Total Deposits',
+      'Higher ratio → more liquid but less profitable (idle funds)',
+      'Required reserve ratios set minimum cash holdings',
+      'Determines money multiplier: 1/cash ratio'
+    ],
+    analysis: 'Bank holds 10% cash ratio → Deposits £100 million → Reserves = £10 million → Can lend £90 million → These loans become deposits elsewhere → Money multiplier = 1/0.10 = 10 → Maximum money supply expansion = £1 billion from initial £100 million deposit.',
+    evaluation: 'Low cash ratios maximize lending and profitability but increase vulnerability to bank runs. Basel III introduced the Liquidity Coverage Ratio (LCR) requiring banks to hold high-quality liquid assets covering 30 days of outflows—a more sophisticated measure than simple cash ratios.',
+    formula: '\\text{Money Multiplier} = \\frac{1}{\\text{Cash Ratio}}',
+    realWorldExample: 'Northern Rock operated with minimal liquid assets, relying on wholesale funding. When markets froze in 2007, it couldn\'t meet depositor demands—the first UK bank run in 140 years. Post-crisis regulation significantly raised liquidity requirements.'
+  },
+  {
+    id: 'ceiling-prices',
+    title: 'Ceiling Prices (Maximum Prices)',
+    category: 'policy',
+    definition: 'Government-imposed maximum prices set below the market equilibrium to protect consumers from high prices. Ceiling prices create excess demand (shortages) and require rationing mechanisms to allocate the limited supply.',
+    keyPoints: [
+      'Set below equilibrium: P_max < P_e',
+      'Creates shortage: Qd > Qs at the ceiling price',
+      'Requires rationing: queuing, coupons, or black markets emerge',
+      'Examples: rent controls, price caps on energy, wartime rationing'
+    ],
+    analysis: 'Market equilibrium: P = £100, Q = 1000 → Government sets ceiling at £60 → At £60: Qd = 1500, Qs = 600 → Shortage of 900 units → Some consumers cannot buy at any price → Black market emerges at price above ceiling → Allocative inefficiency: willing buyers cannot transact with potential sellers.',
+    evaluation: 'Ceiling prices help consumers who successfully purchase but harm those who face shortages. Long-run effects worsen the situation: low prices discourage supply (landlords exit rental market, producers reduce investment). Rent controls, for example, reduce housing quality and availability over time—"the best way to destroy a city, short of bombing" (Assar Lindbeck).',
+    formula: 'P_{\\text{max}} < P_e \\Rightarrow Q_d > Q_s \\text{ (shortage)}',
+    realWorldExample: 'The UK energy price cap limits what suppliers can charge households. When wholesale prices exceeded the cap in 2022, suppliers faced losses, some went bankrupt, and the government provided £60 billion in subsidies to prevent market collapse.'
   }
 ];
 
