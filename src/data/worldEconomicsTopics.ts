@@ -3145,6 +3145,300 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     evaluation: 'Duopoly outcomes depend crucially on assumptions: Bertrand (price competition) is more competitive than Cournot (quantity competition). In practice, tacit collusion is common—firms avoid aggressive competition to maintain profits. Contestability matters: even duopolies may behave competitively if entry is easy. Market dynamics (innovation, network effects) may naturally lead to duopoly in winner-take-most industries.',
     formula: 'Q_{\\text{Cournot}} = \\frac{2(a-c)}{3b} \\text{ (for linear demand, identical firms)}',
     realWorldExample: 'The global commercial aircraft market is a duopoly: Boeing and Airbus. They compete on quality and financing but avoid destructive price wars—the classic duopoly dynamic of competitive restraint. Entry barriers (development costs, certification) protect the duopoly structure.'
+  },
+
+  // ========================================
+  // PHASE 7: Economic Cycles, Trade Barriers, Externalities
+  // ========================================
+
+  {
+    id: 'economic-booms',
+    title: 'Economic Booms',
+    category: 'macro',
+    definition: 'A period of rapid economic expansion characterized by high GDP growth, falling unemployment, rising asset prices, and increasing consumer/business confidence. Booms occur in the expansionary phase of the business cycle, often fueled by rising AD outpacing LRAS growth.',
+    keyPoints: [
+      'Characteristics: ↑ Real GDP growth (above trend), ↓ Unemployment, ↑ Consumer spending, ↑ Business investment',
+      'Demand-pull inflation risk: economy operates beyond full capacity (positive output gap)',
+      'Asset bubbles may form: irrational exuberance in housing/stock markets',
+      'Central banks typically respond with ↑ interest rates to prevent overheating',
+      'Boom-bust cycle risk: unsustainable growth leads to sharp correction'
+    ],
+    analysis: '↑ Confidence → ↑ C + I → AD shifts right → Real output rises above Yf (positive output gap) → ↑ Demand-pull inflation → Economy overheats → Wages rise faster than productivity → ↑ SRAS costs → Eventually, bubble bursts or CB raises rates → Recession.',
+    evaluation: 'Booms are double-edged: they reduce unemployment and raise living standards but create inflationary pressures and financial instability. The policy challenge is to extend the boom without overheating—requiring countercyclical fiscal/monetary policy. However, political incentives favor prolonging booms (electoral cycle), and asset bubbles are difficult to identify in real-time. Minsky\'s Financial Instability Hypothesis argues that stability breeds instability: during booms, risk-taking increases until a correction becomes inevitable.',
+    formula: 'Y > Y_f \\Rightarrow \\text{Positive Output Gap} \\Rightarrow P \\uparrow',
+    realWorldExample: 'The 2003-2007 UK boom featured 3%+ GDP growth, falling unemployment, and a housing bubble (prices doubled). Low interest rates and financial deregulation fueled credit expansion. The boom ended with the 2008 financial crisis—a classic Minsky moment.'
+  },
+  {
+    id: 'economic-depression',
+    title: 'Economic Depression',
+    category: 'macro',
+    definition: 'A severe and prolonged economic downturn lasting several years, characterized by a sustained fall in real GDP (typically >10%), mass unemployment (often 20%+), deflation or very low inflation, and a collapse in investment and consumer confidence. Depressions are more severe than recessions.',
+    keyPoints: [
+      'Technical definition: GDP falls by >10% or recession lasts >3 years',
+      'Deflation worsens the downturn: ↑ real debt burden, deferred consumption',
+      'Unemployment may persist due to hysteresis (skills atrophy, discouraged workers)',
+      'Keynesian "liquidity trap": interest rates at zero, but investment remains weak',
+      'Fiscal policy becomes essential when monetary policy is ineffective'
+    ],
+    analysis: 'Negative shock (financial crisis, demand collapse) → ↓ AD → ↓ Output and employment → ↓ Incomes → Further ↓ AD (multiplier effect downward) → Deflation raises real interest rates → Debt defaults → Bank failures → Credit contraction → Depression spiral. Recovery requires breaking this feedback loop.',
+    evaluation: 'Depressions expose the limits of market self-correction—classical economists predicted flexible wages/prices would restore equilibrium, but the Great Depression showed this process is too slow and painful. Keynesian intervention (fiscal stimulus, automatic stabilizers) became the policy consensus. However, fiscal policy faces constraints: debt sustainability, political feasibility, and the risk of zombie firms if support is misdirected. The key lesson is that early, aggressive action prevents mild recessions from becoming depressions.',
+    formula: '\\Delta Y_{\\text{depression}} > -10\\% \\text{ or duration } > 3 \\text{ years}',
+    realWorldExample: 'The Great Depression (1929-1939): US GDP fell 30%, unemployment peaked at 25%, prices fell 25%. Policy errors (tight money, Smoot-Hawley tariffs, delayed fiscal stimulus) prolonged the downturn. Recovery came with New Deal spending and WWII mobilization.'
+  },
+  {
+    id: 'economic-stimulus-package',
+    title: 'Economic Stimulus Package',
+    category: 'policy',
+    definition: 'A coordinated set of government fiscal measures—typically including tax cuts, direct transfers, and increased public spending—designed to boost aggregate demand during a recession or economic slowdown. The aim is to "jump-start" the economy through the multiplier effect.',
+    keyPoints: [
+      'Composition: Tax rebates/cuts, unemployment benefits, infrastructure spending, subsidies to businesses',
+      'Speed matters: transfers and tax cuts act faster than infrastructure (which has long lead times)',
+      'Multiplier varies by type: government spending multiplier typically > tax cut multiplier',
+      'Financed by borrowing: increases government debt (crowding out concerns in the long run)',
+      'Effectiveness depends on MPC: high MPC households (low-income) have larger multiplier effect'
+    ],
+    analysis: '↑ G or ↓ T → ↑ Disposable income → ↑ C → ↑ AD (multiplier effect: 1/(1-MPC)) → ↑ Output and employment → ↑ Tax revenues (automatic stabilizer) → Partial self-financing of the stimulus.',
+    evaluation: 'Stimulus packages face the Ricardian Equivalence critique: rational agents may save the tax cut, anticipating future tax increases to repay debt. Empirical evidence is mixed—MPC out of windfalls is positive but often less than permanent income. Timing is also critical: poorly timed stimulus may arrive after recovery has begun, causing inflation. Nevertheless, during deep recessions with slack capacity and zero lower bound on interest rates, fiscal stimulus is widely seen as effective.',
+    formula: 'k = \\frac{1}{1 - MPC} = \\frac{1}{MPS + MPT + MPM}',
+    realWorldExample: 'The 2009 American Recovery and Reinvestment Act ($787 billion) included tax cuts, unemployment benefits, and infrastructure. Studies estimate it raised GDP by 2-3% and saved/created 2-3 million jobs. The 2020 COVID stimulus packages ($5 trillion globally) were even larger.'
+  },
+  {
+    id: 'economics-a-level-boards',
+    title: 'Economics A-Level Exam Boards',
+    category: 'theory',
+    definition: 'In the UK, A-Level Economics is offered by multiple examination boards (OCR, AQA, Edexcel, WJEC), each with distinct specifications, assessment structures, and content emphases. Understanding board differences is important for exam preparation and syllabus coverage.',
+    keyPoints: [
+      'AQA: Strong emphasis on current affairs and data response; two papers (Micro, Macro)',
+      'Edexcel A: Thematic approach; includes globalization and development economics',
+      'OCR: Emphasis on behavioral economics and market failures; three papers',
+      'WJEC (Eduqas): Focus on UK economy; includes essay-based assessments',
+      'CIE 9708: International syllabus (AS + A2); strong on formal theory and diagrams'
+    ],
+    analysis: 'Exam board choice affects teaching approach: AQA rewards application to current events → requires regular news reading → Students develop evaluative skills through real-world context. Edexcel emphasizes interconnections → synoptic questions require linking micro and macro → Holistic understanding. OCR includes behavioral economics → challenges the rational agent model → Modern perspective.',
+    evaluation: 'All UK boards cover similar core content (markets, market failure, macro objectives, policy) but differ in emphasis and assessment style. Students should master their specific board\'s command words and mark schemes. The key to success is not memorizing content but developing chains of analysis (AO3) and critical evaluation (AO4)—skills that transfer across all boards.',
+    realWorldExample: 'An AQA student might analyze the 2022 UK mini-budget using AD/AS diagrams and evaluating bond market reactions. An OCR student might emphasize behavioral explanations for market panic. Same event, different analytical lenses.'
+  },
+  {
+    id: 'economics-of-global-warming',
+    title: 'Economics of Global Warming',
+    category: 'market-failure',
+    definition: 'The economic analysis of climate change, focusing on the externality of greenhouse gas emissions, the social cost of carbon, and policy instruments (carbon taxes, cap-and-trade) to internalize this externality. Global warming is the largest market failure in history due to its scale and intergenerational nature.',
+    keyPoints: [
+      'CO2 emissions are a negative production externality: MSC > MPC',
+      'Social Cost of Carbon (SCC): estimated damage from 1 additional ton of CO2 ($50-$200)',
+      'Discount rate controversy: low rates favor aggressive action (Stern); higher rates delay action (Nordhaus)',
+      'Policy options: Carbon tax (Pigouvian), Cap-and-trade (quantity-based), Regulation (command)',
+      'Free-rider problem: global public good requires international cooperation'
+    ],
+    analysis: 'Firms emit CO2 (MPC = production cost only) → MSC includes climate damages (floods, health, productivity loss) → MSC > MPC → Overproduction of carbon-intensive goods → Optimal policy: tax = Marginal External Cost → Price ↑ → Quantity ↓ to socially optimal level.',
+    evaluation: 'Valuing the SCC involves huge uncertainties: discount rate choice is normative (intergenerational equity), damage estimates vary widely, and tipping points are poorly understood. Carbon taxes are efficient but regressive (hurt low-income households more); cap-and-trade creates price volatility. International coordination is essential but plagued by free-riding (Paris Agreement is non-binding). Nevertheless, the economic consensus is that the cost of action is far less than the cost of inaction.',
+    formula: 't^* = MEC = \\text{Social Cost of Carbon}',
+    realWorldExample: 'The EU Emissions Trading System (ETS) prices carbon at ~€80/ton (2024). The UK Carbon Price Support adds a floor. The Stern Review (2006) estimated that unmitigated climate change could cost 5-20% of global GDP, while mitigation costs ~1%.'
+  },
+  {
+    id: 'effect-of-import-quotas',
+    title: 'Effect of Import Quotas',
+    category: 'trade',
+    definition: 'A quota is a quantitative restriction on the volume of imports allowed into a country. Unlike tariffs (which raise prices through taxes), quotas directly limit quantity, creating scarcity and raising domestic prices. The "scarcity rent" accrues to quota holders rather than the government.',
+    keyPoints: [
+      'Quota raises domestic price by restricting supply → P rises to clear the reduced quantity',
+      'Scarcity rent: difference between world price and domestic price × quota quantity → goes to importers (not government)',
+      'Domestic producers gain: higher price, increased output, increased producer surplus',
+      'Consumers lose: higher prices, reduced consumer surplus',
+      'Deadweight loss: production inefficiency (high-cost domestic production replaces low-cost imports) + consumption inefficiency'
+    ],
+    analysis: 'At world price Pw: Domestic supply = Q1, Demand = Q4 → Imports = Q4 - Q1. Quota limits imports to Q3 - Q2 → Price rises to Pq where demand = domestic supply + quota → Domestic supply ↑ to Q2, demand ↓ to Q3 → Scarcity rent = (Pq - Pw) × (Q3 - Q2) → DWL triangles represent efficiency loss.',
+    evaluation: 'Quotas are less transparent than tariffs (no visible tax) and create rent-seeking (lobbying for quota allocations). They do not raise government revenue—a key disadvantage versus tariffs. However, quotas provide certainty about import quantities (useful when protecting strategic industries). VERs (Voluntary Export Restraints) are quota-equivalents imposed by exporting countries to avoid retaliation.',
+    formula: 'P_{\\text{quota}} > P_w; \\quad \\text{Scarcity Rent} = (P_q - P_w) \\times Q_{\\text{quota}}',
+    realWorldExample: 'The EU\'s sugar quotas (abolished 2017) restricted imports and kept EU sugar prices 2-3× world levels. The Multi-Fibre Arrangement (1974-2004) imposed textile quotas on developing countries, protecting high-cost EU/US producers at consumer expense.'
+  },
+  {
+    id: 'effect-of-tariffs',
+    title: 'Effect of Tariffs',
+    category: 'trade',
+    definition: 'A tariff is a tax on imported goods that raises the domestic price above the world price. Tariffs generate government revenue, protect domestic producers, but reduce consumer welfare and create deadweight loss. The "revenue effect" distinguishes tariffs from quotas.',
+    keyPoints: [
+      'Price effect: Domestic price = World price + Tariff → Pw + t',
+      'Production effect: Domestic supply increases from Q1 to Q2 (inefficient production)',
+      'Consumption effect: Demand falls from Q4 to Q3 (consumer surplus loss)',
+      'Trade effect: Imports fall from (Q4-Q1) to (Q3-Q2)',
+      'Government revenue: Tariff rate × Import quantity = t × (Q3 - Q2)',
+      'Deadweight loss: Two triangles (production and consumption inefficiency)'
+    ],
+    analysis: 'Free trade: P = Pw, Imports = Q4 - Q1. Tariff imposed: P ↑ to Pw + t → Domestic supply ↑ (movement along S curve) → Domestic demand ↓ (movement along D curve) → Imports ↓ → Government collects t × (Q3 - Q2) → Consumer surplus falls → Producer surplus rises → Net welfare loss = DWL triangles.',
+    evaluation: 'Tariffs have distributional effects: producers and government gain, consumers and foreign exporters lose. For small countries, the net effect is unambiguously negative (deadweight loss). For large countries, the "optimal tariff" argument suggests a tariff can improve terms of trade if trading partners cannot retaliate—but this is a beggar-my-neighbour policy that invites trade wars. Infant industry arguments justify temporary tariffs, but political economy suggests tariffs, once imposed, are rarely removed.',
+    formula: 'P_d = P_w + t; \\quad \\text{Revenue} = t \\times (Q_3 - Q_2); \\quad DWL = \\frac{1}{2}(t)(\\Delta Q_s + \\Delta Q_d)',
+    realWorldExample: 'The US imposed 25% tariffs on $250 billion of Chinese goods (2018-2019). Studies found US consumers bore 100% of the cost through higher prices. Retaliation reduced US agricultural exports. GDP effects were modest but negative for both countries.'
+  },
+  {
+    id: 'efficiency-wage-theory',
+    title: 'Efficiency Wage Theory',
+    category: 'theory',
+    definition: 'The theory that firms may pay wages above the market-clearing level because higher wages increase worker productivity, reduce turnover, and minimize shirking. This creates involuntary unemployment as labor supply exceeds demand at the efficiency wage.',
+    keyPoints: [
+      'Higher wages → ↑ Worker effort (fear of losing high-paying job)',
+      'Higher wages → ↓ Turnover (reduces hiring/training costs)',
+      'Higher wages → Better applicant pool (adverse selection is reduced)',
+      'Higher wages → ↑ Morale and loyalty (gift exchange)',
+      'Creates real wage rigidity: wages don\'t fall even when unemployment is high'
+    ],
+    analysis: 'Firms set W > W* (market-clearing wage) → At W, labor supply Ls > labor demand Ld → Unemployment = Ls - Ld → But firms don\'t cut wages because productivity would fall → ↑ W → ↑ Effort per worker → ↑ Output per worker → Profit-maximizing despite unemployment.',
+    evaluation: 'Efficiency wage theory explains why unemployment can persist without wage cuts—a puzzle for classical economics. It provides a micro-foundation for Keynesian involuntary unemployment. However, the theory has limitations: it applies mainly to jobs where monitoring is difficult (not assembly lines with observable output). It also struggles to explain why workers don\'t post "bonds" to signal effort. Nevertheless, it explains wage dispersion across firms and industries beyond what productivity differences would predict.',
+    formula: 'e = e(W) \\text{ where } e\'(W) > 0; \\quad \\text{Firm maximizes } \\pi = f(e \\cdot L) - W \\cdot L',
+    realWorldExample: 'Henry Ford\'s $5 day (1914) doubled wages and reduced turnover from 370% to 16%. Productivity rose, absenteeism fell, and profits increased. Modern tech companies pay above-market salaries to attract talent and reduce poaching.'
+  },
+  {
+    id: 'equimarginal-principle',
+    title: 'Equimarginal Principle',
+    category: 'theory',
+    definition: 'The rule for optimal resource allocation: a consumer maximizes utility (or a firm minimizes cost) when the marginal benefit per unit of expenditure is equal across all goods or inputs. Also known as the "law of equal marginal advantage."',
+    keyPoints: [
+      'Consumer equilibrium: MUx/Px = MUy/Py (marginal utility per dollar equal)',
+      'If MUx/Px > MUy/Py → Consume more X, less Y → Until equality restored',
+      'Producer equilibrium: MPL/W = MPK/r (marginal product per dollar spent on inputs)',
+      'Applies to any scarce resource allocation: time, budget, inputs',
+      'Underpins the derivation of demand curves and isoquant/isocost analysis'
+    ],
+    analysis: 'Consumer has budget M, prices Px and Py → Allocates spending until MUx/Px = MUy/Py → At this point, no reallocation can increase total utility → This is the tangency of the budget line and highest attainable indifference curve → The slope of the budget line (-Px/Py) equals MRS (slope of indifference curve).',
+    evaluation: 'The equimarginal principle is elegant but requires cardinal utility measurement (controversial—can we really measure MU?). Ordinal utility theory achieves the same result using indifference curves without requiring utility numbers. Behavioral economics questions whether consumers actually calculate MU/P ratios—bounded rationality, habit, and heuristics may dominate. Nevertheless, the principle provides a powerful framework for understanding efficient allocation.',
+    formula: '\\frac{MU_x}{P_x} = \\frac{MU_y}{P_y} \\Leftrightarrow MRS_{xy} = \\frac{P_x}{P_y}',
+    realWorldExample: 'A student allocating study time should equalize the marginal grade improvement per hour across subjects. Spending 10 hours on economics (MU = 2 marks/hour) and 2 hours on maths (MU = 5 marks/hour) is suboptimal—reallocate time to maths until MU/hour is equal.'
+  },
+  {
+    id: 'plotting-demand-supply-curves',
+    title: 'Plotting Demand & Supply Curves',
+    category: 'theory',
+    definition: 'A demand curve shows the relationship between price and quantity demanded (ceteris paribus), sloping downward due to the income and substitution effects. A supply curve shows the relationship between price and quantity supplied, typically upward-sloping due to increasing marginal costs.',
+    keyPoints: [
+      'Demand curve: P on Y-axis, Q on X-axis; downward-sloping (law of demand)',
+      'Supply curve: upward-sloping (higher P → higher Qs as MC rises)',
+      'Equation forms: Qd = a - bP (demand); Qs = c + dP (supply)',
+      'Equilibrium: where Qd = Qs → solve simultaneous equations',
+      'Shifts vs. movements: Price changes cause movements along curves; non-price factors shift the curves'
+    ],
+    analysis: 'Step 1: Draw axes (P vertical, Q horizontal). Step 2: Plot demand (intercept "a" on Q-axis when P=0; intercept a/b on P-axis when Q=0). Step 3: Plot supply (intercept "c" on Q-axis when P=0—may be negative, meaning supply starts at positive price). Step 4: Find equilibrium at intersection. Step 5: Label axes, curves (D, S), and equilibrium (P*, Q*).',
+    evaluation: 'Real-world demand/supply curves may not be linear—they could be convex, concave, or kinked. Empirical estimation uses regression analysis on price/quantity data, controlling for non-price factors. The ceteris paribus assumption is crucial: the curve shows what happens when only price changes. In practice, multiple factors change simultaneously, making identification of true demand/supply curves challenging (the "identification problem").',
+    formula: 'Q_d = a - bP; \\quad Q_s = c + dP; \\quad P^* = \\frac{a - c}{b + d}; \\quad Q^* = \\frac{ad + bc}{b + d}',
+    realWorldExample: 'A market research firm estimates: Qd = 100 - 2P; Qs = 20 + 3P. Equilibrium: 100 - 2P = 20 + 3P → 5P = 80 → P* = £16, Q* = 68 units. If a tax of £5 is imposed, supply becomes Qs = 20 + 3(P-5), and new equilibrium can be calculated.'
+  },
+  {
+    id: 'beggar-my-neighbour-policies',
+    title: 'Beggar-My-Neighbour Policies',
+    category: 'trade',
+    definition: 'Economic policies that benefit one country at the expense of others, typically through competitive devaluations, tariffs, or trade restrictions. These policies aim to boost domestic employment and output by redirecting demand from trading partners, but they invite retaliation and can trigger trade/currency wars.',
+    keyPoints: [
+      'Competitive devaluation: Weaken currency → ↑ X, ↓ M → ↑ Domestic AD → But partner\'s AD ↓',
+      'Protectionism: Tariffs/quotas protect domestic jobs but destroy foreign jobs',
+      'Zero-sum logic: One country\'s trade surplus = another\'s deficit',
+      'Retaliation risk: Partners respond with their own devaluations/tariffs → All worse off',
+      'Coordination failure: Individual incentive to defect, collective loss from non-cooperation'
+    ],
+    analysis: 'Country A devalues currency → A\'s exports cheaper, imports dearer → A\'s trade balance improves → A\'s AD ↑, employment ↑ → But B\'s exports to A fall → B\'s AD ↓, unemployment ↑ → B retaliates with devaluation → Both currencies fall → Neither gains trade advantage → But both suffer inflation from import prices ↑.',
+    evaluation: 'Beggar-my-neighbour policies are a classic prisoner\'s dilemma: individually rational but collectively irrational. The 1930s Smoot-Hawley tariffs triggered retaliation that collapsed world trade by 65%, deepening the Great Depression. Post-WWII institutions (GATT/WTO, IMF) were designed to prevent such policies. However, the temptation remains during recessions—the 2010s saw currency war concerns as central banks pursued QE with exchange rate effects. Coordinated reflation is superior but requires trust.',
+    formula: 'CA_A + CA_B = 0 \\text{ (in bilateral trade)}; \\quad \\text{Devaluation shifts CA to A from B}',
+    realWorldExample: 'The 1930s competitive devaluations: UK left gold standard (1931), US devalued (1933), France followed (1936)—no lasting trade advantage, but global instability. In 2010-2015, "currency wars" concerns arose as Japan, EU, and US pursued QE, each hoping for exchange rate depreciation.'
+  },
+  {
+    id: 'barriers-to-entry',
+    title: 'Barriers to Entry',
+    category: 'theory',
+    definition: 'Obstacles that prevent or deter new firms from entering a market, allowing incumbent firms to maintain supernormal profits. Barriers can be structural (inherent to the industry) or strategic (created by incumbent behavior). High barriers characterize monopolies and oligopolies.',
+    keyPoints: [
+      'Structural barriers: Economies of scale, natural monopoly cost conditions, patents, control of key resources',
+      'Strategic barriers: Predatory pricing, limit pricing, brand proliferation, exclusive contracts, excess capacity',
+      'Legal barriers: Licenses, regulations, intellectual property protection',
+      'Network effects: Demand-side economies of scale (value ↑ with user base)',
+      'Sunk costs: Irrecoverable entry costs deter risk-averse potential entrants'
+    ],
+    analysis: 'High barriers → Potential entrants cannot profitably enter → Incumbents retain market power → Price > MC sustainable → Supernormal profits persist in long run (unlike perfect competition). Entry threat still disciplines behavior if barriers are not absolute—contestability matters.',
+    evaluation: 'Not all barriers are anti-competitive: patents reward innovation, economies of scale deliver efficiency. The key question is whether barriers protect efficiency or protect inefficiency. Strategic barriers (predatory pricing, raising rivals\' costs) are more problematic than structural barriers. Competition policy focuses on preventing the abuse of dominance rather than eliminating all barriers. Contestable markets theory emphasizes that low entry/exit costs discipline incumbents even with few actual competitors.',
+    formula: '\\text{If } \\pi_{\\text{incumbent}} > \\pi_{\\text{entrant}} - \\text{Entry Costs} \\Rightarrow \\text{No entry}',
+    realWorldExample: 'Tech platforms exhibit strong barriers: network effects (Facebook), economies of scale (cloud computing), and data advantages (Google). Pharmaceutical patents create 20-year monopolies. Predatory pricing cases include Microsoft (browsers) and Amazon (e-books).'
+  },
+  {
+    id: 'expected-utility-theory',
+    title: 'Expected Utility Theory',
+    category: 'theory',
+    definition: 'A theory of decision-making under uncertainty where individuals choose the option with the highest expected utility (probability-weighted average of utilities across outcomes). Developed by von Neumann and Morgenstern, it provides the theoretical foundation for risk analysis in economics.',
+    keyPoints: [
+      'Expected utility: EU = Σ[p(outcome) × U(outcome)]',
+      'Risk aversion: Concave utility function → diminishing MU of wealth → prefers certain outcome to gamble with same EV',
+      'Risk seeking: Convex utility function → prefers gamble to certainty',
+      'Risk neutral: Linear utility → indifferent between gamble and EV',
+      'Insurance demand: Risk-averse individuals pay premium > actuarially fair price'
+    ],
+    analysis: 'Choice: (A) Certain £500 or (B) 50% chance of £1000, 50% chance of £0. EV(B) = £500 = Value(A). But if U is concave: U(£500) > 0.5×U(£1000) + 0.5×U(£0) → Choose A. Risk aversion explains insurance demand, portfolio diversification, and risk premiums in asset pricing.',
+    evaluation: 'Expected utility theory is elegant but faces empirical challenges. Prospect theory (Kahneman & Tversky) shows people are risk-averse for gains but risk-seeking for losses, and weight low probabilities excessively (explaining lottery demand and insurance for rare events). The Allais and Ellsberg paradoxes demonstrate systematic violations of EU axioms. Nevertheless, EU remains the benchmark model in finance and economics, with behavioral modifications for specific applications.',
+    formula: 'EU = \\sum_{i} p_i \\cdot U(x_i); \\quad \\text{Risk Premium} = E[W] - CE',
+    realWorldExample: 'A risk-averse homeowner with £300k house buys fire insurance despite low probability of fire. EU with insurance > EU without: the utility loss from premium is less than the probability-weighted utility loss from uninsured disaster. This is why insurance markets exist.'
+  },
+  {
+    id: 'external-benefits',
+    title: 'External Benefits (Positive Externalities)',
+    category: 'market-failure',
+    definition: 'Benefits from production or consumption that accrue to third parties not directly involved in the transaction, for which no payment is received. Because producers/consumers do not capture these benefits, free markets under-produce goods with external benefits (market failure).',
+    keyPoints: [
+      'MSB > MPB: Social benefit exceeds private benefit by the external benefit',
+      'Free market equilibrium: Qm where MPB = MPC → Below socially optimal Q*',
+      'Deadweight welfare loss: Triangle between MSB and S curves from Qm to Q*',
+      'Examples: Education (skilled workforce benefits employers), Vaccination (herd immunity), R&D (knowledge spillovers)',
+      'Policy solutions: Subsidies, public provision, regulation mandating consumption'
+    ],
+    analysis: 'Free market: Firms/consumers equate MPB = MPC → Quantity = Qm. But MSB = MPB + MEB > MPB → Socially optimal Q* > Qm. Subsidy = MEB at Q* → Shifts demand/supply to achieve Q* → Eliminates underconsumption. Alternative: government provides the good directly (public education, free vaccination).',
+    evaluation: 'Measuring external benefits is difficult: how much does society benefit from one more educated citizen? Subsidies may create dependency or be captured by producers (who raise prices). Public provision faces government failure risks: bureaucratic inefficiency, political capture, crowding out of private provision. Nevertheless, the theoretical case for intervention is strong when externalities are large and measurable.',
+    formula: 'MSB = MPB + MEB; \\quad Q_{\\text{optimal}}: MSB = MSC; \\quad \\text{Subsidy} = MEB',
+    realWorldExample: 'UK university education generates external benefits (innovation, civic participation, reduced crime). Pre-2012, tuition was heavily subsidized. Even with £9,250 fees, 50% is loan-financed by government—recognizing that private returns understate social returns.'
+  },
+  {
+    id: 'external-costs',
+    title: 'External Costs (Negative Externalities)',
+    category: 'market-failure',
+    definition: 'Costs from production or consumption imposed on third parties not directly involved in the transaction, for which no compensation is paid. Because producers/consumers do not bear these costs, free markets over-produce goods with external costs (market failure).',
+    keyPoints: [
+      'MSC > MPC: Social cost exceeds private cost by the external cost',
+      'Free market equilibrium: Qm where MPB = MPC → Above socially optimal Q*',
+      'Deadweight welfare loss: Triangle between MSC and D curves from Q* to Qm',
+      'Examples: Pollution (health costs), Traffic congestion (time costs), Alcohol (healthcare, crime)',
+      'Policy solutions: Pigouvian tax (t = MEC), Tradable permits, Regulation, Property rights (Coase)'
+    ],
+    analysis: 'Free market: Firms equate MPC = MPB → Quantity = Qm. But MSC = MPC + MEC > MPC → Socially optimal Q* < Qm. Tax = MEC at Q* → Raises private cost to social cost → Reduces output to Q* → Internalizes the externality. Alternative: cap-and-trade sets quantity and lets price adjust.',
+    evaluation: 'The optimal tax equals the marginal external cost—but measuring MEC is contested (what is the cost of a ton of CO2?). Taxes are efficient but may be regressive. Regulation is simpler but inflexible. Coasian bargaining works only with low transaction costs and clear property rights. In practice, a mix of instruments is used. The key insight is that externalities represent genuine market failure—intervention can improve welfare, not just redistribute it.',
+    formula: 'MSC = MPC + MEC; \\quad t^* = MEC; \\quad Q^*: MSC = MSB',
+    realWorldExample: 'The UK landfill tax (£98.60/tonne, 2024) internalizes disposal externalities (leachate, methane). Recycling rates rose from 7% (1996) to 45% (2023). The tax raised £800m and changed behavior—a successful Pigouvian policy.'
+  },
+  {
+    id: 'external-economies-of-scale',
+    title: 'External Economies of Scale',
+    category: 'theory',
+    definition: 'Cost reductions that benefit all firms in an industry as the industry as a whole expands, independent of individual firm size. These arise from shared infrastructure, specialized labor pools, knowledge spillovers, and supplier networks. Contrast with internal economies (firm-specific).',
+    keyPoints: [
+      'Industry expansion → Shared benefits → All firms\' costs fall',
+      'Sources: Skilled labor concentration, Specialized suppliers, Knowledge spillovers, Infrastructure investment',
+      'Creates industrial clusters: Silicon Valley (tech), City of London (finance), Hollywood (film)',
+      'LRAC curve shifts down for all firms as industry grows',
+      'Agglomeration effects: Firms locate together to capture external economies'
+    ],
+    analysis: 'New firm enters industry → Industry output ↑ → Specialist suppliers emerge (EoS in input production) → Training institutions develop (skilled labor pool) → Knowledge diffuses (conferences, labor mobility) → All firms\' costs ↓ → LRAC shifts down → Not captured by any single firm but benefits all.',
+    evaluation: 'External economies create a rationale for industrial policy: government can accelerate cluster formation through infrastructure, education, and R&D support. However, picking winners is risky—failed clusters waste resources. Market forces also drive agglomeration (firms follow talent, talent follows firms). The success of Silicon Valley reflects both market dynamics and historical accident (Stanford, defense contracts). Once established, clusters are sticky—but can decline if external diseconomies (congestion, high costs) dominate.',
+    formula: 'LRAC_{\\text{firm}} = f(Q_{\\text{industry}}), \\quad \\frac{dLRAC}{dQ_{ind}} < 0',
+    realWorldExample: 'The City of London financial cluster offers external economies: specialized legal/accounting services, deep talent pool, regulatory infrastructure, reputation effects. A new fintech locating in London benefits from these without paying for them—hence the cluster persists despite high rents.'
+  },
+  {
+    id: 'externalities-definition',
+    title: 'Externalities – Definition & Types',
+    category: 'market-failure',
+    definition: 'Externalities are costs or benefits that affect parties not directly involved in an economic transaction. They represent a divergence between private and social costs/benefits, causing markets to produce inefficient quantities. Externalities are a primary justification for government intervention.',
+    keyPoints: [
+      'Positive externalities: MSB > MPB → Underconsumption/production (education, R&D, vaccination)',
+      'Negative externalities: MSC > MPC → Overconsumption/production (pollution, congestion, smoking)',
+      'Production externalities: Arise from production process (factory pollution)',
+      'Consumption externalities: Arise from consumption (passive smoking)',
+      'Pecuniary externalities: Price effects—not true externalities (don\'t cause inefficiency)'
+    ],
+    analysis: 'Externality → Private decision ignores social impact → Quantity ≠ Social optimum → Deadweight loss. Negative: Q_market > Q* (overproduction) → Solution: tax/regulate to ↓Q. Positive: Q_market < Q* (underproduction) → Solution: subsidize/provide to ↑Q. Coase: with clear property rights and low transaction costs, bargaining can achieve efficiency without intervention.',
+    evaluation: 'Externalities justify intervention but don\'t guarantee it succeeds. Government failure (information problems, regulatory capture, unintended consequences) may worsen outcomes. The Coase theorem highlights that private bargaining can work—but transaction costs are often prohibitive for diffuse externalities (climate change affects billions). Optimal policy matches the instrument to the externality: taxes for known, measurable costs; quantity limits for uncertain, catastrophic risks.',
+    formula: '\\text{DWL} = \\frac{1}{2} \\times (MEC) \\times (Q_m - Q^*)',
+    realWorldExample: 'COVID-19 illustrated both types: negative externality (infection spreads to others → masks/lockdowns), positive externality (vaccination protects others → subsidies and mandates). Policy responses attempted to internalize these externalities.'
   }
 ];
 
