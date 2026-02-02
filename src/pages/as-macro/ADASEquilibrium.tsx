@@ -19,6 +19,8 @@ import { EquilibriumAdjustmentDiagram } from '@/components/diagrams/EquilibriumA
 import { OutputGapsDiagram } from '@/components/diagrams/OutputGapsDiagram';
 import { ADShiftImpactDiagram } from '@/components/diagrams/ADShiftImpactDiagram';
 import { SRASShiftStagflationDiagram } from '@/components/diagrams/SRASShiftStagflationDiagram';
+import ExpansionaryFiscalPolicyDiagram from '@/components/diagrams/ExpansionaryFiscalPolicyDiagram';
+import ClassicalADInflationDiagram from '@/components/diagrams/ClassicalADInflationDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
@@ -725,6 +727,11 @@ const ADASEquilibrium = () => {
           {/* Classical LRAS Diagram */}
           <ClassicalLRASDiagram title="Classical/Monetarist LRAS: Vertical at Full Employment" />
 
+          {/* Classical AD Increase - Pure Inflation Effect */}
+          <div className="mt-8">
+            <ClassicalADInflationDiagram />
+          </div>
+
           {/* Keynesian LRAS Diagram */}
           <div className="mt-8">
             <KeynesianLRASDiagram title="Keynesian LRAS: Three Distinct Phases" />
@@ -812,6 +819,11 @@ const ADASEquilibrium = () => {
               rises rather than output expansion. Thus, the multiplier is most potent when significant spare 
               capacity exists—precisely the condition Keynes emphasised during the Great Depression.
             </p>
+          </div>
+
+          {/* Expansionary Fiscal Policy Diagram */}
+          <div className="mt-8">
+            <ExpansionaryFiscalPolicyDiagram />
           </div>
         </ContentSection>
 
