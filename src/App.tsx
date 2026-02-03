@@ -9,6 +9,7 @@ import BasicEconomicIdeas from "./pages/BasicEconomicIdeas";
 import PriceSystem from "./pages/PriceSystem";
 
 import CaseStudies from "./pages/CaseStudies";
+import Notes from "./pages/Notes";
 import NationalIncomeLegacy from "./pages/NationalIncome";
 import IncomeDetermination from "./pages/IncomeDetermination";
 import NationalIncome from "./pages/a2-macro/NationalIncome";
@@ -87,6 +88,7 @@ const App = () => (
           <Route path="/a2-macro/development" element={<Development />} />
           
           {/* Utility pages */}
+          <Route path="/notes" element={<Notes />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/market-structures" element={<MarketStructures />} />
           

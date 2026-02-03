@@ -92,14 +92,19 @@ const navigation: NavItem[] = [
     ],
   },
   {
-    title: 'Diagram Bank',
-    href: '/diagrams',
-    icon: Image,
+    title: 'Notes',
+    href: '/notes',
+    icon: BookOpen,
   },
   {
     title: 'Case Studies',
     href: '/case-studies',
-    icon: BookOpen,
+    icon: GraduationCap,
+  },
+  {
+    title: 'Diagram Bank',
+    href: '/diagrams',
+    icon: Image,
   },
 ];
 
