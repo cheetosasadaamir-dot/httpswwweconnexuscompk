@@ -14,6 +14,7 @@ import AcceleratorDiagram from '@/components/diagrams/AcceleratorDiagram';
 import ParadoxOfThriftDiagram from '@/components/diagrams/ParadoxOfThriftDiagram';
 import KeynesianASCurveDiagram from '@/components/diagrams/KeynesianASCurveDiagram';
 import LiquidityTrapDiagram from '@/components/diagrams/LiquidityTrapDiagram';
+import KeynesianTheorySection from '@/components/diagrams/KeynesianTheorySection';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
@@ -903,6 +904,15 @@ const NationalIncome = () => {
               deflationary spiral. This is the rationale for counter-cyclical fiscal policy.
             </p>
           </ExamTipBox>
+        </ContentSection>
+
+        {/* Advanced Macroeconomic Thought: Keynesian Framework */}
+        <ContentSection 
+          title="Advanced Macroeconomic Thought: Keynesian Framework" 
+          subtitle="[A2 Specialist - Keynesian vs Monetarist]"
+          id="keynesian-framework"
+        >
+          <KeynesianTheorySection />
         </ContentSection>
 
         {/* Chapter Summary */}
