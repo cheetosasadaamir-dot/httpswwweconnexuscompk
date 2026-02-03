@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Briefcase, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
 interface OwnerProfileDrawerProps {
   isOpen: boolean;
@@ -66,13 +66,25 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
 
                 {/* Avatar Section */}
                 <div className="flex flex-col items-center text-center mb-8">
-                  <div className="relative mb-6">
-                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-space-elevated to-space-card flex items-center justify-center border border-white/10">
-                      <span className="text-4xl font-display font-bold text-neon-gold">MA</span>
+                  {/* Portrait Image */}
+                  <motion.div 
+                    className="relative mb-6 group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  >
+                    {/* Outer Glow */}
+                    <div className="absolute -inset-1 rounded-xl bg-neon-cyan/20 blur-md group-hover:bg-neon-cyan/40 transition-all duration-300" />
+                    
+                    {/* Image Container */}
+                    <div className="relative w-32 h-40 rounded-xl overflow-hidden border-2 border-neon-cyan shadow-[0_0_20px_rgba(0,242,255,0.4)] group-hover:shadow-[0_0_35px_rgba(0,242,255,0.6)] transition-shadow duration-300">
+                      <img 
+                        src={ownerPortrait} 
+                        alt="Muhammad Asad Aamir"
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    {/* Neon Cyan Glow Ring */}
-                    <div className="absolute inset-0 rounded-full border-2 border-neon-cyan/50 shadow-[0_0_20px_rgba(0,242,255,0.4)] animate-pulse" />
-                  </div>
+                  </motion.div>
 
                   <h1 className="font-display text-2xl md:text-3xl font-bold text-white tracking-wide mb-2">
                     Muhammad Asad Aamir
