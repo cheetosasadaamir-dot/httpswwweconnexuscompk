@@ -1,9 +1,67 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
+// CORS headers - restricted to official domain in production
+const ALLOWED_ORIGINS = [
+  "https://www.econnexus.com.pk",
+  "https://econnexus.com.pk",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Origin": "*", // Will be dynamically set based on request origin
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Max-Age": "86400",
 };
+
+// Rate limiting storage (in-memory for edge function)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = { maxRequests: 15, windowMs: 60000 }; // 15 requests per minute
+
+function checkServerRateLimit(clientId: string): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const entry = rateLimitMap.get(clientId);
+  
+  if (!entry || now > entry.resetTime) {
+    rateLimitMap.set(clientId, { count: 1, resetTime: now + RATE_LIMIT.windowMs });
+    return { allowed: true };
+  }
+  
+  if (entry.count >= RATE_LIMIT.maxRequests) {
+    const retryAfter = Math.ceil((entry.resetTime - now) / 1000);
+    return { allowed: false, retryAfter };
+  }
+  
+  entry.count++;
+  return { allowed: true };
+}
+
+// Input sanitization
+function sanitizeMessage(content: string): string {
+  if (typeof content !== 'string') return '';
+  
+  return content
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/javascript:/gi, '')
+    .slice(0, 2000)
+    .trim();
+}
+
+function getCorsHeaders(requestOrigin: string | null): Record<string, string> {
+  // In development or if origin matches allowed list, allow the request
+  const origin = requestOrigin || "*";
+  const isAllowed = !requestOrigin || 
+    ALLOWED_ORIGINS.some(allowed => requestOrigin.startsWith(allowed)) ||
+    requestOrigin.includes('.lovable.app') ||
+    requestOrigin.includes('localhost');
+  
+  return {
+    ...corsHeaders,
+    "Access-Control-Allow-Origin": isAllowed ? origin : ALLOWED_ORIGINS[0],
+  };
+}
 
 // ==============================================================================
 // CONTEXTUAL MEMORY ENGINE v3.0 – Thread Continuity & Text-Only Analysis
@@ -226,30 +284,72 @@ function classifyQuery(content: string): "simple" | "medium" | "complex" {
 }
 
 serve(async (req) => {
+  const requestOrigin = req.headers.get("origin");
+  const dynamicCorsHeaders = getCorsHeaders(requestOrigin);
+  
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, { headers: dynamicCorsHeaders });
+  }
+
+  // Extract client identifier for rate limiting (use IP or fallback)
+  const clientId = req.headers.get("x-forwarded-for")?.split(",")[0] || 
+                   req.headers.get("cf-connecting-ip") || 
+                   "anonymous";
+  
+  // Check rate limit
+  const rateLimitResult = checkServerRateLimit(clientId);
+  if (!rateLimitResult.allowed) {
+    console.log(`Rate limited: ${clientId}`);
+    return new Response(
+      JSON.stringify({ 
+        error: "Rate limit exceeded. Please wait before sending more messages.",
+        retryAfter: rateLimitResult.retryAfter 
+      }),
+      { 
+        status: 429, 
+        headers: { 
+          ...dynamicCorsHeaders, 
+          "Content-Type": "application/json",
+          "Retry-After": String(rateLimitResult.retryAfter)
+        } 
+      }
+    );
   }
 
   try {
     const { messages } = await req.json();
+    
+    // Validate and sanitize messages
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return new Response(
+        JSON.stringify({ error: "Invalid request format" }),
+        { status: 400, headers: { ...dynamicCorsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    
+    // Sanitize all user messages
+    const sanitizedMessages = messages.map((m: { role: string; content: string }) => ({
+      role: m.role,
+      content: m.role === "user" ? sanitizeMessage(m.content) : m.content
+    }));
     
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       console.error("LOVABLE_API_KEY not configured");
       return new Response(
         JSON.stringify({ error: "AI service unavailable" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 500, headers: { ...dynamicCorsHeaders, "Content-Type": "application/json" } }
       );
     }
 
     // Enhanced context for thread continuity
-    const threadContext = extractThreadContext(messages);
-    const lastUser = messages.filter((m: { role: string }) => m.role === "user").pop();
+    const threadContext = extractThreadContext(sanitizedMessages);
+    const lastUser = sanitizedMessages.filter((m: { role: string }) => m.role === "user").pop();
     const complexity = lastUser ? classifyQuery(lastUser.content) : "simple";
     const isFollowUp = lastUser ? isFollowUpQuery(lastUser.content) : false;
-    const recentMessages = messages.slice(-MAX_MESSAGES);
+    const recentMessages = sanitizedMessages.slice(-MAX_MESSAGES);
     
-    console.log(`Chat: ${complexity} query, ${recentMessages.length} msgs, followUp: ${isFollowUp}`);
+    console.log(`Chat: ${complexity} query, ${recentMessages.length} msgs, followUp: ${isFollowUp}, client: ${clientId.substring(0, 8)}...`);
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), STREAM_TIMEOUT_MS);
@@ -299,29 +399,30 @@ serve(async (req) => {
         if (status === 429) {
           return new Response(
             JSON.stringify({ error: "Rate limited. Wait 30s." }),
-            { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+            { status: 429, headers: { ...dynamicCorsHeaders, "Content-Type": "application/json" } }
           );
         }
         if (status === 402) {
           return new Response(
             JSON.stringify({ error: "Credits exhausted." }),
-            { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+            { status: 402, headers: { ...dynamicCorsHeaders, "Content-Type": "application/json" } }
           );
         }
         
         return new Response(
           JSON.stringify({ error: "Temporary issue. Try again." }),
-          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          { status: 500, headers: { ...dynamicCorsHeaders, "Content-Type": "application/json" } }
         );
       }
 
       // Stream directly - no processing delay
       return new Response(response.body, {
         headers: { 
-          ...corsHeaders, 
+          ...dynamicCorsHeaders, 
           "Content-Type": "text/event-stream",
-          "Cache-Control": "no-cache",
-          "Connection": "keep-alive"
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Connection": "keep-alive",
+          "X-Content-Type-Options": "nosniff"
         },
       });
       
@@ -335,7 +436,7 @@ serve(async (req) => {
             error: "Taking too long. Try a simpler question.",
             suggestion: "Focus on one concept: 'Define X' or 'Explain Y'"
           }),
-          { status: 504, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          { status: 504, headers: { ...dynamicCorsHeaders, "Content-Type": "application/json" } }
         );
       }
       throw fetchError;
@@ -347,7 +448,7 @@ serve(async (req) => {
         error: "Connection reset. Please try again.",
         suggestion: "Ask about one topic at a time."
       }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      { status: 500, headers: { ...dynamicCorsHeaders, "Content-Type": "application/json" } }
     );
   }
 });

@@ -10,6 +10,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import professorAvatar from '@/assets/professor-avatar.png';
+import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -469,8 +470,29 @@ export default function EconomicsChatbot() {
   }, [streamState]);
 
   const handleSend = async (query?: string) => {
-    const messageText = query || input.trim();
-    if (!messageText || isLoading) return;
+    const rawText = query || input.trim();
+    if (!rawText || isLoading) return;
+
+    // Sanitize input
+    const messageText = sanitizeInput(rawText);
+    if (!messageText) {
+      toast.error('Please enter a valid message');
+      return;
+    }
+
+    // Check burst rate limit (3 messages per 5 seconds)
+    const burstCheck = checkRateLimit('chat-burst', RATE_LIMITS.chatBurst);
+    if (!burstCheck.allowed) {
+      toast.error(`Slow down! Wait ${burstCheck.retryAfter} seconds.`);
+      return;
+    }
+
+    // Check sustained rate limit (10 messages per minute)
+    const rateCheck = checkRateLimit('chat', RATE_LIMITS.chat);
+    if (!rateCheck.allowed) {
+      toast.error(`Rate limit reached. Please wait ${rateCheck.retryAfter} seconds before sending more messages.`);
+      return;
+    }
 
     const userMsg: Message = { role: 'user', content: messageText, id: generateId() };
     const newMessages = [...messages, userMsg];
