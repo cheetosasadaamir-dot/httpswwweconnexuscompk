@@ -43,6 +43,14 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
   const labelColor = 'hsl(var(--foreground))';
   const phaseColor = 'hsl(var(--muted-foreground))';
 
+  // SVG dimensions and scale functions
+  const margin = { left: 80, right: 50, top: 60, bottom: 70 };
+  const chartW = 420;
+  const chartH = 290;
+
+  const xScale = (val: number) => margin.left + (val / 100) * chartW;
+  const yScale = (val: number) => margin.top + chartH - (val / 100) * chartH;
+
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: { 
@@ -88,41 +96,50 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         </defs>
         <rect x="80" y="60" width="420" height="290" fill="url(#grid-keynesian)" />
 
-        {/* Phase regions - subtle shading with CIE standard colors */}
+        {/* 
+          KEYNESIAN LRAS - Three mathematically precise phases:
+          Phase 1 (Elastic): Horizontal from x=0 to x=40 at P=75
+          Phase 2 (Intermediate): Curved from (40, 75) to (75, 55)
+          Phase 3 (Inelastic): Vertical at x=75 (Yf)
+          
+          Scale: x in [0, 100], y (Price) in [0, 100]
+        */}
+
+        {/* Phase regions - subtle shading */}
         <motion.rect
-          x="80"
-          y="270"
-          width="120"
-          height="80"
-          fill="hsl(142 76% 45%)"
-          opacity="0.12"
+          x={xScale(0)}
+          y={yScale(85)}
+          width={xScale(40) - xScale(0)}
+          height={yScale(65) - yScale(85)}
+          fill={adCurve1}
+          opacity="0.1"
           rx="4"
           initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 0.12 } : { opacity: 0 }}
+          animate={isVisible ? { opacity: 0.1 } : { opacity: 0 }}
           transition={{ delay: 2, duration: 0.5 }}
         />
         <motion.rect
-          x="200"
-          y="140"
-          width="140"
-          height="210"
-          fill="hsl(45 93% 55%)"
-          opacity="0.1"
+          x={xScale(40)}
+          y={yScale(95)}
+          width={xScale(75) - xScale(40)}
+          height={yScale(50) - yScale(95)}
+          fill={adCurve2}
+          opacity="0.08"
           rx="4"
           initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 0.1 } : { opacity: 0 }}
+          animate={isVisible ? { opacity: 0.08 } : { opacity: 0 }}
           transition={{ delay: 2.2, duration: 0.5 }}
         />
         <motion.rect
-          x="340"
-          y="60"
-          width="60"
-          height="290"
+          x={xScale(75)}
+          y={yScale(100)}
+          width={xScale(85) - xScale(75)}
+          height={yScale(0) - yScale(100)}
           fill="hsl(var(--destructive))"
-          opacity="0.1"
+          opacity="0.08"
           rx="4"
           initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 0.1 } : { opacity: 0 }}
+          animate={isVisible ? { opacity: 0.08 } : { opacity: 0 }}
           transition={{ delay: 2.4, duration: 0.5 }}
         />
 
@@ -139,20 +156,46 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           Real National Output / Real GDP (Y)
         </text>
 
-        {/* Keynesian LRAS - Three phases */}
+        {/* KEYNESIAN LRAS - Three precise phases */}
+        {/* Phase 1: Horizontal (Elastic) - P constant at 75 */}
+        <motion.line
+          x1={xScale(5)} y1={yScale(75)}
+          x2={xScale(40)} y2={yScale(75)}
+          stroke={lrasCurve}
+          strokeWidth="4"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+          transition={{ duration: 0.8 }}
+        />
+        
+        {/* Phase 2: Upward Sloping (Intermediate) - from (40, 75) to (75, 30) */}
         <motion.path
-          d="M 100 270 L 200 270 Q 250 265, 280 230 Q 310 195, 330 150 Q 350 105, 400 80 L 400 60"
+          d={`M ${xScale(40)} ${yScale(75)} Q ${xScale(55)} ${yScale(60)}, ${xScale(65)} ${yScale(45)} Q ${xScale(72)} ${yScale(35)}, ${xScale(75)} ${yScale(25)}`}
           fill="none"
           stroke={lrasCurve}
           strokeWidth="4"
           strokeLinecap="round"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
         />
+        
+        {/* Phase 3: Vertical (Inelastic) at Yf - x = 75 */}
+        <motion.line
+          x1={xScale(75)} y1={yScale(25)}
+          x2={xScale(75)} y2={yScale(98)}
+          stroke={lrasCurve}
+          strokeWidth="4"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+        />
+        
         <motion.text 
-          x="415" 
-          y="65" 
+          x={xScale(78)} 
+          y={yScale(95)} 
           fill={lrasCurve} 
           fontSize="16" 
           fontFamily="Cinzel"
@@ -171,45 +214,45 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           transition={{ delay: 2.5 }}
         >
           {/* Phase 1 - Elastic */}
-          <text x="140" y="295" fill={phaseColor} fontSize="11" textAnchor="middle" fontWeight="500">
+          <text x={xScale(22)} y={yScale(80)} fill={phaseColor} fontSize="10" textAnchor="middle" fontWeight="500">
             Phase 1
           </text>
-          <text x="140" y="310" fill={phaseColor} fontSize="10" textAnchor="middle">
-            (Elastic)
+          <text x={xScale(22)} y={yScale(77)} fill={phaseColor} fontSize="9" textAnchor="middle">
+            (Perfectly Elastic)
           </text>
           
           {/* Phase 2 - Intermediate */}
-          <text x="270" y="295" fill={phaseColor} fontSize="11" textAnchor="middle" fontWeight="500">
+          <text x={xScale(57)} y={yScale(52)} fill={phaseColor} fontSize="10" textAnchor="middle" fontWeight="500">
             Phase 2
           </text>
-          <text x="270" y="310" fill={phaseColor} fontSize="10" textAnchor="middle">
+          <text x={xScale(57)} y={yScale(48)} fill={phaseColor} fontSize="9" textAnchor="middle">
             (Intermediate)
           </text>
           
           {/* Phase 3 - Inelastic */}
-          <text x="370" y="295" fill={phaseColor} fontSize="11" textAnchor="middle" fontWeight="500">
+          <text x={xScale(83)} y={yScale(60)} fill={phaseColor} fontSize="10" textAnchor="middle" fontWeight="500">
             Phase 3
           </text>
-          <text x="370" y="310" fill={phaseColor} fontSize="10" textAnchor="middle">
+          <text x={xScale(83)} y={yScale(56)} fill={phaseColor} fontSize="9" textAnchor="middle">
             (Inelastic)
           </text>
         </motion.g>
 
-        {/* AD1 curve - in elastic phase */}
-        <motion.path
-          d="M 100 80 Q 120 150, 150 200 Q 180 250, 220 290"
-          fill="none"
+        {/* AD1 - intersects LRAS in Phase 1 (elastic section) at Q=25, P=75 */}
+        {/* AD1 equation: P = 95 - 0.8Q → intersects P=75 at Q=25 */}
+        <motion.line
+          x1={xScale(5)} y1={yScale(91)}
+          x2={xScale(95)} y2={yScale(19)}
           stroke={adCurve1}
           strokeWidth="2.5"
           strokeLinecap="round"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          transition={{ delay: 2.5 }}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+          transition={{ delay: 2.5, duration: 0.8 }}
         />
         <motion.text 
-          x="230" 
-          y="295" 
+          x={xScale(92)} 
+          y={yScale(17)} 
           fill={adCurve1} 
           fontSize="14" 
           fontWeight="600"
@@ -220,21 +263,21 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           AD₁
         </motion.text>
 
-        {/* AD2 curve - in intermediate phase */}
-        <motion.path
-          d="M 180 80 Q 220 140, 270 190 Q 320 240, 360 280"
-          fill="none"
+        {/* AD2 - intersects LRAS in Phase 2 (intermediate) at approximately Q=55, P=55 */}
+        {/* AD2 equation: P = 110 - Q → at P=55, Q=55 */}
+        <motion.line
+          x1={xScale(15)} y1={yScale(95)}
+          x2={xScale(95)} y2={yScale(15)}
           stroke={adCurve2}
           strokeWidth="2.5"
           strokeLinecap="round"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          transition={{ delay: 3 }}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+          transition={{ delay: 3, duration: 0.8 }}
         />
         <motion.text 
-          x="370" 
-          y="285" 
+          x={xScale(92)} 
+          y={yScale(13)} 
           fill={adCurve2} 
           fontSize="14" 
           fontWeight="600"
@@ -245,21 +288,20 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           AD₂
         </motion.text>
 
-        {/* AD3 curve - hitting vertical section */}
-        <motion.path
-          d="M 300 80 Q 340 130, 380 170 Q 420 210, 460 250"
-          fill="none"
+        {/* AD3 - intersects LRAS in Phase 3 (vertical at Yf=75) */}
+        <motion.line
+          x1={xScale(30)} y1={yScale(97)}
+          x2={xScale(98)} y2={yScale(29)}
           stroke={adCurve3}
           strokeWidth="2.5"
           strokeLinecap="round"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          transition={{ delay: 3.5 }}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+          transition={{ delay: 3.5, duration: 0.8 }}
         />
         <motion.text 
-          x="470" 
-          y="255" 
+          x={xScale(95)} 
+          y={yScale(27)} 
           fill={adCurve3} 
           fontSize="14" 
           fontWeight="600"
@@ -270,19 +312,22 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           AD₃
         </motion.text>
 
-        {/* Equilibrium points */}
+        {/* Equilibrium points - PRECISELY at intersections */}
+        {/* E₁: AD1 intersects horizontal LRAS at Q=25, P=75 */}
         <motion.circle 
-          cx="150" 
-          cy="270" 
+          cx={xScale(25)} 
+          cy={yScale(75)} 
           r="6" 
           fill={adCurve1}
+          stroke="white"
+          strokeWidth="2"
           initial={{ scale: 0, opacity: 0 }}
           animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
           transition={{ delay: 3.3, type: "spring" }}
         />
         <motion.text 
-          x="140" 
-          y="260" 
+          x={xScale(25) - 15} 
+          y={yScale(75) - 10} 
           fill={adCurve1} 
           fontSize="12" 
           fontWeight="600"
@@ -293,18 +338,21 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           E₁
         </motion.text>
 
+        {/* E₂: AD2 intersects curved LRAS at approximately Q=55, P=55 */}
         <motion.circle 
-          cx="300" 
-          cy="200" 
+          cx={xScale(55)} 
+          cy={yScale(55)} 
           r="6" 
           fill={adCurve2}
+          stroke="white"
+          strokeWidth="2"
           initial={{ scale: 0, opacity: 0 }}
           animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
           transition={{ delay: 3.6, type: "spring" }}
         />
         <motion.text 
-          x="310" 
-          y="195" 
+          x={xScale(55) + 10} 
+          y={yScale(55) - 8} 
           fill={adCurve2} 
           fontSize="12" 
           fontWeight="600"
@@ -315,18 +363,21 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           E₂
         </motion.text>
 
+        {/* E₃: AD3 intersects vertical LRAS at Q=75 (Yf) */}
         <motion.circle 
-          cx="400" 
-          cy="100" 
+          cx={xScale(75)} 
+          cy={yScale(40)} 
           r="6" 
           fill={adCurve3}
+          stroke="white"
+          strokeWidth="2"
           initial={{ scale: 0, opacity: 0 }}
           animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
           transition={{ delay: 3.9, type: "spring" }}
         />
         <motion.text 
-          x="412" 
-          y="95" 
+          x={xScale(75) - 18} 
+          y={yScale(40) - 10} 
           fill={adCurve3} 
           fontSize="12" 
           fontWeight="600"
@@ -337,9 +388,9 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           E₃
         </motion.text>
 
-        {/* Full employment line Yf */}
+        {/* Full employment line Yf - dashed vertical at x=75 */}
         <motion.line 
-          x1="400" y1="60" x2="400" y2="350" 
+          x1={xScale(75)} y1={yScale(0)} x2={xScale(75)} y2="350" 
           stroke={axisColor} 
           strokeWidth="1.5" 
           strokeDasharray="8,4"
@@ -348,8 +399,8 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           transition={{ delay: 2.2, duration: 0.8 }}
         />
         <motion.text 
-          x="400" 
-          y="370" 
+          x={xScale(75)} 
+          y="368" 
           fill={labelColor} 
           fontSize="14" 
           textAnchor="middle"
@@ -361,13 +412,14 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           Yf
         </motion.text>
 
-        {/* Output labels */}
+        {/* Output labels - aligned with equilibrium points */}
         <motion.text 
-          x="150" 
-          y="370" 
-          fill={labelColor} 
+          x={xScale(25)} 
+          y="368" 
+          fill={adCurve1} 
           fontSize="12" 
           textAnchor="middle"
+          fontWeight="500"
           initial={{ opacity: 0 }}
           animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 3.5 }}
@@ -375,17 +427,100 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           Y₁
         </motion.text>
         <motion.text 
-          x="300" 
-          y="370" 
-          fill={labelColor} 
+          x={xScale(55)} 
+          y="368" 
+          fill={adCurve2} 
           fontSize="12" 
           textAnchor="middle"
+          fontWeight="500"
           initial={{ opacity: 0 }}
           animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 3.8 }}
         >
           Y₂
         </motion.text>
+
+        {/* Price labels - aligned with equilibrium points */}
+        <motion.text 
+          x="72" 
+          y={yScale(75) + 4} 
+          fill={adCurve1} 
+          fontSize="11" 
+          textAnchor="end"
+          fontWeight="500"
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ delay: 3.5 }}
+        >
+          P₁
+        </motion.text>
+        <motion.text 
+          x="72" 
+          y={yScale(55) + 4} 
+          fill={adCurve2} 
+          fontSize="11" 
+          textAnchor="end"
+          fontWeight="500"
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ delay: 3.8 }}
+        >
+          P₂
+        </motion.text>
+        <motion.text 
+          x="72" 
+          y={yScale(40) + 4} 
+          fill={adCurve3} 
+          fontSize="11" 
+          textAnchor="end"
+          fontWeight="500"
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ delay: 4.1 }}
+        >
+          P₃
+        </motion.text>
+
+        {/* Dashed lines from E₁ to axes */}
+        <motion.line 
+          x1={xScale(25)} y1={yScale(75)} x2={xScale(25)} y2="350" 
+          stroke={adCurve1} strokeWidth="1" strokeDasharray="4,3"
+          initial={{ pathLength: 0 }}
+          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+          transition={{ delay: 3.4, duration: 0.4 }}
+        />
+        <motion.line 
+          x1="80" y1={yScale(75)} x2={xScale(25)} y2={yScale(75)} 
+          stroke={adCurve1} strokeWidth="1" strokeDasharray="4,3"
+          initial={{ pathLength: 0 }}
+          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+          transition={{ delay: 3.4, duration: 0.4 }}
+        />
+
+        {/* Dashed lines from E₂ to axes */}
+        <motion.line 
+          x1={xScale(55)} y1={yScale(55)} x2={xScale(55)} y2="350" 
+          stroke={adCurve2} strokeWidth="1" strokeDasharray="4,3"
+          initial={{ pathLength: 0 }}
+          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+          transition={{ delay: 3.7, duration: 0.4 }}
+        />
+        <motion.line 
+          x1="80" y1={yScale(55)} x2={xScale(55)} y2={yScale(55)} 
+          stroke={adCurve2} strokeWidth="1" strokeDasharray="4,3"
+          initial={{ pathLength: 0 }}
+          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+          transition={{ delay: 3.7, duration: 0.4 }}
+        />
+
+        {/* Dashed lines from E₃ to axes */}
+        <motion.line 
+          x1="80" y1={yScale(40)} x2={xScale(75)} y2={yScale(40)} 
+          stroke={adCurve3} strokeWidth="1" strokeDasharray="4,3"
+          initial={{ pathLength: 0 }}
+          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+          transition={{ delay: 4, duration: 0.4 }}
+        />
       </svg>
 
       {/* Legend and explanation */}
