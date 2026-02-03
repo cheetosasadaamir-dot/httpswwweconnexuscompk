@@ -12,7 +12,9 @@ import {
   X,
   Sparkles,
   Library,
-  User
+  User,
+  Landmark,
+  Scale
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/logo-macromicro.png';
@@ -20,7 +22,8 @@ import OwnerProfileDrawer from './OwnerProfileDrawer';
 
 interface SubNavItem {
   title: string;
-  href: string;
+  href?: string;
+  scrollTo?: string;
 }
 
 interface LevelNavItem {
@@ -36,6 +39,7 @@ interface NavItem {
   scrollTo?: string;
 }
 
+// Desktop navigation (simplified)
 const navigation: NavItem[] = [
   { title: 'Home', href: '/', icon: Home },
   { title: 'Notes Library', scrollTo: 'notes-repository', icon: Library },
@@ -93,6 +97,70 @@ const navigation: NavItem[] = [
     ],
   },
   { title: 'Case Studies', href: '/case-studies', icon: BookOpen },
+];
+
+// Mobile tiered navigation structure
+interface MobileMenuTier {
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  isHighlighted?: boolean;
+  children: {
+    title: string;
+    href?: string;
+    scrollTo?: string;
+  }[];
+}
+
+const mobileMenuTiers: MobileMenuTier[] = [
+  {
+    title: 'AS Macroeconomics',
+    icon: Globe,
+    children: [
+      { title: 'AD/AS Equilibrium', href: '/as-macro/ad-as' },
+      { title: 'Inflation', href: '/as-macro/inflation' },
+      { title: 'International Trade', href: '/as-macro/international-trade' },
+      { title: 'Balance of Payments', href: '/as-macro/balance-of-payments' },
+    ],
+  },
+  {
+    title: 'A2 Macroeconomics',
+    icon: TrendingUp,
+    children: [
+      { title: 'Money & Banking', href: '/a2-macro/money-banking' },
+      { title: 'Unemployment & Phillips Curve', href: '/a2-macro/unemployment-growth' },
+      { title: 'Economic Development', href: '/a2-macro/development' },
+      { title: 'Economic Efficiency', href: '/a2-micro/economic-efficiency' },
+    ],
+  },
+  {
+    title: 'Govt. Macro Intervention',
+    icon: Landmark,
+    children: [
+      { title: 'Policy Aims & Objectives', href: '/a2-macro/policy-objectives' },
+      { title: 'Macroeconomic Policy', href: '/as-macro/policy' },
+      { title: 'Keynesian Theory', href: '/a2-macro/national-income' },
+    ],
+  },
+  {
+    title: 'AS Microeconomics',
+    icon: Scale,
+    children: [
+      { title: 'Basic Economic Ideas', href: '/basic-economic-ideas' },
+      { title: 'The Price System', href: '/price-system' },
+      { title: 'Elasticities', href: '/elasticities' },
+      { title: 'Market Failure', href: '/market-failure' },
+    ],
+  },
+  {
+    title: 'A2 Microeconomics',
+    icon: TrendingUp,
+    children: [
+      { title: 'Utility & Consumer Choice', href: '/a2-micro/utility-consumer-choice' },
+      { title: 'Production & Costs', href: '/a2-micro/production-costs' },
+      { title: 'Market Structures', href: '/a2-micro/market-structures' },
+      { title: 'Labor Market', href: '/a2-micro/labor-market' },
+    ],
+  },
 ];
 
 const FloatingDock = () => {
@@ -322,96 +390,139 @@ const FloatingDock = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
+            {/* Glassmorphic Backdrop */}
             <div 
-              className="absolute inset-0 bg-space-void/95 backdrop-blur-xl"
+              className="absolute inset-0 bg-space-void/80 backdrop-blur-[10px]"
               onClick={() => setIsMobileMenuOpen(false)}
             />
+            
+            {/* Menu Panel */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="absolute right-0 top-0 h-full w-80 mobile-menu overflow-y-auto"
+              transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+              className="absolute right-0 top-0 h-full w-full sm:w-[340px] bg-space-void/90 backdrop-blur-[15px] border-l border-neon-cyan/20 overflow-y-auto"
             >
               <div className="p-6 pt-20">
-                {navigation.map((item) => (
-                  <div key={item.title} className="mb-4">
-                    {item.scrollTo ? (
-                      <button
-                        onClick={() => scrollToSection(item.scrollTo!, true)}
-                        className="flex items-center gap-3 px-4 py-3 rounded-xl text-secondary hover:bg-secondary/10 transition-all font-display w-full text-left cta-amber-glow cursor-pointer"
-                      >
-                        <item.icon className="w-5 h-5" />
-                        <span className="font-medium">{item.title}</span>
-                      </button>
-                    ) : (
-                      <Link
-                        to={item.href || '#'}
-                        onClick={() => !item.levels && setIsMobileMenuOpen(false)}
-                        className={cn(
-                          "flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-display",
-                          isActive(item.href || '') || isParentActive(item)
-                            ? "bg-neon-cyan/10 text-neon-cyan shadow-neon-cyan"
-                            : "text-muted-foreground hover:bg-space-elevated hover:text-white"
-                        )}
-                      >
-                        <item.icon className="w-5 h-5" />
-                        <span className="font-medium">{item.title}</span>
-                      </Link>
-                    )}
-                    
-                    {item.levels && (
-                      <div className="ml-6 mt-2 border-l border-neon-gold/20 pl-4">
-                        {item.levels.map((level) => (
-                          <div key={level.title} className="mb-3">
-                            <span className="text-xs font-semibold text-neon-gold uppercase tracking-wider font-display">
-                              {level.title}
-                            </span>
-                            <div className="mt-1 space-y-1">
-                              {level.children.map((child) => (
-                                <Link
-                                  key={child.href}
-                                  to={child.href}
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                  className={cn(
-                                    "block py-2 text-sm transition-all",
-                                    isActive(child.href)
-                                      ? "text-neon-cyan"
-                                      : "text-muted-foreground hover:text-white"
-                                  )}
-                                >
-                                  {child.title}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
+                
+                {/* TIER 1: Owner Profile - Premium Entry */}
+                <div className="mb-6">
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsProfileOpen(true);
+                    }}
+                    className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl bg-gradient-to-r from-neon-cyan/10 to-neon-cyan/5 border border-neon-cyan/30 hover:border-neon-cyan/50 transition-all group shadow-[0_0_20px_rgba(0,242,255,0.15)]"
+                  >
+                    <div className="relative">
+                      <div className="w-10 h-10 rounded-full bg-space-elevated flex items-center justify-center border border-neon-cyan/30">
+                        <User className="w-5 h-5 text-neon-cyan" />
+                      </div>
+                      <div className="absolute inset-0 rounded-full bg-neon-cyan/20 blur-md animate-pulse" />
+                    </div>
+                    <div className="text-left">
+                      <span className="text-xs font-semibold tracking-[0.2em] text-neon-cyan/80 uppercase block">
+                        Tier 1
+                      </span>
+                      <span className="font-display font-semibold text-white group-hover:text-neon-cyan transition-colors">
+                        OWNER PROFILE
+                      </span>
+                    </div>
+                  </button>
+                </div>
+
+                {/* Divider */}
+                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
+
+                {/* Quick Links */}
+                <div className="flex gap-2 mb-6">
+                  <Link
+                    to="/"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-space-elevated/50 border border-white/10 text-muted-foreground hover:text-white hover:border-white/20 transition-all text-sm"
+                  >
+                    <Home className="w-4 h-4" />
+                    <span>Home</span>
+                  </Link>
+                  <button
+                    onClick={() => scrollToSection('notes-repository', true)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-neon-gold/10 border border-neon-gold/20 text-neon-gold hover:bg-neon-gold/20 transition-all text-sm"
+                  >
+                    <Library className="w-4 h-4" />
+                    <span>Notes</span>
+                  </button>
+                </div>
+
+                {/* TIERED NAVIGATION */}
+                <div className="space-y-4">
+                  {mobileMenuTiers.map((tier, tierIndex) => (
+                    <div key={tier.title} className="group">
+                      {/* Tier Header */}
+                      <div className="flex items-center gap-2 px-2 py-2 mb-2">
+                        <tier.icon className="w-4 h-4 text-neon-gold" />
+                        <span className="text-xs font-semibold tracking-[0.15em] text-neon-gold uppercase">
+                          {tier.title}
+                        </span>
+                        <span className="text-[10px] text-muted-foreground ml-auto">
+                          Tier {tierIndex + 2}
+                        </span>
+                      </div>
+                      
+                      {/* Tier Items */}
+                      <div className="space-y-1 pl-2 border-l border-neon-gold/20 ml-2">
+                        {tier.children.map((item) => (
+                          item.href ? (
+                            <Link
+                              key={item.title}
+                              to={item.href}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className={cn(
+                                "block px-4 py-2.5 text-sm rounded-lg transition-all",
+                                isActive(item.href)
+                                  ? "text-neon-cyan bg-neon-cyan/10"
+                                  : "text-muted-foreground hover:text-white hover:bg-space-elevated/50"
+                              )}
+                            >
+                              {item.title}
+                            </Link>
+                          ) : (
+                            <button
+                              key={item.title}
+                              onClick={() => scrollToSection(item.scrollTo!, true)}
+                              className="w-full text-left px-4 py-2.5 text-sm rounded-lg text-muted-foreground hover:text-white hover:bg-space-elevated/50 transition-all"
+                            >
+                              {item.title}
+                            </button>
+                          )
                         ))}
                       </div>
-                    )}
-                  </div>
-                ))}
+                    </div>
+                  ))}
+                </div>
 
-                {/* Glossary link in mobile */}
-                <Link
-                  to="/#glossary"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all font-display"
-                >
-                  <Sparkles className="w-5 h-5" />
-                  <span className="font-medium">Glossary</span>
-                </Link>
+                {/* Divider */}
+                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-6" />
 
-                {/* Owner Profile in mobile */}
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsProfileOpen(true);
-                  }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-neon-gold hover:bg-neon-gold/10 transition-all font-display w-full text-left mt-4 border border-neon-gold/20"
-                >
-                  <User className="w-5 h-5" />
-                  <span className="font-medium">Owner Profile</span>
-                </button>
+                {/* Utility Links */}
+                <div className="space-y-2">
+                  <Link
+                    to="/case-studies"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all"
+                  >
+                    <BookOpen className="w-5 h-5" />
+                    <span className="font-medium">Case Studies</span>
+                  </Link>
+                  <Link
+                    to="/#glossary"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all"
+                  >
+                    <Sparkles className="w-5 h-5" />
+                    <span className="font-medium">Glossary</span>
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </motion.div>
