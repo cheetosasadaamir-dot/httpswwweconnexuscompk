@@ -12,6 +12,7 @@ import FiscalPolicyADDiagram from '@/components/diagrams/FiscalPolicyADDiagram';
 import SupplySidePolicyDiagram from '@/components/diagrams/SupplySidePolicyDiagram';
 import LiquidityPreferenceDiagram from '@/components/diagrams/LiquidityPreferenceDiagram';
 import PolicyEffectivenessSection from '@/components/diagrams/PolicyEffectivenessSection';
+import InterconnectednessSection from '@/components/diagrams/InterconnectednessSection';
 
 const policyObjectivesTakeaways = [
   "8 Macroeconomic Objectives: Price stability, Full employment, Economic growth, BoP stability, Redistribution, Environment, Productivity, Market failure correction",
@@ -588,6 +589,11 @@ const PolicyObjectives = () => {
             <PolicyEffectivenessSection />
           </ContentSection>
 
+          {/* Topic 7: Inter-connectedness & Phillips Curve [A2 Specialist] */}
+          <ContentSection title="Topic 7: Inter-connectedness of Macroeconomic Problems">
+            <InterconnectednessSection />
+          </ContentSection>
+
           {/* Chapter Summary */}
           <ContentSection title="Chapter Summary">
             <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 rounded-xl">
@@ -605,10 +611,10 @@ const PolicyObjectives = () => {
                 <div>
                   <h4 className="font-semibold text-primary mb-1">Key Concepts</h4>
                   <ul className="list-disc list-inside space-y-0.5">
-                    <li>Output gaps determine policy effectiveness</li>
-                    <li>4 major policy conflicts exist</li>
-                    <li>Laffer Curve shows optimal tax rate T*</li>
-                    <li>NMW can cause classical unemployment</li>
+                    <li>SRPC trade-off: ↓U → ↑π (short run only)</li>
+                    <li>LRPC vertical at natural rate Uₙ</li>
+                    <li>Internal vs External value of money</li>
+                    <li>Inflation-BoP feedback loops</li>
                   </ul>
                 </div>
               </div>
