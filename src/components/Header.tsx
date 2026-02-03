@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, BookOpen, Briefcase, Image } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/logo-macromicro.png';
@@ -9,12 +9,13 @@ interface NavLink {
   label: string;
   href?: string;
   scrollTo?: string;
+  icon?: React.ComponentType<{ className?: string }>;
 }
 
 const navLinks: NavLink[] = [
-  { label: 'Notes Library', scrollTo: 'notes-repository' },
-  { label: 'Diagram Bank', href: '/diagrams' },
-  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Notes', href: '/notes', icon: BookOpen },
+  { label: 'Case Studies', href: '/case-studies', icon: Briefcase },
+  { label: 'Diagram Bank', href: '/diagrams', icon: Image },
 ];
 
 const Header = () => {
@@ -105,37 +106,25 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              link.scrollTo ? (
-                <button
-                  key={link.label}
-                  onClick={() => scrollToSection(link.scrollTo!)}
-                  className={cn(
-                    "relative text-sm font-medium transition-colors duration-300 cursor-pointer",
-                    "text-silver hover:text-secondary"
-                  )}
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.href}
-                  to={link.href!}
-                  className={cn(
-                    "relative text-sm font-medium transition-colors duration-300",
-                    location.pathname === link.href
-                      ? "text-primary"
-                      : "text-silver hover:text-silver-bright"
-                  )}
-                >
-                  {link.label}
-                  {location.pathname === link.href && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary"
-                    />
-                  )}
-                </Link>
-              )
+              <Link
+                key={link.href}
+                to={link.href!}
+                className={cn(
+                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-300 group",
+                  location.pathname === link.href
+                    ? "text-neon-cyan"
+                    : "text-silver hover:text-neon-cyan hover:translate-x-0.5"
+                )}
+              >
+                {link.icon && <link.icon className="w-4 h-4 transition-colors" />}
+                {link.label}
+                {location.pathname === link.href && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-cyan to-primary"
+                  />
+                )}
+              </Link>
             ))}
           </nav>
 
@@ -172,29 +161,28 @@ const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-navy-deep/95 backdrop-blur-xl border-b border-silver/10"
           >
-            <div className="px-6 py-4 space-y-3">
+            <div className="px-6 py-4 space-y-2">
               {navLinks.map((link) => (
-                link.scrollTo ? (
-                  <button
-                    key={link.label}
-                    onClick={() => scrollToSection(link.scrollTo!, true)}
-                    className="block w-full text-left py-2 text-silver hover:text-secondary transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                ) : (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <Link
-                    key={link.href}
                     to={link.href!}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block py-2 text-silver hover:text-silver-bright transition-colors"
+                    className="flex items-center gap-3 py-3 px-4 rounded-lg text-white hover:text-neon-cyan hover:bg-neon-cyan/5 hover:translate-x-1 transition-all duration-300 group"
                   >
-                    {link.label}
+                    {link.icon && (
+                      <link.icon className="w-5 h-5 text-silver group-hover:text-neon-cyan transition-colors" />
+                    )}
+                    <span className="font-medium tracking-wide">{link.label}</span>
                   </Link>
-                )
+                </motion.div>
               ))}
-              <div className="relative pt-2">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground mt-1" />
+              <div className="relative pt-3">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground mt-1.5" />
                 <input
                   type="text"
                   placeholder="Search topics..."
