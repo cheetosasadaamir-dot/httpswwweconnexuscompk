@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, FileText, BookOpen, Briefcase, ChevronRight, Command } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
+import { useDebounce } from '@/hooks/use-debounce';
 
 interface SearchResult {
   id: string;
@@ -80,14 +81,21 @@ const GlobalSearch = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // Filter results based on query with sanitization
-  const filteredResults = query.trim().length > 0
-    ? searchableContent.filter(item => {
-        const sanitizedQuery = sanitizeInput(query).toLowerCase();
-        return item.title.toLowerCase().includes(sanitizedQuery) ||
-          item.description?.toLowerCase().includes(sanitizedQuery);
-      }).slice(0, 8)
-    : [];
+  // Debounce search query for performance (300ms delay)
+  const debouncedQuery = useDebounce(query, 300);
+
+  // Filter results based on debounced query with sanitization - memoized for performance
+  const filteredResults = useMemo(() => {
+    if (debouncedQuery.trim().length === 0) return [];
+    
+    const sanitizedQuery = sanitizeInput(debouncedQuery).toLowerCase();
+    if (!sanitizedQuery) return [];
+    
+    return searchableContent.filter(item => 
+      item.title.toLowerCase().includes(sanitizedQuery) ||
+      item.description?.toLowerCase().includes(sanitizedQuery)
+    ).slice(0, 8);
+  }, [debouncedQuery]);
 
   // Keyboard shortcut handler (/ or CMD+K)
   useEffect(() => {
