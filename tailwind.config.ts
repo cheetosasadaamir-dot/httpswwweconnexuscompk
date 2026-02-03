@@ -17,6 +17,7 @@ export default {
         serif: ["Montserrat", "sans-serif"],
         sans: ["Inter", "sans-serif"],
         display: ["Montserrat", "sans-serif"],
+        script: ["Great Vibes", "cursive"],
       },
       colors: {
         border: "hsl(var(--border))",
