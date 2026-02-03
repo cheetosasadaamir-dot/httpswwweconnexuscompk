@@ -135,6 +135,14 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
+        {/* AI Economics Mentor Chatbot */}
+        <EconomicsChatbot />
+
+        {/* Silver Divider */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        </div>
+
         {/* Simplified Mastery Section */}
         <section className="py-24 lg:py-32">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -184,14 +192,6 @@ const Index = () => {
 
         {/* World Economics Section */}
         <WorldEconomicsSection />
-
-        {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
-        </div>
-
-        {/* AI Economics Mentor Chatbot */}
-        <EconomicsChatbot />
 
         {/* Silver Divider */}
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
