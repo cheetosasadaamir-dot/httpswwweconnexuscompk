@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import ChapterLayout from '@/components/ChapterLayout';
 import EfficiencyDiagram from '@/components/diagrams/EfficiencyDiagram';
 import MarketFailureExternalityDiagram from '@/components/diagrams/MarketFailureExternalityDiagram';
+import AdvancedEfficiencySection from '@/components/diagrams/AdvancedEfficiencySection';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertTriangle, CheckCircle, Lightbulb } from 'lucide-react';
 import KeyTakeaways from '@/components/KeyTakeaways';
@@ -19,10 +20,12 @@ const EconomicEfficiency = () => {
       <KeyTakeaways
         takeaways={[
           "Allocative efficiency occurs where P = MC (society's willingness to pay equals marginal cost of production); at market level, MSB = MSC.",
-          "Productive efficiency occurs at minimum ATC—no waste in production. Economies operate on the PPC when productively efficient.",
-          "Dynamic efficiency captures long-run innovation and R&D investment, often requiring supernormal profits to fund.",
+          "Productive efficiency occurs at minimum ATC (MC = AC)—all points on the PPF are productively efficient with no waste in production.",
+          "Dynamic efficiency captures long-run innovation and R&D investment, often requiring supernormal profits to fund; involves short-run cost trade-offs for long-run gains.",
+          "Pareto Optimality: A state where it is impossible to make one person better off without making someone else worse off—achieved on the PPF.",
           "X-inefficiency (Leibenstein) represents organizational slack in monopolies where costs exceed the minimum due to lack of competitive pressure.",
-          "Market failure sources include: externalities, public goods, merit/demerit goods, information failure, and monopoly power.",
+          "Market failure: Complete failure (missing markets) vs Partial failure (wrong quantity/price). MSC = MPC + MEC; MSB = MPB + MEB.",
+          "Social CBA: Decision justified if Social Benefits > Social Costs. Challenged by valuation difficulty, payback periods, and equity considerations.",
           "Government interventions: Pigouvian taxes for negative externalities, subsidies for positive externalities, regulation, tradeable permits, and nudge policies."
         ]}
       />
@@ -330,6 +333,16 @@ const EconomicEfficiency = () => {
           trap="Students list government policies without evaluating their limitations. They assume government intervention always 'solves' market failure."
           correction="Always evaluate intervention effectiveness: difficulty estimating externality values, risk of government failure, unintended consequences, impact depends on elasticity of demand, and political feasibility. A balanced answer weighs market failure against potential government failure."
         />
+      </motion.section>
+
+      {/* Topic 4: Advanced Efficiency, Pareto & CBA */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="mb-12"
+      >
+        <AdvancedEfficiencySection />
       </motion.section>
     </ChapterLayout>
   );
