@@ -16,6 +16,7 @@ import { ExchangeRateDiagram } from '@/components/diagrams/ExchangeRateDiagram';
 import FixedExchangeRateDiagram from '@/components/diagrams/FixedExchangeRateDiagram';
 import TradeCreationDiagram from '@/components/diagrams/TradeCreationDiagram';
 import TradeDiversionDiagram from '@/components/diagrams/TradeDiversionDiagram';
+import DevelopmentSustainabilitySection from '@/components/diagrams/DevelopmentSustainabilitySection';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
@@ -440,6 +441,11 @@ const Development = () => {
                 The welfare analysis of trading blocs illustrates a fundamental insight from <strong>'second-best' theory</strong>: in a world already distorted by tariffs and other trade barriers, removing some barriers (preferential liberalisation) while retaining others (external tariffs) does not necessarily improve welfare. Free trade—the first-best solution—would eliminate the diversion problem entirely. Regional blocs represent a <em>second-best</em> approach whose net effect depends on the specific configuration of tariffs, cost structures, and trade patterns. For developing economies, bloc participation offers both opportunities (market access, bargaining power, policy coordination) and risks (premature liberalisation, reduced policy flexibility, lock-in to inefficient regional suppliers). The conclusion for examiners is that blanket pronouncements about 'blocs are good/bad' are inadequate; rigorous analysis requires specification of <em>which</em> bloc, <em>which</em> member, and <em>which</em> sector under consideration.
               </p>
             </NoteCard>
+          </ContentSection>
+
+          {/* Socio-Economic & Sustainability Expansion - CIE Framework */}
+          <ContentSection title="Socio-Economic & Sustainability Framework">
+            <DevelopmentSustainabilitySection />
           </ContentSection>
 
           {/* Exam Preparation */}
