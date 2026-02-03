@@ -97,8 +97,8 @@ const Header = () => {
               transition={{ duration: 0.3 }}
             />
             <div className="hidden sm:block">
-              <span className="font-serif text-xl font-semibold text-gradient group-hover:text-secondary transition-all">
-                EconNexus
+              <span className="font-sans text-xl font-bold tracking-wide text-gradient group-hover:text-secondary transition-all">
+                EconNe<span className="text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]">x</span>us
               </span>
             </div>
           </Link>
