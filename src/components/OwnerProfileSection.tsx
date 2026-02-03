@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Linkedin, Twitter, Mail } from 'lucide-react';
+import { Linkedin, Twitter, Mail, Instagram } from 'lucide-react';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
 
@@ -95,6 +95,21 @@ const OwnerProfileSection = () => {
                   <p>
                     Possessing a deep interest in problem-solving and innovative thinking, the methodologies employed here aim to bridge the gap between abstract economic theory and its practical applications in policy analysis, market behavior, and macroeconomic stabilization—preparing students not just for examinations, but for intellectual leadership in the discipline.
                   </p>
+                </div>
+
+                {/* Instagram Social Navigation Channel */}
+                <div className="mt-6 flex justify-center">
+                  <a
+                    href="https://www.instagram.com/asaddd__2?igsh=em1haGRiaGx6bGk1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-space-void/60 border border-neon-cyan/30 hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all duration-300 group min-h-[44px]"
+                  >
+                    <Instagram className="w-5 h-5 text-white group-hover:text-neon-cyan transition-colors" />
+                    <span className="text-xs font-semibold tracking-[0.15em] uppercase text-white/80 group-hover:text-neon-cyan transition-colors">
+                      Connect on Instagram
+                    </span>
+                  </a>
                 </div>
 
                 {/* Footer Section */}
