@@ -13,9 +13,13 @@ import SupplySidePolicyDiagram from '@/components/diagrams/SupplySidePolicyDiagr
 import LiquidityPreferenceDiagram from '@/components/diagrams/LiquidityPreferenceDiagram';
 import PolicyEffectivenessSection from '@/components/diagrams/PolicyEffectivenessSection';
 import InterconnectednessSection from '@/components/diagrams/InterconnectednessSection';
+import MacroPolicyAimsSection from '@/components/diagrams/MacroPolicyAimsSection';
 
 const policyObjectivesTakeaways = [
   "8 Macroeconomic Objectives: Price stability, Full employment, Economic growth, BoP stability, Redistribution, Environment, Productivity, Market failure correction",
+  "Inflation Target: UK uses 2% CPI target; Governor must explain deviations > ±1% to Chancellor",
+  "Exchange Rate Manipulation: Central bank sells currency → ↑Supply → ↓Price (depreciation) → ↑Export competitiveness",
+  "Full Employment: Target ~3% (natural rate); accounts for frictional unemployment",
   "Phillips Curve Trade-off: ↓Unemployment ↔ ↑Inflation; Stagflation breaks this relationship (↑U and ↑P together)",
   "Fiscal Policy: ↑G or ↓T → ↑AD (expansionary); Multiplier k = 1/(MPS + MPT + MPM); Time lags of 2+ years",
   "Crowding Out: ↑G financed by borrowing → ↑r → ↓Private Investment — Monetarist critique of fiscal policy",
@@ -46,6 +50,11 @@ const PolicyObjectives = () => {
 
           {/* Key Takeaways Summary */}
           <KeyTakeaways takeaways={policyObjectivesTakeaways} />
+
+          {/* Topic 0: Macro Policy Aims [A2 Specialist] */}
+          <ContentSection title="Topic 0: Government Macro Policy Aims">
+            <MacroPolicyAimsSection />
+          </ContentSection>
 
           {/* Topic 1: Government Macroeconomic Objectives */}
           <ContentSection title="Topic 1: Government Macroeconomic Objectives">
