@@ -14,6 +14,7 @@ import CreditMultiplierDiagram from '@/components/diagrams/CreditMultiplierDiagr
 import QuantityTheoryDiagram from '@/components/diagrams/QuantityTheoryDiagram';
 import MECCurveDiagram from '@/components/diagrams/MECCurveDiagram';
 import MoneySupplyDiagram from '@/components/diagrams/MoneySupplyDiagram';
+import AdvancedMonetaryTheorySection from '@/components/diagrams/AdvancedMonetaryTheorySection';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
@@ -53,7 +54,7 @@ const MoneyBanking = () => {
 
         {/* Topic Navigation */}
         <div className="glass-card p-3 mb-6 rounded-lg">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-2 text-xs">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-2 text-xs">
             <a href="#topic1" className="p-2 bg-muted/50 rounded hover:bg-muted transition-colors text-center">
               <span className="text-primary font-semibold">Topic 1</span>
               <p className="text-muted-foreground">Liquidity Preference</p>
@@ -73,6 +74,10 @@ const MoneyBanking = () => {
             <a href="#topic5" className="p-2 bg-muted/50 rounded hover:bg-muted transition-colors text-center">
               <span className="text-primary font-semibold">Topic 5</span>
               <p className="text-muted-foreground">Policy Evaluation</p>
+            </a>
+            <a href="#advanced-theory" className="p-2 bg-cambridge-cyan/20 rounded hover:bg-cambridge-cyan/30 transition-colors text-center border border-cambridge-cyan/30">
+              <span className="text-cambridge-cyan font-semibold">Advanced</span>
+              <p className="text-muted-foreground">QTM & MPC Theory</p>
             </a>
           </div>
         </div>
@@ -722,6 +727,21 @@ const MoneyBanking = () => {
             <p className="text-sm text-foreground/90 leading-relaxed text-justify">
               <strong className="text-amber-400">Senior Examiner's Final Verdict:</strong> "The transmission mechanism from <InlineMath math="\Delta M^s \rightarrow \Delta Y" /> operates through a five-stage chain vulnerable to breakdown at each junction. The Keynesian critique demonstrates that monetary expansion may be 'pushing on a string' during recessions, while Monetarists emphasise velocity stability and the direct spending channel. A* candidates must evaluate <em>when</em> monetary policy works (normal conditions, credible commitment) versus <em>when</em> it fails (liquidity trap, investment inelasticity, credit freeze), rather than offering simplistic judgments about its general efficacy. The 2008 GFC and post-COVID QE experiments provide empirical case studies demonstrating both the power and the limits of unconventional monetary expansion."
             </p>
+          </div>
+        </ContentSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* ADVANCED THEORY: QUANTITY THEORY & MPC POLICY */}
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
+        <ContentSection title="Advanced Theory: Monetarist Framework & MPC Decision-Making" id="advanced-theory">
+          <AdvancedMonetaryTheorySection />
+          
+          {/* Interactive QTM Diagram */}
+          <div className="mt-8">
+            <h4 className="font-serif text-lg font-semibold text-silver-bright mb-4">
+              Interactive: Quantity Theory Simulation
+            </h4>
+            <QuantityTheoryDiagram />
           </div>
         </ContentSection>
 
