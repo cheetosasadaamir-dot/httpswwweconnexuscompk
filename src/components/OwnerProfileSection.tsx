@@ -2,12 +2,6 @@ import { motion } from 'framer-motion';
 import { Linkedin, Twitter, Mail } from 'lucide-react';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
-const expertiseBadges = [
-  'CIE 9708 Specialist',
-  'Macroeconomic Analyst',
-  'Quantitative Theory',
-  'A-Level Examiner Insight',
-];
 
 const OwnerProfileSection = () => {
   return (
@@ -103,18 +97,8 @@ const OwnerProfileSection = () => {
                   </p>
                 </div>
 
-                {/* Expertise Badges */}
+                {/* Footer Section */}
                 <div className="mt-8 pt-6 border-t border-white/5">
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {expertiseBadges.map((badge) => (
-                      <span
-                        key={badge}
-                        className="px-3 py-1.5 text-xs font-medium rounded-full border border-neon-cyan/30 text-neon-cyan bg-neon-cyan/5 shadow-[0_0_10px_rgba(0,242,255,0.15)]"
-                      >
-                        {badge}
-                      </span>
-                    ))}
-                  </div>
 
                   {/* Footer Row: Signature + Social Icons */}
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
