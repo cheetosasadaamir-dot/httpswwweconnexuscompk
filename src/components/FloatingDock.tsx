@@ -5,7 +5,6 @@ import {
   Home, 
   TrendingUp, 
   Globe, 
-  Image, 
   BookOpen,
   ChevronDown,
   GraduationCap,
@@ -91,7 +90,6 @@ const navigation: NavItem[] = [
       },
     ],
   },
-  { title: 'Diagrams', href: '/diagrams', icon: Image },
   { title: 'Case Studies', href: '/case-studies', icon: BookOpen },
 ];
 

@@ -7,7 +7,7 @@ import Index from "./pages/Index";
 import MarketStructures from "./pages/MarketStructures";
 import BasicEconomicIdeas from "./pages/BasicEconomicIdeas";
 import PriceSystem from "./pages/PriceSystem";
-import DiagramBank from "./pages/DiagramBank";
+
 import CaseStudies from "./pages/CaseStudies";
 import NationalIncomeLegacy from "./pages/NationalIncome";
 import IncomeDetermination from "./pages/IncomeDetermination";
@@ -87,7 +87,6 @@ const App = () => (
           <Route path="/a2-macro/development" element={<Development />} />
           
           {/* Utility pages */}
-          <Route path="/diagrams" element={<DiagramBank />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/market-structures" element={<MarketStructures />} />
           
