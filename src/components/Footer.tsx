@@ -129,15 +129,10 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-silver/10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="font-sans text-xs text-silver/50">
-              © 2026 EconNe<span className="text-neon-cyan">x</span>us. All Rights Reserved. | www.econnexus.com.pk
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            <p className="font-sans text-xs text-silver/40 tracking-wide">
+              © 2026 EconNe<span className="text-neon-cyan/60">x</span>us | Advanced Macroeconomic Portal
             </p>
-            <div className="flex items-center gap-6">
-              <span className="text-xs text-muted-foreground">
-                The Premier Gateway to Advanced Macroeconomic Mastery
-              </span>
-            </div>
           </div>
         </div>
       </div>
