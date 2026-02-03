@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search, FileText, BookOpen, Briefcase, ChevronRight, Command } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 
 interface SearchResult {
   id: string;
@@ -79,12 +80,13 @@ const GlobalSearch = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // Filter results based on query
+  // Filter results based on query with sanitization
   const filteredResults = query.trim().length > 0
-    ? searchableContent.filter(item => 
-        item.title.toLowerCase().includes(query.toLowerCase()) ||
-        item.description?.toLowerCase().includes(query.toLowerCase())
-      ).slice(0, 8)
+    ? searchableContent.filter(item => {
+        const sanitizedQuery = sanitizeInput(query).toLowerCase();
+        return item.title.toLowerCase().includes(sanitizedQuery) ||
+          item.description?.toLowerCase().includes(sanitizedQuery);
+      }).slice(0, 8)
     : [];
 
   // Keyboard shortcut handler (/ or CMD+K)
