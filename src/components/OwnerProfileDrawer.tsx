@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Briefcase, Award } from 'lucide-react';
+import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
@@ -9,12 +9,6 @@ interface OwnerProfileDrawerProps {
 }
 
 const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
-  const professionalFocus = [
-    'Macroeconomic Research',
-    'CIE Syllabus Specialist',
-    'Business Economics',
-    'Leadership & Strategy',
-  ];
 
   return (
     <AnimatePresence>
@@ -128,23 +122,6 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
                 </p>
               </section>
 
-              {/* Professional Focus Badges */}
-              <section className="mb-10">
-                <h3 className="text-xs font-semibold tracking-[0.2em] text-neon-gold uppercase mb-4 flex items-center gap-2">
-                  <Briefcase className="w-4 h-4" />
-                  Professional Focus
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {professionalFocus.map((focus) => (
-                    <span
-                      key={focus}
-                      className="px-3 py-1.5 text-xs font-medium rounded-full border border-neon-cyan/30 text-neon-cyan/90 bg-neon-cyan/5 hover:bg-neon-cyan/10 hover:border-neon-cyan/50 transition-colors"
-                    >
-                      {focus}
-                    </span>
-                  ))}
-                </div>
-              </section>
 
               {/* Education */}
               <section className="mb-10">
