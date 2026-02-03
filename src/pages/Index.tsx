@@ -8,6 +8,7 @@ import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
+import GlobalSearch from '@/components/GlobalSearch';
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
@@ -38,8 +39,13 @@ const Index = () => {
       <Header />
 
       <main className="relative z-20">
+        {/* Global Search Bar - Below Header */}
+        <section className="pt-24 pb-6 md:pt-28 md:pb-8 sticky top-16 md:top-20 z-40 bg-gradient-to-b from-background/80 via-background/60 to-transparent backdrop-blur-sm md:relative md:bg-transparent md:backdrop-blur-none">
+          <GlobalSearch />
+        </section>
+
         {/* Hero Section */}
-        <section className="min-h-[70vh] flex items-center pt-20">
+        <section className="min-h-[60vh] flex items-center pt-4 md:pt-8">
           <div className="max-w-5xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
             <div className="text-center">
               <motion.div
