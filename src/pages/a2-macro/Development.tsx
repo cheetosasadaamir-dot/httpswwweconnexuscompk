@@ -17,9 +17,9 @@ import FixedExchangeRateDiagram from '@/components/diagrams/FixedExchangeRateDia
 import TradeCreationDiagram from '@/components/diagrams/TradeCreationDiagram';
 import TradeDiversionDiagram from '@/components/diagrams/TradeDiversionDiagram';
 import DevelopmentSustainabilitySection from '@/components/diagrams/DevelopmentSustainabilitySection';
+import ClassificationIndicatorsSection from '@/components/diagrams/ClassificationIndicatorsSection';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
-
 const developmentTakeaways = [
   "Economic Growth ≠ Economic Development; Growth is ↑Real GDP; Development is qualitative improvement in living standards",
   "HDI combines Health (life expectancy), Education (schooling years), and Income (GNI per capita PPP) — range 0 to 1",
@@ -88,6 +88,11 @@ const Development = () => {
                 The phenomenon of <em>growth without development</em> demonstrates why GDP expansion is a necessary but insufficient condition for genuine welfare improvement. Consider an economy experiencing 8% annual GDP growth driven by commodity exports: <strong>Initial Impact</strong>—resource extraction generates foreign exchange earnings and fiscal revenues, boosting headline growth figures. <strong>However</strong>, if the extractive sector is capital-intensive and employs few workers, if revenues are captured by political elites or repatriated by multinational corporations, if environmental degradation imposes health costs on local populations, and if the commodity boom induces 'Dutch Disease' (real exchange rate appreciation undermining non-resource tradeable sectors), then the growth episode may deliver minimal improvements—or even deterioration—in human development indicators. This pattern, observed in many resource-rich developing nations, illustrates the critical importance of <em>inclusive growth</em>—economic expansion that creates broad-based opportunities, reduces inequality, and translates into measurable improvements in HDI components.
               </p>
             </AnalysisBlock>
+          </ContentSection>
+
+          {/* Section 8.1.5: Classification & Development Indicators */}
+          <ContentSection title="Section 8.1.5: Classification of Countries & Development Indicators">
+            <ClassificationIndicatorsSection />
           </ContentSection>
 
           {/* Section 2: Measuring Inequality */}
