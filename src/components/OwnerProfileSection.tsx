@@ -30,9 +30,6 @@ const OwnerProfileSection = () => {
           <span className="inline-block px-4 py-1.5 rounded-full bg-neon-cyan/10 border border-neon-cyan/20 text-sm text-neon-cyan mb-6">
             🎓 Meet the Founder
           </span>
-          <h2 className="font-display text-3xl lg:text-4xl font-bold tracking-wide text-white mb-4">
-            SYLLABUS SPECIALIST & PORTAL FOUNDER
-          </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             The academic mind behind the MacroMicro Economics Portal
           </p>
