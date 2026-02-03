@@ -21,6 +21,7 @@ import { ADShiftImpactDiagram } from '@/components/diagrams/ADShiftImpactDiagram
 import { SRASShiftStagflationDiagram } from '@/components/diagrams/SRASShiftStagflationDiagram';
 import ExpansionaryFiscalPolicyDiagram from '@/components/diagrams/ExpansionaryFiscalPolicyDiagram';
 import ClassicalADInflationDiagram from '@/components/diagrams/ClassicalADInflationDiagram';
+import EquilibriumTheorySection from '@/components/diagrams/EquilibriumTheorySection';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
@@ -847,8 +848,14 @@ const ADASEquilibrium = () => {
           <CostPushStagflationDiagram />
         </ContentSection>
 
+        {/* Macroeconomic Equilibrium - CIE AS-Level Enhanced Content */}
+        <ContentSection title="Equilibrium Real National Output: CIE 9708 Framework">
+          {/* Integrated CIE Content Section */}
+          <EquilibriumTheorySection />
+        </ContentSection>
+
         {/* Macroeconomic Equilibrium - Expanded */}
-        <ContentSection title="Determining Macroeconomic Equilibrium">
+        <ContentSection title="Determining Macroeconomic Equilibrium: Analysis">
           <NoteCard title="The Intersection of AD and AS" type="theory">
             <p className="leading-relaxed text-justify">
               Macroeconomic equilibrium occurs at the intersection of the aggregate demand and 
