@@ -11,6 +11,7 @@ import LafferCurveDiagram from '@/components/diagrams/LafferCurveDiagram';
 import FiscalPolicyADDiagram from '@/components/diagrams/FiscalPolicyADDiagram';
 import SupplySidePolicyDiagram from '@/components/diagrams/SupplySidePolicyDiagram';
 import LiquidityPreferenceDiagram from '@/components/diagrams/LiquidityPreferenceDiagram';
+import PolicyEffectivenessSection from '@/components/diagrams/PolicyEffectivenessSection';
 
 const policyObjectivesTakeaways = [
   "8 Macroeconomic Objectives: Price stability, Full employment, Economic growth, BoP stability, Redistribution, Environment, Productivity, Market failure correction",
@@ -582,6 +583,11 @@ const PolicyObjectives = () => {
             </AnalysisBlock>
           </ContentSection>
 
+          {/* Topic 6: Policy Effectiveness & Conflicts [A2 Specialist] */}
+          <ContentSection title="Topic 6: Policy Effectiveness & Conflicts">
+            <PolicyEffectivenessSection />
+          </ContentSection>
+
           {/* Chapter Summary */}
           <ContentSection title="Chapter Summary">
             <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 rounded-xl">
@@ -599,10 +605,10 @@ const PolicyObjectives = () => {
                 <div>
                   <h4 className="font-semibold text-primary mb-1">Key Concepts</h4>
                   <ul className="list-disc list-inside space-y-0.5">
-                    <li>6 policy tradeoffs exist</li>
+                    <li>Output gaps determine policy effectiveness</li>
+                    <li>4 major policy conflicts exist</li>
                     <li>Laffer Curve shows optimal tax rate T*</li>
-                    <li>Liquidity Trap limits monetary policy</li>
-                    <li>Supply-side policies shift AS rightward</li>
+                    <li>NMW can cause classical unemployment</li>
                   </ul>
                 </div>
               </div>
