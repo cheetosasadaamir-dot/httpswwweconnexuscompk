@@ -11,10 +11,12 @@ import {
   Menu,
   X,
   Sparkles,
-  Library
+  Library,
+  User
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/logo-macromicro.png';
+import OwnerProfileDrawer from './OwnerProfileDrawer';
 
 interface SubNavItem {
   title: string;
@@ -100,6 +102,7 @@ const FloatingDock = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
     if (closeMobileMenu) {
@@ -397,11 +400,26 @@ const FloatingDock = () => {
                   <Sparkles className="w-5 h-5" />
                   <span className="font-medium">Glossary</span>
                 </Link>
+
+                {/* Owner Profile in mobile */}
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsProfileOpen(true);
+                  }}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-neon-gold hover:bg-neon-gold/10 transition-all font-display w-full text-left mt-4 border border-neon-gold/20"
+                >
+                  <User className="w-5 h-5" />
+                  <span className="font-medium">Owner Profile</span>
+                </button>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Owner Profile Drawer */}
+      <OwnerProfileDrawer isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
     </>
   );
 };
