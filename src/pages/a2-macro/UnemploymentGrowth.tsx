@@ -9,6 +9,7 @@ import ExaminerTrap from '@/components/ExaminerTrap';
 import PhillipsCurveDiagram from '@/components/diagrams/PhillipsCurveDiagram';
 import ClassicalUnemploymentDiagram from '@/components/diagrams/ClassicalUnemploymentDiagram';
 import CyclicalUnemploymentDiagram from '@/components/diagrams/CyclicalUnemploymentDiagram';
+import LabourMarketTechnicalSection from '@/components/diagrams/LabourMarketTechnicalSection';
 
 const unemploymentTakeaways = [
   "Unemployment Rate = (Unemployed ÷ Labour Force) × 100; measured by Claimant Count or Labour Force Survey (ILO standard)",
@@ -496,6 +497,11 @@ const UnemploymentGrowth = () => {
               expect you to evaluate both perspectives!
             </p>
           </ExamTipBox>
+        </ContentSection>
+
+        {/* Technical Analysis Section - CIE Framework */}
+        <ContentSection title="Technical Analysis: CIE 9708 Labour Market Framework">
+          <LabourMarketTechnicalSection />
         </ContentSection>
 
         {/* Chapter Summary */}
