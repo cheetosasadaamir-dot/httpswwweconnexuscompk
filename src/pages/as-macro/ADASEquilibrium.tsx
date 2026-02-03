@@ -21,7 +21,7 @@ import { ADShiftImpactDiagram } from '@/components/diagrams/ADShiftImpactDiagram
 import { SRASShiftStagflationDiagram } from '@/components/diagrams/SRASShiftStagflationDiagram';
 import ExpansionaryFiscalPolicyDiagram from '@/components/diagrams/ExpansionaryFiscalPolicyDiagram';
 import ClassicalADInflationDiagram from '@/components/diagrams/ClassicalADInflationDiagram';
-import EquilibriumTheorySection from '@/components/diagrams/EquilibriumTheorySection';
+import ADASEquilibriumSection from '@/components/diagrams/ADASEquilibriumSection';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
@@ -851,7 +851,7 @@ const ADASEquilibrium = () => {
         {/* Macroeconomic Equilibrium - CIE AS-Level Enhanced Content */}
         <ContentSection title="Equilibrium Real National Output: CIE 9708 Framework">
           {/* Integrated CIE Content Section */}
-          <EquilibriumTheorySection />
+          <ADASEquilibriumSection />
         </ContentSection>
 
         {/* Macroeconomic Equilibrium - Expanded */}
