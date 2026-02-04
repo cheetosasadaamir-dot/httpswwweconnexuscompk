@@ -41,9 +41,9 @@ const Index = () => {
       {/* Fixed Search Header */}
       <FixedSearchHeader />
 
-      <main className="relative z-20">
+      <main className="relative z-10">
         {/* Hero Section - Extra top padding to account for fixed header + search bar */}
-        <section className="min-h-[60vh] flex items-center pt-36 md:pt-44">
+        <section className="min-h-[60vh] flex items-center pt-44 md:pt-52">
           <div className="max-w-5xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
             <div className="text-center">
               <motion.div
