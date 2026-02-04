@@ -20,10 +20,10 @@ const FixedSearchHeader = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.2 }}
+      style={{ position: 'fixed', top: '64px', left: 0, right: 0, zIndex: 999 }}
       className={cn(
-        "fixed top-16 md:top-20 left-0 right-0 z-[1000]",
         "py-4 md:py-5",
-        "bg-space-void/80 backdrop-blur-xl",
+        "bg-background/95 backdrop-blur-xl",
         "transition-all duration-300",
         isScrolled 
           ? "border-b border-neon-cyan/30 shadow-[0_4px_30px_rgba(0,0,0,0.4)]" 
