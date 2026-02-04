@@ -9,6 +9,7 @@ import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
 import FixedSearchHeader from '@/components/FixedSearchHeader';
+import AcademicDisclaimer from '@/components/AcademicDisclaimer';
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
@@ -40,6 +41,9 @@ const Index = () => {
 
       {/* Fixed Search Header */}
       <FixedSearchHeader />
+
+      {/* Academic Disclaimer - Sidebar on desktop, info icon on mobile */}
+      <AcademicDisclaimer />
 
       <main className="relative z-10">
         {/* Hero Section - Extra top padding to account for fixed header + search bar */}
