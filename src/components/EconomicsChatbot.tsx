@@ -296,7 +296,7 @@ export default function EconomicsChatbot() {
     };
   }, []);
 
-  const streamChat = useCallback(async (userMessages: Message[]) => {
+  const streamChat = async (userMessages: Message[]) => {
     setStreamState('connecting');
     
     // Create new abort controller for this request
@@ -305,12 +305,12 @@ export default function EconomicsChatbot() {
     // After 5s of no content, show premium "analyzing" state
     analyzeTimeoutRef.current = setTimeout(() => {
       setStreamState('analyzing');
-    }, 5000);
+    }, 8000);
     
     // After 25s, show error state
     streamTimeoutRef.current = setTimeout(() => {
       setStreamState('error');
-    }, 25000);
+    }, 45000);
     
     try {
       const resp = await fetch(CHAT_URL, {
@@ -368,8 +368,8 @@ export default function EconomicsChatbot() {
         const { done, value } = await reader.read();
         if (done) break;
         
-        // Reset to streaming state on receiving data
-        if (streamState !== 'streaming') {
+        // Set streaming state when we receive data
+        if (!hasStartedContent) {
           setStreamState('streaming');
         }
         
@@ -384,7 +384,10 @@ export default function EconomicsChatbot() {
           const line = rawLine.trim();
           
           // Skip empty lines, comments, and processing messages
-          if (!line || line.startsWith(':')) continue;
+          if (!line) continue;
+          
+          // Skip SSE comments (like ": OPENROUTER PROCESSING")
+          if (line.startsWith(':')) continue;
           
           // Must be a data line
           if (!line.startsWith('data:')) continue;
@@ -401,6 +404,16 @@ export default function EconomicsChatbot() {
               if (!hasStartedContent) {
                 setStreamState('streaming');
                 hasStartedContent = true;
+                
+                // Clear timeouts once we start receiving content
+                if (streamTimeoutRef.current) {
+                  clearTimeout(streamTimeoutRef.current);
+                  streamTimeoutRef.current = null;
+                }
+                if (analyzeTimeoutRef.current) {
+                  clearTimeout(analyzeTimeoutRef.current);
+                  analyzeTimeoutRef.current = null;
+                }
               }
               
               assistantContent += content;
@@ -467,7 +480,7 @@ export default function EconomicsChatbot() {
       
       throw error;
     }
-  }, [streamState]);
+  };
 
   const handleSend = async (query?: string) => {
     const rawText = query || input.trim();
