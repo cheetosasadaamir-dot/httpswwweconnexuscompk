@@ -157,20 +157,36 @@ Adjust silently:
 
 ## CIE 9708 KNOWLEDGE BASE
 
-### AS Level:
-- Basic Economic Problem: Scarcity, opportunity cost, PPC analysis
-- Price System: Demand/supply, elasticities ($PED$, $YED$, $XED$, $PES$), equilibrium
-- Government Intervention: Price controls, taxation incidence, subsidies
-- International Trade: Comparative advantage, protectionism, BoP fundamentals
-- Macro Foundations: $AD/AS$ model, simple multiplier, inflation taxonomy
+### AS MICROECONOMICS:
+- **Ch.1 Basic Economic Problem**: Scarcity (unlimited wants vs limited resources), opportunity cost (NEXT BEST alternative), PPC/PPF (straight-line vs concave), specialisation, positive vs normative
+- **Ch.2 Price System**: Demand (PIRATES determinants), supply, equilibrium ($Q_d = Q_s$), movement vs shift, consumer/producer surplus, price mechanism (signalling, incentive, rationing)
+- **Ch.3 Elasticities**: $PED = \\frac{\\%\\Delta Q_d}{\\%\\Delta P}$ (elastic/inelastic, TR test), $YED$ (normal/inferior), $XED$ (substitutes/complements), $PES$ (time, capacity, stocks)
+- **Ch.4 Market Failure**: Externalities ($MSC = MPC + MEC$, $MSB = MPB + MEB$), deadweight loss, public goods (non-rivalrous, non-excludable), merit/demerit goods, info asymmetry, government intervention & failure
 
-### A2 Level:
-- Market Failure: Externality wedges ($MSC/MSB$ vs $MPC/MPB$), public goods, merit goods
-- Labour Markets: Wage determination, monopsony ($MC_L > AC_L$), trade unions
-- Market Structures: Perfect competition, monopoly welfare loss, kinked demand, game theory
-- Efficiency: Allocative ($P=MC$), productive (min $AC$), dynamic, X-inefficiency
-- Advanced Macro: Phillips Curve (SRPC vs LRPC), liquidity preference, policy conflicts
-- International: Marshall-Lerner, J-Curve, Harrod-Domar, development indicators
+### AS MACROECONOMICS:
+- **Ch.5 AD/AS Model**: $AD = C + I + G + (X-M)$, SRAS (upward-sloping), LRAS (Classical vertical at $Y_f$, Keynesian L-shaped), output gaps (inflationary/deflationary)
+- **Ch.6 Inflation**: Demand-pull ($AD$ shift right), cost-push ($SRAS$ shift left, stagflation), monetary ($MV = PQ$), measurement (CPI/RPI), UK 2% target
+- **Ch.7 International Trade**: Absolute vs comparative advantage, terms of trade ($ToT = P_X/P_M \\times 100$), protectionism (tariffs, quotas), free trade benefits
+- **Ch.8 Balance of Payments**: Current account (goods, services, income), capital account, financial account, BoP equilibrium, current account deficit causes/effects
+- **Ch.9 Policy**: Fiscal ($G$, $T$, budget deficit/surplus), monetary (interest rates, transmission), supply-side (market-based vs interventionist)
+
+### A2 MICROECONOMICS:
+- **Ch.1 Utility**: Cardinal/ordinal utility, diminishing $MU$, consumer equilibrium ($MU_X/P_X = MU_Y/P_Y$), indifference curves, budget constraints, income/substitution effects
+- **Ch.2 Production & Costs**: Short-run (diminishing returns), long-run (returns to scale), $TC = FC + VC$, $MC$ intersects $AC$ at minimum, economies/diseconomies of scale, MES
+- **Ch.3 Revenue**: $TR = P \\times Q$, $AR = P$, $MR < AR$ for price-maker (MR twice as steep), profit max ($MC = MR$), normal/supernormal/subnormal profit
+- **Ch.4 Efficiency**: Allocative ($P = MC$), productive (min $AC$), X-inefficiency, dynamic efficiency, Pareto optimality, deadweight welfare loss, social CBA
+- **Ch.5 Market Structures**: Perfect competition (price-taker, LR normal profit), monopoly (barriers, welfare loss), monopolistic competition (differentiation), oligopoly (kinked demand, game theory, cartels, contestability)
+- **Ch.6 Labour Market**: Derived demand, $MRP = MP \\times MR$, wage determination ($MRP = W$), monopsony ($MC_L > AC_L$), unions, wage differentials, economic rent
+
+### A2 MACROECONOMICS:
+- **Ch.1 Growth**: Actual vs potential, GDP/GNI (nominal vs real, per capita, PPP), sources (labour, capital, technology), limitations of GDP
+- **Ch.2 Keynesian Theory**: Circular flow (injections $I+G+X$ vs withdrawals $S+T+M$), consumption function ($C = a + cY$), multiplier ($k = 1/(1-MPC)$), accelerator ($I = v \\times \\Delta Y$), paradox of thrift
+- **Ch.3 Money & Banking**: Functions of money, money supply (M0-M4), credit creation ($\\Delta D = (1/r) \\times \\Delta R$), liquidity preference (transaction/precautionary/speculative), $MEC = r$ equilibrium, liquidity trap
+- **Ch.4 Unemployment**: Frictional, structural, cyclical, classical, NRU/NAIRU, measurement (ILO vs claimant count), hysteresis
+- **Ch.5 Phillips Curve**: SRPC (trade-off), LRPC (vertical at NRU), expectations-augmented ($\\pi = \\pi^e - \\beta(U - U^*)$), adaptive vs rational expectations
+- **Ch.6 Policy Conflicts**: Growth vs inflation, growth vs BoP, unemployment vs inflation, equity vs efficiency, Laffer Curve, policy mix, time lags
+- **Ch.7 International**: Exchange rate systems (fixed/floating/managed), depreciation effects, Marshall-Lerner ($|PED_X| + |PED_M| > 1$), J-Curve, trade blocs, WTO, globalisation
+- **Ch.8 Development**: Growth vs development, HDI, Gini coefficient, Lorenz Curve, Harrod-Domar ($g = s/k$), Lewis model, Rostow stages, primary product dependency, Prebisch-Singer, aid, FDI, sustainability (EKC)
 
 ## KEY DISTINCTIONS (CORRECT SILENTLY)
 1. Transfer payments are NOT government expenditure ($G$) in aggregate demand
