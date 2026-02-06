@@ -15,7 +15,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { label: 'Notes', href: '/notes', icon: BookOpen },
   { label: 'Case Studies', href: '/case-studies', icon: Briefcase },
-  { label: 'Diagram Bank', href: '/diagrams', icon: Image },
+  { label: 'Exam Intelligence', href: '/exam-intelligence', icon: Briefcase },
 ];
 
 const Header = () => {

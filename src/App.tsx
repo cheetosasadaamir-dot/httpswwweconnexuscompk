@@ -20,6 +20,7 @@ const IncomeDetermination = lazy(() => import("./pages/IncomeDetermination"));
 const NationalIncome = lazy(() => import("./pages/a2-macro/NationalIncome"));
 const Elasticities = lazy(() => import("./pages/Elasticities"));
 const MarketFailure = lazy(() => import("./pages/MarketFailure"));
+const ExamIntelligence = lazy(() => import("./pages/ExamIntelligence"));
 
 // Landing pages for hierarchical navigation
 const Microeconomics = lazy(() => import("./pages/Microeconomics"));
@@ -114,6 +115,7 @@ const App = () => (
             {/* Utility pages */}
             <Route path="/notes" element={<Notes />} />
             <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/exam-intelligence" element={<ExamIntelligence />} />
             <Route path="/market-structures" element={<MarketStructures />} />
             
             {/* Legacy routes - redirect to new structure */}
