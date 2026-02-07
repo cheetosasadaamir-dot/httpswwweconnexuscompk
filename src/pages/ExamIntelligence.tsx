@@ -125,7 +125,8 @@ const ExamIntelligence = () => {
                 </motion.div>
               );
             })}
-          </div>
+            </div>
+          </>
         ) : !selectedQuestion ? (
           /* Question List */
           <div>

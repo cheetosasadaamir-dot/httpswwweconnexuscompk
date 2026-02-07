@@ -1690,15 +1690,11 @@ export const paper9708_32: ExamPaper = {
   ]
 };
 
-// Export all papers as a collection
-export const allExamPapers: ExamPaper[] = [
-  paper9708_11,
-  paper9708_12,
-  paper9708_31,
-  paper9708_32
-];
 import { additionalPapers2024 } from './examPapers2024';
 import { additionalPapers2025 } from './examPapers2025';
+
+// Existing papers array (Oct/Nov 2025)
+const existingPapers: ExamPaper[] = [paper9708_11, paper9708_12, paper9708_31, paper9708_32];
 
 // All exam papers combined with metadata for filtering
 export const allExamPapers: ExamPaper[] = [
@@ -1706,9 +1702,6 @@ export const allExamPapers: ExamPaper[] = [
   ...additionalPapers2024,
   ...additionalPapers2025,
 ];
-
-// Existing papers array (Oct/Nov 2025)
-const existingPapers: ExamPaper[] = [paper9708_11, paper9708_12, paper9708_31, paper9708_32];
 
 // Helper function to get paper by code and session
 export const getPaperByCodeAndSession = (code: string, session: string): ExamPaper | undefined => {
