@@ -1697,10 +1697,37 @@ export const allExamPapers: ExamPaper[] = [
   paper9708_31,
   paper9708_32
 ];
+import { additionalPapers2024 } from './examPapers2024';
+import { additionalPapers2025 } from './examPapers2025';
+
+// All exam papers combined with metadata for filtering
+export const allExamPapers: ExamPaper[] = [
+  ...existingPapers,
+  ...additionalPapers2024,
+  ...additionalPapers2025,
+];
+
+// Existing papers array (Oct/Nov 2025)
+const existingPapers: ExamPaper[] = [paper9708_11, paper9708_12, paper9708_31, paper9708_32];
+
+// Helper function to get paper by code and session
+export const getPaperByCodeAndSession = (code: string, session: string): ExamPaper | undefined => {
+  return allExamPapers.find(paper => paper.code === code && paper.session === session);
+};
 
 // Helper function to get paper by code
 export const getPaperByCode = (code: string): ExamPaper | undefined => {
   return allExamPapers.find(paper => paper.code === code);
+};
+
+// Helper to filter papers by level
+export const getPapersByLevel = (level: 'AS' | 'A2'): ExamPaper[] => {
+  return allExamPapers.filter(paper => paper.level === level);
+};
+
+// Helper to filter papers by session type
+export const getPapersBySeries = (series: 'May/June' | 'October/November'): ExamPaper[] => {
+  return allExamPapers.filter(paper => paper.session.includes(series.split('/')[0]));
 };
 
 // Helper function to search questions
