@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-// CORS headers - restricted to official domain in production
+// CORS headers - allow Lovable preview domains and production
 const ALLOWED_ORIGINS = [
   "https://www.econnexus.com.pk",
   "https://econnexus.com.pk",
@@ -14,6 +14,23 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Max-Age": "86400",
 };
+
+function getCorsHeaders(requestOrigin: string | null): Record<string, string> {
+  // Always allow the request for development/preview - use wildcard or match origin
+  const origin = requestOrigin || "*";
+  
+  // Check if it's an allowed origin or a Lovable preview/project domain
+  const isAllowed = !requestOrigin || 
+    ALLOWED_ORIGINS.some(allowed => requestOrigin.startsWith(allowed)) ||
+    requestOrigin.includes('.lovable.app') ||
+    requestOrigin.includes('.lovableproject.com') ||
+    requestOrigin.includes('localhost');
+  
+  return {
+    ...corsHeaders,
+    "Access-Control-Allow-Origin": isAllowed ? origin : ALLOWED_ORIGINS[0],
+  };
+}
 
 // Rate limiting storage (in-memory for edge function)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -47,20 +64,6 @@ function sanitizeMessage(content: string): string {
     .replace(/javascript:/gi, '')
     .slice(0, 2000)
     .trim();
-}
-
-function getCorsHeaders(requestOrigin: string | null): Record<string, string> {
-  // In development or if origin matches allowed list, allow the request
-  const origin = requestOrigin || "*";
-  const isAllowed = !requestOrigin || 
-    ALLOWED_ORIGINS.some(allowed => requestOrigin.startsWith(allowed)) ||
-    requestOrigin.includes('.lovable.app') ||
-    requestOrigin.includes('localhost');
-  
-  return {
-    ...corsHeaders,
-    "Access-Control-Allow-Origin": isAllowed ? origin : ALLOWED_ORIGINS[0],
-  };
 }
 
 // ==============================================================================
