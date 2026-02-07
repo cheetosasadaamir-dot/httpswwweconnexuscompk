@@ -1,19 +1,31 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, FileText, BookOpen, Briefcase, ChevronRight, Command } from 'lucide-react';
+import { Search, FileText, BookOpen, Briefcase, ChevronRight, Command, GraduationCap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 import { useDebounce } from '@/hooks/use-debounce';
+import { allExamPapers } from '@/data/examPapers';
 
 interface SearchResult {
   id: string;
   title: string;
-  category: 'notes' | 'case-studies' | 'chapter' | 'topic';
+  category: 'notes' | 'case-studies' | 'chapter' | 'topic' | 'exam-mcq';
   href: string;
   description?: string;
   scrollTo?: string;
 }
+
+// Generate exam MCQ search entries from all papers
+const examMCQContent: SearchResult[] = allExamPapers.flatMap(paper => 
+  paper.questions.map(q => ({
+    id: `${paper.code}-${paper.session}-q${q.id}`,
+    title: `Q${q.id}: ${q.question.slice(0, 60)}${q.question.length > 60 ? '...' : ''}`,
+    category: 'exam-mcq' as const,
+    href: `/exam-intelligence?paper=${paper.code}&session=${encodeURIComponent(paper.session)}&question=${q.id}`,
+    description: `${paper.code} ${paper.session} | ${q.examinerKey.ao}: ${q.examinerKey.topic}`
+  }))
+);
 
 // Searchable content database
 const searchableContent: SearchResult[] = [
@@ -66,10 +78,25 @@ const searchableContent: SearchResult[] = [
   { id: 'fiscal-policy', title: 'Fiscal Policy', category: 'topic', href: '/as-macro/policy', description: 'Government Spending & Taxation' },
   { id: 'monetary-policy', title: 'Monetary Policy', category: 'topic', href: '/as-macro/policy', description: 'Interest Rates, Money Supply' },
   { id: 'supply-side', title: 'Supply-Side Policies', category: 'topic', href: '/as-macro/policy', description: 'LRAS Shift, Productivity' },
+  { id: 'positive-statement', title: 'Positive Statement', category: 'topic', href: '/basic-economic-ideas', description: 'Factual, testable economic claims' },
+  { id: 'normative-statement', title: 'Normative Statement', category: 'topic', href: '/basic-economic-ideas', description: 'Value judgments, opinions' },
+  { id: 'budget-line', title: 'Budget Line', category: 'topic', href: '/a2-micro/utility-consumer-choice', description: 'Consumer affordable combinations' },
+  { id: 'lorenz-curve', title: 'Lorenz Curve', category: 'topic', href: '/a2-macro/development', description: 'Income inequality visualization' },
+  { id: 'gini-coefficient', title: 'Gini Coefficient', category: 'topic', href: '/a2-macro/development', description: 'Inequality measurement 0-1' },
+  { id: 'moral-hazard', title: 'Moral Hazard', category: 'topic', href: '/market-failure', description: 'Risk-taking when costs borne by others' },
+  { id: 'asymmetric-information', title: 'Asymmetric Information', category: 'topic', href: '/market-failure', description: 'Unequal knowledge in markets' },
+  { id: 'customs-union', title: 'Customs Union', category: 'topic', href: '/as-macro/international-trade', description: 'Trade bloc with common external tariff' },
+  { id: 'tariff', title: 'Tariff', category: 'topic', href: '/as-macro/international-trade', description: 'Tax on imports' },
   
   // Notes & Case Studies pages
   { id: 'notes', title: 'Notes Library', category: 'notes', href: '/notes', description: 'Complete A-Level Economics Materials' },
   { id: 'case-studies', title: 'Case Studies Bank', category: 'case-studies', href: '/case-studies', description: 'CIE 9708 Past Papers & Analysis' },
+  
+  // Exam Intelligence
+  { id: 'exam-intelligence', title: 'Exam Intelligence', category: 'chapter', href: '/exam-intelligence', description: 'MCQ Masterclass – 240 Solved Questions' },
+  
+  // Add exam MCQ content
+  ...examMCQContent,
 ];
 
 const GlobalSearch = () => {
@@ -179,6 +206,7 @@ const GlobalSearch = () => {
       case 'case-studies': return Briefcase;
       case 'chapter': return FileText;
       case 'topic': return Search;
+      case 'exam-mcq': return GraduationCap;
       default: return FileText;
     }
   };
@@ -189,6 +217,7 @@ const GlobalSearch = () => {
       case 'case-studies': return 'Case Study';
       case 'chapter': return 'Chapter';
       case 'topic': return 'Topic';
+      case 'exam-mcq': return 'MCQ';
       default: return 'Content';
     }
   };
