@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { BookOpen, Brain, Target, Award } from 'lucide-react';
+import { BookOpen, Brain, Target, Award, Filter } from 'lucide-react';
 import Layout from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { allExamPapers, ExamPaper, MCQQuestion, searchQuestions } from '@/data/examPapers';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { allExamPapers, ExamPaper, MCQQuestion } from '@/data/examPapers';
 import { cn } from '@/lib/utils';
 
 const ExamIntelligence = () => {
   const [selectedPaper, setSelectedPaper] = useState<ExamPaper | null>(null);
   const [selectedQuestion, setSelectedQuestion] = useState<MCQQuestion | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [levelFilter, setLevelFilter] = useState<'all' | 'AS' | 'A2'>('all');
+  const [seriesFilter, setSeriesFilter] = useState<'all' | 'may' | 'oct'>('all');
 
   const paperIcons = {
     '9708/11': BookOpen,
@@ -19,6 +21,16 @@ const ExamIntelligence = () => {
     '9708/31': Brain,
     '9708/32': Brain,
   };
+
+  const filteredPapers = useMemo(() => {
+    return allExamPapers.filter(paper => {
+      const levelMatch = levelFilter === 'all' || paper.level === levelFilter;
+      const seriesMatch = seriesFilter === 'all' || 
+        (seriesFilter === 'may' && paper.session.includes('May')) ||
+        (seriesFilter === 'oct' && paper.session.includes('October'));
+      return levelMatch && seriesMatch;
+    });
+  }, [levelFilter, seriesFilter]);
 
   const handleQuestionSelect = (question: MCQQuestion) => {
     setSelectedQuestion(question);
@@ -32,27 +44,46 @@ const ExamIntelligence = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <Badge className="mb-4 bg-neon-cyan/20 text-neon-cyan border-neon-cyan/30">
-            October/November 2025 Series
+            2024-2025 Paper Repository
           </Badge>
           <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">
             <span className="text-gradient">Exam Intelligence</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Master the 2025 Cambridge A-Level Economics MCQ papers with sophisticated Nexus Reasoning™ for every question.
+            Master Cambridge A-Level Economics MCQ papers with sophisticated Nexus Reasoning™ for every question.
           </p>
         </motion.div>
 
         {!selectedPaper ? (
-          /* Paper Selection Grid */
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {allExamPapers.map((paper, index) => {
-              const Icon = paperIcons[paper.code as keyof typeof paperIcons] || BookOpen;
-              return (
-                <motion.div
-                  key={paper.code}
+          <>
+            {/* Filter Tabs */}
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <Tabs value={levelFilter} onValueChange={(v) => setLevelFilter(v as typeof levelFilter)} className="w-auto">
+                <TabsList className="bg-background/50 border border-border">
+                  <TabsTrigger value="all">All Levels</TabsTrigger>
+                  <TabsTrigger value="AS">AS Level</TabsTrigger>
+                  <TabsTrigger value="A2">A2 Level</TabsTrigger>
+                </TabsList>
+              </Tabs>
+              <Tabs value={seriesFilter} onValueChange={(v) => setSeriesFilter(v as typeof seriesFilter)} className="w-auto">
+                <TabsList className="bg-background/50 border border-border">
+                  <TabsTrigger value="all">All Series</TabsTrigger>
+                  <TabsTrigger value="may">May/June</TabsTrigger>
+                  <TabsTrigger value="oct">Oct/Nov</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            
+            {/* Paper Selection Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {filteredPapers.map((paper, index) => {
+                const Icon = paperIcons[paper.code as keyof typeof paperIcons] || BookOpen;
+                return (
+                  <motion.div
+                    key={`${paper.code}-${paper.session}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
