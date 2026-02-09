@@ -45,26 +45,26 @@ const Index = () => {
       {/* Academic Disclaimer - Sidebar on desktop, info icon on mobile */}
       <AcademicDisclaimer />
 
-      <main className="relative z-10">
+      <main className="relative z-10 safe-area-inset">
         {/* Hero Section - Extra top padding to account for fixed header + search bar */}
-        <section className="min-h-[60vh] flex items-center pt-44 md:pt-52">
-          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+        <section className="min-h-[60vh] flex items-center pt-36 md:pt-44 lg:pt-52">
+          <div className="w-full max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-24">
             <div className="text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
+                className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-6 md:mb-8"
               >
-                <Sparkles className="w-4 h-4 text-secondary" />
-                <span className="text-sm text-muted-foreground">Elite A-Level Economics Portal</span>
+                <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-secondary" />
+                <span className="text-xs md:text-sm text-muted-foreground">Elite A-Level Economics Portal</span>
               </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-8"
+                className="font-serif text-fluid-hero font-bold leading-tight mb-6 md:mb-8"
               >
                 <span className="section-title">MASTER THE</span>
                 <br />
@@ -75,7 +75,7 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-12"
+                className="text-fluid-base lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 md:mb-12 px-2"
               >
                 Elite A-Level notes, interactive diagrams, and AI-powered insights. 
                 Designed for clarity, built for top grades.
@@ -85,12 +85,12 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
+                className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4 sm:px-0"
               >
                 <Button
                   size="lg"
                   onClick={() => scrollToNotesRepository()}
-                  className="cta-amber-glow relative overflow-hidden bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 py-6 text-lg font-medium rounded-xl group cursor-pointer"
+                  className="cta-amber-glow touch-target relative overflow-hidden bg-secondary hover:bg-secondary/90 text-secondary-foreground px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-medium rounded-xl group cursor-pointer w-full sm:w-auto"
                 >
                   <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-secondary via-amber-400 to-secondary opacity-0 group-hover:opacity-100 transition-opacity"
@@ -100,9 +100,9 @@ const Index = () => {
                     transition={{ duration: 3, repeat: Infinity }}
                     style={{ backgroundSize: '200% 200%' }}
                   />
-                  <span className="relative flex items-center gap-2">
+                  <span className="relative flex items-center justify-center gap-2">
                     Start Learning
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Button>
               </motion.div>
@@ -111,26 +111,26 @@ const Index = () => {
         </section>
 
         {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
         {/* Knowledge Pillars / Notes Repository Section */}
-        <section id="notes-repository" className="py-24 lg:py-32 scroll-mt-20 transition-all duration-500">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section id="notes-repository" className="section-mobile scroll-mt-20 transition-all duration-500">
+          <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-10 md:mb-16"
             >
-              <span className="inline-block px-4 py-1.5 rounded-full glass-card text-sm text-secondary mb-6">
+              <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-4 md:mb-6">
                 📚 Notes Repository
               </span>
-              <h2 className="font-serif text-4xl lg:text-5xl font-bold section-title mb-4">
+              <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4">
                 Knowledge Pillars
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
                 Two foundational branches of economics, each with its own universe of concepts to master.
               </p>
             </motion.div>
@@ -140,7 +140,7 @@ const Index = () => {
         </section>
 
         {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
@@ -148,7 +148,7 @@ const Index = () => {
         <EconomicsChatbot />
 
         {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
@@ -156,28 +156,28 @@ const Index = () => {
         <OwnerProfileSection />
 
         {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
         {/* Simplified Mastery Section */}
-        <section className="py-24 lg:py-32">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="section-mobile">
+          <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-10 md:mb-16"
             >
-              <h2 className="font-serif text-4xl lg:text-5xl font-bold section-title mb-4">
+              <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4">
                 Simplified Mastery
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
                 Why struggle with dense textbooks when clarity is just a click away?
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -186,16 +186,16 @@ const Index = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15 }}
                   whileHover={{ y: -5 }}
-                  className="glass-card-hover p-8 text-center group"
+                  className="glass-card-hover p-6 md:p-8 text-center group"
                 >
                   <motion.div
-                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-6"
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-4 md:mb-6"
                     whileHover={{ rotate: 5, scale: 1.05 }}
                   >
-                    <feature.icon className="w-7 h-7 text-primary group-hover:text-secondary transition-colors" />
+                    <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-primary group-hover:text-secondary transition-colors" />
                   </motion.div>
-                  <h3 className="font-serif text-xl text-silver-bright mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                  <h3 className="font-serif text-lg md:text-xl text-silver-bright mb-2 md:mb-3">{feature.title}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{feature.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -203,7 +203,7 @@ const Index = () => {
         </section>
 
         {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
@@ -211,7 +211,7 @@ const Index = () => {
         <WorldEconomicsSection />
 
         {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
@@ -219,32 +219,32 @@ const Index = () => {
         <GlossarySection />
 
         {/* Silver Divider */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
         </div>
 
         {/* CTA Section */}
-        <section className="py-24 lg:py-32">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <section className="section-mobile">
+          <div className="w-full max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-serif text-4xl lg:text-5xl font-bold text-silver-bright mb-6">
+              <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold text-silver-bright mb-4 md:mb-6">
                 Ready to Master Economics?
               </h2>
-              <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+              <p className="text-fluid-lg lg:text-xl text-muted-foreground mb-8 md:mb-10 max-w-2xl mx-auto px-2">
                 Join thousands of students who've transformed their understanding of economics. 
                 Your A* journey starts here.
               </p>
               <Button
                 size="lg"
                 onClick={() => scrollToNotesRepository()}
-                className="cta-amber-glow bg-secondary hover:bg-secondary/90 text-secondary-foreground px-10 py-6 text-lg rounded-xl cursor-pointer"
+                className="cta-amber-glow touch-target bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 md:px-10 py-5 md:py-6 text-base md:text-lg rounded-xl cursor-pointer w-full sm:w-auto"
               >
                 Begin Your Journey
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
               </Button>
             </motion.div>
           </div>

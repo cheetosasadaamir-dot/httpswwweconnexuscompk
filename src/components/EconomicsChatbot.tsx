@@ -577,29 +577,29 @@ export default function EconomicsChatbot() {
       transition={{ duration: 0.7, ease: 'easeOut' }}
       className="py-16 lg:py-24"
     >
-      <div className="max-w-4xl mx-auto px-4 lg:px-8">
+      <div className="w-full max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-6"
+          className="text-center mb-6 md:mb-8"
         >
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card mb-4">
+          <div className="inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-3 md:mb-4">
             <TutorAvatar size="sm" />
             <div className="text-left">
-              <span className="text-sm text-[hsl(43,72%,53%)] font-semibold block">Prof. Econs</span>
-              <span className="text-xs text-muted-foreground">CIE Senior Fellow</span>
+              <span className="text-xs md:text-sm text-[hsl(43,72%,53%)] font-semibold block">Prof. Econs</span>
+              <span className="text-[10px] md:text-xs text-muted-foreground">CIE Senior Fellow</span>
             </div>
-            <div className="tutor-verified-badge ml-2">
-              <CheckCircle2 className="w-3 h-3" />
+            <div className="tutor-verified-badge ml-1 md:ml-2 text-[9px] md:text-[10px]">
+              <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3" />
               <span>2026-2028</span>
             </div>
           </div>
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold section-title mb-2">
+          <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
             Stuck on a Concept?
           </h2>
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-fluid-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-2">
             Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode
           </p>
         </motion.div>
@@ -610,7 +610,7 @@ export default function EconomicsChatbot() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="relative rounded-2xl overflow-hidden tutor-chat-container tutor-gold-glow"
+          className="relative rounded-xl md:rounded-2xl overflow-hidden tutor-chat-container tutor-gold-glow"
           style={{
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
@@ -620,38 +620,38 @@ export default function EconomicsChatbot() {
         >
           {/* Premium glass overlay */}
           <div 
-            className="absolute inset-0 rounded-2xl pointer-events-none"
+            className="absolute inset-0 rounded-xl md:rounded-2xl pointer-events-none"
             style={{
               background: 'linear-gradient(180deg, hsl(43 72% 53% / 0.03) 0%, transparent 30%, hsl(214 100% 14% / 0.1) 100%)',
             }}
           />
 
           {/* Academic Banner */}
-          <div className="tutor-header-banner relative flex items-center justify-between">
-            <p className="tutor-header-title">Cambridge A-Level Economics • 9708</p>
-            <span className="text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">Text Analysis Mode</span>
+          <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
+            <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">Cambridge A-Level Economics • 9708</p>
+            <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">Text Analysis Mode</span>
           </div>
 
-          {/* Header with Clear Button */}
-          <div className="relative flex items-center justify-between p-3 lg:p-4 border-b border-[hsl(43,72%,53%)]/20">
-            <div>
+          {/* Header with Clear Button - Mobile optimized */}
+          <div className="relative flex flex-col md:flex-row md:items-center justify-between p-3 lg:p-4 border-b border-[hsl(43,72%,53%)]/20 gap-3">
+            <div className="flex-1 min-w-0">
               <p className="text-xs text-muted-foreground mb-1.5">Quick questions:</p>
-              <div className="flex flex-wrap gap-1.5">
-                {QUICK_ACTIONS.map((action, i) => (
+              <div className="flex flex-wrap gap-1 md:gap-1.5 overflow-x-auto scrollbar-hide pb-1">
+                {QUICK_ACTIONS.slice(0, 4).map((action, i) => (
                   <motion.button
                     key={i}
                     onClick={() => handleSend(action.query)}
                     disabled={isLoading}
                     whileHover={{ scale: 1.02, boxShadow: '0 0 16px hsl(43 72% 53% / 0.3)' }}
                     whileTap={{ scale: 0.98 }}
-                    className="px-2.5 py-1 rounded-full text-xs font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="touch-target-sm px-2 md:px-2.5 py-1.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex-shrink-0"
                     style={{
                       background: 'linear-gradient(135deg, hsl(214 100% 14% / 0.4), hsl(43 72% 53% / 0.1))',
                       border: '1px solid hsl(43 72% 53% / 0.4)',
                       color: 'hsl(43 72% 53%)',
                     }}
                   >
-                    <Sparkles className="w-2.5 h-2.5 inline mr-1" />
+                    <Sparkles className="w-2 h-2 md:w-2.5 md:h-2.5 inline mr-0.5 md:mr-1" />
                     {action.label}
                   </motion.button>
                 ))}
@@ -664,7 +664,7 @@ export default function EconomicsChatbot() {
                 variant="ghost"
                 size="sm"
                 onClick={handleClearChat}
-                className="text-muted-foreground hover:text-destructive shrink-0 text-xs"
+                className="text-muted-foreground hover:text-destructive shrink-0 text-xs touch-target-sm self-end md:self-auto"
               >
                 <Trash2 className="w-3.5 h-3.5 mr-1" />
                 Clear
@@ -674,7 +674,7 @@ export default function EconomicsChatbot() {
 
           <ScrollArea 
             ref={scrollRef}
-            className="h-[320px] lg:h-[400px] p-3 lg:p-4 relative"
+            className="h-[280px] md:h-[320px] lg:h-[400px] p-3 lg:p-4 relative"
           >
             {messages.length === 0 ? (
               <div className="h-full flex items-center justify-center text-center">
@@ -697,7 +697,7 @@ export default function EconomicsChatbot() {
                   >
                     {msg.role === 'assistant' && <TutorAvatar />}
                     <div
-                      className={`max-w-[90%] rounded-xl px-3 py-2.5 ${
+                      className={`max-w-[85%] md:max-w-[90%] rounded-lg md:rounded-xl px-3 py-2 md:py-2.5 ${
                         msg.role === 'user'
                           ? 'tutor-message-user text-foreground'
                           : 'tutor-message-ai text-foreground'
@@ -706,7 +706,7 @@ export default function EconomicsChatbot() {
                       {msg.role === 'assistant' ? (
                         <div className="prose prose-invert prose-sm max-w-none tutor-professor-response">
                           {/* Lesson Header */}
-                          <div className="tutor-lesson-header">
+                          <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
                             Syllabus 9708 (2026-2028) | CIE Senior Fellow
                           </div>
                           <ReactMarkdown
@@ -774,16 +774,16 @@ export default function EconomicsChatbot() {
             )}
           </ScrollArea>
 
-          {/* Input Area - Premium Glass */}
-          <div className="relative p-3 lg:p-4 border-t border-[hsl(43,72%,53%)]/15">
-            <div className="flex gap-2">
+          {/* Input Area - Mobile keyboard-safe with proper padding */}
+          <div className="relative p-3 lg:p-4 border-t border-[hsl(43,72%,53%)]/15 safe-area-inset">
+            <div className="flex gap-2 items-center">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask a question or follow up on our discussion..."
+                placeholder="Ask a question..."
                 disabled={isLoading}
-                className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans"
+                className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans h-11 md:h-10"
               />
               
               {/* Retry button */}
@@ -792,7 +792,7 @@ export default function EconomicsChatbot() {
                   onClick={handleRetry}
                   variant="outline"
                   size="icon"
-                  className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5"
+                  className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 touch-target hidden md:flex"
                   title="Retry last question"
                 >
                   <RefreshCw className="w-4 h-4 text-[hsl(43,72%,53%)]" />
@@ -803,7 +803,7 @@ export default function EconomicsChatbot() {
                 onClick={() => handleSend()}
                 disabled={!input.trim() || isLoading}
                 size="icon"
-                className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg"
+                className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg touch-target"
               >
                 {isLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />

@@ -355,12 +355,13 @@ const FloatingDock = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Button */}
+      {/* Mobile Menu Button - Touch-friendly 44x44px target */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed top-4 right-4 z-50 lg:hidden floating-dock p-3"
+        className="fixed top-3 right-3 z-50 lg:hidden floating-dock p-3 touch-target"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
       >
         {isMobileMenuOpen ? (
           <X className="w-5 h-5 text-white" />
@@ -373,11 +374,11 @@ const FloatingDock = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed top-4 left-4 z-50 lg:hidden"
+        className="fixed top-3 left-3 z-50 lg:hidden"
       >
-        <Link to="/" className="floating-dock flex items-center gap-2 px-3 py-2">
-          <img src={logoImage} alt="MacroMicro" className="w-7 h-7 object-contain" />
-          <span className="font-display text-sm font-semibold text-neon-gold">MacroMicro</span>
+        <Link to="/" className="floating-dock flex items-center gap-2 px-3 py-2 touch-target">
+          <img src={logoImage} alt="MacroMicro" className="w-6 h-6 md:w-7 md:h-7 object-contain" />
+          <span className="font-display text-xs md:text-sm font-semibold text-neon-gold">MacroMicro</span>
         </Link>
       </motion.div>
 
@@ -402,30 +403,30 @@ const FloatingDock = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-              className="absolute right-0 top-0 h-full w-full sm:w-[340px] bg-space-void/90 backdrop-blur-[15px] border-l border-neon-cyan/20 overflow-y-auto"
+              className="absolute right-0 top-0 h-full w-full sm:w-[340px] bg-space-void/90 backdrop-blur-[15px] border-l border-neon-cyan/20 overflow-y-auto safe-area-inset"
             >
-              <div className="p-6 pt-20">
+              <div className="p-4 md:p-6 pt-16 md:pt-20">
                 
                 {/* TIER 1: Owner Profile - Premium Entry */}
-                <div className="mb-6">
+                <div className="mb-5 md:mb-6">
                   <button
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       setIsProfileOpen(true);
                     }}
-                    className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl bg-gradient-to-r from-neon-cyan/10 to-neon-cyan/5 border border-neon-cyan/30 hover:border-neon-cyan/50 transition-all group shadow-[0_0_20px_rgba(0,242,255,0.15)]"
+                    className="w-full flex items-center gap-3 md:gap-4 px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-gradient-to-r from-neon-cyan/10 to-neon-cyan/5 border border-neon-cyan/30 hover:border-neon-cyan/50 transition-all group shadow-[0_0_20px_rgba(0,242,255,0.15)] touch-target"
                   >
                     <div className="relative">
-                      <div className="w-10 h-10 rounded-full bg-space-elevated flex items-center justify-center border border-neon-cyan/30">
-                        <User className="w-5 h-5 text-neon-cyan" />
+                      <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-space-elevated flex items-center justify-center border border-neon-cyan/30">
+                        <User className="w-4 h-4 md:w-5 md:h-5 text-neon-cyan" />
                       </div>
                       <div className="absolute inset-0 rounded-full bg-neon-cyan/20 blur-md animate-pulse" />
                     </div>
                     <div className="text-left">
-                      <span className="text-xs font-semibold tracking-[0.2em] text-neon-cyan/80 uppercase block">
+                      <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-neon-cyan/80 uppercase block">
                         Tier 1
                       </span>
-                      <span className="font-display font-semibold text-white group-hover:text-neon-cyan transition-colors">
+                      <span className="font-display font-semibold text-sm md:text-base text-white group-hover:text-neon-cyan transition-colors">
                         OWNER PROFILE
                       </span>
                     </div>
@@ -433,21 +434,21 @@ const FloatingDock = () => {
                 </div>
 
                 {/* Divider */}
-                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
+                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-5 md:mb-6" />
 
-                {/* Quick Links */}
-                <div className="flex gap-2 mb-6">
+                {/* Quick Links - Touch-friendly */}
+                <div className="flex gap-2 mb-5 md:mb-6">
                   <Link
                     to="/"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-space-elevated/50 border border-white/10 text-muted-foreground hover:text-white hover:border-white/20 transition-all text-sm"
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-space-elevated/50 border border-white/10 text-muted-foreground hover:text-white hover:border-white/20 transition-all text-sm touch-target"
                   >
                     <Home className="w-4 h-4" />
                     <span>Home</span>
                   </Link>
                   <button
                     onClick={() => scrollToSection('notes-repository', true)}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-neon-gold/10 border border-neon-gold/20 text-neon-gold hover:bg-neon-gold/20 transition-all text-sm"
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-gold/10 border border-neon-gold/20 text-neon-gold hover:bg-neon-gold/20 transition-all text-sm touch-target"
                   >
                     <Library className="w-4 h-4" />
                     <span>Notes</span>
@@ -469,7 +470,7 @@ const FloatingDock = () => {
                         </span>
                       </div>
                       
-                      {/* Tier Items */}
+                      {/* Tier Items - Touch-friendly 44px minimum height */}
                       <div className="space-y-1 pl-2 border-l border-neon-gold/20 ml-2">
                         {tier.children.map((item) => (
                           item.href ? (
@@ -478,7 +479,7 @@ const FloatingDock = () => {
                               to={item.href}
                               onClick={() => setIsMobileMenuOpen(false)}
                               className={cn(
-                                "block px-4 py-2.5 text-sm rounded-lg transition-all",
+                                "block px-3 md:px-4 py-3 md:py-2.5 text-sm rounded-lg transition-all touch-target",
                                 isActive(item.href)
                                   ? "text-neon-cyan bg-neon-cyan/10"
                                   : "text-muted-foreground hover:text-white hover:bg-space-elevated/50"
@@ -490,7 +491,7 @@ const FloatingDock = () => {
                             <button
                               key={item.title}
                               onClick={() => scrollToSection(item.scrollTo!, true)}
-                              className="w-full text-left px-4 py-2.5 text-sm rounded-lg text-muted-foreground hover:text-white hover:bg-space-elevated/50 transition-all"
+                              className="w-full text-left px-3 md:px-4 py-3 md:py-2.5 text-sm rounded-lg text-muted-foreground hover:text-white hover:bg-space-elevated/50 transition-all touch-target"
                             >
                               {item.title}
                             </button>
@@ -502,14 +503,14 @@ const FloatingDock = () => {
                 </div>
 
                 {/* Divider */}
-                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-6" />
+                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-5 md:my-6" />
 
-                {/* Utility Links */}
+                {/* Utility Links - Touch-friendly */}
                 <div className="space-y-2">
                   <Link
                     to="/case-studies"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all"
+                    className="flex items-center gap-3 px-3 md:px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all touch-target"
                   >
                     <BookOpen className="w-5 h-5" />
                     <span className="font-medium">Case Studies</span>
@@ -517,7 +518,7 @@ const FloatingDock = () => {
                   <Link
                     to="/#glossary"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all"
+                    className="flex items-center gap-3 px-3 md:px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all touch-target"
                   >
                     <Sparkles className="w-5 h-5" />
                     <span className="font-medium">Glossary</span>
