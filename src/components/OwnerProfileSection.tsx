@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Linkedin, Twitter, Mail, Instagram } from 'lucide-react';
+import { Linkedin, Twitter, Instagram } from 'lucide-react';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
 
@@ -77,7 +77,6 @@ const OwnerProfileSection = () => {
 
                 {/* Contact Info */}
                 <div className="mt-6 text-center text-sm text-muted-foreground space-y-1">
-                  <p>unifom7@gmail.com</p>
                   <p>+92-311-893-2062</p>
                 </div>
               </div>
@@ -146,13 +145,6 @@ const OwnerProfileSection = () => {
                         aria-label="Twitter/X"
                       >
                         <Twitter className="w-5 h-5 text-white/70 group-hover:text-neon-cyan transition-colors" />
-                      </a>
-                      <a
-                        href="mailto:unifom7@gmail.com"
-                        className="p-3 rounded-full bg-space-elevated/50 border border-white/10 hover:border-neon-cyan/50 hover:shadow-[0_0_15px_rgba(0,242,255,0.3)] transition-all group"
-                        aria-label="Email"
-                      >
-                        <Mail className="w-5 h-5 text-white/70 group-hover:text-neon-cyan transition-colors" />
                       </a>
                     </div>
                   </div>
