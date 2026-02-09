@@ -49,6 +49,10 @@ const UtilityConsumerChoice = lazy(() => import("./pages/a2-micro/UtilityConsume
 const EconomicEfficiency = lazy(() => import("./pages/a2-micro/EconomicEfficiency"));
 const ProductionCosts = lazy(() => import("./pages/a2-micro/ProductionCosts"));
 
+// Freemium & Admin
+const FreemiumPack = lazy(() => import("./pages/FreemiumPack"));
+const AdminNexusApproval = lazy(() => import("./pages/AdminNexusApproval"));
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -117,6 +121,10 @@ const App = () => (
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/exam-intelligence" element={<ExamIntelligence />} />
             <Route path="/market-structures" element={<MarketStructures />} />
+            
+            {/* Freemium & Admin */}
+            <Route path="/freemium-pack" element={<FreemiumPack />} />
+            <Route path="/admin-nexus-approval" element={<AdminNexusApproval />} />
             
             {/* Legacy routes - redirect to new structure */}
             <Route path="/national-income" element={<NationalIncome />} />
