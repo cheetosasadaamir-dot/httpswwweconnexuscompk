@@ -33,7 +33,7 @@ Deno.serve(async (req) => {
 
     const resend = new Resend(resendApiKey);
 
-    await resend.emails.send({
+    const emailResult = await resend.emails.send({
       from: "EconNexus <onboarding@resend.dev>",
       to: ["unifom7@gmail.com"],
       subject: `New Freemium Pack Application: ${gmail}`,
@@ -46,14 +46,24 @@ Deno.serve(async (req) => {
       `,
     });
 
+    console.log("Resend API response:", JSON.stringify(emailResult));
+
+    if (emailResult.error) {
+      console.error("Resend error:", JSON.stringify(emailResult.error));
+      return new Response(
+        JSON.stringify({ success: true, notified: false, error: emailResult.error }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     return new Response(
-      JSON.stringify({ success: true, notified: true }),
+      JSON.stringify({ success: true, notified: true, emailId: emailResult.data?.id }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
     console.error("Error in freemium-notify:", error);
     return new Response(
-      JSON.stringify({ success: true, notified: false }),
+      JSON.stringify({ success: true, notified: false, error: String(error) }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
