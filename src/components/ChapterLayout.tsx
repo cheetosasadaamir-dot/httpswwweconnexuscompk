@@ -15,25 +15,25 @@ const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayo
       <ThreeJsMarketEngine />
       <FloatingDock />
 
-      <main className="relative z-20 pt-24 lg:pt-28">
-        {/* Chapter Header */}
-        <header className="pt-8 pb-6 px-6 lg:px-12 border-b border-charcoal-gold/10">
-          <div className="max-w-4xl mx-auto">
+      <main className="relative z-20 pt-20 md:pt-24 lg:pt-28">
+        {/* Chapter Header - Mobile-optimized padding */}
+        <header className="pt-6 md:pt-8 pb-4 md:pb-6 px-4 md:px-6 lg:px-12 border-b border-charcoal-gold/10">
+          <div className="w-full max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-4"
+              className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-3 md:mb-4"
             >
-              <span className="text-charcoal-cyan font-semibold">Chapter {chapterNumber}</span>
+              <span className="text-charcoal-cyan font-semibold text-sm md:text-base">Chapter {chapterNumber}</span>
               <span className="text-charcoal-muted">•</span>
-              <span className="text-charcoal-muted text-sm">Economics</span>
+              <span className="text-charcoal-muted text-xs md:text-sm">Economics</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="font-serif text-3xl lg:text-4xl xl:text-5xl font-bold section-title mb-3"
+              className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-2 md:mb-3 leading-tight"
             >
               {title}
             </motion.h1>
@@ -43,7 +43,7 @@ const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayo
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-lg text-charcoal-silver max-w-2xl"
+                className="text-fluid-base lg:text-lg text-charcoal-silver max-w-2xl"
               >
                 {subtitle}
               </motion.p>
@@ -51,9 +51,9 @@ const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayo
           </div>
         </header>
 
-        {/* Chapter Content */}
-        <div className="px-6 lg:px-12 py-8">
-          <div className="max-w-4xl mx-auto space-compact">
+        {/* Chapter Content - Mobile-first padding */}
+        <div className="px-4 md:px-6 lg:px-12 py-6 md:py-8">
+          <div className="w-full max-w-4xl mx-auto space-compact">
             {children}
           </div>
         </div>
