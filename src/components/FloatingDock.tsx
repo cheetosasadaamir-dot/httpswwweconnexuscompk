@@ -17,7 +17,7 @@ import {
   Scale
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import logoImage from '@/assets/logo-macromicro.png';
+import logoImage from '@/assets/econnexus-logo.jpeg';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
 
 interface SubNavItem {
@@ -251,12 +251,12 @@ const FloatingDock = () => {
           {/* Logo with glow */}
           <Link to="/" className="flex items-center gap-2.5 px-3 py-1.5 mr-3 group">
             <div className="relative">
-              <img src={logoImage} alt="MacroMicro" className="w-8 h-8 object-contain relative z-10" />
-              <div className="absolute inset-0 bg-neon-gold/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <img src={logoImage} alt="EconNexus" className="h-[50px] w-auto object-contain relative z-10 rounded-lg" />
+              <div className="absolute inset-0 bg-neon-cyan/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <div className="flex flex-col">
-              <span className="font-display text-sm font-semibold text-white group-hover:text-neon-gold transition-colors">
-                MacroMicro
+              <span className="font-display text-sm font-semibold text-white group-hover:text-neon-cyan transition-colors">
+                EconNexus
               </span>
               <span className="text-[10px] text-muted-foreground font-medium tracking-wider">
                 CIE 9708
@@ -378,8 +378,8 @@ const FloatingDock = () => {
         className="fixed top-3 left-3 z-50 lg:hidden"
       >
         <Link to="/" className="floating-dock flex items-center gap-2 px-3 py-2 touch-target">
-          <img src={logoImage} alt="MacroMicro" className="w-6 h-6 md:w-7 md:h-7 object-contain" />
-          <span className="font-display text-xs md:text-sm font-semibold text-neon-gold">MacroMicro</span>
+          <img src={logoImage} alt="EconNexus" className="h-8 md:h-9 w-auto object-contain rounded" />
+          <span className="font-display text-xs md:text-sm font-semibold text-neon-cyan">EconNexus</span>
         </Link>
       </motion.div>
 
