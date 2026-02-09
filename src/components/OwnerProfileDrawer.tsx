@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Award, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
+
+const OWNER_EMAIL = 'unifom7@gmail.com';
 
 interface OwnerProfileDrawerProps {
   isOpen: boolean;
@@ -10,6 +13,14 @@ interface OwnerProfileDrawerProps {
 }
 
 const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      const saved = sessionStorage.getItem('owner_verified');
+      setIsOwner(saved === OWNER_EMAIL);
+    }
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -81,15 +92,17 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
                     </div>
                   </motion.div>
 
-                  {/* Admin Panel link - beneath portrait */}
-                  <Link
-                    to="/owner-dashboard"
-                    onClick={onClose}
-                    className="inline-flex items-center gap-2 px-4 py-2 mt-3 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan text-xs font-semibold tracking-wider uppercase hover:bg-neon-cyan/20 hover:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all"
-                  >
-                    <Settings className="w-3.5 h-3.5" />
-                    Admin Panel
-                  </Link>
+                  {/* Admin Panel - only visible to owner */}
+                  {isOwner && (
+                    <Link
+                      to="/owner-dashboard"
+                      onClick={onClose}
+                      className="inline-flex items-center gap-2 px-4 py-2 mt-3 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan text-xs font-semibold tracking-wider uppercase hover:bg-neon-cyan/20 hover:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all"
+                    >
+                      <Settings className="w-3.5 h-3.5" />
+                      Admin Panel
+                    </Link>
+                  )}
 
                   <h1 className="font-display text-2xl md:text-3xl font-bold text-white tracking-wide mb-2">
                     Muhammad Asad Aamir
