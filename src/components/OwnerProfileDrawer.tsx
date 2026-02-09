@@ -81,12 +81,13 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
                     </div>
                   </motion.div>
 
-                  {/* Hidden Admin Panel link - only visible to owner */}
+                  {/* Admin Panel link - beneath portrait */}
                   <Link
                     to="/owner-dashboard"
-                    className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/40 hover:text-neon-cyan transition-colors mt-2"
+                    onClick={onClose}
+                    className="inline-flex items-center gap-2 px-4 py-2 mt-3 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan text-xs font-semibold tracking-wider uppercase hover:bg-neon-cyan/20 hover:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all"
                   >
-                    <Settings className="w-3 h-3" />
+                    <Settings className="w-3.5 h-3.5" />
                     Admin Panel
                   </Link>
 
