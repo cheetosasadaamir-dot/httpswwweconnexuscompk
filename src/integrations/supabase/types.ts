@@ -50,6 +50,30 @@ export type Database = {
         }
         Relationships: []
       }
+      freemium_access: {
+        Row: {
+          created_at: string
+          gmail: string
+          id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          gmail: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          gmail?: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       mcq_vault: {
         Row: {
           correct_answer: string
