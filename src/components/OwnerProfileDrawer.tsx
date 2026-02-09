@@ -1,8 +1,12 @@
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Award, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
+
+const OWNER_EMAIL = 'unifom7@gmail.com';
 
 interface OwnerProfileDrawerProps {
   isOpen: boolean;
@@ -10,6 +14,15 @@ interface OwnerProfileDrawerProps {
 }
 
 const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    const checkOwner = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsOwner(session?.user?.email === OWNER_EMAIL);
+    };
+    if (isOpen) checkOwner();
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
