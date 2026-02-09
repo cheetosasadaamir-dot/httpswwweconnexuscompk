@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Award } from 'lucide-react';
+import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Award, Settings } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
