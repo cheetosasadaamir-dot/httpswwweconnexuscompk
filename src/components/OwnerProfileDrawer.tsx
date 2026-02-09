@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Award } from 'lucide-react';
+import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Award, Settings } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
@@ -79,6 +80,15 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
                       />
                     </div>
                   </motion.div>
+
+                  {/* Hidden Admin Panel link - only visible to owner */}
+                  <Link
+                    to="/owner-dashboard"
+                    className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/40 hover:text-neon-cyan transition-colors mt-2"
+                  >
+                    <Settings className="w-3 h-3" />
+                    Admin Panel
+                  </Link>
 
                   <h1 className="font-display text-2xl md:text-3xl font-bold text-white tracking-wide mb-2">
                     Muhammad Asad Aamir
