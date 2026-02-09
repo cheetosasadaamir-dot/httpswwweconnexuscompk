@@ -173,6 +173,33 @@ export type Database = {
         }
         Relationships: []
       }
+      premium_access: {
+        Row: {
+          access_status: boolean
+          created_at: string
+          id: string
+          updated_at: string
+          user_email: string
+          whatsapp_verified: boolean
+        }
+        Insert: {
+          access_status?: boolean
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_email: string
+          whatsapp_verified?: boolean
+        }
+        Update: {
+          access_status?: boolean
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_email?: string
+          whatsapp_verified?: boolean
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
