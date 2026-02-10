@@ -474,6 +474,16 @@ const FloatingDock = () => {
                     <Library className="w-4 h-4" />
                     <span>Notes</span>
                   </button>
+                  {isOwner && (
+                    <Link
+                      to="/owner-dashboard"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/20 transition-all text-sm touch-target"
+                    >
+                      <Settings className="w-4 h-4" />
+                      <span>Admin</span>
+                    </Link>
+                  )}
                 </div>
 
                 {/* TIERED NAVIGATION */}
