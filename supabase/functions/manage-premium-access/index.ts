@@ -13,7 +13,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { owner_email, entry_id, grant_access } = await req.json();
+    const { owner_email, entry_id, grant_access, action } = await req.json();
 
     // Verify owner
     if (!owner_email || owner_email.trim().toLowerCase() !== OWNER_EMAIL) {
@@ -23,8 +23,8 @@ Deno.serve(async (req) => {
       });
     }
 
-    if (!entry_id || typeof grant_access !== "boolean") {
-      return new Response(JSON.stringify({ error: "Missing parameters" }), {
+    if (!entry_id) {
+      return new Response(JSON.stringify({ error: "Missing entry_id" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -34,6 +34,33 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
+
+    // Delete action
+    if (action === "delete") {
+      const { error } = await supabaseAdmin
+        .from("premium_access")
+        .delete()
+        .eq("id", entry_id);
+
+      if (error) {
+        return new Response(JSON.stringify({ error: error.message }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      return new Response(JSON.stringify({ success: true, deleted: true }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Update access_status
+    if (typeof grant_access !== "boolean") {
+      return new Response(JSON.stringify({ error: "Missing grant_access or action" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     const { error } = await supabaseAdmin
       .from("premium_access")
