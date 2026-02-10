@@ -92,7 +92,7 @@ const Header = () => {
             <motion.img
               src={logoImage}
               alt="EconNexus Logo"
-              className="h-10 w-10 object-contain"
+              className="h-[45px] w-auto object-contain"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />
