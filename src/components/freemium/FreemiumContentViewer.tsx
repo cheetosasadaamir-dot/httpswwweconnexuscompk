@@ -183,6 +183,11 @@ const FreemiumContentViewer = () => {
   const [activeTab, setActiveTab] = useState<'revision' | 'answers' | 'a2micro' | 'a2macro'>('revision');
 
   const renderContent = () => {
+    if (activeTab === 'a2macro') {
+      return a2MacroContent.map((chapter) => (
+        <ChapterBlock key={chapter.id} chapter={chapter} isA2 isMacro />
+      ));
+    }
     if (activeTab === 'a2micro') {
       return a2MicroContent.map((chapter) => (
         <ChapterBlock key={chapter.id} chapter={chapter} isA2 />
