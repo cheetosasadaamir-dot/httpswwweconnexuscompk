@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lock, CheckCircle, Send, BookOpen, FileText, ArrowRight, Loader2, MessageSquare } from 'lucide-react';
+import { Lock, CheckCircle, Send, BookOpen, FileText, ArrowRight, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -81,7 +81,7 @@ const FreemiumPack = () => {
           localStorage.setItem('premium_email', normalizedEmail);
           toast({ title: "Access Granted!", description: "You already have access. Enjoy!" });
         } else {
-          toast({ title: "Application Exists", description: "Your request is pending. Contact us on WhatsApp to complete payment." });
+          toast({ title: "Application Exists", description: "Your request is pending. You will be notified once approved." });
         }
         setIsApplying(false);
         return;
@@ -97,7 +97,7 @@ const FreemiumPack = () => {
       setShowApplyForm(false);
       toast({
         title: "Application Submitted!",
-        description: "Contact us on WhatsApp to complete your $7 payment. Access will be granted after admin approval.",
+        description: "Your $7 payment request has been received. Access will be granted after admin approval.",
       });
     } catch (err: any) {
       toast({ title: "Error", description: err.message || "Failed to submit", variant: "destructive" });
@@ -248,25 +248,16 @@ const FreemiumPack = () => {
 
           <div className="bg-card/30 border border-neon-cyan/20 rounded-2xl p-5 mb-6 text-left">
             <p className="text-sm text-foreground/80 leading-relaxed">
-              Apply with your Gmail, then pay <strong className="text-neon-gold">$7</strong> via WhatsApp. Access is granted only after <strong className="text-neon-cyan">manual admin approval</strong>.
+              Apply with your Gmail and pay <strong className="text-neon-gold">$7</strong>. Access is granted only after <strong className="text-neon-cyan">manual admin approval</strong>.
             </p>
           </div>
 
           {/* Access denied message when checked but not granted */}
           {accessChecked && !accessGranted && (
             <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/30 mb-4">
-              <p className="text-destructive text-sm font-medium mb-3">
-                Access Denied. Please contact the owner on WhatsApp to purchase your premium pack.
+              <p className="text-destructive text-sm font-medium">
+                Access not yet granted. Please apply and wait for admin approval.
               </p>
-              <a
-                href={`https://wa.me/923118932062?text=${encodeURIComponent('Hi, I want to purchase the EconNexus Premium Pack ($7). My email: ' + checkGmail)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="bg-green-600 hover:bg-green-700 text-white font-semibold">
-                  <MessageSquare className="w-4 h-4 mr-2" /> Contact on WhatsApp
-                </Button>
-              </a>
             </div>
           )}
 
