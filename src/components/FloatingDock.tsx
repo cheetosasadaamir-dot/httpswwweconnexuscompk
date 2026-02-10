@@ -21,8 +21,6 @@ import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo.jpeg';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
 
-const OWNER_EMAIL = 'unifom7@gmail.com';
-
 interface SubNavItem {
   title: string;
   href?: string;
@@ -175,12 +173,6 @@ const FloatingDock = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isOwner, setIsOwner] = useState(false);
-
-  useEffect(() => {
-    const saved = sessionStorage.getItem('owner_verified');
-    setIsOwner(saved === OWNER_EMAIL);
-  }, []);
 
   const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
     if (closeMobileMenu) {
@@ -363,16 +355,14 @@ const FloatingDock = () => {
             <span className="text-sm font-medium font-display">Glossary</span>
           </Link>
 
-          {/* Admin Panel - owner only */}
-          {isOwner && (
-            <Link
-              to="/owner-dashboard"
-              className="dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl ml-1 bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/20 transition-all duration-300"
-            >
-              <Settings className="w-4 h-4" />
-              <span className="text-sm font-medium font-display">Admin</span>
-            </Link>
-          )}
+          {/* Admin Panel - subtle link */}
+          <Link
+            to="/owner-dashboard"
+            className="dock-item flex items-center gap-1.5 px-2.5 py-2.5 rounded-xl ml-1 text-muted-foreground/40 hover:text-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300"
+            title="Admin"
+          >
+            <Settings className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </motion.nav>
 
@@ -474,16 +464,14 @@ const FloatingDock = () => {
                     <Library className="w-4 h-4" />
                     <span>Notes</span>
                   </button>
-                  {isOwner && (
-                    <Link
-                      to="/owner-dashboard"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/20 transition-all text-sm touch-target"
-                    >
-                      <Settings className="w-4 h-4" />
-                      <span>Admin</span>
-                    </Link>
-                  )}
+                  <Link
+                    to="/owner-dashboard"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-center px-3 py-3 rounded-xl text-muted-foreground/30 hover:text-neon-cyan hover:bg-neon-cyan/10 transition-all text-sm touch-target"
+                    title="Admin"
+                  >
+                    <Settings className="w-4 h-4" />
+                  </Link>
                 </div>
 
                 {/* TIERED NAVIGATION */}
