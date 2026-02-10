@@ -236,6 +236,17 @@ const FreemiumContentViewer = () => {
           <GraduationCap className="w-4 h-4" />
           A2 Micro Study Guide
         </button>
+        <button
+          onClick={() => setActiveTab('a2macro')}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border ${
+            activeTab === 'a2macro'
+              ? 'border-accent/50 bg-accent/10 text-accent shadow-[0_0_20px_rgba(0,242,255,0.1)]'
+              : 'border-border/30 bg-card/30 text-muted-foreground hover:border-accent/30'
+          }`}
+        >
+          <GraduationCap className="w-4 h-4" />
+          A2 Macro Study Guide
+        </button>
       </div>
 
       {/* Chapters */}
