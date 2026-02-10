@@ -69,15 +69,18 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
   };
 
   const updateAccess = async (id: string, grantAccess: boolean) => {
-    const { error } = await supabase
-      .from('premium_access')
-      .update({ access_status: grantAccess })
-      .eq('id', id);
-    if (error) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
-    } else {
+    try {
+      const response = await supabase.functions.invoke('manage-premium-access', {
+        body: { owner_email: OWNER_EMAIL, entry_id: id, grant_access: grantAccess },
+      });
+
+      if (response.error) throw response.error;
+      if (response.data?.error) throw new Error(response.data.error);
+
       toast({ title: grantAccess ? "Access Granted ✅" : "Access Revoked ❌" });
       fetchEntries();
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message || "Failed to update", variant: "destructive" });
     }
   };
 
