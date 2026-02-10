@@ -255,18 +255,9 @@ const FreemiumPack = () => {
           {/* Access denied message when checked but not granted */}
           {accessChecked && !accessGranted && (
             <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/30 mb-4">
-              <p className="text-destructive text-sm font-medium mb-3">
-                Access Denied. Please contact the owner on WhatsApp to purchase your premium pack.
+              <p className="text-destructive text-sm font-medium">
+                Access not yet granted. Please apply and wait for admin approval.
               </p>
-              <a
-                href={`https://wa.me/923118932062?text=${encodeURIComponent('Hi, I want to purchase the EconNexus Premium Pack ($7). My email: ' + checkGmail)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="bg-green-600 hover:bg-green-700 text-white font-semibold">
-                  <MessageSquare className="w-4 h-4 mr-2" /> Contact on WhatsApp
-                </Button>
-              </a>
             </div>
           )}
 
