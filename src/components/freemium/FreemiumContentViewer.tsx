@@ -51,10 +51,10 @@ const MCQCard = ({ question, options, answer }: { question: string; options: str
   );
 };
 
-const SectionBlock = ({ section, isA2 = false }: { section: ContentSection | A2ContentSection; isA2?: boolean }) => {
+const SectionBlock = ({ section, isA2 = false, isMacro = false }: { section: ContentSection | A2ContentSection; isA2?: boolean; isMacro?: boolean }) => {
   const [open, setOpen] = useState(false);
-  const diagramId = isA2 ? (section as A2ContentSection).diagramId : undefined;
-  const DiagramComponent = diagramId ? A2DiagramRegistry[diagramId] : undefined;
+  const diagramId = (isA2 || isMacro) ? (section as A2ContentSection).diagramId : undefined;
+  const DiagramComponent = diagramId ? (isMacro ? A2MacroDiagramRegistry[diagramId] : A2DiagramRegistry[diagramId]) : undefined;
 
   return (
     <div className="border border-border/20 rounded-xl overflow-hidden">
