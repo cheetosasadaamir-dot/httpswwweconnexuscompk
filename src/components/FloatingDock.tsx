@@ -175,6 +175,12 @@ const FloatingDock = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    const saved = sessionStorage.getItem('owner_verified');
+    setIsOwner(saved === OWNER_EMAIL);
+  }, []);
 
   const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
     if (closeMobileMenu) {
