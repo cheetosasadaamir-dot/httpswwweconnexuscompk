@@ -4,8 +4,10 @@ import { BookOpen, ChevronDown, ChevronRight, Lightbulb, HelpCircle, Table2, Gra
 import { revisionNotes, modelAnswers, type FreemiumChapter, type ContentSection } from '@/data/freemiumPackContent';
 import { a2MicroContent, type A2ContentSection, type A2Chapter } from '@/data/a2PremiumContent';
 import { a2MacroContent } from '@/data/a2MacroPremiumContent';
+import { a2MacroContent2 } from '@/data/a2MacroPremiumContent2';
 import { A2DiagramRegistry } from './A2Diagrams';
 import { A2MacroDiagramRegistry } from './A2MacroDiagrams';
+import { A2MacroDiagramRegistry2 } from './A2MacroDiagrams2';
 
 const KeyTermCard = ({ term, definition }: { term: string; definition: string }) => (
   <div className="flex gap-3 py-2 px-3 rounded-lg bg-accent/5 border border-accent/10">
@@ -54,7 +56,7 @@ const MCQCard = ({ question, options, answer }: { question: string; options: str
 const SectionBlock = ({ section, isA2 = false, isMacro = false }: { section: ContentSection | A2ContentSection; isA2?: boolean; isMacro?: boolean }) => {
   const [open, setOpen] = useState(false);
   const diagramId = (isA2 || isMacro) ? (section as A2ContentSection).diagramId : undefined;
-  const DiagramComponent = diagramId ? (isMacro ? A2MacroDiagramRegistry[diagramId] : A2DiagramRegistry[diagramId]) : undefined;
+  const DiagramComponent = diagramId ? (isMacro ? (A2MacroDiagramRegistry[diagramId] || A2MacroDiagramRegistry2[diagramId]) : A2DiagramRegistry[diagramId]) : undefined;
 
   return (
     <div className="border border-border/20 rounded-xl overflow-hidden">
@@ -180,9 +182,14 @@ const ChapterBlock = ({ chapter, isA2 = false, isMacro = false }: { chapter: Fre
 };
 
 const FreemiumContentViewer = () => {
-  const [activeTab, setActiveTab] = useState<'revision' | 'answers' | 'a2micro' | 'a2macro'>('revision');
+  const [activeTab, setActiveTab] = useState<'revision' | 'answers' | 'a2micro' | 'a2macro' | 'a2macro2'>('revision');
 
   const renderContent = () => {
+    if (activeTab === 'a2macro2') {
+      return a2MacroContent2.map((chapter) => (
+        <ChapterBlock key={chapter.id} chapter={chapter} isA2 isMacro />
+      ));
+    }
     if (activeTab === 'a2macro') {
       return a2MacroContent.map((chapter) => (
         <ChapterBlock key={chapter.id} chapter={chapter} isA2 isMacro />
@@ -246,6 +253,17 @@ const FreemiumContentViewer = () => {
         >
           <GraduationCap className="w-4 h-4" />
           A2 Macro Study Guide
+        </button>
+        <button
+          onClick={() => setActiveTab('a2macro2')}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border ${
+            activeTab === 'a2macro2'
+              ? 'border-accent/50 bg-accent/10 text-accent shadow-[0_0_20px_rgba(0,242,255,0.1)]'
+              : 'border-border/30 bg-card/30 text-muted-foreground hover:border-accent/30'
+          }`}
+        >
+          <GraduationCap className="w-4 h-4" />
+          A2 Macro II — Policy & Trade
         </button>
       </div>
 
