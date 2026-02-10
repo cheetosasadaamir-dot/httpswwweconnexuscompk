@@ -81,7 +81,7 @@ const FreemiumPack = () => {
           localStorage.setItem('premium_email', normalizedEmail);
           toast({ title: "Access Granted!", description: "You already have access. Enjoy!" });
         } else {
-          toast({ title: "Application Exists", description: "Your request is pending. Contact us on WhatsApp to complete payment." });
+          toast({ title: "Application Exists", description: "Your request is pending. You will be notified once approved." });
         }
         setIsApplying(false);
         return;
