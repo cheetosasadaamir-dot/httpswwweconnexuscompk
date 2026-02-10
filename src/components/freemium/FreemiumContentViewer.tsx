@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, ChevronDown, ChevronRight, Lightbulb, HelpCircle, Table2, GraduationCap } from 'lucide-react';
 import { revisionNotes, modelAnswers, type FreemiumChapter, type ContentSection } from '@/data/freemiumPackContent';
 import { a2MicroContent, type A2ContentSection, type A2Chapter } from '@/data/a2PremiumContent';
+import { a2MacroContent } from '@/data/a2MacroPremiumContent';
 import { A2DiagramRegistry } from './A2Diagrams';
+import { A2MacroDiagramRegistry } from './A2MacroDiagrams';
 
 const KeyTermCard = ({ term, definition }: { term: string; definition: string }) => (
   <div className="flex gap-3 py-2 px-3 rounded-lg bg-accent/5 border border-accent/10">
