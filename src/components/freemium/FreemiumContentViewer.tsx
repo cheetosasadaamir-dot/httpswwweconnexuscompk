@@ -169,7 +169,7 @@ const ChapterBlock = ({ chapter, isA2 = false, isMacro = false }: { chapter: Fre
           >
             <div className="px-6 pb-6 space-y-3">
               {chapter.sections.map((section) => (
-                <SectionBlock key={section.id} section={section} isA2={isA2} />
+                <SectionBlock key={section.id} section={section} isA2={isA2} isMacro={isMacro} />
               ))}
             </div>
           </motion.div>
