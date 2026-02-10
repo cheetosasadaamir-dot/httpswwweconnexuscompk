@@ -208,7 +208,7 @@ export const BackwardBendingSupplyDiagram = memo(() => (
       {/* Zones */}
       <text x="130" y="230" fill={green} fontSize="8">{'Low: +ve relationship'}</text>
       <text x="250" y="100" fill={orange} fontSize="8">Middle</text>
-      <text x="210" y="50" fill={red} fontSize="8">High: leisure > work</text>
+      <text x="210" y="50" fill={red} fontSize="8">{'High: leisure > work'}</text>
       {/* Optimum point */}
       <circle cx="280" cy="55" r="4" fill={yellow} />
       <text x="290" y="55" fill={yellow} fontSize="8" fontWeight="700">Optimum</text>
