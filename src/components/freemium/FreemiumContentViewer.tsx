@@ -180,7 +180,7 @@ const ChapterBlock = ({ chapter, isA2 = false, isMacro = false }: { chapter: Fre
 };
 
 const FreemiumContentViewer = () => {
-  const [activeTab, setActiveTab] = useState<'revision' | 'answers' | 'a2micro'>('revision');
+  const [activeTab, setActiveTab] = useState<'revision' | 'answers' | 'a2micro' | 'a2macro'>('revision');
 
   const renderContent = () => {
     if (activeTab === 'a2micro') {
