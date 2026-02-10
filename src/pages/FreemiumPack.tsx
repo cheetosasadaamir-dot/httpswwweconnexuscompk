@@ -248,7 +248,7 @@ const FreemiumPack = () => {
 
           <div className="bg-card/30 border border-neon-cyan/20 rounded-2xl p-5 mb-6 text-left">
             <p className="text-sm text-foreground/80 leading-relaxed">
-              Apply with your Gmail, then pay <strong className="text-neon-gold">$7</strong> via WhatsApp. Access is granted only after <strong className="text-neon-cyan">manual admin approval</strong>.
+              Apply with your Gmail and pay <strong className="text-neon-gold">$7</strong>. Access is granted only after <strong className="text-neon-cyan">manual admin approval</strong>.
             </p>
           </div>
 
