@@ -126,7 +126,7 @@ const App = () => (
             {/* Freemium & Admin */}
             <Route path="/freemium-pack" element={<FreemiumPack />} />
             <Route path="/admin-nexus-approval" element={<AdminNexusApproval />} />
-            <Route path="/owner-dashboard" element={<OwnerDashboard />} />
+            
             
             {/* Legacy routes - redirect to new structure */}
             <Route path="/national-income" element={<NationalIncome />} />
