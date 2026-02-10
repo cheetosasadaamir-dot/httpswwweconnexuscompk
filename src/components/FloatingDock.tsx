@@ -362,6 +362,17 @@ const FloatingDock = () => {
             <Sparkles className="w-4 h-4" />
             <span className="text-sm font-medium font-display">Glossary</span>
           </Link>
+
+          {/* Admin Panel - owner only */}
+          {isOwner && (
+            <Link
+              to="/owner-dashboard"
+              className="dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl ml-1 bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/20 transition-all duration-300"
+            >
+              <Settings className="w-4 h-4" />
+              <span className="text-sm font-medium font-display">Admin</span>
+            </Link>
+          )}
         </div>
       </motion.nav>
 
