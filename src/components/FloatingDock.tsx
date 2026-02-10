@@ -21,8 +21,6 @@ import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo.jpeg';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
 
-const OWNER_EMAIL = 'unifom7@gmail.com';
-
 interface SubNavItem {
   title: string;
   href?: string;
