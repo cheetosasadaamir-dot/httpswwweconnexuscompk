@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, ChevronDown, ChevronRight, Lightbulb, HelpCircle, Table2, GraduationCap } from 'lucide-react';
 import { revisionNotes, modelAnswers, type FreemiumChapter, type ContentSection } from '@/data/freemiumPackContent';
 import { a2MicroContent, type A2ContentSection, type A2Chapter } from '@/data/a2PremiumContent';
+import { a2MacroContent } from '@/data/a2MacroPremiumContent';
 import { A2DiagramRegistry } from './A2Diagrams';
+import { A2MacroDiagramRegistry } from './A2MacroDiagrams';
 
 const KeyTermCard = ({ term, definition }: { term: string; definition: string }) => (
   <div className="flex gap-3 py-2 px-3 rounded-lg bg-accent/5 border border-accent/10">
@@ -49,10 +51,10 @@ const MCQCard = ({ question, options, answer }: { question: string; options: str
   );
 };
 
-const SectionBlock = ({ section, isA2 = false }: { section: ContentSection | A2ContentSection; isA2?: boolean }) => {
+const SectionBlock = ({ section, isA2 = false, isMacro = false }: { section: ContentSection | A2ContentSection; isA2?: boolean; isMacro?: boolean }) => {
   const [open, setOpen] = useState(false);
-  const diagramId = isA2 ? (section as A2ContentSection).diagramId : undefined;
-  const DiagramComponent = diagramId ? A2DiagramRegistry[diagramId] : undefined;
+  const diagramId = (isA2 || isMacro) ? (section as A2ContentSection).diagramId : undefined;
+  const DiagramComponent = diagramId ? (isMacro ? A2MacroDiagramRegistry[diagramId] : A2DiagramRegistry[diagramId]) : undefined;
 
   return (
     <div className="border border-border/20 rounded-xl overflow-hidden">
@@ -141,7 +143,7 @@ const SectionBlock = ({ section, isA2 = false }: { section: ContentSection | A2C
   );
 };
 
-const ChapterBlock = ({ chapter, isA2 = false }: { chapter: FreemiumChapter | A2Chapter; isA2?: boolean }) => {
+const ChapterBlock = ({ chapter, isA2 = false, isMacro = false }: { chapter: FreemiumChapter | A2Chapter; isA2?: boolean; isMacro?: boolean }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -167,7 +169,7 @@ const ChapterBlock = ({ chapter, isA2 = false }: { chapter: FreemiumChapter | A2
           >
             <div className="px-6 pb-6 space-y-3">
               {chapter.sections.map((section) => (
-                <SectionBlock key={section.id} section={section} isA2={isA2} />
+                <SectionBlock key={section.id} section={section} isA2={isA2} isMacro={isMacro} />
               ))}
             </div>
           </motion.div>
@@ -178,9 +180,14 @@ const ChapterBlock = ({ chapter, isA2 = false }: { chapter: FreemiumChapter | A2
 };
 
 const FreemiumContentViewer = () => {
-  const [activeTab, setActiveTab] = useState<'revision' | 'answers' | 'a2micro'>('revision');
+  const [activeTab, setActiveTab] = useState<'revision' | 'answers' | 'a2micro' | 'a2macro'>('revision');
 
   const renderContent = () => {
+    if (activeTab === 'a2macro') {
+      return a2MacroContent.map((chapter) => (
+        <ChapterBlock key={chapter.id} chapter={chapter} isA2 isMacro />
+      ));
+    }
     if (activeTab === 'a2micro') {
       return a2MicroContent.map((chapter) => (
         <ChapterBlock key={chapter.id} chapter={chapter} isA2 />
@@ -228,6 +235,17 @@ const FreemiumContentViewer = () => {
         >
           <GraduationCap className="w-4 h-4" />
           A2 Micro Study Guide
+        </button>
+        <button
+          onClick={() => setActiveTab('a2macro')}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border ${
+            activeTab === 'a2macro'
+              ? 'border-accent/50 bg-accent/10 text-accent shadow-[0_0_20px_rgba(0,242,255,0.1)]'
+              : 'border-border/30 bg-card/30 text-muted-foreground hover:border-accent/30'
+          }`}
+        >
+          <GraduationCap className="w-4 h-4" />
+          A2 Macro Study Guide
         </button>
       </div>
 
