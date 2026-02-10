@@ -52,7 +52,7 @@ const ProductionCosts = lazy(() => import("./pages/a2-micro/ProductionCosts"));
 // Freemium & Admin
 const FreemiumPack = lazy(() => import("./pages/FreemiumPack"));
 const AdminNexusApproval = lazy(() => import("./pages/AdminNexusApproval"));
-const OwnerDashboard = lazy(() => import("./pages/OwnerDashboard"));
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -126,7 +126,7 @@ const App = () => (
             {/* Freemium & Admin */}
             <Route path="/freemium-pack" element={<FreemiumPack />} />
             <Route path="/admin-nexus-approval" element={<AdminNexusApproval />} />
-            <Route path="/owner-dashboard" element={<OwnerDashboard />} />
+            
             
             {/* Legacy routes - redirect to new structure */}
             <Route path="/national-income" element={<NationalIncome />} />
