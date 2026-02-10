@@ -97,7 +97,7 @@ const FreemiumPack = () => {
       setShowApplyForm(false);
       toast({
         title: "Application Submitted!",
-        description: "Contact us on WhatsApp to complete your $7 payment. Access will be granted after admin approval.",
+        description: "Your $7 payment request has been received. Access will be granted after admin approval.",
       });
     } catch (err: any) {
       toast({ title: "Error", description: err.message || "Failed to submit", variant: "destructive" });
