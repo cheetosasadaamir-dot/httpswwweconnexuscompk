@@ -143,7 +143,7 @@ const SectionBlock = ({ section, isA2 = false, isMacro = false }: { section: Con
   );
 };
 
-const ChapterBlock = ({ chapter, isA2 = false }: { chapter: FreemiumChapter | A2Chapter; isA2?: boolean }) => {
+const ChapterBlock = ({ chapter, isA2 = false, isMacro = false }: { chapter: FreemiumChapter | A2Chapter; isA2?: boolean; isMacro?: boolean }) => {
   const [open, setOpen] = useState(false);
 
   return (
