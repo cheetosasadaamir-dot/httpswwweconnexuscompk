@@ -14,8 +14,7 @@ import {
   Library,
   User,
   Landmark,
-  Scale,
-  Settings
+  Scale
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo.jpeg';
