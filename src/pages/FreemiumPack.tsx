@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Lock, CheckCircle, Send, Loader2, FileText } from 'lucide-react';
+import { Lock, CheckCircle, Send, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Layout from '@/components/Layout';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
+import FreemiumContentViewer from '@/components/freemium/FreemiumContentViewer';
 
 const gmailSchema = z.string().trim().email("Please enter a valid email").max(255);
-
-const PDF_FILES = [
-  { name: 'AS/A Level Economics Revision Notes', url: '/pdfs/as-economics-revision.pdf' },
-  { name: 'CAIE AS Economics Model Answers', url: '/pdfs/model-answers.pdf' },
-];
 
 const FreemiumPack = () => {
   const [gmail, setGmail] = useState('');
@@ -23,7 +19,6 @@ const FreemiumPack = () => {
   const [isApplying, setIsApplying] = useState(false);
   const [isChecking, setIsChecking] = useState(false);
   const [showApplyForm, setShowApplyForm] = useState(false);
-  const [activePdf, setActivePdf] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -118,48 +113,20 @@ const FreemiumPack = () => {
     await checkAccess(checkGmail);
   };
 
-  // GRANTED — show PDF viewer
+  // GRANTED — show native content
   if (accessGranted) {
     return (
       <Layout>
         <div className="mobile-container responsive-container mx-auto px-4 md:px-8 py-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
             <div className="flex items-center gap-3 mb-2">
-              <CheckCircle className="w-6 h-6 text-neon-cyan" />
-              <span className="text-neon-cyan text-sm font-semibold tracking-widest uppercase">Access Granted</span>
+              <CheckCircle className="w-6 h-6 text-accent" />
+              <span className="text-accent text-sm font-semibold tracking-widest uppercase">Access Granted</span>
             </div>
             <h1 className="text-fluid-3xl font-display font-bold text-foreground mb-2">Premium Study Pack</h1>
-            <p className="text-muted-foreground text-sm">Select a document below to study.</p>
+            <p className="text-muted-foreground text-sm">CIE AS Level Economics — Revision Notes & Model Answers</p>
           </motion.div>
-
-          {/* PDF Tabs */}
-          <div className="flex gap-2 mb-4">
-            {PDF_FILES.map((pdf, i) => (
-              <button
-                key={pdf.url}
-                onClick={() => setActivePdf(i)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border ${
-                  activePdf === i
-                    ? 'border-neon-cyan/50 bg-neon-cyan/10 text-neon-cyan shadow-[0_0_20px_rgba(0,242,255,0.1)]'
-                    : 'border-border/30 bg-card/30 text-muted-foreground hover:border-neon-cyan/30'
-                }`}
-              >
-                <FileText className="w-4 h-4" />
-                {pdf.name}
-              </button>
-            ))}
-          </div>
-
-          {/* PDF Viewer */}
-          <div className="rounded-2xl border border-border/30 overflow-hidden bg-card/20" style={{ height: 'calc(100vh - 280px)' }}>
-            <iframe
-              key={PDF_FILES[activePdf].url}
-              src={PDF_FILES[activePdf].url}
-              title={PDF_FILES[activePdf].name}
-              className="w-full h-full"
-              style={{ border: 'none' }}
-            />
-          </div>
+          <FreemiumContentViewer />
         </div>
       </Layout>
     );
@@ -170,21 +137,21 @@ const FreemiumPack = () => {
     <Layout>
       <div className="mobile-container responsive-container mx-auto px-4 md:px-8 py-8 min-h-[80vh] flex flex-col items-center justify-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="max-w-lg w-full text-center">
-          <div className="w-20 h-20 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center mx-auto mb-6">
-            <Lock className="w-10 h-10 text-neon-cyan" />
+          <div className="w-20 h-20 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center mx-auto mb-6">
+            <Lock className="w-10 h-10 text-accent" />
           </div>
 
           <h1 className="text-fluid-3xl font-display font-bold text-foreground mb-3">Premium Study Pack</h1>
           <p className="text-muted-foreground mb-2">Premium AS Level Revision Notes & Model Answers</p>
 
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-gold/10 border border-neon-gold/30 mb-6">
-            <span className="text-neon-gold font-display font-bold text-2xl">$7</span>
-            <span className="text-neon-gold/70 text-sm">one-time access</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6">
+            <span className="text-primary font-display font-bold text-2xl">$7</span>
+            <span className="text-primary/70 text-sm">one-time access</span>
           </div>
 
-          <div className="bg-card/30 border border-neon-cyan/20 rounded-2xl p-5 mb-6 text-left">
+          <div className="bg-card/30 border border-accent/20 rounded-2xl p-5 mb-6 text-left">
             <p className="text-sm text-foreground/80 leading-relaxed">
-              Submit your Gmail below and pay <strong className="text-neon-gold">$7</strong> via WhatsApp. Access is granted after <strong className="text-neon-cyan">manual admin approval</strong>.
+              Submit your Gmail below and pay <strong className="text-primary">$7</strong> via WhatsApp. Access is granted after <strong className="text-accent">manual admin approval</strong>.
             </p>
           </div>
 
@@ -205,7 +172,7 @@ const FreemiumPack = () => {
               placeholder="Already applied? Check your access"
               className="flex-1 bg-card/50 border-border/50"
             />
-            <Button type="submit" variant="outline" disabled={isChecking} className="border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/10">
+            <Button type="submit" variant="outline" disabled={isChecking} className="border-accent/30 text-accent hover:bg-accent/10">
               {isChecking ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Check'}
             </Button>
           </form>
@@ -224,7 +191,7 @@ const FreemiumPack = () => {
             {!showApplyForm ? (
               <Button
                 onClick={() => setShowApplyForm(true)}
-                className="w-full bg-neon-cyan text-primary-foreground hover:bg-neon-cyan/90 font-display font-semibold text-base py-6 rounded-xl"
+                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-display font-semibold text-base py-6 rounded-xl"
               >
                 <Send className="w-5 h-5 mr-2" /> Submit Gmail to Apply
               </Button>
@@ -238,7 +205,7 @@ const FreemiumPack = () => {
                   required
                   className="bg-card/50 border-border/50 text-center text-base py-6"
                 />
-                <Button type="submit" disabled={isApplying} className="w-full bg-neon-cyan text-primary-foreground hover:bg-neon-cyan/90 font-display font-semibold text-base py-6 rounded-xl">
+                <Button type="submit" disabled={isApplying} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-display font-semibold text-base py-6 rounded-xl">
                   {isApplying ? <Loader2 className="w-5 h-5 mr-2 animate-spin" /> : <Send className="w-5 h-5 mr-2" />}
                   Submit Application
                 </Button>
