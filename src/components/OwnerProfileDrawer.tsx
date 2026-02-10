@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Linkedin, Twitter, Mail, Phone, GraduationCap, Award, Shield, CheckCircle, XCircle, Loader2, RefreshCw, MessageSquare } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -355,6 +356,19 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
                     </div>
                   )}
                 </motion.div>
+              )}
+
+              {/* Hidden vault link — only for verified owner */}
+              {isOwner && (
+                <div className="mt-8 pt-4 border-t border-border/10">
+                  <Link
+                    to="/owner-nexus-vault"
+                    onClick={onClose}
+                    className="text-[10px] text-muted-foreground/20 hover:text-neon-cyan/60 transition-colors"
+                  >
+                    ⚡ Nexus Vault
+                  </Link>
+                </div>
               )}
             </div>
           </motion.aside>
