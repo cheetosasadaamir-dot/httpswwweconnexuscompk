@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import ChapterLayout from '@/components/ChapterLayout';
 import UtilityDiagram from '@/components/diagrams/UtilityDiagram';
+import { IndifferenceCurveAnalyticalDepth, IndifferenceCurveEvaluativeJudgement } from '@/components/a2-depth/UtilityDepthSections';
 import BudgetIndifferenceDiagram from '@/components/diagrams/BudgetIndifferenceDiagram';
 import IncomeSubstitutionDiagram from '@/components/diagrams/IncomeSubstitutionDiagram';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -279,6 +280,17 @@ const UtilityConsumerChoice = () => {
           trap="Students often conflate Giffen and Veblen goods as 'goods with upward-sloping demand.' The mechanisms are entirely different."
           correction="Giffen goods have upward-sloping demand due to the INCOME EFFECT dominating for staple inferior goods among low-income consumers. Veblen goods have upward-sloping demand due to CONSPICUOUS CONSUMPTION—high prices signal status (a psychological/social phenomenon, not an income effect). A Giffen good must be inferior; a Veblen good is typically a luxury."
         />
+      </motion.section>
+
+      {/* Analytical Depth & Evaluative Judgement */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="mb-12"
+      >
+        <IndifferenceCurveAnalyticalDepth />
+        <IndifferenceCurveEvaluativeJudgement />
       </motion.section>
     </ChapterLayout>
   );

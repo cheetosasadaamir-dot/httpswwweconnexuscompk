@@ -13,6 +13,7 @@ import MonopolyDiagram from '@/components/diagrams/MonopolyDiagram';
 import GameTheoryDiagram from '@/components/diagrams/GameTheoryDiagram';
 import XEfficiencyDiagram from '@/components/diagrams/XEfficiencyDiagram';
 import ContestableMarketsDiagram from '@/components/diagrams/ContestableMarketsDiagram';
+import { NaturalMonopolyAnalyticalDepth, NaturalMonopolyEvaluativeJudgement, GameTheoryAnalyticalDepth, GameTheoryEvaluativeJudgement, KinkedDemandAnalyticalDepth, KinkedDemandEvaluativeJudgement } from '@/components/a2-depth/MarketStructuresDepthSections';
 
 const MarketStructuresA2 = () => {
   return (
@@ -652,6 +653,9 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
+          <KinkedDemandAnalyticalDepth />
+          <KinkedDemandEvaluativeJudgement />
+
           {/* Collusion */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <h3 className="text-xl font-semibold text-silver-bright mb-4">Collusive Oligopoly</h3>
@@ -733,6 +737,9 @@ const MarketStructuresA2 = () => {
             correction="Nash Equilibrium is where no firm can improve by unilaterally changing strategy. It may not be the best joint outcome. Explain the dominant strategy reasoning: regardless of rival's choice, cheating always pays more."
             className="mb-8"
           />
+
+          <GameTheoryAnalyticalDepth />
+          <GameTheoryEvaluativeJudgement />
 
           {/* Real World Example */}
           <RealWorldExample
@@ -920,6 +927,9 @@ const MarketStructuresA2 = () => {
               </p>
             </div>
           </div>
+
+          <NaturalMonopolyAnalyticalDepth />
+          <NaturalMonopolyEvaluativeJudgement />
 
           {/* Price Discrimination */}
           <div className="glass-card p-8 rounded-2xl mb-8">
