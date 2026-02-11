@@ -20,8 +20,8 @@ const RESEARCH_SOURCES = [
   {
     domain: "finance.gov.pk",
     urls: [
-      "https://www.finance.gov.pk/survey_2425.html",
-      "https://www.finance.gov.pk/economy.html",
+      "https://www.finance.gov.pk/survey/chapter_25/Economic_Survey_2024_25.pdf",
+      "https://www.finance.gov.pk/",
     ],
     category: "fiscal_data",
     label: "Ministry of Finance Pakistan",
