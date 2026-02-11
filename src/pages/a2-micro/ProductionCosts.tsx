@@ -1,6 +1,7 @@
 import React from 'react';
 import ChapterLayout from '@/components/ChapterLayout';
 import ContentSection from '@/components/ContentSection';
+import { DiminishingReturnsAnalyticalDepth, DiminishingReturnsEvaluativeJudgement } from '@/components/a2-depth/ProductionCostsDepthSections';
 import GlossaryTooltip from '@/components/GlossaryTooltip';
 import ExamTipBox from '@/components/ExamTipBox';
 import AnalysisBlock from '@/components/AnalysisBlock';
@@ -761,6 +762,12 @@ const ProductionCosts = () => {
             to balance profit with environmental and social objectives.
           </p>
         </AnalysisBlock>
+      </ContentSection>
+
+      {/* Analytical Depth & Evaluative Judgement */}
+      <ContentSection title="Analytical Depth & Evaluative Judgement">
+        <DiminishingReturnsAnalyticalDepth />
+        <DiminishingReturnsEvaluativeJudgement />
       </ContentSection>
 
       {/* Summary */}

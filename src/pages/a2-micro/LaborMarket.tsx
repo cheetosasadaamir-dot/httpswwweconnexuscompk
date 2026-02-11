@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import LaborMarketDiagram from '@/components/diagrams/LaborMarketDiagram';
 import MonopsonyLaborDiagram from '@/components/diagrams/MonopsonyLaborDiagram';
 import WageDifferentialsDiagram from '@/components/diagrams/WageDifferentialsDiagram';
+import { MRPTheoryAnalyticalDepth, MRPTheoryEvaluativeJudgement } from '@/components/a2-depth/LaborMarketDepthSections';
 
 const LaborMarket = () => {
   return (
@@ -869,6 +870,10 @@ const LaborMarket = () => {
             </div>
           </div>
         </section>
+
+        {/* Analytical Depth: MRP Theory */}
+        <MRPTheoryAnalyticalDepth />
+        <MRPTheoryEvaluativeJudgement />
 
         <ExamTipBox>
           <h4 className="font-semibold text-amber-300 mb-2">Labor Market Exam Tips</h4>
