@@ -8,7 +8,7 @@ import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
-import FixedSearchHeader from '@/components/FixedSearchHeader';
+
 import AcademicDisclaimer from '@/components/AcademicDisclaimer';
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
@@ -39,15 +39,13 @@ const Index = () => {
       <ThreeJsMarketEngine />
       <Header />
 
-      {/* Fixed Search Header */}
-      <FixedSearchHeader />
 
       {/* Academic Disclaimer - Sidebar on desktop, info icon on mobile */}
       <AcademicDisclaimer />
 
       <main className="relative z-10 safe-area-inset">
-        {/* Hero Section - Extra top padding to account for fixed header + search bar */}
-        <section className="min-h-[60vh] flex items-center pt-36 md:pt-44 lg:pt-52">
+        {/* Hero Section */}
+        <section className="min-h-[60vh] flex items-center pt-24 md:pt-28 lg:pt-32">
           <div className="w-full max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-24">
             <div className="text-center">
               <motion.div

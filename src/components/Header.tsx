@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Search, Menu, X, BookOpen, Briefcase, Image } from 'lucide-react';
+import { Menu, X, BookOpen, Briefcase } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/logo-macromicro.png';
+import GlobalSearch from './GlobalSearch';
 
 interface NavLink {
   label: string;
@@ -21,7 +22,6 @@ const navLinks: NavLink[] = [
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -128,18 +128,9 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Search Bar */}
-          <div className="hidden md:flex items-center gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search topics..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-48 lg:w-64 pl-10 pr-4 py-2 rounded-full bg-muted/30 border border-silver/10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:bg-muted/50 transition-all"
-              />
-            </div>
+          {/* Integrated Search Bar */}
+          <div className="hidden md:block flex-1 max-w-xs lg:max-w-sm xl:max-w-md mx-4">
+            <GlobalSearch compact />
           </div>
 
           {/* Mobile Menu Button */}
@@ -181,13 +172,8 @@ const Header = () => {
                   </Link>
                 </motion.div>
               ))}
-              <div className="relative pt-3">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground mt-1.5" />
-                <input
-                  type="text"
-                  placeholder="Search topics..."
-                  className="w-full pl-10 pr-4 py-2 rounded-full bg-muted/30 border border-silver/10 text-sm"
-                />
+              <div className="pt-3">
+                <GlobalSearch compact />
               </div>
             </div>
           </motion.div>
