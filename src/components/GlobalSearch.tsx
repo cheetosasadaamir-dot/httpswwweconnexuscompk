@@ -99,7 +99,7 @@ const searchableContent: SearchResult[] = [
   ...examMCQContent,
 ];
 
-const GlobalSearch = () => {
+const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -225,27 +225,34 @@ const GlobalSearch = () => {
   return (
     <div 
       ref={containerRef}
-      className="w-full max-w-[600px] mx-auto px-4 md:px-0 relative z-50"
+      className={cn(
+        "relative z-50",
+        compact ? "w-full" : "w-full max-w-[600px] mx-auto px-4 md:px-0"
+      )}
     >
       {/* Search Input */}
       <div
         className={cn(
           "relative transition-all duration-300",
-          isFocused && "transform scale-[1.02]"
+          isFocused && !compact && "transform scale-[1.02]"
         )}
       >
         <div
           className={cn(
-            "relative flex items-center gap-3 px-5 py-4 rounded-2xl",
+            "relative flex items-center gap-3 rounded-2xl",
             "bg-space-void/60 backdrop-blur-xl",
             "border transition-all duration-300",
+            compact 
+              ? "px-3 py-2 rounded-full" 
+              : "px-5 py-4",
             isFocused 
               ? "border-neon-cyan shadow-[0_0_30px_rgba(0,242,255,0.25)]" 
               : "border-neon-cyan/30 hover:border-neon-cyan/50"
           )}
         >
           <Search className={cn(
-            "w-5 h-5 transition-colors duration-300",
+            "shrink-0 transition-colors duration-300",
+            compact ? "w-4 h-4" : "w-5 h-5",
             isFocused ? "text-neon-cyan" : "text-neon-cyan/60"
           )} />
           
@@ -263,15 +270,22 @@ const GlobalSearch = () => {
             }}
             onBlur={() => setIsFocused(false)}
             onKeyDown={handleKeyNavigation}
-            placeholder="SEARCH TOPICS (E.G. PHILLIPS CURVE, HDI, MV=PQ)..."
-            className="flex-1 bg-transparent text-sm md:text-base text-white placeholder:text-white/40 placeholder:tracking-[0.1em] placeholder:font-medium focus:outline-none"
+            placeholder={compact ? "Search topics... ⌘K" : "SEARCH TOPICS (E.G. PHILLIPS CURVE, HDI, MV=PQ)..."}
+            className={cn(
+              "flex-1 bg-transparent text-white placeholder:text-white/40 focus:outline-none",
+              compact 
+                ? "text-sm placeholder:text-xs placeholder:tracking-normal placeholder:font-normal" 
+                : "text-sm md:text-base placeholder:tracking-[0.1em] placeholder:font-medium"
+            )}
           />
 
           {/* Keyboard shortcut hint */}
-          <div className="hidden md:flex items-center gap-1 px-2 py-1 rounded-lg bg-white/5 border border-white/10">
-            <Command className="w-3 h-3 text-white/40" />
-            <span className="text-xs text-white/40 font-medium">K</span>
-          </div>
+          {!compact && (
+            <div className="hidden md:flex items-center gap-1 px-2 py-1 rounded-lg bg-white/5 border border-white/10">
+              <Command className="w-3 h-3 text-white/40" />
+              <span className="text-xs text-white/40 font-medium">K</span>
+            </div>
+          )}
         </div>
 
         {/* Live Results Dropdown */}
