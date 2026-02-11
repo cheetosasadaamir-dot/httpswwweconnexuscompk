@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,13 +21,24 @@ type Message = {
 
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error';
 
-const QUICK_ACTIONS = [
+type Persona = 'a-level' | 'university';
+
+const QUICK_ACTIONS_ALEVEL = [
   { label: 'J-Curve Effect', query: 'Explain the J-Curve effect and why the current account worsens before improving after depreciation.' },
   { label: 'Liquidity Trap', query: 'Analyze the Keynesian Liquidity Trap and why monetary policy becomes ineffective at the zero lower bound.' },
   { label: 'Phillips Curve', query: 'Explain the Expectations-Augmented Phillips Curve and the concept of NAIRU.' },
   { label: 'Harrod-Domar', query: 'Derive the Harrod-Domar growth model (g=s/k) and evaluate its limitations for developing economies.' },
   { label: 'Kinked Demand', query: 'Analyze the Kinked Demand Curve model and explain price rigidity in oligopolistic markets.' },
   { label: 'Marshall-Lerner', query: 'Explain the Marshall-Lerner condition and when devaluation improves the trade balance.' },
+];
+
+const QUICK_ACTIONS_UNIVERSITY = [
+  { label: 'OLS Assumptions', query: 'Explain the Gauss-Markov assumptions for OLS estimation and what happens when each assumption is violated.' },
+  { label: 'Lagrangian Optimization', query: 'Solve the consumer utility maximization problem using the Lagrangian method for a Cobb-Douglas utility function U(x,y) = x^α y^β subject to a budget constraint.' },
+  { label: 'IMF EFF Pakistan', query: 'Evaluate the IMF Extended Fund Facility (EFF) program for Pakistan, including conditionalities, fiscal consolidation targets, and impact on macroeconomic stability.' },
+  { label: 'SBP Monetary Policy', query: 'Analyze the State Bank of Pakistan monetary policy transmission mechanism and its effectiveness in controlling inflation.' },
+  { label: 'Solow Growth Model', query: 'Derive the Solow Growth Model steady-state and explain the convergence hypothesis with implications for Pakistan.' },
+  { label: 'Multicollinearity', query: 'Explain multicollinearity in econometric models, its detection using VIF, and remedial measures with mathematical derivation.' },
 ];
 
 // Command words with AO (Assessment Objective) requirements
@@ -47,12 +58,20 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-ch
 const generateId = () => `msg_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
 // Premium loading state messages
-const LOADING_STATES = [
+const LOADING_STATES_ALEVEL = [
   'Analyzing economic variables...',
   'Processing transmission mechanisms...',
   'Constructing analytical framework...',
   'Synthesizing A-Level concepts...',
   'Evaluating policy implications...',
+];
+
+const LOADING_STATES_UNIVERSITY = [
+  'Reviewing empirical literature...',
+  'Running econometric diagnostics...',
+  'Analyzing Pakistan macroeconomic data...',
+  'Constructing quantitative framework...',
+  'Synthesizing research findings...',
 ];
 
 // Prof. Econs Avatar Component
@@ -132,22 +151,23 @@ const ExamGuidance = () => {
 };
 
 // Premium typing animation with stream state awareness
-const TypingIndicator = ({ streamState = 'connecting' }: { streamState?: StreamState }) => {
-  const [loadingMessage, setLoadingMessage] = useState(LOADING_STATES[0]);
+const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { streamState?: StreamState; persona?: Persona }) => {
+  const loadingStates = persona === 'university' ? LOADING_STATES_UNIVERSITY : LOADING_STATES_ALEVEL;
+  const [loadingMessage, setLoadingMessage] = useState(loadingStates[0]);
   const [messageIndex, setMessageIndex] = useState(0);
 
   useEffect(() => {
     if (streamState === 'connecting' || streamState === 'analyzing') {
       const interval = setInterval(() => {
-        setMessageIndex(prev => (prev + 1) % LOADING_STATES.length);
+        setMessageIndex(prev => (prev + 1) % loadingStates.length);
       }, 2500);
       return () => clearInterval(interval);
     }
-  }, [streamState]);
+  }, [streamState, loadingStates.length]);
 
   useEffect(() => {
-    setLoadingMessage(LOADING_STATES[messageIndex]);
-  }, [messageIndex]);
+    setLoadingMessage(loadingStates[messageIndex % loadingStates.length]);
+  }, [messageIndex, loadingStates]);
 
   const getStateColor = () => {
     switch (streamState) {
@@ -266,6 +286,8 @@ export default function EconomicsChatbot() {
   const [isLoading, setIsLoading] = useState(false);
   const [streamState, setStreamState] = useState<StreamState>('idle');
   const [retryCount, setRetryCount] = useState(0);
+  const [persona, setPersona] = useState<Persona>('a-level');
+  const quickActions = persona === 'university' ? QUICK_ACTIONS_UNIVERSITY : QUICK_ACTIONS_ALEVEL;
   const scrollRef = useRef<HTMLDivElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
   const streamTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -320,7 +342,8 @@ export default function EconomicsChatbot() {
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
         body: JSON.stringify({ 
-          messages: userMessages.map(m => ({ role: m.role, content: m.content }))
+          messages: userMessages.map(m => ({ role: m.role, content: m.content })),
+          persona
         }),
         signal: abortControllerRef.current.signal,
       });
@@ -585,22 +608,56 @@ export default function EconomicsChatbot() {
           viewport={{ once: true }}
           className="text-center mb-6 md:mb-8"
         >
+          {/* Persona Toggle */}
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <motion.button
+              onClick={() => { setPersona('a-level'); setMessages([]); }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                persona === 'a-level'
+                  ? 'bg-[hsl(43,72%,53%)]/15 border-[hsl(43,72%,53%)]/50 text-[hsl(43,72%,53%)]'
+                  : 'border-border/30 text-muted-foreground hover:border-border/60'
+              }`}
+            >
+              <BookOpen className="w-3 h-3" />
+              A-Level CIE
+            </motion.button>
+            <motion.button
+              onClick={() => { setPersona('university'); setMessages([]); }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                persona === 'university'
+                  ? 'bg-[hsl(185,100%,50%)]/15 border-[hsl(185,100%,50%)]/50 text-[hsl(185,100%,50%)]'
+                  : 'border-border/30 text-muted-foreground hover:border-border/60'
+              }`}
+            >
+              <GraduationCap className="w-3 h-3" />
+              University (Pakistan)
+            </motion.button>
+          </div>
+
           <div className="inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-3 md:mb-4">
             <TutorAvatar size="sm" />
             <div className="text-left">
-              <span className="text-xs md:text-sm text-[hsl(43,72%,53%)] font-semibold block">Prof. Econs</span>
-              <span className="text-[10px] md:text-xs text-muted-foreground">CIE Senior Fellow</span>
+              <span className="text-xs md:text-sm text-[hsl(43,72%,53%)] font-semibold block">
+                {persona === 'university' ? 'Dr. Econs' : 'Prof. Econs'}
+              </span>
+              <span className="text-[10px] md:text-xs text-muted-foreground">
+                {persona === 'university' ? 'Senior Research Consultant' : 'CIE Senior Fellow'}
+              </span>
             </div>
             <div className="tutor-verified-badge ml-1 md:ml-2 text-[9px] md:text-[10px]">
               <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3" />
-              <span>2026-2028</span>
+              <span>{persona === 'university' ? 'HEC' : '2026-2028'}</span>
             </div>
           </div>
           <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
-            Stuck on a Concept?
+            {persona === 'university' ? 'Research Query?' : 'Stuck on a Concept?'}
           </h2>
           <p className="text-fluid-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-2">
-            Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode
+            {persona === 'university' 
+              ? 'Senior University Economics Consultant • BS/MS Level • Pakistan Focus'
+              : 'Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode'}
           </p>
         </motion.div>
 
@@ -628,8 +685,12 @@ export default function EconomicsChatbot() {
 
           {/* Academic Banner */}
           <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
-            <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">Cambridge A-Level Economics • 9708</p>
-            <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">Text Analysis Mode</span>
+            <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">
+              {persona === 'university' ? 'University Economics • BS/MS • HEC Pakistan' : 'Cambridge A-Level Economics • 9708'}
+            </p>
+            <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">
+              {persona === 'university' ? 'Research Mode' : 'Text Analysis Mode'}
+            </span>
           </div>
 
           {/* Header with Clear Button - Mobile optimized */}
@@ -637,7 +698,7 @@ export default function EconomicsChatbot() {
             <div className="flex-1 min-w-0">
               <p className="text-xs text-muted-foreground mb-1.5">Quick questions:</p>
               <div className="flex flex-wrap gap-1 md:gap-1.5 overflow-x-auto scrollbar-hide pb-1">
-                {QUICK_ACTIONS.slice(0, 4).map((action, i) => (
+                {quickActions.slice(0, 4).map((action, i) => (
                   <motion.button
                     key={i}
                     onClick={() => handleSend(action.query)}
@@ -655,7 +716,7 @@ export default function EconomicsChatbot() {
                     {action.label}
                   </motion.button>
                 ))}
-                <ExamGuidance />
+                {persona === 'a-level' && <ExamGuidance />}
               </div>
             </div>
             
@@ -680,9 +741,15 @@ export default function EconomicsChatbot() {
               <div className="h-full flex items-center justify-center text-center">
                 <div className="text-muted-foreground">
                   <TutorAvatar size="lg" />
-                  <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">Prof. Econs</p>
-                  <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">CIE Senior Fellow • Text Analysis Mode</p>
-                  <p className="text-sm mt-1 opacity-70 font-serif">Your Senior Cambridge Examiner is ready</p>
+                  <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">
+                    {persona === 'university' ? 'Dr. Econs' : 'Prof. Econs'}
+                  </p>
+                  <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">
+                    {persona === 'university' ? 'Senior Research Consultant • HEC Pakistan' : 'CIE Senior Fellow • Text Analysis Mode'}
+                  </p>
+                  <p className="text-sm mt-1 opacity-70 font-serif">
+                    {persona === 'university' ? 'Your Senior University Economics Consultant is ready' : 'Your Senior Cambridge Examiner is ready'}
+                  </p>
                   <p className="text-xs mt-2 opacity-50">Ask follow-up questions — I remember our conversation!</p>
                 </div>
               </div>
@@ -707,7 +774,9 @@ export default function EconomicsChatbot() {
                         <div className="prose prose-invert prose-sm max-w-none tutor-professor-response">
                           {/* Lesson Header */}
                           <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
-                            Syllabus 9708 (2026-2028) | CIE Senior Fellow
+                            {persona === 'university' 
+                              ? 'University Economics | Senior Research Consultant | HEC Pakistan'
+                              : 'Syllabus 9708 (2026-2028) | CIE Senior Fellow'}
                           </div>
                           <ReactMarkdown
                             remarkPlugins={[remarkMath]}
@@ -765,7 +834,7 @@ export default function EconomicsChatbot() {
                     >
                       <TutorAvatar />
                       <div className="tutor-message-ai rounded-xl px-3 py-2.5">
-                        <TypingIndicator streamState={streamState} />
+                        <TypingIndicator streamState={streamState} persona={persona} />
                       </div>
                     </motion.div>
                   )}
