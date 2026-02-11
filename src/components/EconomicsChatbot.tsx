@@ -34,11 +34,12 @@ const QUICK_ACTIONS_ALEVEL = [
 
 const QUICK_ACTIONS_UNIVERSITY = [
   { label: 'OLS Assumptions', query: 'Explain the Gauss-Markov assumptions for OLS estimation and what happens when each assumption is violated.' },
-  { label: 'Lagrangian Optimization', query: 'Solve the consumer utility maximization problem using the Lagrangian method for a Cobb-Douglas utility function U(x,y) = x^α y^β subject to a budget constraint.' },
+  { label: 'Lagrangian Optimization', query: 'Solve the consumer utility maximization problem using the Lagrangian method for a Cobb-Douglas utility function U(x,y) = x^0.4 y^0.6 subject to budget constraint 10x + 20y = 200. Show complete step-by-step derivation with computational verification.' },
   { label: 'IMF EFF Pakistan', query: 'Evaluate the IMF Extended Fund Facility (EFF) program for Pakistan, including conditionalities, fiscal consolidation targets, and impact on macroeconomic stability.' },
-  { label: 'SBP Monetary Policy', query: 'Analyze the State Bank of Pakistan monetary policy transmission mechanism and its effectiveness in controlling inflation.' },
-  { label: 'Solow Growth Model', query: 'Derive the Solow Growth Model steady-state and explain the convergence hypothesis with implications for Pakistan.' },
+  { label: 'Pakistan Structural Issues', query: 'Provide a Critical Evaluation of Pakistan\'s structural economic challenges: narrow tax base, energy circular debt, low human capital investment. Use PIDE and SDPI research evidence.' },
+  { label: 'Solow Growth Model', query: 'Derive the Solow Growth Model steady-state and explain the convergence hypothesis with implications for Pakistan. Show full mathematical derivation with computational verification.' },
   { label: 'Multicollinearity', query: 'Explain multicollinearity in econometric models, its detection using VIF, and remedial measures with mathematical derivation.' },
+  { label: 'Fiscal Policy Analysis', query: 'Analyze Pakistan\'s fiscal policy using the latest Economic Survey data from the Ministry of Finance. Evaluate the fiscal deficit trajectory and debt sustainability.' },
 ];
 
 // Command words with AO (Assessment Objective) requirements
