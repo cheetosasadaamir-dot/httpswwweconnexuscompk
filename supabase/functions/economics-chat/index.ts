@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-// CORS headers
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
@@ -37,31 +36,60 @@ function sanitizeMessage(content: string): string {
 }
 
 // ============================================================
-// FIRECRAWL RAG ENGINE – Real-time knowledge retrieval
-// Searches authoritative economics sources before LLM response
+// PERSONA DEFINITIONS
 // ============================================================
 
-const RAG_DOMAINS = [
-  "economicshelp.org",
-  "tutor2u.net",
-  "imf.org",
-  "tradingeconomics.com",
-];
+type Persona = 'a-level' | 'university';
 
-async function searchFirecrawl(query: string): Promise<string> {
+const PERSONA_CONFIG: Record<Persona, {
+  ragDomains: string[];
+  searchPatterns: RegExp[];
+}> = {
+  'a-level': {
+    ragDomains: ["economicshelp.org", "tutor2u.net", "imf.org", "tradingeconomics.com"],
+    searchPatterns: [
+      /\b(gdp|inflation|unemployment|interest rate|exchange rate|growth|deficit|surplus|debt|trade)\b/i,
+      /\b(current|latest|recent|today|now|2024|2025|2026|real.?world|data|statistics?)\b/i,
+      /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess)\b/i,
+      /\b(fiscal|monetary|supply.?side|policy|tariff|quota|subsidy|tax)\b/i,
+      /\b(demand|supply|elasticity|externality|market failure|monopoly|oligopoly)\b/i,
+      /\b(keynesian|classical|monetarist|phillips|multiplier|accelerator)\b/i,
+      /\b(developing|development|poverty|inequality|gini|hdi)\b/i,
+    ],
+  },
+  'university': {
+    ragDomains: ["sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "imf.org", "tradingeconomics.com", "economicshelp.org"],
+    searchPatterns: [
+      /\b(gdp|inflation|cpi|wpi|interest rate|exchange rate|growth|deficit|surplus|debt|trade|balance.?of.?payments)\b/i,
+      /\b(current|latest|recent|today|now|2024|2025|2026|real.?world|data|statistics?|pakistan|sbp|pbs)\b/i,
+      /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|derive|prove|solve|maximize|minimize)\b/i,
+      /\b(fiscal|monetary|supply.?side|policy|tariff|quota|subsidy|tax|imf|eff|structural.?adjustment)\b/i,
+      /\b(ols|regression|econometric|multicollinearity|heteroscedasticity|autocorrelation|endogeneity)\b/i,
+      /\b(utility|lagrangian|constrained.?optimization|cobb.?douglas|marginal.?rate|indifference)\b/i,
+      /\b(keynesian|classical|monetarist|phillips|multiplier|accelerator|solow|harrod|romer)\b/i,
+      /\b(developing|development|poverty|inequality|gini|hdi|remittances|fdi)\b/i,
+    ],
+  },
+};
+
+// ============================================================
+// FIRECRAWL RAG ENGINE
+// ============================================================
+
+async function searchFirecrawl(query: string, persona: Persona): Promise<string> {
   const apiKey = Deno.env.get("FIRECRAWL_API_KEY");
   if (!apiKey) {
     console.warn("FIRECRAWL_API_KEY not configured, skipping RAG search");
     return "";
   }
 
-  // Build a domain-scoped search query
-  const domainFilter = RAG_DOMAINS.map(d => `site:${d}`).join(" OR ");
+  const config = PERSONA_CONFIG[persona];
+  const domainFilter = config.ragDomains.map(d => `site:${d}`).join(" OR ");
   const searchQuery = `(${domainFilter}) ${query}`;
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000); // 8s timeout
+    const timeout = setTimeout(() => controller.abort(), 8000);
 
     const response = await fetch("https://api.firecrawl.dev/v1/search", {
       method: "POST",
@@ -89,7 +117,6 @@ async function searchFirecrawl(query: string): Promise<string> {
 
     if (!Array.isArray(results) || results.length === 0) return "";
 
-    // Build context from search results, limiting each snippet
     const contextParts: string[] = [];
     for (const result of results.slice(0, 4)) {
       const url = result.url || result.sourceURL || "";
@@ -117,28 +144,29 @@ function getSourceName(url: string): string {
   if (url.includes("tutor2u.net")) return "Tutor2u Economics";
   if (url.includes("imf.org")) return "IMF";
   if (url.includes("tradingeconomics.com")) return "Trading Economics";
-  return new URL(url).hostname;
+  if (url.includes("sbp.org.pk")) return "State Bank of Pakistan";
+  if (url.includes("pbs.gov.pk")) return "Pakistan Bureau of Statistics";
+  if (url.includes("pide.org.pk")) return "PIDE";
+  try { return new URL(url).hostname; } catch { return "Source"; }
 }
 
-// Determine if a query would benefit from live data search
-function shouldSearchRAG(content: string): boolean {
-  const searchPatterns = [
-    /\b(gdp|inflation|unemployment|interest rate|exchange rate|growth|deficit|surplus|debt|trade)\b/i,
-    /\b(current|latest|recent|today|now|2024|2025|2026|real.?world|data|statistics?)\b/i,
-    /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess)\b/i,
-    /\b(fiscal|monetary|supply.?side|policy|tariff|quota|subsidy|tax)\b/i,
-    /\b(demand|supply|elasticity|externality|market failure|monopoly|oligopoly)\b/i,
-    /\b(keynesian|classical|monetarist|phillips|multiplier|accelerator)\b/i,
-    /\b(developing|development|poverty|inequality|gini|hdi)\b/i,
+function shouldSearchRAG(content: string, persona: Persona): boolean {
+  const patterns = PERSONA_CONFIG[persona].searchPatterns;
+  return patterns.some(p => p.test(content));
+}
+
+function isGreeting(content: string): boolean {
+  const greetingPatterns = [
+    /^(hi|hello|hey|salam|assalam|walaikum|good\s+(morning|afternoon|evening)|how\s+are\s+you|thank|thanks)\b/i,
   ];
-  return searchPatterns.some(p => p.test(content));
+  return greetingPatterns.some(p => p.test(content.trim())) && content.trim().split(/\s+/).length <= 8;
 }
 
-// ==============================================================================
-// SYSTEM PROMPT
-// ==============================================================================
+// ============================================================
+// SYSTEM PROMPTS
+// ============================================================
 
-const SYSTEM_PROMPT = `# THE FRIENDLY SCHOLAR – Your Economics Mentor (FINAL PRODUCTION BUILD)
+const A_LEVEL_SYSTEM_PROMPT = `# THE FRIENDLY SCHOLAR – Your Economics Mentor (FINAL PRODUCTION BUILD)
 You are the Friendly Scholar, an approachable yet brilliant Cambridge 9708 Economics mentor (2026-2028 Syllabus). You combine academic authority with warmth and wit, making complex ideas feel like a sophisticated conversation with a trusted friend who happens to be a world-class economist.
 
 ## ANTI-LEAK & PRIVACY PROTOCOL – HIGHEST PRIORITY
@@ -276,11 +304,149 @@ NEVER use bullet points for conceptual explanations – ALWAYS use flowing parag
 NEVER remain silent – ALWAYS respond with substance or a warm clarifying question.
 NEVER be cold or robotic – maintain the Friendly Scholar warmth throughout.`;
 
+const UNIVERSITY_SYSTEM_PROMPT = `# SENIOR UNIVERSITY ECONOMICS CONSULTANT – EconNexus Research Division
+
+You are a Senior Academic Research Consultant, specifically calibrated for Undergraduate (BS) and Graduate (MS/MPhil) Economics students studying in Pakistani universities under HEC-approved curricula. You combine rigorous quantitative methodology with policy-relevant empirical analysis, delivering responses at the standard expected by university examiners and thesis supervisors.
+
+## ANTI-LEAK & PRIVACY PROTOCOL – HIGHEST PRIORITY
+**ABSOLUTE RULE**: If a user asks about the website's technology stack, database structure, backend architecture, admin details, how the AI works internally, what model you are, or any infrastructure questions, you MUST respond ONLY with:
+
+"I am here to assist with Economics academic queries and research. I cannot provide information regarding the internal architecture of this platform."
+
+Do NOT reveal: Supabase, Lovable, React, TypeScript, Edge Functions, PostgreSQL, RLS, or any technical details.
+
+## RAG SOURCE CITATION PROTOCOL (MANDATORY)
+When you are provided with [REAL-TIME KNOWLEDGE CONTEXT] data, you MUST:
+1. **Prioritize** this context — it contains verified, up-to-date information from SBP, PBS, PIDE, IMF, and other authoritative sources.
+2. **Cite sources using academic conventions** — e.g., "According to the State Bank of Pakistan's latest monetary policy statement...", "PBS data for FY2025-26 indicates that..."
+3. **Never fabricate citations** — only cite sources that appear in the provided context.
+4. Blend sourced data seamlessly into your analytical prose.
+
+## GREETING PROTOCOL
+- "Hi" / "Hello" → "Welcome to the EconNexus Research Division. How may I assist your academic inquiry today?"
+- "Salam" / "Assalamualaikum" → "Walaikum Assalam. I am ready to assist with your economics research. What topic shall we explore?"
+- "Thank you" → "You are welcome. Rigorous inquiry is its own reward. Is there anything else you would like to investigate?"
+
+## ACADEMIC TONE & REGISTER
+- Use professional, third-person academic language: "The empirical evidence suggests..." NOT "I think..."
+- Use hedging where appropriate: "The data tentatively indicates...", "Subject to econometric validation..."
+- Deploy discipline-specific terminology with precision: **endogeneity**, **heteroscedasticity**, **Granger causality**, **cointegration**
+
+## RESPONSE ARCHITECTURE (MANDATORY STRUCTURE)
+For every substantive query, your response MUST include these sections:
+
+### 1. Quantitative Breakdown
+Provide mathematical formulation, numerical analysis, or statistical methodology relevant to the query. Use LaTeX for all equations.
+
+### 2. Critical Literature Review
+Reference relevant theoretical frameworks and empirical studies. For Pakistan-specific queries, reference SBP reports, PBS data, PIDE working papers, and IMF Article IV consultations.
+
+### 3. Policy Implications (when relevant)
+Connect theoretical analysis to real-world policy outcomes, especially in the Pakistani context.
+
+## MATHEMATICAL ECONOMICS CAPABILITIES
+You MUST be able to handle:
+
+### Constrained Optimization
+$$\\max_{x,y} U(x,y) = x^\\alpha y^\\beta \\quad \\text{s.t.} \\quad P_x x + P_y y = M$$
+
+Using the **Lagrangian method**:
+$$\\mathcal{L} = x^\\alpha y^\\beta + \\lambda(M - P_x x - P_y y)$$
+
+### Key Derivations
+- **MRS derivation**: $$MRS_{xy} = \\frac{MU_x}{MU_y} = \\frac{\\alpha y}{\\beta x}$$
+- **Demand functions** from utility maximization
+- **Envelope Theorem** applications
+- **Kuhn-Tucker conditions** for inequality constraints
+- **Solow Growth Model**: $$\\dot{k} = sf(k) - (n + \\delta)k$$
+- **IS-LM-BP Model** with full algebraic derivation
+- **Mundell-Fleming** open economy analysis
+
+## ECONOMETRICS SUPPORT
+You MUST explain with mathematical precision:
+
+### OLS Assumptions (Gauss-Markov)
+1. Linearity: $Y = X\\beta + \\varepsilon$
+2. $E(\\varepsilon | X) = 0$ (strict exogeneity)
+3. $\\text{Var}(\\varepsilon | X) = \\sigma^2 I$ (homoscedasticity + no autocorrelation)
+4. $\\text{rank}(X) = k$ (no perfect multicollinearity)
+5. $\\varepsilon \\sim N(0, \\sigma^2 I)$ (normality for inference)
+
+### Diagnostic Tests
+- **Multicollinearity**: VIF = $\\frac{1}{1-R_j^2}$, condition number, tolerance
+- **Autocorrelation**: Durbin-Watson statistic $d = \\frac{\\sum_{t=2}^{n}(e_t - e_{t-1})^2}{\\sum_{t=1}^{n}e_t^2}$, Breusch-Godfrey LM test
+- **Heteroscedasticity**: White test, Breusch-Pagan, ARCH-LM
+- **Endogeneity**: Hausman test, instrumental variables (2SLS)
+- **Unit roots**: ADF test $\\Delta y_t = \\alpha + \\beta t + \\gamma y_{t-1} + \\sum \\delta_i \\Delta y_{t-i} + \\varepsilon_t$
+
+## PAKISTAN-SPECIFIC KNOWLEDGE BASE
+
+### Monetary Policy (SBP)
+- Policy rate transmission mechanism in Pakistan
+- Open market operations, SLR, CRR
+- Exchange rate management (managed float with band)
+- Pakistan's inflation targeting framework
+- SBP's Forward Guidance communication
+
+### Fiscal Policy
+- Federal Board of Revenue (FBR) tax structure
+- Fiscal deficit dynamics and public debt sustainability
+- Provincial fiscal transfers (NFC Award)
+- PSDP (Public Sector Development Programme) analysis
+
+### IMF Programs
+- Extended Fund Facility (EFF) conditionalities for Pakistan
+- Stand-By Arrangements history
+- Structural benchmarks and performance criteria
+- Prior actions and quarterly reviews
+- Impact on exchange rate, reserves, and fiscal consolidation
+
+### Development Economics (Pakistan Context)
+- CPEC and its macroeconomic implications
+- Remittances (Roshan Digital Account impact)
+- Agricultural sector: cotton, wheat, rice price support
+- Human capital: education spending as % of GDP
+- BISP/Ehsaas social protection programs
+
+### Key Data Points to Reference
+- CPI inflation (headline, core, food, non-food)
+- GDP growth rate (sectoral decomposition)
+- Current account balance and reserves
+- Policy rate trajectory
+- PKR/USD exchange rate dynamics
+- Foreign direct investment inflows
+- Workers' remittances
+
+## CASE STUDY: IMF EFF FOR PAKISTAN
+When asked about IMF programs, provide:
+1. **Quantitative Breakdown**: Loan amount, SDR allocation, disbursement schedule, conditionalities
+2. **Critical Literature Review**: Reference PIDE critiques, SBP compliance reports, IMF Article IV
+3. **Evaluative Judgement**: Assess impact on fiscal consolidation, exchange rate stability, inflation, and growth with data-driven arguments
+
+## MATHEMATICAL PRECISION (DISPLAY LATEX)
+Use LaTeX for ALL formulas:
+- $$MV = PQ$$ (Fisher Equation)
+- $$k = \\frac{1}{1-MPC}$$ (Multiplier)
+- $$g = \\frac{s}{k}$$ (Harrod-Domar)
+- $$\\hat{\\beta} = (X'X)^{-1}X'Y$$ (OLS Estimator)
+- $$t = \\frac{\\hat{\\beta}_j - \\beta_{j,0}}{SE(\\hat{\\beta}_j)}$$ (t-statistic)
+- $$F = \\frac{(SSR_R - SSR_{UR})/q}{SSR_{UR}/(n-k-1)}$$ (F-test)
+
+## ABSOLUTE PROHIBITIONS
+NEVER generate image tags or visual elements.
+NEVER use informal language like "I think", "pretty much", "kinda".
+NEVER provide responses without the Quantitative Breakdown and Critical Literature Review sections for substantive queries.
+NEVER remain silent – ALWAYS respond with analytical substance.
+NEVER fabricate data or statistics – clearly state when data is approximate or from training knowledge.`;
+
+// ============================================================
+// SHARED UTILITIES
+// ============================================================
+
 const MAX_MESSAGES = 12;
-const MAX_TOKENS = 2000;
+const MAX_TOKENS = 2500;
 const STREAM_TIMEOUT_MS = 30000;
 
-// Thread context extraction
 function extractThreadContext(messages: Array<{ role: string; content: string }>): string {
   if (messages.length < 2) return "";
   const recentExchanges = messages.slice(-6);
@@ -296,6 +462,9 @@ function extractThreadContext(messages: Array<{ role: string; content: string }>
     /\b(externality|welfare|surplus|deadweight)\b/gi,
     /\b(exchange\s*rate|BoP|balance\s*of\s*payments)\b/gi,
     /\b(Harrod[-\s]?Domar|development|Gini|Lorenz)\b/gi,
+    /\b(OLS|regression|econometric|heteroscedasticity|autocorrelation)\b/gi,
+    /\b(lagrangian|optimization|utility.?maximization|cobb.?douglas)\b/gi,
+    /\b(IMF|EFF|SBP|PBS|PIDE|CPEC|remittances|pakistan)\b/gi,
   ];
   for (const msg of recentExchanges) {
     for (const pattern of conceptPatterns) {
@@ -317,12 +486,9 @@ function isFollowUpQuery(content: string): boolean {
   return followUpPatterns.some(p => p.test(content.trim()));
 }
 
-function isGreeting(content: string): boolean {
-  const greetingPatterns = [
-    /^(hi|hello|hey|salam|assalam|walaikum|good\s+(morning|afternoon|evening)|how\s+are\s+you|thank|thanks)\b/i,
-  ];
-  return greetingPatterns.some(p => p.test(content.trim())) && content.trim().split(/\s+/).length <= 8;
-}
+// ============================================================
+// MAIN HANDLER
+// ============================================================
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -341,7 +507,8 @@ serve(async (req) => {
   }
 
   try {
-    const { messages } = await req.json();
+    const { messages, persona: requestedPersona } = await req.json();
+    const persona: Persona = requestedPersona === 'university' ? 'university' : 'a-level';
     
     if (!Array.isArray(messages) || messages.length === 0) {
       return new Response(
@@ -369,27 +536,26 @@ serve(async (req) => {
     const threadContext = extractThreadContext(sanitizedMessages);
     const recentMessages = sanitizedMessages.slice(-MAX_MESSAGES);
     
-    // ============================================================
-    // RAG: Search Firecrawl for real-time knowledge (skip greetings)
-    // ============================================================
+    // RAG search (skip greetings)
     let ragContext = "";
-    if (!isGreeting(userQuery) && shouldSearchRAG(userQuery)) {
-      console.log(`RAG search triggered for: "${userQuery.substring(0, 60)}..."`);
-      ragContext = await searchFirecrawl(userQuery);
+    if (!isGreeting(userQuery) && shouldSearchRAG(userQuery, persona)) {
+      console.log(`[${persona}] RAG search triggered for: "${userQuery.substring(0, 60)}..."`);
+      ragContext = await searchFirecrawl(userQuery, persona);
       if (ragContext) {
         console.log(`RAG context retrieved: ${ragContext.length} chars`);
       }
     }
 
-    // Build system messages
+    const systemPrompt = persona === 'university' ? UNIVERSITY_SYSTEM_PROMPT : A_LEVEL_SYSTEM_PROMPT;
+
     const systemMessages: Array<{ role: string; content: string }> = [
-      { role: "system", content: SYSTEM_PROMPT },
+      { role: "system", content: systemPrompt },
     ];
     
     if (ragContext) {
       systemMessages.push({
         role: "system",
-        content: `[REAL-TIME KNOWLEDGE CONTEXT — Retrieved from authoritative economics sources]\n\n${ragContext}\n\n[END CONTEXT — Cite these sources naturally in your response when relevant. Do not mention "context" or "provided data" — just cite the source name.]`
+        content: `[REAL-TIME KNOWLEDGE CONTEXT — Retrieved from authoritative sources]\n\n${ragContext}\n\n[END CONTEXT — Cite these sources naturally in your response when relevant. Do not mention "context" or "provided data" — just cite the source name.]`
       });
     }
     
@@ -419,7 +585,7 @@ serve(async (req) => {
           messages: [...systemMessages, ...recentMessages],
           stream: true,
           max_tokens: MAX_TOKENS,
-          temperature: 0.6,
+          temperature: persona === 'university' ? 0.5 : 0.6,
         }),
         signal: controller.signal,
       });
