@@ -200,6 +200,45 @@ export type Database = {
         }
         Relationships: []
       }
+      research_cache: {
+        Row: {
+          category: string | null
+          content: string
+          content_hash: string
+          created_at: string
+          expires_at: string
+          id: string
+          scraped_at: string
+          source_domain: string
+          source_url: string
+          title: string | null
+        }
+        Insert: {
+          category?: string | null
+          content: string
+          content_hash: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          scraped_at?: string
+          source_domain: string
+          source_url: string
+          title?: string | null
+        }
+        Update: {
+          category?: string | null
+          content?: string
+          content_hash?: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          scraped_at?: string
+          source_domain?: string
+          source_url?: string
+          title?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

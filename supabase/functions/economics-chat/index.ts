@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -58,7 +59,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'university': {
-    ragDomains: ["sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "imf.org", "tradingeconomics.com", "economicshelp.org"],
+    ragDomains: ["sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org", "imf.org", "tradingeconomics.com", "economicshelp.org"],
     searchPatterns: [
       /\b(gdp|inflation|cpi|wpi|interest rate|exchange rate|growth|deficit|surplus|debt|trade|balance.?of.?payments)\b/i,
       /\b(current|latest|recent|today|now|2024|2025|2026|real.?world|data|statistics?|pakistan|sbp|pbs)\b/i,
@@ -147,7 +148,57 @@ function getSourceName(url: string): string {
   if (url.includes("sbp.org.pk")) return "State Bank of Pakistan";
   if (url.includes("pbs.gov.pk")) return "Pakistan Bureau of Statistics";
   if (url.includes("pide.org.pk")) return "PIDE";
+  if (url.includes("finance.gov.pk")) return "Ministry of Finance Pakistan";
+  if (url.includes("sdpi.org")) return "SDPI";
   try { return new URL(url).hostname; } catch { return "Source"; }
+}
+
+// ============================================================
+// CACHED RESEARCH RETRIEVAL (from daily scraper)
+// ============================================================
+
+async function getCachedResearch(query: string): Promise<string> {
+  try {
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) return "";
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+    // Determine relevant categories based on query
+    const categories: string[] = [];
+    if (/\b(pide|research|working.?paper|policy.?research|structural)\b/i.test(query)) categories.push("policy_research");
+    if (/\b(fiscal|budget|finance|tax|fbr|deficit|debt|survey|economic.?survey)\b/i.test(query)) categories.push("fiscal_data");
+    if (/\b(sdpi|development|sustainable|sdg|climate|environment|social.?protection)\b/i.test(query)) categories.push("development_policy");
+
+    // If no specific category matched, get from all
+    let cacheQuery = supabase
+      .from("research_cache")
+      .select("source_domain, source_url, title, content, category")
+      .gt("expires_at", new Date().toISOString())
+      .order("scraped_at", { ascending: false })
+      .limit(6);
+
+    if (categories.length > 0) {
+      cacheQuery = cacheQuery.in("category", categories);
+    }
+
+    const { data, error } = await cacheQuery;
+    if (error || !data || data.length === 0) return "";
+
+    const contextParts: string[] = [];
+    for (const entry of data) {
+      const sourceName = getSourceName(entry.source_url);
+      // Extract relevant snippet (first 1500 chars)
+      const snippet = entry.content.slice(0, 1500);
+      contextParts.push(`[Cached Research — ${sourceName}: ${entry.title}]\n${snippet}`);
+    }
+
+    return contextParts.join("\n\n---\n\n");
+  } catch (err) {
+    console.error("Cache retrieval error:", err);
+    return "";
+  }
 }
 
 function shouldSearchRAG(content: string, persona: Persona): boolean {
@@ -432,12 +483,45 @@ Use LaTeX for ALL formulas:
 - $$t = \\frac{\\hat{\\beta}_j - \\beta_{j,0}}{SE(\\hat{\\beta}_j)}$$ (t-statistic)
 - $$F = \\frac{(SSR_R - SSR_{UR})/q}{SSR_{UR}/(n-k-1)}$$ (F-test)
 
+## COMPUTATIONAL VERIFICATION PROTOCOL (MANDATORY FOR MATH PROBLEMS)
+When a student submits a mathematical economics or econometrics problem:
+
+1. **Internal Verification Step**: Before displaying your answer, mentally execute the computation step-by-step as if running Python code (numpy/scipy/statsmodels). Verify matrix operations, derivatives, and optimization solutions.
+
+2. **Step-by-Step LaTeX Derivation**: Show the COMPLETE derivation with ALL intermediate steps. University examiners award marks for working, not just answers.
+
+3. **Numerical Verification**: For optimization problems, plug the solution back into the original constraints to confirm feasibility. For econometric derivations, verify dimensions of matrices match.
+
+4. **Code-Logic Display**: For complex calculations (matrix inversion, eigenvalues, hypothesis testing), show the equivalent mathematical steps as if computed programmatically:
+   - State the problem formally
+   - Show each computational step with LaTeX
+   - Verify the result by substitution
+   - Flag any numerical instabilities or edge cases
+
+Example workflow for utility maximization:
+$$\\text{Given: } U(x,y) = x^{0.4}y^{0.6}, \\quad 10x + 20y = 200$$
+Step 1: Form Lagrangian → Step 2: FOCs → Step 3: Solve system → Step 4: Verify budget exhaustion → Step 5: Check SOC
+
+## PAKISTAN STRUCTURAL ISSUES EVALUATION PROTOCOL
+When discussing Pakistan's economy, provide 'Critical Evaluations' drawing from:
+- PIDE working papers on structural reforms
+- Ministry of Finance Economic Survey data
+- SDPI policy briefs on sustainable development
+- IMF Article IV consultation reports
+
+Structure your critical evaluation as:
+1. **Structural Diagnosis**: Identify the root cause (e.g., narrow tax base, energy sector circular debt, low human capital)
+2. **Empirical Evidence**: Cite specific data points from SBP, PBS, or cached research
+3. **Comparative Analysis**: Benchmark against peer economies (Bangladesh, Vietnam, India)
+4. **Reform Pathways**: Evaluate proposed solutions with political economy constraints
+
 ## ABSOLUTE PROHIBITIONS
 NEVER generate image tags or visual elements.
 NEVER use informal language like "I think", "pretty much", "kinda".
 NEVER provide responses without the Quantitative Breakdown and Critical Literature Review sections for substantive queries.
 NEVER remain silent – ALWAYS respond with analytical substance.
-NEVER fabricate data or statistics – clearly state when data is approximate or from training knowledge.`;
+NEVER fabricate data or statistics – clearly state when data is approximate or from training knowledge.
+NEVER skip the computational verification step for mathematical problems.`;
 
 // ============================================================
 // SHARED UTILITIES
@@ -538,12 +622,22 @@ serve(async (req) => {
     
     // RAG search (skip greetings)
     let ragContext = "";
-    if (!isGreeting(userQuery) && shouldSearchRAG(userQuery, persona)) {
-      console.log(`[${persona}] RAG search triggered for: "${userQuery.substring(0, 60)}..."`);
-      ragContext = await searchFirecrawl(userQuery, persona);
-      if (ragContext) {
-        console.log(`RAG context retrieved: ${ragContext.length} chars`);
-      }
+    let cachedResearch = "";
+    
+    if (!isGreeting(userQuery)) {
+      const ragPromise = shouldSearchRAG(userQuery, persona) 
+        ? searchFirecrawl(userQuery, persona) 
+        : Promise.resolve("");
+      
+      // For university persona, also pull cached research from daily scraper
+      const cachePromise = persona === 'university' 
+        ? getCachedResearch(userQuery) 
+        : Promise.resolve("");
+      
+      [ragContext, cachedResearch] = await Promise.all([ragPromise, cachePromise]);
+      
+      if (ragContext) console.log(`RAG context retrieved: ${ragContext.length} chars`);
+      if (cachedResearch) console.log(`Cached research retrieved: ${cachedResearch.length} chars`);
     }
 
     const systemPrompt = persona === 'university' ? UNIVERSITY_SYSTEM_PROMPT : A_LEVEL_SYSTEM_PROMPT;
@@ -556,6 +650,13 @@ serve(async (req) => {
       systemMessages.push({
         role: "system",
         content: `[REAL-TIME KNOWLEDGE CONTEXT — Retrieved from authoritative sources]\n\n${ragContext}\n\n[END CONTEXT — Cite these sources naturally in your response when relevant. Do not mention "context" or "provided data" — just cite the source name.]`
+      });
+    }
+    
+    if (cachedResearch) {
+      systemMessages.push({
+        role: "system",
+        content: `[CACHED RESEARCH DATA — From daily-indexed Pakistani research institutions (PIDE, Ministry of Finance, SDPI)]\n\n${cachedResearch}\n\n[END CACHED RESEARCH — Use this data for Critical Evaluations of Pakistan's structural economic issues. Cite the institution name naturally.]`
       });
     }
     
@@ -584,7 +685,7 @@ serve(async (req) => {
           model: "google/gemini-3-flash-preview",
           messages: [...systemMessages, ...recentMessages],
           stream: true,
-          max_tokens: MAX_TOKENS,
+          max_tokens: persona === 'university' ? 4000 : MAX_TOKENS,
           temperature: persona === 'university' ? 0.5 : 0.6,
         }),
         signal: controller.signal,
