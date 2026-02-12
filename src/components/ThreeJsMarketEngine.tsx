@@ -272,6 +272,7 @@ AcademicScene.displayName = 'AcademicScene';
 const ThreeJsMarketEngine = () => {
   const { tier, isMobile } = useDevicePerformance();
   const [isVisible, setIsVisible] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
   const config = useMemo(() => getPerformanceConfig(tier, isMobile), [tier, isMobile]);
 
   useEffect(() => {
@@ -279,6 +280,26 @@ const ThreeJsMarketEngine = () => {
     document.addEventListener('visibilitychange', handler);
     return () => document.removeEventListener('visibilitychange', handler);
   }, []);
+
+  // Pause 3D rendering for 500ms during route transitions to free CPU
+  useEffect(() => {
+    const handleNavStart = () => {
+      setIsPaused(true);
+      setTimeout(() => setIsPaused(false), 500);
+    };
+    // Listen for click events on links to detect navigation
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a[href]');
+      if (link && link.getAttribute('href')?.startsWith('/')) {
+        handleNavStart();
+      }
+    };
+    document.addEventListener('click', handleClick, true);
+    return () => document.removeEventListener('click', handleClick, true);
+  }, []);
+
+  const shouldRender = isVisible && !isPaused;
 
   const bgStyle = {
     background: 'radial-gradient(ellipse at 50% 30%, #0c1229 0%, #020617 50%, #010309 100%)',
@@ -295,7 +316,7 @@ const ThreeJsMarketEngine = () => {
         style={{ pointerEvents: 'none' }}
         dpr={config.dpr}
         performance={{ min: 0.5 }}
-        frameloop={isVisible ? 'always' : 'never'}
+        frameloop={shouldRender ? 'always' : 'never'}
         gl={{
           antialias: !isMobile,
           alpha: false,

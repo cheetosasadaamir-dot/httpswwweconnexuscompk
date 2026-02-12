@@ -293,7 +293,24 @@
   .dock-item {
     color: hsl(var(--text-secondary));
     position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .dock-item:active {
+    transform: scale(0.96) translate3d(0, 0, 0);
+    transition: transform 0.1s ease;
+  }
+
+  /* Instant tactile feedback for all nav links */
+  .nav-instant-click {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.1s ease;
+  }
+  .nav-instant-click:active {
+    transform: scale(0.96) translate3d(0, 0, 0);
   }
 
   .dock-item:hover {

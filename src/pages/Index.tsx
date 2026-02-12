@@ -43,7 +43,7 @@ const Index = () => {
       {/* Academic Disclaimer - Sidebar on desktop, info icon on mobile */}
       <AcademicDisclaimer />
 
-      <main className="relative z-10 safe-area-inset">
+      <main className="relative z-10 safe-area-inset" style={{ willChange: 'opacity, transform', transform: 'translate3d(0,0,0)' }}>
         {/* Hero Section */}
         <section className="min-h-[60vh] flex items-center pt-24 md:pt-28 lg:pt-32">
           <div className="w-[95%] max-w-[1200px] mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-24">

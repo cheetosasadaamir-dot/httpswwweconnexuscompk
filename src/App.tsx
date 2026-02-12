@@ -69,9 +69,19 @@ const queryClient = new QueryClient({
   },
 });
 
-// Minimal transition placeholder (no spinner)
+// Skeleton loader — shows page structure instantly while lazy content loads
 const PageLoader = () => (
-  <div className="min-h-screen bg-background" />
+  <div className="min-h-screen bg-background" style={{ willChange: 'opacity', transform: 'translate3d(0,0,0)' }}>
+    <div className="w-[95%] max-w-[1200px] mx-auto px-4 pt-28 animate-fade-in">
+      <div className="h-6 w-48 bg-muted/30 rounded-lg mb-6 animate-pulse" />
+      <div className="h-12 w-96 max-w-full bg-muted/20 rounded-xl mb-4 animate-pulse" />
+      <div className="h-4 w-80 max-w-full bg-muted/15 rounded-lg mb-8 animate-pulse" />
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="h-48 bg-muted/10 rounded-2xl animate-pulse" />
+        <div className="h-48 bg-muted/10 rounded-2xl animate-pulse" />
+      </div>
+    </div>
+  </div>
 );
 
 // Animated routes wrapper — NO AnimatePresence mode="wait" 
