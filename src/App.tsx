@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 // Critical path - load immediately
 import Index from "./pages/Index";
@@ -79,8 +80,9 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <PageTransition key={location.pathname}>
-        <Suspense fallback={<PageLoader />}>
-          <Routes location={location}>
+        <ErrorBoundary>
+          <Suspense fallback={<PageLoader />}>
+            <Routes location={location}>
             <Route path="/" element={<Index />} />
             
             {/* Main Landing Pages */}
@@ -138,6 +140,7 @@ const AnimatedRoutes = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        </ErrorBoundary>
       </PageTransition>
     </AnimatePresence>
   );
