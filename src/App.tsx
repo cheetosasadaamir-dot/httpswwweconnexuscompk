@@ -3,7 +3,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import PageTransition from "@/components/PageTransition";
 
 // Critical path - load immediately
 import Index from "./pages/Index";
@@ -66,24 +68,19 @@ const queryClient = new QueryClient({
   },
 });
 
-// Loading fallback component
+// Minimal transition placeholder (no spinner)
 const PageLoader = () => (
-  <div className="min-h-screen bg-background flex items-center justify-center">
-    <div className="flex flex-col items-center gap-4">
-      <div className="w-12 h-12 border-4 border-neon-cyan/30 border-t-neon-cyan rounded-full animate-spin" />
-      <p className="text-muted-foreground text-sm">Loading...</p>
-    </div>
-  </div>
+  <div className="min-h-screen bg-background" />
 );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+// Animated routes wrapper
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <PageTransition key={location.pathname}>
         <Suspense fallback={<PageLoader />}>
-          <Routes>
+          <Routes location={location}>
             <Route path="/" element={<Index />} />
             
             {/* Main Landing Pages */}
@@ -129,8 +126,7 @@ const App = () => (
             <Route path="/admin-nexus-approval" element={<AdminNexusApproval />} />
             <Route path="/owner-nexus-vault" element={<OwnerNexusVault />} />
             
-            
-            {/* Legacy routes - redirect to new structure */}
+            {/* Legacy routes */}
             <Route path="/national-income" element={<NationalIncome />} />
             <Route path="/income-determination" element={<IncomeDetermination />} />
             <Route path="/basic-economic-problem" element={<BasicEconomicIdeas />} />
@@ -142,6 +138,18 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+      </PageTransition>
+    </AnimatePresence>
+  );
+};
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AnimatedRoutes />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
