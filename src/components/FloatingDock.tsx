@@ -42,7 +42,7 @@ interface NavItem {
 // Desktop navigation (simplified)
 const navigation: NavItem[] = [
   { title: 'Home', href: '/', icon: Home },
-  { title: 'Notes Library', scrollTo: 'notes-repository', icon: Library },
+  { title: 'Notes', href: '/notes', icon: Library },
   {
     title: 'Microeconomics',
     href: '/microeconomics',
@@ -97,7 +97,7 @@ const navigation: NavItem[] = [
     ],
   },
   { title: 'Case Studies', href: '/case-studies', icon: BookOpen },
-  { title: 'Freemium Pack', href: '/freemium-pack', icon: GraduationCap },
+  { title: 'Exam Intelligence', href: '/exam-intelligence', icon: GraduationCap },
 ];
 
 // Mobile tiered navigation structure
@@ -274,20 +274,12 @@ const FloatingDock = () => {
               onMouseEnter={() => item.levels && setActiveDropdown(item.title)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              {item.scrollTo ? (
-                <button
-                  onClick={() => scrollToSection(item.scrollTo!)}
-                  className="dock-item cta-amber-glow flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer hover:text-secondary"
-                >
-                  <item.icon className="w-4 h-4" />
-                  <span className="text-sm font-medium font-display">{item.title}</span>
-                </button>
-              ) : (
+              {item.href ? (
                 <Link
-                  to={item.href || '#'}
+                  to={item.href}
                   className={cn(
-                    "dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300",
-                    isActive(item.href || '') || isParentActive(item)
+                    "dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300 pointer-events-auto",
+                    isActive(item.href) || isParentActive(item)
                       ? "active"
                       : ""
                   )}
@@ -301,6 +293,14 @@ const FloatingDock = () => {
                     )} />
                   )}
                 </Link>
+              ) : (
+                <button
+                  onClick={() => item.scrollTo && scrollToSection(item.scrollTo)}
+                  className="dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer hover:text-secondary pointer-events-auto"
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span className="text-sm font-medium font-display">{item.title}</span>
+                </button>
               )}
 
               {/* Dropdown Menu with glow */}
@@ -438,22 +438,31 @@ const FloatingDock = () => {
                 <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-5 md:mb-6" />
 
                 {/* Quick Links - Touch-friendly */}
-                <div className="flex gap-2 mb-5 md:mb-6">
+                <div className="flex flex-wrap gap-2 mb-5 md:mb-6">
                   <Link
                     to="/"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-space-elevated/50 border border-white/10 text-muted-foreground hover:text-white hover:border-white/20 transition-all text-sm touch-target"
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-space-elevated/50 border border-white/10 text-muted-foreground hover:text-white hover:border-white/20 transition-all text-sm touch-target pointer-events-auto"
                   >
                     <Home className="w-4 h-4" />
                     <span>Home</span>
                   </Link>
-                  <button
-                    onClick={() => scrollToSection('notes-repository', true)}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-gold/10 border border-neon-gold/20 text-neon-gold hover:bg-neon-gold/20 transition-all text-sm touch-target"
+                  <Link
+                    to="/notes"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-gold/10 border border-neon-gold/20 text-neon-gold hover:bg-neon-gold/20 transition-all text-sm touch-target pointer-events-auto"
                   >
                     <Library className="w-4 h-4" />
                     <span>Notes</span>
-                  </button>
+                  </Link>
+                  <Link
+                    to="/exam-intelligence"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-cyan/10 border border-neon-cyan/20 text-neon-cyan hover:bg-neon-cyan/20 transition-all text-sm touch-target pointer-events-auto"
+                  >
+                    <GraduationCap className="w-4 h-4" />
+                    <span>Exams</span>
+                  </Link>
                 </div>
 
                 {/* TIERED NAVIGATION */}

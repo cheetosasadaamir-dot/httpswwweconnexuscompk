@@ -285,11 +285,11 @@ const ThreeJsMarketEngine = () => {
   };
 
   if (!isVisible) {
-    return <div className="fixed inset-0 z-0" style={bgStyle} />;
+    return <div className="fixed inset-0 z-0 pointer-events-none" style={bgStyle} />;
   }
 
   return (
-    <div className="fixed inset-0 z-0" style={bgStyle}>
+    <div className="fixed inset-0 z-0 pointer-events-none" style={bgStyle}>
       <Canvas
         camera={{ position: [0, 1, 18], fov: 55, near: 0.1, far: 100 }}
         dpr={config.dpr}
