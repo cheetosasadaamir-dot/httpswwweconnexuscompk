@@ -1,429 +1,297 @@
 import { useRef, useMemo, useEffect, useState, memo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import { useDevicePerformance, type PerformanceTier } from '@/hooks/use-device-performance';
 
 // ============================================================================
-// PERFORMANCE-OPTIMIZED 5D MARKET ENGINE
-// GPU-accelerated, batched rendering, device-adaptive
+// ACADEMIC ENGINE — 3D Knowledge Mesh Background
+// Deep Obsidian + Academic Gold + University Blue
 // ============================================================================
 
 interface PerformanceConfig {
-  particleCount: number;
-  candleCount: number;
-  hexCount: number;
-  starCount: number;
-  enableTrails: boolean;
-  enableBlur: boolean;
+  nodeCount: number;
+  connectionDistance: number;
   dpr: number;
+  enableBloom: boolean;
 }
 
 const getPerformanceConfig = (tier: PerformanceTier, isMobile: boolean): PerformanceConfig => {
   if (tier === 'low' || isMobile) {
-    return {
-      particleCount: 300,
-      candleCount: 15,
-      hexCount: 8,
-      starCount: 1500,
-      enableTrails: false,
-      enableBlur: false,
-      dpr: 1,
-    };
+    return { nodeCount: 60, connectionDistance: 4.5, dpr: 1, enableBloom: false };
   }
   if (tier === 'medium') {
-    return {
-      particleCount: 800,
-      candleCount: 30,
-      hexCount: 18,
-      starCount: 4000,
-      enableTrails: false,
-      enableBlur: true,
-      dpr: 1.5,
-    };
+    return { nodeCount: 120, connectionDistance: 5, dpr: 1.5, enableBloom: true };
   }
-  return {
-    particleCount: 1500,
-    candleCount: 40,
-    hexCount: 25,
-    starCount: 6000,
-    enableTrails: true,
-    enableBlur: true,
-    dpr: Math.min(window.devicePixelRatio, 2),
-  };
+  return { nodeCount: 200, connectionDistance: 5.5, dpr: Math.min(window.devicePixelRatio, 2), enableBloom: true };
 };
 
-// Optimized GPU-based particle system using instanced mesh
-const ParticleField = memo(({ count, spread }: { count: number; spread: number }) => {
+// Colors
+const GOLD = new THREE.Color('#D4AF37');
+const BLUE = new THREE.Color('#1E3A8A');
+const GOLD_BRIGHT = new THREE.Color('#F0D060');
+const BLUE_BRIGHT = new THREE.Color('#3B82F6');
+
+// Generate icosahedron-like lattice positions distributed in a sphere
+const generateLatticeNodes = (count: number) => {
+  const positions: THREE.Vector3[] = [];
+  const phi = (1 + Math.sqrt(5)) / 2; // golden ratio
+  for (let i = 0; i < count; i++) {
+    // Fibonacci sphere distribution
+    const y = 1 - (i / (count - 1)) * 2;
+    const radius = Math.sqrt(1 - y * y);
+    const theta = 2 * Math.PI * i / phi;
+    const r = 8 + Math.random() * 4; // varied radius for depth
+    positions.push(new THREE.Vector3(
+      Math.cos(theta) * radius * r,
+      y * r,
+      Math.sin(theta) * radius * r
+    ));
+  }
+  return positions;
+};
+
+// Knowledge Mesh — nodes rendered as instanced spheres with glow
+const KnowledgeNodes = memo(({ count }: { count: number }) => {
   const meshRef = useRef<THREE.InstancedMesh>(null);
+  const glowRef = useRef<THREE.InstancedMesh>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
-  
-  // Pre-compute particle data on GPU
-  const particleData = useMemo(() => {
-    const data = [];
-    for (let i = 0; i < count; i++) {
-      data.push({
-        x: (Math.random() - 0.5) * spread,
-        y: (Math.random() - 0.5) * spread,
-        z: -Math.random() * 150,
-        speed: 0.08 + Math.random() * 0.12,
-        colorIndex: Math.random(),
-      });
-    }
-    return data;
-  }, [count, spread]);
 
-  // Color palette
-  const colors = useMemo(() => [
-    new THREE.Color('#00FFFF'),
-    new THREE.Color('#FFBF00'),
-    new THREE.Color('#FF00FF'),
-  ], []);
-
-  useFrame((state, delta) => {
-    if (!meshRef.current) return;
-    
-    const time = state.clock.elapsedTime;
-    
-    for (let i = 0; i < count; i++) {
-      const p = particleData[i];
-      
-      // Update Z position (movement toward camera)
-      p.z += p.speed * delta * 60;
-      if (p.z > 30) {
-        p.z = -150;
-        p.x = (Math.random() - 0.5) * spread;
-        p.y = (Math.random() - 0.5) * spread;
-      }
-      
-      dummy.position.set(p.x, p.y, p.z);
-      dummy.scale.setScalar(0.08 + Math.sin(time * 2 + i) * 0.02);
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
-      
-      // Set color
-      const color = colors[Math.floor(p.colorIndex * 3)];
-      meshRef.current.setColorAt(i, color);
-    }
-    
-    meshRef.current.instanceMatrix.needsUpdate = true;
-    if (meshRef.current.instanceColor) {
-      meshRef.current.instanceColor.needsUpdate = true;
-    }
-  });
-
-  return (
-    <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[1, 6, 6]} />
-      <meshBasicMaterial 
-        transparent 
-        opacity={0.8} 
-        blending={THREE.AdditiveBlending}
-      />
-    </instancedMesh>
-  );
-});
-
-ParticleField.displayName = 'ParticleField';
-
-// Optimized candlestick bars - batched instanced rendering
-const CandlestickField = memo(({ count }: { count: number }) => {
-  const meshRef = useRef<THREE.InstancedMesh>(null);
-  const dummy = useMemo(() => new THREE.Object3D(), []);
-  
-  const candleData = useMemo(() => {
-    return Array.from({ length: count }, () => ({
-      x: (Math.random() - 0.5) * 100,
-      y: (Math.random() - 0.5) * 60,
-      z: -Math.random() * 100 - 20,
-      isBullish: Math.random() > 0.35,
-      height: Math.random() * 2 + 0.5,
-      speed: 0.03 + Math.random() * 0.02,
-    }));
-  }, [count]);
-
-  const bullishColor = useMemo(() => new THREE.Color('#00FFFF'), []);
-  const bearishColor = useMemo(() => new THREE.Color('#FF3366'), []);
-
-  useFrame((_, delta) => {
-    if (!meshRef.current) return;
-    
-    for (let i = 0; i < count; i++) {
-      const c = candleData[i];
-      
-      c.z += c.speed * delta * 60;
-      if (c.z > 20) {
-        c.z = -100;
-        c.x = (Math.random() - 0.5) * 100;
-        c.y = (Math.random() - 0.5) * 60;
-      }
-      
-      dummy.position.set(c.x, c.y, c.z);
-      dummy.scale.set(0.4, c.height, 0.4);
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
-      meshRef.current.setColorAt(i, c.isBullish ? bullishColor : bearishColor);
-    }
-    
-    meshRef.current.instanceMatrix.needsUpdate = true;
-    if (meshRef.current.instanceColor) {
-      meshRef.current.instanceColor.needsUpdate = true;
-    }
-  });
-
-  return (
-    <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial 
-        emissiveIntensity={0.6}
-        transparent
-        opacity={0.85}
-        metalness={0.8}
-        roughness={0.2}
-      />
-    </instancedMesh>
-  );
-});
-
-CandlestickField.displayName = 'CandlestickField';
-
-// Optimized hex nodes - single instanced mesh
-const HexField = memo(({ count }: { count: number }) => {
-  const meshRef = useRef<THREE.InstancedMesh>(null);
-  const dummy = useMemo(() => new THREE.Object3D(), []);
-  
-  const hexData = useMemo(() => {
-    return Array.from({ length: count }, (_, i) => ({
-      x: (Math.random() - 0.5) * 80,
-      y: (Math.random() - 0.5) * 50,
-      z: -Math.random() * 90 - 20,
-      delay: i * 0.2,
-      speed: 0.02 + Math.random() * 0.01,
-    }));
-  }, [count]);
-
-  const cyanColor = useMemo(() => new THREE.Color('#00FFFF'), []);
-
-  useFrame((state, delta) => {
-    if (!meshRef.current) return;
-    const time = state.clock.elapsedTime;
-    
-    for (let i = 0; i < count; i++) {
-      const h = hexData[i];
-      const pulse = Math.sin((time + h.delay) * 2) * 0.3 + 1;
-      
-      h.z += h.speed * delta * 60;
-      if (h.z > 25) h.z = -90;
-      
-      dummy.position.set(h.x, h.y, h.z);
-      dummy.scale.setScalar(pulse * 0.5);
-      dummy.rotation.z += 0.005 * delta * 60;
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
-      meshRef.current.setColorAt(i, cyanColor);
-    }
-    
-    meshRef.current.instanceMatrix.needsUpdate = true;
-    if (meshRef.current.instanceColor) {
-      meshRef.current.instanceColor.needsUpdate = true;
-    }
-  });
-
-  return (
-    <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-      <cylinderGeometry args={[0.5, 0.5, 0.15, 6]} />
-      <meshStandardMaterial
-        emissive="#00FFFF"
-        emissiveIntensity={0.8}
-        transparent
-        opacity={0.7}
-        metalness={0.9}
-        roughness={0.1}
-      />
-    </instancedMesh>
-  );
-});
-
-HexField.displayName = 'HexField';
-
-// Optimized infinite depth grid
-const InfiniteDepthGrid = memo(() => {
-  const gridRef = useRef<THREE.Group>(null);
+  const nodePositions = useMemo(() => generateLatticeNodes(count), [count]);
+  const nodeData = useMemo(() => nodePositions.map((pos, i) => ({
+    pos,
+    phase: Math.random() * Math.PI * 2,
+    isGold: i % 3 === 0, // 1/3 gold, 2/3 blue
+    pulseSpeed: 0.8 + Math.random() * 1.2,
+  })), [nodePositions]);
 
   useFrame((state) => {
-    if (gridRef.current) {
-      gridRef.current.position.z = (state.clock.elapsedTime * 3) % 20;
+    if (!meshRef.current || !glowRef.current) return;
+    const t = state.clock.elapsedTime;
+
+    for (let i = 0; i < count; i++) {
+      const n = nodeData[i];
+      const pulse = 0.8 + Math.sin(t * n.pulseSpeed + n.phase) * 0.3;
+
+      dummy.position.copy(n.pos);
+      dummy.scale.setScalar(0.06 * pulse);
+      dummy.updateMatrix();
+      meshRef.current.setMatrixAt(i, dummy.matrix);
+      meshRef.current.setColorAt(i, n.isGold ? GOLD_BRIGHT : BLUE_BRIGHT);
+
+      // Glow sphere (larger, more transparent)
+      dummy.scale.setScalar(0.18 * pulse);
+      dummy.updateMatrix();
+      glowRef.current.setMatrixAt(i, dummy.matrix);
+      glowRef.current.setColorAt(i, n.isGold ? GOLD : BLUE);
     }
-  });
 
-  return (
-    <group ref={gridRef} position={[0, -10, -60]} rotation={[Math.PI / 2.5, 0, 0]}>
-      {[0, -20, -40, -60].map((z, i) => (
-        <gridHelper
-          key={i}
-          args={[200, 30, '#0a2a2a', '#051515']}
-          position={[0, z, 0]}
-          rotation={[Math.PI / 2, 0, 0]}
-        />
-      ))}
-    </group>
-  );
-});
-
-InfiniteDepthGrid.displayName = 'InfiniteDepthGrid';
-
-// Simplified volumetric beams
-const VolumetricBeams = memo(() => {
-  const beam1Ref = useRef<THREE.Mesh>(null);
-  const beam2Ref = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    const opacity = 0.025 + Math.sin(state.clock.elapsedTime) * 0.015;
-    if (beam1Ref.current) {
-      (beam1Ref.current.material as THREE.MeshBasicMaterial).opacity = opacity;
-    }
-    if (beam2Ref.current) {
-      (beam2Ref.current.material as THREE.MeshBasicMaterial).opacity = opacity;
-    }
+    meshRef.current.instanceMatrix.needsUpdate = true;
+    if (meshRef.current.instanceColor) meshRef.current.instanceColor.needsUpdate = true;
+    glowRef.current.instanceMatrix.needsUpdate = true;
+    if (glowRef.current.instanceColor) glowRef.current.instanceColor.needsUpdate = true;
   });
 
   return (
     <>
-      <mesh ref={beam1Ref} position={[-30, 40, -50]} rotation={[0.3, 0, 0.2]}>
-        <coneGeometry args={[15, 100, 16, 1, true]} />
-        <meshBasicMaterial color="#00FFFF" transparent opacity={0.03} side={THREE.DoubleSide} blending={THREE.AdditiveBlending} />
-      </mesh>
-      <mesh ref={beam2Ref} position={[30, 40, -40]} rotation={[0.3, 0, -0.2]}>
-        <coneGeometry args={[15, 100, 16, 1, true]} />
-        <meshBasicMaterial color="#FFBF00" transparent opacity={0.03} side={THREE.DoubleSide} blending={THREE.AdditiveBlending} />
-      </mesh>
+      {/* Core nodes */}
+      <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
+        <sphereGeometry args={[1, 8, 8]} />
+        <meshBasicMaterial transparent opacity={1} blending={THREE.AdditiveBlending} />
+      </instancedMesh>
+      {/* Glow halos */}
+      <instancedMesh ref={glowRef} args={[undefined, undefined, count]}>
+        <sphereGeometry args={[1, 8, 8]} />
+        <meshBasicMaterial transparent opacity={0.25} blending={THREE.AdditiveBlending} />
+      </instancedMesh>
     </>
   );
 });
+KnowledgeNodes.displayName = 'KnowledgeNodes';
 
-VolumetricBeams.displayName = 'VolumetricBeams';
+// Connection lines between nearby nodes
+const ConnectionLines = memo(({ count, maxDist }: { count: number; maxDist: number }) => {
+  const lineRef = useRef<THREE.LineSegments>(null);
 
-// Mouse parallax camera with throttled updates
+  const { positions: nodePositions, geometry } = useMemo(() => {
+    const nodes = generateLatticeNodes(count);
+    const verts: number[] = [];
+    const colors: number[] = [];
+    const goldC = GOLD;
+    const blueC = BLUE;
+
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dist = nodes[i].distanceTo(nodes[j]);
+        if (dist < maxDist) {
+          verts.push(nodes[i].x, nodes[i].y, nodes[i].z);
+          verts.push(nodes[j].x, nodes[j].y, nodes[j].z);
+          // Blend color based on distance
+          const t = dist / maxDist;
+          const c = i % 3 === 0 ? goldC : blueC;
+          const alpha = 1 - t;
+          colors.push(c.r * alpha, c.g * alpha, c.b * alpha);
+          colors.push(c.r * alpha * 0.5, c.g * alpha * 0.5, c.b * alpha * 0.5);
+        }
+      }
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    return { positions: nodes, geometry: geo };
+  }, [count, maxDist]);
+
+  return (
+    <lineSegments ref={lineRef} geometry={geometry}>
+      <lineBasicMaterial
+        vertexColors
+        transparent
+        opacity={0.35}
+        blending={THREE.AdditiveBlending}
+        linewidth={1}
+      />
+    </lineSegments>
+  );
+});
+ConnectionLines.displayName = 'ConnectionLines';
+
+// Slow rotating lattice group
+const RotatingLattice = memo(({ config }: { config: PerformanceConfig }) => {
+  const groupRef = useRef<THREE.Group>(null);
+
+  useFrame((_, delta) => {
+    if (!groupRef.current) return;
+    groupRef.current.rotation.y += delta * 0.04;
+    groupRef.current.rotation.x += delta * 0.008;
+  });
+
+  return (
+    <group ref={groupRef}>
+      <KnowledgeNodes count={config.nodeCount} />
+      <ConnectionLines count={config.nodeCount} maxDist={config.connectionDistance} />
+    </group>
+  );
+});
+RotatingLattice.displayName = 'RotatingLattice';
+
+// Mouse parallax camera with lerp for organic motion
 const CameraRig = memo(() => {
   const { camera } = useThree();
   const mouse = useRef({ x: 0, y: 0 });
-  const target = useRef({ x: 0, y: 0 });
+  const smoothed = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     let rafId: number;
-    const handleMove = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 3;
-      mouse.current.y = (e.clientY / window.innerHeight - 0.5) * 3;
+    const onMove = (e: MouseEvent) => {
+      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouse.current.y = (e.clientY / window.innerHeight - 0.5) * 2;
     };
-    
-    // Throttle mouse events
-    const throttledHandler = (e: MouseEvent) => {
+    const throttled = (e: MouseEvent) => {
       cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => handleMove(e));
+      rafId = requestAnimationFrame(() => onMove(e));
     };
-    
-    window.addEventListener('mousemove', throttledHandler, { passive: true });
+    window.addEventListener('mousemove', throttled, { passive: true });
     return () => {
-      window.removeEventListener('mousemove', throttledHandler);
+      window.removeEventListener('mousemove', throttled);
       cancelAnimationFrame(rafId);
     };
   }, []);
 
   useFrame((state) => {
-    target.current.x += (mouse.current.x - target.current.x) * 0.015;
-    target.current.y += (-mouse.current.y - target.current.y) * 0.015;
-    
-    camera.position.x = target.current.x;
-    camera.position.y = target.current.y + 2;
-    camera.position.z = 15 + Math.sin(state.clock.elapsedTime * 0.2) * 1.5;
-    camera.lookAt(0, 0, -30);
+    // Lerp for liquid-smooth parallax
+    smoothed.current.x += (mouse.current.x - smoothed.current.x) * 0.02;
+    smoothed.current.y += (-mouse.current.y - smoothed.current.y) * 0.02;
+
+    camera.position.x = smoothed.current.x * 2;
+    camera.position.y = smoothed.current.y * 1.5 + 1;
+    camera.position.z = 18 + Math.sin(state.clock.elapsedTime * 0.15) * 1;
+    camera.lookAt(0, 0, 0);
   });
 
   return null;
 });
-
 CameraRig.displayName = 'CameraRig';
 
-// Main optimized scene
-const MarketScene = memo(({ config }: { config: PerformanceConfig }) => {
+// Ambient particles — tiny floating dust
+const AcademicDust = memo(({ count }: { count: number }) => {
+  const meshRef = useRef<THREE.InstancedMesh>(null);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+
+  const particles = useMemo(() => Array.from({ length: count }, () => ({
+    x: (Math.random() - 0.5) * 30,
+    y: (Math.random() - 0.5) * 30,
+    z: (Math.random() - 0.5) * 30,
+    vx: (Math.random() - 0.5) * 0.002,
+    vy: (Math.random() - 0.5) * 0.002,
+    phase: Math.random() * Math.PI * 2,
+  })), [count]);
+
+  const dustColor = useMemo(() => new THREE.Color('#D4AF37'), []);
+
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    const t = state.clock.elapsedTime;
+    for (let i = 0; i < count; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      const s = 0.015 + Math.sin(t * 1.5 + p.phase) * 0.008;
+      dummy.position.set(p.x, p.y, p.z);
+      dummy.scale.setScalar(s);
+      dummy.updateMatrix();
+      meshRef.current.setMatrixAt(i, dummy.matrix);
+      meshRef.current.setColorAt(i, dustColor);
+    }
+    meshRef.current.instanceMatrix.needsUpdate = true;
+    if (meshRef.current.instanceColor) meshRef.current.instanceColor.needsUpdate = true;
+  });
+
   return (
-    <>
-      <CameraRig />
-      
-      {/* Simplified lighting */}
-      <ambientLight intensity={0.15} />
-      <pointLight position={[30, 30, 20]} intensity={0.8} color="#00FFFF" distance={80} />
-      <pointLight position={[-30, -20, 10]} intensity={0.6} color="#FFBF00" distance={60} />
-      
-      {/* Star field */}
-      <Stars
-        radius={150}
-        depth={80}
-        count={config.starCount}
-        factor={4}
-        saturation={0.3}
-        fade
-        speed={0.8}
-      />
-      
-      {/* Volumetric beams */}
-      <VolumetricBeams />
-      
-      {/* Infinite depth grid */}
-      <InfiniteDepthGrid />
-      
-      {/* GPU-optimized particle field */}
-      <ParticleField count={config.particleCount} spread={100} />
-      
-      {/* Batched candlesticks */}
-      <CandlestickField count={config.candleCount} />
-      
-      {/* Batched hex nodes */}
-      <HexField count={config.hexCount} />
-      
-      {/* Depth fog */}
-      <fog attach="fog" args={['#040404', 25, 100]} />
-    </>
+    <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
+      <sphereGeometry args={[1, 4, 4]} />
+      <meshBasicMaterial transparent opacity={0.5} blending={THREE.AdditiveBlending} />
+    </instancedMesh>
   );
 });
+AcademicDust.displayName = 'AcademicDust';
 
-MarketScene.displayName = 'MarketScene';
+// Main scene
+const AcademicScene = memo(({ config }: { config: PerformanceConfig }) => (
+  <>
+    <CameraRig />
+    <ambientLight intensity={0.05} />
+    <pointLight position={[10, 10, 10]} intensity={0.3} color="#D4AF37" distance={40} />
+    <pointLight position={[-10, -5, 8]} intensity={0.2} color="#1E3A8A" distance={35} />
+    <RotatingLattice config={config} />
+    <AcademicDust count={config.nodeCount} />
+    <fog attach="fog" args={['#020617', 15, 35]} />
+  </>
+));
+AcademicScene.displayName = 'AcademicScene';
 
 const ThreeJsMarketEngine = () => {
   const { tier, isMobile } = useDevicePerformance();
   const [isVisible, setIsVisible] = useState(true);
-  
   const config = useMemo(() => getPerformanceConfig(tier, isMobile), [tier, isMobile]);
 
-  // Pause rendering when tab is not visible
   useEffect(() => {
-    const handleVisibility = () => {
-      setIsVisible(document.visibilityState === 'visible');
-    };
-    document.addEventListener('visibilitychange', handleVisibility);
-    return () => document.removeEventListener('visibilitychange', handleVisibility);
+    const handler = () => setIsVisible(document.visibilityState === 'visible');
+    document.addEventListener('visibilitychange', handler);
+    return () => document.removeEventListener('visibilitychange', handler);
   }, []);
 
+  const bgStyle = {
+    background: 'radial-gradient(ellipse at 50% 30%, #0c1229 0%, #020617 50%, #010309 100%)',
+  };
+
   if (!isVisible) {
-    return (
-      <div 
-        className="fixed inset-0 z-0"
-        style={{ 
-          background: 'radial-gradient(ellipse at 50% 0%, #0a1a1a 0%, #050505 40%, #020202 70%, #000000 100%)' 
-        }}
-      />
-    );
+    return <div className="fixed inset-0 z-0" style={bgStyle} />;
   }
 
   return (
-    <div 
-      className="fixed inset-0 z-0" 
-      style={{ 
-        background: 'radial-gradient(ellipse at 50% 0%, #0a1a1a 0%, #050505 40%, #020202 70%, #000000 100%)' 
-      }}
-    >
+    <div className="fixed inset-0 z-0" style={bgStyle}>
       <Canvas
-        camera={{ position: [0, 2, 15], fov: 65, near: 0.1, far: 200 }}
+        camera={{ position: [0, 1, 18], fov: 55, near: 0.1, far: 100 }}
         dpr={config.dpr}
         performance={{ min: 0.5 }}
         frameloop={isVisible ? 'always' : 'never'}
@@ -435,23 +303,23 @@ const ThreeJsMarketEngine = () => {
           depth: true,
         }}
       >
-        <MarketScene config={config} />
+        <AcademicScene config={config} />
       </Canvas>
 
-      {/* Cinematic vignette overlay */}
+      {/* Vignette */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.85) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 15%, rgba(2,6,23,0.4) 55%, rgba(2,6,23,0.9) 100%)',
         }}
       />
-      
-      {/* Subtle scan lines - disabled on low-power */}
-      {config.enableBlur && (
+
+      {/* Subtle gold scan lines */}
+      {config.enableBloom && (
         <div
-          className="absolute inset-0 pointer-events-none opacity-[0.012]"
+          className="absolute inset-0 pointer-events-none opacity-[0.008]"
           style={{
-            backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,255,0.02) 2px, rgba(0,255,255,0.02) 4px)',
+            backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(212,175,55,0.03) 3px, rgba(212,175,55,0.03) 6px)',
           }}
         />
       )}
