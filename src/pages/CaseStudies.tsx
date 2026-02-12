@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FileText, GraduationCap, BookOpen, Target } from "lucide-react";
 import Layout from "@/components/Layout";
+import EconNexusLogo from "@/components/EconNexusLogo";
 import CaseStudyCard from "@/components/casestudies/CaseStudyCard";
 import CaseStudyViewer from "@/components/casestudies/CaseStudyViewer";
 import { caseStudies, CaseStudy } from "@/data/caseStudies";
@@ -33,7 +34,7 @@ const CaseStudies = () => {
               className="text-center max-w-4xl mx-auto"
             >
               <div className="flex items-center justify-center gap-3 mb-6">
-                <FileText className="w-8 h-8 text-primary" />
+                <EconNexusLogo size="sm" showText={false} linkHome={false} />
                 <span className="text-sm font-medium text-primary uppercase tracking-widest">
                   CIE 9708 Past Papers
                 </span>

@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Brain, Target, Award, Filter } from 'lucide-react';
 import Layout from '@/components/Layout';
+import EconNexusLogo from '@/components/EconNexusLogo';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -46,9 +47,12 @@ const ExamIntelligence = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <Badge className="mb-4 bg-neon-cyan/20 text-neon-cyan border-neon-cyan/30">
-            2024-2025 Paper Repository
-          </Badge>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <EconNexusLogo size="sm" showText={false} linkHome={false} />
+            <Badge className="bg-neon-cyan/20 text-neon-cyan border-neon-cyan/30">
+              2024-2025 Paper Repository
+            </Badge>
+          </div>
           <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">
             <span className="text-gradient">Exam Intelligence</span>
           </h1>
