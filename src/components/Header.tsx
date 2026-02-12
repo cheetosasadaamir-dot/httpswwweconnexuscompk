@@ -81,12 +81,15 @@ const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-[1001] transition-all duration-500",
         isScrolled
-          ? "bg-navy-deep/80 backdrop-blur-xl border-b border-silver/10 shadow-lg shadow-black/20"
-          : "bg-transparent"
+          ? "bg-[rgba(2,6,23,0.85)] backdrop-blur-xl border-b border-[rgba(212,175,55,0.1)] shadow-lg shadow-black/20 py-0"
+          : "bg-transparent py-1"
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="w-[95%] max-w-[1200px] mx-auto px-4 lg:px-6">
+        <div className={cn(
+          "flex items-center justify-between transition-all duration-500",
+          isScrolled ? "h-12 lg:h-14" : "h-16 lg:h-20"
+        )}>
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <motion.img

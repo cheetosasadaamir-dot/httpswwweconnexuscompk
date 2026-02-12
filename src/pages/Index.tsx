@@ -46,7 +46,7 @@ const Index = () => {
       <main className="relative z-10 safe-area-inset">
         {/* Hero Section */}
         <section className="min-h-[60vh] flex items-center pt-24 md:pt-28 lg:pt-32">
-          <div className="w-full max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-24">
+          <div className="w-[95%] max-w-[1200px] mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-24">
             <div className="text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -109,13 +109,13 @@ const Index = () => {
         </section>
 
         {/* Silver Divider */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
         {/* Knowledge Pillars / Notes Repository Section */}
         <section id="notes-repository" className="section-mobile scroll-mt-20 transition-all duration-500">
-          <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="w-[95%] max-w-[1200px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -138,29 +138,29 @@ const Index = () => {
         </section>
 
         {/* Silver Divider */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
         {/* AI Economics Mentor Chatbot */}
         <EconomicsChatbot />
 
         {/* Silver Divider */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
         {/* Owner Profile Section */}
         <OwnerProfileSection />
 
         {/* Silver Divider */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
         {/* Simplified Mastery Section */}
         <section className="section-mobile">
-          <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="w-[95%] max-w-[1200px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -175,7 +175,7 @@ const Index = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -201,13 +201,13 @@ const Index = () => {
         </section>
 
         {/* Silver Divider */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
         {/* Freemium Pack Promo */}
         <section className="section-mobile">
-          <div className="w-full max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="w-[95%] max-w-[1200px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -238,29 +238,29 @@ const Index = () => {
         </section>
 
         {/* Silver Divider */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
         {/* World Economics Section */}
         <WorldEconomicsSection />
 
         {/* Silver Divider */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
         {/* Master Economist's Glossary */}
         <GlossarySection />
 
         {/* Silver Divider */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent" />
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
         {/* CTA Section */}
         <section className="section-mobile">
-          <div className="w-full max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+          <div className="w-[95%] max-w-[1200px] mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

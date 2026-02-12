@@ -155,8 +155,10 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
-    background: #101010;
+    background: #020617;
     min-height: 100vh;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -578,25 +580,15 @@
     max-width: 100%;
   }
   
-  /* Responsive max-width containers - never fixed width */
   .responsive-container {
-    width: 100%;
+    width: 95%;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
   
-  @media (min-width: 640px) {
-    .responsive-container { max-width: 640px; }
-  }
-  @media (min-width: 768px) {
-    .responsive-container { max-width: 768px; }
-  }
-  @media (min-width: 1024px) {
-    .responsive-container { max-width: 1024px; }
-  }
   @media (min-width: 1280px) {
-    .responsive-container { max-width: 1200px; }
+    .responsive-container { max-width: 1200px; width: 100%; }
   }
   
   /* Fluid Typography System */
@@ -644,9 +636,12 @@
     @apply min-w-full;
   }
   
-  /* Responsive Image/Diagram Container */
+  /* Responsive Image/Diagram Container — pinch-to-zoom on mobile */
   .diagram-responsive {
-    @apply w-full max-w-full overflow-hidden;
+    @apply w-full max-w-full;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pinch-zoom pan-x pan-y;
   }
   
   .diagram-responsive img,
@@ -654,6 +649,7 @@
   .diagram-responsive canvas {
     @apply w-full h-auto max-w-full;
     object-fit: contain;
+    min-width: 280px;
   }
   
   /* Touch-friendly targets (minimum 44x44px) */

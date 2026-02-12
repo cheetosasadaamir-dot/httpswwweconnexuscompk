@@ -18,7 +18,7 @@ const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayo
       <main className="relative z-20 pt-20 md:pt-24 lg:pt-28">
         {/* Chapter Header - Mobile-optimized padding */}
         <header className="pt-6 md:pt-8 pb-4 md:pb-6 px-4 md:px-6 lg:px-12 border-b border-charcoal-gold/10">
-          <div className="w-full max-w-4xl mx-auto">
+          <div className="w-[95%] max-w-[1200px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -52,8 +52,8 @@ const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayo
         </header>
 
         {/* Chapter Content - Mobile-first padding */}
-        <div className="px-4 md:px-6 lg:px-12 py-6 md:py-8">
-          <div className="w-full max-w-4xl mx-auto space-compact">
+        <div className="w-[95%] max-w-[1200px] mx-auto py-6 md:py-8">
+          <div className="space-compact">
             {children}
           </div>
         </div>
