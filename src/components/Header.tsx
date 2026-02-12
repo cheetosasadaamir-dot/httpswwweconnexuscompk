@@ -79,7 +79,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[1001] transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 pointer-events-auto",
         isScrolled
           ? "bg-[rgba(2,6,23,0.85)] backdrop-blur-xl border-b border-[rgba(212,175,55,0.1)] shadow-lg shadow-black/20 py-0"
           : "bg-transparent py-1"
@@ -105,9 +105,10 @@ const Header = () => {
                 key={link.href}
                 to={link.href!}
                 className={cn(
-                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-300 group",
+                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-150 group pointer-events-auto",
+                  "active:scale-95 active:text-neon-cyan",
                   location.pathname === link.href
-                    ? "text-neon-cyan"
+                    ? "text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]"
                     : "text-silver hover:text-neon-cyan hover:translate-x-0.5"
                 )}
               >

@@ -289,9 +289,10 @@ const ThreeJsMarketEngine = () => {
   }
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none" style={bgStyle}>
+    <div className="fixed inset-0 z-0 pointer-events-none" style={{ ...bgStyle, zIndex: 0 }}>
       <Canvas
         camera={{ position: [0, 1, 18], fov: 55, near: 0.1, far: 100 }}
+        style={{ pointerEvents: 'none' }}
         dpr={config.dpr}
         performance={{ min: 0.5 }}
         frameloop={isVisible ? 'always' : 'never'}
