@@ -18,6 +18,7 @@ import {
   Coins
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import EconNexusLogo from "@/components/EconNexusLogo";
 
 interface NoteCategory {
   id: string;
@@ -193,7 +194,7 @@ const Notes = () => {
               className="text-center max-w-4xl mx-auto"
             >
               <div className="flex items-center justify-center gap-3 mb-6">
-                <BookOpen className="w-8 h-8 text-neon-cyan" />
+                <EconNexusLogo size="sm" showText={false} linkHome={false} />
                 <span className="text-sm font-medium text-neon-cyan uppercase tracking-widest">
                   CIE 9708 Syllabus
                 </span>
