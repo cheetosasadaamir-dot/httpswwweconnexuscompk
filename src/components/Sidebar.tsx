@@ -11,7 +11,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import logoImage from '@/assets/logo-macromicro.png';
+import EconNexusLogo from './EconNexusLogo';
 
 interface SubNavItem {
   title: string;
@@ -179,18 +179,9 @@ const Sidebar = () => {
     <aside className="fixed left-0 top-0 h-screen w-72 glass-card rounded-none border-r border-silver/10 z-40 overflow-hidden">
       <div className="flex flex-col h-full">
         {/* Logo */}
-        <div className="p-6 border-b border-silver/10">
-          <Link to="/" className="flex items-center gap-3">
-            <img 
-              src={logoImage} 
-              alt="A2/AS Economics Portal Logo"
-              className="w-10 h-10 object-contain"
-            />
-            <div>
-              <h1 className="font-serif text-lg font-semibold text-silver-bright">MacroMicro</h1>
-              <p className="text-xs text-muted-foreground">Cambridge 9708 Edition</p>
-            </div>
-          </Link>
+        <div className="p-5 border-b border-silver/10">
+          <EconNexusLogo size="md" />
+          <p className="text-xs text-muted-foreground mt-1 ml-[52px]">Cambridge 9708 Edition</p>
         </div>
 
         {/* Navigation */}
