@@ -245,7 +245,7 @@ const FloatingDock = () => {
         initial={{ y: -100 }}
         animate={{ y: isVisible ? 0 : -100 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden lg:block"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] hidden lg:block pointer-events-auto"
       >
         <div className="floating-dock flex items-center gap-1 px-3 py-2">
           {/* Logo with glow */}
@@ -278,7 +278,8 @@ const FloatingDock = () => {
                 <Link
                   to={item.href}
                   className={cn(
-                    "dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300 pointer-events-auto",
+                    "dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-150 pointer-events-auto",
+                    "active:scale-95 active:shadow-[0_0_12px_rgba(0,242,255,0.4)]",
                     isActive(item.href) || isParentActive(item)
                       ? "active"
                       : ""
@@ -360,7 +361,7 @@ const FloatingDock = () => {
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed top-3 right-3 z-50 lg:hidden floating-dock p-3 touch-target"
+        className="fixed top-3 right-3 z-[9999] lg:hidden floating-dock p-3 touch-target pointer-events-auto"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
       >
@@ -375,7 +376,7 @@ const FloatingDock = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed top-3 left-3 z-50 lg:hidden"
+        className="fixed top-3 left-3 z-[9999] lg:hidden pointer-events-auto"
       >
         <Link to="/" className="floating-dock flex items-center gap-2 px-3 py-2 touch-target">
           <img src={logoImage} alt="EconNexus" className="h-8 md:h-9 w-auto object-contain rounded" />
