@@ -8,6 +8,7 @@ import Layout from '@/components/Layout';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
 import FreemiumContentViewer from '@/components/freemium/FreemiumContentViewer';
+import EconNexusLogo from '@/components/EconNexusLogo';
 
 const gmailSchema = z.string().trim().email("Please enter a valid email").max(255);
 
@@ -126,7 +127,13 @@ const FreemiumPack = () => {
             <h1 className="text-fluid-3xl font-display font-bold text-foreground mb-2">Premium Study Pack</h1>
             <p className="text-muted-foreground text-sm">CIE AS Level Economics — Revision Notes & Model Answers</p>
           </motion.div>
-          <FreemiumContentViewer />
+          <div className="relative">
+            {/* Watermark */}
+            <div className="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
+              <EconNexusLogo size="lg" showText watermark linkHome={false} className="scale-[3]" />
+            </div>
+            <FreemiumContentViewer />
+          </div>
         </div>
       </Layout>
     );

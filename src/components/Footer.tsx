@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
+import EconNexusLogo from './EconNexusLogo';
 
 const footerLinks = {
   resources: [
@@ -32,17 +33,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link to="/" className="inline-flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-secondary to-indigo-glow flex items-center justify-center">
-                <span className="font-sans text-lg font-bold text-primary-foreground">E</span>
-              </div>
-              <span className="font-sans text-xl font-bold tracking-wide text-gradient">
-                EconNe<span className="text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]">x</span>us
-              </span>
-            </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+            <div className="mb-4">
+              <EconNexusLogo size="md" />
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-1">
               The Premier Gateway to Advanced Macroeconomic Mastery.
             </p>
+            <p className="text-xs text-[#D4AF37]/60 italic mb-4">Powered by the Academic Engine</p>
             <a 
               href="https://www.econnexus.com.pk" 
               target="_blank" 
@@ -129,9 +126,11 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-silver/10">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-3">
+            <EconNexusLogo size="lg" linkHome={false} />
+            <p className="text-xs text-[#D4AF37]/50 tracking-widest uppercase">Academic Engine</p>
             <p className="font-sans text-xs text-silver/40 tracking-wide">
-              © 2026 EconNe<span className="text-neon-cyan/60">x</span>us | Advanced Macroeconomic Portal
+              © 2026 EconNexus | Advanced Macroeconomic Portal
             </p>
           </div>
         </div>
