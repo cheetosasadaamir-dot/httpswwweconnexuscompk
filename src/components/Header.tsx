@@ -3,8 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, BookOpen, Briefcase } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import logoImage from '@/assets/logo-macromicro.png';
 import GlobalSearch from './GlobalSearch';
+import EconNexusLogo from './EconNexusLogo';
 
 interface NavLink {
   label: string;
@@ -91,20 +91,12 @@ const Header = () => {
           isScrolled ? "h-12 lg:h-14" : "h-16 lg:h-20"
         )}>
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <motion.img
-              src={logoImage}
-              alt="EconNexus Logo"
-              className="h-[45px] w-auto object-contain"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            />
-            <div className="hidden sm:block">
-              <span className="font-sans text-xl font-bold tracking-wide text-gradient group-hover:text-secondary transition-all">
-                EconNe<span className="text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]">x</span>us
-              </span>
-            </div>
-          </Link>
+          <div className="sm:hidden">
+            <EconNexusLogo size="sm" showText={false} />
+          </div>
+          <div className="hidden sm:block">
+            <EconNexusLogo size="md" />
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
