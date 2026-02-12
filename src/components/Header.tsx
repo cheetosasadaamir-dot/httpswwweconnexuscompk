@@ -105,8 +105,8 @@ const Header = () => {
                 key={link.href}
                 to={link.href!}
                 className={cn(
-                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-150 group pointer-events-auto",
-                  "active:scale-95 active:text-neon-cyan",
+                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-150 group pointer-events-auto nav-instant-click",
+                  "active:scale-95 active:shadow-[0_0_12px_rgba(0,242,255,0.4)]",
                   location.pathname === link.href
                     ? "text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]"
                     : "text-silver hover:text-neon-cyan hover:translate-x-0.5"
@@ -159,7 +159,7 @@ const Header = () => {
                   <Link
                     to={link.href!}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 py-3 px-4 rounded-lg text-white hover:text-neon-cyan hover:bg-neon-cyan/5 hover:translate-x-1 transition-all duration-300 group"
+                    className="flex items-center gap-3 py-3 px-4 rounded-lg text-white hover:text-neon-cyan hover:bg-neon-cyan/5 hover:translate-x-1 transition-all duration-150 group nav-instant-click"
                   >
                     {link.icon && (
                       <link.icon className="w-5 h-5 text-silver group-hover:text-neon-cyan transition-colors" />
