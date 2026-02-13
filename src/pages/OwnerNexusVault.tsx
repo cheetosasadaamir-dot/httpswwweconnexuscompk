@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, CheckCircle, XCircle, Loader2, RefreshCw, MessageSquare, ArrowLeft } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import Layout from '@/components/Layout';
-
-const OWNER_EMAIL = import.meta.env.VITE_OWNER_EMAIL || '';
 
 interface PremiumEntry {
   id: string;
@@ -19,30 +17,50 @@ interface PremiumEntry {
 }
 
 const OwnerNexusVault = () => {
-  const [isOwner, setIsOwner] = useState(false);
-  const [emailInput, setEmailInput] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [entries, setEntries] = useState<PremiumEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState<'all' | 'pending' | 'granted'>('all');
   const { toast } = useToast();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const saved = sessionStorage.getItem('owner_verified');
-    if (saved === OWNER_EMAIL) {
-      setIsOwner(true);
-      fetchEntries();
-    }
+    checkAuth();
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const checkAuth = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      setIsAuthenticated(true);
+      const { data: roles } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', session.user.id);
+      
+      const adminRole = roles?.find(r => r.role === 'admin');
+      if (adminRole) {
+        setIsAdmin(true);
+        fetchEntries();
+      }
+    }
+    setAuthChecked(true);
+  };
+
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (emailInput.trim().toLowerCase() === OWNER_EMAIL) {
-      sessionStorage.setItem('owner_verified', OWNER_EMAIL);
-      setIsOwner(true);
-      fetchEntries();
-    } else {
-      toast({ title: "Access Denied", variant: "destructive" });
+    setIsSigningIn(true);
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      await checkAuth();
+    } catch (err: any) {
+      toast({ title: "Access Denied", description: err.message, variant: "destructive" });
+    } finally {
+      setIsSigningIn(false);
     }
   };
 
@@ -58,7 +76,7 @@ const OwnerNexusVault = () => {
 
   const handleYes = async (id: string) => {
     const res = await supabase.functions.invoke('manage-premium-access', {
-      body: { owner_email: OWNER_EMAIL, entry_id: id, grant_access: true },
+      body: { entry_id: id, grant_access: true },
     });
     if (res.error || res.data?.error) {
       toast({ title: "Error", description: res.data?.error || res.error?.message, variant: "destructive" });
@@ -70,7 +88,7 @@ const OwnerNexusVault = () => {
 
   const handleNo = async (id: string) => {
     const res = await supabase.functions.invoke('manage-premium-access', {
-      body: { owner_email: OWNER_EMAIL, entry_id: id, action: 'delete' },
+      body: { entry_id: id, action: 'delete' },
     });
     if (res.error || res.data?.error) {
       toast({ title: "Error", description: res.data?.error || res.error?.message, variant: "destructive" });
@@ -86,18 +104,38 @@ const OwnerNexusVault = () => {
     return true;
   });
 
-  if (!isOwner) {
+  if (!authChecked) return null;
+
+  if (!isAuthenticated) {
     return (
       <Layout>
         <div className="min-h-[80vh] flex items-center justify-center px-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm w-full text-center">
             <Shield className="w-16 h-16 text-neon-cyan mx-auto mb-6" />
             <h1 className="text-2xl font-display font-bold text-foreground mb-6">Owner Vault</h1>
-            <form onSubmit={handleLogin} className="space-y-3">
-              <Input type="email" value={emailInput} onChange={e => setEmailInput(e.target.value)} placeholder="Owner email" className="bg-card/50 text-center" required />
-              <Button type="submit" className="w-full bg-neon-cyan text-primary-foreground">Verify</Button>
+            <form onSubmit={handleSignIn} className="space-y-3">
+              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Admin email" className="bg-card/50 text-center" required />
+              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" className="bg-card/50 text-center" required />
+              <Button type="submit" disabled={isSigningIn} className="w-full bg-neon-cyan text-primary-foreground">
+                {isSigningIn ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
+                Sign In
+              </Button>
             </form>
           </motion.div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <Layout>
+        <div className="min-h-[80vh] flex items-center justify-center px-4">
+          <div className="text-center">
+            <Shield className="w-16 h-16 text-destructive mx-auto mb-4" />
+            <h1 className="text-2xl font-display font-bold text-foreground mb-2">Unauthorized</h1>
+            <p className="text-muted-foreground">You don't have admin privileges.</p>
+          </div>
         </div>
       </Layout>
     );
