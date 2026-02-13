@@ -35,7 +35,7 @@ Deno.serve(async (req) => {
 
     const emailResult = await resend.emails.send({
       from: "EconNexus <onboarding@resend.dev>",
-      to: ["unifom7@gmail.com"],
+      to: [Deno.env.get("OWNER_EMAIL") || ""],
       subject: `New Freemium Pack Application: ${gmail}`,
       html: `
         <h2>New Freemium Pack Application</h2>

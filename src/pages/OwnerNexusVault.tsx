@@ -9,7 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import Layout from '@/components/Layout';
 
-const OWNER_EMAIL = 'unifom7@gmail.com';
+const OWNER_EMAIL = import.meta.env.VITE_OWNER_EMAIL || '';
 
 interface PremiumEntry {
   id: string;
