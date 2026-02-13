@@ -1,6 +1,6 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const OWNER_EMAIL = "unifom7@gmail.com";
+const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") || "";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",

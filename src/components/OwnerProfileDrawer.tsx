@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
-const OWNER_EMAIL = 'unifom7@gmail.com';
+const OWNER_EMAIL = import.meta.env.VITE_OWNER_EMAIL || '';
 
 interface OwnerProfileDrawerProps {
   isOpen: boolean;
