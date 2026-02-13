@@ -979,3 +979,12 @@ html {
 [id] {
   scroll-margin-top: 100px;
 }
+
+/* Dim 3D background when chatbot section is in view */
+body.chat-active .fixed.inset-0.z-0 {
+  opacity: 0.4;
+  transition: opacity 0.6s ease-in-out;
+}
+.fixed.inset-0.z-0 {
+  transition: opacity 0.6s ease-in-out;
+}
