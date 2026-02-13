@@ -26,6 +26,10 @@ const OwnerDashboard = () => {
   const [password, setPassword] = useState('');
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [filter, setFilter] = useState<'all' | 'pending' | 'granted'>('all');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -65,6 +69,31 @@ const OwnerDashboard = () => {
       toast({ title: "Auth Error", description: err.message, variant: "destructive" });
     } finally {
       setIsSigningIn(false);
+    }
+  };
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPassword.length < 8) {
+      toast({ title: "Error", description: "Password must be at least 8 characters", variant: "destructive" });
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      toast({ title: "Error", description: "Passwords do not match", variant: "destructive" });
+      return;
+    }
+    setIsChangingPassword(true);
+    try {
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
+      toast({ title: "Password Updated ✅", description: "Your admin password has been changed successfully." });
+      setNewPassword('');
+      setConfirmPassword('');
+      setShowPasswordForm(false);
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } finally {
+      setIsChangingPassword(false);
     }
   };
 
@@ -156,6 +185,9 @@ const OwnerDashboard = () => {
             <Button onClick={fetchEntries} variant="outline" size="sm" className="border-neon-cyan/30 text-neon-cyan">
               <RefreshCw className="w-4 h-4 mr-2" /> Refresh
             </Button>
+            <Button onClick={() => setShowPasswordForm(!showPasswordForm)} variant="outline" size="sm" className="border-border/50">
+              {showPasswordForm ? 'Hide' : 'Change Password'}
+            </Button>
           </div>
 
           {/* Filter tabs */}
@@ -173,6 +205,19 @@ const OwnerDashboard = () => {
               </Button>
             ))}
           </div>
+
+          {showPasswordForm && (
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mb-6 p-4 rounded-2xl bg-card/50 border border-border/50">
+              <h3 className="text-sm font-semibold text-foreground mb-3">Change Admin Password</h3>
+              <form onSubmit={handleChangePassword} className="flex flex-col sm:flex-row gap-3">
+                <Input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="New password (min 8 chars)" required className="bg-card/50 flex-1" />
+                <Input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirm password" required className="bg-card/50 flex-1" />
+                <Button type="submit" disabled={isChangingPassword} size="sm" className="bg-neon-cyan text-primary-foreground hover:bg-neon-cyan/90">
+                  {isChangingPassword ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Update'}
+                </Button>
+              </form>
+            </motion.div>
+          )}
 
           {isLoading ? (
             <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-neon-cyan" /></div>
