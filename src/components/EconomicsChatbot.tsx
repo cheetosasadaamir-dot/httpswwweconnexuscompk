@@ -33,13 +33,13 @@ const QUICK_ACTIONS_ALEVEL = [
 ];
 
 const QUICK_ACTIONS_UNIVERSITY = [
-  { label: 'OLS Assumptions', query: 'Explain the Gauss-Markov assumptions for OLS estimation and what happens when each assumption is violated.' },
-  { label: 'Lagrangian Optimization', query: 'Solve the consumer utility maximization problem using the Lagrangian method for a Cobb-Douglas utility function U(x,y) = x^0.4 y^0.6 subject to budget constraint 10x + 20y = 200. Show complete step-by-step derivation with computational verification.' },
-  { label: 'IMF EFF Pakistan', query: 'Evaluate the IMF Extended Fund Facility (EFF) program for Pakistan, including conditionalities, fiscal consolidation targets, and impact on macroeconomic stability.' },
-  { label: 'Pakistan Structural Issues', query: 'Provide a Critical Evaluation of Pakistan\'s structural economic challenges: narrow tax base, energy circular debt, low human capital investment. Use PIDE and SDPI research evidence.' },
-  { label: 'Solow Growth Model', query: 'Derive the Solow Growth Model steady-state and explain the convergence hypothesis with implications for Pakistan. Show full mathematical derivation with computational verification.' },
-  { label: 'Multicollinearity', query: 'Explain multicollinearity in econometric models, its detection using VIF, and remedial measures with mathematical derivation.' },
-  { label: 'Fiscal Policy Analysis', query: 'Analyze Pakistan\'s fiscal policy using the latest Economic Survey data from the Ministry of Finance. Evaluate the fiscal deficit trajectory and debt sustainability.' },
+  { label: 'Nash Equilibrium', query: 'Derive the Nash Equilibrium for a Cournot duopoly with asymmetric costs. Show the payoff matrix, best response functions, and verify the equilibrium satisfies no profitable deviation.' },
+  { label: 'Lagrangian Optimization', query: 'Solve the consumer utility maximization problem using the Lagrangian method for a Cobb-Douglas utility function U(x,y) = x^0.4 y^0.6 subject to budget constraint 10x + 20y = 200. Show complete step-by-step derivation with SOC verification.' },
+  { label: 'Heckscher-Ohlin', query: 'Derive the Heckscher-Ohlin theorem and explain the Stolper-Samuelson and Rybczynski theorems. What are the empirical challenges (Leontief Paradox)?' },
+  { label: 'Solow Steady-State', query: 'Derive the Solow-Swan steady-state, the golden rule of capital accumulation, and the convergence hypothesis. Show full mathematical derivation with economic interpretation at every step.' },
+  { label: 'OLS & Diagnostics', query: 'Guide me through running an OLS regression: model specification, estimation, interpreting P-values and confidence intervals, and checking Gauss-Markov assumptions. What remedial measures exist for each violation?' },
+  { label: 'Prospect Theory', query: 'Explain Kahneman & Tversky\'s Prospect Theory. Derive the value function properties (loss aversion, diminishing sensitivity) and probability weighting function. How does this challenge Expected Utility Theory?' },
+  { label: 'Pakistan Fiscal', query: 'Analyze Pakistan\'s fiscal policy using the latest Economic Survey data from the Ministry of Finance. Evaluate the fiscal deficit trajectory, debt sustainability, and IMF EFF conditionalities with PIDE evidence.' },
 ];
 
 // Command words with AO (Assessment Objective) requirements
@@ -288,11 +288,31 @@ export default function EconomicsChatbot() {
   const [streamState, setStreamState] = useState<StreamState>('idle');
   const [retryCount, setRetryCount] = useState(0);
   const [persona, setPersona] = useState<Persona>('a-level');
+  const [isChatActive, setIsChatActive] = useState(false);
   const quickActions = persona === 'university' ? QUICK_ACTIONS_UNIVERSITY : QUICK_ACTIONS_ALEVEL;
   const scrollRef = useRef<HTMLDivElement>(null);
+  const chatSectionRef = useRef<HTMLElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
   const streamTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const analyzeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Dim 3D background when chatbot section is in view
+  useEffect(() => {
+    const section = chatSectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsChatActive(entry.isIntersecting && entry.intersectionRatio > 0.3);
+        document.body.classList.toggle('chat-active', entry.isIntersecting && entry.intersectionRatio > 0.3);
+      },
+      { threshold: [0, 0.3, 0.6] }
+    );
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      document.body.classList.remove('chat-active');
+    };
+  }, []);
 
   // Auto-scroll on new messages
   useEffect(() => {
@@ -595,13 +615,14 @@ export default function EconomicsChatbot() {
 
   return (
     <motion.section
+      ref={chatSectionRef}
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       className="py-16 lg:py-24"
     >
-      <div className="w-full max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="w-full max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -644,7 +665,7 @@ export default function EconomicsChatbot() {
                 {persona === 'university' ? 'Dr. Econs' : 'Prof. Econs'}
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground">
-                {persona === 'university' ? 'Senior Research Consultant' : 'CIE Senior Fellow'}
+                {persona === 'university' ? 'Senior Research Fellow' : 'CIE Senior Fellow'}
               </span>
             </div>
             <div className="tutor-verified-badge ml-1 md:ml-2 text-[9px] md:text-[10px]">
@@ -657,7 +678,7 @@ export default function EconomicsChatbot() {
           </h2>
           <p className="text-fluid-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-2">
             {persona === 'university' 
-              ? 'Senior University Economics Consultant • BS/MS Level • Pakistan Focus'
+              ? 'Senior Research Fellow • LSE/Oxford Standard • Game Theory • Econometrics • Behavioral Econ'
               : 'Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode'}
           </p>
         </motion.div>
@@ -687,10 +708,10 @@ export default function EconomicsChatbot() {
           {/* Academic Banner */}
           <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
             <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">
-              {persona === 'university' ? 'University Economics • BS/MS • HEC Pakistan' : 'Cambridge A-Level Economics • 9708'}
+              {persona === 'university' ? 'Research Fellow Mode • LSE/Oxford Academic Standard' : 'Cambridge A-Level Economics • 9708'}
             </p>
             <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">
-              {persona === 'university' ? 'Research Mode' : 'Text Analysis Mode'}
+              {persona === 'university' ? 'Guided Derivation Mode' : 'Text Analysis Mode'}
             </span>
           </div>
 
@@ -746,10 +767,10 @@ export default function EconomicsChatbot() {
                     {persona === 'university' ? 'Dr. Econs' : 'Prof. Econs'}
                   </p>
                   <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">
-                    {persona === 'university' ? 'Senior Research Consultant • HEC Pakistan' : 'CIE Senior Fellow • Text Analysis Mode'}
+                    {persona === 'university' ? 'Senior Research Fellow • LSE/Oxford Standard' : 'CIE Senior Fellow • Text Analysis Mode'}
                   </p>
                   <p className="text-sm mt-1 opacity-70 font-serif">
-                    {persona === 'university' ? 'Your Senior University Economics Consultant is ready' : 'Your Senior Cambridge Examiner is ready'}
+                    {persona === 'university' ? 'Your Senior Research Fellow is ready for guided derivations' : 'Your Senior Cambridge Examiner is ready'}
                   </p>
                   <p className="text-xs mt-2 opacity-50">Ask follow-up questions — I remember our conversation!</p>
                 </div>
@@ -776,7 +797,7 @@ export default function EconomicsChatbot() {
                           {/* Lesson Header */}
                           <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
                             {persona === 'university' 
-                              ? 'University Economics | Senior Research Consultant | HEC Pakistan'
+                              ? 'EconNexus Research Division | Senior Research Fellow | LSE/Oxford Standard'
                               : 'Syllabus 9708 (2026-2028) | CIE Senior Fellow'}
                           </div>
                           <ReactMarkdown
