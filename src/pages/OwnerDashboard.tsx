@@ -7,8 +7,6 @@ import { Input } from '@/components/ui/input';
 import Layout from '@/components/Layout';
 import { useToast } from '@/hooks/use-toast';
 
-const OWNER_EMAIL = import.meta.env.VITE_OWNER_EMAIL || '';
-
 interface PremiumEntry {
   id: string;
   user_email: string;
@@ -21,34 +19,52 @@ interface PremiumEntry {
 const OwnerDashboard = () => {
   const [entries, setEntries] = useState<PremiumEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isOwner, setIsOwner] = useState(false);
-  const [ownerChecked, setOwnerChecked] = useState(false);
-  const [emailInput, setEmailInput] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [filter, setFilter] = useState<'all' | 'pending' | 'granted'>('all');
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if owner email is saved in session
-    const saved = sessionStorage.getItem('owner_verified');
-    if (saved === OWNER_EMAIL) {
-      setIsOwner(true);
-      setOwnerChecked(true);
-      fetchEntries();
-    } else {
-      setIsLoading(false);
-      setOwnerChecked(true);
-    }
+    checkAuth();
   }, []);
 
-  const handleOwnerLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    const normalized = emailInput.trim().toLowerCase();
-    if (normalized === OWNER_EMAIL) {
-      sessionStorage.setItem('owner_verified', OWNER_EMAIL);
-      setIsOwner(true);
-      fetchEntries();
+  const checkAuth = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      setIsAuthenticated(true);
+      const { data: roles } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', session.user.id);
+      
+      const adminRole = roles?.find(r => r.role === 'admin');
+      if (adminRole) {
+        setIsAdmin(true);
+        fetchEntries();
+      } else {
+        setIsLoading(false);
+      }
     } else {
-      toast({ title: "Access Denied", description: "This email is not authorized.", variant: "destructive" });
+      setIsLoading(false);
+    }
+    setAuthChecked(true);
+  };
+
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSigningIn(true);
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      await checkAuth();
+    } catch (err: any) {
+      toast({ title: "Auth Error", description: err.message, variant: "destructive" });
+    } finally {
+      setIsSigningIn(false);
     }
   };
 
@@ -68,16 +84,16 @@ const OwnerDashboard = () => {
   };
 
   const updateAccess = async (id: string, grantAccess: boolean) => {
-    const { error } = await supabase
-      .from('premium_access')
-      .update({ access_status: grantAccess })
-      .eq('id', id);
-
-    if (error) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
-    } else {
+    try {
+      const response = await supabase.functions.invoke('manage-premium-access', {
+        body: { entry_id: id, grant_access: grantAccess },
+      });
+      if (response.error) throw response.error;
+      if (response.data?.error) throw new Error(response.data.error);
       toast({ title: grantAccess ? "Access Granted ✅" : "Access Revoked ❌" });
       fetchEntries();
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message || "Failed to update", variant: "destructive" });
     }
   };
 
@@ -87,10 +103,10 @@ const OwnerDashboard = () => {
     return true;
   });
 
-  if (!ownerChecked) return null;
+  if (!authChecked) return null;
 
-  // Gmail login gate
-  if (!isOwner) {
+  // Login screen
+  if (!isAuthenticated) {
     return (
       <Layout>
         <div className="mobile-container responsive-container mx-auto px-4 md:px-8 py-8 min-h-[80vh] flex items-center justify-center">
@@ -99,14 +115,30 @@ const OwnerDashboard = () => {
               <Shield className="w-8 h-8 text-neon-cyan" />
             </div>
             <h1 className="text-2xl font-display font-bold text-foreground text-center mb-2">Owner Access</h1>
-            <p className="text-muted-foreground text-center text-sm mb-6">Enter your Gmail to access the dashboard</p>
-            <form onSubmit={handleOwnerLogin} className="space-y-4">
-              <Input type="email" value={emailInput} onChange={e => setEmailInput(e.target.value)} placeholder="Enter your Gmail" required className="bg-card/50 text-center" />
-              <Button type="submit" className="w-full bg-neon-cyan text-primary-foreground hover:bg-neon-cyan/90">
-                <Shield className="w-4 h-4 mr-2" /> Verify & Enter
+            <p className="text-muted-foreground text-center text-sm mb-6">Sign in with your admin account</p>
+            <form onSubmit={handleSignIn} className="space-y-4">
+              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Admin Email" required className="bg-card/50" />
+              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required className="bg-card/50" />
+              <Button type="submit" disabled={isSigningIn} className="w-full bg-neon-cyan text-primary-foreground hover:bg-neon-cyan/90">
+                {isSigningIn ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Shield className="w-4 h-4 mr-2" />}
+                Sign In
               </Button>
             </form>
           </motion.div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <Layout>
+        <div className="mobile-container responsive-container mx-auto px-4 md:px-8 py-8 min-h-[80vh] flex items-center justify-center">
+          <div className="text-center">
+            <Shield className="w-16 h-16 text-destructive mx-auto mb-4" />
+            <h1 className="text-2xl font-display font-bold text-foreground mb-2">Unauthorized</h1>
+            <p className="text-muted-foreground">You don't have admin privileges.</p>
+          </div>
         </div>
       </Layout>
     );

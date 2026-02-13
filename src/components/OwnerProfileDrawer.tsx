@@ -9,8 +9,6 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
-const OWNER_EMAIL = import.meta.env.VITE_OWNER_EMAIL || '';
-
 interface OwnerProfileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -26,9 +24,12 @@ interface PremiumEntry {
 }
 
 const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
-  const [isOwner, setIsOwner] = useState(false);
-  const [emailInput, setEmailInput] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [entries, setEntries] = useState<PremiumEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState<'all' | 'pending' | 'granted'>('all');
@@ -36,22 +37,39 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
 
   useEffect(() => {
     if (isOpen) {
-      const saved = sessionStorage.getItem('owner_verified');
-      const verified = saved === OWNER_EMAIL;
-      setIsOwner(verified);
-      if (verified) fetchEntries();
+      checkAuth();
     }
   }, [isOpen]);
 
-  const handleOwnerLogin = (e: React.FormEvent) => {
+  const checkAuth = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      setIsAuthenticated(true);
+      const { data: roles } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', session.user.id);
+      
+      const adminRole = roles?.find(r => r.role === 'admin');
+      if (adminRole) {
+        setIsAdmin(true);
+        fetchEntries();
+      }
+    }
+  };
+
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (emailInput.trim().toLowerCase() === OWNER_EMAIL) {
-      sessionStorage.setItem('owner_verified', OWNER_EMAIL);
-      setIsOwner(true);
+    setIsSigningIn(true);
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      await checkAuth();
       setShowAdminLogin(false);
-      fetchEntries();
-    } else {
-      toast({ title: "Access Denied", description: "Not authorized.", variant: "destructive" });
+    } catch (err: any) {
+      toast({ title: "Access Denied", description: err.message, variant: "destructive" });
+    } finally {
+      setIsSigningIn(false);
     }
   };
 
@@ -72,12 +90,10 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
   const updateAccess = async (id: string, grantAccess: boolean) => {
     try {
       const response = await supabase.functions.invoke('manage-premium-access', {
-        body: { owner_email: OWNER_EMAIL, entry_id: id, grant_access: grantAccess },
+        body: { entry_id: id, grant_access: grantAccess },
       });
-
       if (response.error) throw response.error;
       if (response.data?.error) throw new Error(response.data.error);
-
       toast({ title: grantAccess ? "Access Granted ✅" : "Access Revoked ❌" });
       fetchEntries();
     } catch (err: any) {
@@ -242,7 +258,7 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
               <div className="h-px bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent mb-8" />
 
               {/* Admin Panel Section */}
-              {!isOwner && !showAdminLogin && (
+              {!isAdmin && !showAdminLogin && (
                 <button
                   onClick={() => setShowAdminLogin(true)}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-muted-foreground/30 hover:text-neon-cyan hover:bg-neon-cyan/5 transition-all text-xs"
@@ -252,29 +268,38 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
                 </button>
               )}
 
-              {!isOwner && showAdminLogin && (
+              {!isAdmin && showAdminLogin && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                   <h3 className="text-xs font-semibold tracking-[0.2em] text-neon-cyan uppercase mb-4 flex items-center gap-2">
                     <Shield className="w-4 h-4" />
-                    Admin Verification
+                    Admin Sign In
                   </h3>
-                  <form onSubmit={handleOwnerLogin} className="flex gap-2">
+                  <form onSubmit={handleSignIn} className="space-y-2">
                     <Input
                       type="email"
-                      value={emailInput}
-                      onChange={e => setEmailInput(e.target.value)}
-                      placeholder="Enter Gmail"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder="Admin email"
                       required
                       className="bg-card/50 text-sm"
                     />
-                    <Button type="submit" size="sm" className="bg-neon-cyan text-primary-foreground hover:bg-neon-cyan/90 shrink-0">
-                      Verify
+                    <Input
+                      type="password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      placeholder="Password"
+                      required
+                      className="bg-card/50 text-sm"
+                    />
+                    <Button type="submit" size="sm" disabled={isSigningIn} className="w-full bg-neon-cyan text-primary-foreground hover:bg-neon-cyan/90">
+                      {isSigningIn ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : null}
+                      Sign In
                     </Button>
                   </form>
                 </motion.div>
               )}
 
-              {isOwner && (
+              {isAdmin && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xs font-semibold tracking-[0.2em] text-neon-cyan uppercase flex items-center gap-2">
@@ -358,8 +383,8 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
                 </motion.div>
               )}
 
-              {/* Hidden vault link — only for verified owner */}
-              {isOwner && (
+              {/* Hidden vault link — only for verified admin */}
+              {isAdmin && (
                 <div className="mt-8 pt-4 border-t border-border/10">
                   <Link
                     to="/owner-nexus-vault"

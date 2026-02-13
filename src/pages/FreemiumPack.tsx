@@ -33,15 +33,13 @@ const FreemiumPack = () => {
   const checkAccess = async (emailToCheck: string) => {
     setIsChecking(true);
     try {
-      const { data, error } = await supabase
-        .from('premium_access')
-        .select('access_status')
-        .eq('user_email', emailToCheck.trim().toLowerCase())
-        .maybeSingle();
+      const { data, error } = await supabase.rpc('check_premium_access', {
+        _email: emailToCheck.trim().toLowerCase(),
+      });
 
       if (error) throw error;
 
-      if (data && data.access_status === true) {
+      if (data === true) {
         setAccessGranted(true);
         localStorage.setItem('premium_email', emailToCheck.trim().toLowerCase());
       } else {
@@ -67,20 +65,15 @@ const FreemiumPack = () => {
     try {
       const normalizedEmail = gmail.trim().toLowerCase();
 
-      const { data: existing } = await supabase
-        .from('premium_access')
-        .select('access_status')
-        .eq('user_email', normalizedEmail)
-        .maybeSingle();
+      // Check if already has access using secure RPC
+      const { data: hasAccess } = await supabase.rpc('check_premium_access', {
+        _email: normalizedEmail,
+      });
 
-      if (existing) {
-        if (existing.access_status) {
-          setAccessGranted(true);
-          localStorage.setItem('premium_email', normalizedEmail);
-          toast({ title: "Access Granted!", description: "You already have access. Enjoy!" });
-        } else {
-          toast({ title: "Application Exists", description: "Your request is pending. You will be notified once approved." });
-        }
+      if (hasAccess === true) {
+        setAccessGranted(true);
+        localStorage.setItem('premium_email', normalizedEmail);
+        toast({ title: "Access Granted!", description: "You already have access. Enjoy!" });
         setIsApplying(false);
         return;
       }
