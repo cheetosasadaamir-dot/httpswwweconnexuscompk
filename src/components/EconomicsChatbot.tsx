@@ -817,7 +817,7 @@ export default function EconomicsChatbot() {
               }`}
             >
               <BookOpen className="w-3 h-3" />
-              Economics 9708
+              Economics
             </motion.button>
             <motion.button
               onClick={() => { setPersona('business'); setMessages([]); }}
@@ -829,7 +829,7 @@ export default function EconomicsChatbot() {
               }`}
             >
               <Briefcase className="w-3 h-3" />
-              Business 9609
+              Business
             </motion.button>
             <motion.button
               onClick={() => { setPersona('university'); setMessages([]); }}
@@ -877,7 +877,7 @@ export default function EconomicsChatbot() {
               }`}
             >
               <Calculator className="w-3 h-3" />
-              Accounting 9706
+              Accounting
             </motion.button>
             <motion.button
               onClick={() => { setPersona('sociology'); setMessages([]); }}
@@ -889,7 +889,7 @@ export default function EconomicsChatbot() {
               }`}
             >
               <Users className="w-3 h-3" />
-              Sociology 9699
+              Sociology
             </motion.button>
             <motion.button
               onClick={() => { setPersona('research'); setMessages([]); }}
@@ -927,12 +927,12 @@ export default function EconomicsChatbot() {
             {{ 
               'a-level': 'Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode',
               'university': 'Senior Research Fellow • LSE/Oxford Standard • Game Theory • Econometrics • Behavioral Econ',
-              'business': 'Cambridge Senior Examiner • 9609 Business Studies • AO-Structured Responses',
+              'business': 'Cambridge Senior Examiner • Business Studies • AO-Structured Responses',
               'law': 'Global Legal Scholar • IRAC Method • Contract • Tort • Criminal • Constitutional Law',
-              'psychology': 'Psychology Specialist • 9990 Core Studies • GRAVE Framework • PEEL Structure',
-              'accounting': 'Accounting & Finance Specialist • 9706 • Double Entry • IFRS • WACC • NPV/IRR',
-              'sociology': 'Sociology Specialist • 9699 • Functionalism • Marxism • Postmodernism • Globalisation',
-              'research': 'Research Methods Guide • IPQ 9980 • Sampling • Analysis • Harvard/APA Referencing',
+              'psychology': 'Psychology Specialist • Core Studies • GRAVE Framework • PEEL Structure',
+              'accounting': 'Accounting & Finance Specialist • Double Entry • IFRS • WACC • NPV/IRR',
+              'sociology': 'Sociology Specialist • Functionalism • Marxism • Postmodernism • Globalisation',
+              'research': 'Research Methods Guide • IPQ • Sampling • Analysis • Harvard/APA Referencing',
             }[persona]}
           </p>
         </motion.div>
@@ -962,7 +962,7 @@ export default function EconomicsChatbot() {
           {/* Academic Banner */}
           <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
             <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">
-              {{ 'a-level': 'Cambridge A-Level Economics • 9708', 'university': 'Research Fellow Mode • LSE/Oxford Academic Standard', 'business': 'Cambridge A-Level Business • 9609', 'law': 'Global Legal Scholar • Oxford/Harvard Standard', 'psychology': 'Cambridge Psychology • 9990 GRAVE Mode', 'accounting': 'Cambridge Accounting • 9706 • IFRS Mode', 'sociology': 'Cambridge Sociology • 9699', 'research': 'Research Methods • IPQ 9980' }[persona]}
+              {{ 'a-level': 'Cambridge A-Level Economics', 'university': 'Research Fellow Mode • LSE/Oxford Academic Standard', 'business': 'Cambridge A-Level Business', 'law': 'Global Legal Scholar • Oxford/Harvard Standard', 'psychology': 'Cambridge Psychology • GRAVE Mode', 'accounting': 'Cambridge Accounting • IFRS Mode', 'sociology': 'Cambridge Sociology', 'research': 'Research Methods • IPQ' }[persona]}
             </p>
             <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">
               {{ 'a-level': 'Text Analysis Mode', 'university': 'Guided Derivation Mode', 'business': 'AO-Structured Mode', 'law': 'IRAC Analysis Mode', 'psychology': 'PEEL + GRAVE Mode', 'accounting': 'Double-Entry + LaTeX Mode', 'sociology': 'PEEL + Perspectives Mode', 'research': 'Research Cycle Mode' }[persona]}
@@ -1021,7 +1021,7 @@ export default function EconomicsChatbot() {
                     {{ 'a-level': 'Prof. Econs', 'university': 'Dr. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods' }[persona]}
                   </p>
                   <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">
-                    {{ 'a-level': 'CIE Senior Fellow • Text Analysis Mode', 'university': 'Senior Research Fellow • LSE/Oxford Standard', 'business': 'Cambridge Senior Examiner • 9609', 'law': 'Global Legal Scholar • IRAC Method', 'psychology': 'Psychology Specialist • GRAVE Framework', 'accounting': 'Accounting Specialist • IFRS Standards', 'sociology': 'Sociology Specialist • Perspectives Mode', 'research': 'Research Methods Guide • IPQ 9980' }[persona]}
+                    {{ 'a-level': 'CIE Senior Fellow • Text Analysis Mode', 'university': 'Senior Research Fellow • LSE/Oxford Standard', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar • IRAC Method', 'psychology': 'Psychology Specialist • GRAVE Framework', 'accounting': 'Accounting Specialist • IFRS Standards', 'sociology': 'Sociology Specialist • Perspectives Mode', 'research': 'Research Methods Guide • IPQ' }[persona]}
                   </p>
                   <p className="text-sm mt-1 opacity-70 font-serif">
                     {{ 'a-level': 'Your Senior Cambridge Examiner is ready', 'university': 'Your Senior Research Fellow is ready for guided derivations', 'business': 'Your Cambridge Senior Examiner is ready for AO-structured answers', 'law': 'Your Legal Scholar is ready for IRAC analysis', 'psychology': 'Your Psychology Specialist is ready for GRAVE evaluations', 'accounting': 'Your Accounting Specialist is ready for double-entry and ratios', 'sociology': 'Your Sociology Specialist is ready for theoretical analysis', 'research': 'Your Research Methods Guide is ready for the research cycle' }[persona]}
@@ -1050,7 +1050,7 @@ export default function EconomicsChatbot() {
                         <div className="prose prose-invert prose-sm max-w-none tutor-professor-response">
                           {/* Lesson Header */}
                           <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
-                            {{ 'a-level': 'Syllabus 9708 (2026-2028) | CIE Senior Fellow', 'university': 'EconNexus Research Division | Senior Research Fellow | LSE/Oxford Standard', 'business': 'Syllabus 9609 (2026-2028) | Cambridge Senior Examiner', 'law': 'EconNexus Legal Division | Global Juris Doctor | IRAC Method', 'psychology': 'Cambridge Psychology 9990 | GRAVE + PEEL', 'accounting': 'Cambridge Accounting 9706 | IFRS Standards', 'sociology': 'Cambridge Sociology 9699 | Perspectives Analysis', 'research': 'Research Methods | IPQ 9980 | Research Cycle' }[persona]}
+                            {{ 'a-level': 'Cambridge A-Level Economics | CIE Senior Fellow', 'university': 'EconNexus Research Division | Senior Research Fellow | LSE/Oxford Standard', 'business': 'Cambridge A-Level Business | Cambridge Senior Examiner', 'law': 'EconNexus Legal Division | Global Juris Doctor | IRAC Method', 'psychology': 'Cambridge Psychology | GRAVE + PEEL', 'accounting': 'Cambridge Accounting | IFRS Standards', 'sociology': 'Cambridge Sociology | Perspectives Analysis', 'research': 'Research Methods | IPQ | Research Cycle' }[persona]}
                           </div>
                           <ReactMarkdown
                             remarkPlugins={[remarkMath]}
