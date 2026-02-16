@@ -48,6 +48,7 @@ const Index = () => {
         <section className="min-h-[60vh] flex items-center pt-24 md:pt-28 lg:pt-32">
           <div className="w-[95%] max-w-[1200px] mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-24">
             <div className="text-center">
+              {/* Persona Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -55,7 +56,7 @@ const Index = () => {
                 className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-6 md:mb-8"
               >
                 <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-secondary" />
-                <span className="text-xs md:text-sm text-muted-foreground">Elite A-Level Economics Portal</span>
+                <span className="text-xs md:text-sm text-muted-foreground">Now Live: Master-Level Law & Business AI Insights</span>
               </motion.div>
 
               <motion.h1
@@ -64,9 +65,9 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="font-serif text-fluid-hero font-bold leading-tight mb-6 md:mb-8"
               >
-                <span className="section-title">MASTER THE</span>
+                <span className="section-title">YOUR GLOBAL ACADEMIC ENGINE</span>
                 <br />
-                <span className="text-foreground">ECONOMICS IN 4D</span>
+                <span className="text-foreground">FOR ECON, LAW & BUSINESS</span>
               </motion.h1>
 
               <motion.p
@@ -75,8 +76,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-fluid-base lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 md:mb-12 px-2"
               >
-                Elite A-Level notes, interactive diagrams, and AI-powered insights. 
-                Designed for clarity, built for top grades.
+                Master A-Level Economics with elite interactive notes. Solve complex University Law, Economics and A-Level Business challenges with our specialized AI Fellow.
               </motion.p>
 
               <motion.div
@@ -99,8 +99,23 @@ const Index = () => {
                     style={{ backgroundSize: '200% 200%' }}
                   />
                   <span className="relative flex items-center justify-center gap-2">
-                    Start Learning
+                    Explore Economics Notes
                     <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Button>
+                <Button
+                  size="lg"
+                  onClick={() => {
+                    const chatbot = document.getElementById('ai-chatbot');
+                    if (chatbot) {
+                      chatbot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                  }}
+                  className="touch-target bg-primary hover:bg-primary/90 text-primary-foreground px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-medium rounded-xl cursor-pointer w-full sm:w-auto"
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    <MessageSquare className="w-4 h-4 md:w-5 md:h-5" />
+                    Consult the AI Specialist
                   </span>
                 </Button>
               </motion.div>
