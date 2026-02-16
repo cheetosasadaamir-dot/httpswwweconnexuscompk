@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,7 +21,7 @@ type Message = {
 
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error';
 
-type Persona = 'a-level' | 'university';
+type Persona = 'a-level' | 'university' | 'business';
 
 const QUICK_ACTIONS_ALEVEL = [
   { label: 'J-Curve Effect', query: 'Explain the J-Curve effect and why the current account worsens before improving after depreciation.' },
@@ -42,8 +42,17 @@ const QUICK_ACTIONS_UNIVERSITY = [
   { label: 'Pakistan Fiscal', query: 'Analyze Pakistan\'s fiscal policy using the latest Economic Survey data from the Ministry of Finance. Evaluate the fiscal deficit trajectory, debt sustainability, and IMF EFF conditionalities with PIDE evidence.' },
 ];
 
+const QUICK_ACTIONS_BUSINESS = [
+  { label: 'Stakeholder Conflict', query: 'Evaluate the extent to which shareholder objectives conflict with the interests of other stakeholders in a large public limited company.' },
+  { label: 'Break-even Analysis', query: 'Calculate and interpret break-even for a business with fixed costs of $50,000, variable cost per unit of $8, and selling price of $20. Evaluate the usefulness of break-even analysis.' },
+  { label: 'Motivation Theories', query: 'Compare Maslow\'s hierarchy of needs with Herzberg\'s two-factor theory. Evaluate which is more useful for a manager seeking to improve employee motivation.' },
+  { label: 'Marketing Mix', query: 'Analyse how the elements of the marketing mix should differ for a business launching a luxury product compared to a mass-market product.' },
+  { label: 'Lean Production', query: 'Evaluate the benefits and limitations of adopting lean production techniques such as Kaizen and JIT for a manufacturing business.' },
+  { label: 'Investment Appraisal', query: 'Compare the payback period, ARR, and NPV methods of investment appraisal. Evaluate which method is most useful for a business considering a major capital investment.' },
+];
+
 // Command words with AO (Assessment Objective) requirements
-const COMMAND_WORDS = [
+const COMMAND_WORDS_ECON = [
   { word: 'Define', ao: 'AO1', meaning: 'Give precise meaning', color: 'hsl(217, 91%, 60%)' },
   { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out purposes/reasons with evidence', color: 'hsl(185, 100%, 50%)' },
   { word: 'Analyse', ao: 'AO1+AO2', meaning: 'Examine in detail to show meaning and relationships', color: 'hsl(185, 100%, 50%)' },
@@ -51,6 +60,16 @@ const COMMAND_WORDS = [
   { word: 'Assess', ao: 'AO1+AO2+AO3', meaning: 'Make an informed judgement', color: 'hsl(43, 72%, 53%)' },
   { word: 'Discuss', ao: 'AO1+AO2+AO3', meaning: 'Write about issues in depth with structure', color: 'hsl(43, 72%, 53%)' },
   { word: 'Evaluate', ao: 'AO1+AO2+AO3', meaning: 'Judge quality, importance, or value critically', color: 'hsl(43, 72%, 53%)' },
+];
+
+const COMMAND_WORDS_BUSINESS = [
+  { word: 'Define', ao: 'AO1', meaning: 'Give precise meaning (2 marks)', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out purposes/reasons with development', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Analyse', ao: 'AO1-AO3', meaning: 'Chain of analysis: cause → effect → impact', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Evaluate', ao: 'AO1-AO4', meaning: 'Balanced argument + justified judgement', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Advise', ao: 'AO1-AO4', meaning: 'Suggest a course of action with justification', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Justify', ao: 'AO1-AO4', meaning: 'Support a case with evidence/argument', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Calculate', ao: 'AO1', meaning: 'Work out from given facts and figures', color: 'hsl(217, 91%, 60%)' },
 ];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-chat`;
@@ -75,6 +94,14 @@ const LOADING_STATES_UNIVERSITY = [
   'Synthesizing research findings...',
 ];
 
+const LOADING_STATES_BUSINESS = [
+  'Analyzing business context...',
+  'Building chain of analysis...',
+  'Applying AO framework...',
+  'Evaluating stakeholder impact...',
+  'Formulating examiner-grade response...',
+];
+
 // Prof. Econs Avatar Component
 const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   const sizeClasses = {
@@ -95,7 +122,7 @@ const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
 };
 
 // Exam Guidance Dropdown with AO Intelligence
-const ExamGuidance = () => {
+const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COMMAND_WORDS_ECON; syllabusCode: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
@@ -120,14 +147,14 @@ const ExamGuidance = () => {
             className="absolute top-full left-0 mt-2 z-50 w-80 rounded-xl p-3 shadow-2xl tutor-glassmorphism tutor-gold-glow"
           >
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-[hsl(43,72%,53%)] font-semibold font-serif">Cambridge 9708 Command Words</p>
+              <p className="text-xs text-[hsl(43,72%,53%)] font-semibold font-serif">Cambridge {syllabusCode} Command Words</p>
               <span className="tutor-verified-badge">
                 <CheckCircle2 className="w-2.5 h-2.5" />
                 2026-2028
               </span>
             </div>
             <div className="space-y-1.5">
-              {COMMAND_WORDS.map((cmd, i) => (
+              {commandWords.map((cmd, i) => (
                 <div key={i} className="flex items-start gap-2 text-xs p-1.5 rounded-lg hover:bg-white/5 transition-colors">
                   <span 
                     className="font-bold shrink-0" 
@@ -141,8 +168,8 @@ const ExamGuidance = () => {
               ))}
             </div>
             <div className="mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/15 space-y-1">
-              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: AO1 (35%) • AO2 (40%) • AO3 (25%)</p>
-              <p className="text-[10px] text-muted-foreground/60">Use "Evaluate" for A* level answers</p>
+              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {syllabusCode === '9609' ? 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)' : 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
+              <p className="text-[10px] text-muted-foreground/60">{syllabusCode === '9609' ? 'Use "Evaluate" for top-band AO4 marks' : 'Use "Evaluate" for A* level answers'}</p>
             </div>
           </motion.div>
         )}
@@ -153,7 +180,7 @@ const ExamGuidance = () => {
 
 // Premium typing animation with stream state awareness
 const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { streamState?: StreamState; persona?: Persona }) => {
-  const loadingStates = persona === 'university' ? LOADING_STATES_UNIVERSITY : LOADING_STATES_ALEVEL;
+  const loadingStates = persona === 'university' ? LOADING_STATES_UNIVERSITY : persona === 'business' ? LOADING_STATES_BUSINESS : LOADING_STATES_ALEVEL;
   const [loadingMessage, setLoadingMessage] = useState(loadingStates[0]);
   const [messageIndex, setMessageIndex] = useState(0);
 
@@ -289,7 +316,8 @@ export default function EconomicsChatbot() {
   const [retryCount, setRetryCount] = useState(0);
   const [persona, setPersona] = useState<Persona>('a-level');
   const [isChatActive, setIsChatActive] = useState(false);
-  const quickActions = persona === 'university' ? QUICK_ACTIONS_UNIVERSITY : QUICK_ACTIONS_ALEVEL;
+  const quickActions = persona === 'university' ? QUICK_ACTIONS_UNIVERSITY : persona === 'business' ? QUICK_ACTIONS_BUSINESS : QUICK_ACTIONS_ALEVEL;
+  const COMMAND_WORDS = persona === 'business' ? COMMAND_WORDS_BUSINESS : COMMAND_WORDS_ECON;
   const scrollRef = useRef<HTMLDivElement>(null);
   const chatSectionRef = useRef<HTMLElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -631,7 +659,7 @@ export default function EconomicsChatbot() {
           className="text-center mb-6 md:mb-8"
         >
           {/* Persona Toggle */}
-          <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
             <motion.button
               onClick={() => { setPersona('a-level'); setMessages([]); }}
               whileTap={{ scale: 0.97 }}
@@ -642,7 +670,19 @@ export default function EconomicsChatbot() {
               }`}
             >
               <BookOpen className="w-3 h-3" />
-              A-Level CIE
+              Economics 9708
+            </motion.button>
+            <motion.button
+              onClick={() => { setPersona('business'); setMessages([]); }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                persona === 'business'
+                  ? 'bg-[hsl(142,71%,45%)]/15 border-[hsl(142,71%,45%)]/50 text-[hsl(142,71%,45%)]'
+                  : 'border-border/30 text-muted-foreground hover:border-border/60'
+              }`}
+            >
+              <Briefcase className="w-3 h-3" />
+              Business 9609
             </motion.button>
             <motion.button
               onClick={() => { setPersona('university'); setMessages([]); }}
@@ -654,7 +694,7 @@ export default function EconomicsChatbot() {
               }`}
             >
               <GraduationCap className="w-3 h-3" />
-              University (Pakistan)
+              University
             </motion.button>
           </div>
 
@@ -662,10 +702,10 @@ export default function EconomicsChatbot() {
             <TutorAvatar size="sm" />
             <div className="text-left">
               <span className="text-xs md:text-sm text-[hsl(43,72%,53%)] font-semibold block">
-                {persona === 'university' ? 'Dr. Econs' : 'Prof. Econs'}
+                {persona === 'university' ? 'Dr. Econs' : persona === 'business' ? 'Prof. Business' : 'Prof. Econs'}
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground">
-                {persona === 'university' ? 'Senior Research Fellow' : 'CIE Senior Fellow'}
+                {persona === 'university' ? 'Senior Research Fellow' : persona === 'business' ? 'Cambridge Senior Examiner' : 'CIE Senior Fellow'}
               </span>
             </div>
             <div className="tutor-verified-badge ml-1 md:ml-2 text-[9px] md:text-[10px]">
@@ -674,11 +714,13 @@ export default function EconomicsChatbot() {
             </div>
           </div>
           <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
-            {persona === 'university' ? 'Research Query?' : 'Stuck on a Concept?'}
+            {persona === 'university' ? 'Research Query?' : persona === 'business' ? 'Business Question?' : 'Stuck on a Concept?'}
           </h2>
           <p className="text-fluid-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-2">
             {persona === 'university' 
               ? 'Senior Research Fellow • LSE/Oxford Standard • Game Theory • Econometrics • Behavioral Econ'
+              : persona === 'business'
+              ? 'Cambridge Senior Examiner • 9609 Business Studies • AO-Structured Responses'
               : 'Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode'}
           </p>
         </motion.div>
@@ -708,10 +750,10 @@ export default function EconomicsChatbot() {
           {/* Academic Banner */}
           <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
             <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">
-              {persona === 'university' ? 'Research Fellow Mode • LSE/Oxford Academic Standard' : 'Cambridge A-Level Economics • 9708'}
+              {persona === 'university' ? 'Research Fellow Mode • LSE/Oxford Academic Standard' : persona === 'business' ? 'Cambridge A-Level Business • 9609' : 'Cambridge A-Level Economics • 9708'}
             </p>
             <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">
-              {persona === 'university' ? 'Guided Derivation Mode' : 'Text Analysis Mode'}
+              {persona === 'university' ? 'Guided Derivation Mode' : persona === 'business' ? 'AO-Structured Mode' : 'Text Analysis Mode'}
             </span>
           </div>
 
@@ -738,7 +780,7 @@ export default function EconomicsChatbot() {
                     {action.label}
                   </motion.button>
                 ))}
-                {persona === 'a-level' && <ExamGuidance />}
+                {(persona === 'a-level' || persona === 'business') && <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={persona === 'business' ? '9609' : '9708'} />}
               </div>
             </div>
             
@@ -764,13 +806,13 @@ export default function EconomicsChatbot() {
                 <div className="text-muted-foreground">
                   <TutorAvatar size="lg" />
                   <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">
-                    {persona === 'university' ? 'Dr. Econs' : 'Prof. Econs'}
+                    {persona === 'university' ? 'Dr. Econs' : persona === 'business' ? 'Prof. Business' : 'Prof. Econs'}
                   </p>
                   <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">
-                    {persona === 'university' ? 'Senior Research Fellow • LSE/Oxford Standard' : 'CIE Senior Fellow • Text Analysis Mode'}
+                    {persona === 'university' ? 'Senior Research Fellow • LSE/Oxford Standard' : persona === 'business' ? 'Cambridge Senior Examiner • 9609' : 'CIE Senior Fellow • Text Analysis Mode'}
                   </p>
                   <p className="text-sm mt-1 opacity-70 font-serif">
-                    {persona === 'university' ? 'Your Senior Research Fellow is ready for guided derivations' : 'Your Senior Cambridge Examiner is ready'}
+                    {persona === 'university' ? 'Your Senior Research Fellow is ready for guided derivations' : persona === 'business' ? 'Your Cambridge Senior Examiner is ready for AO-structured answers' : 'Your Senior Cambridge Examiner is ready'}
                   </p>
                   <p className="text-xs mt-2 opacity-50">Ask follow-up questions — I remember our conversation!</p>
                 </div>
@@ -798,6 +840,8 @@ export default function EconomicsChatbot() {
                           <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
                             {persona === 'university' 
                               ? 'EconNexus Research Division | Senior Research Fellow | LSE/Oxford Standard'
+                              : persona === 'business'
+                              ? 'Syllabus 9609 (2026-2028) | Cambridge Senior Examiner'
                               : 'Syllabus 9708 (2026-2028) | CIE Senior Fellow'}
                           </div>
                           <ReactMarkdown
