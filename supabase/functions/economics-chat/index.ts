@@ -1915,8 +1915,40 @@ serve(async (req) => {
     const sanitizedMessages = messages.map((m: { role: string; content: string }, idx: number) => {
       const sanitizedContent = m.role === "user" ? sanitizeMessage(m.content) : m.content;
       
-      // If this is the last user message and an image was provided, use multimodal content
+    // If this is the last user message and an image was provided, use multimodal content with Two-Pass Vision Logic
       if (m.role === "user" && idx === messages.length - 1 && image && typeof image === "string" && image.startsWith("data:image/")) {
+        // Persona-specific image analysis priorities
+        const PERSONA_IMAGE_INSTRUCTIONS: Record<Persona, string> = {
+          'a-level': `PRIORITY: Identify all economic diagram labels, axes (price/quantity/GPL/real output), curve names (AD/AS/D/S), equilibrium points, and shift arrows. Ground every intersection with coordinates (e.g., "Equilibrium at (Q₁, P₁)"). Then apply CIE 9708 analysis.`,
+          'university': `PRIORITY: Identify all mathematical notation, Greek symbols, function definitions, and diagram labels with precision. Ground geometric intersections with coordinates. Then apply formal derivation with LaTeX.`,
+          'business': `PRIORITY: Identify all chart types (bar/pie/line), axis labels, data values, table headers, and business framework elements. Ground data points precisely. Then apply AO-structure analysis.`,
+          'law': `PRIORITY: Identify document structure — paragraph numbers, footnotes, section headers, case names, statutory references, and citation formats. Preserve hierarchy. Then apply IRAC/CREAC methodology.`,
+          'psychology': `PRIORITY: Identify study names, experimental setups, IV/DV labels, graph axes, brain region labels, and "Issues & Debates" mentioned in diagram captions. Then apply GRAVE framework.`,
+          'accounting': `PRIORITY: Identify all numerical values with vertical alignment in tables, column headers (Dr/Cr), account names, currency symbols, and formula structures. Preserve tabular layout precisely. Then apply IFRS/GAAP analysis.`,
+          'sociology': `PRIORITY: Identify document structure — paragraph headers, theoretical perspective labels, footnotes, data tables, and sociological terminology. Then apply PEEL structure with multiple perspectives.`,
+          'research': `PRIORITY: Identify methodology diagrams, flowcharts, sampling frameworks, statistical output tables, p-values, and variable labels. Then apply Research Cycle analysis.`,
+          'mathematics': `PRIORITY: Identify all mathematical symbols, superscripts, subscripts, fraction bars, integral/sigma notation, matrix brackets, and geometric constructions with precise vertical alignment. Then reconstruct into LaTeX and solve step-by-step.`,
+        };
+
+        const twoPassInstruction = `## TWO-PASS VISION ANALYSIS PROTOCOL (MANDATORY)
+
+**PASS 1 — DETECTION (Do this internally, do NOT skip):**
+Scan the entire image systematically:
+1. Identify EVERY text string, label, axis title, number, and symbol visible.
+2. For diagrams/graphs: Define spatial coordinates of all intersections (e.g., "Line A intersects Line B at approximately (4, 10)"). Do NOT hallucinate intersections that aren't visually present.
+3. For handwritten content: If text is blurry or ambiguous, state your best reading and flag uncertainty: "I read this as [X] — please confirm if this is correct."
+4. For tables: Map row/column headers and all cell values with vertical alignment preserved.
+
+**PASS 2 — EXECUTION:**
+Using ONLY the data extracted in Pass 1, reconstruct the problem into structured text or LaTeX, then apply the full ${persona} persona analysis framework to solve it.
+
+${PERSONA_IMAGE_INSTRUCTIONS[persona]}
+
+**DIAGRAM GROUNDING RULE:** For ANY chart, graph, or geometric figure, you MUST define spatial coordinates for key points. Never describe an intersection without grounding it (e.g., "curves cross at approximately (Q=200, P=15)"). If coordinates cannot be determined, state "coordinates not readable from image."
+
+**HANDWRITTEN OCR REFINEMENT:** If the image contains handwriting that is partially illegible, present your best interpretation in a brief confirmation block before proceeding to the solution:
+> "I interpret the handwritten content as: [your reading]. If this is incorrect, please clarify."`;
+
         return {
           role: m.role,
           content: [
@@ -1926,7 +1958,7 @@ serve(async (req) => {
             },
             {
               type: "text" as const,
-              text: sanitizedContent || "Analyze this image in detail. Identify any diagrams, equations, graphs, or handwritten content and provide a thorough academic explanation.",
+              text: `${twoPassInstruction}\n\n${sanitizedContent || "Analyze this image using the Two-Pass Vision Protocol above. Provide a thorough academic explanation."}`,
             },
           ],
         };
