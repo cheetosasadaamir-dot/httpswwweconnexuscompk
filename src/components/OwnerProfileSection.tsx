@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Linkedin, Twitter, Instagram } from 'lucide-react';
-import ownerPortrait from '@/assets/owner-portrait.jpeg';
 
 
 const OwnerProfileSection = () => {
@@ -47,23 +46,15 @@ const OwnerProfileSection = () => {
               
               {/* Portrait Column */}
               <div className="relative p-8 lg:p-10 flex flex-col items-center justify-center bg-gradient-to-b from-space-elevated/50 to-transparent border-b lg:border-b-0 lg:border-r border-white/5">
-                {/* Portrait Image */}
+                {/* Initials Avatar */}
                 <motion.div 
                   className="relative mb-6 group"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
-                  {/* Outer Glow Ring */}
                   <div className="absolute -inset-1 rounded-xl bg-neon-cyan/20 blur-md group-hover:bg-neon-cyan/40 transition-all duration-300" />
-                  
-                  {/* Image Container */}
-                  <div className="relative w-[60vw] max-w-[200px] lg:w-48 lg:max-w-none aspect-[3/4] rounded-xl overflow-hidden border-2 border-neon-cyan shadow-[0_0_25px_rgba(0,242,255,0.3)] group-hover:shadow-[0_0_40px_rgba(0,242,255,0.5)] transition-shadow duration-300">
-                    <img 
-                      src={ownerPortrait} 
-                      alt="Muhammad Asad Aamir - Founder"
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="relative w-[60vw] max-w-[200px] lg:w-48 lg:max-w-none aspect-[3/4] rounded-xl overflow-hidden border-2 border-neon-cyan shadow-[0_0_25px_rgba(0,242,255,0.3)] group-hover:shadow-[0_0_40px_rgba(0,242,255,0.5)] transition-shadow duration-300 bg-gradient-to-br from-neon-cyan/20 to-space-elevated flex items-center justify-center">
+                    <span className="font-display text-5xl lg:text-6xl font-bold text-neon-cyan/80 select-none">MA</span>
                   </div>
                 </motion.div>
 
