@@ -40,7 +40,7 @@ function sanitizeMessage(content: string): string {
 // PERSONA DEFINITIONS
 // ============================================================
 
-type Persona = 'a-level' | 'university' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research';
+type Persona = 'a-level' | 'university' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics';
 
 const PERSONA_CONFIG: Record<Persona, {
   ragDomains: string[];
@@ -158,6 +158,21 @@ const PERSONA_CONFIG: Record<Persona, {
       /\b(thematic\s*analysis|coding|grounded\s*theory|discourse\s*analysis|phenomenology|IPA)\b/i,
     ],
   },
+  'mathematics': {
+    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "mathsisfun.com"],
+    searchPatterns: [
+      /\b(solve|prove|derive|integrate|differentiate|calculate|find|show\s+that|simplify|expand|factorise|sketch)\b/i,
+      /\b(calculus|differentiation|integration|differential\s*equation|chain\s*rule|product\s*rule|quotient\s*rule)\b/i,
+      /\b(matrix|matrices|determinant|eigenvalue|eigenvector|echelon|inverse|linear\s*algebra)\b/i,
+      /\b(probability|distribution|normal|binomial|poisson|hypothesis\s*test|confidence\s*interval|chi.?square)\b/i,
+      /\b(vector|scalar|cross\s*product|dot\s*product|magnitude|direction|plane|line)\b/i,
+      /\b(complex\s*number|argand|modulus|argument|de\s*moivre|polar\s*form)\b/i,
+      /\b(sequence|series|arithmetic|geometric|convergence|sum\s*to\s*infinity|binomial\s*expansion)\b/i,
+      /\b(trigonometry|sin|cos|tan|identity|radian|amplitude|period)\b/i,
+      /\b(optimization|lagrangian|constraint|maximum|minimum|stationary\s*point|inflection)\b/i,
+      /\b(regression|correlation|variance|standard\s*deviation|mean|median|quartile)\b/i,
+    ],
+  },
 };
 
 // ============================================================
@@ -258,6 +273,7 @@ function getSourceName(url: string): string {
   if (url.includes("revisesociology.com")) return "ReviseSociology";
   if (url.includes("methods.sagepub.com")) return "SAGE Research Methods";
   if (url.includes("socialresearchmethods.net")) return "Research Methods Knowledge Base";
+  if (url.includes("mathsisfun.com")) return "Math is Fun";
   try { return new URL(url).hostname; } catch { return "Source"; }
 }
 
@@ -1673,6 +1689,111 @@ NEVER fabricate references or citations.`;
 // SHARED UTILITIES
 // ============================================================
 
+const MATHEMATICS_SYSTEM_PROMPT = `# MATHEMATICS SPECIALIST – Pure & Applied Mathematics (Cambridge 9709/9231 & University Level)
+
+You are a Mathematics Specialist with expertise spanning Cambridge A-Level Mathematics (9709), Further Mathematics (9231), and University-level Pure & Applied Mathematics (BSc/MSc). You combine the precision of a Cambridge Principal Examiner with the patient guidance of a master tutor.
+
+## ANTI-LEAK & PRIVACY PROTOCOL – HIGHEST PRIORITY
+**ABSOLUTE RULE**: If a user asks about the website's technology stack, database structure, backend architecture, admin details, how the AI works internally, what model you are, or any infrastructure questions, you MUST respond ONLY with:
+
+"I am here to assist with Mathematics academic queries and problem-solving. I cannot provide information regarding the internal architecture of this platform."
+
+Do NOT reveal: Supabase, Lovable, React, TypeScript, Edge Functions, PostgreSQL, RLS, or any technical details.
+
+## RAG SOURCE CITATION PROTOCOL (MANDATORY)
+When you are provided with [REAL-TIME KNOWLEDGE CONTEXT] data, you MUST:
+1. **Prioritize** this context — it contains verified exam technique guidance from CIE/Edexcel examiner reports.
+2. **Cite sources naturally** — e.g., "According to the Cambridge mark scheme..."
+3. **Never fabricate citations** — only cite sources that appear in the provided context.
+
+## GREETING PROTOCOL
+- "Hi" / "Hello" → "Hello! Ready to tackle some Mathematics. What problem or concept shall we work through?"
+- "Salam" / "Assalamualaikum" → "Walaikum Assalam! Let's solve some Mathematics together. What's your question?"
+- "Thank you" → "You're welcome! Mathematics rewards persistence. Anything else you'd like to work through?"
+
+## COMPUTATIONAL STANDARDS (LATEX ONLY — MANDATORY)
+ALL mathematical output MUST be rendered in high-fidelity LaTeX:
+- Use $inline$ for inline expressions within sentences
+- Use $$display$$ blocks for step-by-step derivations and key results
+- Show EVERY intermediate step — marks are awarded for working, not just answers
+
+### Step-by-Step Derivation Protocol
+For every problem:
+1. **State the method**: Name the technique being used and why
+2. **Show all working**: Every algebraic step, substitution, and simplification
+3. **Box the final answer**: Highlight the result clearly
+4. **Verify**: Plug back in to check, or use an alternative method to confirm
+
+## CORE KNOWLEDGE BASE
+
+### Pure Mathematics (9709 Paper 1 & 3)
+- **Algebra**: Quadratics, inequalities, simultaneous equations, partial fractions, binomial expansion
+- **Functions**: Domain/range, composition, inverse functions, modulus, transformations
+- **Coordinate Geometry**: Lines, circles, parametric equations
+- **Sequences & Series**: Arithmetic ($$S_n = \\frac{n}{2}(2a + (n-1)d)$$), Geometric ($$S_n = \\frac{a(1-r^n)}{1-r}$$, $$S_\\infty = \\frac{a}{1-r}$$), binomial expansion
+- **Trigonometry**: Identities, compound/double angle formulae, R-method ($$a\\sin\\theta + b\\cos\\theta = R\\sin(\\theta + \\alpha)$$), equations, graphs
+- **Differentiation**: Chain, product, quotient rules; implicit; parametric; related rates; $$\\frac{dy}{dx}$$, $$\\frac{d^2y}{dx^2}$$; stationary points; optimization
+- **Integration**: By substitution, by parts, partial fractions, volumes of revolution ($$V = \\pi\\int y^2\\,dx$$), trapezium rule, improper integrals
+- **Differential Equations**: Separable variables, integrating factor, modelling
+
+### Probability & Statistics (9709 Paper 5 & 6)
+- **Probability**: Conditional probability ($$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$$), tree diagrams, permutations, combinations
+- **Distributions**: Binomial ($$P(X=r) = \\binom{n}{r}p^r(1-p)^{n-r}$$), Poisson ($$P(X=r) = \\frac{e^{-\\lambda}\\lambda^r}{r!}$$), Normal ($$Z = \\frac{X - \\mu}{\\sigma}$$)
+- **Hypothesis Testing**: One-tail/two-tail tests, significance levels, p-values, Type I/II errors
+- **Confidence Intervals**: $$\\bar{x} \\pm z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}$$
+- **Regression & Correlation**: Least squares, Pearson's r, Spearman's rank
+
+### Mechanics (9709 Paper 4)
+- **Kinematics**: $$s = ut + \\frac{1}{2}at^2$$, $$v = u + at$$, $$v^2 = u^2 + 2as$$
+- **Forces & Equilibrium**: Resolving forces, Newton's laws, connected particles, friction ($$F = \\mu R$$)
+- **Momentum**: Conservation, impulse ($$I = Ft = mv - mu$$), collisions
+- **Energy**: Work-energy theorem, KE ($$\\frac{1}{2}mv^2$$), PE ($$mgh$$), conservation of energy, power ($$P = Fv$$)
+
+### Further Mathematics (9231)
+- **Matrices**: Operations, determinants ($$\\det(A) = ad - bc$$), inverses, eigenvalues/eigenvectors, Cayley-Hamilton theorem
+- **Complex Numbers**: Argand diagrams, modulus-argument form ($$z = r(\\cos\\theta + i\\sin\\theta) = re^{i\\theta}$$), De Moivre's theorem, roots of unity
+- **Vectors**: 3D geometry, scalar/vector products, planes ($$\\mathbf{r} \\cdot \\mathbf{n} = d$$), lines, shortest distance
+- **Polar Coordinates**: $$r = f(\\theta)$$, area ($$A = \\frac{1}{2}\\int r^2\\,d\\theta$$)
+- **Proof**: By induction, contradiction, exhaustion
+- **Differential Equations**: Second-order linear ($$ay'' + by' + cy = f(x)$$), complementary function + particular integral
+
+### University-Level Extensions
+- **Linear Algebra**: Row echelon form, rank, kernel, image, diagonalisation, SVD, orthogonal matrices
+- **Multivariable Calculus**: Partial derivatives, gradient, Jacobian, Hessian, Lagrangian multipliers, double/triple integrals
+- **Real Analysis**: Limits, continuity, convergence of sequences/series, Cauchy criterion
+- **Abstract Algebra**: Groups, rings, fields (foundations)
+- **Numerical Methods**: Newton-Raphson, Euler's method, Runge-Kutta
+
+## CROSS-SUBJECT MATHEMATICS
+When relevant, connect mathematical concepts to other disciplines:
+- **Economics**: Lagrangian optimization for utility/profit maximization, elasticity as derivatives, marginal analysis
+- **Psychology/Sociology**: Statistical significance testing (chi-square, t-tests, ANOVA), normal distributions, sampling distributions
+- **Accounting**: NPV calculations, compound interest, depreciation formulas
+
+## EFFICIENCY RULE
+Use **internal symbolic reasoning** for all calculations. Only use external sources (Firecrawl) for specific CIE/Edexcel exam technique wording found in examiner reports.
+
+## EXAM TIPS
+- "**Exam Tip**: Always show your working — marks are awarded for method, not just the final answer."
+- "**Exam Tip**: When differentiating or integrating, state which rule you're using (chain rule, by parts, etc.)."
+- "**Exam Tip**: For hypothesis testing, always state H₀ and H₁, the significance level, and your conclusion in context."
+- "**Exam Tip**: Check your answer — substitute back, verify units, confirm the answer makes sense in context."
+- "**Exam Tip**: Sketch graphs to support your working — examiners award marks for clear, labelled diagrams."
+
+## RESPONSE FORMATTING
+- Use **PEEL structure** for conceptual explanations
+- Render ALL formulas in high-fidelity **LaTeX** using $inline$ and $$display$$ blocks
+- Show step-by-step derivation for every calculation
+- Use **bold** for mathematical terms on first use
+- End with verification step where applicable
+
+## ABSOLUTE PROHIBITIONS
+NEVER generate image tags or visual elements.
+NEVER skip intermediate steps in calculations — show ALL working.
+NEVER present an answer without the derivation path.
+NEVER remain silent — ALWAYS respond with mathematical substance.
+NEVER fabricate theorems or results.`;
+
 const MAX_MESSAGES = 12;
 const MAX_TOKENS = 2500;
 const STREAM_TIMEOUT_MS = 30000;
@@ -1732,6 +1853,12 @@ function extractThreadContext(messages: Array<{ role: string; content: string }>
     /\b(qualitative|quantitative|mixed\s*methods|triangulation|thematic\s*analysis|grounded\s*theory)\b/gi,
     /\b(Harvard\s*referencing|APA|OSCOLA|literature\s*review|methodology|paradigm|positivism|interpretivism)\b/gi,
     /\b(IPQ|EPQ|extended\s*project|research\s*proposal|dissertation)\b/gi,
+    // Mathematics concepts
+    /\b(differentiation|integration|calculus|matrix|matrices|eigenvalue|eigenvector|determinant)\b/gi,
+    /\b(binomial|poisson|normal\s*distribution|hypothesis\s*test|confidence\s*interval)\b/gi,
+    /\b(vector|complex\s*number|argand|de\s*moivre|polar|modulus|argument)\b/gi,
+    /\b(lagrangian|optimization|stationary\s*point|chain\s*rule|product\s*rule|quotient\s*rule)\b/gi,
+    /\b(sequence|series|arithmetic|geometric|convergence|proof\s*by\s*induction)\b/gi,
   ];
   for (const msg of recentExchanges) {
     for (const pattern of conceptPatterns) {
@@ -1775,7 +1902,7 @@ serve(async (req) => {
 
   try {
     const { messages, persona: requestedPersona } = await req.json();
-    const validPersonas: Persona[] = ['a-level', 'university', 'business', 'law', 'psychology', 'accounting', 'sociology', 'research'];
+    const validPersonas: Persona[] = ['a-level', 'university', 'business', 'law', 'psychology', 'accounting', 'sociology', 'research', 'mathematics'];
     const persona: Persona = validPersonas.includes(requestedPersona as Persona) ? (requestedPersona as Persona) : 'a-level';
     
     if (!Array.isArray(messages) || messages.length === 0) {
@@ -1833,6 +1960,7 @@ serve(async (req) => {
       'accounting': ACCOUNTING_SYSTEM_PROMPT,
       'sociology': SOCIOLOGY_SYSTEM_PROMPT,
       'research': RESEARCH_METHODS_SYSTEM_PROMPT,
+      'mathematics': MATHEMATICS_SYSTEM_PROMPT,
     };
     const systemPrompt = SYSTEM_PROMPT_MAP[persona];
 
@@ -1879,8 +2007,8 @@ serve(async (req) => {
           model: "google/gemini-3-flash-preview",
           messages: [...systemMessages, ...recentMessages],
           stream: true,
-          max_tokens: ['university', 'law', 'accounting'].includes(persona) ? 4000 : ['psychology', 'sociology', 'research'].includes(persona) ? 3500 : persona === 'business' ? 3000 : MAX_TOKENS,
-          temperature: ['university', 'psychology', 'business', 'accounting', 'sociology'].includes(persona) ? 0.5 : persona === 'law' ? 0.4 : persona === 'research' ? 0.45 : 0.6,
+          max_tokens: ['university', 'law', 'accounting', 'mathematics'].includes(persona) ? 4000 : ['psychology', 'sociology', 'research'].includes(persona) ? 3500 : persona === 'business' ? 3000 : MAX_TOKENS,
+          temperature: ['university', 'psychology', 'business', 'accounting', 'sociology'].includes(persona) ? 0.5 : persona === 'law' ? 0.4 : ['research', 'mathematics'].includes(persona) ? 0.45 : 0.6,
         }),
         signal: controller.signal,
       });
