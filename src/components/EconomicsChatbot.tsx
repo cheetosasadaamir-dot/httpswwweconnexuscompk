@@ -865,7 +865,7 @@ export default function EconomicsChatbot() {
               }`}
             >
               <Brain className="w-3 h-3" />
-              Psychology 9990
+              Psychology
             </motion.button>
             <motion.button
               onClick={() => { setPersona('accounting'); setMessages([]); }}
