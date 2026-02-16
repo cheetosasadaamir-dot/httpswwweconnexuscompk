@@ -1871,13 +1871,24 @@ function extractThreadContext(messages: Array<{ role: string; content: string }>
   return `[Thread Context: Recent discussion involved ${uniqueConcepts.join(", ")}. Maintain continuity.]`;
 }
 
-function isFollowUpQuery(content: string): boolean {
+function extractTextContent(content: string | Array<{ type: string; text?: string }>): string {
+  if (typeof content === 'string') return content;
+  if (Array.isArray(content)) {
+    const textPart = content.find((c) => c.type === 'text');
+    return textPart?.text || '';
+  }
+  return '';
+}
+
+function isFollowUpQuery(content: string | Array<{ type: string; text?: string }>): boolean {
+  const text = extractTextContent(content);
+  if (!text) return false;
   const followUpPatterns = [
     /^(why|how|what\s+about|and\s+if|but|so|then|therefore)\b/i,
     /\b(this|that|it|the\s+shift|the\s+curve|mentioned|above|previous|earlier)\b/i,
     /^(ok|okay|right|got\s+it|i\s+see|understood)/i,
   ];
-  return followUpPatterns.some(p => p.test(content.trim()));
+  return followUpPatterns.some(p => p.test(text.trim()));
 }
 
 // ============================================================
@@ -1976,7 +1987,7 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
     }
 
     const lastUser = sanitizedMessages.filter((m: { role: string }) => m.role === "user").pop();
-    const userQuery = lastUser?.content || "";
+    const userQuery = extractTextContent(lastUser?.content || "");
     const isFollowUp = isFollowUpQuery(userQuery);
     const threadContext = extractThreadContext(sanitizedMessages);
     const recentMessages = sanitizedMessages.slice(-MAX_MESSAGES);

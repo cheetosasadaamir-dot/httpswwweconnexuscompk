@@ -187,6 +187,44 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-ch
 // Generate unique ID for messages
 const generateId = () => `msg_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
+/**
+ * Compress image before sending to AI — prevents connection resets
+ * Resizes to maxDim and compresses to target quality
+ */
+async function compressImage(file: File | Blob, maxDim = 1600, quality = 0.7): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let { width, height } = img;
+        
+        // Scale down if larger than maxDim
+        if (width > maxDim || height > maxDim) {
+          const ratio = Math.min(maxDim / width, maxDim / height);
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
+        }
+        
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) { reject(new Error('Canvas not supported')); return; }
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        // Output as JPEG for smaller size
+        const compressed = canvas.toDataURL('image/jpeg', quality);
+        resolve(compressed);
+      };
+      img.onerror = () => reject(new Error('Failed to load image'));
+      img.src = reader.result as string;
+    };
+    reader.onerror = () => reject(new Error('Failed to read file'));
+    reader.readAsDataURL(file);
+  });
+}
+
 // Premium loading state messages
 const LOADING_STATES_ALEVEL = [
   'Analyzing economic variables...',
@@ -790,13 +828,40 @@ export default function EconomicsChatbot() {
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to get response';
-      toast.error(errorMessage);
       
-      // Add error message as assistant response
+      // Dynamic Recovery: auto-retry with low-res image if connection reset and image was uploaded
+      const isConnectionReset = errorMessage.toLowerCase().includes('reset') || 
+                                 errorMessage.toLowerCase().includes('timeout') ||
+                                 errorMessage.toLowerCase().includes('aborted');
+      
+      if (isConnectionReset && userMsg.imageUrl && retryCount < 3) {
+        toast.info('Connection reset — retrying with optimized image...');
+        setRetryCount(prev => prev + 1);
+        try {
+          // Retry with a lower-res version
+          const lowResImage = await compressImage(
+            await (await fetch(userMsg.imageUrl)).blob() as File,
+            800, 0.5
+          );
+          const retryMessages = newMessages.map((m, i) => 
+            i === newMessages.length - 1 && m.imageUrl ? { ...m, imageUrl: lowResImage } : m
+          );
+          setMessages(retryMessages);
+          await streamChat(retryMessages);
+          return;
+        } catch (retryError) {
+          console.error('Retry failed:', retryError);
+        }
+      }
+      
+      toast.error(errorMessage);
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: `I am refining my analysis of this complex concept. ${errorMessage}. Please rephrase your question or check the AS/A2 notes section.`,
-        id: generateId()
+        content: isConnectionReset 
+          ? `⚠️ The image analysis timed out. Try uploading a clearer, smaller photo or crop to the specific diagram area. You can also type out the question text instead.`
+          : `I encountered an issue: ${errorMessage}. Try rephrasing your question or breaking it into simpler parts.`,
+        id: generateId(),
+        isError: true,
       }]);
     } finally {
       setIsLoading(false);
@@ -831,6 +896,8 @@ export default function EconomicsChatbot() {
     setIsLoading(false);
     setStreamState('idle');
     setRetryCount(0);
+    setUploadedImage(null);
+    setUploadedImageName('');
     toast.success('Chat cleared');
   };
 
@@ -862,7 +929,7 @@ export default function EconomicsChatbot() {
           {/* Persona Toggle */}
           <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
             <motion.button
-              onClick={() => { setPersona('a-level'); setMessages([]); }}
+              onClick={() => { setPersona('a-level'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'a-level'
@@ -874,7 +941,7 @@ export default function EconomicsChatbot() {
               Economics
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('business'); setMessages([]); }}
+              onClick={() => { setPersona('business'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'business'
@@ -886,7 +953,7 @@ export default function EconomicsChatbot() {
               Business
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('university'); setMessages([]); }}
+              onClick={() => { setPersona('university'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'university'
@@ -898,7 +965,7 @@ export default function EconomicsChatbot() {
               University
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('law'); setMessages([]); }}
+              onClick={() => { setPersona('law'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'law'
@@ -910,7 +977,7 @@ export default function EconomicsChatbot() {
               Law
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('psychology'); setMessages([]); }}
+              onClick={() => { setPersona('psychology'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'psychology'
@@ -922,7 +989,7 @@ export default function EconomicsChatbot() {
               Psychology
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('accounting'); setMessages([]); }}
+              onClick={() => { setPersona('accounting'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'accounting'
@@ -934,7 +1001,7 @@ export default function EconomicsChatbot() {
               Accounting
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('sociology'); setMessages([]); }}
+              onClick={() => { setPersona('sociology'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'sociology'
@@ -946,7 +1013,7 @@ export default function EconomicsChatbot() {
               Sociology
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('research'); setMessages([]); }}
+              onClick={() => { setPersona('research'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'research'
@@ -958,7 +1025,7 @@ export default function EconomicsChatbot() {
               Research IPQ
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('mathematics'); setMessages([]); }}
+              onClick={() => { setPersona('mathematics'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                 persona === 'mathematics'
@@ -1208,19 +1275,22 @@ export default function EconomicsChatbot() {
                 type="file"
                 accept="image/*"
                 className="hidden"
-                onChange={(e) => {
+                onChange={async (e) => {
                   const file = e.target.files?.[0];
                   if (!file) return;
-                  if (file.size > 5 * 1024 * 1024) {
-                    toast.error('Image must be under 5MB');
+                  if (file.size > 10 * 1024 * 1024) {
+                    toast.error('Image must be under 10MB');
                     return;
                   }
-                  const reader = new FileReader();
-                  reader.onload = () => {
-                    setUploadedImage(reader.result as string);
+                  toast.info('Compressing image...');
+                  try {
+                    const compressed = await compressImage(file);
+                    setUploadedImage(compressed);
                     setUploadedImageName(file.name);
-                  };
-                  reader.readAsDataURL(file);
+                    toast.success('Image ready for analysis');
+                  } catch {
+                    toast.error('Failed to process image');
+                  }
                   e.target.value = '';
                 }}
               />
