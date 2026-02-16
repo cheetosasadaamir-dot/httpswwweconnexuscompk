@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,7 +21,7 @@ type Message = {
 
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error';
 
-type Persona = 'a-level' | 'university' | 'business' | 'law';
+type Persona = 'a-level' | 'university' | 'business' | 'law' | 'psychology';
 
 const QUICK_ACTIONS_ALEVEL = [
   { label: 'J-Curve Effect', query: 'Explain the J-Curve effect and why the current account worsens before improving after depreciation.' },
@@ -60,6 +60,15 @@ const QUICK_ACTIONS_LAW = [
   { label: 'US Due Process', query: 'Compare substantive and procedural due process under the 5th and 14th Amendments to the US Constitution, with reference to Mathews v. Eldridge (1976).' },
 ];
 
+const QUICK_ACTIONS_PSYCHOLOGY = [
+  { label: 'Milgram Obedience', query: 'Using the GRAVE framework, evaluate Milgram\'s (1963) study of obedience. Assess the generalizability, reliability, application, validity, and ethics of his findings.' },
+  { label: 'Determinism vs Free Will', query: 'Discuss the determinism vs free will debate in psychology, using examples from the biological and cognitive approaches.' },
+  { label: 'Memory Models', query: 'Compare and contrast the Multi-Store Model (Atkinson & Shiffrin) with the Working Memory Model (Baddeley & Hitch). Evaluate using research evidence.' },
+  { label: 'Bandura Bobo Doll', query: 'Evaluate Bandura\'s (1961) Bobo Doll experiment using the GRAVE framework. How does it support Social Learning Theory?' },
+  { label: 'Nature vs Nurture', query: 'Evaluate the nature-nurture debate with reference to twin studies, adoption studies, and the interactionist approach.' },
+  { label: 'Type I & II Errors', query: 'Explain Type I and Type II errors in psychological research. How do significance levels and sample size affect these errors? Include ANOVA context.' },
+];
+
 // Command words with AO (Assessment Objective) requirements
 const COMMAND_WORDS_ECON = [
   { word: 'Define', ao: 'AO1', meaning: 'Give precise meaning', color: 'hsl(217, 91%, 60%)' },
@@ -89,6 +98,15 @@ const COMMAND_WORDS_LAW = [
   { word: 'Discuss', ao: 'AO1-AO4', meaning: 'Balanced argument with ratio/obiter distinction', color: 'hsl(43, 72%, 53%)' },
   { word: 'Advise', ao: 'AO1-AO4', meaning: 'Apply law to facts using IRAC method', color: 'hsl(43, 72%, 53%)' },
   { word: 'Compare', ao: 'AO1-AO3', meaning: 'Cross-jurisdictional or doctrinal comparison', color: 'hsl(280, 70%, 55%)' },
+];
+
+const COMMAND_WORDS_PSYCHOLOGY = [
+  { word: 'Describe', ao: 'AO1', meaning: 'Present knowledge of study/theory', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Show understanding with reasons', color: 'hsl(330, 70%, 55%)' },
+  { word: 'Evaluate', ao: 'AO3', meaning: 'GRAVE: Generalizability, Reliability, Application, Validity, Ethics', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Discuss', ao: 'AO1-AO3', meaning: 'Balanced argument with research evidence', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Compare', ao: 'AO1-AO3', meaning: 'Similarities and differences between approaches', color: 'hsl(330, 70%, 55%)' },
+  { word: 'Suggest', ao: 'AO2', meaning: 'Apply knowledge to novel scenario', color: 'hsl(330, 70%, 55%)' },
 ];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-chat`;
@@ -127,6 +145,14 @@ const LOADING_STATES_LAW = [
   'Cross-referencing statutes...',
   'Analyzing ratio decidendi...',
   'Formulating legal opinion...',
+];
+
+const LOADING_STATES_PSYCHOLOGY = [
+  'Reviewing core studies...',
+  'Applying GRAVE framework...',
+  'Analyzing research methodology...',
+  'Evaluating theoretical perspectives...',
+  'Constructing PEEL response...',
 ];
 
 // Prof. Econs Avatar Component
@@ -195,8 +221,8 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
               ))}
             </div>
             <div className="mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/15 space-y-1">
-              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {syllabusCode === '9609' ? 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)' : syllabusCode === 'Law' ? 'IRAC: Issue • Rule • Application • Conclusion' : 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
-              <p className="text-[10px] text-muted-foreground/60">{syllabusCode === '9609' ? 'Use "Evaluate" for top-band AO4 marks' : syllabusCode === 'Law' ? 'Always cite case authority (OSCOLA/Bluebook)' : 'Use "Evaluate" for A* level answers'}</p>
+              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {syllabusCode === '9609' ? 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)' : syllabusCode === 'Law' ? 'IRAC: Issue • Rule • Application • Conclusion' : syllabusCode === '9990' ? 'AO1 (25%) • AO2 (25%) • AO3 (50%)' : 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
+              <p className="text-[10px] text-muted-foreground/60">{syllabusCode === '9609' ? 'Use "Evaluate" for top-band AO4 marks' : syllabusCode === 'Law' ? 'Always cite case authority (OSCOLA/Bluebook)' : syllabusCode === '9990' ? 'Use GRAVE to evaluate core studies' : 'Use "Evaluate" for A* level answers'}</p>
             </div>
           </motion.div>
         )}
@@ -207,7 +233,7 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
 
 // Premium typing animation with stream state awareness
 const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { streamState?: StreamState; persona?: Persona }) => {
-  const loadingStates = persona === 'university' ? LOADING_STATES_UNIVERSITY : persona === 'business' ? LOADING_STATES_BUSINESS : persona === 'law' ? LOADING_STATES_LAW : LOADING_STATES_ALEVEL;
+  const loadingStates = persona === 'university' ? LOADING_STATES_UNIVERSITY : persona === 'business' ? LOADING_STATES_BUSINESS : persona === 'law' ? LOADING_STATES_LAW : persona === 'psychology' ? LOADING_STATES_PSYCHOLOGY : LOADING_STATES_ALEVEL;
   const [loadingMessage, setLoadingMessage] = useState(loadingStates[0]);
   const [messageIndex, setMessageIndex] = useState(0);
 
@@ -343,8 +369,8 @@ export default function EconomicsChatbot() {
   const [retryCount, setRetryCount] = useState(0);
   const [persona, setPersona] = useState<Persona>('a-level');
   const [isChatActive, setIsChatActive] = useState(false);
-  const quickActions = persona === 'university' ? QUICK_ACTIONS_UNIVERSITY : persona === 'business' ? QUICK_ACTIONS_BUSINESS : persona === 'law' ? QUICK_ACTIONS_LAW : QUICK_ACTIONS_ALEVEL;
-  const COMMAND_WORDS = persona === 'business' ? COMMAND_WORDS_BUSINESS : persona === 'law' ? COMMAND_WORDS_LAW : COMMAND_WORDS_ECON;
+  const quickActions = persona === 'university' ? QUICK_ACTIONS_UNIVERSITY : persona === 'business' ? QUICK_ACTIONS_BUSINESS : persona === 'law' ? QUICK_ACTIONS_LAW : persona === 'psychology' ? QUICK_ACTIONS_PSYCHOLOGY : QUICK_ACTIONS_ALEVEL;
+  const COMMAND_WORDS = persona === 'business' ? COMMAND_WORDS_BUSINESS : persona === 'law' ? COMMAND_WORDS_LAW : persona === 'psychology' ? COMMAND_WORDS_PSYCHOLOGY : COMMAND_WORDS_ECON;
   const scrollRef = useRef<HTMLDivElement>(null);
   const chatSectionRef = useRef<HTMLElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -736,25 +762,37 @@ export default function EconomicsChatbot() {
               <Scale className="w-3 h-3" />
               Law
             </motion.button>
+            <motion.button
+              onClick={() => { setPersona('psychology'); setMessages([]); }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                persona === 'psychology'
+                  ? 'bg-[hsl(330,70%,55%)]/15 border-[hsl(330,70%,55%)]/50 text-[hsl(330,70%,55%)]'
+                  : 'border-border/30 text-muted-foreground hover:border-border/60'
+              }`}
+            >
+              <Brain className="w-3 h-3" />
+              Psychology 9990
+            </motion.button>
           </div>
 
           <div className="inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-3 md:mb-4">
             <TutorAvatar size="sm" />
             <div className="text-left">
               <span className="text-xs md:text-sm text-[hsl(43,72%,53%)] font-semibold block">
-                {persona === 'university' ? 'Dr. Econs' : persona === 'business' ? 'Prof. Business' : persona === 'law' ? 'Dr. Juris' : 'Prof. Econs'}
+                {persona === 'university' ? 'Dr. Econs' : persona === 'business' ? 'Prof. Business' : persona === 'law' ? 'Dr. Juris' : persona === 'psychology' ? 'Dr. Psyche' : 'Prof. Econs'}
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground">
-                {persona === 'university' ? 'Senior Research Fellow' : persona === 'business' ? 'Cambridge Senior Examiner' : persona === 'law' ? 'Global Legal Scholar' : 'CIE Senior Fellow'}
+                {persona === 'university' ? 'Senior Research Fellow' : persona === 'business' ? 'Cambridge Senior Examiner' : persona === 'law' ? 'Global Legal Scholar' : persona === 'psychology' ? 'Psychology Specialist' : 'CIE Senior Fellow'}
               </span>
             </div>
             <div className="tutor-verified-badge ml-1 md:ml-2 text-[9px] md:text-[10px]">
               <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3" />
-              <span>{persona === 'university' ? 'HEC' : persona === 'law' ? 'IRAC' : '2026-2028'}</span>
+              <span>{persona === 'university' ? 'HEC' : persona === 'law' ? 'IRAC' : persona === 'psychology' ? 'GRAVE' : '2026-2028'}</span>
             </div>
           </div>
           <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
-            {persona === 'university' ? 'Research Query?' : persona === 'business' ? 'Business Question?' : persona === 'law' ? 'Legal Question?' : 'Stuck on a Concept?'}
+            {persona === 'university' ? 'Research Query?' : persona === 'business' ? 'Business Question?' : persona === 'law' ? 'Legal Question?' : persona === 'psychology' ? 'Psychology Question?' : 'Stuck on a Concept?'}
           </h2>
           <p className="text-fluid-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-2">
             {persona === 'university' 
@@ -763,6 +801,8 @@ export default function EconomicsChatbot() {
               ? 'Cambridge Senior Examiner • 9609 Business Studies • AO-Structured Responses'
               : persona === 'law'
               ? 'Global Legal Scholar • IRAC Method • Contract • Tort • Criminal • Constitutional Law'
+              : persona === 'psychology'
+              ? 'Psychology Specialist • 9990 Core Studies • GRAVE Framework • PEEL Structure'
               : 'Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode'}
           </p>
         </motion.div>
@@ -792,10 +832,10 @@ export default function EconomicsChatbot() {
           {/* Academic Banner */}
           <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
             <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">
-              {persona === 'university' ? 'Research Fellow Mode • LSE/Oxford Academic Standard' : persona === 'business' ? 'Cambridge A-Level Business • 9609' : persona === 'law' ? 'Global Legal Scholar • Oxford/Harvard Standard' : 'Cambridge A-Level Economics • 9708'}
+              {persona === 'university' ? 'Research Fellow Mode • LSE/Oxford Academic Standard' : persona === 'business' ? 'Cambridge A-Level Business • 9609' : persona === 'law' ? 'Global Legal Scholar • Oxford/Harvard Standard' : persona === 'psychology' ? 'Cambridge Psychology • 9990 GRAVE Mode' : 'Cambridge A-Level Economics • 9708'}
             </p>
             <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">
-              {persona === 'university' ? 'Guided Derivation Mode' : persona === 'business' ? 'AO-Structured Mode' : persona === 'law' ? 'IRAC Analysis Mode' : 'Text Analysis Mode'}
+              {persona === 'university' ? 'Guided Derivation Mode' : persona === 'business' ? 'AO-Structured Mode' : persona === 'law' ? 'IRAC Analysis Mode' : persona === 'psychology' ? 'PEEL + GRAVE Mode' : 'Text Analysis Mode'}
             </span>
           </div>
 
@@ -822,7 +862,7 @@ export default function EconomicsChatbot() {
                     {action.label}
                   </motion.button>
                 ))}
-                {(persona === 'a-level' || persona === 'business' || persona === 'law') && <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={persona === 'business' ? '9609' : persona === 'law' ? 'Law' : '9708'} />}
+                {(persona === 'a-level' || persona === 'business' || persona === 'law' || persona === 'psychology') && <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={persona === 'business' ? '9609' : persona === 'law' ? 'Law' : persona === 'psychology' ? '9990' : '9708'} />}
               </div>
             </div>
             
@@ -848,13 +888,13 @@ export default function EconomicsChatbot() {
                 <div className="text-muted-foreground">
                   <TutorAvatar size="lg" />
                   <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">
-                    {persona === 'university' ? 'Dr. Econs' : persona === 'business' ? 'Prof. Business' : persona === 'law' ? 'Dr. Juris' : 'Prof. Econs'}
+                    {persona === 'university' ? 'Dr. Econs' : persona === 'business' ? 'Prof. Business' : persona === 'law' ? 'Dr. Juris' : persona === 'psychology' ? 'Dr. Psyche' : 'Prof. Econs'}
                   </p>
                   <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">
-                    {persona === 'university' ? 'Senior Research Fellow • LSE/Oxford Standard' : persona === 'business' ? 'Cambridge Senior Examiner • 9609' : persona === 'law' ? 'Global Legal Scholar • IRAC Method' : 'CIE Senior Fellow • Text Analysis Mode'}
+                    {persona === 'university' ? 'Senior Research Fellow • LSE/Oxford Standard' : persona === 'business' ? 'Cambridge Senior Examiner • 9609' : persona === 'law' ? 'Global Legal Scholar • IRAC Method' : persona === 'psychology' ? 'Psychology Specialist • GRAVE Framework' : 'CIE Senior Fellow • Text Analysis Mode'}
                   </p>
                   <p className="text-sm mt-1 opacity-70 font-serif">
-                    {persona === 'university' ? 'Your Senior Research Fellow is ready for guided derivations' : persona === 'business' ? 'Your Cambridge Senior Examiner is ready for AO-structured answers' : persona === 'law' ? 'Your Legal Scholar is ready for IRAC analysis' : 'Your Senior Cambridge Examiner is ready'}
+                    {persona === 'university' ? 'Your Senior Research Fellow is ready for guided derivations' : persona === 'business' ? 'Your Cambridge Senior Examiner is ready for AO-structured answers' : persona === 'law' ? 'Your Legal Scholar is ready for IRAC analysis' : persona === 'psychology' ? 'Your Psychology Specialist is ready for GRAVE evaluations' : 'Your Senior Cambridge Examiner is ready'}
                   </p>
                   <p className="text-xs mt-2 opacity-50">Ask follow-up questions — I remember our conversation!</p>
                 </div>

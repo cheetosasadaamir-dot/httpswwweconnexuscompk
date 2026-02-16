@@ -56,7 +56,7 @@ const Index = () => {
                 className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-6 md:mb-8"
               >
                 <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-secondary" />
-                <span className="text-xs md:text-sm text-muted-foreground">Now Live: Master-Level Law & Business AI Insights</span>
+                <span className="text-xs md:text-sm text-muted-foreground">Now Live: Master-Level Law, Business & Psychology AI Insights</span>
               </motion.div>
 
               <motion.h1
@@ -67,7 +67,7 @@ const Index = () => {
               >
                 <span className="section-title">YOUR GLOBAL ACADEMIC ENGINE</span>
                 <br />
-                <span className="text-foreground">FOR ECON, LAW & BUSINESS</span>
+                <span className="text-foreground">FOR ECON, LAW, BUSINESS & PSYCHOLOGY</span>
               </motion.h1>
 
               <motion.p
@@ -76,7 +76,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-fluid-base lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 md:mb-12 px-2"
               >
-                Master A-Level Economics with elite interactive notes. Solve complex University Law, Economics and A-Level Business challenges with our specialized AI Fellow.
+                Master A-Level Economics with elite interactive notes. Solve complex University Law, Economics, A-Level Business and Psychology challenges with our specialized AI Fellow.
               </motion.p>
 
               <motion.div
