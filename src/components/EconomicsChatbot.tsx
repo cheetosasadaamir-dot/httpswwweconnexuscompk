@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -17,6 +17,7 @@ type Message = {
   content: string;
   id: string;
   isError?: boolean;
+  imageUrl?: string;
 };
 
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error';
@@ -478,6 +479,9 @@ export default function EconomicsChatbot() {
   const [retryCount, setRetryCount] = useState(0);
   const [persona, setPersona] = useState<Persona>('a-level');
   const [isChatActive, setIsChatActive] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [uploadedImageName, setUploadedImageName] = useState<string>('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const QUICK_MAP: Record<Persona, typeof QUICK_ACTIONS_ALEVEL> = {
     'a-level': QUICK_ACTIONS_ALEVEL, 'university': QUICK_ACTIONS_UNIVERSITY, 'business': QUICK_ACTIONS_BUSINESS,
     'law': QUICK_ACTIONS_LAW, 'psychology': QUICK_ACTIONS_PSYCHOLOGY, 'accounting': QUICK_ACTIONS_ACCOUNTING,
@@ -556,6 +560,8 @@ export default function EconomicsChatbot() {
     }, 45000);
     
     try {
+      // Find the last user message to check for image
+      const lastUserMsg = userMessages[userMessages.length - 1];
       const resp = await fetch(CHAT_URL, {
         method: 'POST',
         headers: {
@@ -564,7 +570,8 @@ export default function EconomicsChatbot() {
         },
         body: JSON.stringify({ 
           messages: userMessages.map(m => ({ role: m.role, content: m.content })),
-          persona
+          persona,
+          ...(lastUserMsg?.imageUrl ? { image: lastUserMsg.imageUrl } : {}),
         }),
         signal: abortControllerRef.current.signal,
       });
@@ -728,11 +735,11 @@ export default function EconomicsChatbot() {
 
   const handleSend = async (query?: string) => {
     const rawText = query || input.trim();
-    if (!rawText || isLoading) return;
+    if ((!rawText && !uploadedImage) || isLoading) return;
 
     // Sanitize input
-    const messageText = sanitizeInput(rawText);
-    if (!messageText) {
+    const messageText = rawText ? sanitizeInput(rawText) : '';
+    if (rawText && !messageText) {
       toast.error('Please enter a valid message');
       return;
     }
@@ -751,10 +758,17 @@ export default function EconomicsChatbot() {
       return;
     }
 
-    const userMsg: Message = { role: 'user', content: messageText, id: generateId() };
+    const userMsg: Message = { 
+      role: 'user', 
+      content: messageText || (uploadedImage ? `[Uploaded image: ${uploadedImageName}]` : ''), 
+      id: generateId(),
+      ...(uploadedImage ? { imageUrl: uploadedImage } : {}),
+    };
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
     setInput('');
+    setUploadedImage(null);
+    setUploadedImageName('');
     setIsLoading(true);
 
     try {
@@ -1125,7 +1139,12 @@ export default function EconomicsChatbot() {
                           <CopyButton text={msg.content} />
                         </div>
                       ) : (
-                        <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                        <div>
+                          {msg.imageUrl && (
+                            <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
+                          )}
+                          <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                        </div>
                       )}
                     </div>
                     {msg.role === 'user' && (
@@ -1158,12 +1177,57 @@ export default function EconomicsChatbot() {
 
           {/* Input Area - Mobile keyboard-safe with proper padding */}
           <div className="relative p-3 lg:p-4 border-t border-[hsl(43,72%,53%)]/15 safe-area-inset">
+            {/* Image preview */}
+            {uploadedImage && (
+              <div className="flex items-center gap-2 mb-2 p-2 rounded-lg bg-white/5 border border-[hsl(43,72%,53%)]/20">
+                <img src={uploadedImage} alt="Upload preview" className="w-12 h-12 rounded object-cover" />
+                <span className="text-xs text-muted-foreground flex-1 truncate">{uploadedImageName}</span>
+                <button onClick={() => { setUploadedImage(null); setUploadedImageName(''); }} className="text-muted-foreground hover:text-destructive">
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            )}
             <div className="flex gap-2 items-center">
+              {/* Hidden file input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  if (file.size > 5 * 1024 * 1024) {
+                    toast.error('Image must be under 5MB');
+                    return;
+                  }
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    setUploadedImage(reader.result as string);
+                    setUploadedImageName(file.name);
+                  };
+                  reader.readAsDataURL(file);
+                  e.target.value = '';
+                }}
+              />
+              
+              {/* Image upload button */}
+              <Button
+                onClick={() => fileInputRef.current?.click()}
+                variant="outline"
+                size="icon"
+                disabled={isLoading}
+                className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 touch-target shrink-0"
+                title="Upload image for analysis"
+              >
+                <ImagePlus className="w-4 h-4 text-[hsl(43,72%,53%)]" />
+              </Button>
+
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask a question..."
+                placeholder={uploadedImage ? "Describe what to analyze..." : "Ask a question..."}
                 disabled={isLoading}
                 className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans h-11 md:h-10"
               />
@@ -1183,7 +1247,7 @@ export default function EconomicsChatbot() {
               
               <Button
                 onClick={() => handleSend()}
-                disabled={!input.trim() || isLoading}
+                disabled={(!input.trim() && !uploadedImage) || isLoading}
                 size="icon"
                 className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg touch-target"
               >

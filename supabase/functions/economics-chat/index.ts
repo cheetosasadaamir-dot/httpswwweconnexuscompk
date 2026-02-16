@@ -1901,7 +1901,7 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, persona: requestedPersona } = await req.json();
+    const { messages, persona: requestedPersona, image } = await req.json();
     const validPersonas: Persona[] = ['a-level', 'university', 'business', 'law', 'psychology', 'accounting', 'sociology', 'research', 'mathematics'];
     const persona: Persona = validPersonas.includes(requestedPersona as Persona) ? (requestedPersona as Persona) : 'a-level';
     
@@ -1912,10 +1912,28 @@ serve(async (req) => {
       );
     }
     
-    const sanitizedMessages = messages.map((m: { role: string; content: string }) => ({
-      role: m.role,
-      content: m.role === "user" ? sanitizeMessage(m.content) : m.content
-    }));
+    const sanitizedMessages = messages.map((m: { role: string; content: string }, idx: number) => {
+      const sanitizedContent = m.role === "user" ? sanitizeMessage(m.content) : m.content;
+      
+      // If this is the last user message and an image was provided, use multimodal content
+      if (m.role === "user" && idx === messages.length - 1 && image && typeof image === "string" && image.startsWith("data:image/")) {
+        return {
+          role: m.role,
+          content: [
+            {
+              type: "image_url" as const,
+              image_url: { url: image },
+            },
+            {
+              type: "text" as const,
+              text: sanitizedContent || "Analyze this image in detail. Identify any diagrams, equations, graphs, or handwritten content and provide a thorough academic explanation.",
+            },
+          ],
+        };
+      }
+      
+      return { role: m.role, content: sanitizedContent };
+    });
     
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
@@ -2004,7 +2022,7 @@ serve(async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
+          model: image ? "google/gemini-2.5-flash" : "google/gemini-3-flash-preview",
           messages: [...systemMessages, ...recentMessages],
           stream: true,
           max_tokens: ['university', 'law', 'accounting', 'mathematics'].includes(persona) ? 4000 : ['psychology', 'sociology', 'research'].includes(persona) ? 3500 : persona === 'business' ? 3000 : MAX_TOKENS,
