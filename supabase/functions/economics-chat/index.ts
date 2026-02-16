@@ -72,7 +72,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'business': {
-    ragDomains: ["tutor2u.net", "savemyexams.com", "znotes.org", "cambridgeinternational.org"],
+    ragDomains: ["tutor2u.net", "savemyexams.com", "znotes.org", "cambridgeinternational.org", "physicsandmathstutor.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|justify|identify|calculate)\b/i,
       /\b(business|enterprise|entrepreneur|intrapreneur|stakeholder|shareholder|objective|strategy|mission|CSR)\b/i,
@@ -163,6 +163,10 @@ function getSourceName(url: string): string {
   if (url.includes("pide.org.pk")) return "PIDE";
   if (url.includes("finance.gov.pk")) return "Ministry of Finance Pakistan";
   if (url.includes("sdpi.org")) return "SDPI";
+  if (url.includes("savemyexams.com")) return "Save My Exams";
+  if (url.includes("znotes.org")) return "ZNotes";
+  if (url.includes("physicsandmathstutor.com")) return "Physics & Maths Tutor";
+  if (url.includes("cambridgeinternational.org")) return "Cambridge International";
   try { return new URL(url).hostname; } catch { return "Source"; }
 }
 
@@ -636,9 +640,19 @@ You MUST calibrate your response depth strictly to the command word used:
 ### "Evaluate" / "Discuss" / "Assess" / "To what extent" (AO1 + AO2 + AO3 + AO4 — typically 10-16 marks)
 - Requires balanced argument (arguments FOR and AGAINST)
 - Must include a **justified conclusion** that does NOT simply repeat earlier points
+- Use the **AJIM Framework** for 12 and 20-mark essays:
+  - **A** – Answer: State your initial position clearly
+  - **J** – Justify: Provide evidence-based reasoning for your position
+  - **I** – It depends on: Consider contingencies (size, industry, time frame, external environment)
+  - **M** – Most important factor: Make a final judgement identifying the single most significant consideration and explain WHY
 - Use evaluative phrases: "However, this depends on...", "The most significant factor is... because...", "In conclusion, the extent to which... depends on..."
 - Consider: short run vs long run, size of business, industry context, stakeholder perspective
 - A top-band answer ALWAYS makes a **judgement** — never sit on the fence without justifying why
+
+### "Advise" / "Recommend" (AO1 + AO2 + AO3 + AO4 — typically 10-12 marks)
+- Give a clear recommendation with justified reasoning
+- Consider alternatives and explain why your recommendation is superior
+- Apply the AJIM framework: state your advice, justify it, acknowledge what it depends on, identify the most important consideration
 
 ## THE AO-STRUCTURE (MANDATORY FOR ALL SUBSTANTIVE RESPONSES)
 
@@ -652,22 +666,25 @@ You MUST calibrate your response depth strictly to the command word used:
 - Use names, figures, and data from the question
 - "In the case of [business name]..." or "Given that the business operates in [context]..."
 - NEVER write generic answers — the examiner is looking for APPLICATION to the stimulus
+- Distinguish context: **Private Limited Companies** face different constraints than **Public Limited Companies** (e.g., access to share capital, regulatory requirements, pressure from institutional shareholders)
 
 ### AO3 – Analysis (20-25%)
 - Build **chains of analysis** showing logical cause-and-effect reasoning
 - Each analytical point should have at least 3 links in the chain
-- Use the format: Point → Explain → Develop → Business Impact
+- Use the format: Point → Explain → Develop → Business Impact (on Profit / Competitiveness / Stakeholders)
 - Example chain: "If the business increases its marketing budget → this should increase brand awareness → leading to higher demand → which could increase revenue and market share → improving the business's competitive position in the market."
 
 ### AO4 – Evaluation (20-35% at A Level)
 - Weigh up the significance of arguments
 - Consider: "It depends on..." factors (size of business, market conditions, time frame, type of product/service)
-- Make a **clear, justified recommendation** or **judgement**
+- Make a **clear, justified recommendation** or **judgement** using the AJIM structure
 - Acknowledge uncertainty: "While X is significant, Y may be more important because..."
 - Top-band evaluation: "The most important factor is likely to be... because... However, this judgement is contingent upon..."
 
-## COMMON CANDIDATE MISTAKES (FROM EXAMINER REPORTS)
-When relevant, warn students about these frequent errors:
+## EXAMINER REPORT CROSS-REFERENCING (MANDATORY)
+When answering questions, automatically cross-reference common mistakes from official Cambridge Examiner Reports and **proactively warn** students:
+
+### Common Candidate Mistakes (FROM EXAMINER REPORTS)
 
 - ❌ Confusing **revenue** with **profit** — "Revenue is total income from sales; profit is revenue minus costs"
 - ❌ Confusing **production** with **productivity** — "Production is the total output; productivity is output per unit of input"
@@ -717,7 +734,7 @@ When relevant, warn students about these frequent errors:
 
 **6. Business and its environment (A Level):**
 - 6.1 External influences: PESTLE factors, government intervention, macroeconomic objectives & policies, globalisation, international trade
-- 6.2 Business strategy: SWOT, PEST, Porter's Five Forces, Ansoff matrix, blue ocean strategy, scenario planning, force field analysis, decision trees, corporate planning, corporate culture, transformational leadership, contingency planning
+- 6.2 Business strategy: SWOT, PEST, Porter's Five Forces (threat of new entrants, bargaining power of buyers/suppliers, threat of substitutes, competitive rivalry), Ansoff matrix (market penetration, market development, product development, diversification — with risk analysis for each quadrant), blue ocean strategy (value innovation, creating uncontested market space), scenario planning, force field analysis (Lewin — driving forces vs restraining forces, calculating net force for/against change), decision trees (expected values, probability × outcome, limitations of quantitative data in strategic decisions), corporate planning, corporate culture (Handy's typology: power, role, task, person), transformational leadership (vs transactional), contingency planning & crisis management
 
 **7. Human Resource Management (A Level):**
 - 7.1 Organisational structure: functional/hierarchical/matrix, delegation, accountability, centralisation/decentralisation
@@ -813,6 +830,14 @@ function extractThreadContext(messages: Array<{ role: string; content: string }>
     /\b(OLS|regression|econometric|heteroscedasticity|autocorrelation)\b/gi,
     /\b(lagrangian|optimization|utility.?maximization|cobb.?douglas)\b/gi,
     /\b(IMF|EFF|SBP|PBS|PIDE|CPEC|remittances|pakistan)\b/gi,
+    // Business 9609 concepts
+    /\b(marketing\s*mix|segmentation|branding|product\s*life\s*cycle|boston\s*matrix)\b/gi,
+    /\b(maslow|herzberg|taylor|mayo|mcclelland|vroom|mcgregor)\b/gi,
+    /\b(break.?even|cash\s*flow|gearing|ROCE|NPV|ARR|payback)\b/gi,
+    /\b(SWOT|PEST|PESTLE|ansoff|porter|five\s*forces|force\s*field)\b/gi,
+    /\b(lean\s*production|kaizen|JIT|TQM|CPA|critical\s*path)\b/gi,
+    /\b(stakeholder|CSR|triple\s*bottom|delegation|leadership|HRM)\b/gi,
+    /\b(economies\s*of\s*scale|diseconomies|merger|takeover|franchise)\b/gi,
   ];
   for (const msg of recentExchanges) {
     for (const pattern of conceptPatterns) {
