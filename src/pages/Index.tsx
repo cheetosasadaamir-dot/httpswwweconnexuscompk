@@ -66,8 +66,6 @@ const Index = () => {
                 className="font-serif text-fluid-hero font-bold leading-tight mb-6 md:mb-8"
               >
                 <span className="section-title">YOUR GLOBAL ACADEMIC ENGINE</span>
-                <br />
-                <span className="text-foreground">FOR ECON, LAW, BUSINESS & PSYCHOLOGY</span>
               </motion.h1>
 
               <motion.p
