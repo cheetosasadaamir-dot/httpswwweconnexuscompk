@@ -41,103 +41,67 @@ const OwnerProfileSection = () => {
           <div className="absolute -inset-1 bg-gradient-to-r from-neon-cyan/20 via-neon-cyan/10 to-neon-cyan/20 rounded-3xl blur-xl opacity-50" />
           
           {/* Glassmorphic Card */}
-          <div className="relative bg-space-void/75 backdrop-blur-[20px] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,242,255,0.1)]">
-            <div className="grid lg:grid-cols-[320px_1fr] gap-0">
-              
-              {/* Portrait Column */}
-              <div className="relative p-8 lg:p-10 flex flex-col items-center justify-center bg-gradient-to-b from-space-elevated/50 to-transparent border-b lg:border-b-0 lg:border-r border-white/5">
-                {/* Initials Avatar */}
-                <motion.div 
-                  className="relative mb-6 group"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                >
-                  <div className="absolute -inset-1 rounded-xl bg-neon-cyan/20 blur-md group-hover:bg-neon-cyan/40 transition-all duration-300" />
-                  <div className="relative w-[60vw] max-w-[200px] lg:w-48 lg:max-w-none aspect-[3/4] rounded-xl overflow-hidden border-2 border-neon-cyan shadow-[0_0_25px_rgba(0,242,255,0.3)] group-hover:shadow-[0_0_40px_rgba(0,242,255,0.5)] transition-shadow duration-300 bg-gradient-to-br from-neon-cyan/20 to-space-elevated flex items-center justify-center">
-                    <span className="font-display text-5xl lg:text-6xl font-bold text-neon-cyan/80 select-none">MA</span>
-                  </div>
-                </motion.div>
-
-                {/* Name */}
-                <h3 className="font-display text-2xl font-bold text-white text-center tracking-wide mb-1">
+           <div className="relative bg-space-void/75 backdrop-blur-[20px] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,242,255,0.1)]">
+            <div className="p-8 lg:p-10 flex flex-col">
+              {/* Name & Title */}
+              <div className="text-center mb-8">
+                <h3 className="font-display text-2xl font-bold text-white tracking-wide mb-1">
                   Muhammad Asad Aamir
                 </h3>
                 <p className="text-sm text-neon-cyan/80 tracking-wider uppercase">
                   Founder & Lead Curator
                 </p>
-
-                {/* Contact Info */}
-                <div className="mt-6 text-center text-sm text-muted-foreground space-y-1">
+                <div className="mt-3 text-sm text-muted-foreground">
                   <p>+92-311-893-2062</p>
                 </div>
               </div>
 
-              {/* Bio Column */}
-              <div className="p-8 lg:p-10 flex flex-col">
-                {/* Bio Paragraphs - Elite Scholar Style */}
-                <div className="flex-1 space-y-5 text-muted-foreground text-[15px] leading-[1.8] text-justify">
-                  <p>
-                    A highly motivated and disciplined individual with a rigorous academic foundation in Business and Economics, complemented by substantial leadership experience as the former Director General of the Entrepreneurship Society. This portal emerges from a deep-seated passion for continuous learning, personal growth, and effective communication—qualities honed through managing high-stakes responsibilities, collaborating across multidisciplinary teams, and performing under the exacting pressures of academic and professional environments.
-                  </p>
-                  <p>
-                    The MacroMicro Economics Portal represents a synthesis of theoretical precision and pedagogical innovation. Every concept, diagram, and analytical framework has been curated to align with the CIE 9708 syllabus while maintaining the intellectual depth demanded by advanced economic scholarship. The goal is not merely to transmit information, but to cultivate in each student the capacity for rigorous causal-chain reasoning, precise diagrammatic analysis, and the evaluative sophistication required for top-tier examination performance.
-                  </p>
-                  <p>
-                    Possessing a deep interest in problem-solving and innovative thinking, the methodologies employed here aim to bridge the gap between abstract economic theory and its practical applications in policy analysis, market behavior, and macroeconomic stabilization—preparing students not just for examinations, but for intellectual leadership in the discipline.
-                  </p>
-                </div>
+              {/* Bio Paragraphs */}
+              <div className="flex-1 space-y-5 text-muted-foreground text-[15px] leading-[1.8] text-justify">
+                <p>
+                  A highly motivated and disciplined individual with a rigorous academic foundation in Business and Economics, complemented by substantial leadership experience as the former Director General of the Entrepreneurship Society. This portal emerges from a deep-seated passion for continuous learning, personal growth, and effective communication—qualities honed through managing high-stakes responsibilities, collaborating across multidisciplinary teams, and performing under the exacting pressures of academic and professional environments.
+                </p>
+                <p>
+                  The MacroMicro Economics Portal represents a synthesis of theoretical precision and pedagogical innovation. Every concept, diagram, and analytical framework has been curated to align with the CIE 9708 syllabus while maintaining the intellectual depth demanded by advanced economic scholarship. The goal is not merely to transmit information, but to cultivate in each student the capacity for rigorous causal-chain reasoning, precise diagrammatic analysis, and the evaluative sophistication required for top-tier examination performance.
+                </p>
+                <p>
+                  Possessing a deep interest in problem-solving and innovative thinking, the methodologies employed here aim to bridge the gap between abstract economic theory and its practical applications in policy analysis, market behavior, and macroeconomic stabilization—preparing students not just for examinations, but for intellectual leadership in the discipline.
+                </p>
+              </div>
 
-                {/* Instagram Social Navigation Channel */}
-                <div className="mt-6 flex justify-center">
-                  <a
-                    href="https://www.instagram.com/asaddd__2?igsh=em1haGRiaGx6bGk1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-space-void/60 border border-neon-cyan/30 hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all duration-300 group min-h-[44px]"
-                  >
-                    <Instagram className="w-5 h-5 text-white group-hover:text-neon-cyan transition-colors" />
-                    <span className="text-xs font-semibold tracking-[0.15em] uppercase text-white/80 group-hover:text-neon-cyan transition-colors">
-                      Connect on Instagram
-                    </span>
-                  </a>
-                </div>
+              {/* Instagram */}
+              <div className="mt-6 flex justify-center">
+                <a
+                  href="https://www.instagram.com/asaddd__2?igsh=em1haGRiaGx6bGk1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-space-void/60 border border-neon-cyan/30 hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all duration-300 group min-h-[44px]"
+                >
+                  <Instagram className="w-5 h-5 text-white group-hover:text-neon-cyan transition-colors" />
+                  <span className="text-xs font-semibold tracking-[0.15em] uppercase text-white/80 group-hover:text-neon-cyan transition-colors">
+                    Connect on Instagram
+                  </span>
+                </a>
+              </div>
 
-                {/* Footer Section */}
-                <div className="mt-8 pt-6 border-t border-white/5">
-
-                  {/* Footer Row: Signature + Social Icons */}
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-                    {/* Digital Signature */}
-                    <div className="text-center sm:text-left">
-                      <p className="font-script text-2xl lg:text-3xl text-white/80 italic tracking-wide">
-                        Muhammad Asad Aamir
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1 tracking-wider uppercase">
-                        Portal Founder
-                      </p>
-                    </div>
-
-                    {/* Social Icons */}
-                    <div className="flex items-center gap-3">
-                      <a
-                        href="https://linkedin.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-full bg-space-elevated/50 border border-white/10 hover:border-neon-cyan/50 hover:shadow-[0_0_15px_rgba(0,242,255,0.3)] transition-all group"
-                        aria-label="LinkedIn"
-                      >
-                        <Linkedin className="w-5 h-5 text-white/70 group-hover:text-neon-cyan transition-colors" />
-                      </a>
-                      <a
-                        href="https://twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-full bg-space-elevated/50 border border-white/10 hover:border-neon-cyan/50 hover:shadow-[0_0_15px_rgba(0,242,255,0.3)] transition-all group"
-                        aria-label="Twitter/X"
-                      >
-                        <Twitter className="w-5 h-5 text-white/70 group-hover:text-neon-cyan transition-colors" />
-                      </a>
-                    </div>
+              {/* Footer */}
+              <div className="mt-8 pt-6 border-t border-white/5">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div className="text-center sm:text-left">
+                    <p className="font-script text-2xl lg:text-3xl text-white/80 italic tracking-wide">
+                      Muhammad Asad Aamir
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1 tracking-wider uppercase">
+                      Portal Founder
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-space-elevated/50 border border-white/10 hover:border-neon-cyan/50 hover:shadow-[0_0_15px_rgba(0,242,255,0.3)] transition-all group" aria-label="LinkedIn">
+                      <Linkedin className="w-5 h-5 text-white/70 group-hover:text-neon-cyan transition-colors" />
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-space-elevated/50 border border-white/10 hover:border-neon-cyan/50 hover:shadow-[0_0_15px_rgba(0,242,255,0.3)] transition-all group" aria-label="Twitter/X">
+                      <Twitter className="w-5 h-5 text-white/70 group-hover:text-neon-cyan transition-colors" />
+                    </a>
                   </div>
                 </div>
               </div>
