@@ -20,7 +20,7 @@ type Message = {
   imageUrl?: string;
 };
 
-type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error';
+type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error' | 'mapping-diagram' | 'solving-logic';
 
 type Persona = 'a-level' | 'university' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics';
 
@@ -348,7 +348,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
   const [messageIndex, setMessageIndex] = useState(0);
 
   useEffect(() => {
-    if (streamState === 'connecting' || streamState === 'analyzing') {
+    if (streamState === 'connecting' || streamState === 'analyzing' || streamState === 'mapping-diagram' || streamState === 'solving-logic') {
       const interval = setInterval(() => {
         setMessageIndex(prev => (prev + 1) % loadingStates.length);
       }, 2500);
@@ -364,6 +364,8 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
     switch (streamState) {
       case 'streaming': return 'hsl(142, 71%, 45%)';
       case 'analyzing': return 'hsl(43, 72%, 53%)';
+      case 'mapping-diagram': return 'hsl(280, 70%, 55%)';
+      case 'solving-logic': return 'hsl(185, 100%, 50%)';
       case 'error': return 'hsl(0, 84%, 60%)';
       default: return 'hsl(185, 100%, 50%)';
     }
@@ -373,6 +375,8 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
     switch (streamState) {
       case 'streaming': return 'Prof. Econs is typing...';
       case 'analyzing': return loadingMessage;
+      case 'mapping-diagram': return '🔍 Pass 1: Mapping diagram elements...';
+      case 'solving-logic': return '🧠 Pass 2: Solving with visual logic...';
       case 'error': return 'Reconnecting...';
       default: return 'Connecting to Prof. Econs...';
     }
@@ -425,7 +429,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
         </div>
       )}
       
-      {streamState === 'analyzing' && (
+      {(streamState === 'analyzing' || streamState === 'mapping-diagram' || streamState === 'solving-logic') && (
         <TrendingUp className="w-3.5 h-3.5 text-neon-gold animate-pulse" />
       )}
     </div>
@@ -544,17 +548,27 @@ export default function EconomicsChatbot() {
   }, []);
 
   const streamChat = async (userMessages: Message[]) => {
-    setStreamState('connecting');
+    const lastMsg = userMessages[userMessages.length - 1];
+    const hasImage = !!lastMsg?.imageUrl;
+    
+    setStreamState(hasImage ? 'mapping-diagram' : 'connecting');
     
     // Create new abort controller for this request
     abortControllerRef.current = new AbortController();
     
-    // After 5s of no content, show premium "analyzing" state
-    analyzeTimeoutRef.current = setTimeout(() => {
-      setStreamState('analyzing');
-    }, 8000);
+    // Image-specific: transition from Pass 1 to Pass 2 after 4s
+    if (hasImage) {
+      analyzeTimeoutRef.current = setTimeout(() => {
+        setStreamState('solving-logic');
+      }, 4000);
+    } else {
+      // After 8s of no content, show premium "analyzing" state
+      analyzeTimeoutRef.current = setTimeout(() => {
+        setStreamState('analyzing');
+      }, 8000);
+    }
     
-    // After 25s, show error state
+    // After 45s, show error state
     streamTimeoutRef.current = setTimeout(() => {
       setStreamState('error');
     }, 45000);
