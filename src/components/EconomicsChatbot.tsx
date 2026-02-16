@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,7 +21,7 @@ type Message = {
 
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error';
 
-type Persona = 'a-level' | 'university' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research';
+type Persona = 'a-level' | 'university' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics';
 
 const QUICK_ACTIONS_ALEVEL = [
   { label: 'J-Curve Effect', query: 'Explain the J-Curve effect and why the current account worsens before improving after depreciation.' },
@@ -96,6 +96,15 @@ const QUICK_ACTIONS_RESEARCH = [
   { label: 'Ethics in Research', query: 'Discuss the key ethical considerations in social science research: informed consent, deception, protection from harm, right to withdraw, and confidentiality.' },
 ];
 
+const QUICK_ACTIONS_MATHEMATICS = [
+  { label: 'Chain Rule', query: 'Differentiate y = sin(3x² + 1) using the chain rule. Show every step of the derivation in LaTeX.' },
+  { label: 'Integration by Parts', query: 'Evaluate ∫ x·e^x dx using integration by parts. Show the full step-by-step working with the formula.' },
+  { label: 'Eigenvalues', query: 'Find the eigenvalues and eigenvectors of the matrix A = [[3,1],[0,2]]. Show the characteristic equation and full working.' },
+  { label: 'Hypothesis Test', query: 'A sample of 50 has mean 24.3 and known σ = 4. Test at 5% significance whether the population mean differs from 25. Show H₀, H₁, test statistic, and conclusion.' },
+  { label: 'Lagrangian', query: 'Use Lagrangian multipliers to maximize f(x,y) = xy subject to x + 2y = 10. Show the full derivation with SOC verification.' },
+  { label: 'Complex Numbers', query: 'Express z = 1 + i√3 in modulus-argument form and use De Moivre\'s theorem to find z⁵. Show all working in LaTeX.' },
+];
+
 // Command words with AO (Assessment Objective) requirements
 const COMMAND_WORDS_ECON = [
   { word: 'Define', ao: 'AO1', meaning: 'Give precise meaning', color: 'hsl(217, 91%, 60%)' },
@@ -161,6 +170,15 @@ const COMMAND_WORDS_RESEARCH = [
   { word: 'Evaluate', ao: 'AO3', meaning: 'Assess strengths and limitations', color: 'hsl(43, 72%, 53%)' },
   { word: 'Compare', ao: 'AO1-AO3', meaning: 'Contrast methods/paradigms', color: 'hsl(200, 70%, 50%)' },
   { word: 'Justify', ao: 'AO2+AO3', meaning: 'Defend methodological choices', color: 'hsl(43, 72%, 53%)' },
+];
+
+const COMMAND_WORDS_MATHEMATICS = [
+  { word: 'Solve', ao: 'AO1', meaning: 'Find the answer with full working', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Prove', ao: 'AO1+AO2', meaning: 'Logical deduction to establish truth', color: 'hsl(260, 70%, 55%)' },
+  { word: 'Derive', ao: 'AO1+AO2', meaning: 'Obtain result from first principles', color: 'hsl(260, 70%, 55%)' },
+  { word: 'Show that', ao: 'AO1+AO2', meaning: 'Verify a given result step-by-step', color: 'hsl(260, 70%, 55%)' },
+  { word: 'Sketch', ao: 'AO2', meaning: 'Draw graph with key features labelled', color: 'hsl(260, 70%, 55%)' },
+  { word: 'Hence', ao: 'AO2+AO3', meaning: 'Use previous result to find next', color: 'hsl(43, 72%, 53%)' },
 ];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-chat`;
@@ -233,6 +251,14 @@ const LOADING_STATES_RESEARCH = [
   'Formatting citations...',
 ];
 
+const LOADING_STATES_MATHEMATICS = [
+  'Setting up the derivation...',
+  'Computing step-by-step solution...',
+  'Verifying with substitution...',
+  'Rendering LaTeX output...',
+  'Checking second-order conditions...',
+];
+
 // Prof. Econs Avatar Component
 const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   const sizeClasses = {
@@ -299,8 +325,8 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
               ))}
             </div>
             <div className="mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/15 space-y-1">
-              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {{ '9609': 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)', 'Law': 'IRAC: Issue • Rule • Application • Conclusion', '9990': 'AO1 (25%) • AO2 (25%) • AO3 (50%)', '9706': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', '9699': 'AO1 (30%) • AO2 (30%) • AO3 (40%)', 'IPQ': 'Research • Analysis • Evaluation • Presentation' }[syllabusCode] || 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
-              <p className="text-[10px] text-muted-foreground/60">{{ '9609': 'Use "Evaluate" for top-band AO4 marks', 'Law': 'Always cite case authority (OSCOLA/Bluebook)', '9990': 'Use GRAVE to evaluate core studies', '9706': 'Always show double-entry workings', '9699': 'Present at least TWO contrasting perspectives', 'IPQ': 'Justify every methodological choice' }[syllabusCode] || 'Use "Evaluate" for A* level answers'}</p>
+              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {{ '9609': 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)', 'Law': 'IRAC: Issue • Rule • Application • Conclusion', '9990': 'AO1 (25%) • AO2 (25%) • AO3 (50%)', '9706': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', '9699': 'AO1 (30%) • AO2 (30%) • AO3 (40%)', 'IPQ': 'Research • Analysis • Evaluation • Presentation', '9709': 'Pure (60%) • Statistics (20%) • Mechanics (20%)' }[syllabusCode] || 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
+              <p className="text-[10px] text-muted-foreground/60">{{ '9609': 'Use "Evaluate" for top-band AO4 marks', 'Law': 'Always cite case authority (OSCOLA/Bluebook)', '9990': 'Use GRAVE to evaluate core studies', '9706': 'Always show double-entry workings', '9699': 'Present at least TWO contrasting perspectives', 'IPQ': 'Justify every methodological choice', '9709': 'Always show full working — marks for method, not just answer' }[syllabusCode] || 'Use "Evaluate" for A* level answers'}</p>
             </div>
           </motion.div>
         )}
@@ -314,7 +340,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
   const LOADING_MAP: Record<Persona, string[]> = {
     'a-level': LOADING_STATES_ALEVEL, 'university': LOADING_STATES_UNIVERSITY, 'business': LOADING_STATES_BUSINESS,
     'law': LOADING_STATES_LAW, 'psychology': LOADING_STATES_PSYCHOLOGY, 'accounting': LOADING_STATES_ACCOUNTING,
-    'sociology': LOADING_STATES_SOCIOLOGY, 'research': LOADING_STATES_RESEARCH,
+    'sociology': LOADING_STATES_SOCIOLOGY, 'research': LOADING_STATES_RESEARCH, 'mathematics': LOADING_STATES_MATHEMATICS,
   };
   const loadingStates = LOADING_MAP[persona] || LOADING_STATES_ALEVEL;
   const [loadingMessage, setLoadingMessage] = useState(loadingStates[0]);
@@ -455,13 +481,13 @@ export default function EconomicsChatbot() {
   const QUICK_MAP: Record<Persona, typeof QUICK_ACTIONS_ALEVEL> = {
     'a-level': QUICK_ACTIONS_ALEVEL, 'university': QUICK_ACTIONS_UNIVERSITY, 'business': QUICK_ACTIONS_BUSINESS,
     'law': QUICK_ACTIONS_LAW, 'psychology': QUICK_ACTIONS_PSYCHOLOGY, 'accounting': QUICK_ACTIONS_ACCOUNTING,
-    'sociology': QUICK_ACTIONS_SOCIOLOGY, 'research': QUICK_ACTIONS_RESEARCH,
+    'sociology': QUICK_ACTIONS_SOCIOLOGY, 'research': QUICK_ACTIONS_RESEARCH, 'mathematics': QUICK_ACTIONS_MATHEMATICS,
   };
   const quickActions = QUICK_MAP[persona] || QUICK_ACTIONS_ALEVEL;
   const CMD_MAP: Record<Persona, typeof COMMAND_WORDS_ECON> = {
     'a-level': COMMAND_WORDS_ECON, 'university': COMMAND_WORDS_ECON, 'business': COMMAND_WORDS_BUSINESS,
     'law': COMMAND_WORDS_LAW, 'psychology': COMMAND_WORDS_PSYCHOLOGY, 'accounting': COMMAND_WORDS_ACCOUNTING,
-    'sociology': COMMAND_WORDS_SOCIOLOGY, 'research': COMMAND_WORDS_RESEARCH,
+    'sociology': COMMAND_WORDS_SOCIOLOGY, 'research': COMMAND_WORDS_RESEARCH, 'mathematics': COMMAND_WORDS_MATHEMATICS,
   };
   const COMMAND_WORDS = CMD_MAP[persona] || COMMAND_WORDS_ECON;
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -903,25 +929,37 @@ export default function EconomicsChatbot() {
               <FlaskConical className="w-3 h-3" />
               Research IPQ
             </motion.button>
+            <motion.button
+              onClick={() => { setPersona('mathematics'); setMessages([]); }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                persona === 'mathematics'
+                  ? 'bg-[hsl(260,70%,55%)]/15 border-[hsl(260,70%,55%)]/50 text-[hsl(260,70%,55%)]'
+                  : 'border-border/30 text-muted-foreground hover:border-border/60'
+              }`}
+            >
+              <Sigma className="w-3 h-3" />
+              Mathematics
+            </motion.button>
           </div>
 
           <div className="inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-3 md:mb-4">
             <TutorAvatar size="sm" />
             <div className="text-left">
               <span className="text-xs md:text-sm text-[hsl(43,72%,53%)] font-semibold block">
-                {{ 'a-level': 'Prof. Econs', 'university': 'Dr. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods' }[persona]}
+                {{ 'a-level': 'Prof. Econs', 'university': 'Dr. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods', 'mathematics': 'Prof. Mathesis' }[persona]}
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground">
-                {{ 'a-level': 'CIE Senior Fellow', 'university': 'Senior Research Fellow', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar', 'psychology': 'Psychology Specialist', 'accounting': 'Accounting & Finance Specialist', 'sociology': 'Sociology Specialist', 'research': 'Research Methods Guide' }[persona]}
+                {{ 'a-level': 'CIE Senior Fellow', 'university': 'Senior Research Fellow', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar', 'psychology': 'Psychology Specialist', 'accounting': 'Accounting & Finance Specialist', 'sociology': 'Sociology Specialist', 'research': 'Research Methods Guide', 'mathematics': 'Pure & Applied Mathematics' }[persona]}
               </span>
             </div>
             <div className="tutor-verified-badge ml-1 md:ml-2 text-[9px] md:text-[10px]">
               <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3" />
-              <span>{{ 'a-level': '2026-2028', 'university': 'HEC', 'business': '2026-2028', 'law': 'IRAC', 'psychology': 'GRAVE', 'accounting': 'IFRS', 'sociology': 'PEEL', 'research': 'IPQ' }[persona]}</span>
+              <span>{{ 'a-level': '2026-2028', 'university': 'HEC', 'business': '2026-2028', 'law': 'IRAC', 'psychology': 'GRAVE', 'accounting': 'IFRS', 'sociology': 'PEEL', 'research': 'IPQ', 'mathematics': 'LaTeX' }[persona]}</span>
             </div>
           </div>
           <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
-            {{ 'a-level': 'Stuck on a Concept?', 'university': 'Research Query?', 'business': 'Business Question?', 'law': 'Legal Question?', 'psychology': 'Psychology Question?', 'accounting': 'Accounting Question?', 'sociology': 'Sociology Question?', 'research': 'Research Question?' }[persona]}
+            {{ 'a-level': 'Stuck on a Concept?', 'university': 'Research Query?', 'business': 'Business Question?', 'law': 'Legal Question?', 'psychology': 'Psychology Question?', 'accounting': 'Accounting Question?', 'sociology': 'Sociology Question?', 'research': 'Research Question?', 'mathematics': 'Maths Problem?' }[persona]}
           </h2>
           <p className="text-fluid-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-2">
             {{ 
@@ -933,6 +971,7 @@ export default function EconomicsChatbot() {
               'accounting': 'Accounting & Finance Specialist • Double Entry • IFRS • WACC • NPV/IRR',
               'sociology': 'Sociology Specialist • Functionalism • Marxism • Postmodernism • Globalisation',
               'research': 'Research Methods Guide • IPQ • Sampling • Analysis • Harvard/APA Referencing',
+              'mathematics': 'Pure & Applied Mathematics • Calculus • Linear Algebra • Statistics • LaTeX Derivations',
             }[persona]}
           </p>
         </motion.div>
@@ -962,10 +1001,10 @@ export default function EconomicsChatbot() {
           {/* Academic Banner */}
           <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
             <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">
-              {{ 'a-level': 'Cambridge A-Level Economics', 'university': 'Research Fellow Mode • LSE/Oxford Academic Standard', 'business': 'Cambridge A-Level Business', 'law': 'Global Legal Scholar • Oxford/Harvard Standard', 'psychology': 'Cambridge Psychology • GRAVE Mode', 'accounting': 'Cambridge Accounting • IFRS Mode', 'sociology': 'Cambridge Sociology', 'research': 'Research Methods • IPQ' }[persona]}
+              {{ 'a-level': 'Cambridge A-Level Economics', 'university': 'Research Fellow Mode • LSE/Oxford Academic Standard', 'business': 'Cambridge A-Level Business', 'law': 'Global Legal Scholar • Oxford/Harvard Standard', 'psychology': 'Cambridge Psychology • GRAVE Mode', 'accounting': 'Cambridge Accounting • IFRS Mode', 'sociology': 'Cambridge Sociology', 'research': 'Research Methods • IPQ', 'mathematics': 'Pure & Applied Mathematics • LaTeX Mode' }[persona]}
             </p>
             <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">
-              {{ 'a-level': 'Text Analysis Mode', 'university': 'Guided Derivation Mode', 'business': 'AO-Structured Mode', 'law': 'IRAC Analysis Mode', 'psychology': 'PEEL + GRAVE Mode', 'accounting': 'Double-Entry + LaTeX Mode', 'sociology': 'PEEL + Perspectives Mode', 'research': 'Research Cycle Mode' }[persona]}
+              {{ 'a-level': 'Text Analysis Mode', 'university': 'Guided Derivation Mode', 'business': 'AO-Structured Mode', 'law': 'IRAC Analysis Mode', 'psychology': 'PEEL + GRAVE Mode', 'accounting': 'Double-Entry + LaTeX Mode', 'sociology': 'PEEL + Perspectives Mode', 'research': 'Research Cycle Mode', 'mathematics': 'Step-by-Step Derivation Mode' }[persona]}
             </span>
           </div>
 
@@ -992,7 +1031,7 @@ export default function EconomicsChatbot() {
                     {action.label}
                   </motion.button>
                 ))}
-                {persona !== 'university' && <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={{ 'a-level': '9708', 'business': '9609', 'law': 'Law', 'psychology': '9990', 'accounting': '9706', 'sociology': '9699', 'research': 'IPQ', 'university': '' }[persona]} />}
+                {persona !== 'university' && <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={{ 'a-level': '9708', 'business': '9609', 'law': 'Law', 'psychology': '9990', 'accounting': '9706', 'sociology': '9699', 'research': 'IPQ', 'university': '', 'mathematics': '9709' }[persona]} />}
               </div>
             </div>
             
@@ -1018,13 +1057,13 @@ export default function EconomicsChatbot() {
                 <div className="text-muted-foreground">
                   <TutorAvatar size="lg" />
                   <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">
-                    {{ 'a-level': 'Prof. Econs', 'university': 'Dr. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods' }[persona]}
+                    {{ 'a-level': 'Prof. Econs', 'university': 'Dr. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods', 'mathematics': 'Prof. Mathesis' }[persona]}
                   </p>
                   <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">
-                    {{ 'a-level': 'CIE Senior Fellow • Text Analysis Mode', 'university': 'Senior Research Fellow • LSE/Oxford Standard', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar • IRAC Method', 'psychology': 'Psychology Specialist • GRAVE Framework', 'accounting': 'Accounting Specialist • IFRS Standards', 'sociology': 'Sociology Specialist • Perspectives Mode', 'research': 'Research Methods Guide • IPQ' }[persona]}
+                    {{ 'a-level': 'CIE Senior Fellow • Text Analysis Mode', 'university': 'Senior Research Fellow • LSE/Oxford Standard', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar • IRAC Method', 'psychology': 'Psychology Specialist • GRAVE Framework', 'accounting': 'Accounting Specialist • IFRS Standards', 'sociology': 'Sociology Specialist • Perspectives Mode', 'research': 'Research Methods Guide • IPQ', 'mathematics': 'Pure & Applied Mathematics • LaTeX Mode' }[persona]}
                   </p>
                   <p className="text-sm mt-1 opacity-70 font-serif">
-                    {{ 'a-level': 'Your Senior Cambridge Examiner is ready', 'university': 'Your Senior Research Fellow is ready for guided derivations', 'business': 'Your Cambridge Senior Examiner is ready for AO-structured answers', 'law': 'Your Legal Scholar is ready for IRAC analysis', 'psychology': 'Your Psychology Specialist is ready for GRAVE evaluations', 'accounting': 'Your Accounting Specialist is ready for double-entry and ratios', 'sociology': 'Your Sociology Specialist is ready for theoretical analysis', 'research': 'Your Research Methods Guide is ready for the research cycle' }[persona]}
+                    {{ 'a-level': 'Your Senior Cambridge Examiner is ready', 'university': 'Your Senior Research Fellow is ready for guided derivations', 'business': 'Your Cambridge Senior Examiner is ready for AO-structured answers', 'law': 'Your Legal Scholar is ready for IRAC analysis', 'psychology': 'Your Psychology Specialist is ready for GRAVE evaluations', 'accounting': 'Your Accounting Specialist is ready for double-entry and ratios', 'sociology': 'Your Sociology Specialist is ready for theoretical analysis', 'research': 'Your Research Methods Guide is ready for the research cycle', 'mathematics': 'Your Mathematics Specialist is ready for step-by-step derivations' }[persona]}
                   </p>
                   <p className="text-xs mt-2 opacity-50">Ask follow-up questions — I remember our conversation!</p>
                 </div>
@@ -1050,7 +1089,7 @@ export default function EconomicsChatbot() {
                         <div className="prose prose-invert prose-sm max-w-none tutor-professor-response">
                           {/* Lesson Header */}
                           <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
-                            {{ 'a-level': 'Cambridge A-Level Economics | CIE Senior Fellow', 'university': 'EconNexus Research Division | Senior Research Fellow | LSE/Oxford Standard', 'business': 'Cambridge A-Level Business | Cambridge Senior Examiner', 'law': 'EconNexus Legal Division | Global Juris Doctor | IRAC Method', 'psychology': 'Cambridge Psychology | GRAVE + PEEL', 'accounting': 'Cambridge Accounting | IFRS Standards', 'sociology': 'Cambridge Sociology | Perspectives Analysis', 'research': 'Research Methods | IPQ | Research Cycle' }[persona]}
+                            {{ 'a-level': 'Cambridge A-Level Economics | CIE Senior Fellow', 'university': 'EconNexus Research Division | Senior Research Fellow | LSE/Oxford Standard', 'business': 'Cambridge A-Level Business | Cambridge Senior Examiner', 'law': 'EconNexus Legal Division | Global Juris Doctor | IRAC Method', 'psychology': 'Cambridge Psychology | GRAVE + PEEL', 'accounting': 'Cambridge Accounting | IFRS Standards', 'sociology': 'Cambridge Sociology | Perspectives Analysis', 'research': 'Research Methods | IPQ | Research Cycle', 'mathematics': 'Pure & Applied Mathematics | Step-by-Step Derivations' }[persona]}
                           </div>
                           <ReactMarkdown
                             remarkPlugins={[remarkMath]}
