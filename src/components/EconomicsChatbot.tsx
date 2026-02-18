@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from 'sonner';
 import ReactMarkdown from 'react-markdown';
@@ -851,6 +851,10 @@ export default function EconomicsChatbot() {
     setInput('');
     setUploadedImage(null);
     setUploadedImageName('');
+    // Reset textarea height after send
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+    }
     setIsLoading(true);
 
     try {
@@ -931,11 +935,25 @@ export default function EconomicsChatbot() {
     toast.success('Chat cleared');
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Auto-resize textarea as content grows
+  const handleTextareaInput = () => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    const newHeight = Math.min(el.scrollHeight, 400);
+    el.style.height = `${newHeight}px`;
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // Cmd/Ctrl + Enter → send
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
       e.preventDefault();
       handleSend();
+      return;
     }
+    // Plain Enter → new line (default textarea behaviour, do nothing)
   };
 
   return (
@@ -948,7 +966,7 @@ export default function EconomicsChatbot() {
       transition={{ duration: 0.7, ease: 'easeOut' }}
       className="py-16 lg:py-24"
     >
-      <div className="w-full max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="w-full max-w-[1600px] mx-auto px-4 md:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1188,7 +1206,7 @@ export default function EconomicsChatbot() {
 
           <ScrollArea 
             ref={scrollRef}
-            className="h-[280px] md:h-[320px] lg:h-[400px] p-3 lg:p-4 relative"
+            className="h-[340px] md:h-[420px] lg:h-[520px] p-3 lg:p-4 relative"
           >
             {messages.length === 0 ? (
               <div className="h-full flex items-center justify-center text-center">
@@ -1299,11 +1317,11 @@ export default function EconomicsChatbot() {
             )}
           </ScrollArea>
 
-          {/* Input Area - Mobile keyboard-safe with proper padding */}
-          <div className="relative p-3 lg:p-4 border-t border-[hsl(43,72%,53%)]/15 safe-area-inset">
+          {/* Input Area */}
+          <div className="relative p-3 lg:p-5 border-t border-[hsl(43,72%,53%)]/15 safe-area-inset">
             {/* Image preview */}
             {uploadedImage && (
-              <div className="flex items-center gap-2 mb-2 p-2 rounded-lg bg-white/5 border border-[hsl(43,72%,53%)]/20">
+              <div className="flex items-center gap-2 mb-3 p-2 rounded-lg bg-white/5 border border-[hsl(43,72%,53%)]/20">
                 <img src={uploadedImage} alt="Upload preview" className="w-12 h-12 rounded object-cover" />
                 <span className="text-xs text-muted-foreground flex-1 truncate">{uploadedImageName}</span>
                 <button onClick={() => { setUploadedImage(null); setUploadedImageName(''); }} className="text-muted-foreground hover:text-destructive">
@@ -1311,7 +1329,9 @@ export default function EconomicsChatbot() {
                 </button>
               </div>
             )}
-            <div className="flex gap-2 items-center">
+
+            {/* Paragraph textarea */}
+            <div className="flex gap-2 items-end">
               {/* Hidden file input */}
               <input
                 ref={fileInputRef}
@@ -1337,54 +1357,74 @@ export default function EconomicsChatbot() {
                   e.target.value = '';
                 }}
               />
-              
+
               {/* Image upload button */}
               <Button
                 onClick={() => fileInputRef.current?.click()}
                 variant="outline"
                 size="icon"
                 disabled={isLoading}
-                className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 touch-target shrink-0"
+                className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 touch-target shrink-0 self-end"
                 title="Upload image for analysis"
               >
                 <ImagePlus className="w-4 h-4 text-[hsl(43,72%,53%)]" />
               </Button>
 
-              <Input
+              {/* Auto-expanding paragraph textarea */}
+              <Textarea
+                ref={textareaRef}
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={(e) => { setInput(e.target.value); handleTextareaInput(); }}
                 onKeyDown={handleKeyDown}
-                placeholder={uploadedImage ? "Describe what to analyze..." : "Ask a question..."}
+                onInput={handleTextareaInput}
+                placeholder={uploadedImage ? "Describe what to analyze in the image…" : "Type your question or paste a full paragraph… (Enter for new line, Ctrl+Enter to send)"}
                 disabled={isLoading}
-                className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans h-11 md:h-10"
+                rows={1}
+                className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans resize-none overflow-y-auto leading-relaxed px-4 py-3"
+                style={{
+                  minHeight: '120px',
+                  maxHeight: '400px',
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: 'hsl(43 72% 53% / 0.3) transparent',
+                }}
               />
-              
-              {/* Retry button */}
-              {messages.length > 0 && !isLoading && retryCount < 3 && (
-                <Button
-                  onClick={handleRetry}
-                  variant="outline"
-                  size="icon"
-                  className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 touch-target hidden md:flex"
-                  title="Retry last question"
-                >
-                  <RefreshCw className="w-4 h-4 text-[hsl(43,72%,53%)]" />
-                </Button>
-              )}
-              
-              <Button
-                onClick={() => handleSend()}
-                disabled={(!input.trim() && !uploadedImage) || isLoading}
-                size="icon"
-                className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg touch-target"
-              >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Send className="w-4 h-4" />
+
+              {/* Action buttons column */}
+              <div className="flex flex-col gap-2 shrink-0 self-end">
+                {/* Retry */}
+                {messages.length > 0 && !isLoading && retryCount < 3 && (
+                  <Button
+                    onClick={handleRetry}
+                    variant="outline"
+                    size="icon"
+                    className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 touch-target hidden md:flex"
+                    title="Retry last question"
+                  >
+                    <RefreshCw className="w-4 h-4 text-[hsl(43,72%,53%)]" />
+                  </Button>
                 )}
-              </Button>
+
+                {/* Send */}
+                <Button
+                  onClick={() => handleSend()}
+                  disabled={(!input.trim() && !uploadedImage) || isLoading}
+                  size="icon"
+                  className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg touch-target w-11 h-11"
+                  title="Send (Ctrl+Enter)"
+                >
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
+                </Button>
+              </div>
             </div>
+
+            {/* Hint */}
+            <p className="mt-2 text-[10px] text-muted-foreground/50 text-right select-none">
+              Enter for new line &nbsp;·&nbsp; Ctrl+Enter to send
+            </p>
           </div>
         </motion.div>
       </div>
