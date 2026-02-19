@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom, Wifi, WifiOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -11,6 +11,23 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import professorAvatar from '@/assets/professor-avatar.png';
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
+
+// ---- Client-side image upload rate limiter (10 images / 60s) ----
+const imageUploadTimestamps: number[] = [];
+function checkImageUploadRateLimit(): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const windowMs = 60000;
+  // Purge old timestamps
+  while (imageUploadTimestamps.length > 0 && now - imageUploadTimestamps[0] > windowMs) {
+    imageUploadTimestamps.shift();
+  }
+  if (imageUploadTimestamps.length >= 10) {
+    const retryAfter = Math.ceil((imageUploadTimestamps[0] + windowMs - now) / 1000);
+    return { allowed: false, retryAfter };
+  }
+  imageUploadTimestamps.push(now);
+  return { allowed: true };
+}
 
 type Message = {
   role: 'user' | 'assistant';
@@ -541,6 +558,50 @@ const CopyButton = ({ text }: { text: string }) => {
   );
 };
 
+// ============================================================
+// System Status Indicator — corner badge showing AI health
+// ============================================================
+const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
+  const isProcessing = streamState !== 'idle' && streamState !== 'error';
+  const isError = streamState === 'error';
+
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className="relative flex items-center">
+        {isProcessing && (
+          <motion.div
+            className="absolute inset-0 rounded-full bg-[hsl(142,71%,45%)]"
+            animate={{ scale: [1, 2.5], opacity: [0.5, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeOut' }}
+          />
+        )}
+        <div
+          className="w-2 h-2 rounded-full"
+          style={{
+            backgroundColor: isError
+              ? 'hsl(0, 84%, 60%)'
+              : isProcessing
+              ? 'hsl(43, 72%, 53%)'
+              : 'hsl(142, 71%, 45%)',
+          }}
+        />
+      </div>
+      <span
+        className="text-[9px] font-medium"
+        style={{
+          color: isError
+            ? 'hsl(0, 84%, 60%)'
+            : isProcessing
+            ? 'hsl(43, 72%, 53%)'
+            : 'hsl(142, 71%, 45%)',
+        }}
+      >
+        {isError ? 'Reconnecting' : isProcessing ? 'Processing' : 'Online'}
+      </span>
+    </div>
+  );
+};
+
 export default function EconomicsChatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -636,10 +697,10 @@ export default function EconomicsChatbot() {
       }, 8000);
     }
     
-    // After 45s, show error state
+    // After 60s global timeout, show error state (matches backend 60s limit)
     streamTimeoutRef.current = setTimeout(() => {
       setStreamState('error');
-    }, 45000);
+    }, 60000);
     
     try {
       // Find the last user message to check for image
@@ -1154,14 +1215,17 @@ export default function EconomicsChatbot() {
             }}
           />
 
-          {/* Academic Banner */}
+          {/* Academic Banner — with System Status indicator */}
           <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
             <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">
               {{ 'a-level': 'Cambridge A-Level Economics', 'university': 'Research Fellow Mode • LSE/Oxford Academic Standard', 'business': 'Cambridge A-Level Business', 'law': 'Global Legal Scholar • Oxford/Harvard Standard', 'psychology': 'Cambridge Psychology • GRAVE Mode', 'accounting': 'Cambridge Accounting • IFRS Mode', 'sociology': 'Cambridge Sociology', 'research': 'Research Methods • IPQ', 'mathematics': 'Pure & Applied Mathematics • LaTeX Mode', 'physics': 'Cambridge Physics 9702 • I-V-A-U Mode' }[persona]}
             </p>
-            <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium">
-              {{ 'a-level': 'Text Analysis Mode', 'university': 'Guided Derivation Mode', 'business': 'AO-Structured Mode', 'law': 'IRAC Analysis Mode', 'psychology': 'PEEL + GRAVE Mode', 'accounting': 'Double-Entry + LaTeX Mode', 'sociology': 'PEEL + Perspectives Mode', 'research': 'Research Cycle Mode', 'mathematics': 'Step-by-Step Derivation Mode', 'physics': 'I-V-A-U + Conceptual Summary Mode' }[persona]}
-            </span>
+            <div className="flex items-center gap-2">
+              <SystemStatus streamState={streamState} />
+              <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium hidden sm:inline">
+                {{ 'a-level': 'Text Analysis Mode', 'university': 'Guided Derivation Mode', 'business': 'AO-Structured Mode', 'law': 'IRAC Analysis Mode', 'psychology': 'PEEL + GRAVE Mode', 'accounting': 'Double-Entry + LaTeX Mode', 'sociology': 'PEEL + Perspectives Mode', 'research': 'Research Cycle Mode', 'mathematics': 'Step-by-Step Derivation Mode', 'physics': 'I-V-A-U + Conceptual Summary Mode' }[persona]}
+              </span>
+            </div>
           </div>
 
           {/* Header with Clear Button - Mobile optimized */}
@@ -1341,8 +1405,18 @@ export default function EconomicsChatbot() {
                 onChange={async (e) => {
                   const file = e.target.files?.[0];
                   if (!file) return;
+                  
+                  // Client-side image rate limit check (10/min)
+                  const imgRateCheck = checkImageUploadRateLimit();
+                  if (!imgRateCheck.allowed) {
+                    toast.error(`Image upload limit reached (10/min). Please wait ${imgRateCheck.retryAfter}s.`);
+                    e.target.value = '';
+                    return;
+                  }
+                  
                   if (file.size > 10 * 1024 * 1024) {
                     toast.error('Image must be under 10MB');
+                    e.target.value = '';
                     return;
                   }
                   toast.info('Compressing image...');
