@@ -9,7 +9,6 @@ import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
 
-import AcademicDisclaimer from '@/components/AcademicDisclaimer';
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
@@ -38,10 +37,6 @@ const Index = () => {
     <div className="min-h-screen relative">
       <ThreeJsMarketEngine />
       <Header />
-
-
-      {/* Academic Disclaimer - Sidebar on desktop, info icon on mobile */}
-      <AcademicDisclaimer />
 
       <main className="relative z-10 safe-area-inset" style={{ willChange: 'opacity, transform', transform: 'translate3d(0,0,0)' }}>
         {/* Hero Section */}
