@@ -1025,9 +1025,9 @@ export default function EconomicsChatbot() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
-      className="py-16 lg:py-24"
+      className="py-10 md:py-16 lg:py-24"
     >
-      <div className="w-full max-w-[1600px] mx-auto px-4 md:px-6 lg:px-8">
+      <div className="w-full max-w-[1800px] mx-auto px-0 sm:px-4 md:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1040,7 +1040,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('a-level'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'a-level'
                   ? 'bg-[hsl(43,72%,53%)]/15 border-[hsl(43,72%,53%)]/50 text-[hsl(43,72%,53%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1052,7 +1052,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('business'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'business'
                   ? 'bg-[hsl(142,71%,45%)]/15 border-[hsl(142,71%,45%)]/50 text-[hsl(142,71%,45%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1064,7 +1064,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('university'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'university'
                   ? 'bg-[hsl(185,100%,50%)]/15 border-[hsl(185,100%,50%)]/50 text-[hsl(185,100%,50%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1076,7 +1076,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('law'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'law'
                   ? 'bg-[hsl(280,70%,55%)]/15 border-[hsl(280,70%,55%)]/50 text-[hsl(280,70%,55%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1088,7 +1088,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('psychology'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'psychology'
                   ? 'bg-[hsl(330,70%,55%)]/15 border-[hsl(330,70%,55%)]/50 text-[hsl(330,70%,55%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1100,7 +1100,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('accounting'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'accounting'
                   ? 'bg-[hsl(25,85%,55%)]/15 border-[hsl(25,85%,55%)]/50 text-[hsl(25,85%,55%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1112,7 +1112,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('sociology'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'sociology'
                   ? 'bg-[hsl(160,70%,45%)]/15 border-[hsl(160,70%,45%)]/50 text-[hsl(160,70%,45%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1124,7 +1124,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('research'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'research'
                   ? 'bg-[hsl(200,70%,50%)]/15 border-[hsl(200,70%,50%)]/50 text-[hsl(200,70%,50%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1136,7 +1136,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('mathematics'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'mathematics'
                   ? 'bg-[hsl(260,70%,55%)]/15 border-[hsl(260,70%,55%)]/50 text-[hsl(260,70%,55%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1148,7 +1148,7 @@ export default function EconomicsChatbot() {
             <motion.button
               onClick={() => { setPersona('physics'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
                 persona === 'physics'
                   ? 'bg-[hsl(15,85%,55%)]/15 border-[hsl(15,85%,55%)]/50 text-[hsl(15,85%,55%)]'
                   : 'border-border/30 text-muted-foreground hover:border-border/60'
@@ -1174,10 +1174,10 @@ export default function EconomicsChatbot() {
               <span>{{ 'a-level': '2026-2028', 'university': 'HEC', 'business': '2026-2028', 'law': 'IRAC', 'psychology': 'GRAVE', 'accounting': 'IFRS', 'sociology': 'PEEL', 'research': 'IPQ', 'mathematics': 'LaTeX', 'physics': 'I-V-A-U' }[persona]}</span>
             </div>
           </div>
-          <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
+          <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
             {{ 'a-level': 'Stuck on a Concept?', 'university': 'Research Query?', 'business': 'Business Question?', 'law': 'Legal Question?', 'psychology': 'Psychology Question?', 'accounting': 'Accounting Question?', 'sociology': 'Sociology Question?', 'research': 'Research Question?', 'mathematics': 'Maths Problem?', 'physics': 'Physics Problem?' }[persona]}
           </h2>
-          <p className="text-fluid-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-2">
+          <p className="text-muted-foreground max-w-2xl mx-auto px-2" style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1rem)' }}>
             {{ 
               'a-level': 'Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode',
               'university': 'Senior Research Fellow • LSE/Oxford Standard • Game Theory • Econometrics • Behavioral Econ',
@@ -1199,7 +1199,7 @@ export default function EconomicsChatbot() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="relative rounded-xl md:rounded-2xl overflow-hidden tutor-chat-container tutor-gold-glow"
+          className="relative rounded-none sm:rounded-xl md:rounded-2xl overflow-hidden tutor-chat-container tutor-gold-glow"
           style={{
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
@@ -1240,7 +1240,7 @@ export default function EconomicsChatbot() {
                     disabled={isLoading}
                     whileHover={{ scale: 1.02, boxShadow: '0 0 16px hsl(43 72% 53% / 0.3)' }}
                     whileTap={{ scale: 0.98 }}
-                    className="touch-target-sm px-2 md:px-2.5 py-1.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex-shrink-0"
+                    className="min-h-[44px] min-w-[44px] px-3 md:px-3.5 py-2 md:py-1.5 rounded-full text-[11px] md:text-xs font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex-shrink-0"
                     style={{
                       background: 'linear-gradient(135deg, hsl(214 100% 14% / 0.4), hsl(43 72% 53% / 0.1))',
                       border: '1px solid hsl(43 72% 53% / 0.4)',
@@ -1260,7 +1260,7 @@ export default function EconomicsChatbot() {
                 variant="ghost"
                 size="sm"
                 onClick={handleClearChat}
-                className="text-muted-foreground hover:text-destructive shrink-0 text-xs touch-target-sm self-end md:self-auto"
+                className="text-muted-foreground hover:text-destructive shrink-0 text-xs min-h-[44px] self-end md:self-auto"
               >
                 <Trash2 className="w-3.5 h-3.5 mr-1" />
                 Clear
@@ -1270,7 +1270,7 @@ export default function EconomicsChatbot() {
 
           <ScrollArea 
             ref={scrollRef}
-            className="h-[340px] md:h-[420px] lg:h-[520px] p-3 lg:p-4 relative"
+            className="h-[340px] md:h-[450px] lg:h-[560px] xl:h-[620px] p-2 sm:p-3 lg:p-5 relative"
           >
             {messages.length === 0 ? (
               <div className="h-full flex items-center justify-center text-center">
@@ -1299,14 +1299,14 @@ export default function EconomicsChatbot() {
                   >
                     {msg.role === 'assistant' && <TutorAvatar />}
                     <div
-                      className={`max-w-[85%] md:max-w-[90%] rounded-lg md:rounded-xl px-3 py-2 md:py-2.5 ${
+                      className={`max-w-[92%] sm:max-w-[88%] md:max-w-[90%] rounded-lg md:rounded-xl px-3 sm:px-4 lg:px-5 py-2.5 md:py-3 lg:py-3.5 ${
                         msg.role === 'user'
                           ? 'tutor-message-user text-foreground'
                           : 'tutor-message-ai text-foreground'
                       }`}
                     >
                       {msg.role === 'assistant' ? (
-                        <div className="prose prose-invert prose-sm max-w-none tutor-professor-response">
+                        <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
                           {/* Lesson Header */}
                           <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
                             {{ 'a-level': 'Cambridge A-Level Economics | CIE Senior Fellow', 'university': 'EconNexus Research Division | Senior Research Fellow | LSE/Oxford Standard', 'business': 'Cambridge A-Level Business | Cambridge Senior Examiner', 'law': 'EconNexus Legal Division | Global Juris Doctor | IRAC Method', 'psychology': 'Cambridge Psychology | GRAVE + PEEL', 'accounting': 'Cambridge Accounting | IFRS Standards', 'sociology': 'Cambridge Sociology | Perspectives Analysis', 'research': 'Research Methods | IPQ | Research Cycle', 'mathematics': 'Pure & Applied Mathematics | Step-by-Step Derivations', 'physics': 'Cambridge Physics 9702 | I-V-A-U Method | Conceptual Summaries' }[persona]}
@@ -1349,7 +1349,7 @@ export default function EconomicsChatbot() {
                           {msg.imageUrl && (
                             <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
                           )}
-                          <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                          <p className="whitespace-pre-wrap leading-relaxed" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>{msg.content}</p>
                         </div>
                       )}
                     </div>
@@ -1381,8 +1381,8 @@ export default function EconomicsChatbot() {
             )}
           </ScrollArea>
 
-          {/* Input Area */}
-          <div className="relative p-3 lg:p-5 border-t border-[hsl(43,72%,53%)]/15 safe-area-inset">
+          {/* Input Area — sticky on mobile for keyboard visibility */}
+          <div className="relative p-2 sm:p-3 lg:p-5 border-t border-[hsl(43,72%,53%)]/15 safe-area-inset sticky bottom-0 z-10 bg-[hsl(var(--graphite-deep)/0.95)] backdrop-blur-xl">
             {/* Image preview */}
             {uploadedImage && (
               <div className="flex items-center gap-2 mb-3 p-2 rounded-lg bg-white/5 border border-[hsl(43,72%,53%)]/20">
@@ -1438,7 +1438,7 @@ export default function EconomicsChatbot() {
                 variant="outline"
                 size="icon"
                 disabled={isLoading}
-                className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 touch-target shrink-0 self-end"
+                className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 shrink-0 self-end min-h-[44px] min-w-[44px]"
                 title="Upload image for analysis"
               >
                 <ImagePlus className="w-4 h-4 text-[hsl(43,72%,53%)]" />
@@ -1471,7 +1471,7 @@ export default function EconomicsChatbot() {
                     onClick={handleRetry}
                     variant="outline"
                     size="icon"
-                    className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 touch-target hidden md:flex"
+                    className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 min-h-[44px] min-w-[44px] hidden md:flex"
                     title="Retry last question"
                   >
                     <RefreshCw className="w-4 h-4 text-[hsl(43,72%,53%)]" />
@@ -1483,7 +1483,7 @@ export default function EconomicsChatbot() {
                   onClick={() => handleSend()}
                   disabled={(!input.trim() && !uploadedImage) || isLoading}
                   size="icon"
-                  className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg touch-target w-11 h-11"
+                  className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg min-h-[44px] min-w-[44px] w-11 h-11"
                   title="Send (Ctrl+Enter)"
                 >
                   {isLoading ? (
