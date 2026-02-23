@@ -51,9 +51,6 @@ const OwnerProfileSection = () => {
                 <p className="text-sm text-neon-cyan/80 tracking-wider uppercase">
                   Founder & Lead Curator
                 </p>
-                <div className="mt-3 text-sm text-muted-foreground">
-                  <p>+92-311-893-2062</p>
-                </div>
               </div>
 
               {/* Bio Paragraphs */}
