@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-// Target research sources for the University Persona
+// Target research sources for the University Persona + Law Persona
 const RESEARCH_SOURCES = [
   {
     domain: "pide.org.pk",
@@ -35,6 +35,34 @@ const RESEARCH_SOURCES = [
     ],
     category: "development_policy",
     label: "SDPI",
+  },
+  // ── LAW EXAMINER SOURCES ──
+  {
+    domain: "cambridgeinternational.org",
+    urls: [
+      "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-law-9084/",
+      "https://www.cambridgeinternational.org/Images/597382-2024-2026-syllabus.pdf",
+    ],
+    category: "law_cie",
+    label: "CIE Law 9084",
+  },
+  {
+    domain: "aqa.org.uk",
+    urls: [
+      "https://www.aqa.org.uk/subjects/law/a-level/law-7162/assessment-resources",
+      "https://www.aqa.org.uk/subjects/law/a-level/law-7162/teaching-resources",
+    ],
+    category: "law_aqa",
+    label: "AQA Law 7162",
+  },
+  {
+    domain: "qualifications.pearson.com",
+    urls: [
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/law-2015.html",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/law-2015.coursematerials.html",
+    ],
+    category: "law_edexcel",
+    label: "Edexcel Law",
   },
 ];
 
