@@ -64,6 +64,31 @@ const RESEARCH_SOURCES = [
     category: "law_edexcel",
     label: "Edexcel Law",
   },
+  // ── CHEMISTRY EXAMINER SOURCES ──
+  {
+    domain: "cambridgeinternational.org",
+    urls: [
+      "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-chemistry-9701/",
+    ],
+    category: "chem_cie",
+    label: "CIE Chemistry 9701",
+  },
+  {
+    domain: "aqa.org.uk",
+    urls: [
+      "https://www.aqa.org.uk/subjects/science/a-level/chemistry-7405/assessment-resources",
+    ],
+    category: "chem_aqa",
+    label: "AQA Chemistry 7405",
+  },
+  {
+    domain: "qualifications.pearson.com",
+    urls: [
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/chemistry-2015.html",
+    ],
+    category: "chem_edexcel",
+    label: "Edexcel Chemistry",
+  },
 ];
 
 async function hashContent(content: string): Promise<string> {
