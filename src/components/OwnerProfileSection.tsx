@@ -25,7 +25,7 @@ const OwnerProfileSection = () => {
             🎓 Meet the Founder
           </span>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            The academic mind behind the MacroMicro Economics Portal
+            The Academic Mind Behind Pakistan's First AI-Integrated Ecosystem
           </p>
         </motion.div>
 
