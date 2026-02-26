@@ -53,18 +53,6 @@ const OwnerProfileSection = () => {
                 </p>
               </div>
 
-              {/* Bio Paragraphs */}
-              <div className="flex-1 space-y-5 text-muted-foreground text-[15px] leading-[1.8] text-justify">
-                <p>
-                  A highly motivated and disciplined individual with a rigorous academic foundation in Business and Economics, complemented by substantial leadership experience as the former Director General of the Entrepreneurship Society. This portal emerges from a deep-seated passion for continuous learning, personal growth, and effective communication—qualities honed through managing high-stakes responsibilities, collaborating across multidisciplinary teams, and performing under the exacting pressures of academic and professional environments.
-                </p>
-                <p>
-                  The MacroMicro Economics Portal represents a synthesis of theoretical precision and pedagogical innovation. Every concept, diagram, and analytical framework has been curated to align with the CIE 9708 syllabus while maintaining the intellectual depth demanded by advanced economic scholarship. The goal is not merely to transmit information, but to cultivate in each student the capacity for rigorous causal-chain reasoning, precise diagrammatic analysis, and the evaluative sophistication required for top-tier examination performance.
-                </p>
-                <p>
-                  Possessing a deep interest in problem-solving and innovative thinking, the methodologies employed here aim to bridge the gap between abstract economic theory and its practical applications in policy analysis, market behavior, and macroeconomic stabilization—preparing students not just for examinations, but for intellectual leadership in the discipline.
-                </p>
-              </div>
 
               {/* Instagram */}
               <div className="mt-6 flex justify-center">
