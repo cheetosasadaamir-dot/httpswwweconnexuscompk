@@ -2519,9 +2519,121 @@ NEVER skip safety considerations for lab-based queries.
 NEVER skip the Mark Scheme Breakdown for 4+ mark questions.
 NEVER skip Common Examiner Pitfalls after the Mark Scheme Breakdown.`;
 
-const MAX_MESSAGES = 12;
+const MAX_MESSAGES = 6; // Last 3 exchanges only — 70% input token savings
 const MAX_TOKENS = 2500;
 const STREAM_TIMEOUT_MS = 60000; // 60s global timeout for image-heavy requests
+
+// ============================================================
+// SEMANTIC CACHING — 0-cost layer for repeated queries
+// ============================================================
+async function getCachedResponse(queryHash: string, persona: string): Promise<string | null> {
+  try {
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) return null;
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    const { data, error } = await supabase
+      .from("ai_cache")
+      .select("response_text, id, hit_count")
+      .eq("query_hash", queryHash)
+      .eq("persona", persona)
+      .gt("expires_at", new Date().toISOString())
+      .maybeSingle();
+
+    if (error || !data) return null;
+
+    // Increment hit count asynchronously (fire-and-forget)
+    supabase.from("ai_cache").update({ hit_count: data.hit_count + 1 }).eq("id", data.id).then(() => {});
+
+    console.log(`[CACHE HIT] query_hash=${queryHash}, persona=${persona}, hits=${data.hit_count + 1}`);
+    return data.response_text;
+  } catch (err) {
+    console.error("Cache lookup error:", err);
+    return null;
+  }
+}
+
+async function storeCacheResponse(queryHash: string, persona: string, promptText: string, responseText: string): Promise<void> {
+  try {
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) return;
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    await supabase.from("ai_cache").upsert({
+      query_hash: queryHash,
+      persona,
+      prompt_text: promptText.slice(0, 500),
+      response_text: responseText,
+      hit_count: 1,
+      expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+    }, { onConflict: "query_hash,persona" });
+    console.log(`[CACHE STORE] query_hash=${queryHash}, persona=${persona}`);
+  } catch (err) {
+    console.error("Cache store error:", err);
+  }
+}
+
+function computeQueryHash(query: string, persona: string): string {
+  // Normalize: lowercase, trim, collapse whitespace, remove punctuation for fuzzy match
+  const normalized = query.toLowerCase().trim().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ');
+  // Simple hash using djb2 algorithm
+  let hash = 5381;
+  for (let i = 0; i < normalized.length; i++) {
+    hash = ((hash << 5) + hash) + normalized.charCodeAt(i);
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  return `${persona}::${Math.abs(hash).toString(36)}`;
+}
+
+// ============================================================
+// DYNAMIC TOKEN LIMITS — based on query complexity
+// ============================================================
+function getMaxTokens(query: string, persona: Persona): number {
+  const wordCount = query.trim().split(/\s+/).length;
+  
+  // Short queries (definitions, single concepts): 150-400 tokens
+  if (wordCount <= 5) return 400;
+  
+  // Medium queries (explain, analyse): 600-800 tokens
+  if (wordCount <= 15) return 800;
+  
+  // Complex essay queries (evaluate, discuss, compare): up to 1500
+  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 1500;
+  
+  // Default medium response
+  return 800;
+}
+
+// ============================================================
+// ANTI-SPAM COOLDOWN — 5 messages/min, then 60s cooldown
+// ============================================================
+const spamCooldownMap = new Map<string, { count: number; resetTime: number; cooldownUntil: number }>();
+
+function checkSpamCooldown(clientId: string): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const entry = spamCooldownMap.get(clientId);
+  
+  if (entry && now < entry.cooldownUntil) {
+    return { allowed: false, retryAfter: Math.ceil((entry.cooldownUntil - now) / 1000) };
+  }
+  
+  if (!entry || now > entry.resetTime) {
+    spamCooldownMap.set(clientId, { count: 1, resetTime: now + 60000, cooldownUntil: 0 });
+    return { allowed: true };
+  }
+  
+  entry.count++;
+  if (entry.count > 5) {
+    // Trigger 60s cooldown
+    entry.cooldownUntil = now + 60000;
+    console.warn(`[ANTI-SPAM] 60s cooldown triggered for ${clientId}`);
+    return { allowed: false, retryAfter: 60 };
+  }
+  
+  return { allowed: true };
+}
 
 function extractThreadContext(messages: Array<{ role: string; content: string }>): string {
   if (messages.length < 2) return "";
@@ -2681,6 +2793,15 @@ serve(async (req) => {
     );
   }
 
+  // ANTI-SPAM COOLDOWN: 5 messages/min, then 60s forced wait
+  const spamCheck = checkSpamCooldown(clientId);
+  if (!spamCheck.allowed) {
+    return new Response(
+      JSON.stringify({ error: `Too many messages. Please wait ${spamCheck.retryAfter}s before sending another.`, retryAfter: spamCheck.retryAfter }),
+      { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json", "Retry-After": String(spamCheck.retryAfter) } }
+    );
+  }
+
   try {
     const { messages, persona: requestedPersona, image } = await req.json();
     const validPersonas: Persona[] = ['a-level', 'university', 'business', 'law', 'psychology', 'accounting', 'sociology', 'research', 'mathematics', 'physics', 'chemistry'];
@@ -2825,6 +2946,32 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
       return new Response(spamStream, {
         headers: { ...corsHeaders, "Content-Type": "text/event-stream", "Cache-Control": "no-cache" },
       });
+    }
+
+    // ── SEMANTIC CACHE LOOKUP (0-cost layer) ──
+    // Skip cache for image queries and greetings
+    const queryHash = computeQueryHash(userQuery, persona);
+    if (!image && !isGreeting(userQuery) && userQuery.length > 3) {
+      const cachedAnswer = await getCachedResponse(queryHash, persona);
+      if (cachedAnswer) {
+        console.log(`[CACHE] Serving cached response for: ${userQuery.slice(0, 50)}...`);
+        const cacheStream = new ReadableStream({
+          start(controller) {
+            const encoder = new TextEncoder();
+            // Stream in chunks to simulate natural delivery
+            const chunks = cachedAnswer.match(/.{1,100}/gs) || [cachedAnswer];
+            for (const chunk of chunks) {
+              const data = `data: ${JSON.stringify({ choices: [{ delta: { content: chunk } }] })}\n\n`;
+              controller.enqueue(encoder.encode(data));
+            }
+            controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+            controller.close();
+          },
+        });
+        return new Response(cacheStream, {
+          headers: { ...corsHeaders, "Content-Type": "text/event-stream", "Cache-Control": "no-cache" },
+        });
+      }
     }
     
     // RAG search (skip greetings)
@@ -2978,7 +3125,7 @@ This rule is ABSOLUTE — no mathematical symbol may appear unformatted in prose
           model: image ? "google/gemini-2.5-flash" : "google/gemini-3-flash-preview",
           messages: [...systemMessages, ...recentMessages],
           stream: true,
-          max_tokens: ['university', 'law', 'accounting', 'mathematics', 'physics', 'chemistry'].includes(persona) ? 4000 : ['psychology', 'sociology', 'research'].includes(persona) ? 3500 : persona === 'business' ? 3000 : MAX_TOKENS,
+          max_tokens: getMaxTokens(userQuery, persona),
           temperature: ['university', 'psychology', 'business', 'accounting', 'sociology'].includes(persona) ? 0.5 : persona === 'law' ? 0.4 : ['research', 'mathematics', 'physics', 'chemistry'].includes(persona) ? 0.45 : 0.6,
         }),
         signal: controller.signal,
@@ -3004,6 +3151,51 @@ This rule is ABSOLUTE — no mathematical symbol may appear unformatted in prose
           JSON.stringify({ error: "Temporary issue. Try again." }),
           { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
+      }
+
+      // ── CACHE-COLLECTING STREAM PROXY ──
+      // Intercept the response stream: forward to client AND collect for caching
+      if (!image && !isGreeting(userQuery) && userQuery.length > 3 && response.body) {
+        const originalStream = response.body;
+        const reader = originalStream.getReader();
+        let fullResponse = "";
+        
+        const proxyStream = new ReadableStream({
+          async pull(controller) {
+            const { done, value } = await reader.read();
+            if (done) {
+              controller.close();
+              // Store in cache asynchronously after stream completes
+              if (fullResponse.length > 50) {
+                storeCacheResponse(queryHash, persona, userQuery, fullResponse).catch(() => {});
+              }
+              return;
+            }
+            // Parse SSE chunks to collect response text
+            const text = new TextDecoder().decode(value);
+            const lines = text.split('\n');
+            for (const line of lines) {
+              if (line.startsWith('data: ') && !line.includes('[DONE]')) {
+                try {
+                  const parsed = JSON.parse(line.slice(6));
+                  const content = parsed.choices?.[0]?.delta?.content;
+                  if (typeof content === 'string') fullResponse += content;
+                } catch { /* skip parse errors */ }
+              }
+            }
+            controller.enqueue(value);
+          },
+        });
+        
+        return new Response(proxyStream, {
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "text/event-stream",
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Connection": "keep-alive",
+            "X-Content-Type-Options": "nosniff"
+          },
+        });
       }
 
       return new Response(response.body, {
