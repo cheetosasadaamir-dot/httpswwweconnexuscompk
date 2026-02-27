@@ -737,7 +737,7 @@ export default function EconomicsChatbot() {
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
         body: JSON.stringify({ 
-          messages: userMessages.map(m => ({ role: m.role, content: m.content })),
+          messages: userMessages.slice(-6).map(m => ({ role: m.role, content: m.content })),
           persona,
           ...(lastUserMsg?.imageUrl ? { image: lastUserMsg.imageUrl } : {}),
         }),
