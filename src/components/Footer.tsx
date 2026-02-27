@@ -19,7 +19,7 @@ const footerLinks = {
     { label: 'Visit Website', href: 'https://www.econnexus.com.pk', external: true },
     { label: 'Contact Us', href: 'mailto:contact@econnexus.com.pk', external: true },
     { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Use', href: '/terms' },
+    { label: 'Terms & Conditions', href: '/terms' },
   ],
 };
 

@@ -56,6 +56,7 @@ const ProductionCosts = lazy(() => import("./pages/a2-micro/ProductionCosts"));
 const FreemiumPack = lazy(() => import("./pages/FreemiumPack"));
 const AdminNexusApproval = lazy(() => import("./pages/AdminNexusApproval"));
 const OwnerNexusVault = lazy(() => import("./pages/OwnerNexusVault"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 
 
 const queryClient = new QueryClient({
@@ -136,6 +137,7 @@ const AnimatedRoutes = () => {
           <Route path="/freemium-pack" element={<FreemiumPack />} />
           <Route path="/admin-nexus-approval" element={<AdminNexusApproval />} />
           <Route path="/owner-nexus-vault" element={<OwnerNexusVault />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
           
           {/* Legacy routes */}
           <Route path="/national-income" element={<NationalIncome />} />

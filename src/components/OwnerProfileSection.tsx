@@ -57,7 +57,7 @@ const OwnerProfileSection = () => {
               {/* Instagram */}
               <div className="mt-6 flex justify-center">
                 <a
-                  href="https://www.instagram.com/asaddd__2?igsh=em1haGRiaGx6bGk1"
+                  href="https://www.instagram.com/econ.nexus.pk/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-space-void/60 border border-neon-cyan/30 hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all duration-300 group min-h-[44px]"
