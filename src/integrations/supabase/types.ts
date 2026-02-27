@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_cache: {
+        Row: {
+          created_at: string
+          expires_at: string
+          hit_count: number
+          id: string
+          persona: string
+          prompt_text: string
+          query_hash: string
+          response_text: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string
+          hit_count?: number
+          id?: string
+          persona?: string
+          prompt_text: string
+          query_hash: string
+          response_text: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string
+          hit_count?: number
+          id?: string
+          persona?: string
+          prompt_text?: string
+          query_hash?: string
+          response_text?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       chapters: {
         Row: {
           created_at: string
