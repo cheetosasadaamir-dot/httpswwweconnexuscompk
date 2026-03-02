@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, GraduationCap, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom, Wifi, WifiOff } from 'lucide-react';
+import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom, Wifi, WifiOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -39,24 +39,17 @@ type Message = {
 
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error' | 'mapping-diagram' | 'solving-logic';
 
-type Persona = 'a-level' | 'university' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry';
+type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry';
 
 const QUICK_ACTIONS_ALEVEL = [
   { label: 'J-Curve Effect', query: 'Explain the J-Curve effect and why the current account worsens before improving after depreciation.' },
   { label: 'Liquidity Trap', query: 'Analyze the Keynesian Liquidity Trap and why monetary policy becomes ineffective at the zero lower bound.' },
   { label: 'Phillips Curve', query: 'Explain the Expectations-Augmented Phillips Curve and the concept of NAIRU.' },
-  { label: 'Harrod-Domar', query: 'Derive the Harrod-Domar growth model (g=s/k) and evaluate its limitations for developing economies.' },
-  { label: 'Kinked Demand', query: 'Analyze the Kinked Demand Curve model and explain price rigidity in oligopolistic markets.' },
-  { label: 'Marshall-Lerner', query: 'Explain the Marshall-Lerner condition and when devaluation improves the trade balance.' },
-];
-
-const QUICK_ACTIONS_UNIVERSITY = [
   { label: 'Nash Equilibrium', query: 'Derive the Nash Equilibrium for a Cournot duopoly with asymmetric costs. Show the payoff matrix, best response functions, and verify the equilibrium satisfies no profitable deviation.' },
   { label: 'Lagrangian Optimization', query: 'Solve the consumer utility maximization problem using the Lagrangian method for a Cobb-Douglas utility function U(x,y) = x^0.4 y^0.6 subject to budget constraint 10x + 20y = 200. Show complete step-by-step derivation with SOC verification.' },
-  { label: 'Heckscher-Ohlin', query: 'Derive the Heckscher-Ohlin theorem and explain the Stolper-Samuelson and Rybczynski theorems. What are the empirical challenges (Leontief Paradox)?' },
   { label: 'Solow Steady-State', query: 'Derive the Solow-Swan steady-state, the golden rule of capital accumulation, and the convergence hypothesis. Show full mathematical derivation with economic interpretation at every step.' },
+  { label: 'Kinked Demand', query: 'Analyze the Kinked Demand Curve model and explain price rigidity in oligopolistic markets.' },
   { label: 'OLS & Diagnostics', query: 'Guide me through running an OLS regression: model specification, estimation, interpreting P-values and confidence intervals, and checking Gauss-Markov assumptions. What remedial measures exist for each violation?' },
-  { label: 'Prospect Theory', query: 'Explain Kahneman & Tversky\'s Prospect Theory. Derive the value function properties (loss aversion, diminishing sensitivity) and probability weighting function. How does this challenge Expected Utility Theory?' },
   { label: 'Pakistan Fiscal', query: 'Analyze Pakistan\'s fiscal policy using the latest Economic Survey data from the Ministry of Finance. Evaluate the fiscal deficit trajectory, debt sustainability, and IMF EFF conditionalities with PIDE evidence.' },
 ];
 
@@ -285,16 +278,10 @@ const LOADING_STATES_ALEVEL = [
   'Analyzing economic variables...',
   'Processing transmission mechanisms...',
   'Constructing analytical framework...',
-  'Synthesizing A-Level concepts...',
-  'Evaluating policy implications...',
-];
-
-const LOADING_STATES_UNIVERSITY = [
   'Reviewing empirical literature...',
   'Running econometric diagnostics...',
-  'Analyzing Pakistan macroeconomic data...',
-  'Constructing quantitative framework...',
   'Synthesizing research findings...',
+  'Evaluating policy implications...',
 ];
 
 const LOADING_STATES_BUSINESS = [
@@ -440,7 +427,7 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
 // Premium typing animation with stream state awareness
 const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { streamState?: StreamState; persona?: Persona }) => {
   const LOADING_MAP: Record<Persona, string[]> = {
-    'a-level': LOADING_STATES_ALEVEL, 'university': LOADING_STATES_UNIVERSITY, 'business': LOADING_STATES_BUSINESS,
+    'a-level': LOADING_STATES_ALEVEL, 'business': LOADING_STATES_BUSINESS,
     'law': LOADING_STATES_LAW, 'psychology': LOADING_STATES_PSYCHOLOGY, 'accounting': LOADING_STATES_ACCOUNTING,
     'sociology': LOADING_STATES_SOCIOLOGY, 'research': LOADING_STATES_RESEARCH, 'mathematics': LOADING_STATES_MATHEMATICS,
     'physics': LOADING_STATES_PHYSICS, 'chemistry': [
@@ -639,14 +626,14 @@ export default function EconomicsChatbot() {
   const [uploadedImageName, setUploadedImageName] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const QUICK_MAP: Record<Persona, typeof QUICK_ACTIONS_ALEVEL> = {
-    'a-level': QUICK_ACTIONS_ALEVEL, 'university': QUICK_ACTIONS_UNIVERSITY, 'business': QUICK_ACTIONS_BUSINESS,
+    'a-level': QUICK_ACTIONS_ALEVEL, 'business': QUICK_ACTIONS_BUSINESS,
     'law': QUICK_ACTIONS_LAW, 'psychology': QUICK_ACTIONS_PSYCHOLOGY, 'accounting': QUICK_ACTIONS_ACCOUNTING,
     'sociology': QUICK_ACTIONS_SOCIOLOGY, 'research': QUICK_ACTIONS_RESEARCH, 'mathematics': QUICK_ACTIONS_MATHEMATICS,
     'physics': QUICK_ACTIONS_PHYSICS, 'chemistry': QUICK_ACTIONS_CHEMISTRY,
   };
   const quickActions = QUICK_MAP[persona] || QUICK_ACTIONS_ALEVEL;
   const CMD_MAP: Record<Persona, typeof COMMAND_WORDS_ECON> = {
-    'a-level': COMMAND_WORDS_ECON, 'university': COMMAND_WORDS_ECON, 'business': COMMAND_WORDS_BUSINESS,
+    'a-level': COMMAND_WORDS_ECON, 'business': COMMAND_WORDS_BUSINESS,
     'law': COMMAND_WORDS_LAW, 'psychology': COMMAND_WORDS_PSYCHOLOGY, 'accounting': COMMAND_WORDS_ACCOUNTING,
     'sociology': COMMAND_WORDS_SOCIOLOGY, 'research': COMMAND_WORDS_RESEARCH, 'mathematics': COMMAND_WORDS_MATHEMATICS,
     'physics': COMMAND_WORDS_PHYSICS, 'chemistry': COMMAND_WORDS_CHEMISTRY,
@@ -1087,18 +1074,6 @@ export default function EconomicsChatbot() {
               Business
             </motion.button>
             <motion.button
-              onClick={() => { setPersona('university'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'university'
-                  ? 'bg-[hsl(185,100%,50%)]/15 border-[hsl(185,100%,50%)]/50 text-[hsl(185,100%,50%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <GraduationCap className="w-3 h-3" />
-              University Economics
-            </motion.button>
-            <motion.button
               onClick={() => { setPersona('law'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
               whileTap={{ scale: 0.97 }}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
@@ -1200,24 +1175,23 @@ export default function EconomicsChatbot() {
             <TutorAvatar size="sm" />
             <div className="text-left">
               <span className="text-xs md:text-sm text-[hsl(43,72%,53%)] font-semibold block">
-                {{ 'a-level': 'Prof. Econs', 'university': 'Dr. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods', 'mathematics': 'Prof. Mathesis', 'physics': 'Prof. Newton', 'chemistry': 'Prof. Chem' }[persona]}
+                {{ 'a-level': 'Prof. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods', 'mathematics': 'Prof. Mathesis', 'physics': 'Prof. Newton', 'chemistry': 'Prof. Chem' }[persona]}
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground">
-                {{ 'a-level': 'CIE Senior Fellow', 'university': 'Senior Research Fellow', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar', 'psychology': 'Psychology Specialist', 'accounting': 'Accounting & Finance Specialist', 'sociology': 'Sociology Specialist', 'research': 'Research Methods Guide', 'mathematics': 'Pure & Applied Mathematics', 'physics': 'CIE 9702 & University Physics', 'chemistry': 'CIE 9701 & Research Chemistry' }[persona]}
+                {{ 'a-level': 'Economics Intelligence Engine', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar', 'psychology': 'Psychology Specialist', 'accounting': 'Accounting & Finance Specialist', 'sociology': 'Sociology Specialist', 'research': 'Research Methods Guide', 'mathematics': 'Pure & Applied Mathematics', 'physics': 'CIE 9702 & University Physics', 'chemistry': 'CIE 9701 & Research Chemistry' }[persona]}
               </span>
             </div>
             <div className="tutor-verified-badge ml-1 md:ml-2 text-[9px] md:text-[10px]">
               <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3" />
-              <span>{{ 'a-level': '2026-2028', 'university': 'HEC', 'business': '2026-2028', 'law': 'IRAC', 'psychology': 'GRAVE', 'accounting': 'IFRS', 'sociology': 'PEEL', 'research': 'IPQ', 'mathematics': 'LaTeX', 'physics': 'I-V-A-U', 'chemistry': '9701' }[persona]}</span>
+              <span>{{ 'a-level': '2026-2028', 'business': '2026-2028', 'law': 'IRAC', 'psychology': 'GRAVE', 'accounting': 'IFRS', 'sociology': 'PEEL', 'research': 'IPQ', 'mathematics': 'LaTeX', 'physics': 'I-V-A-U', 'chemistry': '9701' }[persona]}</span>
             </div>
           </div>
           <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
-            {{ 'a-level': 'Stuck on a Concept?', 'university': 'Research Query?', 'business': 'Business Question?', 'law': 'Legal Question?', 'psychology': 'Psychology Question?', 'accounting': 'Accounting Question?', 'sociology': 'Sociology Question?', 'research': 'Research Question?', 'mathematics': 'Maths Problem?', 'physics': 'Physics Problem?', 'chemistry': 'Chemistry Question?' }[persona]}
+            {{ 'a-level': 'Economics Question?', 'business': 'Business Question?', 'law': 'Legal Question?', 'psychology': 'Psychology Question?', 'accounting': 'Accounting Question?', 'sociology': 'Sociology Question?', 'research': 'Research Question?', 'mathematics': 'Maths Problem?', 'physics': 'Physics Problem?', 'chemistry': 'Chemistry Question?' }[persona]}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto px-2" style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1rem)' }}>
             {{ 
-              'a-level': 'Ask the Cambridge A-Level Economics Professor • Text-Only Analysis Mode',
-              'university': 'Senior Research Fellow • LSE/Oxford Standard • Game Theory • Econometrics • Behavioral Econ',
+              'a-level': 'A-Level to University Economics • Game Theory • Econometrics • Policy Analysis',
               'business': 'Cambridge Senior Examiner • Business Studies • AO-Structured Responses',
               'law': 'Global Legal Scholar • IRAC Method • Contract • Tort • Criminal • Constitutional Law',
               'psychology': 'Psychology Specialist • Core Studies • GRAVE Framework • PEEL Structure',
@@ -1289,7 +1263,7 @@ export default function EconomicsChatbot() {
                     {action.label}
                   </motion.button>
                 ))}
-                {persona !== 'university' && <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={{ 'a-level': '9708', 'business': '9609', 'law': 'Law', 'psychology': '9990', 'accounting': '9706', 'sociology': '9699', 'research': 'IPQ', 'university': '', 'mathematics': '9709', 'physics': '9702', 'chemistry': '9701' }[persona]} />}
+                <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={{ 'a-level': '9708', 'business': '9609', 'law': 'Law', 'psychology': '9990', 'accounting': '9706', 'sociology': '9699', 'research': 'IPQ', 'mathematics': '9709', 'physics': '9702', 'chemistry': '9701' }[persona]} />
               </div>
             </div>
             
@@ -1315,13 +1289,13 @@ export default function EconomicsChatbot() {
                 <div className="text-muted-foreground">
                   <TutorAvatar size="lg" />
                   <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">
-                    {{ 'a-level': 'Prof. Econs', 'university': 'Dr. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods', 'mathematics': 'Prof. Mathesis', 'physics': 'Prof. Newton', 'chemistry': 'Prof. Chem' }[persona]}
+                    {{ 'a-level': 'Prof. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods', 'mathematics': 'Prof. Mathesis', 'physics': 'Prof. Newton', 'chemistry': 'Prof. Chem' }[persona]}
                   </p>
                   <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">
-                    {{ 'a-level': 'CIE Senior Fellow • Text Analysis Mode', 'university': 'Senior Research Fellow • LSE/Oxford Standard', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar • IRAC Method', 'psychology': 'Psychology Specialist • GRAVE Framework', 'accounting': 'Accounting Specialist • IFRS Standards', 'sociology': 'Sociology Specialist • Perspectives Mode', 'research': 'Research Methods Guide • IPQ', 'mathematics': 'Pure & Applied Mathematics • LaTeX Mode', 'physics': 'Physics Specialist • I-V-A-U Method', 'chemistry': 'Chemistry Specialist • CIE 9701 & Research' }[persona]}
+                    {{ 'a-level': 'Economics Intelligence Engine • A-Level to University', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar • IRAC Method', 'psychology': 'Psychology Specialist • GRAVE Framework', 'accounting': 'Accounting Specialist • IFRS Standards', 'sociology': 'Sociology Specialist • Perspectives Mode', 'research': 'Research Methods Guide • IPQ', 'mathematics': 'Pure & Applied Mathematics • LaTeX Mode', 'physics': 'Physics Specialist • I-V-A-U Method', 'chemistry': 'Chemistry Specialist • CIE 9701 & Research' }[persona]}
                   </p>
                   <p className="text-sm mt-1 opacity-70 font-serif">
-                    {{ 'a-level': 'Your Senior Cambridge Examiner is ready', 'university': 'Your Senior Research Fellow is ready for guided derivations', 'business': 'Your Cambridge Senior Examiner is ready for AO-structured answers', 'law': 'Your Legal Scholar is ready for IRAC analysis', 'psychology': 'Your Psychology Specialist is ready for GRAVE evaluations', 'accounting': 'Your Accounting Specialist is ready for double-entry and ratios', 'sociology': 'Your Sociology Specialist is ready for theoretical analysis', 'research': 'Your Research Methods Guide is ready for the research cycle', 'mathematics': 'Your Mathematics Specialist is ready for step-by-step derivations', 'physics': 'Your Physics Specialist is ready — I-V-A-U framework activated', 'chemistry': 'Your Chemistry Specialist is ready — mechanisms, spectroscopy & LaTeX activated' }[persona]}
+                    {{ 'a-level': 'Your Economics Intelligence Engine is ready — A-Level to University mastery', 'business': 'Your Cambridge Senior Examiner is ready for AO-structured answers', 'law': 'Your Legal Scholar is ready for IRAC analysis', 'psychology': 'Your Psychology Specialist is ready for GRAVE evaluations', 'accounting': 'Your Accounting Specialist is ready for double-entry and ratios', 'sociology': 'Your Sociology Specialist is ready for theoretical analysis', 'research': 'Your Research Methods Guide is ready for the research cycle', 'mathematics': 'Your Mathematics Specialist is ready for step-by-step derivations', 'physics': 'Your Physics Specialist is ready — I-V-A-U framework activated', 'chemistry': 'Your Chemistry Specialist is ready — mechanisms, spectroscopy & LaTeX activated' }[persona]}
                   </p>
                   <p className="text-xs mt-2 opacity-50">Ask follow-up questions — I remember our conversation!</p>
                 </div>
@@ -1347,7 +1321,7 @@ export default function EconomicsChatbot() {
                         <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
                           {/* Lesson Header */}
                           <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
-                            {{ 'a-level': 'Cambridge A-Level Economics | CIE Senior Fellow', 'university': 'EconNexus Research Division | Senior Research Fellow | LSE/Oxford Standard', 'business': 'Cambridge A-Level Business | Cambridge Senior Examiner', 'law': 'EconNexus Legal Division | Global Juris Doctor | IRAC Method', 'psychology': 'Cambridge Psychology | GRAVE + PEEL', 'accounting': 'Cambridge Accounting | IFRS Standards', 'sociology': 'Cambridge Sociology | Perspectives Analysis', 'research': 'Research Methods | IPQ | Research Cycle', 'mathematics': 'Pure & Applied Mathematics | Step-by-Step Derivations', 'physics': 'Cambridge Physics 9702 | I-V-A-U Method | Conceptual Summaries' }[persona]}
+                            {{ 'a-level': 'Economics Intelligence Engine | A-Level & University Standard', 'business': 'Cambridge A-Level Business | Cambridge Senior Examiner', 'law': 'EconNexus Legal Division | Global Juris Doctor | IRAC Method', 'psychology': 'Cambridge Psychology | GRAVE + PEEL', 'accounting': 'Cambridge Accounting | IFRS Standards', 'sociology': 'Cambridge Sociology | Perspectives Analysis', 'research': 'Research Methods | IPQ | Research Cycle', 'mathematics': 'Pure & Applied Mathematics | Step-by-Step Derivations', 'physics': 'Cambridge Physics 9702 | I-V-A-U Method | Conceptual Summaries' }[persona]}
                           </div>
                           <ReactMarkdown
                             remarkPlugins={[remarkMath]}
