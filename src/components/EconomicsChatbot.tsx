@@ -1096,7 +1096,7 @@ export default function EconomicsChatbot() {
               }`}
             >
               <GraduationCap className="w-3 h-3" />
-              University
+              University Economics
             </motion.button>
             <motion.button
               onClick={() => { setPersona('law'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
