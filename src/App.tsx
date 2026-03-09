@@ -139,6 +139,7 @@ const AnimatedRoutes = () => {
           <Route path="/admin-nexus-approval" element={<AdminNexusApproval />} />
           <Route path="/owner-nexus-vault" element={<OwnerNexusVault />} />
           <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
           
           {/* Legacy routes */}
           <Route path="/national-income" element={<NationalIncome />} />
