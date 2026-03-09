@@ -63,8 +63,17 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="font-serif text-fluid-hero font-bold leading-tight mb-6 md:mb-8"
               >
-                <span className="section-title">Global AI-Integrated Academic Hub</span>
+                <span className="section-title">The Global Standard in Agentic Education</span>
               </motion.h1>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="font-serif text-fluid-2xl font-semibold text-secondary mb-4 md:mb-6 tracking-wide"
+              >
+                Integrated. Specialized. Unstoppable.
+              </motion.h2>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -72,7 +81,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-fluid-base lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 md:mb-12 px-2"
               >
-                Master A-Level Economics with elite interactive notes. Solve complex University Law, Economics, A-Level Business and Psychology challenges with our specialized AI Fellow.
+                Deploy an ecosystem of specialized AI minds tailored to your specific field of study. From real-time syllabus tracking to complex University-level analysis, Econ Nexus provides the cognitive infrastructure for the modern elite student.
               </motion.p>
 
               <motion.div
