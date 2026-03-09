@@ -1,7 +1,7 @@
 import { TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import logoImage from '@/assets/econnexus-logo.png';
+import logoImage from '@/assets/econnexus-logo-final.png';
 
 interface EconNexusLogoProps {
   size?: 'sm' | 'md' | 'lg';
