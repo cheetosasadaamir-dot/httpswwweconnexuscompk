@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 
 const OwnerProfileSection = () => {
