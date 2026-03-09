@@ -493,14 +493,6 @@ const FloatingDock = () => {
                 {/* Utility Links - Touch-friendly */}
                 <div className="space-y-2">
                   <Link
-                    to="/freemium-pack"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 md:px-4 py-3 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/20 transition-all touch-target"
-                  >
-                    <GraduationCap className="w-5 h-5" />
-                    <span className="font-medium">Freemium Pack — $7</span>
-                  </Link>
-                  <Link
                     to="/case-studies"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center gap-3 px-3 md:px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all touch-target"
