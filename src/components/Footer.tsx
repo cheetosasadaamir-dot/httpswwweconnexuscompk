@@ -16,7 +16,6 @@ const footerLinks = {
     { label: 'Market Failure', href: '/market-failure' },
   ],
   support: [
-    { label: 'Visit Website', href: 'https://www.econnexus.com.pk', external: true },
     { label: 'Contact Us', href: 'mailto:contact@econnexus.com.pk', external: true },
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms & Conditions', href: '/terms' },
@@ -40,15 +39,6 @@ const Footer = () => {
               The Central Intelligence for Global Academia.
             </p>
             <p className="text-xs text-[#D4AF37]/60 italic mb-4">Driven by the Agentic Ecosystem.</p>
-            <a 
-              href="https://www.econnexus.com.pk" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs text-neon-cyan hover:text-neon-cyan/80 transition-colors"
-            >
-              www.econnexus.com.pk
-              <ExternalLink className="w-3 h-3" />
-            </a>
             <p className="font-serif text-xs text-silver/60 italic mt-4">
               "Mastery is no longer a choice—it is an architecture. From A-Level foundations to University-level complexity, the Nexus is your unified cognitive advantage."
             </p>

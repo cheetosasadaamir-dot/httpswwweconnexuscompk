@@ -191,8 +191,7 @@ export function enableContentProtection(element: HTMLElement | null): () => void
 // ============================================================================
 
 const ALLOWED_DOMAINS = [
-  'econnexus.com.pk',
-  'www.econnexus.com.pk',
+  'httpswwweconnexuscompk.lovable.app',
   'localhost',
   '127.0.0.1'
 ];
