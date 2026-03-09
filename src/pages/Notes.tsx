@@ -194,7 +194,7 @@ const Notes = () => {
               className="text-center max-w-4xl mx-auto"
             >
               <div className="flex items-center justify-center gap-3 mb-6">
-                <EconNexusLogo size="md" showText={true} useImage={true} linkHome={false} />
+                <EconNexusLogo size="lg" showText={true} useImage={true} linkHome={false} />
               </div>
               <span className="inline-block text-sm font-medium text-neon-cyan uppercase tracking-widest mb-4">
                 CIE 9708 Syllabus
