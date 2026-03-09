@@ -37,7 +37,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative">
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+      
       <ThreeJsMarketEngine />
       <Header />
 
