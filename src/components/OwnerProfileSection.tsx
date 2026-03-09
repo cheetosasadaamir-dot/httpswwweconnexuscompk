@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 
 const OwnerProfileSection = () => {
@@ -69,27 +69,6 @@ const OwnerProfileSection = () => {
                 </a>
               </div>
 
-              {/* Footer */}
-              <div className="mt-8 pt-6 border-t border-white/5">
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-                  <div className="text-center sm:text-left">
-                    <p className="font-script text-2xl lg:text-3xl text-white/80 italic tracking-wide">
-                      Muhammad Asad Aamir
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-1 tracking-wider uppercase">
-                      Portal Founder
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-space-elevated/50 border border-white/10 hover:border-neon-cyan/50 hover:shadow-[0_0_15px_rgba(0,242,255,0.3)] transition-all group" aria-label="LinkedIn">
-                      <Linkedin className="w-5 h-5 text-white/70 group-hover:text-neon-cyan transition-colors" />
-                    </a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-space-elevated/50 border border-white/10 hover:border-neon-cyan/50 hover:shadow-[0_0_15px_rgba(0,242,255,0.3)] transition-all group" aria-label="Twitter/X">
-                      <Twitter className="w-5 h-5 text-white/70 group-hover:text-neon-cyan transition-colors" />
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </motion.div>
