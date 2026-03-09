@@ -17,7 +17,7 @@ import {
   Scale
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import logoImage from '@/assets/econnexus-logo.jpeg';
+import logoImage from '@/assets/econnexus-logo-final.png';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
 
 interface SubNavItem {
