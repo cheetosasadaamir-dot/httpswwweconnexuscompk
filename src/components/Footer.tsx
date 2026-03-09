@@ -37,9 +37,9 @@ const Footer = () => {
               <EconNexusLogo size="lg" />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-1">
-              The Premier Gateway to Advanced Macroeconomic Mastery.
+              The Central Intelligence for Global Academia.
             </p>
-            <p className="text-xs text-[#D4AF37]/60 italic mb-4">Powered by the Academic Engine</p>
+            <p className="text-xs text-[#D4AF37]/60 italic mb-4">Driven by the Agentic Ecosystem.</p>
             <a 
               href="https://www.econnexus.com.pk" 
               target="_blank" 
