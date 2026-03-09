@@ -13,7 +13,7 @@ const Layout = ({ children, showSidebar = true }: LayoutProps) => {
     <div className="min-h-screen">
       <ThreeJsMarketEngine />
       <FloatingDock />
-      <main className="relative z-20 pt-20 md:pt-24 lg:pt-28 safe-area-inset">
+      <main className="relative z-20 safe-area-inset">
         {children}
       </main>
       <Footer />
