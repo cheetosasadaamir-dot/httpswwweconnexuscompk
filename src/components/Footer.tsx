@@ -34,7 +34,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="mb-4">
-              <EconNexusLogo size="md" />
+              <EconNexusLogo size="lg" />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-1">
               The Premier Gateway to Advanced Macroeconomic Mastery.
