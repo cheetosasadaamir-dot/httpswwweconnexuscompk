@@ -2,116 +2,44 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // ─── CONFIG ───────────────────────────────────────────────
-const TOTAL_DURATION = 4200; // total splash ms
-const ASSEMBLY_START = 200;
-const ASSEMBLY_DURATION = 1800;
-const HOLD_UNTIL = 2800;
-const SHATTER_START = 2800;
-const SHATTER_DURATION = 1400;
+const TOTAL_DURATION = 5500;
+const FOG_EMERGE_DURATION = 2500;
+const SWEEP_INTERVAL = 1500;
+const REVEAL_START = 3000;
+const REVEAL_DURATION = 1500;
 
-const PARTICLE_COUNT_DESKTOP = 1200;
-const PARTICLE_COUNT_MOBILE = 400;
-const BOKEH_COUNT = 18;
+const NODE_COUNT_DESKTOP = 60;
+const NODE_COUNT_MOBILE = 25;
 
 // ─── TYPES ────────────────────────────────────────────────
-interface AssemblyParticle {
-  // start position (edge of screen)
-  sx: number; sy: number;
-  // target position (on the text)
-  tx: number; ty: number;
-  // current
-  x: number; y: number;
+interface DataNode {
+  x: number; y: number; z: number;
   size: number;
-  hue: number; // 185 (cyan) or 220 (cobalt)
+  speed: number;
+  angle: number;
   brightness: number;
-  delay: number; // 0-1 stagger
-  // shatter velocity
-  vx: number; vy: number;
-}
-
-interface BokehOrb {
-  x: number; y: number;
-  size: number;
-  hue: number;
-  opacity: number;
-  dx: number; dy: number;
+  pulseOffset: number;
 }
 
 // ─── HELPERS ──────────────────────────────────────────────
 const isMobileDevice = () =>
   typeof window !== 'undefined' && (window.innerWidth < 768 || /Mobi|Android|iPad|iPhone/i.test(navigator.userAgent));
 
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
-const easeInCubic = (t: number) => t * t * t;
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
-
-/**
- * Samples target positions from text rendered onto an offscreen canvas.
- */
-function sampleTextPositions(
-  text: string,
-  count: number,
-  canvasW: number,
-  canvasH: number,
-  fontSize: number,
-  yOffset: number
-): { x: number; y: number }[] {
-  const offscreen = document.createElement('canvas');
-  offscreen.width = canvasW;
-  offscreen.height = canvasH;
-  const ctx = offscreen.getContext('2d')!;
-  ctx.fillStyle = '#fff';
-  ctx.font = `800 ${fontSize}px "Michroma", sans-serif`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(text, canvasW / 2, canvasH / 2 + yOffset);
-
-  const imageData = ctx.getImageData(0, 0, canvasW, canvasH);
-  const pixels = imageData.data;
-  const candidates: { x: number; y: number }[] = [];
-  const step = Math.max(2, Math.floor(Math.sqrt((canvasW * canvasH) / (count * 8))));
-
-  for (let y = 0; y < canvasH; y += step) {
-    for (let x = 0; x < canvasW; x += step) {
-      const idx = (y * canvasW + x) * 4;
-      if (pixels[idx + 3] > 128) {
-        candidates.push({ x, y });
-      }
-    }
-  }
-
-  // Shuffle and pick
-  for (let i = candidates.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
-  }
-  return candidates.slice(0, count);
-}
-
-function generateEdgePosition(w: number, h: number): { x: number; y: number } {
-  const edge = Math.floor(Math.random() * 4);
-  switch (edge) {
-    case 0: return { x: Math.random() * w, y: -50 };
-    case 1: return { x: w + 50, y: Math.random() * h };
-    case 2: return { x: Math.random() * w, y: h + 50 };
-    default: return { x: -50, y: Math.random() * h };
-  }
-}
+const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
+const easeInQuart = (t: number) => t * t * t * t;
 
 // ─── COMPONENT ────────────────────────────────────────────
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
-  const [phase, setPhase] = useState<'assembling' | 'holding' | 'shattering' | 'done'>('assembling');
+  const [phase, setPhase] = useState<'emerging' | 'holding' | 'revealing' | 'done'>('emerging');
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mouseRef = useRef({ x: 0.5, y: 0.5 });
   const startTimeRef = useRef(0);
   const rafRef = useRef(0);
-  const particlesRef = useRef<AssemblyParticle[]>([]);
-  const bokehRef = useRef<BokehOrb[]>([]);
+  const nodesRef = useRef<DataNode[]>([]);
+  const sweepRef = useRef(0);
   const mobile = useMemo(() => isMobileDevice(), []);
-  const pulsePhaseRef = useRef(0);
 
-  // ── Initialize particles from text sampling ──
+  // ── Initialize floating data-nodes ──
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -123,37 +51,16 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
 
-    const fontSize = mobile ? Math.min(w * 0.09, 42) : Math.min(w * 0.065, 80);
-    const pCount = mobile ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
-
-    // Sample "ECON NEXUS" text positions
-    const targets = sampleTextPositions('ECON NEXUS', pCount, w, h, fontSize, 0);
-
-    const particles: AssemblyParticle[] = targets.map((t, i) => {
-      const start = generateEdgePosition(w, h);
-      return {
-        sx: start.x, sy: start.y,
-        tx: t.x, ty: t.y,
-        x: start.x, y: start.y,
-        size: Math.random() * 2.2 + 0.8,
-        hue: Math.random() > 0.3 ? 185 : 220,
-        brightness: 50 + Math.random() * 30,
-        delay: (i / targets.length) * 0.6 + Math.random() * 0.15,
-        vx: (Math.random() - 0.5) * 12,
-        vy: (Math.random() - 0.5) * 12,
-      };
-    });
-    particlesRef.current = particles;
-
-    // Bokeh orbs
-    bokehRef.current = Array.from({ length: BOKEH_COUNT }, () => ({
+    const count = mobile ? NODE_COUNT_MOBILE : NODE_COUNT_DESKTOP;
+    nodesRef.current = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      size: 20 + Math.random() * 60,
-      hue: Math.random() > 0.5 ? 185 : 43,
-      opacity: 0.04 + Math.random() * 0.08,
-      dx: (Math.random() - 0.5) * 0.3,
-      dy: (Math.random() - 0.5) * 0.3,
+      z: 0.3 + Math.random() * 0.7,
+      size: 2 + Math.random() * 4,
+      speed: 0.15 + Math.random() * 0.35,
+      angle: Math.random() * Math.PI * 2,
+      brightness: 40 + Math.random() * 30,
+      pulseOffset: Math.random() * Math.PI * 2,
     }));
 
     startTimeRef.current = performance.now();
@@ -172,130 +79,129 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
       const h = window.innerHeight;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, w, h);
 
-      // ── Bokeh background ──
-      bokehRef.current.forEach(b => {
-        b.x += b.dx;
-        b.y += b.dy;
-        if (b.x < -b.size) b.x = w + b.size;
-        if (b.x > w + b.size) b.x = -b.size;
-        if (b.y < -b.size) b.y = h + b.size;
-        if (b.y > h + b.size) b.y = -b.size;
+      // ── Deep navy gradient background ──
+      const bgGrad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.8);
+      bgGrad.addColorStop(0, '#001a3d');
+      bgGrad.addColorStop(0.5, '#00142d');
+      bgGrad.addColorStop(1, '#000a1a');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
 
-        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.size);
-        grad.addColorStop(0, `hsla(${b.hue}, 80%, 60%, ${b.opacity})`);
-        grad.addColorStop(0.5, `hsla(${b.hue}, 80%, 50%, ${b.opacity * 0.4})`);
-        grad.addColorStop(1, `hsla(${b.hue}, 80%, 40%, 0)`);
-        ctx.beginPath();
-        ctx.fillStyle = grad;
-        ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
+      // ── Fog emergence opacity ──
+      const fogProgress = clamp(elapsed / FOG_EMERGE_DURATION, 0, 1);
+      const fogEase = easeOutQuart(fogProgress);
 
-      // ── God rays from center ──
-      const cx = w / 2;
-      const cy = h / 2;
-      const rayProgress = clamp((elapsed - ASSEMBLY_START) / ASSEMBLY_DURATION, 0, 1);
-      if (rayProgress > 0.3) {
-        const rayAlpha = Math.min((rayProgress - 0.3) * 0.12, 0.06);
-        const rayCount = 8;
-        for (let i = 0; i < rayCount; i++) {
-          const angle = (i / rayCount) * Math.PI * 2 + elapsed * 0.0001;
-          const length = Math.max(w, h) * 0.9;
-          const spread = 0.08;
-          ctx.beginPath();
-          ctx.moveTo(cx, cy);
-          ctx.lineTo(
-            cx + Math.cos(angle - spread) * length,
-            cy + Math.sin(angle - spread) * length
-          );
-          ctx.lineTo(
-            cx + Math.cos(angle + spread) * length,
-            cy + Math.sin(angle + spread) * length
-          );
-          ctx.closePath();
-          const rayGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, length);
-          rayGrad.addColorStop(0, `hsla(185, 100%, 60%, ${rayAlpha})`);
-          rayGrad.addColorStop(0.4, `hsla(185, 100%, 50%, ${rayAlpha * 0.5})`);
-          rayGrad.addColorStop(1, 'hsla(185, 100%, 50%, 0)');
-          ctx.fillStyle = rayGrad;
-          ctx.fill();
+      // ── Volumetric fog layers ──
+      for (let i = 0; i < 3; i++) {
+        const fogY = h * (0.3 + i * 0.15);
+        const fogAlpha = (1 - fogEase) * 0.3 * (1 - i * 0.2);
+        if (fogAlpha > 0.01) {
+          const fogGrad = ctx.createRadialGradient(w / 2, fogY, 0, w / 2, fogY, w * 0.6);
+          fogGrad.addColorStop(0, `rgba(0, 30, 80, ${fogAlpha})`);
+          fogGrad.addColorStop(0.6, `rgba(0, 20, 50, ${fogAlpha * 0.5})`);
+          fogGrad.addColorStop(1, 'rgba(0, 10, 30, 0)');
+          ctx.fillStyle = fogGrad;
+          ctx.fillRect(0, 0, w, h);
         }
       }
 
-      // ── Heartbeat pulse ──
-      pulsePhaseRef.current += 0.04;
-      const pulse = 0.7 + 0.3 * Math.sin(pulsePhaseRef.current * 2.5);
+      // ── Floating data-nodes (navy blue cubes) ──
+      const nodeAlpha = clamp(fogEase * 1.5, 0, 1);
+      nodesRef.current.forEach(node => {
+        // Slow fluid motion
+        node.angle += node.speed * 0.003;
+        node.x += Math.cos(node.angle) * node.speed * 0.5;
+        node.y += Math.sin(node.angle * 0.7) * node.speed * 0.3;
 
-      // ── Parallax offset (desktop only) ──
-      const parallaxX = mobile ? 0 : (mouseRef.current.x - 0.5) * 15;
-      const parallaxY = mobile ? 0 : (mouseRef.current.y - 0.5) * 10;
+        // Wrap around
+        if (node.x < -20) node.x = w + 20;
+        if (node.x > w + 20) node.x = -20;
+        if (node.y < -20) node.y = h + 20;
+        if (node.y > h + 20) node.y = -20;
 
-      // ── Assembly / hold / shatter phases ──
-      const isAssembling = elapsed < HOLD_UNTIL;
-      const isShattering = elapsed >= SHATTER_START;
+        const pulse = 0.6 + 0.4 * Math.sin(elapsed * 0.002 + node.pulseOffset);
+        const s = node.size * node.z;
+        const alpha = nodeAlpha * node.z * pulse * 0.8;
 
-      particlesRef.current.forEach(p => {
-        if (isAssembling) {
-          // Assembly with staggered delay
-          const t0 = clamp((elapsed - ASSEMBLY_START) / ASSEMBLY_DURATION, 0, 1);
-          const staggered = clamp((t0 - p.delay) / (1 - p.delay), 0, 1);
-          const ease = easeOutCubic(staggered);
-          p.x = lerp(p.sx, p.tx + parallaxX, ease);
-          p.y = lerp(p.sy, p.ty + parallaxY, ease);
-        } else if (isShattering) {
-          // Explode outward
-          const st = (elapsed - SHATTER_START) / SHATTER_DURATION;
-          const ease = easeInCubic(clamp(st, 0, 1));
-          p.x = p.tx + parallaxX + p.vx * ease * 80;
-          p.y = p.ty + parallaxY + p.vy * ease * 80;
-        } else {
-          // Hold at target with parallax
-          p.x = p.tx + parallaxX;
-          p.y = p.ty + parallaxY;
+        // Reveal fadeout
+        let revealFade = 1;
+        if (elapsed >= REVEAL_START) {
+          revealFade = 1 - clamp((elapsed - REVEAL_START) / REVEAL_DURATION, 0, 1);
         }
-
-        // Fade out during shatter
-        let alpha = 1;
-        if (isShattering) {
-          alpha = 1 - clamp((elapsed - SHATTER_START) / SHATTER_DURATION, 0, 1);
-        }
-        // Fade in during assembly
-        if (isAssembling) {
-          const t0 = clamp((elapsed - ASSEMBLY_START) / ASSEMBLY_DURATION, 0, 1);
-          const staggered = clamp((t0 - p.delay) / (1 - p.delay), 0, 1);
-          alpha = Math.min(staggered * 3, 1);
-        }
-
-        const glowSize = p.size * (2.5 + pulse * 1.5);
 
         // Outer glow
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowSize);
-        grad.addColorStop(0, `hsla(${p.hue}, 100%, ${p.brightness}%, ${alpha * 0.6 * pulse})`);
-        grad.addColorStop(1, `hsla(${p.hue}, 100%, ${p.brightness}%, 0)`);
-        ctx.beginPath();
-        ctx.fillStyle = grad;
-        ctx.arc(p.x, p.y, glowSize, 0, Math.PI * 2);
-        ctx.fill();
+        const glow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, s * 4);
+        glow.addColorStop(0, `rgba(0, 100, 200, ${alpha * 0.4 * revealFade})`);
+        glow.addColorStop(1, 'rgba(0, 50, 120, 0)');
+        ctx.fillStyle = glow;
+        ctx.fillRect(node.x - s * 4, node.y - s * 4, s * 8, s * 8);
 
-        // Core particle
-        ctx.beginPath();
-        ctx.fillStyle = `hsla(${p.hue}, 100%, ${p.brightness + 20}%, ${alpha})`;
-        ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
-        ctx.fill();
+        // Cube shape (rotated square)
+        ctx.save();
+        ctx.translate(node.x, node.y);
+        ctx.rotate(elapsed * 0.0005 + node.pulseOffset);
+        ctx.fillStyle = `rgba(0, 120, 220, ${alpha * 0.9 * revealFade})`;
+        ctx.fillRect(-s / 2, -s / 2, s, s);
+        // Highlight edge
+        ctx.strokeStyle = `rgba(100, 180, 255, ${alpha * 0.6 * revealFade})`;
+        ctx.lineWidth = 0.5;
+        ctx.strokeRect(-s / 2, -s / 2, s, s);
+        ctx.restore();
       });
 
-      // ── Central text glow (assembled state) ──
-      if (rayProgress > 0.7 && !isShattering) {
-        const centerGlow = ctx.createRadialGradient(cx + parallaxX, cy + parallaxY, 0, cx + parallaxX, cy + parallaxY, 200);
-        centerGlow.addColorStop(0, `hsla(185, 100%, 55%, ${0.04 * pulse})`);
-        centerGlow.addColorStop(1, 'hsla(185, 100%, 50%, 0)');
-        ctx.beginPath();
-        ctx.fillStyle = centerGlow;
-        ctx.arc(cx + parallaxX, cy + parallaxY, 200, 0, Math.PI * 2);
-        ctx.fill();
+      // ── Connection lines between nearby nodes ──
+      const maxDist = mobile ? 80 : 120;
+      for (let i = 0; i < nodesRef.current.length; i++) {
+        for (let j = i + 1; j < nodesRef.current.length; j++) {
+          const a = nodesRef.current[i];
+          const b = nodesRef.current[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            let revealFade = 1;
+            if (elapsed >= REVEAL_START) {
+              revealFade = 1 - clamp((elapsed - REVEAL_START) / REVEAL_DURATION, 0, 1);
+            }
+            const lineAlpha = (1 - dist / maxDist) * 0.15 * nodeAlpha * revealFade;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 100, 200, ${lineAlpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
       }
+
+      // ── Light sweep across center ──
+      sweepRef.current = (elapsed % SWEEP_INTERVAL) / SWEEP_INTERVAL;
+      const sweepX = sweepRef.current * w * 1.4 - w * 0.2;
+      const sweepAlpha = fogEase * 0.12;
+      if (sweepAlpha > 0 && elapsed < REVEAL_START + REVEAL_DURATION) {
+        let revealFade = 1;
+        if (elapsed >= REVEAL_START) {
+          revealFade = 1 - clamp((elapsed - REVEAL_START) / REVEAL_DURATION, 0, 1);
+        }
+        const sweepGrad = ctx.createLinearGradient(sweepX - 80, 0, sweepX + 80, 0);
+        sweepGrad.addColorStop(0, 'rgba(0, 60, 150, 0)');
+        sweepGrad.addColorStop(0.5, `rgba(60, 140, 255, ${sweepAlpha * revealFade})`);
+        sweepGrad.addColorStop(1, 'rgba(0, 60, 150, 0)');
+        ctx.fillStyle = sweepGrad;
+        ctx.fillRect(sweepX - 80, h * 0.3, 160, h * 0.4);
+      }
+
+      // ── Ambient glow at center ──
+      const centerGlow = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.35);
+      const centerAlpha = fogEase * 0.08;
+      centerGlow.addColorStop(0, `rgba(0, 80, 180, ${centerAlpha})`);
+      centerGlow.addColorStop(0.5, `rgba(0, 40, 100, ${centerAlpha * 0.3})`);
+      centerGlow.addColorStop(1, 'rgba(0, 20, 60, 0)');
+      ctx.fillStyle = centerGlow;
+      ctx.beginPath();
+      ctx.arc(w / 2, h / 2, w * 0.35, 0, Math.PI * 2);
+      ctx.fill();
 
       rafRef.current = requestAnimationFrame(render);
     };
@@ -304,20 +210,10 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
     return () => cancelAnimationFrame(rafRef.current);
   }, [mobile]);
 
-  // ── Mouse tracking ──
-  useEffect(() => {
-    if (mobile) return;
-    const handler = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight };
-    };
-    window.addEventListener('mousemove', handler);
-    return () => window.removeEventListener('mousemove', handler);
-  }, [mobile]);
-
   // ── Phase sequencing ──
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase('holding'), ASSEMBLY_START + ASSEMBLY_DURATION);
-    const t2 = setTimeout(() => setPhase('shattering'), SHATTER_START);
+    const t1 = setTimeout(() => setPhase('holding'), FOG_EMERGE_DURATION);
+    const t2 = setTimeout(() => setPhase('revealing'), REVEAL_START);
     const t3 = setTimeout(() => {
       setPhase('done');
       onComplete();
@@ -327,72 +223,124 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
 
   if (phase === 'done') return null;
 
+  const isRevealing = phase === 'revealing';
+
   return (
     <AnimatePresence>
       <motion.div
-        key="splash-cinematic"
+        key="splash-navy"
         className="fixed inset-0 z-[9999] overflow-hidden"
-        style={{ background: 'hsl(0, 0%, 2%)' }}
+        style={{ background: '#00142d' }}
         initial={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        animate={isRevealing ? {
+          opacity: 0,
+          scale: 1.15,
+          filter: 'blur(12px)',
+        } : { opacity: 1, scale: 1, filter: 'blur(0px)' }}
+        transition={isRevealing ? { duration: 1.4, ease: [0.76, 0, 0.24, 1] } : { duration: 0.1 }}
       >
-        {/* Main particle canvas */}
+        {/* Particle canvas */}
         <canvas
           ref={canvasRef}
           className="absolute inset-0"
           style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
         />
 
-        {/* Subtitle text - appears after assembly */}
+        {/* Main title — emerges from fog */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          style={{ perspective: '1000px' }}
+          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+          style={{ perspective: '1200px' }}
         >
-          <motion.p
-            className="absolute tracking-[0.35em] uppercase select-none"
+          {/* 3D Extruded Title */}
+          <motion.h1
+            className="select-none text-center"
             style={{
-              bottom: mobile ? '38%' : '35%',
-              fontSize: 'clamp(0.55rem, 1.4vw, 0.95rem)',
-              fontFamily: "'JetBrains Mono', monospace",
-              fontWeight: 500,
-              color: 'hsl(0, 0%, 50%)',
+              fontFamily: "'Syncopate', sans-serif",
+              fontWeight: 700,
+              fontSize: mobile ? 'clamp(1.4rem, 7vw, 2.2rem)' : 'clamp(2.2rem, 5vw, 4.2rem)',
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              color: 'transparent',
+              backgroundImage: 'linear-gradient(180deg, #e8edf5 0%, #8899b3 40%, #4a6080 70%, #2a3d5c 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textShadow: 'none',
+              filter: 'drop-shadow(0 2px 4px rgba(0,40,100,0.6)) drop-shadow(0 8px 20px rgba(0,20,60,0.4))',
               willChange: 'transform, opacity',
-              textShadow: '0 0 20px hsla(185, 100%, 50%, 0.15)',
             }}
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 40, rotateX: 15, scale: 0.92 }}
             animate={
-              phase === 'shattering'
-                ? { opacity: 0, y: -20, filter: 'blur(8px)' }
-                : phase === 'holding'
-                  ? { opacity: 1, y: 0 }
-                  : { opacity: 0, y: 15 }
+              isRevealing
+                ? { opacity: 0, y: -30, scale: 1.1 }
+                : { opacity: 1, y: 0, rotateX: 0, scale: 1 }
             }
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 2.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            The Future of Academic Intelligence
+            Welcome to Econ Nexus
+          </motion.h1>
+
+          {/* Chrome text shadow layer for 3D depth */}
+          <motion.div
+            className="absolute select-none text-center pointer-events-none"
+            style={{
+              fontFamily: "'Syncopate', sans-serif",
+              fontWeight: 700,
+              fontSize: mobile ? 'clamp(1.4rem, 7vw, 2.2rem)' : 'clamp(2.2rem, 5vw, 4.2rem)',
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              color: 'transparent',
+              backgroundImage: 'linear-gradient(180deg, rgba(100,140,200,0.15) 0%, rgba(40,60,100,0.08) 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              transform: 'translateY(3px) translateX(1px)',
+              filter: 'blur(1px)',
+            }}
+            initial={{ opacity: 0 }}
+            animate={isRevealing ? { opacity: 0 } : { opacity: 0.6 }}
+            transition={{ duration: 2.5, delay: 0.3 }}
+          >
+            Welcome to Econ Nexus
+          </motion.div>
+
+          {/* Subtitle */}
+          <motion.p
+            className="select-none text-center mt-6 md:mt-8"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 300,
+              fontSize: mobile ? 'clamp(0.55rem, 2.5vw, 0.85rem)' : 'clamp(0.75rem, 1.3vw, 1.1rem)',
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: 'rgba(130, 170, 220, 0.85)',
+              textShadow: '0 0 30px rgba(0, 80, 180, 0.3)',
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={
+              isRevealing
+                ? { opacity: 0, y: -15 }
+                : { opacity: 1, y: 0 }
+            }
+            transition={{ duration: 1.2, delay: 1.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            Where Academic Excellence Meets Artificial Intelligence
           </motion.p>
         </motion.div>
 
-        {/* Glass refraction warp overlay during shatter */}
-        {phase === 'shattering' && (
-          <motion.div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backdropFilter: 'blur(0px)',
-            }}
-            animate={{
-              backdropFilter: ['blur(0px)', 'blur(6px)', 'blur(0px)'],
-            }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-          />
-        )}
-
-        {/* Scanline overlay for cinematic texture */}
+        {/* Vignette overlay */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, hsla(185, 100%, 50%, 0.08) 2px, hsla(185, 100%, 50%, 0.08) 4px)',
+            background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,10,30,0.6) 100%)',
+          }}
+        />
+
+        {/* Subtle scanline texture */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.02]"
+          style={{
+            background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,80,180,0.1) 3px, rgba(0,80,180,0.1) 4px)',
           }}
         />
       </motion.div>
