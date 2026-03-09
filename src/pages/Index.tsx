@@ -9,7 +9,7 @@ import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
-import SplashScreen from '@/components/SplashScreen';
+
 
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
