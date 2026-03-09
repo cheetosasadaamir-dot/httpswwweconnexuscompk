@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
 import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
@@ -8,6 +9,7 @@ import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
+import SplashScreen from '@/components/SplashScreen';
 
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
@@ -32,9 +34,21 @@ const features = [
 
 const Index = () => {
   const { scrollToNotesRepository } = useSmoothScroll();
+  const [showSplash, setShowSplash] = useState(() => {
+    if (typeof window !== 'undefined' && sessionStorage.getItem('econnexus_splash_shown')) {
+      return false;
+    }
+    return true;
+  });
+
+  const handleSplashComplete = useCallback(() => {
+    sessionStorage.setItem('econnexus_splash_shown', '1');
+    setShowSplash(false);
+  }, []);
 
   return (
     <div className="min-h-screen relative">
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       <ThreeJsMarketEngine />
       <Header />
 
