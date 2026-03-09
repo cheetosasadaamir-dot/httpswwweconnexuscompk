@@ -199,7 +199,6 @@ const Notes = () => {
               <span className="inline-block text-sm font-medium text-neon-cyan uppercase tracking-widest mb-4">
                 CIE 9708 Syllabus
               </span>
-              </div>
               
               <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 section-title">
                 Notes Library

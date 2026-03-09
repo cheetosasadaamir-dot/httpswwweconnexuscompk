@@ -39,7 +39,6 @@ const CaseStudies = () => {
               <span className="inline-block text-sm font-medium text-primary uppercase tracking-widest mb-4">
                 CIE 9708 Past Papers
               </span>
-              </div>
               
               <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 section-title">
                 Case Study Bank
