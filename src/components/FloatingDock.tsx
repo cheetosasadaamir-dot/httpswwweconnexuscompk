@@ -500,14 +500,6 @@ const FloatingDock = () => {
                     <BookOpen className="w-5 h-5" />
                     <span className="font-medium">Case Studies</span>
                   </Link>
-                  <Link
-                    to="/#glossary"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 md:px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all touch-target"
-                  >
-                    <Sparkles className="w-5 h-5" />
-                    <span className="font-medium">Glossary</span>
-                  </Link>
                 </div>
               </div>
             </motion.div>
