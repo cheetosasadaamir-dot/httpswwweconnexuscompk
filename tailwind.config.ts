@@ -14,10 +14,17 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ["Montserrat", "sans-serif"],
+        serif: ["Inter", "sans-serif"],
         sans: ["Inter", "sans-serif"],
-        display: ["Montserrat", "sans-serif"],
+        display: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+        body: ["Manrope", "sans-serif"],
+        splash: ["Michroma", "sans-serif"],
         script: ["Great Vibes", "cursive"],
+      },
+      letterSpacing: {
+        'tight-premium': '-0.04em',
+        'data': '0.1em',
       },
       colors: {
         border: "hsl(var(--border))",
