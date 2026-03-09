@@ -50,7 +50,7 @@ const Footer = () => {
               <ExternalLink className="w-3 h-3" />
             </a>
             <p className="font-serif text-xs text-silver/60 italic mt-4">
-              "Economics is everywhere, and understanding it can help you make better decisions."
+              "Mastery is no longer a choice—it is an architecture. From A-Level foundations to University-level complexity, the Nexus is your unified cognitive advantage."
             </p>
           </div>
 
