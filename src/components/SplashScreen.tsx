@@ -354,8 +354,8 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
             style={{
               bottom: mobile ? '38%' : '35%',
               fontSize: 'clamp(0.55rem, 1.4vw, 0.95rem)',
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 300,
+              fontFamily: "'JetBrains Mono', monospace",
+              fontWeight: 500,
               color: 'hsl(0, 0%, 50%)',
               willChange: 'transform, opacity',
               textShadow: '0 0 20px hsla(185, 100%, 50%, 0.15)',
