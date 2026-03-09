@@ -16,7 +16,6 @@ const footerLinks = {
     { label: 'Market Failure', href: '/market-failure' },
   ],
   support: [
-    { label: 'Visit Website', href: 'https://www.econnexus.com.pk', external: true },
     { label: 'Contact Us', href: 'mailto:contact@econnexus.com.pk', external: true },
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms & Conditions', href: '/terms' },
