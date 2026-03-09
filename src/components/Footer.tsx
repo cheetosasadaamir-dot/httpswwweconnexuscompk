@@ -37,9 +37,9 @@ const Footer = () => {
               <EconNexusLogo size="lg" />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-1">
-              The Premier Gateway to Advanced Macroeconomic Mastery.
+              The Central Intelligence for Global Academia.
             </p>
-            <p className="text-xs text-[#D4AF37]/60 italic mb-4">Powered by the Academic Engine</p>
+            <p className="text-xs text-[#D4AF37]/60 italic mb-4">Driven by the Agentic Ecosystem.</p>
             <a 
               href="https://www.econnexus.com.pk" 
               target="_blank" 
@@ -50,7 +50,7 @@ const Footer = () => {
               <ExternalLink className="w-3 h-3" />
             </a>
             <p className="font-serif text-xs text-silver/60 italic mt-4">
-              "Economics is everywhere, and understanding it can help you make better decisions."
+              "Mastery is no longer a choice—it is an architecture. From A-Level foundations to University-level complexity, the Nexus is your unified cognitive advantage."
             </p>
           </div>
 
@@ -128,9 +128,9 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-silver/10">
           <div className="flex flex-col items-center justify-center gap-3">
             <EconNexusLogo size="lg" linkHome={false} />
-            <p className="text-xs text-[#D4AF37]/50 tracking-widest uppercase">Academic Engine</p>
+            <p className="text-xs text-[#D4AF37]/50 tracking-widest uppercase">Agentic Ecosystem</p>
             <p className="font-sans text-xs text-silver/40 tracking-wide">
-              © 2026 EconNexus | Advanced Macroeconomic Portal
+              © 2026 EconNexus | Global Academia Portal
             </p>
           </div>
         </div>
