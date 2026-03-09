@@ -194,10 +194,11 @@ const Notes = () => {
               className="text-center max-w-4xl mx-auto"
             >
               <div className="flex items-center justify-center gap-3 mb-6">
-                <EconNexusLogo size="sm" showText={false} linkHome={false} />
-                <span className="text-sm font-medium text-neon-cyan uppercase tracking-widest">
-                  CIE 9708 Syllabus
-                </span>
+                <EconNexusLogo size="md" showText={true} useImage={true} linkHome={false} />
+              </div>
+              <span className="inline-block text-sm font-medium text-neon-cyan uppercase tracking-widest mb-4">
+                CIE 9708 Syllabus
+              </span>
               </div>
               
               <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 section-title">

@@ -48,11 +48,11 @@ const ExamIntelligence = () => {
           className="text-center mb-8"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <EconNexusLogo size="sm" showText={false} linkHome={false} />
-            <Badge className="bg-neon-cyan/20 text-neon-cyan border-neon-cyan/30">
-              2024-2025 Paper Repository
-            </Badge>
+            <EconNexusLogo size="md" showText={true} useImage={true} linkHome={false} />
           </div>
+          <Badge className="bg-neon-cyan/20 text-neon-cyan border-neon-cyan/30 mb-4">
+            2024-2025 Paper Repository
+          </Badge>
           <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">
             <span className="text-gradient">Exam Intelligence</span>
           </h1>
