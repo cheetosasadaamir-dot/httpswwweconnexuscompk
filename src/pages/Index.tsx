@@ -34,9 +34,21 @@ const features = [
 
 const Index = () => {
   const { scrollToNotesRepository } = useSmoothScroll();
+  const [showSplash, setShowSplash] = useState(() => {
+    if (typeof window !== 'undefined' && sessionStorage.getItem('econnexus_splash_shown')) {
+      return false;
+    }
+    return true;
+  });
+
+  const handleSplashComplete = useCallback(() => {
+    sessionStorage.setItem('econnexus_splash_shown', '1');
+    setShowSplash(false);
+  }, []);
 
   return (
     <div className="min-h-screen relative">
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       <ThreeJsMarketEngine />
       <Header />
 
