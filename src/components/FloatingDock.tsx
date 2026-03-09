@@ -409,32 +409,6 @@ const FloatingDock = () => {
             >
               <div className="p-4 md:p-6 pt-16 md:pt-20">
                 
-                {/* TIER 1: Owner Profile - Premium Entry */}
-                <div className="mb-5 md:mb-6">
-                  <button
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      setIsProfileOpen(true);
-                    }}
-                    className="w-full flex items-center gap-3 md:gap-4 px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-gradient-to-r from-neon-cyan/10 to-neon-cyan/5 border border-neon-cyan/30 hover:border-neon-cyan/50 transition-all group shadow-[0_0_20px_rgba(0,242,255,0.15)] touch-target"
-                  >
-                    <div className="relative">
-                      <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-space-elevated flex items-center justify-center border border-neon-cyan/30">
-                        <User className="w-4 h-4 md:w-5 md:h-5 text-neon-cyan" />
-                      </div>
-                      <div className="absolute inset-0 rounded-full bg-neon-cyan/20 blur-md animate-pulse" />
-                    </div>
-                    <div className="text-left">
-                      <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-neon-cyan/80 uppercase block">
-                        Tier 1
-                      </span>
-                      <span className="font-display font-semibold text-sm md:text-base text-white group-hover:text-neon-cyan transition-colors">
-                        OWNER PROFILE
-                      </span>
-                    </div>
-                  </button>
-                </div>
-
                 {/* Divider */}
                 <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-5 md:mb-6" />
 
@@ -518,14 +492,6 @@ const FloatingDock = () => {
 
                 {/* Utility Links - Touch-friendly */}
                 <div className="space-y-2">
-                  <Link
-                    to="/freemium-pack"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 md:px-4 py-3 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/20 transition-all touch-target"
-                  >
-                    <GraduationCap className="w-5 h-5" />
-                    <span className="font-medium">Freemium Pack — $7</span>
-                  </Link>
                   <Link
                     to="/case-studies"
                     onClick={() => setIsMobileMenuOpen(false)}

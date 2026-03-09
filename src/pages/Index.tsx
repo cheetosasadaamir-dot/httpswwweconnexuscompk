@@ -227,43 +227,6 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
-        {/* Freemium Pack Promo */}
-        <section className="section-mobile">
-          <div className="w-[95%] max-w-[1200px] mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="relative overflow-hidden rounded-2xl border border-neon-cyan/30 bg-gradient-to-br from-space-void/80 via-neon-cyan/5 to-space-void/80 p-8 md:p-12 text-center"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-neon-cyan/10 via-transparent to-neon-cyan/10 rounded-2xl blur-xl opacity-50" />
-              <div className="relative z-10">
-                <span className="inline-block px-4 py-1.5 rounded-full bg-neon-cyan/10 border border-neon-cyan/20 text-sm text-neon-cyan mb-4">
-                  📖 Premium Study Pack
-                </span>
-                <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold text-foreground mb-3">
-                  Freemium Study Pack
-                </h2>
-                <p className="text-muted-foreground max-w-xl mx-auto mb-4">
-                  Complete AS Level revision notes, model answers for CIE 9708 Paper 2, and MCQ practice — all for just <span className="text-neon-gold font-bold">$7</span>.
-                </p>
-                <a
-                  href="/freemium-pack"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-neon-cyan text-primary-foreground font-semibold text-base hover:bg-neon-cyan/90 transition-colors"
-                >
-                  Get Access
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Silver Divider */}
-        <div className="w-[95%] max-w-[1200px] mx-auto">
-          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
-        </div>
-
         {/* World Economics Section */}
         <WorldEconomicsSection />
 
