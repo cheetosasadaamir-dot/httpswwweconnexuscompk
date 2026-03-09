@@ -1,318 +1,399 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Particle component for the background field
-const PARTICLE_COUNT = 80;
+// ─── CONFIG ───────────────────────────────────────────────
+const TOTAL_DURATION = 4200; // total splash ms
+const ASSEMBLY_START = 200;
+const ASSEMBLY_DURATION = 1800;
+const HOLD_UNTIL = 2800;
+const SHATTER_START = 2800;
+const SHATTER_DURATION = 1400;
 
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
+const PARTICLE_COUNT_DESKTOP = 1200;
+const PARTICLE_COUNT_MOBILE = 400;
+const BOKEH_COUNT = 18;
+
+// ─── TYPES ────────────────────────────────────────────────
+interface AssemblyParticle {
+  // start position (edge of screen)
+  sx: number; sy: number;
+  // target position (on the text)
+  tx: number; ty: number;
+  // current
+  x: number; y: number;
   size: number;
-  opacity: number;
-  speed: number;
-  angle: number;
+  hue: number; // 185 (cyan) or 220 (cobalt)
+  brightness: number;
+  delay: number; // 0-1 stagger
+  // shatter velocity
+  vx: number; vy: number;
 }
 
+interface BokehOrb {
+  x: number; y: number;
+  size: number;
+  hue: number;
+  opacity: number;
+  dx: number; dy: number;
+}
+
+// ─── HELPERS ──────────────────────────────────────────────
+const isMobileDevice = () =>
+  typeof window !== 'undefined' && (window.innerWidth < 768 || /Mobi|Android|iPad|iPhone/i.test(navigator.userAgent));
+
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+const easeInCubic = (t: number) => t * t * t;
+const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
+
+/**
+ * Samples target positions from text rendered onto an offscreen canvas.
+ */
+function sampleTextPositions(
+  text: string,
+  count: number,
+  canvasW: number,
+  canvasH: number,
+  fontSize: number,
+  yOffset: number
+): { x: number; y: number }[] {
+  const offscreen = document.createElement('canvas');
+  offscreen.width = canvasW;
+  offscreen.height = canvasH;
+  const ctx = offscreen.getContext('2d')!;
+  ctx.fillStyle = '#fff';
+  ctx.font = `800 ${fontSize}px "Inter", sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, canvasW / 2, canvasH / 2 + yOffset);
+
+  const imageData = ctx.getImageData(0, 0, canvasW, canvasH);
+  const pixels = imageData.data;
+  const candidates: { x: number; y: number }[] = [];
+  const step = Math.max(2, Math.floor(Math.sqrt((canvasW * canvasH) / (count * 8))));
+
+  for (let y = 0; y < canvasH; y += step) {
+    for (let x = 0; x < canvasW; x += step) {
+      const idx = (y * canvasW + x) * 4;
+      if (pixels[idx + 3] > 128) {
+        candidates.push({ x, y });
+      }
+    }
+  }
+
+  // Shuffle and pick
+  for (let i = candidates.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+  }
+  return candidates.slice(0, count);
+}
+
+function generateEdgePosition(w: number, h: number): { x: number; y: number } {
+  const edge = Math.floor(Math.random() * 4);
+  switch (edge) {
+    case 0: return { x: Math.random() * w, y: -50 };
+    case 1: return { x: w + 50, y: Math.random() * h };
+    case 2: return { x: Math.random() * w, y: h + 50 };
+    default: return { x: -50, y: Math.random() * h };
+  }
+}
+
+// ─── COMPONENT ────────────────────────────────────────────
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
-  const [phase, setPhase] = useState<'enter' | 'hold' | 'shatter' | 'done'>('enter');
+  const [phase, setPhase] = useState<'assembling' | 'holding' | 'shattering' | 'done'>('assembling');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
-  const particlesRef = useRef<Particle[]>([]);
-  const rafRef = useRef<number>(0);
+  const startTimeRef = useRef(0);
+  const rafRef = useRef(0);
+  const particlesRef = useRef<AssemblyParticle[]>([]);
+  const bokehRef = useRef<BokehOrb[]>([]);
+  const mobile = useMemo(() => isMobileDevice(), []);
+  const pulsePhaseRef = useRef(0);
 
-  // Generate particles once
-  const particles = useMemo(() => {
-    return Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
-      id: i,
-      x: Math.random(),
-      y: Math.random(),
-      size: Math.random() * 2.5 + 0.5,
-      opacity: Math.random() * 0.6 + 0.2,
-      speed: Math.random() * 0.3 + 0.1,
-      angle: Math.random() * Math.PI * 2,
-    }));
-  }, []);
-
-  useEffect(() => {
-    particlesRef.current = particles;
-  }, [particles]);
-
-  // Canvas particle field with mouse reactivity
+  // ── Initialize particles from text sampling ──
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const dpr = Math.min(window.devicePixelRatio, 2);
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
 
-    const resize = () => {
-      canvas.width = window.innerWidth * window.devicePixelRatio;
-      canvas.height = window.innerHeight * window.devicePixelRatio;
-      canvas.style.width = '100%';
-      canvas.style.height = '100%';
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    };
-    resize();
-    window.addEventListener('resize', resize);
+    const fontSize = mobile ? Math.min(w * 0.09, 42) : Math.min(w * 0.065, 80);
+    const pCount = mobile ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
 
-    const w = () => window.innerWidth;
-    const h = () => window.innerHeight;
+    // Sample "ECON NEXUS" text positions
+    const targets = sampleTextPositions('ECON NEXUS', pCount, w, h, fontSize, 0);
 
-    const animate = () => {
-      ctx.clearRect(0, 0, w(), h());
-      const mx = mouseRef.current.x * w();
-      const my = mouseRef.current.y * h();
+    const particles: AssemblyParticle[] = targets.map((t, i) => {
+      const start = generateEdgePosition(w, h);
+      return {
+        sx: start.x, sy: start.y,
+        tx: t.x, ty: t.y,
+        x: start.x, y: start.y,
+        size: Math.random() * 2.2 + 0.8,
+        hue: Math.random() > 0.3 ? 185 : 220,
+        brightness: 50 + Math.random() * 30,
+        delay: (i / targets.length) * 0.6 + Math.random() * 0.15,
+        vx: (Math.random() - 0.5) * 12,
+        vy: (Math.random() - 0.5) * 12,
+      };
+    });
+    particlesRef.current = particles;
 
-      particlesRef.current.forEach(p => {
-        const px = p.x * w();
-        const py = p.y * h();
+    // Bokeh orbs
+    bokehRef.current = Array.from({ length: BOKEH_COUNT }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      size: 20 + Math.random() * 60,
+      hue: Math.random() > 0.5 ? 185 : 43,
+      opacity: 0.04 + Math.random() * 0.08,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+    }));
 
-        // Mouse repulsion
-        const dx = px - mx;
-        const dy = py - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const maxDist = 150;
-        let offsetX = 0, offsetY = 0;
-        if (dist < maxDist) {
-          const force = (1 - dist / maxDist) * 30;
-          offsetX = (dx / dist) * force;
-          offsetY = (dy / dist) * force;
-        }
+    startTimeRef.current = performance.now();
+  }, [mobile]);
 
-        // Drift
-        p.x += Math.cos(p.angle) * p.speed * 0.0003;
-        p.y += Math.sin(p.angle) * p.speed * 0.0003;
-        if (p.x < 0) p.x = 1;
-        if (p.x > 1) p.x = 0;
-        if (p.y < 0) p.y = 1;
-        if (p.y > 1) p.y = 0;
+  // ── Animation loop ──
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    const dpr = Math.min(window.devicePixelRatio, 2);
 
-        const finalX = px + offsetX;
-        const finalY = py + offsetY;
+    const render = (now: number) => {
+      const elapsed = now - startTimeRef.current;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
 
-        // Glow
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+
+      // ── Bokeh background ──
+      bokehRef.current.forEach(b => {
+        b.x += b.dx;
+        b.y += b.dy;
+        if (b.x < -b.size) b.x = w + b.size;
+        if (b.x > w + b.size) b.x = -b.size;
+        if (b.y < -b.size) b.y = h + b.size;
+        if (b.y > h + b.size) b.y = -b.size;
+
+        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.size);
+        grad.addColorStop(0, `hsla(${b.hue}, 80%, 60%, ${b.opacity})`);
+        grad.addColorStop(0.5, `hsla(${b.hue}, 80%, 50%, ${b.opacity * 0.4})`);
+        grad.addColorStop(1, `hsla(${b.hue}, 80%, 40%, 0)`);
         ctx.beginPath();
-        const gradient = ctx.createRadialGradient(finalX, finalY, 0, finalX, finalY, p.size * 4);
-        gradient.addColorStop(0, `hsla(185, 100%, 60%, ${p.opacity * 0.5})`);
-        gradient.addColorStop(1, `hsla(185, 100%, 60%, 0)`);
-        ctx.fillStyle = gradient;
-        ctx.arc(finalX, finalY, p.size * 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Core
-        ctx.beginPath();
-        ctx.fillStyle = `hsla(185, 100%, 70%, ${p.opacity})`;
-        ctx.arc(finalX, finalY, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // Draw subtle connection lines between nearby particles
-      for (let i = 0; i < particlesRef.current.length; i++) {
-        for (let j = i + 1; j < particlesRef.current.length; j++) {
-          const a = particlesRef.current[i];
-          const b = particlesRef.current[j];
-          const ax = a.x * w(), ay = a.y * h();
-          const bx = b.x * w(), by = b.y * h();
-          const d = Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2);
-          if (d < 120) {
-            ctx.beginPath();
-            ctx.strokeStyle = `hsla(185, 100%, 50%, ${(1 - d / 120) * 0.15})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(bx, by);
-            ctx.stroke();
-          }
+      // ── God rays from center ──
+      const cx = w / 2;
+      const cy = h / 2;
+      const rayProgress = clamp((elapsed - ASSEMBLY_START) / ASSEMBLY_DURATION, 0, 1);
+      if (rayProgress > 0.3) {
+        const rayAlpha = Math.min((rayProgress - 0.3) * 0.12, 0.06);
+        const rayCount = 8;
+        for (let i = 0; i < rayCount; i++) {
+          const angle = (i / rayCount) * Math.PI * 2 + elapsed * 0.0001;
+          const length = Math.max(w, h) * 0.9;
+          const spread = 0.08;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(
+            cx + Math.cos(angle - spread) * length,
+            cy + Math.sin(angle - spread) * length
+          );
+          ctx.lineTo(
+            cx + Math.cos(angle + spread) * length,
+            cy + Math.sin(angle + spread) * length
+          );
+          ctx.closePath();
+          const rayGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, length);
+          rayGrad.addColorStop(0, `hsla(185, 100%, 60%, ${rayAlpha})`);
+          rayGrad.addColorStop(0.4, `hsla(185, 100%, 50%, ${rayAlpha * 0.5})`);
+          rayGrad.addColorStop(1, 'hsla(185, 100%, 50%, 0)');
+          ctx.fillStyle = rayGrad;
+          ctx.fill();
         }
       }
 
-      rafRef.current = requestAnimationFrame(animate);
-    };
-    rafRef.current = requestAnimationFrame(animate);
+      // ── Heartbeat pulse ──
+      pulsePhaseRef.current += 0.04;
+      const pulse = 0.7 + 0.3 * Math.sin(pulsePhaseRef.current * 2.5);
 
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
+      // ── Parallax offset (desktop only) ──
+      const parallaxX = mobile ? 0 : (mouseRef.current.x - 0.5) * 15;
+      const parallaxY = mobile ? 0 : (mouseRef.current.y - 0.5) * 10;
 
-  // Mouse tracking
+      // ── Assembly / hold / shatter phases ──
+      const isAssembling = elapsed < HOLD_UNTIL;
+      const isShattering = elapsed >= SHATTER_START;
+
+      particlesRef.current.forEach(p => {
+        if (isAssembling) {
+          // Assembly with staggered delay
+          const t0 = clamp((elapsed - ASSEMBLY_START) / ASSEMBLY_DURATION, 0, 1);
+          const staggered = clamp((t0 - p.delay) / (1 - p.delay), 0, 1);
+          const ease = easeOutCubic(staggered);
+          p.x = lerp(p.sx, p.tx + parallaxX, ease);
+          p.y = lerp(p.sy, p.ty + parallaxY, ease);
+        } else if (isShattering) {
+          // Explode outward
+          const st = (elapsed - SHATTER_START) / SHATTER_DURATION;
+          const ease = easeInCubic(clamp(st, 0, 1));
+          p.x = p.tx + parallaxX + p.vx * ease * 80;
+          p.y = p.ty + parallaxY + p.vy * ease * 80;
+        } else {
+          // Hold at target with parallax
+          p.x = p.tx + parallaxX;
+          p.y = p.ty + parallaxY;
+        }
+
+        // Fade out during shatter
+        let alpha = 1;
+        if (isShattering) {
+          alpha = 1 - clamp((elapsed - SHATTER_START) / SHATTER_DURATION, 0, 1);
+        }
+        // Fade in during assembly
+        if (isAssembling) {
+          const t0 = clamp((elapsed - ASSEMBLY_START) / ASSEMBLY_DURATION, 0, 1);
+          const staggered = clamp((t0 - p.delay) / (1 - p.delay), 0, 1);
+          alpha = Math.min(staggered * 3, 1);
+        }
+
+        const glowSize = p.size * (2.5 + pulse * 1.5);
+
+        // Outer glow
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowSize);
+        grad.addColorStop(0, `hsla(${p.hue}, 100%, ${p.brightness}%, ${alpha * 0.6 * pulse})`);
+        grad.addColorStop(1, `hsla(${p.hue}, 100%, ${p.brightness}%, 0)`);
+        ctx.beginPath();
+        ctx.fillStyle = grad;
+        ctx.arc(p.x, p.y, glowSize, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Core particle
+        ctx.beginPath();
+        ctx.fillStyle = `hsla(${p.hue}, 100%, ${p.brightness + 20}%, ${alpha})`;
+        ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // ── Central text glow (assembled state) ──
+      if (rayProgress > 0.7 && !isShattering) {
+        const centerGlow = ctx.createRadialGradient(cx + parallaxX, cy + parallaxY, 0, cx + parallaxX, cy + parallaxY, 200);
+        centerGlow.addColorStop(0, `hsla(185, 100%, 55%, ${0.04 * pulse})`);
+        centerGlow.addColorStop(1, 'hsla(185, 100%, 50%, 0)');
+        ctx.beginPath();
+        ctx.fillStyle = centerGlow;
+        ctx.arc(cx + parallaxX, cy + parallaxY, 200, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      rafRef.current = requestAnimationFrame(render);
+    };
+
+    rafRef.current = requestAnimationFrame(render);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [mobile]);
+
+  // ── Mouse tracking ──
   useEffect(() => {
+    if (mobile) return;
     const handler = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight };
     };
     window.addEventListener('mousemove', handler);
     return () => window.removeEventListener('mousemove', handler);
-  }, []);
+  }, [mobile]);
 
-  // Phase sequencing
+  // ── Phase sequencing ──
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase('hold'), 800);
-    const t2 = setTimeout(() => setPhase('shatter'), 2500);
+    const t1 = setTimeout(() => setPhase('holding'), ASSEMBLY_START + ASSEMBLY_DURATION);
+    const t2 = setTimeout(() => setPhase('shattering'), SHATTER_START);
     const t3 = setTimeout(() => {
       setPhase('done');
       onComplete();
-    }, 3400);
+    }, TOTAL_DURATION);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [onComplete]);
-
-  // Shatter particles for dissolve effect
-  const shatterFragments = useMemo(() =>
-    Array.from({ length: 40 }, (_, i) => ({
-      id: i,
-      x: (Math.random() - 0.5) * 800,
-      y: (Math.random() - 0.5) * 600,
-      rotate: Math.random() * 720 - 360,
-      scale: Math.random() * 0.5,
-      delay: Math.random() * 0.3,
-    })), []);
 
   if (phase === 'done') return null;
 
   return (
     <AnimatePresence>
       <motion.div
-        key="splash"
-        className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+        key="splash-cinematic"
+        className="fixed inset-0 z-[9999] overflow-hidden"
         style={{ background: 'hsl(0, 0%, 2%)' }}
-        animate={phase === 'shatter' ? { opacity: 0 } : { opacity: 1 }}
-        transition={{ duration: 0.8, delay: phase === 'shatter' ? 0.4 : 0 }}
+        initial={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
       >
-        {/* Particle field canvas */}
+        {/* Main particle canvas */}
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 pointer-events-none"
-          style={{ willChange: 'transform' }}
+          className="absolute inset-0"
+          style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
         />
 
-        {/* Radial glow behind text */}
-        <div
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            width: '600px',
-            height: '600px',
-            background: 'radial-gradient(circle, hsla(185, 100%, 50%, 0.08) 0%, transparent 70%)',
-            filter: 'blur(40px)',
-          }}
-        />
-
-        {/* 3D Text Container */}
-        <div className="relative z-10 text-center" style={{ perspective: '1200px' }}>
-          {/* Main Title */}
-          <motion.h1
-            className="font-bold tracking-wider select-none"
-            style={{
-              fontSize: 'clamp(2rem, 6vw, 5rem)',
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 800,
-              background: 'linear-gradient(135deg, hsl(185, 100%, 70%) 0%, hsl(0, 0%, 90%) 40%, hsl(185, 100%, 60%) 70%, hsl(43, 72%, 60%) 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 0 30px hsla(185, 100%, 50%, 0.3))',
-              textShadow: 'none',
-              willChange: 'transform, opacity',
-            }}
-            initial={{
-              opacity: 0,
-              rotateX: 40,
-              rotateY: -15,
-              z: -500,
-              scale: 0.6,
-            }}
-            animate={phase === 'shatter' ? {
-              opacity: 0,
-              scale: 1.5,
-              filter: 'blur(20px) drop-shadow(0 0 60px hsla(185, 100%, 50%, 0.8))',
-            } : {
-              opacity: 1,
-              rotateX: 0,
-              rotateY: 0,
-              z: 0,
-              scale: 1,
-            }}
-            transition={{
-              duration: phase === 'shatter' ? 0.6 : 1.2,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            WELCOME TO ECON NEXUS
-          </motion.h1>
-
-          {/* Neon Pulse Line */}
-          <motion.div
-            className="mx-auto my-4"
-            style={{
-              height: '2px',
-              background: 'linear-gradient(90deg, transparent, hsl(185, 100%, 50%), hsl(43, 72%, 53%), hsl(185, 100%, 50%), transparent)',
-              willChange: 'transform, opacity',
-            }}
-            initial={{ width: 0, opacity: 0 }}
-            animate={phase === 'shatter'
-              ? { opacity: 0, scaleX: 3 }
-              : { width: '80%', opacity: 1 }
-            }
-            transition={{ duration: phase === 'shatter' ? 0.4 : 0.8, delay: phase === 'shatter' ? 0 : 0.6 }}
-          />
-
-          {/* Sub-header */}
+        {/* Subtitle text - appears after assembly */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{ perspective: '1000px' }}
+        >
           <motion.p
-            className="tracking-widest uppercase select-none"
+            className="absolute tracking-[0.35em] uppercase select-none"
             style={{
-              fontSize: 'clamp(0.7rem, 1.8vw, 1.1rem)',
+              bottom: mobile ? '38%' : '35%',
+              fontSize: 'clamp(0.55rem, 1.4vw, 0.95rem)',
               fontFamily: "'Inter', sans-serif",
-              fontWeight: 400,
-              color: 'hsl(0, 0%, 55%)',
-              letterSpacing: '0.3em',
+              fontWeight: 300,
+              color: 'hsl(0, 0%, 50%)',
               willChange: 'transform, opacity',
+              textShadow: '0 0 20px hsla(185, 100%, 50%, 0.15)',
             }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={phase === 'shatter'
-              ? { opacity: 0, y: -30, filter: 'blur(10px)' }
-              : { opacity: 1, y: 0 }
+            initial={{ opacity: 0, y: 15 }}
+            animate={
+              phase === 'shattering'
+                ? { opacity: 0, y: -20, filter: 'blur(8px)' }
+                : phase === 'holding'
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 0, y: 15 }
             }
-            transition={{ duration: phase === 'shatter' ? 0.4 : 0.8, delay: phase === 'shatter' ? 0.1 : 0.9 }}
+            transition={{ duration: 0.8 }}
           >
             The Future of Academic Intelligence
           </motion.p>
+        </motion.div>
 
-          {/* Shatter fragments */}
-          {phase === 'shatter' && shatterFragments.map(f => (
-            <motion.div
-              key={f.id}
-              className="absolute top-1/2 left-1/2 rounded-full"
-              style={{
-                width: Math.random() * 6 + 2,
-                height: Math.random() * 6 + 2,
-                background: `hsla(185, 100%, ${50 + Math.random() * 30}%, ${0.6 + Math.random() * 0.4})`,
-                boxShadow: `0 0 ${8 + Math.random() * 12}px hsla(185, 100%, 50%, 0.5)`,
-              }}
-              initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
-              animate={{
-                x: f.x,
-                y: f.y,
-                opacity: 0,
-                scale: f.scale,
-                rotate: f.rotate,
-              }}
-              transition={{
-                duration: 0.8,
-                delay: f.delay,
-                ease: 'easeOut',
-              }}
-            />
-          ))}
-        </div>
+        {/* Glass refraction warp overlay during shatter */}
+        {phase === 'shattering' && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backdropFilter: 'blur(0px)',
+            }}
+            animate={{
+              backdropFilter: ['blur(0px)', 'blur(6px)', 'blur(0px)'],
+            }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+          />
+        )}
 
-        {/* Glitch overlay flicker */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
+        {/* Scanline overlay for cinematic texture */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{
-            background: 'linear-gradient(transparent 50%, hsla(185, 100%, 50%, 0.02) 50%)',
-            backgroundSize: '100% 4px',
-            mixBlendMode: 'overlay',
+            background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, hsla(185, 100%, 50%, 0.08) 2px, hsla(185, 100%, 50%, 0.08) 4px)',
           }}
-          animate={{ opacity: [0, 0.4, 0, 0.2, 0] }}
-          transition={{ duration: 0.3, delay: 0.4, times: [0, 0.2, 0.4, 0.6, 1] }}
         />
       </motion.div>
     </AnimatePresence>
