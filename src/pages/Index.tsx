@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
 import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
