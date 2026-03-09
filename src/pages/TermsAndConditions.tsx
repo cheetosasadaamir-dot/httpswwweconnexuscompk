@@ -152,10 +152,7 @@ const TermsAndConditions = () => {
           <section>
             <h2 className="font-serif text-xl font-semibold text-foreground mb-3">10. Contact</h2>
             <p>
-              For any questions regarding these Terms, please contact us at{' '}
-              <a href="mailto:contact@econnexus.com.pk" className="text-neon-cyan hover:underline">
-                contact@econnexus.com.pk
-              </a>.
+              For any questions regarding these Terms, please reach out to us through the Platform.
             </p>
           </section>
         </div>
