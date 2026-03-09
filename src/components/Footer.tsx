@@ -128,9 +128,9 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-silver/10">
           <div className="flex flex-col items-center justify-center gap-3">
             <EconNexusLogo size="lg" linkHome={false} />
-            <p className="text-xs text-[#D4AF37]/50 tracking-widest uppercase">Academic Engine</p>
+            <p className="text-xs text-[#D4AF37]/50 tracking-widest uppercase">Agentic Ecosystem</p>
             <p className="font-sans text-xs text-silver/40 tracking-wide">
-              © 2026 EconNexus | Advanced Macroeconomic Portal
+              © 2026 EconNexus | Global Academia Portal
             </p>
           </div>
         </div>
