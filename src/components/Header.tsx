@@ -79,10 +79,10 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 pointer-events-auto",
+        "sticky top-0 left-0 right-0 z-[9999] transition-all duration-500 pointer-events-auto",
         isScrolled
           ? "bg-[rgba(2,6,23,0.85)] backdrop-blur-xl border-b border-[rgba(212,175,55,0.1)] shadow-lg shadow-black/20 py-0"
-          : "bg-transparent py-1"
+          : "bg-[rgba(2,6,23,0.95)] backdrop-blur-xl py-1"
       )}
     >
       <div className="w-[95%] max-w-[1200px] mx-auto px-4 lg:px-6">
