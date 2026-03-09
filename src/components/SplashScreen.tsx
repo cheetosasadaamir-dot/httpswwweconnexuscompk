@@ -62,7 +62,7 @@ function sampleTextPositions(
   offscreen.height = canvasH;
   const ctx = offscreen.getContext('2d')!;
   ctx.fillStyle = '#fff';
-  ctx.font = `800 ${fontSize}px "Inter", sans-serif`;
+  ctx.font = `800 ${fontSize}px "Michroma", sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(text, canvasW / 2, canvasH / 2 + yOffset);
