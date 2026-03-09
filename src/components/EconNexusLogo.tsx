@@ -18,7 +18,7 @@ const sizeMap = {
   lg: { icon: 'w-8 h-8', iconBox: 'w-14 h-14', text: 'text-3xl', gap: 'gap-4', img: 'h-14' },
 };
 
-const EconNexusLogo = ({ size = 'md', showText = true, linkHome = true, className, watermark = false, useImage = false }: EconNexusLogoProps) => {
+const EconNexusLogo = ({ size = 'md', showText = true, linkHome = true, className, watermark = false, useImage = true }: EconNexusLogoProps) => {
   const s = sizeMap[size];
 
   const content = (
