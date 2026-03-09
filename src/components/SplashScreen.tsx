@@ -380,11 +380,9 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
             className="absolute inset-0 pointer-events-none"
             style={{
               backdropFilter: 'blur(0px)',
-              WebkitBackdropFilter: 'blur(0px)',
             }}
             animate={{
               backdropFilter: ['blur(0px)', 'blur(6px)', 'blur(0px)'],
-              WebkitBackdropFilter: ['blur(0px)', 'blur(6px)', 'blur(0px)'],
             }}
             transition={{ duration: 1.2, ease: 'easeInOut' }}
           />
