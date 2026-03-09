@@ -13,9 +13,9 @@ interface EconNexusLogoProps {
 }
 
 const sizeMap = {
-  sm: { icon: 'w-5 h-5', iconBox: 'w-8 h-8', text: 'text-lg', gap: 'gap-2', img: 'h-8' },
-  md: { icon: 'w-6 h-6', iconBox: 'w-10 h-10', text: 'text-xl', gap: 'gap-3', img: 'h-10' },
-  lg: { icon: 'w-8 h-8', iconBox: 'w-14 h-14', text: 'text-3xl', gap: 'gap-4', img: 'h-14' },
+  sm: { icon: 'w-6 h-6', iconBox: 'w-10 h-10', text: 'text-xl', gap: 'gap-2', img: 'h-12' },
+  md: { icon: 'w-8 h-8', iconBox: 'w-14 h-14', text: 'text-2xl', gap: 'gap-3', img: 'h-14' },
+  lg: { icon: 'w-10 h-10', iconBox: 'w-18 h-18', text: 'text-4xl', gap: 'gap-4', img: 'h-20' },
 };
 
 const EconNexusLogo = ({ size = 'md', showText = true, linkHome = true, className, watermark = false, useImage = true }: EconNexusLogoProps) => {
