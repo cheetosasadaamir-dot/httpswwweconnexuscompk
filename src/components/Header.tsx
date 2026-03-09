@@ -92,10 +92,10 @@ const Header = () => {
         )}>
           {/* Logo */}
           <div className="sm:hidden">
-            <EconNexusLogo size="sm" showText={false} />
+            <EconNexusLogo size="sm" showText={false} useImage={true} />
           </div>
           <div className="hidden sm:block">
-            <EconNexusLogo size="md" />
+            <EconNexusLogo size="md" useImage={true} />
           </div>
 
           {/* Desktop Navigation */}
