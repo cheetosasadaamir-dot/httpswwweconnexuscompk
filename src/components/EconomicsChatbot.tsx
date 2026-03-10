@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
-import professorAvatar from '@/assets/professor-avatar.png';
+import officialLogo from '@/assets/econnexus-logo-final.png';
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 
 // ---- Client-side image upload rate limiter (10 images / 60s) ----
@@ -357,11 +357,11 @@ const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   };
   
   return (
-    <div className={`${sizeClasses[size]} rounded-full flex-shrink-0 overflow-hidden ring-2 ring-neon-gold/50 shadow-lg shadow-neon-gold/20`}>
+    <div className={`${sizeClasses[size]} rounded-full flex-shrink-0 overflow-hidden ring-2 ring-neon-gold/50 shadow-lg shadow-neon-gold/20 bg-background/80`}>
       <img 
-        src={professorAvatar} 
-        alt="Prof. Econs" 
-        className="w-full h-full object-cover"
+        src={officialLogo} 
+        alt="EconNexus" 
+        className="w-full h-full object-contain p-0.5"
       />
     </div>
   );
