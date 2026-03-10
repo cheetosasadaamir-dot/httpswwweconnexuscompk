@@ -1191,7 +1191,7 @@ export default function EconomicsChatbot() {
                         {activeConfig.professorName}
                       </motion.h3>
                     </AnimatePresence>
-                    <p className="text-[0.8rem] text-muted-foreground" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{activeConfig.subtitle}</p>
+                    <p className="text-[0.8rem] text-muted-foreground" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>A-Level to University</p>
                   </div>
                   <div className="tutor-verified-badge ml-1 text-[9px]">
                     <CheckCircle2 className="w-2.5 h-2.5" />
