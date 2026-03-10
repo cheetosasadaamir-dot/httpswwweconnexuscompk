@@ -10,6 +10,29 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import officialLogo from '@/assets/econnexus-logo-final.png';
+import guideEconomics from '@/assets/guide-economics.png';
+import guideBusiness from '@/assets/guide-business.png';
+import guideLaw from '@/assets/guide-law.png';
+import guidePsychology from '@/assets/guide-psychology.png';
+import guideAccounting from '@/assets/guide-accounting.png';
+import guideSociology from '@/assets/guide-sociology.png';
+import guideResearch from '@/assets/guide-research.png';
+import guideMathematics from '@/assets/guide-mathematics.png';
+import guidePhysics from '@/assets/guide-physics.png';
+import guideChemistry from '@/assets/guide-chemistry.png';
+
+const GUIDE_IMAGES: Record<string, string> = {
+  'a-level': guideEconomics,
+  'business': guideBusiness,
+  'law': guideLaw,
+  'psychology': guidePsychology,
+  'accounting': guideAccounting,
+  'sociology': guideSociology,
+  'research': guideResearch,
+  'mathematics': guideMathematics,
+  'physics': guidePhysics,
+  'chemistry': guideChemistry,
+};
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 
 // ---- Client-side image upload rate limiter (10 images / 60s) ----
