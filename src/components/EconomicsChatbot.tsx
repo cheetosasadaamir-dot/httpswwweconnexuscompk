@@ -1261,17 +1261,44 @@ export default function EconomicsChatbot() {
               <ScrollArea ref={scrollRef} className="flex-1 relative" style={{ height: 'calc(100% - 140px)' }}>
                 <div className="px-4 py-3">
                   {messages.length === 0 ? (
-                    <div className="h-[400px] flex items-center justify-center text-center">
-                      <div>
-                        <motion.div
-                          className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center"
-                          style={{
-                            background: `linear-gradient(135deg, hsl(214 100% 10%), ${activeConfig.color}20)`,
-                            border: `1px solid ${activeConfig.color}30`,
-                          }}
-                        >
-                          {(() => { const Icon = activeConfig.icon; return <Icon className="w-8 h-8" style={{ color: activeConfig.color }} />; })()}
-                        </motion.div>
+                    <div className="h-[400px] flex items-center justify-center text-center relative overflow-hidden">
+                      {/* Glassmorphic backdrop */}
+                      <div className="absolute inset-0 rounded-2xl" style={{
+                        background: 'radial-gradient(ellipse at center bottom, hsl(214 100% 8% / 0.6), transparent 70%)',
+                      }} />
+                      
+                      {/* Guide Character */}
+                      <div className="relative z-10 flex flex-col items-center">
+                        <AnimatePresence mode="wait">
+                          <motion.div
+                            key={persona}
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                            transition={{ duration: 0.4, ease: 'easeOut' }}
+                            className="relative mb-3"
+                          >
+                            <div className="w-48 h-48 mx-auto relative">
+                              {/* Glassmorphic frame behind character */}
+                              <div className="absolute inset-2 rounded-full" style={{
+                                background: `radial-gradient(circle, ${activeConfig.color}10, transparent 70%)`,
+                                border: `1px solid ${activeConfig.color}15`,
+                                backdropFilter: 'blur(8px)',
+                              }} />
+                              <img 
+                                src={GUIDE_IMAGES[persona]} 
+                                alt={activeConfig.professorName}
+                                className="w-full h-full object-contain relative z-10 drop-shadow-2xl"
+                                loading="lazy"
+                              />
+                              {/* Cyan glow ring */}
+                              <div className="absolute inset-0 rounded-full pointer-events-none" style={{
+                                boxShadow: `0 0 40px ${activeConfig.color}20, 0 0 80px ${activeConfig.color}10`,
+                              }} />
+                            </div>
+                          </motion.div>
+                        </AnimatePresence>
+                        
                         <p className="nexus-professor-name mb-1">
                           {activeConfig.professorName}
                         </p>
