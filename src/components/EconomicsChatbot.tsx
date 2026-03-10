@@ -393,7 +393,7 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
             className="absolute top-full left-0 mt-2 z-50 w-80 rounded-xl p-3 shadow-2xl tutor-glassmorphism tutor-gold-glow"
           >
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-[hsl(43,72%,53%)] font-semibold font-serif">Cambridge {syllabusCode} Command Words</p>
+              <p className="text-xs text-[hsl(43,72%,53%)] font-semibold font-serif">{syllabusCode} Command Words</p>
               <span className="tutor-verified-badge">
                 <CheckCircle2 className="w-2.5 h-2.5" />
                 2026-2028
@@ -414,8 +414,8 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
               ))}
             </div>
             <div className="mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/15 space-y-1">
-              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {{ '9609': 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)', 'Law': 'IRAC: Issue • Rule • Application • Conclusion', '9990': 'AO1 (25%) • AO2 (25%) • AO3 (50%)', '9706': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', '9699': 'AO1 (30%) • AO2 (30%) • AO3 (40%)', 'IPQ': 'Research • Analysis • Evaluation • Presentation', '9709': 'Pure (60%) • Statistics (20%) • Mechanics (20%)', '9702': 'Theory (40%) • Practical (20%) • Paper 5 (15%) • Advanced (25%)', '9701': 'AO1 (35%) • AO2 (40%) • AO3 (25%)' }[syllabusCode] || 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
-              <p className="text-[10px] text-muted-foreground/60">{{ '9609': 'Use "Evaluate" for top-band AO4 marks', 'Law': 'Always cite case authority (OSCOLA/Bluebook)', '9990': 'Use GRAVE to evaluate core studies', '9706': 'Always show double-entry workings', '9699': 'Present at least TWO contrasting perspectives', 'IPQ': 'Justify every methodological choice', '9709': 'Always show full working — marks for method, not just answer', '9702': 'Always show units at every step — use I-V-A-U for quantitative problems', '9701': 'Always include state symbols and units — curly arrows from lone pairs/bonds' }[syllabusCode] || 'Use "Evaluate" for A* level answers'}</p>
+              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {{ 'Business': 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)', 'Law': 'IRAC: Issue • Rule • Application • Conclusion', 'Psychology': 'AO1 (25%) • AO2 (25%) • AO3 (50%)', 'Accounting': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', 'Sociology': 'AO1 (30%) • AO2 (30%) • AO3 (40%)', 'Research': 'Research • Analysis • Evaluation • Presentation', 'Mathematics': 'Pure (60%) • Statistics (20%) • Mechanics (20%)', 'Physics': 'Theory (40%) • Practical (20%) • Paper 5 (15%) • Advanced (25%)', 'Chemistry': 'AO1 (35%) • AO2 (40%) • AO3 (25%)' }[syllabusCode] || 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
+              <p className="text-[10px] text-muted-foreground/60">{{ 'Business': 'Use "Evaluate" for top-band AO4 marks', 'Law': 'Always cite case authority (OSCOLA/Bluebook)', 'Psychology': 'Use GRAVE to evaluate core studies', 'Accounting': 'Always show double-entry workings', 'Sociology': 'Present at least TWO contrasting perspectives', 'Research': 'Justify every methodological choice', 'Mathematics': 'Always show full working — marks for method, not just answer', 'Physics': 'Always show units at every step — use I-V-A-U for quantitative problems', 'Chemistry': 'Always include state symbols and units — curly arrows from lone pairs/bonds' }[syllabusCode] || 'Use "Evaluate" for A* level answers'}</p>
             </div>
           </motion.div>
         )}
@@ -1080,9 +1080,9 @@ export default function EconomicsChatbot() {
   const summarizerContent = latestAiMessage ? extractSummarizer(latestAiMessage.content) : null;
 
   const SYLLABUS_MAP: Record<Persona, string> = {
-    'a-level': '9708', 'business': '9609', 'law': 'Law', 'psychology': '9990',
-    'accounting': '9706', 'sociology': '9699', 'research': 'IPQ',
-    'mathematics': '9709', 'physics': '9702', 'chemistry': '9701',
+    'a-level': 'Economics', 'business': 'Business', 'law': 'Law', 'psychology': 'Psychology',
+    'accounting': 'Accounting', 'sociology': 'Sociology', 'research': 'Research',
+    'mathematics': 'Mathematics', 'physics': 'Physics', 'chemistry': 'Chemistry',
   };
 
   return (
