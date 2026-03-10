@@ -1044,17 +1044,17 @@ export default function EconomicsChatbot() {
   };
 
   // Persona config for left rail
-  const PERSONA_CONFIG: Record<Persona, { icon: typeof BookOpen; label: string; color: string; professorName: string; subtitle: string }> = {
-    'a-level': { icon: BookOpen, label: 'Economics', color: 'hsl(43, 72%, 53%)', professorName: 'Prof. Econs', subtitle: 'A-Level & University Economics' },
-    'business': { icon: Briefcase, label: 'Business', color: 'hsl(142, 71%, 45%)', professorName: 'Prof. Porter', subtitle: 'Cambridge Senior Examiner' },
-    'law': { icon: Scale, label: 'Law', color: 'hsl(200, 80%, 55%)', professorName: 'Prof. Blackstone', subtitle: 'Global Legal Scholar' },
-    'psychology': { icon: Brain, label: 'Psychology', color: 'hsl(330, 70%, 55%)', professorName: 'Prof. Freud', subtitle: 'GRAVE Framework Specialist' },
-    'accounting': { icon: Calculator, label: 'Accounting', color: 'hsl(25, 85%, 55%)', professorName: 'Prof. Pacioli', subtitle: 'IFRS Standards Expert' },
-    'sociology': { icon: Users, label: 'Sociology', color: 'hsl(160, 70%, 45%)', professorName: 'Prof. Marx', subtitle: 'Perspectives Analysis' },
-    'research': { icon: FlaskConical, label: 'Research', color: 'hsl(200, 70%, 50%)', professorName: 'Prof. Scholar', subtitle: 'IPQ Research Methods' },
-    'mathematics': { icon: Sigma, label: 'Maths', color: 'hsl(260, 70%, 55%)', professorName: 'Prof. Euler', subtitle: 'Pure & Applied Mathematics' },
-    'physics': { icon: Atom, label: 'Physics', color: 'hsl(15, 85%, 55%)', professorName: 'Prof. Newton', subtitle: 'CIE 9702 & University' },
-    'chemistry': { icon: FlaskConical, label: 'Chemistry', color: 'hsl(120, 60%, 45%)', professorName: 'Prof. Curie', subtitle: 'CIE 9701 & Research' },
+  const PERSONA_CONFIG: Record<Persona, { icon: typeof BookOpen; label: string; color: string; professorName: string }> = {
+    'a-level': { icon: BookOpen, label: 'Economics', color: 'hsl(43, 72%, 53%)', professorName: 'Prof. Econs' },
+    'business': { icon: Briefcase, label: 'Business', color: 'hsl(142, 71%, 45%)', professorName: 'Prof. Porter' },
+    'law': { icon: Scale, label: 'Law', color: 'hsl(200, 80%, 55%)', professorName: 'Prof. Blackstone' },
+    'psychology': { icon: Brain, label: 'Psychology', color: 'hsl(330, 70%, 55%)', professorName: 'Prof. Freud' },
+    'accounting': { icon: Calculator, label: 'Accounting', color: 'hsl(25, 85%, 55%)', professorName: 'Prof. Pacioli' },
+    'sociology': { icon: Users, label: 'Sociology', color: 'hsl(160, 70%, 45%)', professorName: 'Prof. Marx' },
+    'research': { icon: FlaskConical, label: 'Research', color: 'hsl(200, 70%, 50%)', professorName: 'Prof. Scholar' },
+    'mathematics': { icon: Sigma, label: 'Maths', color: 'hsl(260, 70%, 55%)', professorName: 'Prof. Euler' },
+    'physics': { icon: Atom, label: 'Physics', color: 'hsl(15, 85%, 55%)', professorName: 'Prof. Newton' },
+    'chemistry': { icon: FlaskConical, label: 'Chemistry', color: 'hsl(120, 60%, 45%)', professorName: 'Prof. Curie' },
   };
 
   const activeConfig = PERSONA_CONFIG[persona];
