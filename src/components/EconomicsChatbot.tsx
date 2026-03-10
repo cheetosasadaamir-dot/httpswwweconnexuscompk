@@ -1186,13 +1186,12 @@ export default function EconomicsChatbot() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.25 }}
-                        className="font-bold text-sm tracking-wider"
-                        style={{ fontFamily: "'Syncopate', sans-serif", color: activeConfig.color }}
+                        className="nexus-professor-name font-bold"
                       >
                         {activeConfig.professorName}
                       </motion.h3>
                     </AnimatePresence>
-                    <p className="text-[10px] text-muted-foreground">{activeConfig.subtitle}</p>
+                    <p className="text-[0.8rem] text-muted-foreground" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{activeConfig.subtitle}</p>
                   </div>
                   <div className="tutor-verified-badge ml-1 text-[9px]">
                     <CheckCircle2 className="w-2.5 h-2.5" />
@@ -1252,10 +1251,10 @@ export default function EconomicsChatbot() {
                         >
                           <img src={officialLogo} alt="EconNexus" className="w-10 h-10 object-contain" />
                         </motion.div>
-                        <p className="text-base font-semibold mb-1" style={{ color: activeConfig.color, fontFamily: "'Syncopate', sans-serif" }}>
+                        <p className="nexus-professor-name mb-1">
                           {activeConfig.professorName}
                         </p>
-                        <p className="text-xs text-muted-foreground mb-1">{activeConfig.subtitle}</p>
+                        <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{activeConfig.subtitle}</p>
                         <p className="text-sm text-muted-foreground/60 font-serif">Ready for your questions. I remember our conversation.</p>
                       </div>
                     </div>
@@ -1396,10 +1395,10 @@ export default function EconomicsChatbot() {
               style={{ background: 'hsl(0 0% 3% / 0.8)', backdropFilter: 'blur(20px)' }}
             >
               <div className="px-3 py-3 border-b border-white/[0.06]">
-                <h4 className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: activeConfig.color, fontFamily: "'Syncopate', sans-serif" }}>
+                <h4 className="nexus-professor-name-sm">
                   Solution Summarizer
                 </h4>
-                <p className="text-[9px] text-muted-foreground/50 mt-0.5">Live key takeaways</p>
+                <p className="text-[9px] text-muted-foreground/50 mt-0.5" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>Live key takeaways</p>
               </div>
               <ScrollArea className="flex-1">
                 <div className="p-3">
@@ -1442,8 +1441,8 @@ export default function EconomicsChatbot() {
                         <activeConfig.icon className="w-3 h-3" style={{ color: activeConfig.color }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-medium" style={{ color: activeConfig.color }}>{activeConfig.professorName}</p>
-                        <p className="text-[9px] text-muted-foreground/50">{activeConfig.subtitle}</p>
+                        <p className="nexus-professor-name-sm">{activeConfig.professorName}</p>
+                        <p className="text-[9px] text-muted-foreground/50" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{activeConfig.subtitle}</p>
                       </div>
                     </div>
                   </div>
