@@ -1440,7 +1440,7 @@ export default function EconomicsChatbot() {
                       </div>
                       <div>
                         <p className="nexus-professor-name-sm">{activeConfig.professorName}</p>
-                        <p className="text-[9px] text-muted-foreground/50" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>A-Level to University</p>
+                        <p className="text-[9px] text-muted-foreground/50" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
                       </div>
                     </div>
                   </div>
