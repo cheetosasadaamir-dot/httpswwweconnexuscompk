@@ -587,33 +587,37 @@
 
 
   /* ═══ Nexus Professor Name — Liquid Metal Gradient ═══ */
-  .nexus-professor-name {
-    font-family: 'Syncopate', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    background: linear-gradient(to bottom, #FFFFFF, #94A3B8) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text;
-    text-shadow: none;
-    filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.6));
-  }
 
-  .nexus-professor-name-sm {
-    font-family: 'Syncopate', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    background: linear-gradient(to bottom, #FFFFFF, #94A3B8) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text;
-    filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.6));
-  }
 }
+
+/* ═══ Nexus Professor Name — OUTSIDE @layer for max specificity ═══ */
+.nexus-professor-name {
+  font-family: 'Syncopate', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  background: linear-gradient(to bottom, #FFFFFF, #94A3B8) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: none !important;
+  filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.6)) !important;
+}
+
+.nexus-professor-name-sm {
+  font-family: 'Syncopate', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.65rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  background: linear-gradient(to bottom, #FFFFFF, #94A3B8) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.6)) !important;
+}
+
 
 /* ===== PREMIUM MICRO-INTERACTIONS ===== */
 @layer utilities {
