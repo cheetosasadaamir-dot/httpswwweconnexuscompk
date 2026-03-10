@@ -393,7 +393,7 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
             className="absolute top-full left-0 mt-2 z-50 w-80 rounded-xl p-3 shadow-2xl tutor-glassmorphism tutor-gold-glow"
           >
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-[hsl(43,72%,53%)] font-semibold font-serif">Cambridge {syllabusCode} Command Words</p>
+              <p className="text-xs text-[hsl(43,72%,53%)] font-semibold font-serif">{syllabusCode} Command Words</p>
               <span className="tutor-verified-badge">
                 <CheckCircle2 className="w-2.5 h-2.5" />
                 2026-2028
