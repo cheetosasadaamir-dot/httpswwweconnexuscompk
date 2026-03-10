@@ -1043,6 +1043,48 @@ export default function EconomicsChatbot() {
     // Plain Enter → new line (default textarea behaviour, do nothing)
   };
 
+  // Persona config for left rail
+  const PERSONA_CONFIG: Record<Persona, { icon: typeof BookOpen; label: string; color: string; professorName: string; subtitle: string }> = {
+    'a-level': { icon: BookOpen, label: 'Economics', color: 'hsl(43, 72%, 53%)', professorName: 'Prof. Econs', subtitle: 'A-Level & University Economics' },
+    'business': { icon: Briefcase, label: 'Business', color: 'hsl(142, 71%, 45%)', professorName: 'Prof. Porter', subtitle: 'Cambridge Senior Examiner' },
+    'law': { icon: Scale, label: 'Law', color: 'hsl(200, 80%, 55%)', professorName: 'Prof. Blackstone', subtitle: 'Global Legal Scholar' },
+    'psychology': { icon: Brain, label: 'Psychology', color: 'hsl(330, 70%, 55%)', professorName: 'Prof. Freud', subtitle: 'GRAVE Framework Specialist' },
+    'accounting': { icon: Calculator, label: 'Accounting', color: 'hsl(25, 85%, 55%)', professorName: 'Prof. Pacioli', subtitle: 'IFRS Standards Expert' },
+    'sociology': { icon: Users, label: 'Sociology', color: 'hsl(160, 70%, 45%)', professorName: 'Prof. Marx', subtitle: 'Perspectives Analysis' },
+    'research': { icon: FlaskConical, label: 'Research', color: 'hsl(200, 70%, 50%)', professorName: 'Prof. Scholar', subtitle: 'IPQ Research Methods' },
+    'mathematics': { icon: Sigma, label: 'Maths', color: 'hsl(260, 70%, 55%)', professorName: 'Prof. Euler', subtitle: 'Pure & Applied Mathematics' },
+    'physics': { icon: Atom, label: 'Physics', color: 'hsl(15, 85%, 55%)', professorName: 'Prof. Newton', subtitle: 'CIE 9702 & University' },
+    'chemistry': { icon: FlaskConical, label: 'Chemistry', color: 'hsl(120, 60%, 45%)', professorName: 'Prof. Curie', subtitle: 'CIE 9701 & Research' },
+  };
+
+  const activeConfig = PERSONA_CONFIG[persona];
+
+  // Extract solution summarizer from latest AI message
+  const latestAiMessage = [...messages].reverse().find(m => m.role === 'assistant' && !m.isError);
+  const extractSummarizer = (content: string) => {
+    const patterns = [
+      /(?:#{1,3}\s*(?:Solution Summar|Key Takeaway|Strategic Intelligence|Legal Verdict|Clinical Summary|Diagnostic Summary|Research Verdict|Mathematical Verdict|Physics Verdict|Chemical Verdict|Briefing|Summary|Verdict).*?)(?:\n[\s\S]*?)(?=\n#{1,3}\s|\n---|\Z)/i,
+      /(?:\*\*(?:Solution Summar|Key Takeaway|Strategic Intelligence|Legal Verdict|Clinical Summary).*?\*\*[\s\S]*?)(?=\n\n#{1,3}\s|\n\n---|\n\n\*\*[A-Z]|\Z)/i,
+    ];
+    for (const pattern of patterns) {
+      const match = content.match(pattern);
+      if (match) return match[0].trim();
+    }
+    const bullets = content.match(/(?:^|\n)[•\-\*]\s+.+/g);
+    if (bullets && bullets.length >= 2) return bullets.slice(0, 3).join('\n').trim();
+    const paragraphs = content.split('\n\n').filter(p => p.trim().length > 30);
+    if (paragraphs.length > 0) return paragraphs[0].trim();
+    return null;
+  };
+
+  const summarizerContent = latestAiMessage ? extractSummarizer(latestAiMessage.content) : null;
+
+  const SYLLABUS_MAP: Record<Persona, string> = {
+    'a-level': '9708', 'business': '9609', 'law': 'Law', 'psychology': '9990',
+    'accounting': '9706', 'sociology': '9699', 'research': 'IPQ',
+    'mathematics': '9709', 'physics': '9702', 'chemistry': '9701',
+  };
+
   return (
     <motion.section
       id="ai-chatbot"
@@ -1054,477 +1096,361 @@ export default function EconomicsChatbot() {
       className="py-10 md:py-16 lg:py-24"
     >
       <div className="w-full max-w-[1800px] mx-auto px-0 sm:px-4 md:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-6 md:mb-8"
         >
-          {/* Persona Toggle */}
-          <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
-            <motion.button
-              onClick={() => { setPersona('a-level'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'a-level'
-                  ? 'bg-[hsl(43,72%,53%)]/15 border-[hsl(43,72%,53%)]/50 text-[hsl(43,72%,53%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <BookOpen className="w-3 h-3" />
-              Economics
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('business'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'business'
-                  ? 'bg-[hsl(142,71%,45%)]/15 border-[hsl(142,71%,45%)]/50 text-[hsl(142,71%,45%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <Briefcase className="w-3 h-3" />
-              Business
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('law'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'law'
-                  ? 'bg-[hsl(280,70%,55%)]/15 border-[hsl(280,70%,55%)]/50 text-[hsl(280,70%,55%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <Scale className="w-3 h-3" />
-              Law
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('psychology'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'psychology'
-                  ? 'bg-[hsl(330,70%,55%)]/15 border-[hsl(330,70%,55%)]/50 text-[hsl(330,70%,55%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <Brain className="w-3 h-3" />
-              Psychology
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('accounting'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'accounting'
-                  ? 'bg-[hsl(25,85%,55%)]/15 border-[hsl(25,85%,55%)]/50 text-[hsl(25,85%,55%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <Calculator className="w-3 h-3" />
-              Accounting
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('sociology'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'sociology'
-                  ? 'bg-[hsl(160,70%,45%)]/15 border-[hsl(160,70%,45%)]/50 text-[hsl(160,70%,45%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <Users className="w-3 h-3" />
-              Sociology
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('research'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'research'
-                  ? 'bg-[hsl(200,70%,50%)]/15 border-[hsl(200,70%,50%)]/50 text-[hsl(200,70%,50%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <FlaskConical className="w-3 h-3" />
-              Research IPQ
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('mathematics'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'mathematics'
-                  ? 'bg-[hsl(260,70%,55%)]/15 border-[hsl(260,70%,55%)]/50 text-[hsl(260,70%,55%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <Sigma className="w-3 h-3" />
-              Mathematics
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('physics'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'physics'
-                  ? 'bg-[hsl(15,85%,55%)]/15 border-[hsl(15,85%,55%)]/50 text-[hsl(15,85%,55%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <Atom className="w-3 h-3" />
-              Physics
-            </motion.button>
-            <motion.button
-              onClick={() => { setPersona('chemistry'); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all border min-h-[44px] ${
-                persona === 'chemistry'
-                  ? 'bg-[hsl(120,60%,45%)]/15 border-[hsl(120,60%,45%)]/50 text-[hsl(120,60%,45%)]'
-                  : 'border-border/30 text-muted-foreground hover:border-border/60'
-              }`}
-            >
-              <FlaskConical className="w-3 h-3" />
-              Chemistry
-            </motion.button>
-          </div>
-
-          <div className="inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 rounded-full glass-card mb-3 md:mb-4">
-            <TutorAvatar size="sm" />
-            <div className="text-left">
-              <span className="text-xs md:text-sm text-[hsl(43,72%,53%)] font-semibold block">
-                {{ 'a-level': 'Prof. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods', 'mathematics': 'Prof. Mathesis', 'physics': 'Prof. Newton', 'chemistry': 'Prof. Chem' }[persona]}
-              </span>
-              <span className="text-[10px] md:text-xs text-muted-foreground">
-                {{ 'a-level': 'Economics Intelligence Engine', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar', 'psychology': 'Psychology Specialist', 'accounting': 'Accounting & Finance Specialist', 'sociology': 'Sociology Specialist', 'research': 'Research Methods Guide', 'mathematics': 'Pure & Applied Mathematics', 'physics': 'CIE 9702 & University Physics', 'chemistry': 'CIE 9701 & Research Chemistry' }[persona]}
-              </span>
-            </div>
-            <div className="tutor-verified-badge ml-1 md:ml-2 text-[9px] md:text-[10px]">
-              <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3" />
-              <span>{{ 'a-level': '2026-2028', 'business': '2026-2028', 'law': 'IRAC', 'psychology': 'GRAVE', 'accounting': 'IFRS', 'sociology': 'PEEL', 'research': 'IPQ', 'mathematics': 'LaTeX', 'physics': 'I-V-A-U', 'chemistry': '9701' }[persona]}</span>
-            </div>
-          </div>
-          <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
-            {{ 'a-level': 'Economics Question?', 'business': 'Business Question?', 'law': 'Legal Question?', 'psychology': 'Psychology Question?', 'accounting': 'Accounting Question?', 'sociology': 'Sociology Question?', 'research': 'Research Question?', 'mathematics': 'Maths Problem?', 'physics': 'Physics Problem?', 'chemistry': 'Chemistry Question?' }[persona]}
+          <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-3 md:mb-4">
+            🧠 Command Center
+          </span>
+          <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
+            Intelligence Hub
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto px-2" style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1rem)' }}>
-            {{ 
-              'a-level': 'A-Level to University Economics • Game Theory • Econometrics • Policy Analysis',
-              'business': 'Cambridge Senior Examiner • Business Studies • AO-Structured Responses',
-              'law': 'Global Legal Scholar • IRAC Method • Contract • Tort • Criminal • Constitutional Law',
-              'psychology': 'Psychology Specialist • Core Studies • GRAVE Framework • PEEL Structure',
-              'accounting': 'Accounting & Finance Specialist • Double Entry • IFRS • WACC • NPV/IRR',
-              'sociology': 'Sociology Specialist • Functionalism • Marxism • Postmodernism • Globalisation',
-              'research': 'Research Methods Guide • IPQ • Sampling • Analysis • Harvard/APA Referencing',
-              'mathematics': 'Pure & Applied Mathematics • Calculus • Linear Algebra • Statistics • LaTeX Derivations',
-              'physics': 'CIE 9702 & University Physics • Mechanics • Waves • Fields • Quantum • I-V-A-U Method',
-              'chemistry': 'CIE 9701 & Research Chemistry • Mechanisms • Spectroscopy • LaTeX',
-            }[persona]}
+          <p className="text-muted-foreground max-w-2xl mx-auto px-2 text-sm md:text-base">
+            10 specialized AI minds. One unified workspace. Select your expert and begin.
           </p>
         </motion.div>
 
-        {/* Chat Card - Premium Glassmorphism */}
+        {/* Three-Pane Dashboard */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="relative rounded-none sm:rounded-xl md:rounded-2xl overflow-hidden tutor-chat-container tutor-gold-glow"
+          className="relative rounded-none sm:rounded-xl md:rounded-2xl overflow-hidden"
           style={{
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            border: '1px solid hsl(43 72% 53% / 0.2)',
-            boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), inset 0 1px 0 hsl(43 72% 53% / 0.08)',
+            border: '1px solid hsl(43 72% 53% / 0.15)',
+            boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          {/* Premium glass overlay */}
-          <div 
-            className="absolute inset-0 rounded-xl md:rounded-2xl pointer-events-none"
-            style={{
-              background: 'linear-gradient(180deg, hsl(43 72% 53% / 0.03) 0%, transparent 30%, hsl(214 100% 14% / 0.1) 100%)',
-            }}
-          />
+          <div className="flex flex-col lg:flex-row min-h-[600px] lg:min-h-[700px]">
 
-          {/* Academic Banner — with System Status indicator */}
-          <div className="tutor-header-banner relative flex items-center justify-between px-3 md:px-4">
-            <p className="tutor-header-title text-[0.6rem] md:text-[0.7rem]">
-              {{ 'a-level': 'Cambridge A-Level Economics', 'university': 'Research Fellow Mode • LSE/Oxford Academic Standard', 'business': 'Cambridge A-Level Business', 'law': 'Global Legal Scholar • Oxford/Harvard Standard', 'psychology': 'Cambridge Psychology • GRAVE Mode', 'accounting': 'Cambridge Accounting • IFRS Mode', 'sociology': 'Cambridge Sociology', 'research': 'Research Methods • IPQ', 'mathematics': 'Pure & Applied Mathematics • LaTeX Mode', 'physics': 'Cambridge Physics 9702 • I-V-A-U Mode', 'chemistry': 'Cambridge Chemistry 9701 • Senior Examiner Mode' }[persona]}
-            </p>
-            <div className="flex items-center gap-2">
-              <SystemStatus streamState={streamState} />
-              <span className="text-[0.5rem] md:text-[0.6rem] text-[hsl(43,72%,53%)]/60 font-medium hidden sm:inline">
-                {{ 'a-level': 'Text Analysis Mode', 'university': 'Guided Derivation Mode', 'business': 'AO-Structured Mode', 'law': 'IRAC Analysis Mode', 'psychology': 'PEEL + GRAVE Mode', 'accounting': 'Double-Entry + LaTeX Mode', 'sociology': 'PEEL + Perspectives Mode', 'research': 'Research Cycle Mode', 'mathematics': 'Step-by-Step Derivation Mode', 'physics': 'I-V-A-U + Conceptual Summary Mode', 'chemistry': 'Mechanism + Spectral Analysis Mode' }[persona]}
-              </span>
-            </div>
-          </div>
-
-          {/* Header with Clear Button - Mobile optimized */}
-          <div className="relative flex flex-col md:flex-row md:items-center justify-between p-3 lg:p-4 border-b border-[hsl(43,72%,53%)]/20 gap-3">
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-muted-foreground mb-1.5">Quick questions:</p>
-              <div className="flex flex-wrap gap-1 md:gap-1.5 overflow-x-auto scrollbar-hide pb-1">
-                {quickActions.slice(0, 4).map((action, i) => (
+            {/* LEFT RAIL */}
+            <div className="lg:w-[72px] flex lg:flex-col items-center gap-1 p-2 lg:py-4 overflow-x-auto lg:overflow-x-visible scrollbar-hide border-b lg:border-b-0 lg:border-r border-white/[0.06]"
+              style={{ background: 'hsl(0 0% 3% / 0.8)', backdropFilter: 'blur(20px)' }}
+            >
+              {(Object.keys(PERSONA_CONFIG) as Persona[]).map((p) => {
+                const cfg = PERSONA_CONFIG[p];
+                const Icon = cfg.icon;
+                const isActive = persona === p;
+                return (
                   <motion.button
-                    key={i}
+                    key={p}
+                    onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
+                    whileTap={{ scale: 0.9 }}
+                    className={`relative flex flex-col items-center justify-center rounded-xl transition-all duration-300 min-w-[52px] w-[52px] h-[52px] shrink-0 ${
+                      isActive ? '' : 'hover:bg-white/[0.04]'
+                    }`}
+                    style={isActive ? {
+                      background: `linear-gradient(135deg, ${cfg.color}15, ${cfg.color}08)`,
+                      border: `1px solid ${cfg.color}40`,
+                      boxShadow: `0 0 20px ${cfg.color}20`,
+                    } : { border: '1px solid transparent' }}
+                    title={cfg.label}
+                  >
+                    <Icon className="w-4 h-4 transition-colors" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
+                    <span className="text-[8px] font-medium mt-0.5 transition-colors" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)' }}>
+                      {cfg.label}
+                    </span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="persona-indicator"
+                        className="absolute -right-[1px] top-1/2 -translate-y-1/2 w-[3px] h-6 rounded-l-full hidden lg:block"
+                        style={{ background: cfg.color }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {/* CENTER PANE */}
+            <div className="flex-1 flex flex-col min-w-0 relative"
+              style={{ background: 'linear-gradient(180deg, hsl(0 0% 3%) 0%, hsl(0 0% 5%) 50%, hsl(0 0% 4%) 100%)' }}
+            >
+              {/* Active Persona Header */}
+              <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]"
+                style={{ background: 'hsl(0 0% 4% / 0.9)', backdropFilter: 'blur(12px)' }}
+              >
+                <div className="flex items-center gap-3">
+                  <TutorAvatar size="sm" />
+                  <div>
+                    <AnimatePresence mode="wait">
+                      <motion.h3
+                        key={persona}
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.25 }}
+                        className="font-bold text-sm tracking-wider"
+                        style={{ fontFamily: "'Syncopate', sans-serif", color: activeConfig.color }}
+                      >
+                        {activeConfig.professorName}
+                      </motion.h3>
+                    </AnimatePresence>
+                    <p className="text-[10px] text-muted-foreground">{activeConfig.subtitle}</p>
+                  </div>
+                  <div className="tutor-verified-badge ml-1 text-[9px]">
+                    <CheckCircle2 className="w-2.5 h-2.5" />
+                    <span>{SYLLABUS_MAP[persona]}</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <SystemStatus streamState={streamState} />
+                  <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={SYLLABUS_MAP[persona]} />
+                  {messages.length > 0 && (
+                    <Button variant="ghost" size="sm" onClick={handleClearChat} className="text-muted-foreground hover:text-destructive text-xs h-8 px-2">
+                      <Trash2 className="w-3 h-3 mr-1" />
+                      Clear
+                    </Button>
+                  )}
+                </div>
+              </div>
+
+              {/* Quick Actions */}
+              <div className="flex items-center gap-1.5 px-4 py-2 border-b border-white/[0.04] overflow-x-auto scrollbar-hide"
+                style={{ background: 'hsl(0 0% 3% / 0.6)' }}
+              >
+                {quickActions.slice(0, 5).map((action, i) => (
+                  <motion.button
+                    key={`${persona}-${i}`}
                     onClick={() => handleSend(action.query)}
                     disabled={isLoading}
-                    whileHover={{ scale: 1.02, boxShadow: '0 0 16px hsl(43 72% 53% / 0.3)' }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="min-h-[44px] min-w-[44px] px-3 md:px-3.5 py-2 md:py-1.5 rounded-full text-[11px] md:text-xs font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex-shrink-0"
+                    className="min-h-[32px] px-3 py-1.5 rounded-full text-[10px] font-medium transition-all disabled:opacity-50 whitespace-nowrap flex-shrink-0"
                     style={{
-                      background: 'linear-gradient(135deg, hsl(214 100% 14% / 0.4), hsl(43 72% 53% / 0.1))',
-                      border: '1px solid hsl(43 72% 53% / 0.4)',
-                      color: 'hsl(43 72% 53%)',
+                      background: `linear-gradient(135deg, hsl(214 100% 14% / 0.3), ${activeConfig.color}10)`,
+                      border: `1px solid ${activeConfig.color}30`,
+                      color: activeConfig.color,
                     }}
                   >
-                    <Sparkles className="w-2 h-2 md:w-2.5 md:h-2.5 inline mr-0.5 md:mr-1" />
+                    <Sparkles className="w-2 h-2 inline mr-1" />
                     {action.label}
                   </motion.button>
                 ))}
-                <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={{ 'a-level': '9708', 'business': '9609', 'law': 'Law', 'psychology': '9990', 'accounting': '9706', 'sociology': '9699', 'research': 'IPQ', 'mathematics': '9709', 'physics': '9702', 'chemistry': '9701' }[persona]} />
+              </div>
+
+              {/* Chat Messages */}
+              <ScrollArea ref={scrollRef} className="flex-1 relative" style={{ height: 'calc(100% - 140px)' }}>
+                <div className="px-4 py-3">
+                  {messages.length === 0 ? (
+                    <div className="h-[400px] flex items-center justify-center text-center">
+                      <div>
+                        <motion.div
+                          animate={{ rotateY: [0, 360] }}
+                          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+                          className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center"
+                          style={{
+                            background: `linear-gradient(135deg, hsl(214 100% 10%), ${activeConfig.color}20)`,
+                            border: `1px solid ${activeConfig.color}30`,
+                          }}
+                        >
+                          <img src={officialLogo} alt="EconNexus" className="w-10 h-10 object-contain" />
+                        </motion.div>
+                        <p className="text-base font-semibold mb-1" style={{ color: activeConfig.color, fontFamily: "'Syncopate', sans-serif" }}>
+                          {activeConfig.professorName}
+                        </p>
+                        <p className="text-xs text-muted-foreground mb-1">{activeConfig.subtitle}</p>
+                        <p className="text-sm text-muted-foreground/60 font-serif">Ready for your questions. I remember our conversation.</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-1">
+                      {messages.map((msg) => (
+                        <motion.div
+                          key={msg.id}
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                        >
+                          {msg.role === 'assistant' && (
+                            <div className="flex items-start gap-3 py-4 px-2 rounded-lg" style={{
+                              background: 'hsl(0 0% 8% / 0.5)',
+                              borderLeft: `2px solid ${activeConfig.color}40`,
+                            }}>
+                              <TutorAvatar size="sm" />
+                              <div className="flex-1 min-w-0">
+                                <div className="tutor-lesson-header text-[0.55rem] mb-2">
+                                  {activeConfig.label} Intelligence Engine
+                                </div>
+                                <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
+                                  <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}
+                                    components={{
+                                      p: ({ children }) => <p className="text-sm leading-relaxed text-foreground mb-2">{children}</p>,
+                                      strong: ({ children }) => <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>,
+                                      code: ({ children }) => <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>,
+                                      blockquote: ({ children }) => <blockquote className="border-l-2 border-[hsl(185,100%,50%)] pl-3 my-2 italic text-muted-foreground bg-[hsl(185,100%,50%)]/5 py-2 rounded-r">{children}</blockquote>,
+                                      h3: ({ children }) => <h3 className="text-sm font-bold text-[hsl(43,72%,53%)] mt-3 mb-1">{children}</h3>,
+                                      ul: ({ children }) => <ul className="list-disc list-inside space-y-1 text-sm">{children}</ul>,
+                                      li: ({ children }) => <li className="text-foreground/90">{children}</li>,
+                                    }}
+                                  >
+                                    {msg.content}
+                                  </ReactMarkdown>
+                                  <CopyButton text={msg.content} />
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          {msg.role === 'user' && (
+                            <div className="flex items-start gap-3 py-3 px-4 ml-auto max-w-[85%] rounded-xl" style={{
+                              background: 'hsl(214 100% 8% / 0.6)',
+                              border: '1px solid hsl(214 100% 20% / 0.3)',
+                            }}>
+                              <div className="flex-1 min-w-0">
+                                {msg.imageUrl && (
+                                  <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
+                                )}
+                                <p className="whitespace-pre-wrap leading-relaxed text-sm font-sans text-foreground">{msg.content}</p>
+                              </div>
+                              <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
+                                <User className="w-3.5 h-3.5 text-primary" />
+                              </div>
+                            </div>
+                          )}
+                        </motion.div>
+                      ))}
+                      <AnimatePresence>
+                        {streamState !== 'idle' && (
+                          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className="flex items-start gap-3 py-3 px-2">
+                            <TutorAvatar size="sm" />
+                            <div className="rounded-lg px-3 py-2" style={{ background: 'hsl(0 0% 8% / 0.5)', border: `1px solid ${activeConfig.color}20` }}>
+                              <TypingIndicator streamState={streamState} persona={persona} />
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+
+              {/* FLOATING PILL INPUT */}
+              <div className="relative px-3 pb-3 pt-2">
+                {uploadedImage && (
+                  <div className="flex items-center gap-2 mb-2 p-2 rounded-lg bg-white/5 border border-white/10 mx-1">
+                    <img src={uploadedImage} alt="Upload preview" className="w-10 h-10 rounded object-cover" />
+                    <span className="text-xs text-muted-foreground flex-1 truncate">{uploadedImageName}</span>
+                    <button onClick={() => { setUploadedImage(null); setUploadedImageName(''); }} className="text-muted-foreground hover:text-destructive">
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
+                <div className="flex items-end gap-2 rounded-2xl p-2"
+                  style={{
+                    background: 'hsl(0 0% 6% / 0.7)',
+                    backdropFilter: 'blur(30px)',
+                    WebkitBackdropFilter: 'blur(30px)',
+                    border: '1px solid hsl(43 72% 53% / 0.15)',
+                    boxShadow: '0 -8px 40px hsl(0 0% 0% / 0.4), 0 0 60px hsl(185 100% 50% / 0.03)',
+                  }}
+                >
+                  <input ref={fileInputRef} type="file" accept="image/*" className="hidden"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      const imgRateCheck = checkImageUploadRateLimit();
+                      if (!imgRateCheck.allowed) { toast.error(`Image upload limit reached. Wait ${imgRateCheck.retryAfter}s.`); e.target.value = ''; return; }
+                      if (file.size > 10 * 1024 * 1024) { toast.error('Image must be under 10MB'); e.target.value = ''; return; }
+                      toast.info('Compressing image...');
+                      try { const compressed = await compressImage(file); setUploadedImage(compressed); setUploadedImageName(file.name); toast.success('Image ready'); } catch { toast.error('Failed to process image'); }
+                      e.target.value = '';
+                    }}
+                  />
+                  <Button onClick={() => fileInputRef.current?.click()} variant="ghost" size="icon" disabled={isLoading}
+                    className="shrink-0 h-10 w-10 rounded-xl text-muted-foreground hover:text-[hsl(43,72%,53%)] hover:bg-white/[0.04]" title="Upload image">
+                    <ImagePlus className="w-4 h-4" />
+                  </Button>
+                  <Textarea ref={textareaRef} value={input}
+                    onChange={(e) => { setInput(e.target.value); handleTextareaInput(); }}
+                    onKeyDown={handleKeyDown} onInput={handleTextareaInput}
+                    placeholder={uploadedImage ? "Describe what to analyze…" : "Ask anything… (Enter = new line, Ctrl+Enter = send)"}
+                    disabled={isLoading} rows={1}
+                    className="flex-1 bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground/30 text-sm font-sans resize-none overflow-y-auto leading-relaxed px-2 py-2.5"
+                    style={{ minHeight: '44px', maxHeight: '200px', scrollbarWidth: 'thin', scrollbarColor: 'hsl(43 72% 53% / 0.2) transparent' }}
+                  />
+                  <div className="flex items-end gap-1 shrink-0">
+                    {messages.length > 0 && !isLoading && retryCount < 3 && (
+                      <Button onClick={handleRetry} variant="ghost" size="icon" className="h-10 w-10 rounded-xl text-muted-foreground hover:text-[hsl(43,72%,53%)] hover:bg-white/[0.04] hidden md:flex" title="Retry">
+                        <RefreshCw className="w-3.5 h-3.5" />
+                      </Button>
+                    )}
+                    <Button onClick={() => handleSend()} disabled={(!input.trim() && !uploadedImage) || isLoading} size="icon"
+                      className="h-10 w-10 rounded-xl transition-all"
+                      style={{ background: `linear-gradient(135deg, hsl(214 100% 15%), ${activeConfig.color})`, border: `1px solid ${activeConfig.color}40` }}
+                      title="Send (Ctrl+Enter)">
+                      {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                    </Button>
+                  </div>
+                </div>
+                <p className="mt-1.5 text-[9px] text-muted-foreground/40 text-right select-none px-2">Enter for new line · Ctrl+Enter to send</p>
               </div>
             </div>
-            
-            {messages.length > 0 && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleClearChat}
-                className="text-muted-foreground hover:text-destructive shrink-0 text-xs min-h-[44px] self-end md:self-auto"
-              >
-                <Trash2 className="w-3.5 h-3.5 mr-1" />
-                Clear
-              </Button>
-            )}
-          </div>
 
-          <ScrollArea 
-            ref={scrollRef}
-            className="h-[340px] md:h-[450px] lg:h-[560px] xl:h-[620px] p-2 sm:p-3 lg:p-5 relative"
-          >
-            {messages.length === 0 ? (
-              <div className="h-full flex items-center justify-center text-center">
-                <div className="text-muted-foreground">
-                  <TutorAvatar size="lg" />
-                  <p className="text-base font-semibold text-[hsl(43,72%,53%)] mt-4 font-serif">
-                    {{ 'a-level': 'Prof. Econs', 'business': 'Prof. Business', 'law': 'Dr. Juris', 'psychology': 'Dr. Psyche', 'accounting': 'Prof. Ledger', 'sociology': 'Dr. Société', 'research': 'Dr. Methods', 'mathematics': 'Prof. Mathesis', 'physics': 'Prof. Newton', 'chemistry': 'Prof. Chem' }[persona]}
-                  </p>
-                  <p className="text-xs text-[hsl(43,72%,53%)]/70 mb-2">
-                    {{ 'a-level': 'Economics Intelligence Engine • A-Level to University', 'business': 'Cambridge Senior Examiner', 'law': 'Global Legal Scholar • IRAC Method', 'psychology': 'Psychology Specialist • GRAVE Framework', 'accounting': 'Accounting Specialist • IFRS Standards', 'sociology': 'Sociology Specialist • Perspectives Mode', 'research': 'Research Methods Guide • IPQ', 'mathematics': 'Pure & Applied Mathematics • LaTeX Mode', 'physics': 'Physics Specialist • I-V-A-U Method', 'chemistry': 'Chemistry Specialist • CIE 9701 & Research' }[persona]}
-                  </p>
-                  <p className="text-sm mt-1 opacity-70 font-serif">
-                    {{ 'a-level': 'Your Economics Intelligence Engine is ready — A-Level to University mastery', 'business': 'Your Cambridge Senior Examiner is ready for AO-structured answers', 'law': 'Your Legal Scholar is ready for IRAC analysis', 'psychology': 'Your Psychology Specialist is ready for GRAVE evaluations', 'accounting': 'Your Accounting Specialist is ready for double-entry and ratios', 'sociology': 'Your Sociology Specialist is ready for theoretical analysis', 'research': 'Your Research Methods Guide is ready for the research cycle', 'mathematics': 'Your Mathematics Specialist is ready for step-by-step derivations', 'physics': 'Your Physics Specialist is ready — I-V-A-U framework activated', 'chemistry': 'Your Chemistry Specialist is ready — mechanisms, spectroscopy & LaTeX activated' }[persona]}
-                  </p>
-                  <p className="text-xs mt-2 opacity-50">Ask follow-up questions — I remember our conversation!</p>
-                </div>
+            {/* RIGHT RAIL — Solution Summarizer */}
+            <div className="hidden xl:flex flex-col w-[280px] border-l border-white/[0.06]"
+              style={{ background: 'hsl(0 0% 3% / 0.8)', backdropFilter: 'blur(20px)' }}
+            >
+              <div className="px-3 py-3 border-b border-white/[0.06]">
+                <h4 className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: activeConfig.color, fontFamily: "'Syncopate', sans-serif" }}>
+                  Solution Summarizer
+                </h4>
+                <p className="text-[9px] text-muted-foreground/50 mt-0.5">Live key takeaways</p>
               </div>
-            ) : (
-              <div className="tutor-compact-spacing">
-                {messages.map((msg) => (
-                  <motion.div
-                    key={msg.id}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
-                    {msg.role === 'assistant' && <TutorAvatar />}
-                    <div
-                      className={`max-w-[92%] sm:max-w-[88%] md:max-w-[90%] rounded-lg md:rounded-xl px-3 sm:px-4 lg:px-5 py-2.5 md:py-3 lg:py-3.5 ${
-                        msg.role === 'user'
-                          ? 'tutor-message-user text-foreground'
-                          : 'tutor-message-ai text-foreground'
-                      }`}
-                    >
-                      {msg.role === 'assistant' ? (
-                        <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
-                          {/* Lesson Header */}
-                          <div className="tutor-lesson-header text-[0.55rem] md:text-[0.65rem]">
-                            {{ 'a-level': 'Economics Intelligence Engine | A-Level & University Standard', 'business': 'Cambridge A-Level Business | Cambridge Senior Examiner', 'law': 'EconNexus Legal Division | Global Juris Doctor | IRAC Method', 'psychology': 'Cambridge Psychology | GRAVE + PEEL', 'accounting': 'Cambridge Accounting | IFRS Standards', 'sociology': 'Cambridge Sociology | Perspectives Analysis', 'research': 'Research Methods | IPQ | Research Cycle', 'mathematics': 'Pure & Applied Mathematics | Step-by-Step Derivations', 'physics': 'Cambridge Physics 9702 | I-V-A-U Method | Conceptual Summaries' }[persona]}
-                          </div>
-                          <ReactMarkdown
-                            remarkPlugins={[remarkMath]}
-                            rehypePlugins={[rehypeKatex]}
+              <ScrollArea className="flex-1">
+                <div className="p-3">
+                  {summarizerContent ? (
+                    <motion.div key={latestAiMessage?.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
+                      <div className="rounded-xl p-3" style={{
+                        background: `linear-gradient(135deg, hsl(0 0% 6%), ${activeConfig.color}08)`,
+                        border: `1px solid ${activeConfig.color}20`,
+                      }}>
+                        <div className="prose prose-invert prose-xs max-w-none">
+                          <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}
                             components={{
-                              p: ({ children }) => (
-                                <p className="text-sm leading-relaxed text-foreground mb-2">{children}</p>
-                              ),
-                              strong: ({ children }) => (
-                                <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>
-                              ),
-                              code: ({ children }) => (
-                                <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>
-                              ),
-                              blockquote: ({ children }) => (
-                                <blockquote className="border-l-2 border-[hsl(185,100%,50%)] pl-3 my-2 italic text-muted-foreground bg-[hsl(185,100%,50%)]/5 py-2 rounded-r">
-                                  {children}
-                                </blockquote>
-                              ),
-                              h3: ({ children }) => (
-                                <h3 className="text-sm font-bold text-[hsl(43,72%,53%)] mt-3 mb-1">{children}</h3>
-                              ),
-                              ul: ({ children }) => (
-                                <ul className="list-disc list-inside space-y-1 text-sm">{children}</ul>
-                              ),
-                              li: ({ children }) => (
-                                <li className="text-foreground/90">{children}</li>
-                              ),
+                              p: ({ children }) => <p className="text-[11px] leading-relaxed text-foreground/80 mb-1.5">{children}</p>,
+                              strong: ({ children }) => <strong className="text-[hsl(43,72%,53%)] font-semibold text-[11px]">{children}</strong>,
+                              li: ({ children }) => <li className="text-[11px] text-foreground/70">{children}</li>,
+                              ul: ({ children }) => <ul className="list-disc list-inside space-y-0.5 text-[11px]">{children}</ul>,
+                              h3: ({ children }) => <h3 className="text-[11px] font-bold text-[hsl(43,72%,53%)] mt-2 mb-0.5">{children}</h3>,
                             }}
                           >
-                            {msg.content}
+                            {summarizerContent}
                           </ReactMarkdown>
-                          <CopyButton text={msg.content} />
                         </div>
-                      ) : (
-                        <div>
-                          {msg.imageUrl && (
-                            <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
-                          )}
-                          <p className="whitespace-pre-wrap leading-relaxed" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>{msg.content}</p>
-                        </div>
-                      )}
-                    </div>
-                    {msg.role === 'user' && (
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
-                        <User className="w-4 h-4 text-primary" />
                       </div>
-                    )}
-                  </motion.div>
-                ))}
-                
-                {/* Typing indicator */}
-                <AnimatePresence>
-                  {streamState !== 'idle' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      className="flex gap-2"
-                    >
-                      <TutorAvatar />
-                      <div className="tutor-message-ai rounded-xl px-3 py-2.5">
-                        <TypingIndicator streamState={streamState} persona={persona} />
-                      </div>
+                      <CopyButton text={summarizerContent} />
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )}
-          </ScrollArea>
-
-          {/* Input Area — sticky on mobile for keyboard visibility */}
-          <div className="relative p-2 sm:p-3 lg:p-5 border-t border-[hsl(43,72%,53%)]/15 safe-area-inset sticky bottom-0 z-10 bg-[hsl(var(--graphite-deep)/0.95)] backdrop-blur-xl">
-            {/* Image preview */}
-            {uploadedImage && (
-              <div className="flex items-center gap-2 mb-3 p-2 rounded-lg bg-white/5 border border-[hsl(43,72%,53%)]/20">
-                <img src={uploadedImage} alt="Upload preview" className="w-12 h-12 rounded object-cover" />
-                <span className="text-xs text-muted-foreground flex-1 truncate">{uploadedImageName}</span>
-                <button onClick={() => { setUploadedImage(null); setUploadedImageName(''); }} className="text-muted-foreground hover:text-destructive">
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-
-            {/* Paragraph textarea */}
-            <div className="flex gap-2 items-end">
-              {/* Hidden file input */}
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={async (e) => {
-                  const file = e.target.files?.[0];
-                  if (!file) return;
-                  
-                  // Client-side image rate limit check (10/min)
-                  const imgRateCheck = checkImageUploadRateLimit();
-                  if (!imgRateCheck.allowed) {
-                    toast.error(`Image upload limit reached (10/min). Please wait ${imgRateCheck.retryAfter}s.`);
-                    e.target.value = '';
-                    return;
-                  }
-                  
-                  if (file.size > 10 * 1024 * 1024) {
-                    toast.error('Image must be under 10MB');
-                    e.target.value = '';
-                    return;
-                  }
-                  toast.info('Compressing image...');
-                  try {
-                    const compressed = await compressImage(file);
-                    setUploadedImage(compressed);
-                    setUploadedImageName(file.name);
-                    toast.success('Image ready for analysis');
-                  } catch {
-                    toast.error('Failed to process image');
-                  }
-                  e.target.value = '';
-                }}
-              />
-
-              {/* Image upload button */}
-              <Button
-                onClick={() => fileInputRef.current?.click()}
-                variant="outline"
-                size="icon"
-                disabled={isLoading}
-                className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 shrink-0 self-end min-h-[44px] min-w-[44px]"
-                title="Upload image for analysis"
-              >
-                <ImagePlus className="w-4 h-4 text-[hsl(43,72%,53%)]" />
-              </Button>
-
-              {/* Auto-expanding paragraph textarea */}
-              <Textarea
-                ref={textareaRef}
-                value={input}
-                onChange={(e) => { setInput(e.target.value); handleTextareaInput(); }}
-                onKeyDown={handleKeyDown}
-                onInput={handleTextareaInput}
-                placeholder={uploadedImage ? "Describe what to analyze in the image…" : "Type your question or paste a full paragraph… (Enter for new line, Ctrl+Enter to send)"}
-                disabled={isLoading}
-                rows={1}
-                className="flex-1 tutor-input-glass placeholder:text-muted-foreground/40 text-sm font-sans resize-none overflow-y-auto leading-relaxed px-4 py-3"
-                style={{
-                  minHeight: '120px',
-                  maxHeight: '400px',
-                  scrollbarWidth: 'thin',
-                  scrollbarColor: 'hsl(43 72% 53% / 0.3) transparent',
-                }}
-              />
-
-              {/* Action buttons column */}
-              <div className="flex flex-col gap-2 shrink-0 self-end">
-                {/* Retry */}
-                {messages.length > 0 && !isLoading && retryCount < 3 && (
-                  <Button
-                    onClick={handleRetry}
-                    variant="outline"
-                    size="icon"
-                    className="border-[hsl(43,72%,53%)]/20 hover:border-[hsl(43,72%,53%)]/50 hover:bg-[hsl(43,72%,53%)]/5 min-h-[44px] min-w-[44px] hidden md:flex"
-                    title="Retry last question"
-                  >
-                    <RefreshCw className="w-4 h-4 text-[hsl(43,72%,53%)]" />
-                  </Button>
-                )}
-
-                {/* Send */}
-                <Button
-                  onClick={() => handleSend()}
-                  disabled={(!input.trim() && !uploadedImage) || isLoading}
-                  size="icon"
-                  className="bg-gradient-to-br from-[hsl(214,100%,18%)] via-[hsl(43,72%,45%)] to-[hsl(43,72%,53%)] hover:opacity-90 text-white border border-[hsl(43,72%,53%)]/40 shadow-lg min-h-[44px] min-w-[44px] w-11 h-11"
-                  title="Send (Ctrl+Enter)"
-                >
-                  {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
                   ) : (
-                    <Send className="w-4 h-4" />
+                    <div className="flex flex-col items-center justify-center h-[300px] text-center">
+                      <motion.div animate={{ opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 2, repeat: Infinity }}
+                        className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
+                        style={{ background: `${activeConfig.color}10`, border: `1px solid ${activeConfig.color}15` }}>
+                        <Sparkles className="w-4 h-4" style={{ color: activeConfig.color }} />
+                      </motion.div>
+                      <p className="text-[10px] text-muted-foreground/40">Key takeaways will appear here as the AI responds</p>
+                    </div>
                   )}
-                </Button>
-              </div>
+                  <div className="mt-4 pt-3 border-t border-white/[0.04]">
+                    <p className="text-[9px] text-muted-foreground/40 uppercase tracking-wider mb-2">Active Expert</p>
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: `${activeConfig.color}15`, border: `1px solid ${activeConfig.color}25` }}>
+                        <activeConfig.icon className="w-3 h-3" style={{ color: activeConfig.color }} />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-medium" style={{ color: activeConfig.color }}>{activeConfig.professorName}</p>
+                        <p className="text-[9px] text-muted-foreground/50">{activeConfig.subtitle}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollArea>
             </div>
 
-            {/* Hint */}
-            <p className="mt-2 text-[10px] text-muted-foreground/50 text-right select-none">
-              Enter for new line &nbsp;·&nbsp; Ctrl+Enter to send
-            </p>
           </div>
         </motion.div>
       </div>
