@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
-import professorAvatar from '@/assets/professor-avatar.png';
+import officialLogo from '@/assets/econnexus-logo-final.png';
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 
 // ---- Client-side image upload rate limiter (10 images / 60s) ----
