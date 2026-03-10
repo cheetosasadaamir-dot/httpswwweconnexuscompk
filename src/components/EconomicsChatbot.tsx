@@ -1254,7 +1254,7 @@ export default function EconomicsChatbot() {
                         <p className="nexus-professor-name mb-1">
                           {activeConfig.professorName}
                         </p>
-                        <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{activeConfig.subtitle}</p>
+                        <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>A-Level to University</p>
                         <p className="text-sm text-muted-foreground/60 font-serif">Ready for your questions. I remember our conversation.</p>
                       </div>
                     </div>
