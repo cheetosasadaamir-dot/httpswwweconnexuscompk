@@ -1241,15 +1241,13 @@ export default function EconomicsChatbot() {
                     <div className="h-[400px] flex items-center justify-center text-center">
                       <div>
                         <motion.div
-                          animate={{ rotateY: [0, 360] }}
-                          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                           className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center"
                           style={{
                             background: `linear-gradient(135deg, hsl(214 100% 10%), ${activeConfig.color}20)`,
                             border: `1px solid ${activeConfig.color}30`,
                           }}
                         >
-                          <img src={officialLogo} alt="EconNexus" className="w-10 h-10 object-contain" />
+                          {(() => { const Icon = activeConfig.icon; return <Icon className="w-8 h-8" style={{ color: activeConfig.color }} />; })()}
                         </motion.div>
                         <p className="nexus-professor-name mb-1">
                           {activeConfig.professorName}
