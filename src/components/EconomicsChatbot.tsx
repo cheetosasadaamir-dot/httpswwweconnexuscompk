@@ -1272,38 +1272,78 @@ export default function EconomicsChatbot() {
                         <AnimatePresence mode="wait">
                           <motion.div
                             key={persona}
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                            transition={{ duration: 0.4, ease: 'easeOut' }}
+                            initial={{ opacity: 0, scale: 0.85, y: 30, filter: 'blur(8px)' }}
+                            animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+                            exit={{ opacity: 0, scale: 0.9, y: -15, filter: 'blur(6px)' }}
+                            transition={{ 
+                              duration: 0.5, 
+                              ease: [0.25, 0.46, 0.45, 0.94],
+                              opacity: { duration: 0.35 },
+                              scale: { type: 'spring', stiffness: 200, damping: 20, mass: 0.8 },
+                              filter: { duration: 0.4 },
+                            }}
                             className="relative mb-3"
+                            style={{ willChange: 'transform, opacity, filter' }}
                           >
-                            <div className="w-36 h-36 mx-auto relative">
+                            <motion.div 
+                              className="w-36 h-36 mx-auto relative"
+                              animate={{ y: [0, -6, 0] }}
+                              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+                              style={{ willChange: 'transform' }}
+                            >
                               {/* Glassmorphic frame behind character */}
-                              <div className="absolute inset-2 rounded-full" style={{
-                                background: `radial-gradient(circle, ${activeConfig.color}10, transparent 70%)`,
-                                border: `1px solid ${activeConfig.color}15`,
-                                backdropFilter: 'blur(8px)',
-                              }} />
+                              <motion.div 
+                                className="absolute inset-2 rounded-full"
+                                animate={{ opacity: [0.4, 0.8, 0.4] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                                style={{
+                                  background: `radial-gradient(circle, ${activeConfig.color}15, transparent 70%)`,
+                                  border: `1px solid ${activeConfig.color}15`,
+                                  backdropFilter: 'blur(8px)',
+                                  willChange: 'opacity',
+                                }} 
+                              />
                               <img 
                                 src={GUIDE_IMAGES[persona]} 
                                 alt={activeConfig.professorName}
-                                className="w-full h-full object-contain relative z-10 drop-shadow-2xl"
-                                loading="lazy"
+                                className="w-full h-full object-contain relative z-10"
+                                style={{ 
+                                  filter: `drop-shadow(0 8px 24px ${activeConfig.color}30)`,
+                                  willChange: 'filter',
+                                }}
                               />
                               {/* Cyan glow ring */}
-                              <div className="absolute inset-0 rounded-full pointer-events-none" style={{
-                                boxShadow: `0 0 40px ${activeConfig.color}20, 0 0 80px ${activeConfig.color}10`,
-                              }} />
-                            </div>
+                              <motion.div 
+                                className="absolute inset-0 rounded-full pointer-events-none"
+                                animate={{ 
+                                  boxShadow: [
+                                    `0 0 30px ${activeConfig.color}15, 0 0 60px ${activeConfig.color}08`,
+                                    `0 0 50px ${activeConfig.color}25, 0 0 100px ${activeConfig.color}12`,
+                                    `0 0 30px ${activeConfig.color}15, 0 0 60px ${activeConfig.color}08`,
+                                  ]
+                                }}
+                                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                                style={{ willChange: 'box-shadow' }}
+                              />
+                            </motion.div>
                           </motion.div>
                         </AnimatePresence>
                         
-                        <p className="nexus-professor-name mb-1">
-                          {activeConfig.professorName}
-                        </p>
-                        <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
-                        <p className="text-sm text-muted-foreground/60 font-serif">Ready for your questions. I remember our conversation.</p>
+                        <AnimatePresence mode="wait">
+                          <motion.div
+                            key={persona + '-text'}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -8 }}
+                            transition={{ duration: 0.3, delay: 0.15, ease: 'easeOut' }}
+                          >
+                            <p className="nexus-professor-name mb-1">
+                              {activeConfig.professorName}
+                            </p>
+                            <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
+                            <p className="text-sm text-muted-foreground/60 font-serif">Ready for your questions. I remember our conversation.</p>
+                          </motion.div>
+                        </AnimatePresence>
                       </div>
                     </div>
                   ) : (
