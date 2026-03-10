@@ -1186,13 +1186,12 @@ export default function EconomicsChatbot() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.25 }}
-                        className="font-bold text-sm tracking-wider"
-                        style={{ fontFamily: "'Syncopate', sans-serif", color: activeConfig.color }}
+                        className="nexus-professor-name font-bold"
                       >
                         {activeConfig.professorName}
                       </motion.h3>
                     </AnimatePresence>
-                    <p className="text-[10px] text-muted-foreground">{activeConfig.subtitle}</p>
+                    <p className="text-[0.8rem] text-muted-foreground" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{activeConfig.subtitle}</p>
                   </div>
                   <div className="tutor-verified-badge ml-1 text-[9px]">
                     <CheckCircle2 className="w-2.5 h-2.5" />
