@@ -584,6 +584,35 @@
       0 0 30px hsl(var(--neon-gold) / 0.15),
       0 0 60px hsl(var(--neon-cyan) / 0.1);
   }
+
+
+  /* ═══ Nexus Professor Name — Liquid Metal Gradient ═══ */
+  .nexus-professor-name {
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background: linear-gradient(135deg, #F8FAFC 0%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 12px rgba(0, 71, 171, 0.4));
+  }
+
+  .nexus-professor-name-sm {
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background: linear-gradient(135deg, #F8FAFC 0%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(0, 71, 171, 0.3));
+  }
 }
 
 /* ===== PREMIUM MICRO-INTERACTIONS ===== */
