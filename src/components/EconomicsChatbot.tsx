@@ -1191,7 +1191,7 @@ export default function EconomicsChatbot() {
                         {activeConfig.professorName}
                       </motion.h3>
                     </AnimatePresence>
-                    <p className="text-[0.8rem] text-muted-foreground" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>A-Level to University</p>
+                    <p className="text-[0.8rem] text-muted-foreground" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
                   </div>
                   <div className="tutor-verified-badge ml-1 text-[9px]">
                     <CheckCircle2 className="w-2.5 h-2.5" />
@@ -1241,20 +1241,18 @@ export default function EconomicsChatbot() {
                     <div className="h-[400px] flex items-center justify-center text-center">
                       <div>
                         <motion.div
-                          animate={{ rotateY: [0, 360] }}
-                          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                           className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center"
                           style={{
                             background: `linear-gradient(135deg, hsl(214 100% 10%), ${activeConfig.color}20)`,
                             border: `1px solid ${activeConfig.color}30`,
                           }}
                         >
-                          <img src={officialLogo} alt="EconNexus" className="w-10 h-10 object-contain" />
+                          {(() => { const Icon = activeConfig.icon; return <Icon className="w-8 h-8" style={{ color: activeConfig.color }} />; })()}
                         </motion.div>
                         <p className="nexus-professor-name mb-1">
                           {activeConfig.professorName}
                         </p>
-                        <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>A-Level to University</p>
+                        <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
                         <p className="text-sm text-muted-foreground/60 font-serif">Ready for your questions. I remember our conversation.</p>
                       </div>
                     </div>
@@ -1442,7 +1440,7 @@ export default function EconomicsChatbot() {
                       </div>
                       <div>
                         <p className="nexus-professor-name-sm">{activeConfig.professorName}</p>
-                        <p className="text-[9px] text-muted-foreground/50" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>A-Level to University</p>
+                        <p className="text-[9px] text-muted-foreground/50" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
                       </div>
                     </div>
                   </div>
