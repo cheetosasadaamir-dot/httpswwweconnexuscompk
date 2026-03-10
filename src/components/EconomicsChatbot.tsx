@@ -1395,10 +1395,10 @@ export default function EconomicsChatbot() {
               style={{ background: 'hsl(0 0% 3% / 0.8)', backdropFilter: 'blur(20px)' }}
             >
               <div className="px-3 py-3 border-b border-white/[0.06]">
-                <h4 className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: activeConfig.color, fontFamily: "'Syncopate', sans-serif" }}>
+                <h4 className="nexus-professor-name-sm">
                   Solution Summarizer
                 </h4>
-                <p className="text-[9px] text-muted-foreground/50 mt-0.5">Live key takeaways</p>
+                <p className="text-[9px] text-muted-foreground/50 mt-0.5" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>Live key takeaways</p>
               </div>
               <ScrollArea className="flex-1">
                 <div className="p-3">
