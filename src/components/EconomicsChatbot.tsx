@@ -1278,7 +1278,7 @@ export default function EconomicsChatbot() {
                             transition={{ duration: 0.4, ease: 'easeOut' }}
                             className="relative mb-3"
                           >
-                            <div className="w-48 h-48 mx-auto relative">
+                            <div className="w-36 h-36 mx-auto relative">
                               {/* Glassmorphic frame behind character */}
                               <div className="absolute inset-2 rounded-full" style={{
                                 background: `radial-gradient(circle, ${activeConfig.color}10, transparent 70%)`,
