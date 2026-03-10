@@ -1251,10 +1251,10 @@ export default function EconomicsChatbot() {
                         >
                           <img src={officialLogo} alt="EconNexus" className="w-10 h-10 object-contain" />
                         </motion.div>
-                        <p className="text-base font-semibold mb-1" style={{ color: activeConfig.color, fontFamily: "'Syncopate', sans-serif" }}>
+                        <p className="nexus-professor-name mb-1">
                           {activeConfig.professorName}
                         </p>
-                        <p className="text-xs text-muted-foreground mb-1">{activeConfig.subtitle}</p>
+                        <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{activeConfig.subtitle}</p>
                         <p className="text-sm text-muted-foreground/60 font-serif">Ready for your questions. I remember our conversation.</p>
                       </div>
                     </div>
