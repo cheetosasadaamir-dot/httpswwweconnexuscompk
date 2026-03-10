@@ -1080,9 +1080,9 @@ export default function EconomicsChatbot() {
   const summarizerContent = latestAiMessage ? extractSummarizer(latestAiMessage.content) : null;
 
   const SYLLABUS_MAP: Record<Persona, string> = {
-    'a-level': '9708', 'business': '9609', 'law': 'Law', 'psychology': '9990',
-    'accounting': '9706', 'sociology': '9699', 'research': 'IPQ',
-    'mathematics': '9709', 'physics': '9702', 'chemistry': '9701',
+    'a-level': 'Economics', 'business': 'Business', 'law': 'Law', 'psychology': 'Psychology',
+    'accounting': 'Accounting', 'sociology': 'Sociology', 'research': 'Research',
+    'mathematics': 'Mathematics', 'physics': 'Physics', 'chemistry': 'Chemistry',
   };
 
   return (
