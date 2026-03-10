@@ -466,14 +466,28 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
     }
   };
 
+  const personaNameMap: Record<Persona, string> = {
+    'a-level': 'Prof. Econs',
+    'business': 'Prof. Porter',
+    'law': 'Prof. Blackstone',
+    'psychology': 'Prof. Freud',
+    'accounting': 'Prof. Pacioli',
+    'sociology': 'Prof. Marx',
+    'research': 'Prof. Scholar',
+    'mathematics': 'Prof. Euler',
+    'physics': 'Prof. Newton',
+    'chemistry': 'Prof. Curie',
+  };
+  const professorName = personaNameMap[persona] || 'Prof. Econs';
+
   const getStateText = () => {
     switch (streamState) {
-      case 'streaming': return 'Prof. Econs is typing...';
+      case 'streaming': return `${professorName} is typing...`;
       case 'analyzing': return loadingMessage;
       case 'mapping-diagram': return '🔍 Pass 1: Mapping diagram elements...';
       case 'solving-logic': return '🧠 Pass 2: Solving with visual logic...';
       case 'error': return 'Reconnecting...';
-      default: return 'Connecting to Prof. Econs...';
+      default: return `Connecting to ${professorName}...`;
     }
   };
 
