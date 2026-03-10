@@ -1441,8 +1441,8 @@ export default function EconomicsChatbot() {
                         <activeConfig.icon className="w-3 h-3" style={{ color: activeConfig.color }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-medium" style={{ color: activeConfig.color }}>{activeConfig.professorName}</p>
-                        <p className="text-[9px] text-muted-foreground/50">{activeConfig.subtitle}</p>
+                        <p className="nexus-professor-name-sm">{activeConfig.professorName}</p>
+                        <p className="text-[9px] text-muted-foreground/50" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>{activeConfig.subtitle}</p>
                       </div>
                     </div>
                   </div>
