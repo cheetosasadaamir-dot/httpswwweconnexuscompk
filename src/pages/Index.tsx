@@ -52,7 +52,8 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-serif text-fluid-hero font-bold leading-tight mb-6 md:mb-8"
+                className="font-bold leading-tight mb-6 md:mb-8 text-fluid-hero"
+                style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
               >
                 <span className="section-title">The Global Standard in Agentic Education</span>
               </motion.h1>
