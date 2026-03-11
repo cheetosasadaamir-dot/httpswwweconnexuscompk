@@ -666,10 +666,8 @@ const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
     <div className="flex items-center gap-1.5">
       <div className="relative flex items-center">
         {isProcessing && (
-          <motion.div
-            className="absolute inset-0 rounded-full bg-[hsl(142,71%,45%)]"
-            animate={{ scale: [1, 2.5], opacity: [0.5, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeOut' }}
+          <div
+            className="absolute inset-0 rounded-full bg-[hsl(142,71%,45%)] chat-status-ring"
           />
         )}
         <div
