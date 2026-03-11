@@ -1142,7 +1142,7 @@ export default function EconomicsChatbot() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
-      className="py-10 md:py-16 lg:py-24"
+      className="py-6 md:py-16 lg:py-24"
     >
       <div className="w-full max-w-[1800px] mx-auto px-0 sm:px-4 md:px-6 lg:px-8">
         {/* Section Title */}
@@ -1150,20 +1150,20 @@ export default function EconomicsChatbot() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-6 md:mb-8"
+          className="text-center mb-4 md:mb-8"
         >
-          <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-3 md:mb-4">
+          <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-2 md:mb-4">
             🧠 Command Center
           </span>
           <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
             Intelligence Hub
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto px-2 text-sm md:text-base">
+          <p className="text-muted-foreground max-w-2xl mx-auto px-2 text-sm md:text-base hidden sm:block">
             10 specialized AI minds. One unified workspace. Select your expert and begin.
           </p>
         </motion.div>
 
-        {/* Three-Pane Dashboard */}
+        {/* Dashboard Container */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -1175,10 +1175,42 @@ export default function EconomicsChatbot() {
             boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          <div className="flex flex-col lg:flex-row min-h-[600px] lg:min-h-[700px]">
+          <div className="flex flex-col lg:flex-row chatbot-container">
 
-            {/* LEFT RAIL */}
-            <div className="lg:w-[72px] flex lg:flex-col items-center gap-1 p-2 lg:py-4 overflow-x-auto lg:overflow-x-visible scrollbar-hide border-b lg:border-b-0 lg:border-r border-white/[0.06]"
+            {/* MOBILE: Horizontal Scrollable Pill Menu */}
+            <div className="lg:hidden flex items-center gap-2 px-3 py-2.5 overflow-x-auto scrollbar-hide border-b border-white/[0.06]"
+              style={{ background: 'hsl(0 0% 3% / 0.9)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+            >
+              {(Object.keys(PERSONA_CONFIG) as Persona[]).map((p) => {
+                const cfg = PERSONA_CONFIG[p];
+                const Icon = cfg.icon;
+                const isActive = persona === p;
+                return (
+                  <button
+                    key={p}
+                    onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
+                    className="flex items-center gap-1.5 rounded-full px-3 py-2 shrink-0 chat-quick-action transition-all duration-200"
+                    style={isActive ? {
+                      background: `linear-gradient(135deg, ${cfg.color}20, ${cfg.color}10)`,
+                      border: `1.5px solid ${cfg.color}60`,
+                      boxShadow: `0 0 16px ${cfg.color}25`,
+                    } : { 
+                      background: 'hsl(0 0% 8% / 0.5)',
+                      border: '1px solid hsl(0 0% 100% / 0.06)',
+                    }}
+                    title={cfg.label}
+                  >
+                    <Icon className="w-3.5 h-3.5 shrink-0" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
+                    <span className="text-[10px] font-semibold whitespace-nowrap" style={{ color: isActive ? cfg.color : 'hsl(0 0% 55%)' }}>
+                      {cfg.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* DESKTOP: Vertical Left Rail */}
+            <div className="hidden lg:flex lg:w-[72px] lg:flex-col items-center gap-1 p-2 lg:py-4 border-r border-white/[0.06]"
               style={{ background: 'hsl(0 0% 3% / 0.8)', backdropFilter: 'blur(20px)' }}
             >
               {(Object.keys(PERSONA_CONFIG) as Persona[]).map((p) => {
@@ -1206,7 +1238,7 @@ export default function EconomicsChatbot() {
                     {isActive && (
                       <motion.div
                         layoutId="persona-indicator"
-                        className="absolute -right-[1px] top-1/2 -translate-y-1/2 w-[3px] h-6 rounded-l-full hidden lg:block"
+                        className="absolute -right-[1px] top-1/2 -translate-y-1/2 w-[3px] h-6 rounded-l-full"
                         style={{ background: cfg.color }}
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
@@ -1216,17 +1248,17 @@ export default function EconomicsChatbot() {
               })}
             </div>
 
-            {/* CENTER PANE */}
+            {/* CENTER PANE - Full Width */}
             <div className="flex-1 flex flex-col min-w-0 relative"
               style={{ background: 'linear-gradient(180deg, hsl(0 0% 3%) 0%, hsl(0 0% 5%) 50%, hsl(0 0% 4%) 100%)' }}
             >
               {/* Active Persona Header */}
-              <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]"
+              <div className="flex items-center justify-between px-3 md:px-4 py-2 md:py-2.5 border-b border-white/[0.06]"
                 style={{ background: 'hsl(0 0% 4% / 0.9)', backdropFilter: 'blur(12px)' }}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 md:gap-3 min-w-0">
                   <TutorAvatar size="sm" />
-                  <div>
+                  <div className="min-w-0">
                     <AnimatePresence mode="wait">
                       <motion.h3
                         key={persona}
@@ -1234,32 +1266,34 @@ export default function EconomicsChatbot() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.25 }}
-                        className="nexus-professor-name font-bold"
+                        className="nexus-professor-name-sm md:nexus-professor-name font-bold truncate"
                       >
                         {activeConfig.professorName}
                       </motion.h3>
                     </AnimatePresence>
-                    <p className="text-[0.8rem] text-muted-foreground" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
+                    <p className="text-[0.65rem] md:text-[0.8rem] text-muted-foreground truncate" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
                   </div>
-                  <div className="tutor-verified-badge ml-1 text-[9px]">
+                  <div className="tutor-verified-badge ml-1 text-[9px] hidden sm:flex">
                     <CheckCircle2 className="w-2.5 h-2.5" />
                     <span>{SYLLABUS_MAP[persona]}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5 md:gap-3 shrink-0">
                   <SystemStatus streamState={streamState} />
-                  <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={SYLLABUS_MAP[persona]} />
+                  <div className="hidden md:block">
+                    <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={SYLLABUS_MAP[persona]} />
+                  </div>
                   {messages.length > 0 && (
-                    <Button variant="ghost" size="sm" onClick={handleClearChat} className="text-muted-foreground hover:text-destructive text-xs h-8 px-2">
-                      <Trash2 className="w-3 h-3 mr-1" />
-                      Clear
+                    <Button variant="ghost" size="sm" onClick={handleClearChat} className="text-muted-foreground hover:text-destructive text-xs h-8 px-1.5 md:px-2">
+                      <Trash2 className="w-3 h-3" />
+                      <span className="hidden md:inline ml-1">Clear</span>
                     </Button>
                   )}
                 </div>
               </div>
 
               {/* Quick Actions */}
-              <div className="flex items-center gap-1.5 px-4 py-2 border-b border-white/[0.04] overflow-x-auto scrollbar-hide"
+              <div className="flex items-center gap-1.5 px-3 md:px-4 py-2 border-b border-white/[0.04] overflow-x-auto scrollbar-hide"
                 style={{ background: 'hsl(0 0% 3% / 0.6)' }}
               >
                 {quickActions.slice(0, 5).map((action, i) => (
@@ -1282,9 +1316,9 @@ export default function EconomicsChatbot() {
 
               {/* Chat Messages */}
               <ScrollArea ref={scrollRef} className="flex-1 relative chat-scroll-container" style={{ height: 'calc(100% - 140px)' }}>
-                <div className="px-4 py-3">
+                <div className="px-3 md:px-4 py-3">
                   {messages.length === 0 ? (
-                    <div className="h-[400px] flex items-center justify-center text-center relative overflow-hidden">
+                    <div className="h-[300px] md:h-[400px] flex items-center justify-center text-center relative overflow-hidden">
                       {/* Glassmorphic backdrop */}
                       <div className="absolute inset-0 rounded-2xl" style={{
                         background: 'radial-gradient(ellipse at center bottom, hsl(214 100% 8% / 0.6), transparent 70%)',
@@ -1309,7 +1343,7 @@ export default function EconomicsChatbot() {
                             style={{ willChange: 'transform, opacity, filter' }}
                           >
                             <motion.div 
-                              className="w-36 h-36 mx-auto relative"
+                              className="w-24 h-24 md:w-36 md:h-36 mx-auto relative"
                               animate={{ y: [0, -6, 0] }}
                               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
                               style={{ willChange: 'transform' }}
@@ -1360,11 +1394,11 @@ export default function EconomicsChatbot() {
                             exit={{ opacity: 0, y: -8 }}
                             transition={{ duration: 0.3, delay: 0.15, ease: 'easeOut' }}
                           >
-                            <p className="nexus-professor-name mb-1">
+                            <p className="nexus-professor-name-sm md:nexus-professor-name mb-1">
                               {activeConfig.professorName}
                             </p>
-                            <p className="text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
-                            <p className="text-sm text-muted-foreground/60 font-serif">Ready for your questions. I remember our conversation.</p>
+                            <p className="text-[0.7rem] md:text-[0.8rem] text-muted-foreground mb-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
+                            <p className="text-xs md:text-sm text-muted-foreground/60 font-serif">Ready for your questions.</p>
                           </motion.div>
                         </AnimatePresence>
                       </div>
@@ -1392,8 +1426,8 @@ export default function EconomicsChatbot() {
                 </div>
               </ScrollArea>
 
-              {/* FLOATING PILL INPUT */}
-              <div className="relative px-3 pb-3 pt-2">
+              {/* STICKY INPUT BAR */}
+              <div className="relative px-2 md:px-3 pb-2 md:pb-3 pt-2 chatbot-input-bar">
                 {uploadedImage && (
                   <div className="flex items-center gap-2 mb-2 p-2 rounded-lg bg-white/5 border border-white/10 mx-1">
                     <img src={uploadedImage} alt="Upload preview" className="w-10 h-10 rounded object-cover" />
@@ -1403,9 +1437,9 @@ export default function EconomicsChatbot() {
                     </button>
                   </div>
                 )}
-                <div className="flex items-end gap-2 rounded-2xl p-2"
+                <div className="flex items-end gap-1.5 md:gap-2 rounded-2xl p-1.5 md:p-2"
                   style={{
-                    background: 'hsl(0 0% 6% / 0.7)',
+                    background: 'hsl(0 0% 6% / 0.85)',
                     backdropFilter: 'blur(30px)',
                     WebkitBackdropFilter: 'blur(30px)',
                     border: '1px solid hsl(43 72% 53% / 0.15)',
@@ -1431,9 +1465,9 @@ export default function EconomicsChatbot() {
                   <Textarea ref={textareaRef} value={input}
                     onChange={(e) => { setInput(e.target.value); handleTextareaInput(); }}
                     onKeyDown={handleKeyDown} onInput={handleTextareaInput}
-                    placeholder={uploadedImage ? "Describe what to analyze…" : "Ask anything… (Enter = new line, Ctrl+Enter = send)"}
+                    placeholder={uploadedImage ? "Describe what to analyze…" : "Ask anything…"}
                     disabled={isLoading} rows={1}
-                    className="flex-1 bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground/30 text-sm font-sans resize-none overflow-y-auto leading-relaxed px-2 py-2.5"
+                    className="flex-1 bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground/30 text-[16px] md:text-sm font-sans resize-none overflow-y-auto leading-relaxed px-2 py-2.5"
                     style={{ minHeight: '44px', maxHeight: '200px', scrollbarWidth: 'thin', scrollbarColor: 'hsl(43 72% 53% / 0.2) transparent' }}
                   />
                   <div className="flex items-end gap-1 shrink-0">
@@ -1450,10 +1484,9 @@ export default function EconomicsChatbot() {
                     </Button>
                   </div>
                 </div>
-                <p className="mt-1.5 text-[9px] text-muted-foreground/40 text-right select-none px-2">Enter for new line · Ctrl+Enter to send</p>
+                <p className="mt-1 text-[9px] text-muted-foreground/40 text-right select-none px-2 hidden md:block">Enter for new line · Ctrl+Enter to send</p>
               </div>
             </div>
-
 
           </div>
         </motion.div>
