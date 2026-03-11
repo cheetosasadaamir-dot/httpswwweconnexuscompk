@@ -62,7 +62,8 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="font-serif text-fluid-2xl font-semibold text-secondary mb-4 md:mb-6 tracking-wide"
+                className="text-fluid-2xl font-semibold text-secondary mb-4 md:mb-6"
+                style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
               >
                 Integrated. Specialized. Unstoppable.
               </motion.h2>
