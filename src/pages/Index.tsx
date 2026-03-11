@@ -180,7 +180,7 @@ const Index = () => {
               viewport={{ once: true }}
               className="text-center mb-10 md:mb-16"
             >
-              <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4">
+               <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
                 Simplified Mastery
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
