@@ -364,8 +364,18 @@
   }
 
   .section-title {
-    @apply text-gradient glow-text tracking-wide;
-    font-family: 'Montserrat', sans-serif;
+    @apply text-gradient tracking-wide;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(135deg, #FFFFFF 0%, #C0C0C0 50%, #E8E8E8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(4px 4px 0px rgba(0, 20, 45, 0.5));
   }
 
   /* Interactive Neon Glow Effect */
