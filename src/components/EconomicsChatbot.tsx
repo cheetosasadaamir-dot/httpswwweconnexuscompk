@@ -569,11 +569,9 @@ const CopyButton = ({ text }: { text: string }) => {
   };
 
   return (
-    <motion.button
+    <button
       onClick={handleCopy}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground hover:text-[hsl(185,100%,50%)] transition-colors px-2 py-1 rounded-md hover:bg-[hsl(185,100%,50%)]/10"
+      className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground hover:text-[hsl(185,100%,50%)] transition-all duration-200 px-2 py-1 rounded-md hover:bg-[hsl(185,100%,50%)]/10 chat-hover-lift"
     >
       {copied ? (
         <>
@@ -586,7 +584,7 @@ const CopyButton = ({ text }: { text: string }) => {
           <span>Copy Answer</span>
         </>
       )}
-    </motion.button>
+    </button>
   );
 };
 
