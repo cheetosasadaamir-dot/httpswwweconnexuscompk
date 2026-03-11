@@ -1474,65 +1474,6 @@ export default function EconomicsChatbot() {
               </div>
             </div>
 
-            {/* RIGHT RAIL — Solution Summarizer */}
-            <div className="hidden xl:flex flex-col w-[280px] border-l border-white/[0.06]"
-              style={{ background: 'hsl(0 0% 3% / 0.8)', backdropFilter: 'blur(20px)' }}
-            >
-              <div className="px-3 py-3 border-b border-white/[0.06]">
-                <h4 className="nexus-professor-name-sm">
-                  Solution Summarizer
-                </h4>
-                <p className="text-[9px] text-muted-foreground/50 mt-0.5" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>Live key takeaways</p>
-              </div>
-              <ScrollArea className="flex-1">
-                <div className="p-3">
-                  {summarizerContent ? (
-                    <motion.div key={latestAiMessage?.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-                      <div className="rounded-xl p-3" style={{
-                        background: `linear-gradient(135deg, hsl(0 0% 6%), ${activeConfig.color}08)`,
-                        border: `1px solid ${activeConfig.color}20`,
-                      }}>
-                        <div className="prose prose-invert prose-xs max-w-none">
-                          <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}
-                            components={{
-                              p: ({ children }) => <p className="text-[11px] leading-relaxed text-foreground/80 mb-1.5">{children}</p>,
-                              strong: ({ children }) => <strong className="text-[hsl(43,72%,53%)] font-semibold text-[11px]">{children}</strong>,
-                              li: ({ children }) => <li className="text-[11px] text-foreground/70">{children}</li>,
-                              ul: ({ children }) => <ul className="list-disc list-inside space-y-0.5 text-[11px]">{children}</ul>,
-                              h3: ({ children }) => <h3 className="text-[11px] font-bold text-[hsl(43,72%,53%)] mt-2 mb-0.5">{children}</h3>,
-                            }}
-                          >
-                            {summarizerContent}
-                          </ReactMarkdown>
-                        </div>
-                      </div>
-                      <CopyButton text={summarizerContent} />
-                    </motion.div>
-                  ) : (
-                    <div className="flex flex-col items-center justify-center h-[300px] text-center">
-                      <motion.div animate={{ opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 2, repeat: Infinity }}
-                        className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
-                        style={{ background: `${activeConfig.color}10`, border: `1px solid ${activeConfig.color}15` }}>
-                        <Sparkles className="w-4 h-4" style={{ color: activeConfig.color }} />
-                      </motion.div>
-                      <p className="text-[10px] text-muted-foreground/40">Key takeaways will appear here as the AI responds</p>
-                    </div>
-                  )}
-                  <div className="mt-4 pt-3 border-t border-white/[0.04]">
-                    <p className="text-[9px] text-muted-foreground/40 uppercase tracking-wider mb-2">Active Expert</p>
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: `${activeConfig.color}15`, border: `1px solid ${activeConfig.color}25` }}>
-                        <activeConfig.icon className="w-3 h-3" style={{ color: activeConfig.color }} />
-                      </div>
-                      <div>
-                        <p className="nexus-professor-name-sm">{activeConfig.professorName}</p>
-                        <p className="text-[9px] text-muted-foreground/50" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>The Central Nexus for Global Curriculums</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ScrollArea>
-            </div>
 
           </div>
         </motion.div>
