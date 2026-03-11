@@ -1204,7 +1204,7 @@ export default function EconomicsChatbot() {
                 </div>
                 <div className="flex items-center gap-3">
                   <SystemStatus streamState={streamState} />
-                  <QuickActionBar quickActions={quickActions} isLoading={isLoading} handleSend={handleSend} activeConfig={activeConfig} persona={persona} />
+                  <ExamGuidance commandWords={COMMAND_WORDS} syllabusCode={SYLLABUS_MAP[persona]} />
                   {messages.length > 0 && (
                     <Button variant="ghost" size="sm" onClick={handleClearChat} className="text-muted-foreground hover:text-destructive text-xs h-8 px-2">
                       <Trash2 className="w-3 h-3 mr-1" />
