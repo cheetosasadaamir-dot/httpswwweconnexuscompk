@@ -593,13 +593,13 @@ const CopyButton = ({ text }: { text: string }) => {
 // Prevents full-list re-render during streaming token appends
 // ============================================================
 const markdownComponents = {
-  p: ({ children }: any) => <p className="text-sm leading-relaxed text-foreground mb-2">{children}</p>,
-  strong: ({ children }: any) => <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>,
-  code: ({ children }: any) => <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>,
+  p: ({ children }: any) => <p className="leading-relaxed mb-2">{children}</p>,
+  strong: ({ children }: any) => <strong>{children}</strong>,
+  code: ({ children }: any) => <code>{children}</code>,
   blockquote: ({ children }: any) => <blockquote className="border-l-2 border-[hsl(185,100%,50%)] pl-3 my-2 italic text-muted-foreground bg-[hsl(185,100%,50%)]/5 py-2 rounded-r">{children}</blockquote>,
-  h3: ({ children }: any) => <h3 className="text-sm font-bold text-[hsl(43,72%,53%)] mt-3 mb-1">{children}</h3>,
-  ul: ({ children }: any) => <ul className="list-disc list-inside space-y-1 text-sm">{children}</ul>,
-  li: ({ children }: any) => <li className="text-foreground/90">{children}</li>,
+  h3: ({ children }: any) => <h3 className="font-bold mt-3 mb-1">{children}</h3>,
+  ul: ({ children }: any) => <ul className="list-disc list-inside space-y-1">{children}</ul>,
+  li: ({ children }: any) => <li>{children}</li>,
 };
 
 const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
