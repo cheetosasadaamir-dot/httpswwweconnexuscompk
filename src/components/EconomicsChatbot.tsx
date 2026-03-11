@@ -1219,13 +1219,11 @@ export default function EconomicsChatbot() {
                 style={{ background: 'hsl(0 0% 3% / 0.6)' }}
               >
                 {quickActions.slice(0, 5).map((action, i) => (
-                  <motion.button
+                  <button
                     key={`${persona}-${i}`}
                     onClick={() => handleSend(action.query)}
                     disabled={isLoading}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="min-h-[32px] px-3 py-1.5 rounded-full text-[10px] font-medium transition-all disabled:opacity-50 whitespace-nowrap flex-shrink-0"
+                    className="chat-quick-action min-h-[32px] px-3 py-1.5 rounded-full text-[10px] font-medium disabled:opacity-50 whitespace-nowrap flex-shrink-0"
                     style={{
                       background: `linear-gradient(135deg, hsl(214 100% 14% / 0.3), ${activeConfig.color}10)`,
                       border: `1px solid ${activeConfig.color}30`,
@@ -1234,7 +1232,7 @@ export default function EconomicsChatbot() {
                   >
                     <Sparkles className="w-2 h-2 inline mr-1" />
                     {action.label}
-                  </motion.button>
+                  </button>
                 ))}
               </div>
 
