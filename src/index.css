@@ -1054,3 +1054,102 @@ code, pre {
   font-weight: 400;
   letter-spacing: 0.05em;
 }
+
+/* ============================================================
+   CHAT PERFORMANCE — 90fps GPU-Accelerated Layer
+   ============================================================ */
+
+/* Force GPU compositing on the chat container */
+.chat-scroll-container {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+/* GPU-accelerated chat bubbles */
+.chat-bubble {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  contain: content;
+}
+
+/* Message pop-in — pure CSS, no JS animation overhead */
+@keyframes chat-pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+.chat-bubble-enter {
+  animation: chat-pop-in 0.22s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+/* Streaming bubble — no animation jank during token append */
+.chat-bubble-streaming {
+  transform: translateZ(0);
+  will-change: contents;
+  contain: layout style;
+}
+
+/* Lightweight hover transitions instead of JS-driven whileHover */
+.chat-hover-lift {
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateZ(0);
+}
+.chat-hover-lift:hover {
+  transform: translateY(-1px) translateZ(0);
+}
+
+/* Typing indicator dots — pure CSS for zero JS overhead */
+@keyframes chat-dot-bounce {
+  0%, 80%, 100% { transform: translateY(0) translateZ(0); opacity: 0.4; }
+  40% { transform: translateY(-5px) translateZ(0); opacity: 1; }
+}
+.chat-typing-dot {
+  animation: chat-dot-bounce 0.7s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+.chat-typing-dot:nth-child(2) { animation-delay: 0.12s; }
+.chat-typing-dot:nth-child(3) { animation-delay: 0.24s; }
+
+/* Status pulse — pure CSS */
+@keyframes chat-status-pulse {
+  0%, 100% { transform: scale(1) translateZ(0); opacity: 0.6; }
+  50% { transform: scale(1.4) translateZ(0); opacity: 1; }
+}
+@keyframes chat-status-ring {
+  0% { transform: scale(1) translateZ(0); opacity: 0.4; }
+  100% { transform: scale(2.5) translateZ(0); opacity: 0; }
+}
+.chat-status-dot {
+  animation: chat-status-pulse 1.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.chat-status-ring {
+  animation: chat-status-ring 1.2s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Quick action buttons — CSS transitions */
+.chat-quick-action {
+  transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 0.15s ease,
+              border-color 0.15s ease;
+  transform: translateZ(0);
+}
+.chat-quick-action:hover {
+  transform: scale(1.02) translateZ(0);
+}
+.chat-quick-action:active {
+  transform: scale(0.98) translateZ(0);
+}

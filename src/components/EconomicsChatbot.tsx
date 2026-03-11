@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, User, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom, Wifi, WifiOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -516,22 +516,15 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
 
   return (
     <div className="flex items-center gap-3">
-      {/* Premium pulse indicator */}
+      {/* Pure CSS pulse indicator — no JS animation */}
       <div className="relative">
-        <motion.div
-          className="w-2.5 h-2.5 rounded-full"
+        <div
+          className="w-2.5 h-2.5 rounded-full chat-status-dot"
           style={{ backgroundColor: getStateColor() }}
-          animate={{ 
-            scale: [1, 1.4, 1],
-            opacity: [0.6, 1, 0.6]
-          }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute inset-0 w-2.5 h-2.5 rounded-full"
+        <div
+          className="absolute inset-0 w-2.5 h-2.5 rounded-full chat-status-ring"
           style={{ backgroundColor: getStateColor() }}
-          animate={{ scale: [1, 2, 2], opacity: [0.4, 0, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: "easeOut" }}
         />
       </div>
       
@@ -542,20 +535,10 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
       {streamState !== 'error' && (
         <div className="flex gap-1">
           {[0, 1, 2].map((i) => (
-            <motion.span
+            <span
               key={i}
-              className="w-1.5 h-1.5 rounded-full"
+              className="w-1.5 h-1.5 rounded-full chat-typing-dot"
               style={{ backgroundColor: getStateColor() }}
-              animate={{ 
-                y: [0, -5, 0],
-                opacity: [0.4, 1, 0.4]
-              }}
-              transition={{
-                duration: 0.7,
-                repeat: Infinity,
-                delay: i * 0.12,
-                ease: "easeInOut"
-              }}
             />
           ))}
         </div>
@@ -586,11 +569,9 @@ const CopyButton = ({ text }: { text: string }) => {
   };
 
   return (
-    <motion.button
+    <button
       onClick={handleCopy}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground hover:text-[hsl(185,100%,50%)] transition-colors px-2 py-1 rounded-md hover:bg-[hsl(185,100%,50%)]/10"
+      className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground hover:text-[hsl(185,100%,50%)] transition-all duration-200 px-2 py-1 rounded-md hover:bg-[hsl(185,100%,50%)]/10 chat-hover-lift"
     >
       {copied ? (
         <>
@@ -603,13 +584,80 @@ const CopyButton = ({ text }: { text: string }) => {
           <span>Copy Answer</span>
         </>
       )}
-    </motion.button>
+    </button>
   );
 };
 
 // ============================================================
-// System Status Indicator — corner badge showing AI health
+// Memoized ChatBubble — only re-renders when msg.content changes
+// Prevents full-list re-render during streaming token appends
 // ============================================================
+const markdownComponents = {
+  p: ({ children }: any) => <p className="text-sm leading-relaxed text-foreground mb-2">{children}</p>,
+  strong: ({ children }: any) => <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>,
+  code: ({ children }: any) => <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>,
+  blockquote: ({ children }: any) => <blockquote className="border-l-2 border-[hsl(185,100%,50%)] pl-3 my-2 italic text-muted-foreground bg-[hsl(185,100%,50%)]/5 py-2 rounded-r">{children}</blockquote>,
+  h3: ({ children }: any) => <h3 className="text-sm font-bold text-[hsl(43,72%,53%)] mt-3 mb-1">{children}</h3>,
+  ul: ({ children }: any) => <ul className="list-disc list-inside space-y-1 text-sm">{children}</ul>,
+  li: ({ children }: any) => <li className="text-foreground/90">{children}</li>,
+};
+
+const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
+  msg: Message;
+  activeConfig: { color: string; label: string };
+  isLatest: boolean;
+}) => {
+  const bubbleClass = isLatest ? 'chat-bubble chat-bubble-enter' : 'chat-bubble';
+  
+  if (msg.role === 'assistant') {
+    return (
+      <div className={`${bubbleClass} ${isLatest ? 'chat-bubble-streaming' : ''}`}>
+        <div className="flex items-start gap-3 py-4 px-2 rounded-lg" style={{
+          background: 'hsl(0 0% 8% / 0.5)',
+          borderLeft: `2px solid ${activeConfig.color}40`,
+        }}>
+          <TutorAvatar size="sm" />
+          <div className="flex-1 min-w-0">
+            <div className="tutor-lesson-header text-[0.55rem] mb-2">
+              {activeConfig.label} Intelligence Engine
+            </div>
+            <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
+              <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={markdownComponents}>
+                {msg.content}
+              </ReactMarkdown>
+              <CopyButton text={msg.content} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={bubbleClass}>
+      <div className="flex items-start gap-3 py-3 px-4 ml-auto max-w-[85%] rounded-xl" style={{
+        background: 'hsl(214 100% 8% / 0.6)',
+        border: '1px solid hsl(214 100% 20% / 0.3)',
+      }}>
+        <div className="flex-1 min-w-0">
+          {msg.imageUrl && (
+            <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
+          )}
+          <p className="whitespace-pre-wrap leading-relaxed text-sm font-sans text-foreground">{msg.content}</p>
+        </div>
+        <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
+          <User className="w-3.5 h-3.5 text-primary" />
+        </div>
+      </div>
+    </div>
+  );
+}, (prev, next) => {
+  // Only re-render if content changes (streaming tokens) or if isLatest status changes
+  return prev.msg.content === next.msg.content && 
+         prev.msg.id === next.msg.id && 
+         prev.isLatest === next.isLatest &&
+         prev.activeConfig.color === next.activeConfig.color;
+});
 const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
   const isProcessing = streamState !== 'idle' && streamState !== 'error';
   const isError = streamState === 'error';
@@ -618,10 +666,8 @@ const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
     <div className="flex items-center gap-1.5">
       <div className="relative flex items-center">
         {isProcessing && (
-          <motion.div
-            className="absolute inset-0 rounded-full bg-[hsl(142,71%,45%)]"
-            animate={{ scale: [1, 2.5], opacity: [0.5, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeOut' }}
+          <div
+            className="absolute inset-0 rounded-full bg-[hsl(142,71%,45%)] chat-status-ring"
           />
         )}
         <div
@@ -1160,11 +1206,10 @@ export default function EconomicsChatbot() {
                 const Icon = cfg.icon;
                 const isActive = persona === p;
                 return (
-                  <motion.button
+                  <button
                     key={p}
                     onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`relative flex flex-col items-center justify-center rounded-xl transition-all duration-300 min-w-[52px] w-[52px] h-[52px] shrink-0 ${
+                    className={`relative flex flex-col items-center justify-center rounded-xl min-w-[52px] w-[52px] h-[52px] shrink-0 chat-quick-action ${
                       isActive ? '' : 'hover:bg-white/[0.04]'
                     }`}
                     style={isActive ? {
@@ -1174,8 +1219,8 @@ export default function EconomicsChatbot() {
                     } : { border: '1px solid transparent' }}
                     title={cfg.label}
                   >
-                    <Icon className="w-4 h-4 transition-colors" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
-                    <span className="text-[8px] font-medium mt-0.5 transition-colors" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)' }}>
+                    <Icon className="w-4 h-4 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
+                    <span className="text-[8px] font-medium mt-0.5 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)' }}>
                       {cfg.label}
                     </span>
                     {isActive && (
@@ -1186,7 +1231,7 @@ export default function EconomicsChatbot() {
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
                     )}
-                  </motion.button>
+                  </button>
                 );
               })}
             </div>
@@ -1238,13 +1283,11 @@ export default function EconomicsChatbot() {
                 style={{ background: 'hsl(0 0% 3% / 0.6)' }}
               >
                 {quickActions.slice(0, 5).map((action, i) => (
-                  <motion.button
+                  <button
                     key={`${persona}-${i}`}
                     onClick={() => handleSend(action.query)}
                     disabled={isLoading}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="min-h-[32px] px-3 py-1.5 rounded-full text-[10px] font-medium transition-all disabled:opacity-50 whitespace-nowrap flex-shrink-0"
+                    className="chat-quick-action min-h-[32px] px-3 py-1.5 rounded-full text-[10px] font-medium disabled:opacity-50 whitespace-nowrap flex-shrink-0"
                     style={{
                       background: `linear-gradient(135deg, hsl(214 100% 14% / 0.3), ${activeConfig.color}10)`,
                       border: `1px solid ${activeConfig.color}30`,
@@ -1253,12 +1296,12 @@ export default function EconomicsChatbot() {
                   >
                     <Sparkles className="w-2 h-2 inline mr-1" />
                     {action.label}
-                  </motion.button>
+                  </button>
                 ))}
               </div>
 
               {/* Chat Messages */}
-              <ScrollArea ref={scrollRef} className="flex-1 relative" style={{ height: 'calc(100% - 140px)' }}>
+              <ScrollArea ref={scrollRef} className="flex-1 relative chat-scroll-container" style={{ height: 'calc(100% - 140px)' }}>
                 <div className="px-4 py-3">
                   {messages.length === 0 ? (
                     <div className="h-[400px] flex items-center justify-center text-center relative overflow-hidden">
@@ -1348,69 +1391,22 @@ export default function EconomicsChatbot() {
                     </div>
                   ) : (
                     <div className="space-y-1">
-                      {messages.map((msg) => (
-                        <motion.div
+                      {messages.map((msg, idx) => (
+                        <ChatBubble
                           key={msg.id}
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                        >
-                          {msg.role === 'assistant' && (
-                            <div className="flex items-start gap-3 py-4 px-2 rounded-lg" style={{
-                              background: 'hsl(0 0% 8% / 0.5)',
-                              borderLeft: `2px solid ${activeConfig.color}40`,
-                            }}>
-                              <TutorAvatar size="sm" />
-                              <div className="flex-1 min-w-0">
-                                <div className="tutor-lesson-header text-[0.55rem] mb-2">
-                                  {activeConfig.label} Intelligence Engine
-                                </div>
-                                <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
-                                  <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}
-                                    components={{
-                                      p: ({ children }) => <p className="text-sm leading-relaxed text-foreground mb-2">{children}</p>,
-                                      strong: ({ children }) => <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>,
-                                      code: ({ children }) => <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>,
-                                      blockquote: ({ children }) => <blockquote className="border-l-2 border-[hsl(185,100%,50%)] pl-3 my-2 italic text-muted-foreground bg-[hsl(185,100%,50%)]/5 py-2 rounded-r">{children}</blockquote>,
-                                      h3: ({ children }) => <h3 className="text-sm font-bold text-[hsl(43,72%,53%)] mt-3 mb-1">{children}</h3>,
-                                      ul: ({ children }) => <ul className="list-disc list-inside space-y-1 text-sm">{children}</ul>,
-                                      li: ({ children }) => <li className="text-foreground/90">{children}</li>,
-                                    }}
-                                  >
-                                    {msg.content}
-                                  </ReactMarkdown>
-                                  <CopyButton text={msg.content} />
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                          {msg.role === 'user' && (
-                            <div className="flex items-start gap-3 py-3 px-4 ml-auto max-w-[85%] rounded-xl" style={{
-                              background: 'hsl(214 100% 8% / 0.6)',
-                              border: '1px solid hsl(214 100% 20% / 0.3)',
-                            }}>
-                              <div className="flex-1 min-w-0">
-                                {msg.imageUrl && (
-                                  <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
-                                )}
-                                <p className="whitespace-pre-wrap leading-relaxed text-sm font-sans text-foreground">{msg.content}</p>
-                              </div>
-                              <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
-                                <User className="w-3.5 h-3.5 text-primary" />
-                              </div>
-                            </div>
-                          )}
-                        </motion.div>
+                          msg={msg}
+                          activeConfig={activeConfig}
+                          isLatest={idx === messages.length - 1}
+                        />
                       ))}
-                      <AnimatePresence>
-                        {streamState !== 'idle' && (
-                          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className="flex items-start gap-3 py-3 px-2">
-                            <TutorAvatar size="sm" />
-                            <div className="rounded-lg px-3 py-2" style={{ background: 'hsl(0 0% 8% / 0.5)', border: `1px solid ${activeConfig.color}20` }}>
-                              <TypingIndicator streamState={streamState} persona={persona} />
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                      {streamState !== 'idle' && (
+                        <div className="flex items-start gap-3 py-3 px-2 chat-bubble chat-bubble-enter">
+                          <TutorAvatar size="sm" />
+                          <div className="rounded-lg px-3 py-2" style={{ background: 'hsl(0 0% 8% / 0.5)', border: `1px solid ${activeConfig.color}20` }}>
+                            <TypingIndicator streamState={streamState} persona={persona} />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
