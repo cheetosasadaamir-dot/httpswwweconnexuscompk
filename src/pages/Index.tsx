@@ -138,7 +138,7 @@ const Index = () => {
               <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-4 md:mb-6">
                 📚 Notes Repository
               </span>
-              <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4">
+               <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
                 Knowledge Pillars
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
