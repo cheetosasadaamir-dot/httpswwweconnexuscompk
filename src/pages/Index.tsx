@@ -52,7 +52,8 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-serif text-fluid-hero font-bold leading-tight mb-6 md:mb-8"
+                className="font-bold leading-tight mb-6 md:mb-8 text-fluid-hero"
+                style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
               >
                 <span className="section-title">The Global Standard in Agentic Education</span>
               </motion.h1>
@@ -61,7 +62,8 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="font-serif text-fluid-2xl font-semibold text-secondary mb-4 md:mb-6 tracking-wide"
+                className="text-fluid-2xl font-semibold text-secondary mb-4 md:mb-6"
+                style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
               >
                 Integrated. Specialized. Unstoppable.
               </motion.h2>
@@ -136,7 +138,7 @@ const Index = () => {
               <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-4 md:mb-6">
                 📚 Notes Repository
               </span>
-              <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4">
+               <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
                 Knowledge Pillars
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
@@ -178,7 +180,7 @@ const Index = () => {
               viewport={{ once: true }}
               className="text-center mb-10 md:mb-16"
             >
-              <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4">
+               <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
                 Simplified Mastery
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
@@ -203,7 +205,7 @@ const Index = () => {
                   >
                     <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-primary group-hover:text-secondary transition-colors" />
                   </motion.div>
-                  <h3 className="font-serif text-lg md:text-xl text-silver-bright mb-2 md:mb-3">{feature.title}</h3>
+                  <h3 className="text-lg md:text-xl text-silver-bright mb-2 md:mb-3" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>{feature.title}</h3>
                   <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{feature.description}</p>
                 </motion.div>
               ))}
@@ -240,7 +242,7 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold text-silver-bright mb-4 md:mb-6">
+               <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold text-silver-bright mb-4 md:mb-6" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
                 Ready to Master Economics?
               </h2>
               <p className="text-fluid-lg lg:text-xl text-muted-foreground mb-8 md:mb-10 max-w-2xl mx-auto px-2">
