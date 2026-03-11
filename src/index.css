@@ -1167,3 +1167,51 @@ code, pre {
 .chat-quick-action:active {
   transform: scale(0.98) translateZ(0);
 }
+
+/* ═══ Chatbot Responsive Container ═══ */
+.chatbot-container {
+  min-height: 600px;
+  min-height: 70dvh;
+}
+
+@media (max-width: 767px) {
+  .chatbot-container {
+    min-height: calc(100dvh - 120px);
+    max-height: calc(100dvh - 80px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .chatbot-container {
+    min-height: 70dvh;
+  }
+}
+
+/* Sticky input bar with blur */
+.chatbot-input-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  background: hsl(0 0% 4% / 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+/* Mobile persona pill scrollbar hide */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Mobile-optimized professor name scaling */
+@media (max-width: 639px) {
+  .nexus-professor-name {
+    font-size: 0.85rem !important;
+  }
+  .section-title {
+    font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+  }
+}
