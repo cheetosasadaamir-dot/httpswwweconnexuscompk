@@ -589,8 +589,75 @@ const CopyButton = ({ text }: { text: string }) => {
 };
 
 // ============================================================
-// System Status Indicator — corner badge showing AI health
+// Memoized ChatBubble — only re-renders when msg.content changes
+// Prevents full-list re-render during streaming token appends
 // ============================================================
+const markdownComponents = {
+  p: ({ children }: any) => <p className="text-sm leading-relaxed text-foreground mb-2">{children}</p>,
+  strong: ({ children }: any) => <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>,
+  code: ({ children }: any) => <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>,
+  blockquote: ({ children }: any) => <blockquote className="border-l-2 border-[hsl(185,100%,50%)] pl-3 my-2 italic text-muted-foreground bg-[hsl(185,100%,50%)]/5 py-2 rounded-r">{children}</blockquote>,
+  h3: ({ children }: any) => <h3 className="text-sm font-bold text-[hsl(43,72%,53%)] mt-3 mb-1">{children}</h3>,
+  ul: ({ children }: any) => <ul className="list-disc list-inside space-y-1 text-sm">{children}</ul>,
+  li: ({ children }: any) => <li className="text-foreground/90">{children}</li>,
+};
+
+const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
+  msg: Message;
+  activeConfig: { color: string; label: string };
+  isLatest: boolean;
+}) => {
+  const bubbleClass = isLatest ? 'chat-bubble chat-bubble-enter' : 'chat-bubble';
+  
+  if (msg.role === 'assistant') {
+    return (
+      <div className={`${bubbleClass} ${isLatest ? 'chat-bubble-streaming' : ''}`}>
+        <div className="flex items-start gap-3 py-4 px-2 rounded-lg" style={{
+          background: 'hsl(0 0% 8% / 0.5)',
+          borderLeft: `2px solid ${activeConfig.color}40`,
+        }}>
+          <TutorAvatar size="sm" />
+          <div className="flex-1 min-w-0">
+            <div className="tutor-lesson-header text-[0.55rem] mb-2">
+              {activeConfig.label} Intelligence Engine
+            </div>
+            <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
+              <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={markdownComponents}>
+                {msg.content}
+              </ReactMarkdown>
+              <CopyButton text={msg.content} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={bubbleClass}>
+      <div className="flex items-start gap-3 py-3 px-4 ml-auto max-w-[85%] rounded-xl" style={{
+        background: 'hsl(214 100% 8% / 0.6)',
+        border: '1px solid hsl(214 100% 20% / 0.3)',
+      }}>
+        <div className="flex-1 min-w-0">
+          {msg.imageUrl && (
+            <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
+          )}
+          <p className="whitespace-pre-wrap leading-relaxed text-sm font-sans text-foreground">{msg.content}</p>
+        </div>
+        <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
+          <User className="w-3.5 h-3.5 text-primary" />
+        </div>
+      </div>
+    </div>
+  );
+}, (prev, next) => {
+  // Only re-render if content changes (streaming tokens) or if isLatest status changes
+  return prev.msg.content === next.msg.content && 
+         prev.msg.id === next.msg.id && 
+         prev.isLatest === next.isLatest &&
+         prev.activeConfig.color === next.activeConfig.color;
+});
 const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
   const isProcessing = streamState !== 'idle' && streamState !== 'error';
   const isError = streamState === 'error';
