@@ -1206,11 +1206,10 @@ export default function EconomicsChatbot() {
                 const Icon = cfg.icon;
                 const isActive = persona === p;
                 return (
-                  <motion.button
+                  <button
                     key={p}
                     onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`relative flex flex-col items-center justify-center rounded-xl transition-all duration-300 min-w-[52px] w-[52px] h-[52px] shrink-0 ${
+                    className={`relative flex flex-col items-center justify-center rounded-xl min-w-[52px] w-[52px] h-[52px] shrink-0 chat-quick-action ${
                       isActive ? '' : 'hover:bg-white/[0.04]'
                     }`}
                     style={isActive ? {
@@ -1220,8 +1219,8 @@ export default function EconomicsChatbot() {
                     } : { border: '1px solid transparent' }}
                     title={cfg.label}
                   >
-                    <Icon className="w-4 h-4 transition-colors" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
-                    <span className="text-[8px] font-medium mt-0.5 transition-colors" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)' }}>
+                    <Icon className="w-4 h-4 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
+                    <span className="text-[8px] font-medium mt-0.5 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)' }}>
                       {cfg.label}
                     </span>
                     {isActive && (
@@ -1232,7 +1231,7 @@ export default function EconomicsChatbot() {
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
                     )}
-                  </motion.button>
+                  </button>
                 );
               })}
             </div>
