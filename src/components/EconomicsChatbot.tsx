@@ -516,22 +516,15 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
 
   return (
     <div className="flex items-center gap-3">
-      {/* Premium pulse indicator */}
+      {/* Pure CSS pulse indicator — no JS animation */}
       <div className="relative">
-        <motion.div
-          className="w-2.5 h-2.5 rounded-full"
+        <div
+          className="w-2.5 h-2.5 rounded-full chat-status-dot"
           style={{ backgroundColor: getStateColor() }}
-          animate={{ 
-            scale: [1, 1.4, 1],
-            opacity: [0.6, 1, 0.6]
-          }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute inset-0 w-2.5 h-2.5 rounded-full"
+        <div
+          className="absolute inset-0 w-2.5 h-2.5 rounded-full chat-status-ring"
           style={{ backgroundColor: getStateColor() }}
-          animate={{ scale: [1, 2, 2], opacity: [0.4, 0, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: "easeOut" }}
         />
       </div>
       
@@ -542,20 +535,10 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
       {streamState !== 'error' && (
         <div className="flex gap-1">
           {[0, 1, 2].map((i) => (
-            <motion.span
+            <span
               key={i}
-              className="w-1.5 h-1.5 rounded-full"
+              className="w-1.5 h-1.5 rounded-full chat-typing-dot"
               style={{ backgroundColor: getStateColor() }}
-              animate={{ 
-                y: [0, -5, 0],
-                opacity: [0.4, 1, 0.4]
-              }}
-              transition={{
-                duration: 0.7,
-                repeat: Infinity,
-                delay: i * 0.12,
-                ease: "easeInOut"
-              }}
             />
           ))}
         </div>
