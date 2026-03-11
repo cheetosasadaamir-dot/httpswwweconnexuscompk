@@ -1327,69 +1327,22 @@ export default function EconomicsChatbot() {
                     </div>
                   ) : (
                     <div className="space-y-1">
-                      {messages.map((msg) => (
-                        <motion.div
+                      {messages.map((msg, idx) => (
+                        <ChatBubble
                           key={msg.id}
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                        >
-                          {msg.role === 'assistant' && (
-                            <div className="flex items-start gap-3 py-4 px-2 rounded-lg" style={{
-                              background: 'hsl(0 0% 8% / 0.5)',
-                              borderLeft: `2px solid ${activeConfig.color}40`,
-                            }}>
-                              <TutorAvatar size="sm" />
-                              <div className="flex-1 min-w-0">
-                                <div className="tutor-lesson-header text-[0.55rem] mb-2">
-                                  {activeConfig.label} Intelligence Engine
-                                </div>
-                                <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
-                                  <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}
-                                    components={{
-                                      p: ({ children }) => <p className="text-sm leading-relaxed text-foreground mb-2">{children}</p>,
-                                      strong: ({ children }) => <strong className="text-[hsl(43,72%,53%)] font-semibold">{children}</strong>,
-                                      code: ({ children }) => <code className="tutor-formula-highlight text-[hsl(185,100%,50%)] font-mono text-xs">{children}</code>,
-                                      blockquote: ({ children }) => <blockquote className="border-l-2 border-[hsl(185,100%,50%)] pl-3 my-2 italic text-muted-foreground bg-[hsl(185,100%,50%)]/5 py-2 rounded-r">{children}</blockquote>,
-                                      h3: ({ children }) => <h3 className="text-sm font-bold text-[hsl(43,72%,53%)] mt-3 mb-1">{children}</h3>,
-                                      ul: ({ children }) => <ul className="list-disc list-inside space-y-1 text-sm">{children}</ul>,
-                                      li: ({ children }) => <li className="text-foreground/90">{children}</li>,
-                                    }}
-                                  >
-                                    {msg.content}
-                                  </ReactMarkdown>
-                                  <CopyButton text={msg.content} />
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                          {msg.role === 'user' && (
-                            <div className="flex items-start gap-3 py-3 px-4 ml-auto max-w-[85%] rounded-xl" style={{
-                              background: 'hsl(214 100% 8% / 0.6)',
-                              border: '1px solid hsl(214 100% 20% / 0.3)',
-                            }}>
-                              <div className="flex-1 min-w-0">
-                                {msg.imageUrl && (
-                                  <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
-                                )}
-                                <p className="whitespace-pre-wrap leading-relaxed text-sm font-sans text-foreground">{msg.content}</p>
-                              </div>
-                              <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
-                                <User className="w-3.5 h-3.5 text-primary" />
-                              </div>
-                            </div>
-                          )}
-                        </motion.div>
+                          msg={msg}
+                          activeConfig={activeConfig}
+                          isLatest={idx === messages.length - 1}
+                        />
                       ))}
-                      <AnimatePresence>
-                        {streamState !== 'idle' && (
-                          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className="flex items-start gap-3 py-3 px-2">
-                            <TutorAvatar size="sm" />
-                            <div className="rounded-lg px-3 py-2" style={{ background: 'hsl(0 0% 8% / 0.5)', border: `1px solid ${activeConfig.color}20` }}>
-                              <TypingIndicator streamState={streamState} persona={persona} />
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                      {streamState !== 'idle' && (
+                        <div className="flex items-start gap-3 py-3 px-2 chat-bubble chat-bubble-enter">
+                          <TutorAvatar size="sm" />
+                          <div className="rounded-lg px-3 py-2" style={{ background: 'hsl(0 0% 8% / 0.5)', border: `1px solid ${activeConfig.color}20` }}>
+                            <TypingIndicator streamState={streamState} persona={persona} />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
