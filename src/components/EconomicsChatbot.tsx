@@ -1128,26 +1128,6 @@ export default function EconomicsChatbot() {
 
   const activeConfig = PERSONA_CONFIG[persona];
 
-  // Extract solution summarizer from latest AI message
-  const latestAiMessage = [...messages].reverse().find(m => m.role === 'assistant' && !m.isError);
-  const extractSummarizer = (content: string) => {
-    const patterns = [
-      /(?:#{1,3}\s*(?:Solution Summar|Key Takeaway|Strategic Intelligence|Legal Verdict|Clinical Summary|Diagnostic Summary|Research Verdict|Mathematical Verdict|Physics Verdict|Chemical Verdict|Briefing|Summary|Verdict).*?)(?:\n[\s\S]*?)(?=\n#{1,3}\s|\n---|\Z)/i,
-      /(?:\*\*(?:Solution Summar|Key Takeaway|Strategic Intelligence|Legal Verdict|Clinical Summary).*?\*\*[\s\S]*?)(?=\n\n#{1,3}\s|\n\n---|\n\n\*\*[A-Z]|\Z)/i,
-    ];
-    for (const pattern of patterns) {
-      const match = content.match(pattern);
-      if (match) return match[0].trim();
-    }
-    const bullets = content.match(/(?:^|\n)[•\-\*]\s+.+/g);
-    if (bullets && bullets.length >= 2) return bullets.slice(0, 3).join('\n').trim();
-    const paragraphs = content.split('\n\n').filter(p => p.trim().length > 30);
-    if (paragraphs.length > 0) return paragraphs[0].trim();
-    return null;
-  };
-
-  const summarizerContent = latestAiMessage ? extractSummarizer(latestAiMessage.content) : null;
-
   const SYLLABUS_MAP: Record<Persona, string> = {
     'a-level': 'Economics', 'business': 'Business', 'law': 'Law', 'psychology': 'Psychology',
     'accounting': 'Accounting', 'sociology': 'Sociology', 'research': 'Research',
