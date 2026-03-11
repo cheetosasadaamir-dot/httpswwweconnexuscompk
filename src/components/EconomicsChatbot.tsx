@@ -1237,7 +1237,7 @@ export default function EconomicsChatbot() {
               </div>
 
               {/* Chat Messages */}
-              <ScrollArea ref={scrollRef} className="flex-1 relative" style={{ height: 'calc(100% - 140px)' }}>
+              <ScrollArea ref={scrollRef} className="flex-1 relative chat-scroll-container" style={{ height: 'calc(100% - 140px)' }}>
                 <div className="px-4 py-3">
                   {messages.length === 0 ? (
                     <div className="h-[400px] flex items-center justify-center text-center relative overflow-hidden">
