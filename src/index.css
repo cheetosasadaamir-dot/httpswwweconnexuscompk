@@ -374,10 +374,10 @@
     font-style: normal;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    -webkit-text-fill-color: #0047AB;
-    color: #0047AB;
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
-    filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25));
+    -webkit-text-fill-color: #3A8DFF;
+    color: #3A8DFF;
+    text-shadow: 0 0 15px rgba(58, 141, 255, 0.3);
+    filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2));
   }
 
   /* Interactive Neon Glow Effect */
