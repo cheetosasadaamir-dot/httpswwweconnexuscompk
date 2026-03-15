@@ -646,8 +646,8 @@ const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
           )}
           <p className="whitespace-pre-wrap leading-relaxed text-sm font-sans text-foreground">{msg.content}</p>
         </div>
-        <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
-          <User className="w-3.5 h-3.5 text-primary" />
+        <div className="w-7 h-7 rounded-full flex-shrink-0 border border-primary/30 overflow-hidden">
+          <img src={userProfilePhoto} alt="User" className="w-full h-full object-cover" />
         </div>
       </div>
     </div>
