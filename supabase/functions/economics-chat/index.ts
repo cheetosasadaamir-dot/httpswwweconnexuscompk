@@ -2417,17 +2417,17 @@ function computeQueryHash(query: string, persona: string): string {
 function getMaxTokens(query: string, persona: Persona): number {
   const wordCount = query.trim().split(/\s+/).length;
   
-  // Short queries (definitions, single concepts): 150-400 tokens
-  if (wordCount <= 5) return 400;
+  // Short queries (definitions, single concepts): 300 tokens
+  if (wordCount <= 5) return 300;
   
-  // Medium queries (explain, analyse): 600-800 tokens
-  if (wordCount <= 15) return 800;
+  // Medium queries (explain, analyse): 500 tokens
+  if (wordCount <= 15) return 600;
   
-  // Complex essay queries (evaluate, discuss, compare): up to 1500
-  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 1500;
+  // Complex essay queries (evaluate, discuss, compare): capped at 700
+  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 700;
   
-  // Default medium response
-  return 800;
+  // Default — capped at 700
+  return 700;
 }
 
 // ============================================================
@@ -2832,6 +2832,25 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
 
     // ── GLOBAL OVERLAY: Solution Summarizer + LaTeX + Security Hardening ──
     const personaName = PERSONA_DISPLAY_NAME[persona];
+
+    // ── COHORT-SPECIFIC DEEP KNOWLEDGE DIRECTIVES ──
+    const THEORETICAL_COHORT: Persona[] = ['a-level', 'business', 'law', 'psychology', 'sociology', 'research'];
+    const QUANTITATIVE_COHORT: Persona[] = ['mathematics', 'physics', 'chemistry', 'accounting'];
+
+    const COHORT_DIRECTIVE = THEORETICAL_COHORT.includes(persona)
+      ? `### ━━━ SECTION 6: DEEP KNOWLEDGE PROTOCOL (THEORETICAL COHORT) ━━━
+CRITICAL INSTRUCTION: You are an elite, university-level academic expert. You must provide answers exclusively in highly dense, richly synthesized paragraphs.
+
+DEEP KNOWLEDGE PROTOCOL: Do not use bullet points or lists for these subjects. Instead, construct complex, multi-layered paragraphs that cite specific university-level theories, prominent academics, global case studies, or legal precedents.
+
+ZERO TOKEN WASTE: Never use conversational filler ('Here is an analysis of...', 'In conclusion'). Begin your first paragraph immediately with the core academic thesis. Every single sentence must introduce a new, high-level fact or analytical perspective.
+
+SUMMARIZER: Always conclude with the mandatory 3-point 'Solution Summarizer'.`
+      : QUANTITATIVE_COHORT.includes(persona)
+      ? `### ━━━ SECTION 6: QUANTITATIVE PRECISION PROTOCOL ━━━
+Maintain strict algorithmic precision. Use step-by-step logic, pure mathematical/chemical formulas, and highly structured formatting. Avoid long paragraphs; prioritize exact computational accuracy. Every step must be verifiable and every formula rendered in LaTeX.`
+      : '';
+
     const GLOBAL_SYSTEM_OVERLAY = `## GLOBAL SYSTEM RULES (UNIVERSAL — ALL PERSONAS)
 
 ### ━━━ SECTION 0: STRICT DOMAIN CONSTRAINT (ZERO-SPAM POLICY) ━━━
@@ -2901,7 +2920,9 @@ Examples of correct wrapping:
 - ❌ "if PED > 1 the good is elastic"
 - ✅ "if $|PED| > 1$ the good is **elastic**"
 
-This rule is ABSOLUTE — no mathematical symbol may appear unformatted in prose.`;
+This rule is ABSOLUTE — no mathematical symbol may appear unformatted in prose.
+
+${COHORT_DIRECTIVE}`;
     const systemMessages: Array<{ role: string; content: string }> = [
       { role: "system", content: systemPrompt },
       { role: "system", content: GLOBAL_SYSTEM_OVERLAY },
@@ -2948,6 +2969,7 @@ This rule is ABSOLUTE — no mathematical symbol may appear unformatted in prose
           stream: true,
           max_tokens: getMaxTokens(userQuery, persona),
           temperature: ['a-level', 'psychology', 'business', 'accounting', 'sociology'].includes(persona) ? 0.5 : persona === 'law' ? 0.4 : ['research', 'mathematics', 'physics', 'chemistry'].includes(persona) ? 0.45 : 0.6,
+          frequency_penalty: 0.5,
         }),
         signal: controller.signal,
       });
