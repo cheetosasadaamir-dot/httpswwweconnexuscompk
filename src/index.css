@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Michroma&family=Great+Vibes&family=Syncopate:wght@400;700&family=Montserrat:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Syne:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Michroma&family=Great+Vibes&family=Syncopate:wght@400;700&family=Montserrat:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Syne:wght@800&family=Bodoni+Moda:ital,wght@0,700;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -167,9 +167,14 @@
     letter-spacing: -0.02em;
   }
 
-  /* Subtle glow on headings */
+  /* Elegant Bodoni headings with illuminated cobalt blue */
   h1, h2 {
-    text-shadow: 0 0 50px hsl(var(--neon-cyan) / 0.25);
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0047AB;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
   }
 }
 
@@ -364,18 +369,15 @@
   }
 
   .section-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-style: italic;
-    letter-spacing: -0.04em;
+    font-family: 'Bodoni Moda', serif !important;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    -webkit-text-fill-color: transparent;
-    background: linear-gradient(180deg, #FFFFFF 0%, #0047AB 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
-    text-shadow: none;
-    filter: drop-shadow(0 0 20px rgba(0, 71, 171, 0.3));
+    -webkit-text-fill-color: #0047AB;
+    color: #0047AB;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+    filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25));
   }
 
   /* Interactive Neon Glow Effect */
@@ -600,36 +602,35 @@
 
 }
 
-/* ═══ Nexus Professor Name — OUTSIDE @layer for max specificity ═══ */
+/* ═══ Nexus Professor Name — Bodoni Moda Illuminated Cobalt ═══ */
 .nexus-professor-name {
-  font-family: 'Syne', sans-serif !important;
-  font-weight: 800 !important;
-  font-style: italic !important;
+  font-family: 'Bodoni Moda', serif !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
   font-size: 1.1rem !important;
   text-transform: uppercase !important;
-  letter-spacing: -0.04em !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #0047AB 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2) !important;
-  text-shadow: none !important;
-  filter: drop-shadow(0 0 20px rgba(0, 71, 171, 0.3)) !important;
+  letter-spacing: 0.1em !important;
+  color: #0047AB !important;
+  -webkit-text-fill-color: #0047AB !important;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4) !important;
+  filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25)) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-stroke: unset !important;
 }
 
 .nexus-professor-name-sm {
-  font-family: 'Syne', sans-serif !important;
-  font-weight: 800 !important;
-  font-style: italic !important;
+  font-family: 'Bodoni Moda', serif !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
   font-size: 0.65rem !important;
   text-transform: uppercase !important;
-  letter-spacing: -0.04em !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #0047AB 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2) !important;
-  filter: drop-shadow(0 0 20px rgba(0, 71, 171, 0.3)) !important;
+  letter-spacing: 0.1em !important;
+  color: #0047AB !important;
+  -webkit-text-fill-color: #0047AB !important;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4) !important;
+  filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25)) !important;
 }
 
 
