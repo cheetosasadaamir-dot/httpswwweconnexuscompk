@@ -2969,6 +2969,7 @@ ${COHORT_DIRECTIVE}`;
           stream: true,
           max_tokens: getMaxTokens(userQuery, persona),
           temperature: ['a-level', 'psychology', 'business', 'accounting', 'sociology'].includes(persona) ? 0.5 : persona === 'law' ? 0.4 : ['research', 'mathematics', 'physics', 'chemistry'].includes(persona) ? 0.45 : 0.6,
+          frequency_penalty: 0.5,
         }),
         signal: controller.signal,
       });
