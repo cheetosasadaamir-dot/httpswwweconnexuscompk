@@ -2417,17 +2417,17 @@ function computeQueryHash(query: string, persona: string): string {
 function getMaxTokens(query: string, persona: Persona): number {
   const wordCount = query.trim().split(/\s+/).length;
   
-  // Short queries (definitions, single concepts): 150-400 tokens
-  if (wordCount <= 5) return 400;
+  // Short queries (definitions, single concepts): 300 tokens
+  if (wordCount <= 5) return 300;
   
-  // Medium queries (explain, analyse): 600-800 tokens
-  if (wordCount <= 15) return 800;
+  // Medium queries (explain, analyse): 500 tokens
+  if (wordCount <= 15) return 600;
   
-  // Complex essay queries (evaluate, discuss, compare): up to 1500
-  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 1500;
+  // Complex essay queries (evaluate, discuss, compare): capped at 700
+  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 700;
   
-  // Default medium response
-  return 800;
+  // Default — capped at 700
+  return 700;
 }
 
 // ============================================================
