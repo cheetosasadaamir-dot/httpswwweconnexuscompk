@@ -155,7 +155,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
-    background: #020617;
+    background: #001E3C;
     min-height: 100vh;
     line-height: 1.6;
     letter-spacing: -0.01em;
@@ -167,14 +167,14 @@
     letter-spacing: -0.02em;
   }
 
-  /* Elegant Bodoni headings with illuminated cobalt blue */
+  /* Elegant Bodoni headings — Illuminated Azure Blue */
   h1, h2 {
     font-family: 'Bodoni Moda', serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #0047AB;
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+    color: #3A8DFF;
+    text-shadow: 0 0 15px rgba(58, 141, 255, 0.3);
   }
 }
 
