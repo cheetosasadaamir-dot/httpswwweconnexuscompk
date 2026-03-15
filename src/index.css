@@ -167,14 +167,14 @@
     letter-spacing: -0.02em;
   }
 
-  /* Elegant Bodoni headings — Illuminated Azure Blue */
+  /* Elegant Bodoni headings — Electric Cyan Glow */
   h1, h2 {
     font-family: 'Bodoni Moda', serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #3A8DFF;
-    text-shadow: 0 0 15px rgba(58, 141, 255, 0.3);
+    color: #00F2FF;
+    text-shadow: 0 0 18px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 242, 255, 0.15);
   }
 }
 
@@ -374,10 +374,10 @@
     font-style: normal;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    -webkit-text-fill-color: #3A8DFF;
-    color: #3A8DFF;
-    text-shadow: 0 0 15px rgba(58, 141, 255, 0.3);
-    filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2));
+    -webkit-text-fill-color: #00F2FF;
+    color: #00F2FF;
+    text-shadow: 0 0 18px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 242, 255, 0.15);
+    filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.25));
   }
 
   /* Interactive Neon Glow Effect */
@@ -602,7 +602,7 @@
 
 }
 
-/* ═══ Nexus Professor Name — Bodoni Moda Illuminated Azure ═══ */
+/* ═══ Nexus Professor Name — Electric Cyan Glow ═══ */
 .nexus-professor-name {
   font-family: 'Bodoni Moda', serif !important;
   font-weight: 700 !important;
@@ -610,10 +610,10 @@
   font-size: 1.1rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
-  color: #3A8DFF !important;
-  -webkit-text-fill-color: #3A8DFF !important;
-  text-shadow: 0 0 15px rgba(58, 141, 255, 0.3) !important;
-  filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2)) !important;
+  color: #00F2FF !important;
+  -webkit-text-fill-color: #00F2FF !important;
+  text-shadow: 0 0 18px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 242, 255, 0.15) !important;
+  filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.25)) !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
@@ -627,10 +627,10 @@
   font-size: 0.65rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
-  color: #3A8DFF !important;
-  -webkit-text-fill-color: #3A8DFF !important;
-  text-shadow: 0 0 15px rgba(58, 141, 255, 0.3) !important;
-  filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2)) !important;
+  color: #00F2FF !important;
+  -webkit-text-fill-color: #00F2FF !important;
+  text-shadow: 0 0 18px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 242, 255, 0.15) !important;
+  filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.25)) !important;
 }
 
 
