@@ -167,14 +167,14 @@
     letter-spacing: -0.02em;
   }
 
-  /* Elegant Bodoni headings — Illuminated Azure Blue */
+  /* Elegant Bodoni headings — Electric Cyan Glow */
   h1, h2 {
     font-family: 'Bodoni Moda', serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #3A8DFF;
-    text-shadow: 0 0 15px rgba(58, 141, 255, 0.3);
+    color: #00F2FF;
+    text-shadow: 0 0 18px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 242, 255, 0.15);
   }
 }
 
