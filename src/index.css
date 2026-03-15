@@ -602,7 +602,7 @@
 
 }
 
-/* ═══ Nexus Professor Name — Bodoni Moda Illuminated Cobalt ═══ */
+/* ═══ Nexus Professor Name — Bodoni Moda Illuminated Azure ═══ */
 .nexus-professor-name {
   font-family: 'Bodoni Moda', serif !important;
   font-weight: 700 !important;
@@ -610,10 +610,10 @@
   font-size: 1.1rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
-  color: #0047AB !important;
-  -webkit-text-fill-color: #0047AB !important;
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4) !important;
-  filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25)) !important;
+  color: #3A8DFF !important;
+  -webkit-text-fill-color: #3A8DFF !important;
+  text-shadow: 0 0 15px rgba(58, 141, 255, 0.3) !important;
+  filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2)) !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
@@ -627,10 +627,10 @@
   font-size: 0.65rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
-  color: #0047AB !important;
-  -webkit-text-fill-color: #0047AB !important;
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4) !important;
-  filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25)) !important;
+  color: #3A8DFF !important;
+  -webkit-text-fill-color: #3A8DFF !important;
+  text-shadow: 0 0 15px rgba(58, 141, 255, 0.3) !important;
+  filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2)) !important;
 }
 
 
