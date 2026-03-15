@@ -167,9 +167,14 @@
     letter-spacing: -0.02em;
   }
 
-  /* Subtle glow on headings */
+  /* Elegant Bodoni headings with illuminated cobalt blue */
   h1, h2 {
-    text-shadow: 0 0 50px hsl(var(--neon-cyan) / 0.25);
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0047AB;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
   }
 }
 
