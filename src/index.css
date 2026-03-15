@@ -6,140 +6,140 @@
 
 @layer base {
   :root {
-    /* 5D Fluid Graphite Theme - Premium Charcoal (#101010 base) */
-    --background: 0 0% 6%;
+    /* Light Navy Theme — #001E3C base */
+    --background: 210 100% 12%;
     --foreground: 0 0% 96%;
 
-    --card: 0 0% 9%;
+    --card: 210 80% 14%;
     --card-foreground: 0 0% 96%;
 
-    --popover: 0 0% 8%;
+    --popover: 210 85% 13%;
     --popover-foreground: 0 0% 96%;
 
-    --primary: 185 100% 50%;
-    --primary-foreground: 0 0% 5%;
+    --primary: 214 100% 61%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 43 72% 53%;
     --secondary-foreground: 0 0% 5%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 210 60% 18%;
+    --muted-foreground: 210 20% 65%;
 
-    --accent: 185 100% 50%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 214 100% 61%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 12%;
-    --ring: 185 100% 50%;
+    --border: 210 40% 22%;
+    --input: 210 70% 16%;
+    --ring: 214 100% 61%;
 
     --radius: 0.75rem;
 
-    /* Fluid Graphite Color Tokens */
-    --graphite-base: 0 0% 7%;
-    --graphite-deep: 0 0% 4%;
-    --graphite-void: 0 0% 2%;
-    --graphite-elevated: 0 0% 11%;
-    --graphite-surface: 0 0% 15%;
-    --graphite-navy: 222 47% 6%;
+    /* Light Navy Color Tokens */
+    --graphite-base: 210 100% 12%;
+    --graphite-deep: 210 100% 8%;
+    --graphite-void: 210 100% 5%;
+    --graphite-elevated: 210 70% 16%;
+    --graphite-surface: 210 50% 20%;
+    --graphite-navy: 210 100% 12%;
     
-    /* Neon Accent Colors */
-    --neon-cyan: 185 100% 50%;
-    --neon-cyan-glow: 185 100% 65%;
+    /* Accent Colors — Azure dominant */
+    --neon-cyan: 214 100% 61%;
+    --neon-cyan-glow: 214 100% 72%;
     --neon-gold: 43 72% 53%;
     --neon-gold-muted: 43 60% 40%;
     --neon-magenta: 300 100% 60%;
     
     /* Text hierarchy */
     --text-bright: 0 0% 98%;
-    --text-primary: 0 0% 90%;
-    --text-secondary: 0 0% 70%;
-    --text-muted: 0 0% 50%;
+    --text-primary: 210 20% 92%;
+    --text-secondary: 210 15% 72%;
+    --text-muted: 210 15% 50%;
 
-    /* Premium Glassmorphism effects */
-    --glass-bg: 0 0% 8% / 0.65;
-    --glass-border: 0 0% 100% / 0.08;
-    --glass-glow: 0 0 60px hsl(0 0% 100% / 0.05);
+    /* Premium Glassmorphism — Light Navy */
+    --glass-bg: 210 100% 12% / 0.7;
+    --glass-border: 214 100% 61% / 0.12;
+    --glass-glow: 0 0 60px hsl(214 100% 61% / 0.08);
     
-    /* Legacy support */
-    --navy-deep: 222 47% 4%;
-    --navy-base: 222 47% 6%;
-    --navy-light: 222 40% 10%;
-    --indigo-glow: 185 100% 50%;
-    --silver: 0 0% 70%;
+    /* Legacy support — remapped to light navy */
+    --navy-deep: 210 100% 8%;
+    --navy-base: 210 100% 12%;
+    --navy-light: 210 70% 18%;
+    --indigo-glow: 214 100% 61%;
+    --silver: 210 15% 72%;
     --silver-bright: 0 0% 98%;
     
-    /* Charcoal tokens for component compatibility */
-    --charcoal-base: 0 0% 7%;
-    --charcoal-deep: 0 0% 4%;
-    --charcoal-light: 0 0% 11%;
-    --charcoal-elevated: 0 0% 15%;
-    --charcoal-cyan: 185 100% 50%;
-    --charcoal-cyan-glow: 185 100% 65%;
+    /* Charcoal tokens remapped */
+    --charcoal-base: 210 100% 12%;
+    --charcoal-deep: 210 100% 8%;
+    --charcoal-light: 210 70% 16%;
+    --charcoal-elevated: 210 50% 20%;
+    --charcoal-cyan: 214 100% 61%;
+    --charcoal-cyan-glow: 214 100% 72%;
     --charcoal-gold: 43 72% 53%;
     --charcoal-gold-muted: 43 60% 40%;
     --charcoal-foreground: 0 0% 98%;
-    --charcoal-silver: 0 0% 70%;
-    --charcoal-muted: 0 0% 50%;
+    --charcoal-silver: 210 15% 72%;
+    --charcoal-muted: 210 15% 50%;
     
-    /* Space tokens mapped to graphite */
-    --space-void: 0 0% 2%;
-    --space-deep: 0 0% 4%;
-    --space-base: 0 0% 7%;
-    --space-elevated: 0 0% 11%;
-    --space-surface: 0 0% 15%;
+    /* Space tokens — light navy */
+    --space-void: 210 100% 5%;
+    --space-deep: 210 100% 8%;
+    --space-base: 210 100% 12%;
+    --space-elevated: 210 70% 16%;
+    --space-surface: 210 50% 20%;
     
     /* Cambridge 9708 Standard Colors */
-    --cambridge-cyan: 185 100% 50%;
+    --cambridge-cyan: 214 100% 61%;
     --cambridge-magenta: 300 100% 60%;
     --cambridge-green: 142 76% 45%;
     --cambridge-orange: 25 95% 55%;
     --cambridge-yellow: 45 93% 55%;
     
     /* CIE Master Tutor Theme */
-    --tutor-oxford: 0 0% 10%;
+    --tutor-oxford: 210 80% 14%;
     --tutor-gold: 43 72% 53%;
     --tutor-gold-muted: 43 60% 40%;
-    --tutor-cyan: 185 100% 50%;
-    --tutor-cyan-glow: 185 100% 65%;
-    --tutor-navy: 222 47% 6%;
-    --tutor-navy-deep: 0 0% 4%;
-    --tutor-formula-bg: 0 0% 10%;
-    --tutor-formula-border: 0 0% 22%;
+    --tutor-cyan: 214 100% 61%;
+    --tutor-cyan-glow: 214 100% 72%;
+    --tutor-navy: 210 100% 12%;
+    --tutor-navy-deep: 210 100% 8%;
+    --tutor-formula-bg: 210 80% 14%;
+    --tutor-formula-border: 210 40% 25%;
     --tutor-verified: 142 76% 45%;
 
-    --sidebar-background: 0 0% 5%;
+    --sidebar-background: 210 100% 10%;
     --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 185 100% 50%;
-    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-primary: 214 100% 61%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 43 72% 53%;
     --sidebar-accent-foreground: 0 0% 5%;
-    --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 185 100% 50%;
+    --sidebar-border: 210 40% 22%;
+    --sidebar-ring: 214 100% 61%;
   }
 
   .dark {
-    --background: 0 0% 7%;
+    --background: 210 100% 10%;
     --foreground: 0 0% 96%;
-    --card: 0 0% 9%;
+    --card: 210 80% 13%;
     --card-foreground: 0 0% 96%;
-    --popover: 0 0% 8%;
+    --popover: 210 85% 12%;
     --popover-foreground: 0 0% 96%;
-    --primary: 185 100% 50%;
-    --primary-foreground: 0 0% 5%;
+    --primary: 214 100% 61%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 43 72% 53%;
     --secondary-foreground: 0 0% 5%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 185 100% 50%;
-    --accent-foreground: 0 0% 5%;
+    --muted: 210 60% 18%;
+    --muted-foreground: 210 20% 65%;
+    --accent: 214 100% 61%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 18%;
-    --input: 0 0% 12%;
-    --ring: 185 100% 50%;
+    --border: 210 40% 22%;
+    --input: 210 70% 16%;
+    --ring: 214 100% 61%;
   }
 }
 
@@ -155,7 +155,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
-    background: #020617;
+    background: #001E3C;
     min-height: 100vh;
     line-height: 1.6;
     letter-spacing: -0.01em;
@@ -167,57 +167,57 @@
     letter-spacing: -0.02em;
   }
 
-  /* Elegant Bodoni headings with illuminated cobalt blue */
+  /* Elegant Bodoni headings — Illuminated Azure Blue */
   h1, h2 {
     font-family: 'Bodoni Moda', serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #0047AB;
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+    color: #3A8DFF;
+    text-shadow: 0 0 15px rgba(58, 141, 255, 0.3);
   }
 }
 
 @layer components {
   /* ===== FINANCIAL COMMAND CENTER GLASSMORPHISM ===== */
   
-  /* Primary Frosted Glass Container - Bloomberg Terminal Style */
+  /* Primary Frosted Glass Container — Light Navy */
   .glass-frosted {
     @apply relative overflow-hidden;
-    background: rgba(2, 6, 23, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.08);
+    background: rgba(0, 30, 60, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(58, 141, 255, 0.1);
     box-shadow: 
-      0 25px 60px rgba(0, 0, 0, 0.5),
-      0 10px 30px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(212, 175, 55, 0.04);
+      0 25px 60px rgba(0, 0, 0, 0.4),
+      0 10px 30px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(58, 141, 255, 0.06);
   }
 
-  /* Economic Kinetic Content Panel - Zero-Gap Academic Style */
+  /* Economic Kinetic Content Panel — Light Navy */
   .economic-content-panel {
     @apply relative overflow-hidden;
-    background: rgba(2, 6, 23, 0.85);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 0.5px solid rgba(212, 175, 55, 0.06);
+    background: rgba(0, 30, 60, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 0.5px solid rgba(58, 141, 255, 0.08);
     box-shadow: 
-      0 30px 80px rgba(0, 0, 0, 0.6),
-      0 10px 30px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(212, 175, 55, 0.03);
+      0 30px 80px rgba(0, 0, 0, 0.5),
+      0 10px 30px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(58, 141, 255, 0.04);
   }
 
-  /* Premium Glassmorphism Card - Research Portal Style */
+  /* Premium Glassmorphism Card — Light Navy */
   .glass-card {
     @apply relative overflow-hidden rounded-xl;
-    background: rgba(2, 6, 23, 0.7);
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 30, 60, 0.7);
+    border: 1px solid rgba(58, 141, 255, 0.12);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     box-shadow: 
-      0 20px 50px rgba(0, 0, 0, 0.5),
-      0 8px 25px rgba(0, 0, 0, 0.3),
-      0 0 0 0.5px rgba(212, 175, 55, 0.06),
+      0 20px 50px rgba(0, 0, 0, 0.4),
+      0 8px 25px rgba(0, 0, 0, 0.25),
+      0 0 0 0.5px rgba(58, 141, 255, 0.08),
       inset 0 1px 0 rgba(212, 175, 55, 0.04);
   }
 
@@ -374,10 +374,10 @@
     font-style: normal;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    -webkit-text-fill-color: #0047AB;
-    color: #0047AB;
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
-    filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25));
+    -webkit-text-fill-color: #3A8DFF;
+    color: #3A8DFF;
+    text-shadow: 0 0 15px rgba(58, 141, 255, 0.3);
+    filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2));
   }
 
   /* Interactive Neon Glow Effect */
@@ -602,7 +602,7 @@
 
 }
 
-/* ═══ Nexus Professor Name — Bodoni Moda Illuminated Cobalt ═══ */
+/* ═══ Nexus Professor Name — Bodoni Moda Illuminated Azure ═══ */
 .nexus-professor-name {
   font-family: 'Bodoni Moda', serif !important;
   font-weight: 700 !important;
@@ -610,10 +610,10 @@
   font-size: 1.1rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
-  color: #0047AB !important;
-  -webkit-text-fill-color: #0047AB !important;
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4) !important;
-  filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25)) !important;
+  color: #3A8DFF !important;
+  -webkit-text-fill-color: #3A8DFF !important;
+  text-shadow: 0 0 15px rgba(58, 141, 255, 0.3) !important;
+  filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2)) !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
@@ -627,10 +627,10 @@
   font-size: 0.65rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
-  color: #0047AB !important;
-  -webkit-text-fill-color: #0047AB !important;
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4) !important;
-  filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25)) !important;
+  color: #3A8DFF !important;
+  -webkit-text-fill-color: #3A8DFF !important;
+  text-shadow: 0 0 15px rgba(58, 141, 255, 0.3) !important;
+  filter: drop-shadow(0 0 12px rgba(58, 141, 255, 0.2)) !important;
 }
 
 
