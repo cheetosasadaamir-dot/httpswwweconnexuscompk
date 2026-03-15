@@ -1237,3 +1237,19 @@ code, pre {
     font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
   }
 }
+
+/* User avatar subtle breathing animation */
+@keyframes user-avatar-breathe {
+  0%, 100% {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.3);
+  }
+  50% {
+    transform: scale(1.06) translateZ(0);
+    box-shadow: 0 0 8px 2px hsl(var(--primary) / 0.15);
+  }
+}
+.animate-user-avatar-breathe {
+  animation: user-avatar-breathe 3s ease-in-out infinite;
+  will-change: transform;
+}
