@@ -162,20 +162,41 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
-
-  /* Elegant Bodoni headings — Electric Cyan Glow */
-  h1, h2 {
     font-family: 'Bodoni Moda', serif;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #00F2FF;
-    text-shadow: 0 0 18px rgba(0, 242, 255, 0.5), 0 0 40px rgba(0, 242, 255, 0.15);
+    text-transform: uppercase;
+    color: #3A8DFF;
+    text-shadow: 0 0 12px rgba(58, 141, 255, 0.2);
   }
+}
+
+/* ═══ Global Elite Branding Override ═══ */
+.persona-name,
+.sidebar-title,
+.nav-link,
+.hero-title,
+.section-heading,
+[class*="persona"],
+[class*="sidebar"] h3,
+[class*="sidebar"] h4 {
+  font-family: 'Bodoni Moda', serif !important;
+  font-weight: 700 !important;
+  color: #3A8DFF !important;
+  text-shadow: 0 0 12px rgba(58, 141, 255, 0.2) !important;
+}
+
+/* Preserve Inter for chat body & notes content */
+.tutor-professor-response,
+.tutor-professor-response p,
+.tutor-professor-response li,
+[class*="chat-message"] p,
+[class*="note-content"] {
+  font-family: 'Inter', 'Georgia', serif !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  color: inherit !important;
+  text-shadow: none !important;
 }
 
 @layer components {
