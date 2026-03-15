@@ -369,18 +369,15 @@
   }
 
   .section-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-style: italic;
-    letter-spacing: -0.04em;
+    font-family: 'Bodoni Moda', serif !important;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    -webkit-text-fill-color: transparent;
-    background: linear-gradient(180deg, #FFFFFF 0%, #0047AB 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
-    text-shadow: none;
-    filter: drop-shadow(0 0 20px rgba(0, 71, 171, 0.3));
+    -webkit-text-fill-color: #0047AB;
+    color: #0047AB;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+    filter: drop-shadow(0 0 15px rgba(0, 71, 171, 0.25));
   }
 
   /* Interactive Neon Glow Effect */
