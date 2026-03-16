@@ -118,6 +118,8 @@ const Index = () => {
                   </span>
                 </Button>
               </motion.div>
+
+              <ReviewWidget />
             </div>
           </div>
         </section>
