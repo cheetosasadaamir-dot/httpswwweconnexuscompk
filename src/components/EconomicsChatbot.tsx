@@ -1179,7 +1179,7 @@ export default function EconomicsChatbot() {
             boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          <div className="flex flex-col lg:flex-row chatbot-container" style={{ height: 'calc(100dvh - 120px)', maxHeight: '900px' }}>
+          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 120px)', maxHeight: '900px' }}>
 
             {/* MOBILE: Horizontal Scrollable Pill Menu */}
             <div className="lg:hidden flex items-center gap-2 px-3 py-2.5 overflow-x-auto scrollbar-hide border-b border-white/[0.06]"
