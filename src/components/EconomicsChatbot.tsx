@@ -1273,7 +1273,7 @@ export default function EconomicsChatbot() {
             </div>
 
             {/* CENTER PANE - Full Width */}
-            <div className="flex-1 flex flex-col min-w-0 relative"
+            <div className="flex-1 flex flex-col min-w-0 min-h-0 relative"
               style={{ background: 'linear-gradient(180deg, hsl(0 0% 3%) 0%, hsl(0 0% 5%) 50%, hsl(0 0% 4%) 100%)' }}
             >
               {/* Active Persona Header */}
