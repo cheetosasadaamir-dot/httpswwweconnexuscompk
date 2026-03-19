@@ -622,7 +622,7 @@ const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
             <div className="tutor-lesson-header text-[0.55rem] mb-2">
               {activeConfig.label} Intelligence Engine
             </div>
-            <div className="prose prose-invert prose-sm max-w-none tutor-professor-response break-words overflow-hidden" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
+            <div className="prose prose-invert prose-sm max-w-none tutor-professor-response break-words overflow-hidden max-w-full" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
               <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={markdownComponents}>
                 {msg.content}
               </ReactMarkdown>
@@ -1179,7 +1179,7 @@ export default function EconomicsChatbot() {
             boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          <div className="flex flex-col lg:flex-row chatbot-container" style={{ height: 'calc(100dvh - 120px)', maxHeight: '900px' }}>
+          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 120px)', maxHeight: '900px' }}>
 
             {/* MOBILE: Horizontal Scrollable Pill Menu */}
             <div className="lg:hidden flex items-center gap-2 px-3 py-2.5 overflow-x-auto scrollbar-hide border-b border-white/[0.06]"
@@ -1319,8 +1319,8 @@ export default function EconomicsChatbot() {
               </div>
 
               {/* Chat Messages */}
-              <ScrollArea ref={scrollRef} className="flex-1 relative chat-scroll-container" style={{ height: 'calc(100% - 140px)' }}>
-                <div className="px-3 md:px-4 py-3">
+              <ScrollArea ref={scrollRef} className="flex-1 relative chat-scroll-container overflow-y-auto" style={{ height: 'calc(100% - 140px)' }}>
+                <div className="px-3 md:px-4 py-3 pb-32">
                   {messages.length === 0 ? (
                     <div className="h-[300px] md:h-[400px] flex items-center justify-center text-center relative overflow-hidden">
                       {/* Glassmorphic backdrop */}
