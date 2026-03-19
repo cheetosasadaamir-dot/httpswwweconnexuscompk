@@ -753,10 +753,7 @@ export default function EconomicsChatbot() {
   // Auto-scroll on new messages
   useEffect(() => {
     if (scrollRef.current) {
-      const scrollElement = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
-      if (scrollElement) {
-        scrollElement.scrollTop = scrollElement.scrollHeight;
-      }
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, streamState]);
 
@@ -1319,8 +1316,8 @@ export default function EconomicsChatbot() {
               </div>
 
               {/* Chat Messages */}
-              <ScrollArea ref={scrollRef} className="flex-1 relative chat-scroll-container overflow-y-auto" style={{ height: 'calc(100% - 140px)' }}>
-                <div className="px-3 md:px-4 py-3 pb-32">
+              <div ref={scrollRef} className="flex-1 overflow-y-auto overscroll-contain" style={{ minHeight: 0, WebkitOverflowScrolling: 'touch' }}>
+                <div className="px-3 md:px-4 py-3 pb-36">
                   {messages.length === 0 ? (
                     <div className="h-[300px] md:h-[400px] flex items-center justify-center text-center relative overflow-hidden">
                       {/* Glassmorphic backdrop */}
@@ -1428,7 +1425,7 @@ export default function EconomicsChatbot() {
                     </div>
                   )}
                 </div>
-              </ScrollArea>
+              </div>
 
               {/* STICKY INPUT BAR */}
               <div className="relative px-2 md:px-3 pb-2 md:pb-3 pt-2 chatbot-input-bar">
