@@ -1176,38 +1176,61 @@ export default function EconomicsChatbot() {
             boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 120px)', maxHeight: '900px' }}>
+          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 80px)', maxHeight: '1100px' }}>
 
-            {/* MOBILE: Horizontal Scrollable Pill Menu */}
-            <div className="lg:hidden flex items-center gap-2 px-3 py-2.5 overflow-x-auto scrollbar-hide border-b border-white/[0.06]"
-              style={{ background: 'hsl(0 0% 3% / 0.9)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
-            >
-              {(Object.keys(PERSONA_CONFIG) as Persona[]).map((p) => {
-                const cfg = PERSONA_CONFIG[p];
-                const Icon = cfg.icon;
-                const isActive = persona === p;
-                return (
-                  <button
-                    key={p}
-                    onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-                    className="flex items-center gap-1.5 rounded-full px-3 py-2 shrink-0 chat-quick-action transition-all duration-200"
-                    style={isActive ? {
-                      background: `linear-gradient(135deg, ${cfg.color}20, ${cfg.color}10)`,
-                      border: `1.5px solid ${cfg.color}60`,
-                      boxShadow: `0 0 16px ${cfg.color}25`,
-                    } : { 
-                      background: 'hsl(0 0% 8% / 0.5)',
-                      border: '1px solid hsl(0 0% 100% / 0.06)',
-                    }}
-                    title={cfg.label}
-                  >
-                    <Icon className="w-3.5 h-3.5 shrink-0" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
-                    <span className="text-[10px] font-semibold whitespace-nowrap" style={{ color: isActive ? cfg.color : 'hsl(0 0% 55%)' }}>
-                      {cfg.label}
-                    </span>
-                  </button>
-                );
-              })}
+            {/* MOBILE & TABLET: Horizontal Scrollable Pill Menu */}
+            <div className="lg:hidden relative shrink-0">
+              {/* Fade edges for scroll indication */}
+              <div className="absolute left-0 top-0 bottom-0 w-6 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, hsl(0 0% 2%), transparent)' }} />
+              <div className="absolute right-0 top-0 bottom-0 w-6 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, hsl(0 0% 2%), transparent)' }} />
+              <div 
+                className="flex items-center gap-1.5 px-4 py-2 overflow-x-auto scrollbar-hide border-b border-white/[0.06]"
+                style={{ 
+                  background: 'hsl(0 0% 2% / 0.95)', 
+                  backdropFilter: 'blur(20px)', 
+                  WebkitBackdropFilter: 'blur(20px)',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollSnapType: 'x proximity',
+                }}
+              >
+                {(Object.keys(PERSONA_CONFIG) as Persona[]).map((p) => {
+                  const cfg = PERSONA_CONFIG[p];
+                  const Icon = cfg.icon;
+                  const isActive = persona === p;
+                  return (
+                    <button
+                      key={p}
+                      onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
+                      className="flex items-center gap-1.5 rounded-full shrink-0 transition-all duration-200 active:scale-95"
+                      style={{
+                        padding: isActive ? '6px 14px' : '6px 12px',
+                        scrollSnapAlign: 'center',
+                        ...(isActive ? {
+                          background: `linear-gradient(135deg, ${cfg.color}25, ${cfg.color}10)`,
+                          border: `1.5px solid ${cfg.color}50`,
+                          boxShadow: `0 0 20px ${cfg.color}20, inset 0 1px 0 ${cfg.color}15`,
+                        } : { 
+                          background: 'hsl(0 0% 100% / 0.04)',
+                          border: '1px solid hsl(0 0% 100% / 0.08)',
+                        }),
+                      }}
+                      title={cfg.label}
+                    >
+                      <Icon className="w-3.5 h-3.5 shrink-0" style={{ color: isActive ? cfg.color : 'hsl(0 0% 55%)' }} />
+                      <span 
+                        className="font-semibold whitespace-nowrap" 
+                        style={{ 
+                          fontSize: '11px', 
+                          letterSpacing: '0.02em',
+                          color: isActive ? cfg.color : 'hsl(0 0% 55%)',
+                        }}
+                      >
+                        {cfg.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* DESKTOP: Vertical Left Rail */}
@@ -1316,8 +1339,8 @@ export default function EconomicsChatbot() {
               </div>
 
               {/* Chat Messages */}
-              <div ref={scrollRef} className="flex-1 overflow-y-auto overscroll-contain" style={{ minHeight: 0, WebkitOverflowScrolling: 'touch' }}>
-                <div className="px-3 md:px-4 py-3 pb-36">
+              <div ref={scrollRef} className="flex-1 overflow-y-auto overscroll-contain" style={{ minHeight: 0, WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
+                <div className="px-3 md:px-4 py-3 pb-40">
                   {messages.length === 0 ? (
                     <div className="h-[300px] md:h-[400px] flex items-center justify-center text-center relative overflow-hidden">
                       {/* Glassmorphic backdrop */}
