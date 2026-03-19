@@ -622,7 +622,7 @@ const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
             <div className="tutor-lesson-header text-[0.55rem] mb-2">
               {activeConfig.label} Intelligence Engine
             </div>
-            <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
+            <div className="prose prose-invert prose-sm max-w-none tutor-professor-response break-words overflow-hidden" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
               <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={markdownComponents}>
                 {msg.content}
               </ReactMarkdown>
