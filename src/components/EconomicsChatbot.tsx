@@ -1339,7 +1339,7 @@ export default function EconomicsChatbot() {
               </div>
 
               {/* Chat Messages */}
-              <div ref={scrollRef} className="flex-1 overflow-y-auto overscroll-contain" style={{ minHeight: 0, WebkitOverflowScrolling: 'touch' }}>
+              <div ref={scrollRef} className="flex-1 overflow-y-auto overscroll-contain" style={{ minHeight: 0, WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
                 <div className="px-3 md:px-4 py-3 pb-36">
                   {messages.length === 0 ? (
                     <div className="h-[300px] md:h-[400px] flex items-center justify-center text-center relative overflow-hidden">
