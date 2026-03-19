@@ -1176,7 +1176,7 @@ export default function EconomicsChatbot() {
             boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          <div className="flex flex-col lg:flex-row chatbot-container overflow-y-auto" style={{ height: 'calc(100dvh - 80px)', maxHeight: '1100px', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
+          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 80px)', maxHeight: '1100px' }}>
 
             {/* MOBILE & TABLET: Horizontal Scrollable Pill Menu */}
             <div className="lg:hidden relative shrink-0">
@@ -1273,7 +1273,7 @@ export default function EconomicsChatbot() {
             </div>
 
             {/* CENTER PANE - Full Width */}
-            <div className="flex-1 flex flex-col min-w-0 relative"
+            <div className="flex-1 flex flex-col min-w-0 min-h-0 relative"
               style={{ background: 'linear-gradient(180deg, hsl(0 0% 3%) 0%, hsl(0 0% 5%) 50%, hsl(0 0% 4%) 100%)' }}
             >
               {/* Active Persona Header */}
