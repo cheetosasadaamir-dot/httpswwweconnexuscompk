@@ -159,6 +159,11 @@
     min-height: 100vh;
     line-height: 1.6;
     letter-spacing: -0.01em;
+    overflow-x: hidden;
+  }
+
+  #root {
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -1228,13 +1233,77 @@ code, pre {
   scrollbar-width: none;
 }
 
-/* Mobile-optimized professor name scaling */
-@media (max-width: 639px) {
+/* ═══ Mobile Viewport Optimization ═══ */
+@media (max-width: 768px) {
+  /* Typography downscaling */
   .nexus-professor-name {
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
+  }
+  .nexus-professor-name-sm {
+    font-size: 0.7rem !important;
   }
   .section-title {
-    font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+    font-size: clamp(1rem, 4.5vw, 1.4rem) !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* AI response text: 14px / 1.5 */
+  .tutor-professor-response,
+  .tutor-professor-response p,
+  .tutor-professor-response li,
+  .tutor-professor-response blockquote {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Headers inside chat 25% smaller */
+  .tutor-professor-response h3 {
+    font-size: 0.85rem !important;
+  }
+
+  /* Command Words & Solution Summarizer labels → 12px */
+  .tutor-command-badge,
+  .tutor-ao-badge,
+  .tutor-verified-badge,
+  .tutor-lesson-header {
+    font-size: 10px !important;
+  }
+
+  /* Pill nav condensation */
+  .chatbot-container > .lg\:hidden {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+  }
+
+  /* Chat bubble tighter padding */
+  .chat-bubble .flex.items-start {
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  /* Chat bubbles: bounded within screen */
+  .chat-bubble {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  .chat-bubble .prose {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+  .chat-bubble pre,
+  .chat-bubble code {
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  /* Quick action pills slimmer */
+  .chat-quick-action {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 10px !important;
+    min-height: 28px !important;
   }
 }
 

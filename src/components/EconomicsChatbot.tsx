@@ -622,7 +622,7 @@ const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
             <div className="tutor-lesson-header text-[0.55rem] mb-2">
               {activeConfig.label} Intelligence Engine
             </div>
-            <div className="prose prose-invert prose-sm max-w-none tutor-professor-response" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
+            <div className="prose prose-invert prose-sm max-w-none tutor-professor-response break-words overflow-hidden" style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)' }}>
               <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={markdownComponents}>
                 {msg.content}
               </ReactMarkdown>
@@ -636,9 +636,12 @@ const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
 
   return (
     <div className={bubbleClass}>
-      <div className="flex items-start gap-3 py-3 px-4 ml-auto max-w-[85%] rounded-xl" style={{
+      <div className="flex items-start gap-3 py-3 px-4 ml-auto max-w-[90%] sm:max-w-[85%] rounded-xl" style={{
         background: 'hsl(214 100% 8% / 0.6)',
         border: '1px solid hsl(214 100% 20% / 0.3)',
+        wordWrap: 'break-word' as any,
+        overflowWrap: 'break-word' as any,
+        whiteSpace: 'pre-wrap',
       }}>
         <div className="flex-1 min-w-0">
           {msg.imageUrl && (
