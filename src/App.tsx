@@ -59,6 +59,8 @@ const AdminNexusApproval = lazy(() => import("./pages/AdminNexusApproval"));
 const OwnerNexusVault = lazy(() => import("./pages/OwnerNexusVault"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const AuthPage = lazy(() => import("./pages/Auth"));
+const DashboardPage = lazy(() => import("./pages/Dashboard"));
 
 
 const queryClient = new QueryClient({
