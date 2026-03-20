@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import GlobalSearch from './GlobalSearch';
 import EconNexusLogo from './EconNexusLogo';
+import UserProfileDropdown from './UserProfileDropdown';
 
 interface NavLink {
   label: string;
