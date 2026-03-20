@@ -12,6 +12,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 // Critical path - load immediately
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 // Lazy load all other routes for code splitting
 const MarketStructures = lazy(() => import("./pages/MarketStructures"));
@@ -61,6 +62,7 @@ const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const AuthPage = lazy(() => import("./pages/Auth"));
 const DashboardPage = lazy(() => import("./pages/Dashboard"));
+const LoginPage = lazy(() => import("./pages/Login"));
 
 
 const queryClient = new QueryClient({
@@ -97,7 +99,7 @@ const AnimatedRoutes = () => {
     <ErrorBoundary>
       <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
           
           {/* Main Landing Pages */}
           <Route path="/microeconomics" element={<Microeconomics />} />
@@ -144,7 +146,8 @@ const AnimatedRoutes = () => {
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/auth" element={<AuthPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
           
           {/* Legacy routes */}
           <Route path="/national-income" element={<NationalIncome />} />
