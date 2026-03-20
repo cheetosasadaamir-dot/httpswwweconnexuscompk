@@ -12,6 +12,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 // Critical path - load immediately
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 // Lazy load all other routes for code splitting
 const MarketStructures = lazy(() => import("./pages/MarketStructures"));
