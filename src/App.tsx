@@ -143,6 +143,8 @@ const AnimatedRoutes = () => {
           <Route path="/owner-nexus-vault" element={<OwnerNexusVault />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           
           {/* Legacy routes */}
           <Route path="/national-income" element={<NationalIncome />} />
