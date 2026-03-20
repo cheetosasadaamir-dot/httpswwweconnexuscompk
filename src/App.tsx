@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 // AnimatePresence + PageTransition removed — they were blocking navigation
 // by waiting for exit animations that never completed
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { AuthProvider } from "@/hooks/useAuth";
 
 // Critical path - load immediately
 import Index from "./pages/Index";
@@ -58,6 +59,8 @@ const AdminNexusApproval = lazy(() => import("./pages/AdminNexusApproval"));
 const OwnerNexusVault = lazy(() => import("./pages/OwnerNexusVault"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const AuthPage = lazy(() => import("./pages/Auth"));
+const DashboardPage = lazy(() => import("./pages/Dashboard"));
 
 
 const queryClient = new QueryClient({
@@ -140,6 +143,8 @@ const AnimatedRoutes = () => {
           <Route path="/owner-nexus-vault" element={<OwnerNexusVault />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           
           {/* Legacy routes */}
           <Route path="/national-income" element={<NationalIncome />} />
@@ -159,13 +164,15 @@ const AnimatedRoutes = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AnimatedRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AnimatedRoutes />
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
