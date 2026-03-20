@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { LogOut, BookOpen, Brain, TrendingUp, User, Loader2, Calendar, Mail, MessageSquare } from 'lucide-react';
+import { LogOut, User, Loader2, Calendar, Mail } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
+import EconNexusLogo from '@/components/EconNexusLogo';
 
 const Dashboard = () => {
   const { user, loading, signOut } = useAuth();
@@ -37,19 +38,17 @@ const Dashboard = () => {
     year: 'numeric', month: 'long', day: 'numeric'
   }) : 'N/A';
 
-  const quickLinks = [
-    { title: 'Microeconomics', path: '/microeconomics', icon: TrendingUp, color: 'text-primary' },
-    { title: 'Macroeconomics', path: '/macroeconomics', icon: BookOpen, color: 'text-secondary' },
-    { title: 'Exam Intelligence', path: '/exam-intelligence', icon: Brain, color: 'text-accent' },
-  ];
-
   return (
     <Layout>
       <div className="mobile-container responsive-container mx-auto px-4 md:px-8 py-8 max-w-4xl">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+        {/* Floating Logo */}
+        <div className="mb-6">
+          <EconNexusLogo size="md" useImage={true} />
+        </div>
 
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           {/* Profile Card */}
-          <div className="rounded-2xl border border-border/50 bg-card/60 backdrop-blur-xl p-6 md:p-8 mb-6">
+          <div className="rounded-2xl border border-border/50 bg-card/60 backdrop-blur-xl p-6 md:p-8">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
                 {avatarUrl ? (
@@ -76,33 +75,6 @@ const Dashboard = () => {
               </Button>
             </div>
           </div>
-
-          {/* Quick Links */}
-          <h2 className="text-lg font-semibold text-foreground mb-4">Quick Links</h2>
-          <div className="grid sm:grid-cols-3 gap-4 mb-8">
-            {quickLinks.map((link) => (
-              <Link key={link.path} to={link.path}>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="p-5 rounded-xl border border-border/40 bg-card/40 backdrop-blur-sm hover:border-primary/30 transition-colors"
-                >
-                  <link.icon className={`w-7 h-7 ${link.color} mb-2`} />
-                  <h3 className="text-foreground font-semibold text-sm">{link.title}</h3>
-                </motion.div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Activity Section */}
-          <h2 className="text-lg font-semibold text-foreground mb-4">Recent Activity</h2>
-          <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-6">
-            <div className="flex flex-col items-center justify-center text-center py-8">
-              <MessageSquare className="w-10 h-10 text-muted-foreground/40 mb-3" />
-              <p className="text-muted-foreground text-sm">Your chat history and persona activity will appear here.</p>
-              <p className="text-muted-foreground/60 text-xs mt-1">Start a conversation with the AI to see it logged.</p>
-            </div>
-          </div>
-
         </motion.div>
       </div>
     </Layout>
