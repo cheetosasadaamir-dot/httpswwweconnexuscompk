@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 // AnimatePresence + PageTransition removed — they were blocking navigation
 // by waiting for exit animations that never completed
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { AuthProvider } from "@/hooks/useAuth";
 
 // Critical path - load immediately
 import Index from "./pages/Index";
