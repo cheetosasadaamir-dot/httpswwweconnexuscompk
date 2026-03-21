@@ -96,6 +96,7 @@ const PageLoader = () => (
 // (it was blocking navigation by waiting for exit animations that never fired)
 const AnimatedRoutes = () => {
   const location = useLocation();
+  usePageTracking();
   return (
     <ErrorBoundary>
       <Suspense fallback={<PageLoader />}>
