@@ -110,6 +110,27 @@ export type Database = {
         }
         Relationships: []
       }
+      interactions: {
+        Row: {
+          created_at: string
+          id: string
+          persona: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          persona: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          persona?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       mcq_vault: {
         Row: {
           correct_answer: string
@@ -206,6 +227,27 @@ export type Database = {
           order_index?: number
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      page_views: {
+        Row: {
+          created_at: string
+          id: string
+          page: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          page: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          page?: string
+          user_id?: string | null
         }
         Relationships: []
       }

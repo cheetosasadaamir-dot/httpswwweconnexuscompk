@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from 'sonner';
 import ReactMarkdown from 'react-markdown';
+import { supabase } from '@/integrations/supabase/client';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
@@ -1016,6 +1017,9 @@ export default function EconomicsChatbot() {
 
     try {
       await streamChat(newMessages);
+      // Track chatbot interaction
+      const personaLabel = PERSONA_CONFIG[persona]?.label || persona;
+      supabase.from("interactions").insert({ persona: personaLabel, user_id: null });
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to get response';
