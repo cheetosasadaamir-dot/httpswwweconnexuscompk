@@ -704,6 +704,7 @@ const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
 };
 
 export default function EconomicsChatbot() {
+  const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
