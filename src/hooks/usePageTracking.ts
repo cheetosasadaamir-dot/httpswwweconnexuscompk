@@ -6,6 +6,9 @@ export function usePageTracking() {
   const location = useLocation();
 
   useEffect(() => {
-    (supabase.rpc as any)('track_page_view', { _page: location.pathname });
+    (supabase.rpc as any)('track_page_view', { _page: location.pathname })
+      .then(({ error }: { error: any }) => {
+        if (error) console.error('track_page_view failed:', error);
+      });
   }, [location.pathname]);
 }
