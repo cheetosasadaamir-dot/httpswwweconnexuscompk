@@ -8,6 +8,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from 'sonner';
 import ReactMarkdown from 'react-markdown';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
@@ -703,6 +704,7 @@ const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
 };
 
 export default function EconomicsChatbot() {
+  const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -1019,7 +1021,7 @@ export default function EconomicsChatbot() {
       await streamChat(newMessages);
       // Track chatbot interaction
       const personaLabel = PERSONA_CONFIG[persona]?.label || persona;
-      supabase.from("interactions").insert({ persona: personaLabel, user_id: null });
+      supabase.from("interactions").insert({ persona: personaLabel, user_id: user?.id ?? null });
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to get response';
