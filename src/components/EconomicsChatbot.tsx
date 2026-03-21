@@ -1021,7 +1021,7 @@ export default function EconomicsChatbot() {
       await streamChat(newMessages);
       // Track chatbot interaction
       const personaLabel = PERSONA_CONFIG[persona]?.label || persona;
-      supabase.from("interactions").insert({ persona: personaLabel, user_id: user?.id ?? null });
+      supabase.rpc('track_interaction', { _persona: personaLabel });
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to get response';
