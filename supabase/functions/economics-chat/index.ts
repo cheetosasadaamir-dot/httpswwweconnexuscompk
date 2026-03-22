@@ -2968,7 +2968,7 @@ ${COHORT_DIRECTIVE}`;
     if (cachedResearch) {
       systemMessages.push({
         role: "system",
-        content: `[CACHED RESEARCH DATA — From daily-indexed Pakistani research institutions (PIDE, Ministry of Finance, SDPI)]\n\n${cachedResearch}\n\n[END CACHED RESEARCH — Use this data for Critical Evaluations of Pakistan's structural economic issues. Cite the institution name naturally.]`
+        content: `[CACHED CURRICULUM & RESEARCH DATA — From indexed exam board specifications, university curricula, and research institutions]\n\n${cachedResearch}\n\n[END CACHED DATA — Use this data to ensure your answers align with official syllabus content and marking criteria. Do NOT mention any website names or URLs. Present as established academic knowledge.]`
       });
     }
     
