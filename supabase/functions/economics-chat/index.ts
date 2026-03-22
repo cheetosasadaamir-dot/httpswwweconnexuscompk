@@ -377,8 +377,16 @@ async function getCachedResearch(query: string): Promise<string> {
     if (/\b(pide|research|working.?paper|policy.?research|structural)\b/i.test(query)) categories.push("policy_research");
     if (/\b(fiscal|budget|finance|tax|fbr|deficit|debt|survey|economic.?survey)\b/i.test(query)) categories.push("fiscal_data");
     if (/\b(sdpi|development|sustainable|sdg|climate|environment|social.?protection)\b/i.test(query)) categories.push("development_policy");
-    if (/\b(law|legal|tort|negligence|contract|criminal|statute|case\s*law|precedent|9084|7162|edexcel\s*law)\b/i.test(query)) categories.push("law_cie", "law_aqa", "law_edexcel");
-    if (/\b(chemistry|chem|organic|inorganic|physical\s*chem|mechanism|enthalpy|mole|spectroscopy|9701|7405)\b/i.test(query)) categories.push("chem_cie", "chem_aqa", "chem_edexcel");
+    if (/\b(law|legal|tort|negligence|contract|criminal|statute|case\s*law|precedent)\b/i.test(query)) categories.push("law_cie", "law_aqa", "edexcel_law");
+    if (/\b(chemistry|chem|organic|inorganic|physical\s*chem|mechanism|enthalpy|mole|spectroscopy)\b/i.test(query)) categories.push("chem_cie", "chem_aqa", "edexcel_chemistry");
+    if (/\b(economics|macro|micro|demand|supply|gdp|inflation|fiscal|monetary)\b/i.test(query)) categories.push("edexcel_economics", "uni_economics");
+    if (/\b(business|marketing|HRM|operations|strategy|stakeholder|entrepreneur)\b/i.test(query)) categories.push("edexcel_business");
+    if (/\b(psychology|milgram|bandura|cognitive|behaviorist|attachment|memory)\b/i.test(query)) categories.push("edexcel_psychology");
+    if (/\b(accounting|depreciation|ledger|ratio|IFRS|IAS|double.?entry)\b/i.test(query)) categories.push("edexcel_accounting");
+    if (/\b(sociology|functionalism|marxism|feminism|durkheim|stratification)\b/i.test(query)) categories.push("edexcel_sociology");
+    if (/\b(math|calculus|algebra|probability|vector|matrix|integration|differentiation)\b/i.test(query)) categories.push("edexcel_mathematics");
+    if (/\b(physics|kinematics|wave|electric|quantum|nuclear|thermodynamics)\b/i.test(query)) categories.push("edexcel_physics");
+    if (/\b(university|degree|bachelor|undergraduate|first.?class|honours)\b/i.test(query)) categories.push("uni_economics", "uni_benchmark");
 
     // If no specific category matched, get from all
     let cacheQuery = supabase
