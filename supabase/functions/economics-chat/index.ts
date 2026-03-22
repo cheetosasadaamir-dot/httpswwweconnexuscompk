@@ -2810,9 +2810,8 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
         ? searchFirecrawl(userQuery, persona) 
         : Promise.resolve("");
       
-      // For a-level (merged economics), law, and chemistry personas, also pull cached research
-      const cachePromise = (persona === 'a-level' || persona === 'law' || persona === 'chemistry')
-        ? getCachedResearch(userQuery) 
+      // Pull cached research (Edexcel specs, university curricula, policy data) for all personas
+      const cachePromise = getCachedResearch(userQuery);
         : Promise.resolve("");
       
       [ragContext, cachedResearch] = await Promise.all([ragPromise, cachePromise]);
