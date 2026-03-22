@@ -152,7 +152,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'accounting': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "ifrs.org", "znotes.org", "accountingtools.com"],
+    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "ifrs.org", "znotes.org", "accountingtools.com", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|calculate|prepare)\b/i,
       /\b(double.?entry|debit|credit|ledger|journal|trial\s*balance|day\s*book|suspense)\b/i,
