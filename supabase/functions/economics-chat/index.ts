@@ -91,7 +91,7 @@ const PERSONA_CONFIG: Record<Persona, {
   searchPatterns: RegExp[];
 }> = {
   'a-level': {
-    ragDomains: ["economicshelp.org", "tutor2u.net", "imf.org", "tradingeconomics.com", "sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org"],
+    ragDomains: ["economicshelp.org", "tutor2u.net", "imf.org", "tradingeconomics.com", "sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org", "qualifications.pearson.com", "ocr.org.uk", "economicsnetwork.ac.uk"],
     searchPatterns: [
       /\b(gdp|inflation|cpi|wpi|unemployment|interest rate|exchange rate|growth|deficit|surplus|debt|trade|balance.?of.?payments)\b/i,
       /\b(current|latest|recent|today|now|2024|2025|2026|real.?world|data|statistics?|pakistan|sbp|pbs)\b/i,
@@ -108,7 +108,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ragDomains: [
       "tutor2u.net", "savemyexams.com", "znotes.org", "cambridgeinternational.org",
       "physicsandmathstutor.com", "hbr.org", "sloanreview.mit.edu", "stern.nyu.edu",
-      "investopedia.com", "corporate.finance.institute", "ibm.com/topics"
+      "investopedia.com", "corporate.finance.institute", "ibm.com/topics", "qualifications.pearson.com"
     ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|justify|identify|calculate|recommend)\b/i,
@@ -123,7 +123,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'law': {
-    ragDomains: ["legislation.gov.uk", "law.cornell.edu", "eur-lex.europa.eu", "judiciary.uk", "cambridgeinternational.org", "tutor2u.net", "lawteacher.net", "e-lawresources.co.uk", "caselaw.findlaw.com", "icj-cij.org", "supremecourt.uk"],
+    ragDomains: ["legislation.gov.uk", "law.cornell.edu", "eur-lex.europa.eu", "judiciary.uk", "cambridgeinternational.org", "tutor2u.net", "lawteacher.net", "e-lawresources.co.uk", "caselaw.findlaw.com", "icj-cij.org", "supremecourt.uk", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|critically)\b/i,
       /\b(contract|tort|negligence|duty\s*of\s*care|breach|damages|remoteness|causation|contributory)\b/i,
@@ -138,7 +138,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'psychology': {
-    ragDomains: ["cambridgeinternational.org", "psychologywizard.net", "simplypsychology.org", "tutor2u.net", "savemyexams.com"],
+    ragDomains: ["cambridgeinternational.org", "psychologywizard.net", "simplypsychology.org", "tutor2u.net", "savemyexams.com", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|describe|suggest)\b/i,
       /\b(milgram|bandura|zimbardo|asch|loftus|palmer|piliavin|baron.?cohen|grant|freud|skinner|pavlov|watson)\b/i,
@@ -152,7 +152,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'accounting': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "ifrs.org", "znotes.org", "accountingtools.com"],
+    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "ifrs.org", "znotes.org", "accountingtools.com", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|calculate|prepare)\b/i,
       /\b(double.?entry|debit|credit|ledger|journal|trial\s*balance|day\s*book|suspense)\b/i,
@@ -167,7 +167,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'sociology': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "simplysociology.org", "savemyexams.com", "revisesociology.com"],
+    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "simplysociology.org", "savemyexams.com", "revisesociology.com", "aqa.org.uk", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|outline)\b/i,
       /\b(functionalism|marxism|feminism|interactionism|postmodernism|weberian|new\s*right)\b/i,
@@ -182,7 +182,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'research': {
-    ragDomains: ["cambridgeinternational.org", "methods.sagepub.com", "tutor2u.net", "simplypsychology.org", "socialresearchmethods.net"],
+    ragDomains: ["cambridgeinternational.org", "methods.sagepub.com", "tutor2u.net", "simplypsychology.org", "socialresearchmethods.net", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|design)\b/i,
       /\b(hypothesis|null\s*hypothesis|alternative\s*hypothesis|operationali[sz]e|variable|independent|dependent|extraneous)\b/i,
@@ -197,7 +197,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'mathematics': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "mathsisfun.com"],
+    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "mathsisfun.com", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(solve|prove|derive|integrate|differentiate|calculate|find|show\s+that|simplify|expand|factorise|sketch)\b/i,
       /\b(calculus|differentiation|integration|differential\s*equation|chain\s*rule|product\s*rule|quotient\s*rule)\b/i,
@@ -212,7 +212,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'physics': {
-    ragDomains: ["cambridgeinternational.org", "physicsandmathstutor.com", "savemyexams.com", "znotes.org", "feynmanlectures.caltech.edu", "hyperphysics.phy-astr.gsu.edu"],
+    ragDomains: ["cambridgeinternational.org", "physicsandmathstutor.com", "savemyexams.com", "znotes.org", "feynmanlectures.caltech.edu", "hyperphysics.phy-astr.gsu.edu", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(solve|calculate|derive|find|show\s+that|sketch|measure|determine|estimate)\b/i,
       /\b(kinematics|dynamics|force|momentum|energy|work|power|torque|equilibrium)\b/i,
@@ -229,7 +229,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'chemistry': {
-    ragDomains: ["cambridgeinternational.org", "chemguide.co.uk", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "rsc.org", "masterorganicchemistry.com", "chemistrysteps.com"],
+    ragDomains: ["cambridgeinternational.org", "chemguide.co.uk", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "rsc.org", "masterorganicchemistry.com", "chemistrysteps.com", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(solve|calculate|derive|find|show\s+that|draw|sketch|predict|explain|define|evaluate|discuss|compare|suggest|deduce)\b/i,
       /\b(atom|molecule|ion|isotope|electron|proton|neutron|orbital|subshell|quantum\s*number|aufbau|hund|pauli)\b/i,
@@ -302,8 +302,7 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
       const title = result.title || result.metadata?.title || "";
       const content = (result.markdown || result.description || "").slice(0, 1200);
       if (content.trim()) {
-        const sourceName = getSourceName(url);
-        contextParts.push(`[Source: ${sourceName} — ${title}]\n${content}`);
+        contextParts.push(`[Academic Reference — ${title}]\n${content}`);
       }
     }
 
@@ -378,8 +377,16 @@ async function getCachedResearch(query: string): Promise<string> {
     if (/\b(pide|research|working.?paper|policy.?research|structural)\b/i.test(query)) categories.push("policy_research");
     if (/\b(fiscal|budget|finance|tax|fbr|deficit|debt|survey|economic.?survey)\b/i.test(query)) categories.push("fiscal_data");
     if (/\b(sdpi|development|sustainable|sdg|climate|environment|social.?protection)\b/i.test(query)) categories.push("development_policy");
-    if (/\b(law|legal|tort|negligence|contract|criminal|statute|case\s*law|precedent|9084|7162|edexcel\s*law)\b/i.test(query)) categories.push("law_cie", "law_aqa", "law_edexcel");
-    if (/\b(chemistry|chem|organic|inorganic|physical\s*chem|mechanism|enthalpy|mole|spectroscopy|9701|7405)\b/i.test(query)) categories.push("chem_cie", "chem_aqa", "chem_edexcel");
+    if (/\b(law|legal|tort|negligence|contract|criminal|statute|case\s*law|precedent)\b/i.test(query)) categories.push("law_cie", "law_aqa", "edexcel_law");
+    if (/\b(chemistry|chem|organic|inorganic|physical\s*chem|mechanism|enthalpy|mole|spectroscopy)\b/i.test(query)) categories.push("chem_cie", "chem_aqa", "edexcel_chemistry");
+    if (/\b(economics|macro|micro|demand|supply|gdp|inflation|fiscal|monetary)\b/i.test(query)) categories.push("edexcel_economics", "uni_economics");
+    if (/\b(business|marketing|HRM|operations|strategy|stakeholder|entrepreneur)\b/i.test(query)) categories.push("edexcel_business");
+    if (/\b(psychology|milgram|bandura|cognitive|behaviorist|attachment|memory)\b/i.test(query)) categories.push("edexcel_psychology");
+    if (/\b(accounting|depreciation|ledger|ratio|IFRS|IAS|double.?entry)\b/i.test(query)) categories.push("edexcel_accounting");
+    if (/\b(sociology|functionalism|marxism|feminism|durkheim|stratification)\b/i.test(query)) categories.push("edexcel_sociology");
+    if (/\b(math|calculus|algebra|probability|vector|matrix|integration|differentiation)\b/i.test(query)) categories.push("edexcel_mathematics");
+    if (/\b(physics|kinematics|wave|electric|quantum|nuclear|thermodynamics)\b/i.test(query)) categories.push("edexcel_physics");
+    if (/\b(university|degree|bachelor|undergraduate|first.?class|honours)\b/i.test(query)) categories.push("uni_economics", "uni_benchmark");
 
     // If no specific category matched, get from all
     let cacheQuery = supabase
@@ -398,10 +405,8 @@ async function getCachedResearch(query: string): Promise<string> {
 
     const contextParts: string[] = [];
     for (const entry of data) {
-      const sourceName = getSourceName(entry.source_url);
-      // Extract relevant snippet (first 1500 chars)
       const snippet = entry.content.slice(0, 1500);
-      contextParts.push(`[Cached Research — ${sourceName}: ${entry.title}]\n${snippet}`);
+      contextParts.push(`[Curriculum Reference — ${entry.title}]\n${snippet}`);
     }
 
     return contextParts.join("\n\n---\n\n");
@@ -2805,10 +2810,8 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
         ? searchFirecrawl(userQuery, persona) 
         : Promise.resolve("");
       
-      // For a-level (merged economics), law, and chemistry personas, also pull cached research
-      const cachePromise = (persona === 'a-level' || persona === 'law' || persona === 'chemistry')
-        ? getCachedResearch(userQuery) 
-        : Promise.resolve("");
+      // Pull cached research (Edexcel specs, university curricula, policy data) for all personas
+      const cachePromise = getCachedResearch(userQuery);
       
       [ragContext, cachedResearch] = await Promise.all([ragPromise, cachePromise]);
       
@@ -2925,6 +2928,29 @@ Examples of correct wrapping:
 
 This rule is ABSOLUTE — no mathematical symbol may appear unformatted in prose.
 
+### ━━━ SECTION 6.5: CURRICULUM ALIGNMENT ENGINE ━━━
+**AUTOMATIC RIGOR CALIBRATION**: Detect the user's academic level from their query and calibrate accordingly:
+- If the user mentions "A-Level", "AS", "A2", "CIE", "Edexcel", "AQA", "OCR", or "IGCSE": Apply **A* grade marking criteria**. Ensure every response aligns with official exam board mark schemes (Cambridge, Edexcel, AQA). Use exact command-word precision and assessment objective weighting.
+- If the user mentions "university", "degree", "BSc", "BA", "undergraduate", "postgraduate", "Masters", "PhD", "first-class", "honours", or "dissertation": Apply **First-Class Honours academic standards**. Use formal academic register, cite seminal papers, deploy advanced theoretical frameworks, and write at peer-reviewed journal quality.
+- If no level is specified: Default to **A-Level A* standard** as the baseline, with university-level depth when the query complexity demands it.
+
+**CROSS-BOARD KNOWLEDGE**: You have access to curricula from Cambridge International (CIE), Edexcel/Pearson (IAL and UK domestic), AQA, and OCR. When answering, synthesize knowledge across all boards to provide the most comprehensive and technically accurate response. Do not limit yourself to a single exam board's syllabus.
+
+### ━━━ SECTION 7: COPYRIGHT COMPLIANCE (MANDATORY) ━━━
+**ABSOLUTE RULE — NO WEBSITE NAMES IN RESPONSES**: You must NEVER mention, cite, or reference any website name, domain, URL, or online platform in your responses. This includes but is not limited to names of educational websites, exam resource sites, research databases, or any web-based source.
+
+Instead of citing websites, use these academic citation styles:
+- ❌ "According to Tutor2u, demand increases when..."
+- ✅ "According to established economic theory, demand increases when..."
+- ❌ "Data from Trading Economics shows..."
+- ✅ "Recent macroeconomic data indicates..."
+- ❌ "As stated on Save My Exams..."
+- ✅ "As per the official mark scheme criteria..."
+- ❌ "The Economics Help website explains..."
+- ✅ "Standard economic analysis demonstrates..."
+
+You may cite: academic authors by surname (e.g., "Keynes argued..."), institutions (e.g., "The IMF reports..."), published papers, textbooks, and exam boards by name (e.g., "The Cambridge mark scheme requires..."). You must NEVER cite website names or URLs.
+
 ${COHORT_DIRECTIVE}`;
     const systemMessages: Array<{ role: string; content: string }> = [
       { role: "system", content: systemPrompt },
@@ -2934,14 +2960,14 @@ ${COHORT_DIRECTIVE}`;
     if (ragContext) {
       systemMessages.push({
         role: "system",
-        content: `[REAL-TIME KNOWLEDGE CONTEXT — Retrieved from authoritative sources]\n\n${ragContext}\n\n[END CONTEXT — Cite these sources naturally in your response when relevant. Do not mention "context" or "provided data" — just cite the source name.]`
+        content: `[REAL-TIME KNOWLEDGE CONTEXT — Retrieved from authoritative academic sources]\n\n${ragContext}\n\n[END CONTEXT — Use this data to inform your response. Do NOT mention any website names, URLs, or source platforms. Present the information as established academic knowledge. Never say "According to [website]" — instead use "According to established theory" or "Current data indicates".]`
       });
     }
     
     if (cachedResearch) {
       systemMessages.push({
         role: "system",
-        content: `[CACHED RESEARCH DATA — From daily-indexed Pakistani research institutions (PIDE, Ministry of Finance, SDPI)]\n\n${cachedResearch}\n\n[END CACHED RESEARCH — Use this data for Critical Evaluations of Pakistan's structural economic issues. Cite the institution name naturally.]`
+        content: `[CACHED CURRICULUM & RESEARCH DATA — From indexed exam board specifications, university curricula, and research institutions]\n\n${cachedResearch}\n\n[END CACHED DATA — Use this data to ensure your answers align with official syllabus content and marking criteria. Do NOT mention any website names or URLs. Present as established academic knowledge.]`
       });
     }
     

@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-// Target research sources for the University Persona + Law Persona
+// ── RESEARCH & POLICY SOURCES ──
 const RESEARCH_SOURCES = [
   {
     domain: "pide.org.pk",
@@ -36,35 +36,107 @@ const RESEARCH_SOURCES = [
     category: "development_policy",
     label: "SDPI",
   },
-  // ── LAW EXAMINER SOURCES ──
+
+  // ── EDEXCEL A-LEVEL SPECIFICATIONS (ALL 10 SUBJECTS) ──
+  // Economics
   {
-    domain: "cambridgeinternational.org",
+    domain: "qualifications.pearson.com",
     urls: [
-      "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-law-9084/",
-      "https://www.cambridgeinternational.org/Images/597382-2024-2026-syllabus.pdf",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/economics-a-2015.html",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/economics.html",
     ],
-    category: "law_cie",
-    label: "CIE Law 9084",
+    category: "edexcel_economics",
+    label: "Edexcel Economics",
   },
+  // Business
   {
-    domain: "aqa.org.uk",
+    domain: "qualifications.pearson.com",
     urls: [
-      "https://www.aqa.org.uk/subjects/law/a-level/law-7162/assessment-resources",
-      "https://www.aqa.org.uk/subjects/law/a-level/law-7162/teaching-resources",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/business-2015.html",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/business-studies.html",
     ],
-    category: "law_aqa",
-    label: "AQA Law 7162",
+    category: "edexcel_business",
+    label: "Edexcel Business",
   },
+  // Law
   {
     domain: "qualifications.pearson.com",
     urls: [
       "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/law-2015.html",
       "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/law-2015.coursematerials.html",
     ],
-    category: "law_edexcel",
+    category: "edexcel_law",
     label: "Edexcel Law",
   },
-  // ── CHEMISTRY EXAMINER SOURCES ──
+  // Psychology
+  {
+    domain: "qualifications.pearson.com",
+    urls: [
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/psychology-2015.html",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/psychology.html",
+    ],
+    category: "edexcel_psychology",
+    label: "Edexcel Psychology",
+  },
+  // Accounting
+  {
+    domain: "qualifications.pearson.com",
+    urls: [
+      "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/accounting.html",
+    ],
+    category: "edexcel_accounting",
+    label: "Edexcel Accounting",
+  },
+  // Sociology (not offered as IAL — use AQA fallback)
+  {
+    domain: "aqa.org.uk",
+    urls: [
+      "https://www.aqa.org.uk/subjects/sociology/a-level/sociology-7192/assessment-resources",
+      "https://www.aqa.org.uk/subjects/sociology/a-level/sociology-7192/teaching-resources",
+    ],
+    category: "edexcel_sociology",
+    label: "AQA Sociology",
+  },
+  // Mathematics
+  {
+    domain: "qualifications.pearson.com",
+    urls: [
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/mathematics-2017.html",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/mathematics.html",
+    ],
+    category: "edexcel_mathematics",
+    label: "Edexcel Mathematics",
+  },
+  // Physics
+  {
+    domain: "qualifications.pearson.com",
+    urls: [
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015.html",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/physics.html",
+    ],
+    category: "edexcel_physics",
+    label: "Edexcel Physics",
+  },
+  // Chemistry
+  {
+    domain: "qualifications.pearson.com",
+    urls: [
+      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/chemistry-2015.html",
+      "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/chemistry.html",
+    ],
+    category: "edexcel_chemistry",
+    label: "Edexcel Chemistry",
+  },
+
+  // ── CIE A-LEVEL SPECIFICATIONS ──
+  {
+    domain: "cambridgeinternational.org",
+    urls: [
+      "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-law-9084/",
+    ],
+    category: "law_cie",
+    label: "CIE Law 9084",
+  },
   {
     domain: "cambridgeinternational.org",
     urls: [
@@ -72,6 +144,16 @@ const RESEARCH_SOURCES = [
     ],
     category: "chem_cie",
     label: "CIE Chemistry 9701",
+  },
+
+  // ── AQA SPECIFICATIONS ──
+  {
+    domain: "aqa.org.uk",
+    urls: [
+      "https://www.aqa.org.uk/subjects/law/a-level/law-7162/assessment-resources",
+    ],
+    category: "law_aqa",
+    label: "AQA Law 7162",
   },
   {
     domain: "aqa.org.uk",
@@ -81,13 +163,32 @@ const RESEARCH_SOURCES = [
     category: "chem_aqa",
     label: "AQA Chemistry 7405",
   },
+
+  // ── UNIVERSITY-LEVEL CURRICULUM SOURCES ──
   {
-    domain: "qualifications.pearson.com",
+    domain: "ocr.org.uk",
     urls: [
-      "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/chemistry-2015.html",
+      "https://www.ocr.org.uk/qualifications/as-and-a-level/economics-h060-h460-from-2019/",
     ],
-    category: "chem_edexcel",
-    label: "Edexcel Chemistry",
+    category: "uni_economics",
+    label: "OCR Economics",
+  },
+  {
+    domain: "economicsnetwork.ac.uk",
+    urls: [
+      "https://www.economicsnetwork.ac.uk/handbook",
+      "https://www.economicsnetwork.ac.uk/themes/curriculum",
+    ],
+    category: "uni_economics",
+    label: "Economics Network UK",
+  },
+  {
+    domain: "qaa.ac.uk",
+    urls: [
+      "https://www.qaa.ac.uk/the-quality-code/subject-benchmark-statements/",
+    ],
+    category: "uni_benchmark",
+    label: "QAA Subject Benchmarks",
   },
 ];
 
@@ -135,7 +236,6 @@ async function scrapeUrl(url: string, apiKey: string): Promise<{ title: string; 
       return null;
     }
 
-    // Truncate to ~4000 chars to keep cache lean
     return {
       title,
       content: markdown.slice(0, 4000),
@@ -188,7 +288,6 @@ serve(async (req) => {
       results.scraped++;
       const contentHash = await hashContent(scraped.content);
 
-      // Upsert using content hash to avoid duplicates
       const { error } = await supabase
         .from("research_cache")
         .upsert(
@@ -212,7 +311,6 @@ serve(async (req) => {
         results.cached++;
       }
 
-      // Small delay between requests to be respectful
       await new Promise(r => setTimeout(r, 1500));
     }
   }
