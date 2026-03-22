@@ -2812,7 +2812,6 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
       
       // Pull cached research (Edexcel specs, university curricula, policy data) for all personas
       const cachePromise = getCachedResearch(userQuery);
-        : Promise.resolve("");
       
       [ragContext, cachedResearch] = await Promise.all([ragPromise, cachePromise]);
       
