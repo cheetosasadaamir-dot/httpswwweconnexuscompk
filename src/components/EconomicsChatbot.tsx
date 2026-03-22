@@ -8,6 +8,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from 'sonner';
 import ReactMarkdown from 'react-markdown';
 import { supabase } from '@/integrations/supabase/client';
+import { trackInteraction } from '@/lib/analytics';
 import { useAuth } from '@/hooks/useAuth';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
