@@ -1024,6 +1024,8 @@ export default function EconomicsChatbot() {
       const personaLabel = PERSONA_CONFIG[persona]?.label || persona;
       const { error: trackError } = await (supabase.rpc as any)('track_interaction', { _persona: personaLabel });
       if (trackError) console.error('track_interaction failed:', trackError);
+      // Track to admin dashboard
+      trackInteraction(personaLabel);
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to get response';
