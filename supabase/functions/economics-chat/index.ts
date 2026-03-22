@@ -182,7 +182,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'research': {
-    ragDomains: ["cambridgeinternational.org", "methods.sagepub.com", "tutor2u.net", "simplypsychology.org", "socialresearchmethods.net"],
+    ragDomains: ["cambridgeinternational.org", "methods.sagepub.com", "tutor2u.net", "simplypsychology.org", "socialresearchmethods.net", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|design)\b/i,
       /\b(hypothesis|null\s*hypothesis|alternative\s*hypothesis|operationali[sz]e|variable|independent|dependent|extraneous)\b/i,
