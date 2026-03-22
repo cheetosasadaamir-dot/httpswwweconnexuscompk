@@ -2968,7 +2968,7 @@ ${COHORT_DIRECTIVE}`;
           messages: [...systemMessages, ...recentMessages],
           stream: true,
           max_tokens: getMaxTokens(userQuery, persona),
-          temperature: ['a-level', 'psychology', 'business', 'accounting', 'sociology'].includes(persona) ? 0.5 : persona === 'law' ? 0.4 : ['research', 'mathematics', 'physics', 'chemistry'].includes(persona) ? 0.45 : 0.6,
+          temperature: 0.5,
           frequency_penalty: 0.5,
         }),
         signal: controller.signal,
