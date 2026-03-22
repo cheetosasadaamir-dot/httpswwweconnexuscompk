@@ -212,7 +212,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'physics': {
-    ragDomains: ["cambridgeinternational.org", "physicsandmathstutor.com", "savemyexams.com", "znotes.org", "feynmanlectures.caltech.edu", "hyperphysics.phy-astr.gsu.edu"],
+    ragDomains: ["cambridgeinternational.org", "physicsandmathstutor.com", "savemyexams.com", "znotes.org", "feynmanlectures.caltech.edu", "hyperphysics.phy-astr.gsu.edu", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(solve|calculate|derive|find|show\s+that|sketch|measure|determine|estimate)\b/i,
       /\b(kinematics|dynamics|force|momentum|energy|work|power|torque|equilibrium)\b/i,
