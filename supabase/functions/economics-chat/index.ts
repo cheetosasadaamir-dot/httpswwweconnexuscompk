@@ -2417,17 +2417,17 @@ function computeQueryHash(query: string, persona: string): string {
 function getMaxTokens(query: string, persona: Persona): number {
   const wordCount = query.trim().split(/\s+/).length;
   
-  // Short queries (definitions, single concepts): 300 tokens
-  if (wordCount <= 5) return 300;
+  // Short queries (definitions, single concepts): 700 tokens
+  if (wordCount <= 5) return 700;
   
-  // Medium queries (explain, analyse): 500 tokens
-  if (wordCount <= 15) return 600;
+  // Medium queries (explain, analyse): 1200 tokens
+  if (wordCount <= 15) return 1200;
   
-  // Complex essay queries (evaluate, discuss, compare): capped at 700
-  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 700;
+  // Complex essay queries (evaluate, discuss, compare): 2048 tokens
+  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 2048;
   
-  // Default — capped at 700
-  return 700;
+  // Default — 2048 to prevent mid-sentence cut-offs
+  return 2048;
 }
 
 // ============================================================
@@ -2853,6 +2853,9 @@ Maintain strict algorithmic precision. Use step-by-step logic, pure mathematical
 
     const GLOBAL_SYSTEM_OVERLAY = `## GLOBAL SYSTEM RULES (UNIVERSAL — ALL PERSONAS)
 
+### ━━━ SECTION -1: COMPLETENESS & CONCISENESS MANDATE ━━━
+Provide complete, high-impact explanations. Do not exceed 3 paragraphs. Ensure every point is finished. Accuracy is non-negotiable. Never leave a sentence incomplete or cut off mid-thought.
+
 ### ━━━ SECTION 0: STRICT DOMAIN CONSTRAINT (ZERO-SPAM POLICY) ━━━
 You are the **${personaName}** specialist. You are PROHIBITED from engaging in:
 - General chat, small talk, trivia, riddles, jokes, or roleplay outside ${personaName}.
@@ -2968,7 +2971,7 @@ ${COHORT_DIRECTIVE}`;
           messages: [...systemMessages, ...recentMessages],
           stream: true,
           max_tokens: getMaxTokens(userQuery, persona),
-          temperature: ['a-level', 'psychology', 'business', 'accounting', 'sociology'].includes(persona) ? 0.5 : persona === 'law' ? 0.4 : ['research', 'mathematics', 'physics', 'chemistry'].includes(persona) ? 0.45 : 0.6,
+          temperature: 0.5,
           frequency_penalty: 0.5,
         }),
         signal: controller.signal,
