@@ -167,7 +167,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'sociology': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "simplysociology.org", "savemyexams.com", "revisesociology.com"],
+    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "simplysociology.org", "savemyexams.com", "revisesociology.com", "aqa.org.uk", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|outline)\b/i,
       /\b(functionalism|marxism|feminism|interactionism|postmodernism|weberian|new\s*right)\b/i,
