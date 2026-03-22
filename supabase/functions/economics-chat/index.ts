@@ -138,7 +138,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'psychology': {
-    ragDomains: ["cambridgeinternational.org", "psychologywizard.net", "simplypsychology.org", "tutor2u.net", "savemyexams.com"],
+    ragDomains: ["cambridgeinternational.org", "psychologywizard.net", "simplypsychology.org", "tutor2u.net", "savemyexams.com", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|describe|suggest)\b/i,
       /\b(milgram|bandura|zimbardo|asch|loftus|palmer|piliavin|baron.?cohen|grant|freud|skinner|pavlov|watson)\b/i,
