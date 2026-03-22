@@ -197,7 +197,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'mathematics': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "mathsisfun.com"],
+    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "mathsisfun.com", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(solve|prove|derive|integrate|differentiate|calculate|find|show\s+that|simplify|expand|factorise|sketch)\b/i,
       /\b(calculus|differentiation|integration|differential\s*equation|chain\s*rule|product\s*rule|quotient\s*rule)\b/i,
