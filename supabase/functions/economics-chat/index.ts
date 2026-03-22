@@ -91,7 +91,7 @@ const PERSONA_CONFIG: Record<Persona, {
   searchPatterns: RegExp[];
 }> = {
   'a-level': {
-    ragDomains: ["economicshelp.org", "tutor2u.net", "imf.org", "tradingeconomics.com", "sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org"],
+    ragDomains: ["economicshelp.org", "tutor2u.net", "imf.org", "tradingeconomics.com", "sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org", "qualifications.pearson.com", "ocr.org.uk", "economicsnetwork.ac.uk"],
     searchPatterns: [
       /\b(gdp|inflation|cpi|wpi|unemployment|interest rate|exchange rate|growth|deficit|surplus|debt|trade|balance.?of.?payments)\b/i,
       /\b(current|latest|recent|today|now|2024|2025|2026|real.?world|data|statistics?|pakistan|sbp|pbs)\b/i,
