@@ -108,7 +108,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ragDomains: [
       "tutor2u.net", "savemyexams.com", "znotes.org", "cambridgeinternational.org",
       "physicsandmathstutor.com", "hbr.org", "sloanreview.mit.edu", "stern.nyu.edu",
-      "investopedia.com", "corporate.finance.institute", "ibm.com/topics"
+      "investopedia.com", "corporate.finance.institute", "ibm.com/topics", "qualifications.pearson.com"
     ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|justify|identify|calculate|recommend)\b/i,
