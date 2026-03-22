@@ -405,10 +405,8 @@ async function getCachedResearch(query: string): Promise<string> {
 
     const contextParts: string[] = [];
     for (const entry of data) {
-      const sourceName = getSourceName(entry.source_url);
-      // Extract relevant snippet (first 1500 chars)
       const snippet = entry.content.slice(0, 1500);
-      contextParts.push(`[Cached Research — ${sourceName}: ${entry.title}]\n${snippet}`);
+      contextParts.push(`[Curriculum Reference — ${entry.title}]\n${snippet}`);
     }
 
     return contextParts.join("\n\n---\n\n");
