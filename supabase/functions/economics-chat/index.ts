@@ -302,8 +302,7 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
       const title = result.title || result.metadata?.title || "";
       const content = (result.markdown || result.description || "").slice(0, 1200);
       if (content.trim()) {
-        const sourceName = getSourceName(url);
-        contextParts.push(`[Source: ${sourceName} — ${title}]\n${content}`);
+        contextParts.push(`[Academic Reference — ${title}]\n${content}`);
       }
     }
 
