@@ -123,7 +123,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'law': {
-    ragDomains: ["legislation.gov.uk", "law.cornell.edu", "eur-lex.europa.eu", "judiciary.uk", "cambridgeinternational.org", "tutor2u.net", "lawteacher.net", "e-lawresources.co.uk", "caselaw.findlaw.com", "icj-cij.org", "supremecourt.uk"],
+    ragDomains: ["legislation.gov.uk", "law.cornell.edu", "eur-lex.europa.eu", "judiciary.uk", "cambridgeinternational.org", "tutor2u.net", "lawteacher.net", "e-lawresources.co.uk", "caselaw.findlaw.com", "icj-cij.org", "supremecourt.uk", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|critically)\b/i,
       /\b(contract|tort|negligence|duty\s*of\s*care|breach|damages|remoteness|causation|contributory)\b/i,
