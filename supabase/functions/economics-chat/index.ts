@@ -229,7 +229,7 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'chemistry': {
-    ragDomains: ["cambridgeinternational.org", "chemguide.co.uk", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "rsc.org", "masterorganicchemistry.com", "chemistrysteps.com"],
+    ragDomains: ["cambridgeinternational.org", "chemguide.co.uk", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "rsc.org", "masterorganicchemistry.com", "chemistrysteps.com", "qualifications.pearson.com"],
     searchPatterns: [
       /\b(solve|calculate|derive|find|show\s+that|draw|sketch|predict|explain|define|evaluate|discuss|compare|suggest|deduce)\b/i,
       /\b(atom|molecule|ion|isotope|electron|proton|neutron|orbital|subshell|quantum\s*number|aufbau|hund|pauli)\b/i,
