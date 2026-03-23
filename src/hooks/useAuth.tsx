@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
 
         // Sync profile + geo on sign in/up
-        if ((event === 'SIGNED_IN' || event === 'SIGNED_UP') && session?.user) {
+        if (event === 'SIGNED_IN' && session?.user) {
           // Use setTimeout to avoid blocking the auth state update
           setTimeout(() => syncProfileWithGeo(session.user), 0);
         }
