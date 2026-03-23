@@ -8,8 +8,8 @@ export function usePageTracking() {
 
   useEffect(() => {
     // Track to local project
-    (supabase.rpc as any)('track_page_view', { _page: location.pathname })
-      .then(({ error }: { error: any }) => {
+    supabase.rpc('track_page_view', { _page: location.pathname })
+      .then(({ error }) => {
         if (error) console.error('track_page_view failed:', error);
       });
     // Track to admin dashboard
