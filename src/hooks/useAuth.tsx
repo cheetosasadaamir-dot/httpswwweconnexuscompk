@@ -25,28 +25,39 @@ async function syncProfileWithGeo(user: User) {
     let longitude: number | null = null;
 
     try {
-      const geoRes = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) });
+      const geoRes = await fetch('https://ipwho.is/', { signal: AbortSignal.timeout(5000) });
       if (geoRes.ok) {
         const geo = await geoRes.json();
-        city = geo.city ?? null;
-        country = geo.country_name ?? null;
-        latitude = geo.latitude ?? null;
-        longitude = geo.longitude ?? null;
+        if (geo.success !== false) {
+          city = geo.city ?? null;
+          country = geo.country ?? null;
+          latitude = geo.latitude ?? null;
+          longitude = geo.longitude ?? null;
+        }
       }
     } catch {
       // Geo fetch failed silently — proceed without location data
     }
 
-    const { error } = await supabase.from('profiles').upsert({
+    const profileData: Record<string, unknown> = {
       id: user.id,
       email: user.email ?? null,
       full_name: user.user_metadata?.full_name ?? user.user_metadata?.name ?? null,
       avatar_url: user.user_metadata?.avatar_url ?? user.user_metadata?.picture ?? null,
-      city,
-      country,
-      latitude,
-      longitude,
-    }, { onConflict: 'id' });
+    };
+
+    // Only include geo fields if we got data — don't overwrite with nulls
+    if (city) {
+      profileData.city = city;
+      profileData.country = country;
+      profileData.latitude = latitude;
+      profileData.longitude = longitude;
+    }
+
+    const { error } = await supabase.from('profiles').upsert(
+      profileData as any,
+      { onConflict: 'id' }
+    );
 
     if (error) console.error('Profile sync failed:', error.message);
   } catch (err) {
