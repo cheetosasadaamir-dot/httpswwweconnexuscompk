@@ -16,22 +16,64 @@ const AuthContext = createContext<AuthContextType>({
   signOut: async () => {},
 });
 
+async function syncProfileWithGeo(user: User) {
+  try {
+    // Fetch IP-based geolocation silently
+    let city: string | null = null;
+    let country: string | null = null;
+    let latitude: number | null = null;
+    let longitude: number | null = null;
+
+    try {
+      const geoRes = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) });
+      if (geoRes.ok) {
+        const geo = await geoRes.json();
+        city = geo.city ?? null;
+        country = geo.country_name ?? null;
+        latitude = geo.latitude ?? null;
+        longitude = geo.longitude ?? null;
+      }
+    } catch {
+      // Geo fetch failed silently — proceed without location data
+    }
+
+    const { error } = await supabase.from('profiles').upsert({
+      id: user.id,
+      email: user.email ?? null,
+      full_name: user.user_metadata?.full_name ?? user.user_metadata?.name ?? null,
+      avatar_url: user.user_metadata?.avatar_url ?? user.user_metadata?.picture ?? null,
+      city,
+      country,
+      latitude,
+      longitude,
+    }, { onConflict: 'id' });
+
+    if (error) console.error('Profile sync failed:', error.message);
+  } catch (err) {
+    console.error('Profile sync error:', err);
+  }
+}
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
+
+        // Sync profile + geo on sign in/up
+        if (event === 'SIGNED_IN' && session?.user) {
+          // Use setTimeout to avoid blocking the auth state update
+          setTimeout(() => syncProfileWithGeo(session.user), 0);
+        }
       }
     );
 
-    // THEN check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
