@@ -18,48 +18,28 @@ const AuthContext = createContext<AuthContextType>({
 
 async function syncProfileWithGeo(user: User) {
   try {
-    // Fetch IP-based geolocation silently
-    let city: string | null = null;
-    let country: string | null = null;
-    let latitude: number | null = null;
-    let longitude: number | null = null;
-
-    try {
-      const geoRes = await fetch('https://ipwho.is/', { signal: AbortSignal.timeout(5000) });
-      if (geoRes.ok) {
-        const geo = await geoRes.json();
-        if (geo.success !== false) {
-          city = geo.city ?? null;
-          country = geo.country ?? null;
-          latitude = geo.latitude ?? null;
-          longitude = geo.longitude ?? null;
-        }
-      }
-    } catch {
-      // Geo fetch failed silently — proceed without location data
-    }
-
-    const profileData: Record<string, unknown> = {
+    // Upsert basic profile data first
+    const { error } = await supabase.from('profiles').upsert({
       id: user.id,
       email: user.email ?? null,
       full_name: user.user_metadata?.full_name ?? user.user_metadata?.name ?? null,
       avatar_url: user.user_metadata?.avatar_url ?? user.user_metadata?.picture ?? null,
-    };
-
-    // Only include geo fields if we got data — don't overwrite with nulls
-    if (city) {
-      profileData.city = city;
-      profileData.country = country;
-      profileData.latitude = latitude;
-      profileData.longitude = longitude;
-    }
-
-    const { error } = await supabase.from('profiles').upsert(
-      profileData as any,
-      { onConflict: 'id' }
-    );
+    } as any, { onConflict: 'id' });
 
     if (error) console.error('Profile sync failed:', error.message);
+
+    // Call edge function for server-side geo lookup (avoids CORS)
+    try {
+      const session = await supabase.auth.getSession();
+      const token = session.data.session?.access_token;
+      if (token) {
+        await supabase.functions.invoke('geo-lookup', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+    } catch {
+      // Geo lookup failed silently
+    }
   } catch (err) {
     console.error('Profile sync error:', err);
   }
