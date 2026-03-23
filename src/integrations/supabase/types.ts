@@ -414,6 +414,8 @@ export type Database = {
         }
         Returns: boolean
       }
+      track_interaction: { Args: { _persona: string }; Returns: undefined }
+      track_page_view: { Args: { _page: string }; Returns: undefined }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
