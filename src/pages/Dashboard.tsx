@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { LogOut, User, Loader2, Calendar, Mail } from 'lucide-react';
+import { LogOut, User, Loader2, Calendar, Mail, MapPin } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import EconNexusLogo from '@/components/EconNexusLogo';
@@ -10,12 +11,20 @@ import EconNexusLogo from '@/components/EconNexusLogo';
 const Dashboard = () => {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
+  const [profile, setProfile] = useState<{ city?: string | null; country?: string | null } | null>(null);
 
   useEffect(() => {
     if (!loading && !user) {
       navigate('/login', { replace: true });
     }
   }, [user, loading, navigate]);
+
+  useEffect(() => {
+    if (user) {
+      supabase.from('profiles').select('city, country').eq('id', user.id).single()
+        .then(({ data }) => { if (data) setProfile(data); });
+    }
+  }, [user]);
 
   const handleSignOut = async () => {
     await signOut();
@@ -37,6 +46,7 @@ const Dashboard = () => {
   const createdAt = user.created_at ? new Date(user.created_at).toLocaleDateString('en-US', {
     year: 'numeric', month: 'long', day: 'numeric'
   }) : 'N/A';
+  const locationStr = [profile?.city, profile?.country].filter(Boolean).join(', ');
 
   return (
     <Layout>
@@ -68,6 +78,12 @@ const Dashboard = () => {
                     <Calendar className="w-3 h-3" />
                     <span>Joined {createdAt}</span>
                   </div>
+                  {locationStr && (
+                    <div className="flex items-center gap-2 mt-0.5 text-muted-foreground text-xs">
+                      <MapPin className="w-3 h-3" />
+                      <span>{locationStr}</span>
+                    </div>
+                  )}
                 </div>
               </div>
               <Button onClick={handleSignOut} variant="outline" size="sm" className="border-destructive/30 text-destructive hover:bg-destructive/10">
