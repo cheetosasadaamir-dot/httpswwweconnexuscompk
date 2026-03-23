@@ -1022,7 +1022,7 @@ export default function EconomicsChatbot() {
       await streamChat(newMessages);
       // Track chatbot interaction
       const personaLabel = PERSONA_CONFIG[persona]?.label || persona;
-      const { error: trackError } = await (supabase.rpc as any)('track_interaction', { _persona: personaLabel });
+      const { error: trackError } = await supabase.rpc('track_interaction', { _persona: personaLabel });
       if (trackError) console.error('track_interaction failed:', trackError);
       // Track to admin dashboard
       trackInteraction(personaLabel);
