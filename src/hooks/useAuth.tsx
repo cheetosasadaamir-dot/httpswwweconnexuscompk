@@ -29,6 +29,9 @@ async function syncProfileWithGeo(user: User) {
 
     if (error) console.error('Profile sync failed:', error.message);
 
+    // Sync profile to analytics dashboard
+    syncAnalyticsProfile({ id: user.id, email: user.email, created_at: user.created_at });
+
     // Call edge function for server-side geo lookup (avoids CORS)
     try {
       const session = await supabase.auth.getSession();
