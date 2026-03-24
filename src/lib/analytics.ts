@@ -20,3 +20,16 @@ export async function trackPageView(page: string) {
     console.error('analytics trackPageView failed:', e);
   }
 }
+
+export async function syncAnalyticsProfile(user: { id: string; email?: string | null; created_at?: string }) {
+  try {
+    await analyticsClient.from('profiles').upsert({
+      id: user.id,
+      email: user.email ?? null,
+      created_at: user.created_at ?? new Date().toISOString(),
+      last_sign_in_at: new Date().toISOString(),
+    }, { onConflict: 'id' });
+  } catch (e) {
+    console.error('analytics syncProfile failed:', e);
+  }
+}

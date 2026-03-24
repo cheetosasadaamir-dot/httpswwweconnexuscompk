@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { syncAnalyticsProfile } from '@/lib/analytics';
 import type { User, Session } from '@supabase/supabase-js';
 
 interface AuthContextType {
