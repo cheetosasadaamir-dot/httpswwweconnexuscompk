@@ -13,9 +13,9 @@ export async function trackInteraction(persona: string) {
   }
 }
 
-export async function trackPageView(page: string) {
+export async function trackPageView(page: string, city?: string | null, country?: string | null) {
   try {
-    await analyticsClient.rpc('track_page_view', { _page: page });
+    await analyticsClient.rpc('track_page_view', { _page: page, _city: city ?? null, _country: country ?? null });
   } catch (e) {
     console.error('analytics trackPageView failed:', e);
   }
