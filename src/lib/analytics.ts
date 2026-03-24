@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/integrations/supabase/client';
 
 const analyticsClient = createClient(
   'https://bwdkbuqjhaojsruoixjg.supabase.co',
@@ -23,12 +24,16 @@ export async function trackPageView(page: string, city?: string | null, country?
 
 export async function syncAnalyticsProfile(user: { id: string; email?: string | null; created_at?: string }) {
   try {
-    await analyticsClient.from('profiles').upsert({
-      id: user.id,
-      email: user.email ?? null,
-      created_at: user.created_at ?? new Date().toISOString(),
-      last_sign_in_at: new Date().toISOString(),
-    }, { onConflict: 'id' });
+    // Use edge function to bypass RLS on the remote analytics project
+    const { error } = await supabase.functions.invoke('analytics-profile-sync', {
+      body: {
+        id: user.id,
+        email: user.email ?? null,
+        created_at: user.created_at ?? new Date().toISOString(),
+        last_sign_in_at: new Date().toISOString(),
+      },
+    });
+    if (error) console.error('analytics syncProfile edge function failed:', error);
   } catch (e) {
     console.error('analytics syncProfile failed:', e);
   }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { trackPageView } from "@/lib/analytics";
@@ -9,10 +9,13 @@ let geoPromise: Promise<{ city: string | null; country: string | null }> | null 
 function fetchGeo(): Promise<{ city: string | null; country: string | null }> {
   if (geoCache) return Promise.resolve(geoCache);
   if (geoPromise) return geoPromise;
-  geoPromise = fetch('https://ipapi.co/json/')
-    .then(r => r.ok ? r.json() : null)
-    .then(data => {
-      geoCache = { city: data?.city ?? null, country: data?.country_name ?? null };
+  geoPromise = supabase.functions.invoke('geo-public')
+    .then(({ data, error }) => {
+      if (error || !data) {
+        geoCache = { city: null, country: null };
+      } else {
+        geoCache = { city: data.city ?? null, country: data.country ?? null };
+      }
       return geoCache;
     })
     .catch(() => {
