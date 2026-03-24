@@ -1,0 +1,51 @@
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
+
+const ANALYTICS_URL = 'https://bwdkbuqjhaojsruoixjg.supabase.co'
+
+Deno.serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders })
+  }
+
+  try {
+    const analyticsKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY')
+    if (!analyticsKey) {
+      return new Response(JSON.stringify({ error: 'Analytics key not configured' }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    const { id, email, created_at, last_sign_in_at } = await req.json()
+
+    const analytics = createClient(ANALYTICS_URL, analyticsKey)
+
+    const { error } = await analytics.from('profiles').upsert({
+      id,
+      email,
+      created_at,
+      last_sign_in_at,
+    }, { onConflict: 'id' })
+
+    if (error) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    return new Response(JSON.stringify({ success: true }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  } catch (err) {
+    return new Response(JSON.stringify({ error: String(err) }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
+})
