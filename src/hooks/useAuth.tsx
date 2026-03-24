@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { syncAnalyticsProfile } from '@/lib/analytics';
 import type { User, Session } from '@supabase/supabase-js';
 
 interface AuthContextType {
@@ -27,6 +28,9 @@ async function syncProfileWithGeo(user: User) {
     } as any, { onConflict: 'id' });
 
     if (error) console.error('Profile sync failed:', error.message);
+
+    // Sync profile to analytics dashboard
+    syncAnalyticsProfile({ id: user.id, email: user.email, created_at: user.created_at });
 
     // Call edge function for server-side geo lookup (avoids CORS)
     try {
