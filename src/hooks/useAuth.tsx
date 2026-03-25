@@ -63,7 +63,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
 
         // Sync profile + geo on sign in/up
-        if ((event === 'SIGNED_IN' || event === 'SIGNED_UP' || event === 'TOKEN_REFRESHED') && session?.user) {
+        if (event === 'SIGNED_OUT') {
+          lastSyncedTokenRef.current = null;
+        }
+
+        if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session?.user) {
           const syncToken = session.access_token ?? session.user.id;
           if (lastSyncedTokenRef.current === syncToken) return;
           lastSyncedTokenRef.current = syncToken;
