@@ -1,10 +1,9 @@
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 }
-
-const ANALYTICS_URL = 'https://bwdkbuqjhaojsruoixjg.supabase.co'
-const ANALYTICS_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3ZGtidXFqaGFvanNydW9peGpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NTk5ODksImV4cCI6MjA4OTUzNTk4OX0.i0T2YoefyRYtN2YnCjSNfeJhnQlvFS2ON6pEbSR2hMg'
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -12,28 +11,69 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const serviceKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY')
-    const apiKey = serviceKey || ANALYTICS_ANON_KEY
+    // 1. Validate caller's JWT against the MAIN site
+    const authHeader = req.headers.get('Authorization')
+    if (!authHeader?.startsWith('Bearer ')) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
 
-    const { id, email, created_at, last_sign_in_at } = await req.json()
+    const mainSupabase = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_ANON_KEY')!,
+      { global: { headers: { Authorization: authHeader } } }
+    )
 
-    // Use direct REST API call to bypass any client-side issues
-    const response = await fetch(`${ANALYTICS_URL}/rest/v1/profiles?on_conflict=id`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': apiKey,
-        'Authorization': `Bearer ${apiKey}`,
-        'Prefer': 'resolution=merge-duplicates',
-      },
-      body: JSON.stringify({ id, email, created_at, last_sign_in_at }),
-    })
+    const token = authHeader.replace('Bearer ', '')
+    const { data: claimsData, error: claimsError } = await mainSupabase.auth.getClaims(token)
+    if (claimsError || !claimsData?.claims) {
+      console.error('JWT validation failed:', claimsError)
+      return new Response(JSON.stringify({ error: 'Invalid token' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
 
-    if (!response.ok) {
-      const errorBody = await response.text()
-      console.error('Analytics upsert failed:', response.status, errorBody)
-      return new Response(JSON.stringify({ error: errorBody }), {
-        status: response.status,
+    const userId = claimsData.claims.sub
+    const userEmail = claimsData.claims.email
+
+    // 2. Read optional body data
+    const body = await req.json().catch(() => ({}))
+    const created_at = body.created_at || new Date().toISOString()
+    const last_sign_in_at = body.last_sign_in_at || new Date().toISOString()
+
+    // 3. Create admin client for the ANALYTICS project
+    const analyticsServiceKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY')
+    if (!analyticsServiceKey) {
+      console.error('ANALYTICS_SERVICE_ROLE_KEY not set')
+      return new Response(JSON.stringify({ error: 'Server config error' }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    const ANALYTICS_URL = 'https://bwdkbuqjhaojsruoixjg.supabase.co'
+    const analyticsAdmin = createClient(ANALYTICS_URL, analyticsServiceKey)
+
+    // 4. Upsert into analytics profiles
+    const { error: upsertError } = await analyticsAdmin
+      .from('profiles')
+      .upsert(
+        {
+          id: userId,
+          email: userEmail ?? body.email ?? null,
+          created_at,
+          last_sign_in_at,
+        },
+        { onConflict: 'id' }
+      )
+
+    if (upsertError) {
+      console.error('Analytics upsert failed:', upsertError)
+      return new Response(JSON.stringify({ error: upsertError.message }), {
+        status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
