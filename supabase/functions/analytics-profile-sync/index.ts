@@ -12,11 +12,8 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Try service role key first, fall back to anon key
     const serviceKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY')
-    console.log('Service key available:', !!serviceKey, 'length:', serviceKey?.length ?? 0)
-    // For debugging, try anon key first
-    const apiKey = ANALYTICS_ANON_KEY
+    const apiKey = serviceKey || ANALYTICS_ANON_KEY
 
     const { id, email, created_at, last_sign_in_at } = await req.json()
 
