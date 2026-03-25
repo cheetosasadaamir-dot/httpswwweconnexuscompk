@@ -24,8 +24,19 @@ export async function trackPageView(page: string, city?: string | null, country?
 
 export async function syncAnalyticsProfile(user: { id: string; email?: string | null; created_at?: string }) {
   try {
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token;
+
+    if (!token) {
+      console.error('analytics syncProfile skipped: no active session');
+      return;
+    }
+
     // Use edge function to bypass RLS on the remote analytics project
     const { error } = await supabase.functions.invoke('analytics-profile-sync', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: {
         id: user.id,
         email: user.email ?? null,

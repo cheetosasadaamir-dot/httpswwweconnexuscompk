@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react';
+import { useState, useEffect, createContext, useContext, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { syncAnalyticsProfile } from '@/lib/analytics';
 import type { User, Session } from '@supabase/supabase-js';
@@ -30,7 +30,7 @@ async function syncProfileWithGeo(user: User) {
     if (error) console.error('Profile sync failed:', error.message);
 
     // Sync profile to analytics dashboard
-    syncAnalyticsProfile({ id: user.id, email: user.email, created_at: user.created_at });
+    await syncAnalyticsProfile({ id: user.id, email: user.email, created_at: user.created_at });
 
     // Call edge function for server-side geo lookup (avoids CORS)
     try {
@@ -53,6 +53,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const lastSyncedTokenRef = useRef<string | null>(null);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -62,9 +63,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
 
         // Sync profile + geo on sign in/up
-        if (event === 'SIGNED_IN' && session?.user) {
+        if (event === 'SIGNED_OUT') {
+          lastSyncedTokenRef.current = null;
+        }
+
+        if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session?.user) {
+          const syncToken = session.access_token ?? session.user.id;
+          if (lastSyncedTokenRef.current === syncToken) return;
+          lastSyncedTokenRef.current = syncToken;
+
           // Use setTimeout to avoid blocking the auth state update
-          setTimeout(() => syncProfileWithGeo(session.user), 0);
+          setTimeout(() => {
+            void syncProfileWithGeo(session.user);
+          }, 0);
         }
       }
     );
@@ -73,6 +84,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
+
+      if (session?.user) {
+        const syncToken = session.access_token ?? session.user.id;
+        if (lastSyncedTokenRef.current !== syncToken) {
+          lastSyncedTokenRef.current = syncToken;
+          void syncProfileWithGeo(session.user);
+        }
+      }
     });
 
     return () => subscription.unsubscribe();

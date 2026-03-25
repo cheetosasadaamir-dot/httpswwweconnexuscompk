@@ -54,8 +54,8 @@ Deno.serve(async (req) => {
       })
     }
 
-    const ANALYTICS_URL = 'https://bwdkbuqjhaojsruoixjg.supabase.co'
-    const analyticsAdmin = createClient(ANALYTICS_URL, analyticsServiceKey)
+    const analyticsUrl = Deno.env.get('ANALYTICS_SUPABASE_URL') || 'https://bwdkbuqjhaojsruoixjg.supabase.co'
+    const analyticsAdmin = createClient(analyticsUrl, analyticsServiceKey)
 
     // 4. Upsert into analytics profiles
     const { error: upsertError } = await analyticsAdmin
