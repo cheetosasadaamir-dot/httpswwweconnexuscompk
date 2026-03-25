@@ -15,13 +15,17 @@ Deno.serve(async (req) => {
   try {
     const analyticsKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY')
     if (!analyticsKey) {
+      console.error('ANALYTICS_SERVICE_ROLE_KEY not found in env')
       return new Response(JSON.stringify({ error: 'Analytics key not configured' }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
+    console.log('Analytics key length:', analyticsKey.length, 'starts with:', analyticsKey.substring(0, 10))
+
     const { id, email, created_at, last_sign_in_at } = await req.json()
+    console.log('Upserting profile:', { id, email })
 
     const analytics = createClient(ANALYTICS_URL, analyticsKey)
 
@@ -33,16 +37,19 @@ Deno.serve(async (req) => {
     }, { onConflict: 'id' })
 
     if (error) {
+      console.error('Upsert error:', error)
       return new Response(JSON.stringify({ error: error.message }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
+    console.log('Profile synced successfully')
     return new Response(JSON.stringify({ success: true }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (err) {
+    console.error('Unexpected error:', err)
     return new Response(JSON.stringify({ error: String(err) }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
