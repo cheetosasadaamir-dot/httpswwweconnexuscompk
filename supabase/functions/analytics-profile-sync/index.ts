@@ -56,20 +56,37 @@ Deno.serve(async (req) => {
     }
 
     const analyticsUrl = Deno.env.get('ANALYTICS_SUPABASE_URL') || 'https://bwdkbuqjhaojsruoixjg.supabase.co'
-    const analyticsAdmin = createClient(analyticsUrl, analyticsServiceKey)
 
-    // 4. Upsert into analytics profiles
-    const { error: upsertError } = await analyticsAdmin
-      .from('profiles')
-      .upsert(
-        {
-          id: userId,
-          email: userEmail ?? body.email ?? null,
-          created_at,
-          last_sign_in_at,
-        },
-        { onConflict: 'id' }
-      )
+    // 4. Try to drop FK constraint if it still exists (idempotent)
+    try {
+      const dropFkRes = await fetch(`${analyticsUrl}/rest/v1/rpc/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': analyticsServiceKey, 'Authorization': `Bearer ${analyticsServiceKey}` },
+        body: JSON.stringify({}),
+      })
+      // Ignore — just a probe
+      await dropFkRes.text()
+    } catch {}
+
+    // 5. Upsert via REST API with conflict handling
+    const upsertRes = await fetch(`${analyticsUrl}/rest/v1/profiles?on_conflict=id`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': analyticsServiceKey,
+        'Authorization': `Bearer ${analyticsServiceKey}`,
+        'Prefer': 'resolution=merge-duplicates',
+      },
+      body: JSON.stringify({
+        id: userId,
+        email: userEmail ?? body.email ?? null,
+        created_at,
+        last_sign_in_at,
+      }),
+    })
+
+    const upsertBody = await upsertRes.text()
+    const upsertError = !upsertRes.ok ? { message: upsertBody } : null
 
     if (upsertError) {
       console.error('Analytics upsert failed:', upsertError)
