@@ -46,6 +46,7 @@ Deno.serve(async (req) => {
 
     // 3. Create admin client for the ANALYTICS project
     const analyticsServiceKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY')
+    console.log('ANALYTICS_SERVICE_ROLE_KEY prefix:', analyticsServiceKey?.substring(0, 10), 'length:', analyticsServiceKey?.length)
     if (!analyticsServiceKey) {
       console.error('ANALYTICS_SERVICE_ROLE_KEY not set')
       return new Response(JSON.stringify({ error: 'Server config error' }), {
