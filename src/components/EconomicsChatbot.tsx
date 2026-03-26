@@ -1244,7 +1244,7 @@ export default function EconomicsChatbot() {
             </div>
 
             {/* DESKTOP: Vertical Left Rail */}
-            <div className="hidden lg:flex lg:w-[72px] lg:flex-col items-center gap-1 p-2 lg:py-4 border-r border-white/[0.06]"
+            <div className="hidden lg:flex lg:w-[72px] lg:flex-col items-center gap-1 p-2 lg:py-4 border-r border-white/[0.06] overflow-y-auto scrollbar-hide"
               style={{ background: 'hsl(0 0% 3% / 0.8)', backdropFilter: 'blur(20px)' }}
             >
               {(Object.keys(PERSONA_CONFIG) as Persona[]).map((p) => {
