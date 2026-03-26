@@ -11,7 +11,6 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // 1. Validate caller's JWT against the MAIN site
     const authHeader = req.headers.get('Authorization')
     if (!authHeader?.startsWith('Bearer ')) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), {
@@ -39,14 +38,11 @@ Deno.serve(async (req) => {
     const userId = claimsData.claims.sub
     const userEmail = claimsData.claims.email
 
-    // 2. Read optional body data
     const body = await req.json().catch(() => ({}))
     const created_at = body.created_at || new Date().toISOString()
     const last_sign_in_at = body.last_sign_in_at || new Date().toISOString()
 
-    // 3. Create admin client for the ANALYTICS project
     const analyticsServiceKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY')
-    console.log('ANALYTICS_SERVICE_ROLE_KEY prefix:', analyticsServiceKey?.substring(0, 10), 'length:', analyticsServiceKey?.length)
     if (!analyticsServiceKey) {
       console.error('ANALYTICS_SERVICE_ROLE_KEY not set')
       return new Response(JSON.stringify({ error: 'Server config error' }), {
@@ -56,37 +52,14 @@ Deno.serve(async (req) => {
     }
 
     const analyticsUrl = Deno.env.get('ANALYTICS_SUPABASE_URL') || 'https://bwdkbuqjhaojsruoixjg.supabase.co'
+    const analyticsAdmin = createClient(analyticsUrl, analyticsServiceKey)
 
-    // 4. Try to drop FK constraint if it still exists (idempotent)
-    try {
-      const dropFkRes = await fetch(`${analyticsUrl}/rest/v1/rpc/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'apikey': analyticsServiceKey, 'Authorization': `Bearer ${analyticsServiceKey}` },
-        body: JSON.stringify({}),
-      })
-      // Ignore — just a probe
-      await dropFkRes.text()
-    } catch {}
-
-    // 5. Upsert via REST API with conflict handling
-    const upsertRes = await fetch(`${analyticsUrl}/rest/v1/profiles?on_conflict=id`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': analyticsServiceKey,
-        'Authorization': `Bearer ${analyticsServiceKey}`,
-        'Prefer': 'resolution=merge-duplicates',
-      },
-      body: JSON.stringify({
-        id: userId,
-        email: userEmail ?? body.email ?? null,
-        created_at,
-        last_sign_in_at,
-      }),
-    })
-
-    const upsertBody = await upsertRes.text()
-    const upsertError = !upsertRes.ok ? { message: upsertBody } : null
+    const { error: upsertError } = await analyticsAdmin
+      .from('profiles')
+      .upsert(
+        { id: userId, email: userEmail ?? body.email ?? null, created_at, last_sign_in_at },
+        { onConflict: 'id' }
+      )
 
     if (upsertError) {
       console.error('Analytics upsert failed:', upsertError)
