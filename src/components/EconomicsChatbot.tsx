@@ -1186,7 +1186,7 @@ export default function EconomicsChatbot() {
             boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 40px)', maxHeight: '1400px' }}>
+          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 40px)', maxHeight: '1600px' }}>
 
             {/* MOBILE & TABLET: Horizontal Scrollable Pill Menu */}
             <div className="lg:hidden relative shrink-0">
@@ -1244,7 +1244,7 @@ export default function EconomicsChatbot() {
             </div>
 
             {/* DESKTOP: Vertical Left Rail */}
-            <div className="hidden lg:flex lg:w-[72px] lg:flex-col items-center gap-1 p-2 lg:py-4 border-r border-white/[0.06]"
+            <div className="hidden lg:flex lg:w-[72px] lg:flex-col items-center gap-1 p-2 lg:py-4 border-r border-white/[0.06] overflow-y-auto scrollbar-hide"
               style={{ background: 'hsl(0 0% 3% / 0.8)', backdropFilter: 'blur(20px)' }}
             >
               {(Object.keys(PERSONA_CONFIG) as Persona[]).map((p) => {

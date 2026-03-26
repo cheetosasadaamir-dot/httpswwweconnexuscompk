@@ -129,6 +129,14 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
+        {/* AI Economics Mentor Chatbot */}
+        <EconomicsChatbot />
+
+        {/* Silver Divider */}
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
+        </div>
+
         {/* Knowledge Pillars / Notes Repository Section */}
         <section id="notes-repository" className="section-mobile scroll-mt-20 transition-all duration-500">
           <div className="w-[95%] max-w-[1200px] mx-auto">
@@ -152,14 +160,6 @@ const Index = () => {
             <KnowledgePillars />
           </div>
         </section>
-
-        {/* Silver Divider */}
-        <div className="w-[95%] max-w-[1200px] mx-auto">
-          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
-        </div>
-
-        {/* AI Economics Mentor Chatbot */}
-        <EconomicsChatbot />
 
         {/* Silver Divider */}
         <div className="w-[95%] max-w-[1200px] mx-auto">
