@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 // by waiting for exit animations that never completed
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { AuthProvider } from "@/hooks/useAuth";
+import { AuthGateProvider } from "@/hooks/useAuthGate";
 import { usePageTracking } from "@/hooks/usePageTracking";
 
 // Critical path - load immediately
@@ -101,7 +102,7 @@ const AnimatedRoutes = () => {
     <ErrorBoundary>
       <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
-          <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+          <Route path="/" element={<Index />} />
           
           {/* Main Landing Pages */}
           <Route path="/microeconomics" element={<Microeconomics />} />
@@ -170,13 +171,15 @@ const AnimatedRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AnimatedRoutes />
-        </BrowserRouter>
-      </TooltipProvider>
+      <AuthGateProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AnimatedRoutes />
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthGateProvider>
     </AuthProvider>
   </QueryClientProvider>
 );
