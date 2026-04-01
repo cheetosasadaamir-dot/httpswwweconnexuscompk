@@ -324,7 +324,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
             }
             transition={{ duration: 1.2, delay: 1.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            Where Academic Excellence Meets Artificial Intelligence
+            Start Your Economics Journey
           </motion.p>
         </motion.div>
 
