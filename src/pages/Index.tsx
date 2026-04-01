@@ -130,8 +130,10 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
-        {/* AI Economics Mentor Chatbot */}
-        <EconomicsChatbot />
+        {/* AI Economics Mentor Chatbot — gated for unauthenticated users */}
+        <AuthOverlay label="Login to Unlock Expert AI">
+          <EconomicsChatbot />
+        </AuthOverlay>
 
         {/* Silver Divider */}
         <div className="w-[95%] max-w-[1200px] mx-auto">
