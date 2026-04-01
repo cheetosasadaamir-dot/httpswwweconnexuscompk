@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import AuthOverlay from '@/components/AuthOverlay';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
 import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
