@@ -102,7 +102,7 @@ const AnimatedRoutes = () => {
     <ErrorBoundary>
       <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
-          <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+          <Route path="/" element={<Index />} />
           
           {/* Main Landing Pages */}
           <Route path="/microeconomics" element={<Microeconomics />} />
