@@ -97,7 +97,7 @@ const Login = () => {
             <p className="text-muted-foreground text-sm mt-1">
               {mode === 'signup'
                 ? 'Sign up to start your economics journey'
-                : 'Sign in to continue learning'}
+                : 'Sign in to continue your economics journey'}
             </p>
           </div>
 
