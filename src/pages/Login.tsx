@@ -95,9 +95,7 @@ const Login = () => {
               {mode === 'signup' ? 'Create Account' : 'Welcome Back'}
             </h1>
             <p className="text-muted-foreground text-sm mt-1">
-              {mode === 'signup'
-                ? 'Sign up to start your economics journey'
-                : 'Sign in to continue your economics journey'}
+              Where Academic Excellence Meets Artificial Intelligence
             </p>
           </div>
 
