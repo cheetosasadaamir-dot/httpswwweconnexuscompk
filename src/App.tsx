@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 // by waiting for exit animations that never completed
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { AuthProvider } from "@/hooks/useAuth";
+import { AuthGateProvider } from "@/hooks/useAuthGate";
 import { usePageTracking } from "@/hooks/usePageTracking";
 
 // Critical path - load immediately
