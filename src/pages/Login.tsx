@@ -97,7 +97,7 @@ const Login = () => {
             <p className="text-muted-foreground text-sm mt-1">
               {mode === 'signup'
                 ? 'Sign up to start your economics journey'
-                : 'Sign in to continue learning'}
+                : 'Sign in to continue your economics journey'}
             </p>
           </div>
 
@@ -187,16 +187,16 @@ const Login = () => {
                 <button onClick={() => setMode('magic')} className="text-xs text-primary hover:underline block w-full">
                   Sign in with Magic Link instead
                 </button>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-sm text-muted-foreground mt-3">
                   Don't have an account?{' '}
-                  <button onClick={() => setMode('signup')} className="text-primary hover:underline">Sign Up</button>
+                  <button onClick={() => setMode('signup')} className="text-primary font-semibold hover:underline">Sign Up</button>
                 </p>
               </>
             )}
             {mode === 'signup' && (
-              <p className="text-xs text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 Already have an account?{' '}
-                <button onClick={() => setMode('login')} className="text-primary hover:underline">Sign In</button>
+                <button onClick={() => setMode('login')} className="text-primary font-semibold hover:underline">Sign In</button>
               </p>
             )}
             {mode === 'magic' && (
