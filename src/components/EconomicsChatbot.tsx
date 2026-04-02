@@ -1517,7 +1517,7 @@ export default function EconomicsChatbot() {
                     </Button>
                   </div>
                 </div>
-                <p className="mt-1 text-[9px] text-muted-foreground/40 text-right select-none px-2 hidden md:block">Enter for new line · Ctrl+Enter to send</p>
+                <p className="mt-1 text-[9px] text-muted-foreground/40 text-right select-none px-2 hidden md:block">Shift+Enter for new line · Enter to send</p>
               </div>
             </div>
 
