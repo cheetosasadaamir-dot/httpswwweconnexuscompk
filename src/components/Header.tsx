@@ -169,16 +169,22 @@ const Header = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Link
-                    to={link.href!}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 py-3 px-4 rounded-lg text-white hover:text-neon-cyan hover:bg-neon-cyan/5 hover:translate-x-1 transition-all duration-150 group nav-instant-click"
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      if (isAuthenticated) {
+                        navigate(link.href!);
+                      } else {
+                        requireAuth(() => navigate(link.href!));
+                      }
+                    }}
+                    className="flex items-center gap-3 py-3 px-4 rounded-lg text-white hover:text-neon-cyan hover:bg-neon-cyan/5 hover:translate-x-1 transition-all duration-150 group nav-instant-click w-full text-left bg-transparent border-none cursor-pointer"
                   >
                     {link.icon && (
                       <link.icon className="w-5 h-5 text-silver group-hover:text-neon-cyan transition-colors" />
                     )}
                     <span className="font-medium tracking-wide">{link.label}</span>
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
               <div className="pt-3">
