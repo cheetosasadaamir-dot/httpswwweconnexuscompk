@@ -104,11 +104,18 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
+              <button
                 key={link.href}
-                to={link.href!}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (isAuthenticated) {
+                    navigate(link.href!);
+                  } else {
+                    requireAuth(() => navigate(link.href!));
+                  }
+                }}
                 className={cn(
-                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-150 group pointer-events-auto nav-instant-click",
+                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-150 group pointer-events-auto nav-instant-click bg-transparent border-none cursor-pointer",
                   "active:scale-95 active:shadow-[0_0_12px_rgba(0,242,255,0.4)]",
                   location.pathname === link.href
                     ? "text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]"
@@ -123,7 +130,7 @@ const Header = () => {
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-cyan to-primary"
                   />
                 )}
-              </Link>
+              </button>
             ))}
           </nav>
 
