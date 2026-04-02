@@ -1114,13 +1114,12 @@ export default function EconomicsChatbot() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    // Cmd/Ctrl + Enter → send
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+    // Enter → send (Shift+Enter → new line)
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
       return;
     }
-    // Plain Enter → new line (default textarea behaviour, do nothing)
   };
 
   // Persona config for left rail
