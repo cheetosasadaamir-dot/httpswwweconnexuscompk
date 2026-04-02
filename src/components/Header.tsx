@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, BookOpen, Briefcase } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useAuthGate } from '@/hooks/useAuthGate';
 import GlobalSearch from './GlobalSearch';
 import EconNexusLogo from './EconNexusLogo';
 import UserProfileDropdown from './UserProfileDropdown';
@@ -25,6 +26,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { isAuthenticated, requireAuth } = useAuthGate();
 
   const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
     if (closeMobileMenu) {
@@ -102,11 +104,18 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
+              <button
                 key={link.href}
-                to={link.href!}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (isAuthenticated) {
+                    navigate(link.href!);
+                  } else {
+                    requireAuth(() => navigate(link.href!));
+                  }
+                }}
                 className={cn(
-                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-150 group pointer-events-auto nav-instant-click",
+                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-150 group pointer-events-auto nav-instant-click bg-transparent border-none cursor-pointer",
                   "active:scale-95 active:shadow-[0_0_12px_rgba(0,242,255,0.4)]",
                   location.pathname === link.href
                     ? "text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]"
@@ -121,7 +130,7 @@ const Header = () => {
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-cyan to-primary"
                   />
                 )}
-              </Link>
+              </button>
             ))}
           </nav>
 
@@ -160,16 +169,22 @@ const Header = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Link
-                    to={link.href!}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 py-3 px-4 rounded-lg text-white hover:text-neon-cyan hover:bg-neon-cyan/5 hover:translate-x-1 transition-all duration-150 group nav-instant-click"
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      if (isAuthenticated) {
+                        navigate(link.href!);
+                      } else {
+                        requireAuth(() => navigate(link.href!));
+                      }
+                    }}
+                    className="flex items-center gap-3 py-3 px-4 rounded-lg text-white hover:text-neon-cyan hover:bg-neon-cyan/5 hover:translate-x-1 transition-all duration-150 group nav-instant-click w-full text-left bg-transparent border-none cursor-pointer"
                   >
                     {link.icon && (
                       <link.icon className="w-5 h-5 text-silver group-hover:text-neon-cyan transition-colors" />
                     )}
                     <span className="font-medium tracking-wide">{link.label}</span>
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
               <div className="pt-3">

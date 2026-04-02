@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useAuthGate } from '@/hooks/useAuthGate';
 import { 
   TrendingUp, 
   Users, 
@@ -25,6 +26,17 @@ interface PillarCardProps {
 
 const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, delay }: PillarCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+  const { isAuthenticated, requireAuth } = useAuthGate();
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isAuthenticated) {
+      navigate(href);
+    } else {
+      requireAuth(() => navigate(href));
+    }
+  };
 
   return (
     <motion.div
@@ -33,7 +45,7 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
     >
-      <Link to={href}>
+      <div onClick={handleClick} className="cursor-pointer">
         <motion.div
           onHoverStart={() => setIsHovered(true)}
           onHoverEnd={() => setIsHovered(false)}
@@ -127,7 +139,7 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
             </motion.div>
           </div>
         </motion.div>
-      </Link>
+      </div>
     </motion.div>
   );
 };
