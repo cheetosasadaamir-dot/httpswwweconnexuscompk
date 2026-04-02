@@ -1512,7 +1512,7 @@ export default function EconomicsChatbot() {
                     <Button onClick={() => handleSend()} disabled={(!input.trim() && !uploadedImage) || isLoading} size="icon"
                       className="h-10 w-10 rounded-xl transition-all"
                       style={{ background: `linear-gradient(135deg, hsl(214 100% 15%), ${activeConfig.color})`, border: `1px solid ${activeConfig.color}40` }}
-                      title="Send (Ctrl+Enter)">
+                      title="Send (Enter)">
                       {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                     </Button>
                   </div>
