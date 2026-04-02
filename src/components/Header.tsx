@@ -26,6 +26,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { isAuthenticated, requireAuth } = useAuthGate();
 
   const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
     if (closeMobileMenu) {
