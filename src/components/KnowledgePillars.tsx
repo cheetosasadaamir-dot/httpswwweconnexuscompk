@@ -139,7 +139,7 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
             </motion.div>
           </div>
         </motion.div>
-      </Link>
+      </div>
     </motion.div>
   );
 };
