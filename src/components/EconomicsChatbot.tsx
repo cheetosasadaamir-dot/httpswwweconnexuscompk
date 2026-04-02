@@ -1114,13 +1114,12 @@ export default function EconomicsChatbot() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    // Cmd/Ctrl + Enter → send
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+    // Enter → send (Shift+Enter → new line)
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
       return;
     }
-    // Plain Enter → new line (default textarea behaviour, do nothing)
   };
 
   // Persona config for left rail
@@ -1186,7 +1185,7 @@ export default function EconomicsChatbot() {
             boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 40px)', maxHeight: '1600px' }}>
+          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 24px)', maxHeight: '1800px', willChange: 'transform', transform: 'translate3d(0,0,0)' }}>
 
             {/* MOBILE & TABLET: Horizontal Scrollable Pill Menu */}
             <div className="lg:hidden relative shrink-0">
@@ -1513,12 +1512,12 @@ export default function EconomicsChatbot() {
                     <Button onClick={() => handleSend()} disabled={(!input.trim() && !uploadedImage) || isLoading} size="icon"
                       className="h-10 w-10 rounded-xl transition-all"
                       style={{ background: `linear-gradient(135deg, hsl(214 100% 15%), ${activeConfig.color})`, border: `1px solid ${activeConfig.color}40` }}
-                      title="Send (Ctrl+Enter)">
+                      title="Send (Enter)">
                       {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                     </Button>
                   </div>
                 </div>
-                <p className="mt-1 text-[9px] text-muted-foreground/40 text-right select-none px-2 hidden md:block">Enter for new line · Ctrl+Enter to send</p>
+                <p className="mt-1 text-[9px] text-muted-foreground/40 text-right select-none px-2 hidden md:block">Shift+Enter for new line · Enter to send</p>
               </div>
             </div>
 
