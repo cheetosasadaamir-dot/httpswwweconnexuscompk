@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, BookOpen, Briefcase } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useAuthGate } from '@/hooks/useAuthGate';
 import GlobalSearch from './GlobalSearch';
 import EconNexusLogo from './EconNexusLogo';
 import UserProfileDropdown from './UserProfileDropdown';
