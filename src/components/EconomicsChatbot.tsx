@@ -1210,8 +1210,11 @@ export default function EconomicsChatbot() {
                     <button
                       key={p}
                       onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-                      className="flex items-center gap-1.5 rounded-full shrink-0 transition-all duration-200 active:scale-95"
+                      className="flex items-center gap-1.5 rounded-full shrink-0 active:scale-95"
                       style={{
+                        transition: 'all 0.1s cubic-bezier(0.22, 1, 0.36, 1)',
+                        willChange: 'transform, background, border-color, box-shadow',
+                        transform: 'translate3d(0,0,0)',
                         padding: isActive ? '6px 14px' : '6px 12px',
                         scrollSnapAlign: 'center',
                         ...(isActive ? {
