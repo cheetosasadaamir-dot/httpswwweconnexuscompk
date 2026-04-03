@@ -1272,8 +1272,8 @@ export default function EconomicsChatbot() {
                     }}
                     title={cfg.label}
                   >
-                    <Icon className="w-4 h-4 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
-                    <span className="text-[8px] font-medium mt-0.5 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)' }}>
+                    <Icon className="w-4 h-4" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)', transition: 'color 0.1s ease' }} />
+                    <span className="text-[8px] font-medium mt-0.5" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)', transition: 'color 0.1s ease' }}>
                       {cfg.label}
                     </span>
                     {isActive && (
