@@ -1260,11 +1260,16 @@ export default function EconomicsChatbot() {
                     className={`relative flex flex-col items-center justify-center rounded-xl min-w-[52px] w-[52px] h-[52px] shrink-0 chat-quick-action ${
                       isActive ? '' : 'hover:bg-white/[0.04]'
                     }`}
-                    style={isActive ? {
-                      background: `linear-gradient(135deg, ${cfg.color}15, ${cfg.color}08)`,
-                      border: `1px solid ${cfg.color}40`,
-                      boxShadow: `0 0 20px ${cfg.color}20`,
-                    } : { border: '1px solid transparent' }}
+                    style={{
+                      willChange: 'transform, background, border-color, box-shadow',
+                      transform: 'translate3d(0,0,0)',
+                      transition: 'all 0.1s cubic-bezier(0.22, 1, 0.36, 1)',
+                      ...(isActive ? {
+                        background: `linear-gradient(135deg, ${cfg.color}15, ${cfg.color}08)`,
+                        border: `1px solid ${cfg.color}40`,
+                        boxShadow: `0 0 20px ${cfg.color}20`,
+                      } : { border: '1px solid transparent' }),
+                    }}
                     title={cfg.label}
                   >
                     <Icon className="w-4 h-4 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />

@@ -125,6 +125,7 @@ const Header = () => {
               >
                 {link.icon && <link.icon className="w-4 h-4 transition-colors" />}
                 {link.label}
+                {!isAuthenticated && <Lock className="w-3 h-3 text-muted-foreground" />}
                 {location.pathname === link.href && (
                   <motion.div
                     layoutId="activeNav"
