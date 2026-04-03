@@ -184,6 +184,9 @@ const Header = () => {
                       <link.icon className="w-5 h-5 text-silver group-hover:text-neon-cyan transition-colors" />
                     )}
                     <span className="font-medium tracking-wide">{link.label}</span>
+                    {!isAuthenticated && (
+                      <Lock className="w-3.5 h-3.5 text-muted-foreground ml-auto" />
+                    )}
                   </button>
                 </motion.div>
               ))}
