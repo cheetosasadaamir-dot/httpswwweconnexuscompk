@@ -121,6 +121,7 @@ const Header = () => {
                     ? "text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]"
                     : "text-silver hover:text-neon-cyan hover:translate-x-0.5"
                 )}
+                style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
               >
                 {link.icon && <link.icon className="w-4 h-4 transition-colors" />}
                 {link.label}
