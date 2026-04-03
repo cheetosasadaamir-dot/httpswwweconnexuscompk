@@ -1210,8 +1210,11 @@ export default function EconomicsChatbot() {
                     <button
                       key={p}
                       onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
-                      className="flex items-center gap-1.5 rounded-full shrink-0 transition-all duration-200 active:scale-95"
+                      className="flex items-center gap-1.5 rounded-full shrink-0 active:scale-95"
                       style={{
+                        transition: 'all 0.1s cubic-bezier(0.22, 1, 0.36, 1)',
+                        willChange: 'transform, background, border-color, box-shadow',
+                        transform: 'translate3d(0,0,0)',
                         padding: isActive ? '6px 14px' : '6px 12px',
                         scrollSnapAlign: 'center',
                         ...(isActive ? {
@@ -1257,15 +1260,20 @@ export default function EconomicsChatbot() {
                     className={`relative flex flex-col items-center justify-center rounded-xl min-w-[52px] w-[52px] h-[52px] shrink-0 chat-quick-action ${
                       isActive ? '' : 'hover:bg-white/[0.04]'
                     }`}
-                    style={isActive ? {
-                      background: `linear-gradient(135deg, ${cfg.color}15, ${cfg.color}08)`,
-                      border: `1px solid ${cfg.color}40`,
-                      boxShadow: `0 0 20px ${cfg.color}20`,
-                    } : { border: '1px solid transparent' }}
+                    style={{
+                      willChange: 'transform, background, border-color, box-shadow',
+                      transform: 'translate3d(0,0,0)',
+                      transition: 'all 0.1s cubic-bezier(0.22, 1, 0.36, 1)',
+                      ...(isActive ? {
+                        background: `linear-gradient(135deg, ${cfg.color}15, ${cfg.color}08)`,
+                        border: `1px solid ${cfg.color}40`,
+                        boxShadow: `0 0 20px ${cfg.color}20`,
+                      } : { border: '1px solid transparent' }),
+                    }}
                     title={cfg.label}
                   >
-                    <Icon className="w-4 h-4 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)' }} />
-                    <span className="text-[8px] font-medium mt-0.5 transition-colors duration-200" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)' }}>
+                    <Icon className="w-4 h-4" style={{ color: isActive ? cfg.color : 'hsl(0 0% 50%)', transition: 'color 0.1s ease' }} />
+                    <span className="text-[8px] font-medium mt-0.5" style={{ color: isActive ? cfg.color : 'hsl(0 0% 40%)', transition: 'color 0.1s ease' }}>
                       {cfg.label}
                     </span>
                     {isActive && (

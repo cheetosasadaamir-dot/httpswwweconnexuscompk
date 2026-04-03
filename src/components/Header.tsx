@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, BookOpen, Briefcase } from 'lucide-react';
+import { Menu, X, BookOpen, Briefcase, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useAuthGate } from '@/hooks/useAuthGate';
@@ -121,9 +121,11 @@ const Header = () => {
                     ? "text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]"
                     : "text-silver hover:text-neon-cyan hover:translate-x-0.5"
                 )}
+                style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
               >
                 {link.icon && <link.icon className="w-4 h-4 transition-colors" />}
                 {link.label}
+                {!isAuthenticated && <Lock className="w-3 h-3 text-muted-foreground" />}
                 {location.pathname === link.href && (
                   <motion.div
                     layoutId="activeNav"
@@ -184,6 +186,9 @@ const Header = () => {
                       <link.icon className="w-5 h-5 text-silver group-hover:text-neon-cyan transition-colors" />
                     )}
                     <span className="font-medium tracking-wide">{link.label}</span>
+                    {!isAuthenticated && (
+                      <Lock className="w-3.5 h-3.5 text-muted-foreground ml-auto" />
+                    )}
                   </button>
                 </motion.div>
               ))}
