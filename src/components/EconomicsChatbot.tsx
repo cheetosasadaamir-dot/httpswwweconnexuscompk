@@ -24,6 +24,7 @@ import guideResearch from '@/assets/guide-research.png';
 import guideMathematics from '@/assets/guide-mathematics.png';
 import guidePhysics from '@/assets/guide-physics.png';
 import guideChemistry from '@/assets/guide-chemistry.png';
+import guideBiology from '@/assets/guide-biology.png';
 
 const GUIDE_IMAGES: Record<string, string> = {
   'a-level': guideEconomics,
