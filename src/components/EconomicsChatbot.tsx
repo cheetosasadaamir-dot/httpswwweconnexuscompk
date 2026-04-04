@@ -465,6 +465,12 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
       'Analyzing spectral data...',
       'Checking IUPAC nomenclature...',
       'Verifying units and state symbols...',
+    ], 'biology': [
+      'Analyzing biological pathways...',
+      'Mapping cellular processes...',
+      'Cross-referencing syllabus content...',
+      'Verifying taxonomic classification...',
+      'Checking mark scheme terminology...',
     ],
   };
   const loadingStates = LOADING_MAP[persona] || LOADING_STATES_ALEVEL;
