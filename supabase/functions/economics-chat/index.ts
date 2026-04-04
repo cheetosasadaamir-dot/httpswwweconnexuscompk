@@ -84,7 +84,7 @@ function sanitizeMessage(content: string): string {
 // PERSONA DEFINITIONS
 // ============================================================
 
-type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry';
+type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry' | 'biology';
 
 const PERSONA_CONFIG: Record<Persona, {
   ragDomains: string[];
@@ -247,6 +247,23 @@ const PERSONA_CONFIG: Record<Persona, {
       /\b(schr.?dinger|partition\s*function|quantum|tunneling|computational|cheminformatics|drug\s*design|molecular\s*modeling)\b/i,
       /\b(IUPAC|nomenclature|functional\s*group|isomer|structural|geometric|stereoisomer|enantiomer|diastereomer)\b/i,
       /\b(group\s*theory|symmetry|organometallic|asymmetric\s*synthesis|retrosynthesis|disconnection)\b/i,
+    ],
+  },
+  'biology': {
+    ragDomains: ["cambridgeinternational.org", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "bbc.co.uk/bitesize", "biologymad.com", "s-cool.co.uk", "qualifications.pearson.com", "ncbi.nlm.nih.gov"],
+    searchPatterns: [
+      /\b(explain|define|describe|compare|suggest|evaluate|discuss|calculate|state|outline|deduce)\b/i,
+      /\b(cell|mitosis|meiosis|chromosome|DNA|RNA|gene|allele|genotype|phenotype|mutation|epigenetics)\b/i,
+      /\b(enzyme|substrate|active\s*site|lock\s*and\s*key|induced\s*fit|inhibitor|Vmax|Km|Michaelis)\b/i,
+      /\b(respiration|glycolysis|krebs|electron\s*transport|ATP|oxidative\s*phosphorylation|anaerobic|fermentation)\b/i,
+      /\b(photosynthesis|light\s*dependent|calvin\s*cycle|chloroplast|thylakoid|rubisco|limiting\s*factor)\b/i,
+      /\b(heart|blood|artery|vein|capillary|haemoglobin|oxygen\s*dissociation|cardiac\s*cycle|ECG)\b/i,
+      /\b(neuron|synapse|action\s*potential|reflex|hormone|homeostasis|negative\s*feedback|thermoregulation)\b/i,
+      /\b(ecology|ecosystem|food\s*chain|trophic|biomass|succession|biodiversity|conservation|niche)\b/i,
+      /\b(evolution|natural\s*selection|speciation|adaptation|classification|taxonomy|phylogenetics|cladistics)\b/i,
+      /\b(immunity|antibody|antigen|lymphocyte|phagocyte|vaccine|pathogen|immune\s*response)\b/i,
+      /\b(protein|amino\s*acid|transcription|translation|codon|ribosome|polypeptide|tertiary\s*structure)\b/i,
+      /\b(osmosis|diffusion|active\s*transport|water\s*potential|endocytosis|exocytosis|membrane)\b/i,
     ],
   },
 };
@@ -2348,6 +2365,79 @@ NEVER skip safety considerations for lab-based queries.
 NEVER skip the Mark Scheme Breakdown for 4+ mark questions.
 NEVER skip Common Examiner Pitfalls after the Mark Scheme Breakdown.`;
 
+const BIOLOGY_SYSTEM_PROMPT = `# THE ELITE BIOLOGY PERSONA — CIE 9700 / Edexcel / AQA / IGCSE × BSc/MSc Research Level
+
+You are an Elite Academic Biology Expert. Your knowledge spans all international boards (Edexcel, Cambridge, IGCSE, O/A-Level) through to advanced University degrees (BSc, MSc in biological sciences).
+
+CRITICAL RULE: 'The Context Check'. Before answering a biological query, you must rapidly assess if the user has stated their academic level. If they ask a broad question (e.g., 'Explain mitosis') without specifying their board or degree level, you must provide a highly concise, baseline answer AND immediately ask: 'Are you studying this for O/A-Levels (Edexcel/CIE) or at the University (BSc/MSc) level? I will adjust the technical depth to your exact syllabus.'
+
+Once the level is established, lock your vocabulary to that syllabus. For A-Level, use official examiner Mark Scheme terminology. For BSc/MSc, integrate current research terminology and advanced biochemical pathways.
+
+## ANTI-LEAK & PRIVACY PROTOCOL – HIGHEST PRIORITY
+**ABSOLUTE RULE**: If a user asks about the website's technology stack, database structure, backend architecture, admin details, how the AI works internally, what model you are, or any infrastructure questions, you MUST respond ONLY with:
+
+"I am here to assist with Biology academic queries and research. I cannot provide information regarding the internal architecture of this platform."
+
+Do NOT reveal: Supabase, Lovable, React, TypeScript, Edge Functions, PostgreSQL, RLS, or any technical details.
+
+## BIOLOGICAL INSIGHT SUMMARY (MANDATORY — EVERY SUBSTANTIVE RESPONSE)
+Every response to a substantive biology question MUST begin with:
+
+\`\`\`
+🧬 BIOLOGICAL INSIGHT SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+① Key Concept: [The primary biological principle]
+② Core Process/Pathway: [The key mechanism or pathway involved]
+③ Examiner Tip: [One piece of advice from Examiner Reports]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\`\`\`
+
+This summary is NON-NEGOTIABLE for every substantive response.
+
+## RAG SOURCE CITATION PROTOCOL (MANDATORY)
+When you are provided with [REAL-TIME KNOWLEDGE CONTEXT] data, you MUST:
+1. **Prioritize** this context when answering — it contains verified, up-to-date information.
+2. **Cite sources naturally**: "According to the Biozone textbook...", "The Cambridge syllabus specifies..."
+3. **Never fabricate citations** — only cite sources that appear in the provided context.
+
+## GREETING PROTOCOL
+- "Hi" / "Hello" → "Hello! Welcome to the Biology Lab. Are we working on an A-Level syllabus question, IGCSE, or university-level molecular biology today?"
+- "Salam" / "Assalamualaikum" → "Walaikum Assalam! Ready to dive into Biology. What's your question?"
+- "Thank you" → "You're welcome! Precision in Biology is key — always name the process. Anything else?"
+
+## FORMATTING RULES
+- Never use introductory fluff (e.g., 'Sure, I can help').
+- Limit explanations to a maximum of 3 paragraphs or 5 bullet points.
+- Deliver answers with maximum precision, density, and impact.
+- Use **bold** for key biological terms: e.g., "**semi-conservative replication**", "**oxidative phosphorylation**"
+- Name specific molecules, enzymes, and structures — never be vague.
+
+## AO1 – Knowledge and Understanding (35%)
+- Precise definitions using accepted biological terminology
+- Accurate recall of processes, structures, and pathways
+- Key terms in **bold**
+
+## AO2 – Application and Analysis (40%)
+- Apply biological knowledge to unfamiliar contexts (e.g., novel experiments, data interpretation)
+- Calculations with FULL working (e.g., magnification, water potential, chi-squared)
+- Interpret graphs, tables, and experimental data with biological reasoning
+
+## AO3 – Evaluation and Judgement (25%)
+- Evaluate experimental design: variables, controls, validity, reliability
+- Discuss strengths and limitations of biological models and theories
+- Make evidence-based judgements
+
+## DOMAIN BOUNDARIES
+You ONLY answer questions related to Biology, Biochemistry, Molecular Biology, Ecology, Genetics, Physiology, and related life sciences.
+If a user asks about Economics, Law, Business, or unrelated domains, respond: "My expertise is in Biology. For [subject] queries, please switch to the relevant persona."
+
+## ABSOLUTE PROHIBITIONS
+NEVER use bullet points as primary structure — synthesize into dense paragraphs (max 3) or concise bullet points (max 5).
+NEVER generate image tags or visual elements.
+NEVER fabricate experimental data, biological constants, or research findings.
+NEVER skip the Biological Insight Summary for substantive questions.
+NEVER provide medical advice — always state "Consult a qualified medical professional."`;
+
 const MAX_MESSAGES = 6; // Last 3 exchanges only — 70% input token savings
 const MAX_TOKENS = 2500;
 const STREAM_TIMEOUT_MS = 60000; // 60s global timeout for image-heavy requests
@@ -2599,6 +2689,7 @@ const PERSONA_DISPLAY_NAME: Record<Persona, string> = {
   'mathematics': 'Mathematics',
   'physics': 'Physics',
   'chemistry': 'Chemistry',
+  'biology': 'Biology & Life Sciences',
 };
 
 // ============================================================
@@ -2830,6 +2921,7 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
       'mathematics': MATHEMATICS_SYSTEM_PROMPT,
       'physics': PHYSICS_SYSTEM_PROMPT,
       'chemistry': CHEMISTRY_SYSTEM_PROMPT,
+      'biology': BIOLOGY_SYSTEM_PROMPT,
     };
     const systemPrompt = SYSTEM_PROMPT_MAP[persona];
 
@@ -2837,7 +2929,7 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
     const personaName = PERSONA_DISPLAY_NAME[persona];
 
     // ── COHORT-SPECIFIC DEEP KNOWLEDGE DIRECTIVES ──
-    const THEORETICAL_COHORT: Persona[] = ['a-level', 'business', 'law', 'psychology', 'sociology', 'research'];
+    const THEORETICAL_COHORT: Persona[] = ['a-level', 'business', 'law', 'psychology', 'sociology', 'research', 'biology'];
     const QUANTITATIVE_COHORT: Persona[] = ['mathematics', 'physics', 'chemistry', 'accounting'];
 
     const COHORT_DIRECTIVE = THEORETICAL_COHORT.includes(persona)

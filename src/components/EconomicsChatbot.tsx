@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom, Wifi, WifiOff } from 'lucide-react';
+import { Send, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom, Wifi, WifiOff, Dna } from 'lucide-react';
 import userProfilePhoto from '@/assets/user-profile-photo.png';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -24,6 +24,7 @@ import guideResearch from '@/assets/guide-research.png';
 import guideMathematics from '@/assets/guide-mathematics.png';
 import guidePhysics from '@/assets/guide-physics.png';
 import guideChemistry from '@/assets/guide-chemistry.png';
+import guideBiology from '@/assets/guide-biology.png';
 
 const GUIDE_IMAGES: Record<string, string> = {
   'a-level': guideEconomics,
@@ -36,6 +37,7 @@ const GUIDE_IMAGES: Record<string, string> = {
   'mathematics': guideMathematics,
   'physics': guidePhysics,
   'chemistry': guideChemistry,
+  'biology': guideBiology,
 };
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 
@@ -66,7 +68,7 @@ type Message = {
 
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error' | 'mapping-diagram' | 'solving-logic';
 
-type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry';
+type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry' | 'biology';
 
 const QUICK_ACTIONS_ALEVEL = [
   { label: 'J-Curve Effect', query: 'Explain the J-Curve effect and why the current account worsens before improving after depreciation.' },
@@ -159,6 +161,25 @@ const QUICK_ACTIONS_CHEMISTRY = [
   { label: 'Equilibrium & pH', query: 'Calculate the pH of a 0.10 mol dm⁻³ solution of ethanoic acid (Ka = 1.74 × 10⁻⁵). Then calculate the pH of a buffer made by adding 0.05 mol NaOH to 100 cm³ of this acid.' },
   { label: 'Transition Metals', query: 'Explain why transition metal complexes are coloured using crystal field theory. Why does [Cu(H₂O)₆]²⁺ appear blue while [Cu(NH₃)₄(H₂O)₂]²⁺ appears deep blue?' },
   { label: 'Multi-Step Synthesis', query: 'Plan a multi-step synthesis of ethyl ethanoate starting from ethanol. Give all reagents, conditions, and mechanisms at each step.' },
+];
+
+const QUICK_ACTIONS_BIOLOGY = [
+  { label: 'Mitosis vs Meiosis', query: 'Compare and contrast mitosis and meiosis, including the stages, outcomes, and biological significance of each type of cell division.' },
+  { label: 'DNA Replication', query: 'Explain the semi-conservative mechanism of DNA replication, including the roles of helicase, DNA polymerase, and ligase. Include Meselson-Stahl evidence.' },
+  { label: 'Natural Selection', query: 'Explain the mechanism of natural selection and how it leads to evolution. Use a named example such as antibiotic resistance in bacteria.' },
+  { label: 'Gas Exchange', query: 'Describe the structure of the alveoli and explain how they are adapted for efficient gas exchange. Include Fick\'s Law.' },
+  { label: 'Krebs Cycle', query: 'Outline the stages of aerobic respiration: glycolysis, link reaction, Krebs cycle, and oxidative phosphorylation. State the ATP yield at each stage.' },
+  { label: 'Immunity', query: 'Explain the difference between innate and adaptive immunity. Describe the roles of B-lymphocytes and T-lymphocytes in the specific immune response.' },
+];
+
+const COMMAND_WORDS_BIOLOGY = [
+  { word: 'Define', ao: 'AO1', meaning: 'Give precise biological definition', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Describe', ao: 'AO1', meaning: 'State features, stages, or structures', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Give reasons with biological mechanisms', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Compare', ao: 'AO2', meaning: 'Identify similarities and differences', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Suggest', ao: 'AO2', meaning: 'Apply knowledge to unfamiliar context', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Evaluate', ao: 'AO3', meaning: 'Weigh evidence and make judgements', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Calculate', ao: 'AO2', meaning: 'Show formula and full working', color: 'hsl(150, 65%, 42%)' },
 ];
 
 const COMMAND_WORDS_PHYSICS = [
@@ -441,8 +462,8 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
               ))}
             </div>
             <div className="mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/15 space-y-1">
-              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {{ 'Business': 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)', 'Law': 'IRAC: Issue • Rule • Application • Conclusion', 'Psychology': 'AO1 (25%) • AO2 (25%) • AO3 (50%)', 'Accounting': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', 'Sociology': 'AO1 (30%) • AO2 (30%) • AO3 (40%)', 'Research': 'Research • Analysis • Evaluation • Presentation', 'Mathematics': 'Pure (60%) • Statistics (20%) • Mechanics (20%)', 'Physics': 'Theory (40%) • Practical (20%) • Paper 5 (15%) • Advanced (25%)', 'Chemistry': 'AO1 (35%) • AO2 (40%) • AO3 (25%)' }[syllabusCode] || 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
-              <p className="text-[10px] text-muted-foreground/60">{{ 'Business': 'Use "Evaluate" for top-band AO4 marks', 'Law': 'Always cite case authority (OSCOLA/Bluebook)', 'Psychology': 'Use GRAVE to evaluate core studies', 'Accounting': 'Always show double-entry workings', 'Sociology': 'Present at least TWO contrasting perspectives', 'Research': 'Justify every methodological choice', 'Mathematics': 'Always show full working — marks for method, not just answer', 'Physics': 'Always show units at every step — use I-V-A-U for quantitative problems', 'Chemistry': 'Always include state symbols and units — curly arrows from lone pairs/bonds' }[syllabusCode] || 'Use "Evaluate" for A* level answers'}</p>
+              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {{ 'Business': 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)', 'Law': 'IRAC: Issue • Rule • Application • Conclusion', 'Psychology': 'AO1 (25%) • AO2 (25%) • AO3 (50%)', 'Accounting': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', 'Sociology': 'AO1 (30%) • AO2 (30%) • AO3 (40%)', 'Research': 'Research • Analysis • Evaluation • Presentation', 'Mathematics': 'Pure (60%) • Statistics (20%) • Mechanics (20%)', 'Physics': 'Theory (40%) • Practical (20%) • Paper 5 (15%) • Advanced (25%)', 'Chemistry': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', 'Biology': 'AO1 (35%) • AO2 (40%) • AO3 (25%)' }[syllabusCode] || 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
+              <p className="text-[10px] text-muted-foreground/60">{{ 'Business': 'Use "Evaluate" for top-band AO4 marks', 'Law': 'Always cite case authority (OSCOLA/Bluebook)', 'Psychology': 'Use GRAVE to evaluate core studies', 'Accounting': 'Always show double-entry workings', 'Sociology': 'Present at least TWO contrasting perspectives', 'Research': 'Justify every methodological choice', 'Mathematics': 'Always show full working — marks for method, not just answer', 'Physics': 'Always show units at every step — use I-V-A-U for quantitative problems', 'Chemistry': 'Always include state symbols and units — curly arrows from lone pairs/bonds', 'Biology': 'Always use precise biological terminology — name processes and structures accurately' }[syllabusCode] || 'Use "Evaluate" for A* level answers'}</p>
             </div>
           </motion.div>
         )}
@@ -463,6 +484,12 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
       'Analyzing spectral data...',
       'Checking IUPAC nomenclature...',
       'Verifying units and state symbols...',
+    ], 'biology': [
+      'Analyzing biological pathways...',
+      'Mapping cellular processes...',
+      'Cross-referencing syllabus content...',
+      'Verifying taxonomic classification...',
+      'Checking mark scheme terminology...',
     ],
   };
   const loadingStates = LOADING_MAP[persona] || LOADING_STATES_ALEVEL;
@@ -504,6 +531,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
     'mathematics': 'Prof. Euler',
     'physics': 'Prof. Newton',
     'chemistry': 'Prof. Curie',
+    'biology': 'Prof. Darwin',
   };
   const professorName = personaNameMap[persona] || 'Prof. Econs';
 
@@ -720,14 +748,14 @@ export default function EconomicsChatbot() {
     'a-level': QUICK_ACTIONS_ALEVEL, 'business': QUICK_ACTIONS_BUSINESS,
     'law': QUICK_ACTIONS_LAW, 'psychology': QUICK_ACTIONS_PSYCHOLOGY, 'accounting': QUICK_ACTIONS_ACCOUNTING,
     'sociology': QUICK_ACTIONS_SOCIOLOGY, 'research': QUICK_ACTIONS_RESEARCH, 'mathematics': QUICK_ACTIONS_MATHEMATICS,
-    'physics': QUICK_ACTIONS_PHYSICS, 'chemistry': QUICK_ACTIONS_CHEMISTRY,
+    'physics': QUICK_ACTIONS_PHYSICS, 'chemistry': QUICK_ACTIONS_CHEMISTRY, 'biology': QUICK_ACTIONS_BIOLOGY,
   };
   const quickActions = QUICK_MAP[persona] || QUICK_ACTIONS_ALEVEL;
   const CMD_MAP: Record<Persona, typeof COMMAND_WORDS_ECON> = {
     'a-level': COMMAND_WORDS_ECON, 'business': COMMAND_WORDS_BUSINESS,
     'law': COMMAND_WORDS_LAW, 'psychology': COMMAND_WORDS_PSYCHOLOGY, 'accounting': COMMAND_WORDS_ACCOUNTING,
     'sociology': COMMAND_WORDS_SOCIOLOGY, 'research': COMMAND_WORDS_RESEARCH, 'mathematics': COMMAND_WORDS_MATHEMATICS,
-    'physics': COMMAND_WORDS_PHYSICS, 'chemistry': COMMAND_WORDS_CHEMISTRY,
+    'physics': COMMAND_WORDS_PHYSICS, 'chemistry': COMMAND_WORDS_CHEMISTRY, 'biology': COMMAND_WORDS_BIOLOGY,
   };
   const COMMAND_WORDS = CMD_MAP[persona] || COMMAND_WORDS_ECON;
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -1134,6 +1162,7 @@ export default function EconomicsChatbot() {
     'mathematics': { icon: Sigma, label: 'Maths', color: 'hsl(260, 70%, 55%)', professorName: 'Prof. Euler' },
     'physics': { icon: Atom, label: 'Physics', color: 'hsl(15, 85%, 55%)', professorName: 'Prof. Newton' },
     'chemistry': { icon: FlaskConical, label: 'Chemistry', color: 'hsl(120, 60%, 45%)', professorName: 'Prof. Curie' },
+    'biology': { icon: Dna, label: 'Biology', color: 'hsl(150, 65%, 42%)', professorName: 'Prof. Darwin' },
   };
 
   const activeConfig = PERSONA_CONFIG[persona];
@@ -1141,7 +1170,7 @@ export default function EconomicsChatbot() {
   const SYLLABUS_MAP: Record<Persona, string> = {
     'a-level': 'Economics', 'business': 'Business', 'law': 'Law', 'psychology': 'Psychology',
     'accounting': 'Accounting', 'sociology': 'Sociology', 'research': 'Research',
-    'mathematics': 'Mathematics', 'physics': 'Physics', 'chemistry': 'Chemistry',
+    'mathematics': 'Mathematics', 'physics': 'Physics', 'chemistry': 'Chemistry', 'biology': 'Biology',
   };
 
   return (
