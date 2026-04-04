@@ -512,6 +512,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
     'mathematics': 'Prof. Euler',
     'physics': 'Prof. Newton',
     'chemistry': 'Prof. Curie',
+    'biology': 'Prof. Darwin',
   };
   const professorName = personaNameMap[persona] || 'Prof. Econs';
 
