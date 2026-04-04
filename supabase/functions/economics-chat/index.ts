@@ -2921,6 +2921,7 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
       'mathematics': MATHEMATICS_SYSTEM_PROMPT,
       'physics': PHYSICS_SYSTEM_PROMPT,
       'chemistry': CHEMISTRY_SYSTEM_PROMPT,
+      'biology': BIOLOGY_SYSTEM_PROMPT,
     };
     const systemPrompt = SYSTEM_PROMPT_MAP[persona];
 
