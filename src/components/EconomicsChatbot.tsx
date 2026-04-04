@@ -1170,7 +1170,7 @@ export default function EconomicsChatbot() {
   const SYLLABUS_MAP: Record<Persona, string> = {
     'a-level': 'Economics', 'business': 'Business', 'law': 'Law', 'psychology': 'Psychology',
     'accounting': 'Accounting', 'sociology': 'Sociology', 'research': 'Research',
-    'mathematics': 'Mathematics', 'physics': 'Physics', 'chemistry': 'Chemistry',
+    'mathematics': 'Mathematics', 'physics': 'Physics', 'chemistry': 'Chemistry', 'biology': 'Biology',
   };
 
   return (
