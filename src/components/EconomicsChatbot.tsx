@@ -1162,6 +1162,7 @@ export default function EconomicsChatbot() {
     'mathematics': { icon: Sigma, label: 'Maths', color: 'hsl(260, 70%, 55%)', professorName: 'Prof. Euler' },
     'physics': { icon: Atom, label: 'Physics', color: 'hsl(15, 85%, 55%)', professorName: 'Prof. Newton' },
     'chemistry': { icon: FlaskConical, label: 'Chemistry', color: 'hsl(120, 60%, 45%)', professorName: 'Prof. Curie' },
+    'biology': { icon: Dna, label: 'Biology', color: 'hsl(150, 65%, 42%)', professorName: 'Prof. Darwin' },
   };
 
   const activeConfig = PERSONA_CONFIG[persona];
