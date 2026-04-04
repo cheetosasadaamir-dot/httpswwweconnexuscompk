@@ -108,7 +108,7 @@ const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
+  const { isAuthenticated, requireAuth } = useAuthGate();
   // Debounce search query for performance (300ms delay)
   const debouncedQuery = useDebounce(query, 300);
 
