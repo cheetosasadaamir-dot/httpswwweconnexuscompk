@@ -37,6 +37,7 @@ const GUIDE_IMAGES: Record<string, string> = {
   'mathematics': guideMathematics,
   'physics': guidePhysics,
   'chemistry': guideChemistry,
+  'biology': guideBiology,
 };
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 
