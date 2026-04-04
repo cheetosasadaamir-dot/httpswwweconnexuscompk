@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 import { useDebounce } from '@/hooks/use-debounce';
+import { useAuthGate } from '@/hooks/useAuthGate';
 import { allExamPapers } from '@/data/examPapers';
 
 interface SearchResult {
@@ -107,7 +108,7 @@ const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
+  const { isAuthenticated, requireAuth } = useAuthGate();
   // Debounce search query for performance (300ms delay)
   const debouncedQuery = useDebounce(query, 300);
 
@@ -171,15 +172,21 @@ const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
     setQuery('');
     setSelectedIndex(0);
     
-    if (result.scrollTo) {
-      // Smooth scroll to section on current page
-      const element = document.getElementById(result.scrollTo);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const doNavigate = () => {
+      if (result.scrollTo) {
+        const element = document.getElementById(result.scrollTo);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        navigate(result.href);
       }
+    };
+
+    if (!isAuthenticated) {
+      requireAuth(doNavigate);
     } else {
-      // Navigate to page
-      navigate(result.href);
+      doNavigate();
     }
   };
 
