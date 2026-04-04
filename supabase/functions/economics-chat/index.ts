@@ -2929,7 +2929,7 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
     const personaName = PERSONA_DISPLAY_NAME[persona];
 
     // ── COHORT-SPECIFIC DEEP KNOWLEDGE DIRECTIVES ──
-    const THEORETICAL_COHORT: Persona[] = ['a-level', 'business', 'law', 'psychology', 'sociology', 'research'];
+    const THEORETICAL_COHORT: Persona[] = ['a-level', 'business', 'law', 'psychology', 'sociology', 'research', 'biology'];
     const QUANTITATIVE_COHORT: Persona[] = ['mathematics', 'physics', 'chemistry', 'accounting'];
 
     const COHORT_DIRECTIVE = THEORETICAL_COHORT.includes(persona)
