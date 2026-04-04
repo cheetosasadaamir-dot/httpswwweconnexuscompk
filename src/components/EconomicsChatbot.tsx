@@ -755,7 +755,7 @@ export default function EconomicsChatbot() {
     'a-level': COMMAND_WORDS_ECON, 'business': COMMAND_WORDS_BUSINESS,
     'law': COMMAND_WORDS_LAW, 'psychology': COMMAND_WORDS_PSYCHOLOGY, 'accounting': COMMAND_WORDS_ACCOUNTING,
     'sociology': COMMAND_WORDS_SOCIOLOGY, 'research': COMMAND_WORDS_RESEARCH, 'mathematics': COMMAND_WORDS_MATHEMATICS,
-    'physics': COMMAND_WORDS_PHYSICS, 'chemistry': COMMAND_WORDS_CHEMISTRY,
+    'physics': COMMAND_WORDS_PHYSICS, 'chemistry': COMMAND_WORDS_CHEMISTRY, 'biology': COMMAND_WORDS_BIOLOGY,
   };
   const COMMAND_WORDS = CMD_MAP[persona] || COMMAND_WORDS_ECON;
   const scrollRef = useRef<HTMLDivElement>(null);
