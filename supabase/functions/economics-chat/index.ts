@@ -2689,6 +2689,7 @@ const PERSONA_DISPLAY_NAME: Record<Persona, string> = {
   'mathematics': 'Mathematics',
   'physics': 'Physics',
   'chemistry': 'Chemistry',
+  'biology': 'Biology & Life Sciences',
 };
 
 // ============================================================
