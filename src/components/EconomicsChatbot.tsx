@@ -163,6 +163,25 @@ const QUICK_ACTIONS_CHEMISTRY = [
   { label: 'Multi-Step Synthesis', query: 'Plan a multi-step synthesis of ethyl ethanoate starting from ethanol. Give all reagents, conditions, and mechanisms at each step.' },
 ];
 
+const QUICK_ACTIONS_BIOLOGY = [
+  { label: 'Mitosis vs Meiosis', query: 'Compare and contrast mitosis and meiosis, including the stages, outcomes, and biological significance of each type of cell division.' },
+  { label: 'DNA Replication', query: 'Explain the semi-conservative mechanism of DNA replication, including the roles of helicase, DNA polymerase, and ligase. Include Meselson-Stahl evidence.' },
+  { label: 'Natural Selection', query: 'Explain the mechanism of natural selection and how it leads to evolution. Use a named example such as antibiotic resistance in bacteria.' },
+  { label: 'Gas Exchange', query: 'Describe the structure of the alveoli and explain how they are adapted for efficient gas exchange. Include Fick\'s Law.' },
+  { label: 'Krebs Cycle', query: 'Outline the stages of aerobic respiration: glycolysis, link reaction, Krebs cycle, and oxidative phosphorylation. State the ATP yield at each stage.' },
+  { label: 'Immunity', query: 'Explain the difference between innate and adaptive immunity. Describe the roles of B-lymphocytes and T-lymphocytes in the specific immune response.' },
+];
+
+const COMMAND_WORDS_BIOLOGY = [
+  { word: 'Define', ao: 'AO1', meaning: 'Give precise biological definition', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Describe', ao: 'AO1', meaning: 'State features, stages, or structures', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Give reasons with biological mechanisms', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Compare', ao: 'AO2', meaning: 'Identify similarities and differences', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Suggest', ao: 'AO2', meaning: 'Apply knowledge to unfamiliar context', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Evaluate', ao: 'AO3', meaning: 'Weigh evidence and make judgements', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Calculate', ao: 'AO2', meaning: 'Show formula and full working', color: 'hsl(150, 65%, 42%)' },
+];
+
 const COMMAND_WORDS_PHYSICS = [
   { word: 'Define', ao: 'AO1', meaning: 'Give precise physical definition with SI units', color: 'hsl(217, 91%, 60%)' },
   { word: 'State', ao: 'AO1', meaning: 'Express a law or principle concisely', color: 'hsl(217, 91%, 60%)' },
