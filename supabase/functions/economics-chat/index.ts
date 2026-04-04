@@ -84,7 +84,7 @@ function sanitizeMessage(content: string): string {
 // PERSONA DEFINITIONS
 // ============================================================
 
-type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry';
+type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry' | 'biology';
 
 const PERSONA_CONFIG: Record<Persona, {
   ragDomains: string[];
