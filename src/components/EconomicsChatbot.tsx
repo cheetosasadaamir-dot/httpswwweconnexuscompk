@@ -68,7 +68,7 @@ type Message = {
 
 type StreamState = 'idle' | 'connecting' | 'streaming' | 'analyzing' | 'error' | 'mapping-diagram' | 'solving-logic';
 
-type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry';
+type Persona = 'a-level' | 'business' | 'law' | 'psychology' | 'accounting' | 'sociology' | 'research' | 'mathematics' | 'physics' | 'chemistry' | 'biology';
 
 const QUICK_ACTIONS_ALEVEL = [
   { label: 'J-Curve Effect', query: 'Explain the J-Curve effect and why the current account worsens before improving after depreciation.' },
