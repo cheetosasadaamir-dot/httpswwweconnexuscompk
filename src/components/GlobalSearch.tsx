@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 import { useDebounce } from '@/hooks/use-debounce';
+import { useAuthGate } from '@/hooks/useAuthGate';
 import { allExamPapers } from '@/data/examPapers';
 
 interface SearchResult {
