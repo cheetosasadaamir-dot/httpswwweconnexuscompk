@@ -249,6 +249,23 @@ const PERSONA_CONFIG: Record<Persona, {
       /\b(group\s*theory|symmetry|organometallic|asymmetric\s*synthesis|retrosynthesis|disconnection)\b/i,
     ],
   },
+  'biology': {
+    ragDomains: ["cambridgeinternational.org", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "bbc.co.uk/bitesize", "biologymad.com", "s-cool.co.uk", "qualifications.pearson.com", "ncbi.nlm.nih.gov"],
+    searchPatterns: [
+      /\b(explain|define|describe|compare|suggest|evaluate|discuss|calculate|state|outline|deduce)\b/i,
+      /\b(cell|mitosis|meiosis|chromosome|DNA|RNA|gene|allele|genotype|phenotype|mutation|epigenetics)\b/i,
+      /\b(enzyme|substrate|active\s*site|lock\s*and\s*key|induced\s*fit|inhibitor|Vmax|Km|Michaelis)\b/i,
+      /\b(respiration|glycolysis|krebs|electron\s*transport|ATP|oxidative\s*phosphorylation|anaerobic|fermentation)\b/i,
+      /\b(photosynthesis|light\s*dependent|calvin\s*cycle|chloroplast|thylakoid|rubisco|limiting\s*factor)\b/i,
+      /\b(heart|blood|artery|vein|capillary|haemoglobin|oxygen\s*dissociation|cardiac\s*cycle|ECG)\b/i,
+      /\b(neuron|synapse|action\s*potential|reflex|hormone|homeostasis|negative\s*feedback|thermoregulation)\b/i,
+      /\b(ecology|ecosystem|food\s*chain|trophic|biomass|succession|biodiversity|conservation|niche)\b/i,
+      /\b(evolution|natural\s*selection|speciation|adaptation|classification|taxonomy|phylogenetics|cladistics)\b/i,
+      /\b(immunity|antibody|antigen|lymphocyte|phagocyte|vaccine|pathogen|immune\s*response)\b/i,
+      /\b(protein|amino\s*acid|transcription|translation|codon|ribosome|polypeptide|tertiary\s*structure)\b/i,
+      /\b(osmosis|diffusion|active\s*transport|water\s*potential|endocytosis|exocytosis|membrane)\b/i,
+    ],
+  },
 };
 
 // ============================================================
