@@ -120,7 +120,7 @@ const Index = () => {
                 </Button>
               </motion.div>
 
-              <FloatingReviewsBox />
+              
             </div>
           </div>
         </section>
