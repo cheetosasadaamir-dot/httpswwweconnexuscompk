@@ -269,6 +269,7 @@ const Index = () => {
       </main>
 
       <Footer />
+      <FloatingReviewsBox />
     </div>
   );
 };
