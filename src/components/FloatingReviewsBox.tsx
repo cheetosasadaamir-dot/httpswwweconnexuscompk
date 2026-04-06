@@ -102,7 +102,7 @@ const FloatingReviewsBox = () => {
             </span>
           </div>
         </div>
-      </motion.button>
+      </button>
 
       {/* Full Modal */}
       <AnimatePresence>
