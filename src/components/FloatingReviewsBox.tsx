@@ -35,13 +35,6 @@ const FloatingReviewsBox = () => {
 
   useEffect(() => { fetchReviews(); }, [fetchReviews]);
 
-  // Animate star rotation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStarRotation(prev => prev + 72);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   const avgRating = reviews.length > 0
     ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1)
