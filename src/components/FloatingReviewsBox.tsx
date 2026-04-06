@@ -78,10 +78,10 @@ const FloatingReviewsBox = () => {
 
   return (
     <>
-      {/* Floating Trigger */}
-      <motion.button
+      {/* Floating Trigger - completely static, no animations */}
+      <button
         onClick={() => setIsOpen(true)}
-        className="fixed top-16 right-4 z-[9998] group cursor-pointer"
+        className="fixed top-16 right-4 z-[9998] cursor-pointer hover:shadow-[0_0_30px_rgba(58,141,255,0.3)] transition-shadow duration-300"
         style={{
           background: 'rgba(0, 20, 45, 0.75)',
           backdropFilter: 'blur(20px)',
@@ -89,21 +89,10 @@ const FloatingReviewsBox = () => {
           border: '1px solid rgba(58, 141, 255, 0.15)',
           borderRadius: '16px',
           padding: '14px 18px',
-          willChange: 'transform',
-          transform: 'translate3d(0,0,0)',
         }}
-        whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(58, 141, 255, 0.3)' }}
-        whileTap={{ scale: 0.97 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
       >
         <div className="flex items-center gap-3">
-          <motion.div
-            animate={{ rotateY: starRotation }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-          >
-            <Star className="w-5 h-5" fill="#FFD700" stroke="#FFD700" />
-          </motion.div>
+          <Star className="w-5 h-5" fill="#FFD700" stroke="#FFD700" />
           <div className="flex flex-col items-start">
             <span className="text-xs font-semibold text-white/90" style={{ fontFamily: "'Inter', sans-serif" }}>
               {avgRating} <span className="text-white/50">/ 5</span>
