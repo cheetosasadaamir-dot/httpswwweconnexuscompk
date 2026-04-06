@@ -14,7 +14,7 @@ import OwnerProfileSection from '@/components/OwnerProfileSection';
 
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
-import ReviewWidget from '@/components/ReviewWidget';
+import FloatingReviewsBox from '@/components/FloatingReviewsBox';
 
 const features = [
   {
@@ -57,7 +57,7 @@ const Index = () => {
                 className="font-bold leading-tight mb-6 md:mb-8 text-fluid-hero"
                 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
               >
-                <span className="section-title">The Global Standard in Agentic Education</span>
+                <span className="section-title">The Agentic Standard</span>
               </motion.h1>
 
               <motion.h2
@@ -120,7 +120,7 @@ const Index = () => {
                 </Button>
               </motion.div>
 
-              <ReviewWidget />
+              
             </div>
           </div>
         </section>
@@ -269,6 +269,7 @@ const Index = () => {
       </main>
 
       <Footer />
+      <FloatingReviewsBox />
     </div>
   );
 };
