@@ -81,7 +81,7 @@ const FloatingReviewsBox = () => {
       {/* Floating Trigger */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-[9998] group cursor-pointer"
+        className="fixed top-16 right-4 z-[9998] group cursor-pointer"
         style={{
           background: 'rgba(0, 20, 45, 0.75)',
           backdropFilter: 'blur(20px)',
