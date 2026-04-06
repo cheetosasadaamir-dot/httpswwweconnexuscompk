@@ -21,7 +21,6 @@ const FloatingReviewsBox = () => {
   const [submitting, setSubmitting] = useState(false);
   const [inputExpanded, setInputExpanded] = useState(false);
   const [scrollIndex, setScrollIndex] = useState(0);
-  const [starRotation, setStarRotation] = useState(0);
   const { toast } = useToast();
 
   const fetchReviews = useCallback(async () => {
