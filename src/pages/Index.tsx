@@ -14,7 +14,7 @@ import OwnerProfileSection from '@/components/OwnerProfileSection';
 
 import { Button } from '@/components/ui/button';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
-import ReviewWidget from '@/components/ReviewWidget';
+import FloatingReviewsBox from '@/components/FloatingReviewsBox';
 
 const features = [
   {
@@ -120,7 +120,7 @@ const Index = () => {
                 </Button>
               </motion.div>
 
-              <ReviewWidget />
+              <FloatingReviewsBox />
             </div>
           </div>
         </section>
