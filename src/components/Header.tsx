@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, BookOpen, Briefcase, Lock } from 'lucide-react';
+import { Menu, X, BookOpen, Briefcase, Lock, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useAuthGate } from '@/hooks/useAuthGate';
@@ -15,10 +15,14 @@ interface NavLink {
   icon?: React.ComponentType<{ className?: string }>;
 }
 
-const navLinks: NavLink[] = [
+const protectedNavLinks: NavLink[] = [
   { label: 'Notes', href: '/notes', icon: BookOpen },
   { label: 'Case Studies', href: '/case-studies', icon: Briefcase },
   { label: 'Exam Intelligence', href: '/exam-intelligence', icon: Briefcase },
+];
+
+const publicNavLinks: NavLink[] = [
+  { label: 'Reviews', href: '/reviews', icon: Star },
 ];
 
 const Header = () => {
