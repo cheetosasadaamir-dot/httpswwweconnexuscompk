@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, BookOpen, Briefcase, Lock } from 'lucide-react';
+import { Menu, X, BookOpen, Briefcase, Lock, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useAuthGate } from '@/hooks/useAuthGate';
@@ -15,10 +15,14 @@ interface NavLink {
   icon?: React.ComponentType<{ className?: string }>;
 }
 
-const navLinks: NavLink[] = [
+const protectedNavLinks: NavLink[] = [
   { label: 'Notes', href: '/notes', icon: BookOpen },
   { label: 'Case Studies', href: '/case-studies', icon: Briefcase },
   { label: 'Exam Intelligence', href: '/exam-intelligence', icon: Briefcase },
+];
+
+const publicNavLinks: NavLink[] = [
+  { label: 'Reviews', href: '/reviews', icon: Star },
 ];
 
 const Header = () => {
@@ -102,8 +106,8 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
+           <nav className="hidden lg:flex items-center gap-8">
+            {protectedNavLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={(e) => {
@@ -129,6 +133,29 @@ const Header = () => {
                 {location.pathname === link.href && (
                   <motion.div
                     layoutId="activeNav"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-cyan to-primary"
+                  />
+                )}
+              </button>
+            ))}
+            {publicNavLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => navigate(link.href!)}
+                className={cn(
+                  "relative flex items-center gap-2 text-sm font-medium transition-all duration-150 group pointer-events-auto nav-instant-click bg-transparent border-none cursor-pointer",
+                  "active:scale-95 active:shadow-[0_0_12px_rgba(0,242,255,0.4)]",
+                  location.pathname === link.href
+                    ? "text-neon-cyan drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]"
+                    : "text-silver hover:text-neon-cyan hover:translate-x-0.5"
+                )}
+                style={{ willChange: 'transform', transform: 'translate3d(0,0,0)' }}
+              >
+                {link.icon && <link.icon className="w-4 h-4 transition-colors" />}
+                {link.label}
+                {location.pathname === link.href && (
+                  <motion.div
+                    layoutId="activeNavPublic"
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-cyan to-primary"
                   />
                 )}
@@ -164,7 +191,7 @@ const Header = () => {
             className="lg:hidden bg-navy-deep/95 backdrop-blur-xl border-b border-silver/10"
           >
             <div className="px-6 py-4 space-y-2">
-              {navLinks.map((link) => (
+              {protectedNavLinks.map((link) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: -10 }}
@@ -189,6 +216,27 @@ const Header = () => {
                     {!isAuthenticated && (
                       <Lock className="w-3.5 h-3.5 text-muted-foreground ml-auto" />
                     )}
+                  </button>
+                </motion.div>
+              ))}
+              {publicNavLinks.map((link) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      navigate(link.href!);
+                    }}
+                    className="flex items-center gap-3 py-3 px-4 rounded-lg text-white hover:text-neon-cyan hover:bg-neon-cyan/5 hover:translate-x-1 transition-all duration-150 group nav-instant-click w-full text-left bg-transparent border-none cursor-pointer"
+                  >
+                    {link.icon && (
+                      <link.icon className="w-5 h-5 text-silver group-hover:text-neon-cyan transition-colors" />
+                    )}
+                    <span className="font-medium tracking-wide">{link.label}</span>
                   </button>
                 </motion.div>
               ))}

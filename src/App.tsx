@@ -65,6 +65,7 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const AuthPage = lazy(() => import("./pages/Auth"));
 const DashboardPage = lazy(() => import("./pages/Dashboard"));
 const LoginPage = lazy(() => import("./pages/Login"));
+const ReviewsPage = lazy(() => import("./pages/Reviews"));
 
 
 const queryClient = new QueryClient({
@@ -151,6 +152,7 @@ const AnimatedRoutes = () => {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+          <Route path="/reviews" element={<ReviewsPage />} />
           
           {/* Legacy routes */}
           <Route path="/national-income" element={<NationalIncome />} />
