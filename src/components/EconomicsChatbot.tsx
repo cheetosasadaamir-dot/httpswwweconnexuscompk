@@ -1699,7 +1699,7 @@ export default function EconomicsChatbot() {
                         <RefreshCw className="w-3.5 h-3.5" />
                       </Button>
                     )}
-                    <Button onClick={() => handleSend()} disabled={(!input.trim() && !uploadedImage) || isLoading} size="icon"
+                    <Button onClick={() => handleSend()} disabled={(!input.trim() && !uploadedImage && !documentText) || isLoading || docStatus === 'uploading' || docStatus === 'scanning'} size="icon"
                       className="h-10 w-10 rounded-xl transition-all"
                       style={{ background: `linear-gradient(135deg, hsl(214 100% 15%), ${activeConfig.color})`, border: `1px solid ${activeConfig.color}40` }}
                       title="Send (Enter)">
