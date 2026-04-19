@@ -1524,6 +1524,55 @@ export default function EconomicsChatbot() {
                     </button>
                   </div>
                 )}
+                {/* Document upload preview + glass progress bar */}
+                {(docStatus !== 'idle' || documentText) && (
+                  <div
+                    className="flex items-center gap-2.5 mb-2 p-2.5 rounded-xl mx-1 relative overflow-hidden"
+                    style={{
+                      background: 'hsl(0 0% 100% / 0.04)',
+                      backdropFilter: 'blur(20px)',
+                      WebkitBackdropFilter: 'blur(20px)',
+                      border: `1px solid ${activeConfig.color}30`,
+                    }}
+                  >
+                    <div
+                      className="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center"
+                      style={{ background: `${activeConfig.color}15`, border: `1px solid ${activeConfig.color}40` }}
+                    >
+                      <FileText className="w-4 h-4" style={{ color: activeConfig.color }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-medium text-foreground/90 truncate">{documentName || 'document.pdf'}</span>
+                        <span className="text-[10px] font-mono text-muted-foreground/60 shrink-0">
+                          {docStatus === 'uploading' && `Uploading ${Math.round(docUploadProgress * 100)}%`}
+                          {docStatus === 'scanning' && `Scanning ${Math.round(docUploadProgress * 100)}%`}
+                          {docStatus === 'ready' && '✓ Ready'}
+                        </span>
+                      </div>
+                      {/* Glass progress bar */}
+                      <div className="mt-1.5 h-1 rounded-full overflow-hidden" style={{ background: 'hsl(0 0% 100% / 0.06)' }}>
+                        <div
+                          className="h-full transition-all duration-300 ease-out"
+                          style={{
+                            width: `${(docStatus === 'ready' ? 1 : docUploadProgress) * 100}%`,
+                            background: `linear-gradient(90deg, ${activeConfig.color}, ${activeConfig.color}99)`,
+                            boxShadow: `0 0 12px ${activeConfig.color}80`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                    {docStatus === 'ready' && (
+                      <button
+                        onClick={() => { setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
+                        className="shrink-0 text-muted-foreground hover:text-destructive"
+                        title="Remove document"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+                )}
                 <div className="flex items-end gap-1.5 md:gap-2 rounded-2xl p-1.5 md:p-2"
                   style={{
                     background: 'hsl(0 0% 6% / 0.85)',
