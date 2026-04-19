@@ -744,7 +744,13 @@ export default function EconomicsChatbot() {
   const [isChatActive, setIsChatActive] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [uploadedImageName, setUploadedImageName] = useState<string>('');
+  // Document upload state (PDF only)
+  const [documentText, setDocumentText] = useState<string | null>(null);
+  const [documentName, setDocumentName] = useState<string>('');
+  const [docUploadProgress, setDocUploadProgress] = useState<number>(0);
+  const [docStatus, setDocStatus] = useState<'idle' | 'uploading' | 'scanning' | 'ready'>('idle');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const docInputRef = useRef<HTMLInputElement>(null);
   const QUICK_MAP: Record<Persona, typeof QUICK_ACTIONS_ALEVEL> = {
     'a-level': QUICK_ACTIONS_ALEVEL, 'business': QUICK_ACTIONS_BUSINESS,
     'law': QUICK_ACTIONS_LAW, 'psychology': QUICK_ACTIONS_PSYCHOLOGY, 'accounting': QUICK_ACTIONS_ACCOUNTING,
@@ -844,6 +850,7 @@ export default function EconomicsChatbot() {
           messages: userMessages.slice(-6).map(m => ({ role: m.role, content: m.content })),
           persona,
           ...(lastUserMsg?.imageUrl ? { image: lastUserMsg.imageUrl } : {}),
+          ...(documentText ? { documentText, documentName } : {}),
         }),
         signal: abortControllerRef.current.signal,
       });
