@@ -1598,10 +1598,97 @@ export default function EconomicsChatbot() {
                     className="shrink-0 h-10 w-10 rounded-xl text-muted-foreground hover:text-[hsl(43,72%,53%)] hover:bg-white/[0.04]" title="Upload image">
                     <ImagePlus className="w-4 h-4" />
                   </Button>
+                  {/* Hidden PDF input + Paperclip trigger */}
+                  <input
+                    ref={docInputRef}
+                    type="file"
+                    accept="application/pdf,.pdf"
+                    className="hidden"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      if (!user) {
+                        toast.error('Please sign in to upload documents');
+                        e.target.value = '';
+                        return;
+                      }
+                      if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+                        toast.error('Only PDF files are supported');
+                        e.target.value = '';
+                        return;
+                      }
+                      if (file.size > 20 * 1024 * 1024) {
+                        toast.error('PDF must be under 20MB');
+                        e.target.value = '';
+                        return;
+                      }
+                      setDocumentName(file.name);
+                      setDocStatus('uploading');
+                      setDocUploadProgress(0.05);
+                      try {
+                        // 1) Upload to Storage in parallel (persistence)
+                        const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+                        const path = `${user.id}/${Date.now()}-${safeName}`;
+                        const uploadPromise = supabase.storage
+                          .from('persona-uploads')
+                          .upload(path, file, { contentType: 'application/pdf', upsert: false });
+
+                        // 2) Parse PDF text in browser (faster perceived UX)
+                        setDocStatus('scanning');
+                        const { text } = await parsePdfFile(file, (pct) => setDocUploadProgress(pct));
+
+                        const { error: uploadErr } = await uploadPromise;
+                        if (uploadErr) {
+                          console.warn('Storage upload failed (continuing with parsed text):', uploadErr);
+                        }
+
+                        if (!text || text.trim().length < 20) {
+                          toast.error('Could not extract text — is this a scanned PDF?');
+                          setDocumentText(null);
+                          setDocumentName('');
+                          setDocStatus('idle');
+                          setDocUploadProgress(0);
+                        } else {
+                          setDocumentText(text);
+                          setDocStatus('ready');
+                          setDocUploadProgress(1);
+                          toast.success('Document ready for analysis');
+                        }
+                      } catch (err) {
+                        console.error('PDF parse failed:', err);
+                        toast.error('Failed to process PDF');
+                        setDocumentText(null);
+                        setDocumentName('');
+                        setDocStatus('idle');
+                        setDocUploadProgress(0);
+                      }
+                      e.target.value = '';
+                    }}
+                  />
+                  <Button
+                    onClick={() => {
+                      if (!user) {
+                        toast.error('Please sign in to upload documents');
+                        return;
+                      }
+                      docInputRef.current?.click();
+                    }}
+                    variant="ghost"
+                    size="icon"
+                    disabled={isLoading || docStatus === 'uploading' || docStatus === 'scanning'}
+                    className="shrink-0 h-10 w-10 rounded-xl text-muted-foreground hover:text-[hsl(43,72%,53%)] hover:bg-white/[0.04]"
+                    title="Attach PDF document"
+                  >
+                    {docStatus === 'uploading' || docStatus === 'scanning' ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Paperclip className="w-4 h-4" />
+                    )}
+                  </Button>
                   <Textarea ref={textareaRef} value={input}
                     onChange={(e) => { setInput(e.target.value); handleTextareaInput(); }}
                     onKeyDown={handleKeyDown} onInput={handleTextareaInput}
-                    placeholder={uploadedImage ? "Describe what to analyze…" : "Ask anything…"}
+                    placeholder={documentText ? "Ask about your document…" : (uploadedImage ? "Describe what to analyze…" : "Ask anything…")}
                     disabled={isLoading} rows={1}
                     className="flex-1 bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground/30 text-[16px] md:text-sm font-sans resize-none overflow-y-auto leading-relaxed px-2 py-2.5"
                     style={{ minHeight: '44px', maxHeight: '200px', scrollbarWidth: 'thin', scrollbarColor: 'hsl(43 72% 53% / 0.2) transparent' }}
