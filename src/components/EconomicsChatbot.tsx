@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom, Wifi, WifiOff, Dna } from 'lucide-react';
+import { Send, Sparkles, Loader2, Copy, Check, RefreshCw, Trash2, CheckCircle2, TrendingUp, BookOpen, Briefcase, Scale, Brain, Calculator, Users, FlaskConical, Sigma, ImagePlus, X, Atom, Wifi, WifiOff, Dna, Paperclip, FileText } from 'lucide-react';
+import { parsePdfFile } from '@/lib/pdf-parser';
 import userProfilePhoto from '@/assets/user-profile-photo.png';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -743,7 +744,13 @@ export default function EconomicsChatbot() {
   const [isChatActive, setIsChatActive] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [uploadedImageName, setUploadedImageName] = useState<string>('');
+  // Document upload state (PDF only)
+  const [documentText, setDocumentText] = useState<string | null>(null);
+  const [documentName, setDocumentName] = useState<string>('');
+  const [docUploadProgress, setDocUploadProgress] = useState<number>(0);
+  const [docStatus, setDocStatus] = useState<'idle' | 'uploading' | 'scanning' | 'ready'>('idle');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const docInputRef = useRef<HTMLInputElement>(null);
   const QUICK_MAP: Record<Persona, typeof QUICK_ACTIONS_ALEVEL> = {
     'a-level': QUICK_ACTIONS_ALEVEL, 'business': QUICK_ACTIONS_BUSINESS,
     'law': QUICK_ACTIONS_LAW, 'psychology': QUICK_ACTIONS_PSYCHOLOGY, 'accounting': QUICK_ACTIONS_ACCOUNTING,
@@ -843,6 +850,7 @@ export default function EconomicsChatbot() {
           messages: userMessages.slice(-6).map(m => ({ role: m.role, content: m.content })),
           persona,
           ...(lastUserMsg?.imageUrl ? { image: lastUserMsg.imageUrl } : {}),
+          ...(documentText ? { documentText, documentName } : {}),
         }),
         signal: abortControllerRef.current.signal,
       });
@@ -1040,6 +1048,11 @@ export default function EconomicsChatbot() {
     setInput('');
     setUploadedImage(null);
     setUploadedImageName('');
+    // Document context lives only for one turn, then resets
+    setDocumentText(null);
+    setDocumentName('');
+    setDocStatus('idle');
+    setDocUploadProgress(0);
     // Reset textarea height after send
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -1127,6 +1140,10 @@ export default function EconomicsChatbot() {
     setRetryCount(0);
     setUploadedImage(null);
     setUploadedImageName('');
+    setDocumentText(null);
+    setDocumentName('');
+    setDocStatus('idle');
+    setDocUploadProgress(0);
     toast.success('Chat cleared');
   };
 
@@ -1238,7 +1255,7 @@ export default function EconomicsChatbot() {
                   return (
                     <button
                       key={p}
-                      onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
+                      onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
                       className="flex items-center gap-1.5 rounded-full shrink-0 active:scale-95"
                       style={{
                         transition: 'all 0.1s cubic-bezier(0.22, 1, 0.36, 1)',
@@ -1285,7 +1302,7 @@ export default function EconomicsChatbot() {
                 return (
                   <button
                     key={p}
-                    onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
+                    onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
                     className={`relative flex flex-col items-center justify-center rounded-xl min-w-[52px] w-[52px] h-[52px] shrink-0 chat-quick-action ${
                       isActive ? '' : 'hover:bg-white/[0.04]'
                     }`}
@@ -1507,6 +1524,55 @@ export default function EconomicsChatbot() {
                     </button>
                   </div>
                 )}
+                {/* Document upload preview + glass progress bar */}
+                {(docStatus !== 'idle' || documentText) && (
+                  <div
+                    className="flex items-center gap-2.5 mb-2 p-2.5 rounded-xl mx-1 relative overflow-hidden"
+                    style={{
+                      background: 'hsl(0 0% 100% / 0.04)',
+                      backdropFilter: 'blur(20px)',
+                      WebkitBackdropFilter: 'blur(20px)',
+                      border: `1px solid ${activeConfig.color}30`,
+                    }}
+                  >
+                    <div
+                      className="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center"
+                      style={{ background: `${activeConfig.color}15`, border: `1px solid ${activeConfig.color}40` }}
+                    >
+                      <FileText className="w-4 h-4" style={{ color: activeConfig.color }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-medium text-foreground/90 truncate">{documentName || 'document.pdf'}</span>
+                        <span className="text-[10px] font-mono text-muted-foreground/60 shrink-0">
+                          {docStatus === 'uploading' && `Uploading ${Math.round(docUploadProgress * 100)}%`}
+                          {docStatus === 'scanning' && `Scanning ${Math.round(docUploadProgress * 100)}%`}
+                          {docStatus === 'ready' && '✓ Ready'}
+                        </span>
+                      </div>
+                      {/* Glass progress bar */}
+                      <div className="mt-1.5 h-1 rounded-full overflow-hidden" style={{ background: 'hsl(0 0% 100% / 0.06)' }}>
+                        <div
+                          className="h-full transition-all duration-300 ease-out"
+                          style={{
+                            width: `${(docStatus === 'ready' ? 1 : docUploadProgress) * 100}%`,
+                            background: `linear-gradient(90deg, ${activeConfig.color}, ${activeConfig.color}99)`,
+                            boxShadow: `0 0 12px ${activeConfig.color}80`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                    {docStatus === 'ready' && (
+                      <button
+                        onClick={() => { setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
+                        className="shrink-0 text-muted-foreground hover:text-destructive"
+                        title="Remove document"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+                )}
                 <div className="flex items-end gap-1.5 md:gap-2 rounded-2xl p-1.5 md:p-2"
                   style={{
                     background: 'hsl(0 0% 6% / 0.85)',
@@ -1532,10 +1598,97 @@ export default function EconomicsChatbot() {
                     className="shrink-0 h-10 w-10 rounded-xl text-muted-foreground hover:text-[hsl(43,72%,53%)] hover:bg-white/[0.04]" title="Upload image">
                     <ImagePlus className="w-4 h-4" />
                   </Button>
+                  {/* Hidden PDF input + Paperclip trigger */}
+                  <input
+                    ref={docInputRef}
+                    type="file"
+                    accept="application/pdf,.pdf"
+                    className="hidden"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      if (!user) {
+                        toast.error('Please sign in to upload documents');
+                        e.target.value = '';
+                        return;
+                      }
+                      if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+                        toast.error('Only PDF files are supported');
+                        e.target.value = '';
+                        return;
+                      }
+                      if (file.size > 20 * 1024 * 1024) {
+                        toast.error('PDF must be under 20MB');
+                        e.target.value = '';
+                        return;
+                      }
+                      setDocumentName(file.name);
+                      setDocStatus('uploading');
+                      setDocUploadProgress(0.05);
+                      try {
+                        // 1) Upload to Storage in parallel (persistence)
+                        const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+                        const path = `${user.id}/${Date.now()}-${safeName}`;
+                        const uploadPromise = supabase.storage
+                          .from('persona-uploads')
+                          .upload(path, file, { contentType: 'application/pdf', upsert: false });
+
+                        // 2) Parse PDF text in browser (faster perceived UX)
+                        setDocStatus('scanning');
+                        const { text } = await parsePdfFile(file, (pct) => setDocUploadProgress(pct));
+
+                        const { error: uploadErr } = await uploadPromise;
+                        if (uploadErr) {
+                          console.warn('Storage upload failed (continuing with parsed text):', uploadErr);
+                        }
+
+                        if (!text || text.trim().length < 20) {
+                          toast.error('Could not extract text — is this a scanned PDF?');
+                          setDocumentText(null);
+                          setDocumentName('');
+                          setDocStatus('idle');
+                          setDocUploadProgress(0);
+                        } else {
+                          setDocumentText(text);
+                          setDocStatus('ready');
+                          setDocUploadProgress(1);
+                          toast.success('Document ready for analysis');
+                        }
+                      } catch (err) {
+                        console.error('PDF parse failed:', err);
+                        toast.error('Failed to process PDF');
+                        setDocumentText(null);
+                        setDocumentName('');
+                        setDocStatus('idle');
+                        setDocUploadProgress(0);
+                      }
+                      e.target.value = '';
+                    }}
+                  />
+                  <Button
+                    onClick={() => {
+                      if (!user) {
+                        toast.error('Please sign in to upload documents');
+                        return;
+                      }
+                      docInputRef.current?.click();
+                    }}
+                    variant="ghost"
+                    size="icon"
+                    disabled={isLoading || docStatus === 'uploading' || docStatus === 'scanning'}
+                    className="shrink-0 h-10 w-10 rounded-xl text-muted-foreground hover:text-[hsl(43,72%,53%)] hover:bg-white/[0.04]"
+                    title="Attach PDF document"
+                  >
+                    {docStatus === 'uploading' || docStatus === 'scanning' ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Paperclip className="w-4 h-4" />
+                    )}
+                  </Button>
                   <Textarea ref={textareaRef} value={input}
                     onChange={(e) => { setInput(e.target.value); handleTextareaInput(); }}
                     onKeyDown={handleKeyDown} onInput={handleTextareaInput}
-                    placeholder={uploadedImage ? "Describe what to analyze…" : "Ask anything…"}
+                    placeholder={documentText ? "Ask about your document…" : (uploadedImage ? "Describe what to analyze…" : "Ask anything…")}
                     disabled={isLoading} rows={1}
                     className="flex-1 bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground/30 text-[16px] md:text-sm font-sans resize-none overflow-y-auto leading-relaxed px-2 py-2.5"
                     style={{ minHeight: '44px', maxHeight: '200px', scrollbarWidth: 'thin', scrollbarColor: 'hsl(43 72% 53% / 0.2) transparent' }}
@@ -1546,7 +1699,7 @@ export default function EconomicsChatbot() {
                         <RefreshCw className="w-3.5 h-3.5" />
                       </Button>
                     )}
-                    <Button onClick={() => handleSend()} disabled={(!input.trim() && !uploadedImage) || isLoading} size="icon"
+                    <Button onClick={() => handleSend()} disabled={(!input.trim() && !uploadedImage && !documentText) || isLoading || docStatus === 'uploading' || docStatus === 'scanning'} size="icon"
                       className="h-10 w-10 rounded-xl transition-all"
                       style={{ background: `linear-gradient(135deg, hsl(214 100% 15%), ${activeConfig.color})`, border: `1px solid ${activeConfig.color}40` }}
                       title="Send (Enter)">
