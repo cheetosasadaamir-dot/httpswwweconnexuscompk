@@ -2722,7 +2722,7 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, persona: requestedPersona, image } = await req.json();
+    const { messages, persona: requestedPersona, image, documentText, documentName } = await req.json();
     const validPersonas: Persona[] = ['a-level', 'business', 'law', 'psychology', 'accounting', 'sociology', 'research', 'mathematics', 'physics', 'chemistry', 'biology'];
     const persona: Persona = validPersonas.includes(requestedPersona as Persona) ? (requestedPersona as Persona) : (requestedPersona === 'university' ? 'a-level' : 'a-level');
     
@@ -2731,6 +2731,66 @@ serve(async (req) => {
         JSON.stringify({ error: "Invalid request format" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // ============================================================
+    // PERSONA ALIGNMENT GATE — Domain validation for uploaded documents
+    // ============================================================
+    let docContext = "";
+    if (typeof documentText === "string" && documentText.trim().length > 50) {
+      const PERSONA_DOMAIN_TERMS: Record<Persona, { label: string; terms: RegExp[] }> = {
+        'a-level':     { label: 'Economics',  terms: [/\b(econom|gdp|inflation|fiscal|monetary|demand|supply|elasticit|market|price|trade|tariff|exchange\s*rate|unemployment|opportunity\s*cost|externalit|monopol|oligopol)\w*/gi] },
+        'business':    { label: 'Business',   terms: [/\b(business|stakeholder|shareholder|marketing|branding|HRM|motivation|operations|lean|kaizen|cash\s*flow|break.?even|SWOT|PEST|porter|ansoff|boston\s*matrix|entrepreneur)\w*/gi] },
+        'law':         { label: 'Law',        terms: [/\b(law|legal|statute|tort|contract|negligence|liabilit|claimant|defendant|judicial|precedent|statute|case\s*law|criminal|actus\s*reus|mens\s*rea|equity|constitutional|treaty|jurisdiction)\w*/gi] },
+        'psychology':  { label: 'Psychology', terms: [/\b(psycholog|behaviour|behavior|cognition|cognitive|memory|attachment|obedience|conform|milgram|bandura|piaget|freud|skinner|neuro|brain|amygdala|hippocamp|GRAVE|operant|classical\s*conditioning)\w*/gi] },
+        'accounting':  { label: 'Accounting', terms: [/\b(account|debit|credit|ledger|journal|balance\s*sheet|income\s*statement|depreciation|IFRS|GAAP|NPV|IRR|WACC|ratio|liquidit|gearing|inventory|FIFO|LIFO|trial\s*balance)\w*/gi] },
+        'sociology':   { label: 'Sociology',  terms: [/\b(sociolog|society|social\s*class|stratificat|functional|marxis|feminis|interaction|durkheim|weber|gramsci|cultural\s*capital|bourdieu|globalisation|secular|deviance|labelling)\w*/gi] },
+        'research':    { label: 'Research Methods', terms: [/\b(research|methodolog|hypothes|qualitative|quantitative|sampling|reliabilit|validit|ethics|literature\s*review|thematic|coding|grounded|ethnograph|positivism|interpretivism|operationali[sz]e)\w*/gi] },
+        'mathematics': { label: 'Mathematics', terms: [/\b(theorem|equation|integral|derivative|matrix|matrices|eigen|vector|scalar|trigonometr|polynomial|logarithm|calculus|limit|series|differential|geometry|probabilit|distribution|sin|cos|tan)\w*/gi] },
+        'physics':     { label: 'Physics',    terms: [/\b(physic|kinematic|momentum|force|newton|energy|joule|wave|frequency|wavelength|electric|magnetic|capacitan|resistance|current|voltage|quantum|photon|relativit|gravitation|thermodynam|entropy)\w*/gi] },
+        'chemistry':   { label: 'Chemistry',  terms: [/\b(chemic|molecul|atom|electron|orbital|bond|covalent|ionic|reaction|enthalp|entrop|equilibri|acid|base|pH|titration|redox|oxidation|reduction|catalyst|organic|alkane|alkene|benzene|NMR|IR\s*spectr|mole|stoichiometry)\w*/gi] },
+        'biology':     { label: 'Biology',    terms: [/\b(biolog|cell|mitos|meios|DNA|RNA|gene|chromosom|protein|enzyme|membrane|mitochondri|chloroplast|photosynthes|respiration|krebs|glycolys|ecosystem|species|evolut|natural\s*selection|nervous|hormone|immune|antibod|alveol)\w*/gi] },
+      };
+
+      // Score the document against EVERY persona's domain terms
+      const sample = documentText.slice(0, 6000); // first ~6KB is enough for classification
+      const scores: Record<string, number> = {};
+      for (const [p, def] of Object.entries(PERSONA_DOMAIN_TERMS)) {
+        let s = 0;
+        for (const re of def.terms) {
+          const matches = sample.match(re);
+          if (matches) s += matches.length;
+        }
+        scores[p] = s;
+      }
+      const activeScore = scores[persona] || 0;
+      const topScore = Math.max(...Object.values(scores));
+      const topPersona = (Object.entries(scores).find(([, v]) => v === topScore)?.[0] || persona) as Persona;
+      const activeLabel = PERSONA_DOMAIN_TERMS[persona].label;
+      const topLabel = PERSONA_DOMAIN_TERMS[topPersona].label;
+
+      // Smart mode: reject only if active persona scores very low AND another persona is clearly dominant
+      const isMisaligned = activeScore < 3 && topScore >= 8 && topPersona !== persona;
+
+      if (isMisaligned) {
+        const rejection = `**Domain Validation Gate**\n\nThis document falls outside the **${activeLabel}** domain. To ensure syllabus-locked precision, I can only review materials related to **${activeLabel}**.\n\n*The uploaded content appears to align more closely with **${topLabel}**.*\n\nPlease upload a relevant document or switch to the **${topLabel} Persona Hub** in the persona selector above.`;
+        const rejectStream = new ReadableStream({
+          start(controller) {
+            const encoder = new TextEncoder();
+            const data = `data: ${JSON.stringify({ choices: [{ delta: { content: rejection } }] })}\n\ndata: [DONE]\n\n`;
+            controller.enqueue(encoder.encode(data));
+            controller.close();
+          },
+        });
+        return new Response(rejectStream, {
+          headers: { ...corsHeaders, "Content-Type": "text/event-stream", "Cache-Control": "no-cache" },
+        });
+      }
+
+      // Aligned (or adjacent) — build the document context block for the AI
+      const safeName = sanitizeMessage(String(documentName || 'document.pdf')).slice(0, 120);
+      const truncated = documentText.slice(0, 18000); // ~4-5k tokens cap
+      docContext = `\n\n## UPLOADED DOCUMENT — STRUCTURED REVIEW PROTOCOL\n\n**File:** ${safeName}\n**Domain Validation:** PASSED for ${activeLabel}\n\n**MANDATORY OUTPUT FORMAT** — when responding to the user's question about this document, structure your reply EXACTLY as:\n\n### 📄 Content Summary\n(Brief overview of what the document covers — 2-3 sentences max.)\n\n### 🎯 Syllabus Alignment\n(How this content maps to A-Level / University ${activeLabel} standards. Reference specific syllabus areas where possible.)\n\n### 🔬 Precise Insights\n(High-density bullet points answering the user's specific question, citing the document where relevant. If the document and your general knowledge conflict, **prioritize the document**. Do NOT hallucinate facts not present in the text.)\n\n### 👨‍🏫 Professor's Insights\n(Sophisticated improvements, mark-scheme gaps, structural weaknesses, or technical nuances a standard LLM would miss. Reference specific sections of the text.)\n\n---\n\n**DOCUMENT TEXT (verbatim, truncated to first 18KB):**\n\n\`\`\`\n${truncated}\n\`\`\`\n${documentText.length > 18000 ? '\n*[Document truncated — only first ~18KB analyzed]*\n' : ''}`;
     }
 
     // WAF: Image upload rate limit (10 images/min per IP)
