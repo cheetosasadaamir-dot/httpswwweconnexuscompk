@@ -2723,7 +2723,7 @@ serve(async (req) => {
 
   try {
     const { messages, persona: requestedPersona, image } = await req.json();
-    const validPersonas: Persona[] = ['a-level', 'business', 'law', 'psychology', 'accounting', 'sociology', 'research', 'mathematics', 'physics', 'chemistry'];
+    const validPersonas: Persona[] = ['a-level', 'business', 'law', 'psychology', 'accounting', 'sociology', 'research', 'mathematics', 'physics', 'chemistry', 'biology'];
     const persona: Persona = validPersonas.includes(requestedPersona as Persona) ? (requestedPersona as Persona) : (requestedPersona === 'university' ? 'a-level' : 'a-level');
     
     if (!Array.isArray(messages) || messages.length === 0) {
