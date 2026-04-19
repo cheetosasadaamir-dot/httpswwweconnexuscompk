@@ -1048,6 +1048,11 @@ export default function EconomicsChatbot() {
     setInput('');
     setUploadedImage(null);
     setUploadedImageName('');
+    // Document context lives only for one turn, then resets
+    setDocumentText(null);
+    setDocumentName('');
+    setDocStatus('idle');
+    setDocUploadProgress(0);
     // Reset textarea height after send
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -1135,6 +1140,10 @@ export default function EconomicsChatbot() {
     setRetryCount(0);
     setUploadedImage(null);
     setUploadedImageName('');
+    setDocumentText(null);
+    setDocumentName('');
+    setDocStatus('idle');
+    setDocUploadProgress(0);
     toast.success('Chat cleared');
   };
 
