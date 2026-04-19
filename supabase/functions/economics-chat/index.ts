@@ -2872,6 +2872,10 @@ ${PERSONA_IMAGE_INSTRUCTIONS[persona]}
         };
       }
       
+      // Inject document context into the last user message (if a relevant doc was uploaded)
+      if (m.role === "user" && idx === messages.length - 1 && docContext) {
+        return { role: m.role, content: `${sanitizedContent}${docContext}` };
+      }
       return { role: m.role, content: sanitizedContent };
     });
 
