@@ -1255,7 +1255,7 @@ export default function EconomicsChatbot() {
                   return (
                     <button
                       key={p}
-                      onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
+                      onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
                       className="flex items-center gap-1.5 rounded-full shrink-0 active:scale-95"
                       style={{
                         transition: 'all 0.1s cubic-bezier(0.22, 1, 0.36, 1)',
@@ -1302,7 +1302,7 @@ export default function EconomicsChatbot() {
                 return (
                   <button
                     key={p}
-                    onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); }}
+                    onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
                     className={`relative flex flex-col items-center justify-center rounded-xl min-w-[52px] w-[52px] h-[52px] shrink-0 chat-quick-action ${
                       isActive ? '' : 'hover:bg-white/[0.04]'
                     }`}
