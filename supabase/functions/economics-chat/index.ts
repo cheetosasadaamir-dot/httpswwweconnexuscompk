@@ -2626,8 +2626,10 @@ function extractThreadContext(messages: Array<{ role: string; content: string }>
     /\b(maxwell|lagrangian|hamiltonian|lorentz|relativity|tensor)\b/gi,
   ];
   for (const msg of recentExchanges) {
+    const textContent = extractTextContent(msg.content as any);
+    if (!textContent) continue;
     for (const pattern of conceptPatterns) {
-      const matches = msg.content.match(pattern);
+      const matches = textContent.match(pattern);
       if (matches) concepts.push(...matches.map(m => m.toLowerCase()));
     }
   }
