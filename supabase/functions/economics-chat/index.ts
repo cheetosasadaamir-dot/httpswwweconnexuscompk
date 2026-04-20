@@ -2851,6 +2851,7 @@ serve(async (req) => {
           'mathematics': `PRIORITY: Identify all mathematical symbols, superscripts, subscripts, fraction bars, integral/sigma notation, matrix brackets, and geometric constructions with precise vertical alignment. Then reconstruct into LaTeX and solve step-by-step.`,
           'physics': `PRIORITY: Identify ALL vector arrows (direction, magnitude, label), force labels, angles, axis definitions, circuit components (resistors, capacitors, cells), wave diagrams (nodes, antinodes), and field line patterns. Ground every intersection with coordinates. Then use I-V-A-U to solve and verify with dimensional analysis.`,
           'chemistry': `PRIORITY: Identify ALL molecular structures, functional groups, bond types, curly arrows, charges, lone pairs, spectral peaks (NMR shifts, IR bands, m/z values), and reaction conditions. For spectra: map every peak with its chemical shift/wavenumber/m/z value. Then apply the Two-Pass Spectral Analysis Protocol to deduce the molecular structure.`,
+          'biology': `PRIORITY: Identify ALL labelled structures, organelles, tissues, pathways, axes, tables, and experimental variables. For microscopy or anatomical diagrams, map labels to visible structures precisely; for data figures, extract axes, units, trends, anomalies, and control/setup details before explaining the biological mechanism. Then apply syllabus-locked biological analysis with exact terminology.`,
         };
 
         const twoPassInstruction = `## TWO-PASS VISION ANALYSIS PROTOCOL (MANDATORY)
