@@ -806,6 +806,15 @@ export default function EconomicsChatbot() {
     }
   }, [messages, streamState]);
 
+  // When user logs in, reset guest counter and close login modal
+  useEffect(() => {
+    if (user) {
+      setGuestMessageCount(0);
+      try { localStorage.removeItem(GUEST_COUNT_KEY); } catch {}
+      setShowLoginModal(false);
+    }
+  }, [user]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
