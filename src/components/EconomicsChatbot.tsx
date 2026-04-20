@@ -1742,6 +1742,18 @@ export default function EconomicsChatbot() {
           </div>
         </motion.div>
       </div>
+
+      {/* Guest message limit — login modal */}
+      <LoginModal
+        open={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onSuccess={() => {
+          setShowLoginModal(false);
+          setGuestMessageCount(0);
+          try { localStorage.removeItem(GUEST_COUNT_KEY); } catch {}
+          toast.success('Welcome — unlimited access unlocked.');
+        }}
+      />
     </motion.section>
   );
 }
