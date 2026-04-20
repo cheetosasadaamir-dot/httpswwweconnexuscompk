@@ -11,6 +11,10 @@ import ReactMarkdown from 'react-markdown';
 import { supabase } from '@/integrations/supabase/client';
 import { trackInteraction } from '@/lib/analytics';
 import { useAuth } from '@/hooks/useAuth';
+import LoginModal from '@/components/LoginModal';
+
+const GUEST_MESSAGE_LIMIT = 4;
+const GUEST_COUNT_KEY = 'chatbot_guest_message_count';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
@@ -735,6 +739,12 @@ const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
 
 export default function EconomicsChatbot() {
   const { user } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [guestMessageCount, setGuestMessageCount] = useState<number>(() => {
+    if (typeof window === 'undefined') return 0;
+    const stored = parseInt(localStorage.getItem(GUEST_COUNT_KEY) || '0', 10);
+    return isNaN(stored) ? 0 : stored;
+  });
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -795,6 +805,15 @@ export default function EconomicsChatbot() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, streamState]);
+
+  // When user logs in, reset guest counter and close login modal
+  useEffect(() => {
+    if (user) {
+      setGuestMessageCount(0);
+      try { localStorage.removeItem(GUEST_COUNT_KEY); } catch {}
+      setShowLoginModal(false);
+    }
+  }, [user]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -1016,6 +1035,13 @@ export default function EconomicsChatbot() {
     const rawText = query || input.trim();
     if ((!rawText && !uploadedImage) || isLoading) return;
 
+    // Guest message limit — gate after 4 free messages
+    if (!user && guestMessageCount >= GUEST_MESSAGE_LIMIT) {
+      setShowLoginModal(true);
+      toast.info("You've used your 4 free messages — sign in to keep chatting.");
+      return;
+    }
+
     // Sanitize input
     const messageText = rawText ? sanitizeInput(rawText) : '';
     if (rawText && !messageText) {
@@ -1045,6 +1071,17 @@ export default function EconomicsChatbot() {
     };
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
+
+    // Increment guest counter after a successful guest send
+    if (!user) {
+      const next = guestMessageCount + 1;
+      setGuestMessageCount(next);
+      try { localStorage.setItem(GUEST_COUNT_KEY, String(next)); } catch {}
+      const remaining = GUEST_MESSAGE_LIMIT - next;
+      if (remaining > 0 && remaining <= 2) {
+        toast.info(`${remaining} free message${remaining === 1 ? '' : 's'} left — sign in for unlimited access.`);
+      }
+    }
     setInput('');
     setUploadedImage(null);
     setUploadedImageName('');
@@ -1714,6 +1751,18 @@ export default function EconomicsChatbot() {
           </div>
         </motion.div>
       </div>
+
+      {/* Guest message limit — login modal */}
+      <LoginModal
+        open={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onSuccess={() => {
+          setShowLoginModal(false);
+          setGuestMessageCount(0);
+          try { localStorage.removeItem(GUEST_COUNT_KEY); } catch {}
+          toast.success('Welcome — unlimited access unlocked.');
+        }}
+      />
     </motion.section>
   );
 }
