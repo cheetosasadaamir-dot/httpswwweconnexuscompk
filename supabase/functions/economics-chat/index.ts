@@ -2439,8 +2439,8 @@ NEVER skip the Biological Insight Summary for substantive questions.
 NEVER provide medical advice — always state "Consult a qualified medical professional."`;
 
 const MAX_MESSAGES = 6; // Last 3 exchanges only — 70% input token savings
-const MAX_TOKENS = 2500;
-const STREAM_TIMEOUT_MS = 60000; // 60s global timeout for image-heavy requests
+const MAX_TOKENS = 8192;
+const STREAM_TIMEOUT_MS = 120000; // Give long analytical replies enough time to finish streaming
 
 // ============================================================
 // SEMANTIC CACHING — 0-cost layer for repeated queries
@@ -2509,20 +2509,33 @@ function computeQueryHash(query: string, persona: string): string {
 // ============================================================
 // DYNAMIC TOKEN LIMITS — based on query complexity
 // ============================================================
-function getMaxTokens(query: string, persona: Persona): number {
+function getMaxTokens(
+  query: string,
+  persona: Persona,
+  options?: { hasImage?: boolean; hasDocument?: boolean }
+): number {
   const wordCount = query.trim().split(/\s+/).length;
+  const hasRichInput = Boolean(options?.hasImage || options?.hasDocument);
+
+  if (hasRichInput) return MAX_TOKENS;
+  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step|analy[sz]e|explain in detail)\b/i.test(query)) {
+    return 4096;
+  }
   
-  // Short queries (definitions, single concepts): 700 tokens
-  if (wordCount <= 5) return 700;
+  // Short queries (definitions, single concepts)
+  if (wordCount <= 5) return 900;
   
-  // Medium queries (explain, analyse): 1200 tokens
-  if (wordCount <= 15) return 1200;
+  // Medium queries (explain, analyse)
+  if (wordCount <= 15) return 1800;
   
-  // Complex essay queries (evaluate, discuss, compare): 2048 tokens
-  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 2048;
-  
-  // Default — 2048 to prevent mid-sentence cut-offs
-  return 2048;
+  // Default — leave headroom so answers don't stop mid-thought
+  return 3200;
+}
+
+function isLikelyCompleteResponse(text: string): boolean {
+  const trimmed = text.trim();
+  if (trimmed.length < 80) return true;
+  return /([.!?…]|```|\*\*|\)|\]|"|')$/.test(trimmed);
 }
 
 // ============================================================
@@ -2838,6 +2851,7 @@ serve(async (req) => {
           'mathematics': `PRIORITY: Identify all mathematical symbols, superscripts, subscripts, fraction bars, integral/sigma notation, matrix brackets, and geometric constructions with precise vertical alignment. Then reconstruct into LaTeX and solve step-by-step.`,
           'physics': `PRIORITY: Identify ALL vector arrows (direction, magnitude, label), force labels, angles, axis definitions, circuit components (resistors, capacitors, cells), wave diagrams (nodes, antinodes), and field line patterns. Ground every intersection with coordinates. Then use I-V-A-U to solve and verify with dimensional analysis.`,
           'chemistry': `PRIORITY: Identify ALL molecular structures, functional groups, bond types, curly arrows, charges, lone pairs, spectral peaks (NMR shifts, IR bands, m/z values), and reaction conditions. For spectra: map every peak with its chemical shift/wavenumber/m/z value. Then apply the Two-Pass Spectral Analysis Protocol to deduce the molecular structure.`,
+          'biology': `PRIORITY: Identify ALL labelled structures, organelles, tissues, pathways, axes, tables, and experimental variables. For microscopy or anatomical diagrams, map labels to visible structures precisely; for data figures, extract axes, units, trends, anomalies, and control/setup details before explaining the biological mechanism. Then apply syllabus-locked biological analysis with exact terminology.`,
         };
 
         const twoPassInstruction = `## TWO-PASS VISION ANALYSIS PROTOCOL (MANDATORY)
@@ -3179,7 +3193,10 @@ ${COHORT_DIRECTIVE}`;
           model: image ? "google/gemini-2.5-flash" : "google/gemini-3-flash-preview",
           messages: [...systemMessages, ...recentMessages],
           stream: true,
-          max_tokens: getMaxTokens(userQuery, persona),
+          max_tokens: getMaxTokens(userQuery, persona, {
+            hasImage: Boolean(image),
+            hasDocument: Boolean(docContext),
+          }),
           temperature: 0.5,
           frequency_penalty: 0.5,
         }),
@@ -3221,7 +3238,7 @@ ${COHORT_DIRECTIVE}`;
             if (done) {
               controller.close();
               // Store in cache asynchronously after stream completes
-              if (fullResponse.length > 50) {
+              if (fullResponse.length > 50 && isLikelyCompleteResponse(fullResponse)) {
                 storeCacheResponse(queryHash, persona, userQuery, fullResponse).catch(() => {});
               }
               return;
