@@ -11,6 +11,10 @@ import ReactMarkdown from 'react-markdown';
 import { supabase } from '@/integrations/supabase/client';
 import { trackInteraction } from '@/lib/analytics';
 import { useAuth } from '@/hooks/useAuth';
+import LoginModal from '@/components/LoginModal';
+
+const GUEST_MESSAGE_LIMIT = 4;
+const GUEST_COUNT_KEY = 'chatbot_guest_message_count';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
