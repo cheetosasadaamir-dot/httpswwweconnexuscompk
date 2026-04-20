@@ -2554,7 +2554,7 @@ function checkSpamCooldown(clientId: string): { allowed: boolean; retryAfter?: n
   return { allowed: true };
 }
 
-function extractThreadContext(messages: Array<{ role: string; content: string }>): string {
+function extractThreadContext(messages: Array<{ role: string; content: string | Array<{ type: string; text?: string }> }>): string {
   if (messages.length < 2) return "";
   const recentExchanges = messages.slice(-6);
   const concepts: string[] = [];
