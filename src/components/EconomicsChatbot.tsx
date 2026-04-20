@@ -1062,6 +1062,17 @@ export default function EconomicsChatbot() {
     };
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
+
+    // Increment guest counter after a successful guest send
+    if (!user) {
+      const next = guestMessageCount + 1;
+      setGuestMessageCount(next);
+      try { localStorage.setItem(GUEST_COUNT_KEY, String(next)); } catch {}
+      const remaining = GUEST_MESSAGE_LIMIT - next;
+      if (remaining > 0 && remaining <= 2) {
+        toast.info(`${remaining} free message${remaining === 1 ? '' : 's'} left — sign in for unlimited access.`);
+      }
+    }
     setInput('');
     setUploadedImage(null);
     setUploadedImageName('');
