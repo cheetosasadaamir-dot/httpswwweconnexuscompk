@@ -739,6 +739,12 @@ const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
 
 export default function EconomicsChatbot() {
   const { user } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [guestMessageCount, setGuestMessageCount] = useState<number>(() => {
+    if (typeof window === 'undefined') return 0;
+    const stored = parseInt(localStorage.getItem(GUEST_COUNT_KEY) || '0', 10);
+    return isNaN(stored) ? 0 : stored;
+  });
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
