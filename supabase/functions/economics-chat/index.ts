@@ -3192,7 +3192,10 @@ ${COHORT_DIRECTIVE}`;
           model: image ? "google/gemini-2.5-flash" : "google/gemini-3-flash-preview",
           messages: [...systemMessages, ...recentMessages],
           stream: true,
-          max_tokens: getMaxTokens(userQuery, persona),
+          max_tokens: getMaxTokens(userQuery, persona, {
+            hasImage: Boolean(image),
+            hasDocument: Boolean(docContext),
+          }),
           temperature: 0.5,
           frequency_penalty: 0.5,
         }),
@@ -3234,7 +3237,7 @@ ${COHORT_DIRECTIVE}`;
             if (done) {
               controller.close();
               // Store in cache asynchronously after stream completes
-              if (fullResponse.length > 50) {
+              if (fullResponse.length > 50 && isLikelyCompleteResponse(fullResponse)) {
                 storeCacheResponse(queryHash, persona, userQuery, fullResponse).catch(() => {});
               }
               return;

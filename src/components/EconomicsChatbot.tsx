@@ -832,10 +832,10 @@ export default function EconomicsChatbot() {
       }, 8000);
     }
     
-    // After 60s global timeout, show error state (matches backend 60s limit)
+    // After 120s global timeout, show error state (matches backend stream limit)
     streamTimeoutRef.current = setTimeout(() => {
       setStreamState('error');
-    }, 60000);
+    }, 120000);
     
     try {
       // Find the last user message to check for image
