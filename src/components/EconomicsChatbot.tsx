@@ -1026,6 +1026,13 @@ export default function EconomicsChatbot() {
     const rawText = query || input.trim();
     if ((!rawText && !uploadedImage) || isLoading) return;
 
+    // Guest message limit — gate after 4 free messages
+    if (!user && guestMessageCount >= GUEST_MESSAGE_LIMIT) {
+      setShowLoginModal(true);
+      toast.info("You've used your 4 free messages — sign in to keep chatting.");
+      return;
+    }
+
     // Sanitize input
     const messageText = rawText ? sanitizeInput(rawText) : '';
     if (rawText && !messageText) {
