@@ -2439,8 +2439,8 @@ NEVER skip the Biological Insight Summary for substantive questions.
 NEVER provide medical advice — always state "Consult a qualified medical professional."`;
 
 const MAX_MESSAGES = 6; // Last 3 exchanges only — 70% input token savings
-const MAX_TOKENS = 2500;
-const STREAM_TIMEOUT_MS = 60000; // 60s global timeout for image-heavy requests
+const MAX_TOKENS = 8192;
+const STREAM_TIMEOUT_MS = 120000; // Give long analytical replies enough time to finish streaming
 
 // ============================================================
 // SEMANTIC CACHING — 0-cost layer for repeated queries
@@ -2509,20 +2509,33 @@ function computeQueryHash(query: string, persona: string): string {
 // ============================================================
 // DYNAMIC TOKEN LIMITS — based on query complexity
 // ============================================================
-function getMaxTokens(query: string, persona: Persona): number {
+function getMaxTokens(
+  query: string,
+  persona: Persona,
+  options?: { hasImage?: boolean; hasDocument?: boolean }
+): number {
   const wordCount = query.trim().split(/\s+/).length;
+  const hasRichInput = Boolean(options?.hasImage || options?.hasDocument);
+
+  if (hasRichInput) return MAX_TOKENS;
+  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step|analy[sz]e|explain in detail)\b/i.test(query)) {
+    return 4096;
+  }
   
-  // Short queries (definitions, single concepts): 700 tokens
-  if (wordCount <= 5) return 700;
+  // Short queries (definitions, single concepts)
+  if (wordCount <= 5) return 900;
   
-  // Medium queries (explain, analyse): 1200 tokens
-  if (wordCount <= 15) return 1200;
+  // Medium queries (explain, analyse)
+  if (wordCount <= 15) return 1800;
   
-  // Complex essay queries (evaluate, discuss, compare): 2048 tokens
-  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step)\b/i.test(query)) return 2048;
-  
-  // Default — 2048 to prevent mid-sentence cut-offs
-  return 2048;
+  // Default — leave headroom so answers don't stop mid-thought
+  return 3200;
+}
+
+function isLikelyCompleteResponse(text: string): boolean {
+  const trimmed = text.trim();
+  if (trimmed.length < 80) return true;
+  return /([.!?…]|```|\*\*|\)|\]|"|')$/.test(trimmed);
 }
 
 // ============================================================
