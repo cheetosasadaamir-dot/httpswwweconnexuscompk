@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import AuthOverlay from '@/components/AuthOverlay';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
+import { ArrowRight, Sparkles, LineChart, MessageSquare, Target, Atom } from 'lucide-react';
 import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -118,6 +119,65 @@ const Index = () => {
                     Consult the AI Specialist
                   </span>
                 </Button>
+              </motion.div>
+
+              {/* Physics Hub Navigation Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-8 md:mt-10 px-4 sm:px-0"
+              >
+                <Link to="/physics" className="block group">
+                  <div className="relative overflow-hidden glass-card rounded-2xl p-5 md:p-6 border border-primary/20 hover:border-primary/50 transition-all duration-500 max-w-2xl mx-auto cursor-pointer">
+                    {/* Animated gradient sweep */}
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background: 'linear-gradient(120deg, transparent 30%, hsl(var(--primary) / 0.15) 50%, transparent 70%)',
+                        backgroundSize: '200% 100%',
+                      }}
+                      animate={{ backgroundPosition: ['200% 0%', '-200% 0%'] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+                    />
+
+                    <div className="relative flex items-center gap-4 md:gap-5">
+                      {/* Atom icon with orbit animation */}
+                      <div className="flex-shrink-0 relative">
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+                          className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30"
+                        >
+                          <Atom className="w-6 h-6 md:w-7 md:h-7 text-primary" />
+                        </motion.div>
+                      </div>
+
+                      {/* Text */}
+                      <div className="flex-1 text-left">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-[10px] md:text-xs uppercase tracking-widest text-primary font-mono font-semibold">
+                            New · Science Mode
+                          </span>
+                          <span className="px-2 py-0.5 rounded-full bg-primary/15 text-primary text-[9px] md:text-[10px] font-mono uppercase tracking-wider">
+                            Beta
+                          </span>
+                        </div>
+                        <h3 className="text-base md:text-xl font-bold text-foreground mb-0.5" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.02em', textTransform: 'uppercase' as const }}>
+                          Explore Physics Hub
+                        </h3>
+                        <p className="text-xs md:text-sm text-muted-foreground leading-snug">
+                          A-Level & University physics — interactive derivations, simulations & examiner traps.
+                        </p>
+                      </div>
+
+                      {/* Arrow */}
+                      <div className="flex-shrink-0">
+                        <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:translate-x-1.5 transition-transform duration-300" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
 
               
