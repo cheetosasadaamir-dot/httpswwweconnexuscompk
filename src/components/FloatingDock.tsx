@@ -169,6 +169,7 @@ const mobileMenuTiers: MobileMenuTier[] = [
 const FloatingDock = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { mode, setMode } = useSubjectMode();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -356,6 +357,36 @@ const FloatingDock = () => {
             <Sparkles className="w-4 h-4" />
             <span className="text-sm font-medium font-display">Glossary</span>
           </Link>
+
+          {/* Subject Switcher — Econ ↔ Science */}
+          <div className="ml-2 flex items-center rounded-xl border border-primary/25 bg-primary/5 p-0.5">
+            <button
+              onClick={() => { setMode('econ'); navigate('/'); }}
+              className={cn(
+                'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold font-display transition',
+                mode === 'econ'
+                  ? 'bg-primary text-primary-foreground shadow'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+              title="Switch to Economics"
+            >
+              <TrendingUp className="w-3.5 h-3.5" />
+              Econ
+            </button>
+            <button
+              onClick={() => { setMode('science'); navigate('/physics'); }}
+              className={cn(
+                'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold font-display transition',
+                mode === 'science'
+                  ? 'bg-primary text-primary-foreground shadow'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+              title="Switch to Physics (Science Mode)"
+            >
+              <Atom className="w-3.5 h-3.5" />
+              Physics
+            </button>
+          </div>
         </div>
       </motion.nav>
 
