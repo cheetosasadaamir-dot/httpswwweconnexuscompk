@@ -14,11 +14,13 @@ import {
   Library,
   User,
   Landmark,
-  Scale
+  Scale,
+  Atom,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
+import { useSubjectMode } from '@/contexts/SubjectModeContext';
 
 interface SubNavItem {
   title: string;
