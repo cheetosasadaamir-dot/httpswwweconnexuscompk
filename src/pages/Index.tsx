@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import AuthOverlay from '@/components/AuthOverlay';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
+import { ArrowRight, Sparkles, LineChart, MessageSquare, Target, Atom } from 'lucide-react';
 import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
