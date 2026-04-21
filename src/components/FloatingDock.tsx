@@ -471,6 +471,14 @@ const FloatingDock = () => {
                     <GraduationCap className="w-4 h-4" />
                     <span>Exams</span>
                   </Link>
+                  <Link
+                    to="/physics"
+                    onClick={() => { setMode('science'); setIsMobileMenuOpen(false); }}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-primary/15 border border-primary/30 text-primary hover:bg-primary/25 transition-all text-sm touch-target pointer-events-auto"
+                  >
+                    <Atom className="w-4 h-4" />
+                    <span>Physics</span>
+                  </Link>
                 </div>
 
                 {/* TIERED NAVIGATION */}
