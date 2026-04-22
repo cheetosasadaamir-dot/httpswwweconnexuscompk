@@ -816,6 +816,23 @@ export default function EconomicsChatbot() {
     }
   }, [user]);
 
+  // Load persisted conversation for this user + persona.
+  // Runs on login, logout, and persona switch — every user gets their own history.
+  useEffect(() => {
+    let cancelled = false;
+    if (!user) {
+      // Guests see a fresh chat; nothing persisted
+      setMessages([]);
+      return;
+    }
+    (async () => {
+      const history = await loadChatHistory(user.id, persona);
+      if (cancelled) return;
+      setMessages(history);
+    })();
+    return () => { cancelled = true; };
+  }, [user, persona]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
