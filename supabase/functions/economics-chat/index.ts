@@ -2517,19 +2517,20 @@ function getMaxTokens(
   const wordCount = query.trim().split(/\s+/).length;
   const hasRichInput = Boolean(options?.hasImage || options?.hasDocument);
 
-  if (hasRichInput) return MAX_TOKENS;
-  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step|analy[sz]e|explain in detail)\b/i.test(query)) {
-    return 4096;
+  // Always give the model enough room to finish its reasoning chain.
+  if (hasRichInput) return MAX_TOKENS; // 8192 — documents/images
+  if (/\b(evaluate|discuss|assess|compare|critically|essay|derive|prove|multi.?step|analy[sz]e|explain in detail|case study|examiner)\b/i.test(query)) {
+    return 6000; // deep analytical answers — never truncate
   }
-  
-  // Short queries (definitions, single concepts)
-  if (wordCount <= 5) return 900;
-  
+
+  // Short queries (definitions, single concepts) — still need a full, polished answer
+  if (wordCount <= 5) return 1500;
+
   // Medium queries (explain, analyse)
-  if (wordCount <= 15) return 1800;
-  
-  // Default — leave headroom so answers don't stop mid-thought
-  return 3200;
+  if (wordCount <= 15) return 2800;
+
+  // Default — generous headroom so answers don't stop mid-thought
+  return 4500;
 }
 
 function isLikelyCompleteResponse(text: string): boolean {
@@ -3028,8 +3029,14 @@ Maintain strict algorithmic precision. Use step-by-step logic, pure mathematical
 
     const GLOBAL_SYSTEM_OVERLAY = `## GLOBAL SYSTEM RULES (UNIVERSAL — ALL PERSONAS)
 
-### ━━━ SECTION -1: COMPLETENESS & CONCISENESS MANDATE ━━━
-Provide complete, high-impact explanations. Do not exceed 3 paragraphs. Ensure every point is finished. Accuracy is non-negotiable. Never leave a sentence incomplete or cut off mid-thought.
+### ━━━ SECTION -1: PRECISION + COMPLETENESS MANDATE (HIGHEST PRIORITY) ━━━
+Your output must be **complete, precise, and high-impact** — engineered to outperform generic AI assistants.
+- **Never truncate.** Every analytical chain must be finished. Never end mid-sentence, mid-formula, mid-list, or mid-derivation. If you sense you are nearing the token ceiling, condense the remaining points into tighter prose rather than stopping.
+- **Always close the loop.** A response is incomplete unless it (a) answers the actual question asked, (b) shows the reasoning, and (c) ends with a clear takeaway / verdict / final line.
+- **Precision over length.** Every sentence must add new analytical value — no filler, no restating the question, no "I hope this helps". Density beats volume.
+- **Impact over verbosity.** Prefer 4–6 dense, well-developed paragraphs over 10 shallow ones. Use bullets only when the content is genuinely list-shaped.
+- **Self-check before stopping.** Internally verify: "Did I fully answer? Did I justify? Did I conclude?" If any answer is no, continue. Only then end the response.
+- **Accuracy is non-negotiable.** No hallucinated stats, no invented citations, no fake case names. If unsure, say so explicitly.
 
 ### ━━━ SECTION 0: STRICT DOMAIN CONSTRAINT (ZERO-SPAM POLICY) ━━━
 You are the **${personaName}** specialist. You are PROHIBITED from engaging in:
@@ -3190,15 +3197,18 @@ ${COHORT_DIRECTIVE}`;
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: image ? "google/gemini-2.5-flash" : "google/gemini-3-flash-preview",
+          model: image ? "google/gemini-2.5-flash" : "google/gemini-2.5-flash",
           messages: [...systemMessages, ...recentMessages],
           stream: true,
           max_tokens: getMaxTokens(userQuery, persona, {
             hasImage: Boolean(image),
             hasDocument: Boolean(docContext),
           }),
-          temperature: 0.5,
-          frequency_penalty: 0.5,
+          temperature: 0.45,
+          // Low frequency_penalty: high values were causing the model to bail out
+          // early to avoid "repeating" essential domain terms (e.g. "demand", "price").
+          frequency_penalty: 0.15,
+          presence_penalty: 0.0,
         }),
         signal: controller.signal,
       });
