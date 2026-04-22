@@ -1090,6 +1090,11 @@ export default function EconomicsChatbot() {
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
 
+    // Persist user message for signed-in users
+    if (user) {
+      void saveChatMessage(user.id, persona, userMsg);
+    }
+
     // Increment guest counter after a successful guest send
     if (!user) {
       const next = guestMessageCount + 1;
