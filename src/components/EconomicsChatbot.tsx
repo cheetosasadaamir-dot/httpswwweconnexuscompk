@@ -1213,6 +1213,10 @@ export default function EconomicsChatbot() {
     setDocumentName('');
     setDocStatus('idle');
     setDocUploadProgress(0);
+    // Also wipe persisted history for this persona so it doesn't reload on refresh
+    if (user) {
+      void clearChatHistory(user.id, persona);
+    }
     toast.success('Chat cleared');
   };
 
