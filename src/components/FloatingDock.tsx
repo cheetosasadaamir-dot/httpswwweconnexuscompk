@@ -15,12 +15,10 @@ import {
   User,
   Landmark,
   Scale,
-  Atom,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
-import { useSubjectMode } from '@/contexts/SubjectModeContext';
 
 interface SubNavItem {
   title: string;
@@ -169,7 +167,6 @@ const mobileMenuTiers: MobileMenuTier[] = [
 const FloatingDock = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { mode, setMode } = useSubjectMode();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -358,35 +355,6 @@ const FloatingDock = () => {
             <span className="text-sm font-medium font-display">Glossary</span>
           </Link>
 
-          {/* Subject Switcher — Econ ↔ Science */}
-          <div className="ml-2 flex items-center rounded-xl border border-primary/25 bg-primary/5 p-0.5">
-            <button
-              onClick={() => { setMode('econ'); navigate('/'); }}
-              className={cn(
-                'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold font-display transition',
-                mode === 'econ'
-                  ? 'bg-primary text-primary-foreground shadow'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-              title="Switch to Economics"
-            >
-              <TrendingUp className="w-3.5 h-3.5" />
-              Econ
-            </button>
-            <button
-              onClick={() => { setMode('science'); navigate('/physics'); }}
-              className={cn(
-                'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold font-display transition',
-                mode === 'science'
-                  ? 'bg-primary text-primary-foreground shadow'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-              title="Switch to Physics (Science Mode)"
-            >
-              <Atom className="w-3.5 h-3.5" />
-              Physics
-            </button>
-          </div>
         </div>
       </motion.nav>
 
@@ -470,14 +438,6 @@ const FloatingDock = () => {
                   >
                     <GraduationCap className="w-4 h-4" />
                     <span>Exams</span>
-                  </Link>
-                  <Link
-                    to="/physics"
-                    onClick={() => { setMode('science'); setIsMobileMenuOpen(false); }}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-primary/15 border border-primary/30 text-primary hover:bg-primary/25 transition-all text-sm touch-target pointer-events-auto"
-                  >
-                    <Atom className="w-4 h-4" />
-                    <span>Physics</span>
                   </Link>
                 </div>
 
