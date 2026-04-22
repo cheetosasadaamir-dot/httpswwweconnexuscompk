@@ -1328,7 +1328,7 @@ export default function EconomicsChatbot() {
                   return (
                     <button
                       key={p}
-                      onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
+                      onClick={() => { setPersona(p); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
                       className="flex items-center gap-1.5 rounded-full shrink-0 active:scale-95"
                       style={{
                         transition: 'all 0.1s cubic-bezier(0.22, 1, 0.36, 1)',
