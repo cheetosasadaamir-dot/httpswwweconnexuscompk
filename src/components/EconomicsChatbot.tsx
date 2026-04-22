@@ -45,6 +45,7 @@ const GUIDE_IMAGES: Record<string, string> = {
   'biology': guideBiology,
 };
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
+import { loadChatHistory, saveChatMessage, clearChatHistory } from '@/lib/chat-history';
 
 // ---- Client-side image upload rate limiter (10 images / 60s) ----
 const imageUploadTimestamps: number[] = [];
@@ -815,6 +816,23 @@ export default function EconomicsChatbot() {
     }
   }, [user]);
 
+  // Load persisted conversation for this user + persona.
+  // Runs on login, logout, and persona switch — every user gets their own history.
+  useEffect(() => {
+    let cancelled = false;
+    if (!user) {
+      // Guests see a fresh chat; nothing persisted
+      setMessages([]);
+      return;
+    }
+    (async () => {
+      const history = await loadChatHistory(user.id, persona);
+      if (cancelled) return;
+      setMessages(history);
+    })();
+    return () => { cancelled = true; };
+  }, [user, persona]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -1011,6 +1029,15 @@ export default function EconomicsChatbot() {
       
       setStreamState('idle');
       setRetryCount(0);
+
+      // Persist the completed assistant response for signed-in users
+      if (user && assistantContent.trim().length > 0) {
+        void saveChatMessage(user.id, persona, {
+          role: 'assistant',
+          content: assistantContent,
+          id: assistantId,
+        });
+      }
     } catch (error) {
       setStreamState('idle');
       
@@ -1071,6 +1098,11 @@ export default function EconomicsChatbot() {
     };
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
+
+    // Persist user message for signed-in users
+    if (user) {
+      void saveChatMessage(user.id, persona, userMsg);
+    }
 
     // Increment guest counter after a successful guest send
     if (!user) {
@@ -1181,6 +1213,10 @@ export default function EconomicsChatbot() {
     setDocumentName('');
     setDocStatus('idle');
     setDocUploadProgress(0);
+    // Also wipe persisted history for this persona so it doesn't reload on refresh
+    if (user) {
+      void clearChatHistory(user.id, persona);
+    }
     toast.success('Chat cleared');
   };
 
@@ -1292,7 +1328,7 @@ export default function EconomicsChatbot() {
                   return (
                     <button
                       key={p}
-                      onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
+                      onClick={() => { setPersona(p); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
                       className="flex items-center gap-1.5 rounded-full shrink-0 active:scale-95"
                       style={{
                         transition: 'all 0.1s cubic-bezier(0.22, 1, 0.36, 1)',
@@ -1339,7 +1375,7 @@ export default function EconomicsChatbot() {
                 return (
                   <button
                     key={p}
-                    onClick={() => { setPersona(p); setMessages([]); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
+                    onClick={() => { setPersona(p); setUploadedImage(null); setUploadedImageName(''); setDocumentText(null); setDocumentName(''); setDocStatus('idle'); setDocUploadProgress(0); }}
                     className={`relative flex flex-col items-center justify-center rounded-xl min-w-[52px] w-[52px] h-[52px] shrink-0 chat-quick-action ${
                       isActive ? '' : 'hover:bg-white/[0.04]'
                     }`}

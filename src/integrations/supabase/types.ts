@@ -86,6 +86,42 @@ export type Database = {
         }
         Relationships: []
       }
+      chat_history: {
+        Row: {
+          client_message_id: string | null
+          content: string
+          created_at: string
+          id: string
+          image_url: string | null
+          is_error: boolean
+          persona: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          client_message_id?: string | null
+          content: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_error?: boolean
+          persona: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          client_message_id?: string | null
+          content?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_error?: boolean
+          persona?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       freemium_access: {
         Row: {
           created_at: string
