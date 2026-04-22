@@ -10,23 +10,6 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AuthGateProvider } from "@/hooks/useAuthGate";
 import { usePageTracking } from "@/hooks/usePageTracking";
-import { SubjectModeProvider } from "@/contexts/SubjectModeContext";
-
-// Physics Hub (Science Mode)
-const PhysicsHub = lazy(() => import("./pages/physics/PhysicsHub"));
-const PhysKinematics = lazy(() => import("./pages/physics/mechanics/Kinematics"));
-const PhysDynamics = lazy(() => import("./pages/physics/mechanics/Dynamics"));
-const PhysDeformation = lazy(() => import("./pages/physics/mechanics/Deformation"));
-const PhysCircuits = lazy(() => import("./pages/physics/electricity/Circuits"));
-const PhysFields = lazy(() => import("./pages/physics/electricity/Fields"));
-const PhysCapacitance = lazy(() => import("./pages/physics/electricity/Capacitance"));
-const PhysSuperposition = lazy(() => import("./pages/physics/waves/Superposition"));
-const PhysInterference = lazy(() => import("./pages/physics/waves/Interference"));
-const PhysLenses = lazy(() => import("./pages/physics/waves/Lenses"));
-const PhysPhotons = lazy(() => import("./pages/physics/quantum/Photons"));
-const PhysRadioactivity = lazy(() => import("./pages/physics/quantum/Radioactivity"));
-const PhysParticles = lazy(() => import("./pages/physics/quantum/Particles"));
-
 // Critical path - load immediately
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -178,21 +161,6 @@ const AnimatedRoutes = () => {
           <Route path="/labor-markets" element={<LaborMarketA2 />} />
           <Route path="/economic-growth" element={<Macroeconomics />} />
           
-          {/* Physics Hub — Science Mode */}
-          <Route path="/physics" element={<PhysicsHub />} />
-          <Route path="/physics/mechanics/kinematics" element={<PhysKinematics />} />
-          <Route path="/physics/mechanics/dynamics" element={<PhysDynamics />} />
-          <Route path="/physics/mechanics/deformation" element={<PhysDeformation />} />
-          <Route path="/physics/electricity/circuits" element={<PhysCircuits />} />
-          <Route path="/physics/electricity/fields" element={<PhysFields />} />
-          <Route path="/physics/electricity/capacitance" element={<PhysCapacitance />} />
-          <Route path="/physics/waves/superposition" element={<PhysSuperposition />} />
-          <Route path="/physics/waves/interference" element={<PhysInterference />} />
-          <Route path="/physics/waves/lenses" element={<PhysLenses />} />
-          <Route path="/physics/quantum/photons" element={<PhysPhotons />} />
-          <Route path="/physics/quantum/radioactivity" element={<PhysRadioactivity />} />
-          <Route path="/physics/quantum/particles" element={<PhysParticles />} />
-
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -208,11 +176,9 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <SubjectModeProvider>
-            <AuthGateProvider>
-              <AnimatedRoutes />
-            </AuthGateProvider>
-          </SubjectModeProvider>
+          <AuthGateProvider>
+            <AnimatedRoutes />
+          </AuthGateProvider>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
