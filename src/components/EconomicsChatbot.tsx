@@ -1029,6 +1029,15 @@ export default function EconomicsChatbot() {
       
       setStreamState('idle');
       setRetryCount(0);
+
+      // Persist the completed assistant response for signed-in users
+      if (user && assistantContent.trim().length > 0) {
+        void saveChatMessage(user.id, persona, {
+          role: 'assistant',
+          content: assistantContent,
+          id: assistantId,
+        });
+      }
     } catch (error) {
       setStreamState('idle');
       
