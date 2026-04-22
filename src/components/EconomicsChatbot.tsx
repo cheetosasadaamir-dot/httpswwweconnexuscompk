@@ -45,6 +45,7 @@ const GUIDE_IMAGES: Record<string, string> = {
   'biology': guideBiology,
 };
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
+import { loadChatHistory, saveChatMessage, clearChatHistory } from '@/lib/chat-history';
 
 // ---- Client-side image upload rate limiter (10 images / 60s) ----
 const imageUploadTimestamps: number[] = [];
