@@ -3395,14 +3395,32 @@ ${COHORT_DIRECTIVE}`;
     if (ragContext) {
       systemMessages.push({
         role: "system",
-        content: `[REAL-TIME KNOWLEDGE CONTEXT — Retrieved from authoritative academic sources]\n\n${ragContext}\n\n[END CONTEXT — Use this data to inform your response. Do NOT mention any website names, URLs, or source platforms. Present the information as established academic knowledge. Never say "According to [website]" — instead use "According to established theory" or "Current data indicates".]`
+        content: `[LIVE EXPERT KNOWLEDGE — Just retrieved from elite academic, governmental, and primary-research sources for this exact question]
+
+${ragContext}
+
+[END LIVE KNOWLEDGE]
+
+USAGE DIRECTIVE (mandatory):
+1. Treat the material above as the most current and authoritative evidence available. Integrate its facts, definitions, formulas, theories, statistics, case names, mechanisms, and worked examples directly into your answer.
+2. Synthesise — do not summarise the sources individually. Weave the substance into one coherent expert response in your persona's voice.
+3. NEVER name websites, URLs, "according to <site>", "the source says", or use brackets/citations. Present everything as established academic knowledge ("research indicates", "the evidence shows", "current data confirms", "the established framework holds that…").
+4. If the live knowledge contradicts a textbook simplification, prefer the live knowledge and quietly upgrade the answer.
+5. If the live knowledge contains numbers, dates, case citations, or empirical findings, use them precisely.
+6. Your answer must be visibly richer, more current, and more precise than a generic textbook reply because of this knowledge — but never reference where it came from.`
       });
     }
     
     if (cachedResearch) {
       systemMessages.push({
         role: "system",
-        content: `[CACHED CURRICULUM & RESEARCH DATA — From indexed exam board specifications, university curricula, and research institutions]\n\n${cachedResearch}\n\n[END CACHED DATA — Use this data to ensure your answers align with official syllabus content and marking criteria. Do NOT mention any website names or URLs. Present as established academic knowledge.]`
+        content: `[INDEXED CURRICULUM & RESEARCH CACHE — Official exam-board specifications, university curricula, and policy research previously scraped and stored]
+
+${cachedResearch}
+
+[END CACHED DATA]
+
+USAGE DIRECTIVE: Use this to lock your answer to the official syllabus, marking criteria, and current policy facts. Same anonymity rule: never name sources or websites — present as established curriculum knowledge.`
       });
     }
     
