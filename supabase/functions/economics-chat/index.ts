@@ -405,6 +405,22 @@ const PERSONA_CONFIG: Record<Persona, {
 // FIRECRAWL RAG ENGINE
 // ============================================================
 
+// Persona-specific seed terms — appended to focused web searches so Firecrawl
+// returns deeper, more authoritative content even for short user queries.
+const PERSONA_SEED_TERMS: Record<Persona, string> = {
+  'a-level': 'economics theory model empirical evidence policy analysis',
+  'business': 'business strategy framework case study evidence management theory',
+  'law': 'case law statute precedent ratio decidendi judgment legal principle',
+  'psychology': 'psychology study experiment evidence theory peer reviewed',
+  'accounting': 'accounting standard IFRS IAS treatment worked example principle',
+  'sociology': 'sociology theory perspective evidence study research findings',
+  'research': 'research methodology design validity reliability evidence',
+  'mathematics': 'mathematics proof theorem derivation worked example method',
+  'physics': 'physics derivation principle experiment formula worked example',
+  'chemistry': 'chemistry mechanism reaction principle worked example data',
+  'biology': 'biology process mechanism experimental evidence pathway',
+};
+
 async function searchFirecrawl(query: string, persona: Persona): Promise<string> {
   const apiKey = Deno.env.get("FIRECRAWL_API_KEY");
   if (!apiKey) {
@@ -413,12 +429,15 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
   }
 
   const config = PERSONA_CONFIG[persona];
-  const domainFilter = config.ragDomains.map(d => `site:${d}`).join(" OR ");
-  const searchQuery = `(${domainFilter}) ${query}`;
+  // Cap the domain filter — too many `site:` clauses can hurt recall on Firecrawl.
+  const topDomains = config.ragDomains.slice(0, 14);
+  const domainFilter = topDomains.map(d => `site:${d}`).join(" OR ");
+  const seed = PERSONA_SEED_TERMS[persona] ?? "";
+  const searchQuery = `(${domainFilter}) ${query} ${seed}`.slice(0, 500);
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
     const response = await fetch("https://api.firecrawl.dev/v1/search", {
       method: "POST",
@@ -428,8 +447,8 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
       },
       body: JSON.stringify({
         query: searchQuery,
-        limit: 5,
-        scrapeOptions: { formats: ["markdown"] },
+        limit: 8,
+        scrapeOptions: { formats: ["markdown"], onlyMainContent: true },
       }),
       signal: controller.signal,
     });
@@ -447,13 +466,19 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
     if (!Array.isArray(results) || results.length === 0) return "";
 
     const contextParts: string[] = [];
-    for (const result of results.slice(0, 4)) {
+    let totalChars = 0;
+    const MAX_TOTAL = 9000;
+    for (const result of results.slice(0, 6)) {
       const url = result.url || result.sourceURL || "";
       const title = result.title || result.metadata?.title || "";
-      const content = (result.markdown || result.description || "").slice(0, 1200);
-      if (content.trim()) {
-        contextParts.push(`[Academic Reference — ${title}]\n${content}`);
-      }
+      const raw = (result.markdown || result.description || "").trim();
+      if (!raw) continue;
+      const remaining = MAX_TOTAL - totalChars;
+      if (remaining <= 400) break;
+      const snippet = raw.slice(0, Math.min(1800, remaining));
+      const sourceName = getSourceName(url);
+      contextParts.push(`[Authoritative Source — ${sourceName}${title ? ` · ${title}` : ""}]\n${snippet}`);
+      totalChars += snippet.length;
     }
 
     return contextParts.join("\n\n---\n\n");
@@ -466,6 +491,7 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
     return "";
   }
 }
+
 
 function getSourceName(url: string): string {
   if (url.includes("economicshelp.org")) return "Economics Help";
