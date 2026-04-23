@@ -171,7 +171,17 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'psychology': {
-    ragDomains: ["cambridgeinternational.org", "psychologywizard.net", "simplypsychology.org", "tutor2u.net", "savemyexams.com", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "psychologywizard.net", "simplypsychology.org", "tutor2u.net", "savemyexams.com",
+      // Primary research + professional bodies
+      "apa.org", "psychologytoday.com", "bps.org.uk", "psycnet.apa.org",
+      "ncbi.nlm.nih.gov/pmc", "pubmed.ncbi.nlm.nih.gov", "nature.com/subjects/psychology",
+      "sciencedirect.com/journal/cognition", "cambridge.org/core/journals",
+      "annualreviews.org", "frontiersin.org/journals/psychology", "plos.org",
+      "verywellmind.com", "scholar.google.com",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|describe|suggest)\b/i,
       /\b(milgram|bandura|zimbardo|asch|loftus|palmer|piliavin|baron.?cohen|grant|freud|skinner|pavlov|watson)\b/i,
@@ -185,7 +195,18 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'accounting': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "ifrs.org", "znotes.org", "accountingtools.com", "qualifications.pearson.com"],
+    ragDomains: [
+      // Standards setters & primary frameworks
+      "ifrs.org", "fasb.org", "iasplus.com", "ifac.org", "icaew.com", "accaglobal.com",
+      "cimaglobal.com", "aicpa-cima.com", "frc.org.uk",
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com",
+      "tutor2u.net", "savemyexams.com", "znotes.org", "accountingtools.com",
+      "accountingcoach.com", "principlesofaccounting.com",
+      // Practitioner / Big Four
+      "deloitte.com", "pwc.com", "ey.com", "kpmg.com", "investopedia.com",
+      "corporatefinanceinstitute.com",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|calculate|prepare)\b/i,
       /\b(double.?entry|debit|credit|ledger|journal|trial\s*balance|day\s*book|suspense)\b/i,
@@ -200,7 +221,19 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'sociology': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "simplysociology.org", "savemyexams.com", "revisesociology.com", "aqa.org.uk", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "tutor2u.net", "savemyexams.com", "simplysociology.org", "revisesociology.com",
+      // Primary research & professional bodies
+      "asanet.org", "britsoc.co.uk", "isa-sociology.org",
+      "journals.sagepub.com", "cambridge.org/core/journals/sociology",
+      "academic.oup.com/socpro", "annualreviews.org/journal/soc",
+      "jstor.org", "scholar.google.com",
+      // Data + global indicators
+      "ourworldindata.org", "data.worldbank.org", "oecd.org", "pewresearch.org",
+      "weforum.org", "un.org", "unesco.org",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|outline)\b/i,
       /\b(functionalism|marxism|feminism|interactionism|postmodernism|weberian|new\s*right)\b/i,
@@ -215,7 +248,20 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'research': {
-    ragDomains: ["cambridgeinternational.org", "methods.sagepub.com", "tutor2u.net", "simplypsychology.org", "socialresearchmethods.net", "qualifications.pearson.com"],
+    ragDomains: [
+      // Methodology authorities
+      "methods.sagepub.com", "socialresearchmethods.net", "scribbr.com",
+      "researchgate.net", "ssrn.com", "scholar.google.com", "jstor.org",
+      // Curriculum
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "tutor2u.net", "simplypsychology.org",
+      // Open science + standards
+      "cos.io", "osf.io", "equator-network.org", "prisma-statement.org",
+      "consort-statement.org", "cochranelibrary.com",
+      // Stats / data
+      "statisticshowto.com", "stats.stackexchange.com", "ourworldindata.org",
+      "data.worldbank.org", "oecd.org", "nature.com/subjects/research-data",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|design)\b/i,
       /\b(hypothesis|null\s*hypothesis|alternative\s*hypothesis|operationali[sz]e|variable|independent|dependent|extraneous)\b/i,
@@ -230,7 +276,19 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'mathematics': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "mathsisfun.com", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com",
+      "mathsisfun.com",
+      // Authoritative reference
+      "mathworld.wolfram.com", "wolframalpha.com", "encyclopediaofmath.org",
+      "dlmf.nist.gov", "ocw.mit.edu", "khanacademy.org/math",
+      "brilliant.org", "paulsonline.math.lamar.edu", "tutorial.math.lamar.edu",
+      // Research + advanced
+      "arxiv.org/list/math", "ams.org", "lms.ac.uk", "imo-official.org",
+      "projecteuclid.org", "scholar.google.com", "stackexchange.com/sites/math",
+    ],
     searchPatterns: [
       /\b(solve|prove|derive|integrate|differentiate|calculate|find|show\s+that|simplify|expand|factorise|sketch)\b/i,
       /\b(calculus|differentiation|integration|differential\s*equation|chain\s*rule|product\s*rule|quotient\s*rule)\b/i,
@@ -245,7 +303,21 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'physics': {
-    ragDomains: ["cambridgeinternational.org", "physicsandmathstutor.com", "savemyexams.com", "znotes.org", "feynmanlectures.caltech.edu", "hyperphysics.phy-astr.gsu.edu", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "physicsandmathstutor.com", "savemyexams.com", "znotes.org",
+      // Authoritative physics
+      "feynmanlectures.caltech.edu", "hyperphysics.phy-astr.gsu.edu",
+      "ocw.mit.edu/courses/physics", "physics.nist.gov", "iop.org",
+      "aps.org", "physicsworld.com", "physics.aps.org",
+      // Research + journals
+      "arxiv.org/list/physics", "nature.com/subjects/physics",
+      "journals.aps.org", "iopscience.iop.org", "scholar.google.com",
+      // Reference
+      "khanacademy.org/science/physics", "physicsclassroom.com",
+      "compadre.org", "scienceworld.wolfram.com",
+    ],
     searchPatterns: [
       /\b(solve|calculate|derive|find|show\s+that|sketch|measure|determine|estimate)\b/i,
       /\b(kinematics|dynamics|force|momentum|energy|work|power|torque|equilibrium)\b/i,
@@ -262,7 +334,21 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'chemistry': {
-    ragDomains: ["cambridgeinternational.org", "chemguide.co.uk", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "rsc.org", "masterorganicchemistry.com", "chemistrysteps.com", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "chemguide.co.uk", "savemyexams.com", "znotes.org", "physicsandmathstutor.com",
+      "masterorganicchemistry.com", "chemistrysteps.com",
+      // Authoritative bodies
+      "rsc.org", "acs.org", "iupac.org", "nist.gov/chemistry",
+      "pubchem.ncbi.nlm.nih.gov", "webbook.nist.gov", "sigmaaldrich.com",
+      // Research + journals
+      "pubs.acs.org", "nature.com/subjects/chemistry", "rsc.org/journals-books",
+      "sciencedirect.com/journal/tetrahedron", "scholar.google.com",
+      // Reference
+      "ocw.mit.edu/courses/chemistry", "khanacademy.org/science/chemistry",
+      "libretexts.org/Chemistry", "chem.libretexts.org",
+    ],
     searchPatterns: [
       /\b(solve|calculate|derive|find|show\s+that|draw|sketch|predict|explain|define|evaluate|discuss|compare|suggest|deduce)\b/i,
       /\b(atom|molecule|ion|isotope|electron|proton|neutron|orbital|subshell|quantum\s*number|aufbau|hund|pauli)\b/i,
@@ -283,7 +369,21 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'biology': {
-    ragDomains: ["cambridgeinternational.org", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "bbc.co.uk/bitesize", "biologymad.com", "s-cool.co.uk", "qualifications.pearson.com", "ncbi.nlm.nih.gov"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "savemyexams.com", "znotes.org", "physicsandmathstutor.com",
+      "bbc.co.uk/bitesize", "biologymad.com", "s-cool.co.uk",
+      // Primary research databases
+      "ncbi.nlm.nih.gov", "pubmed.ncbi.nlm.nih.gov", "ncbi.nlm.nih.gov/pmc",
+      "nature.com/subjects/biological-sciences", "cell.com", "sciencedirect.com",
+      "plos.org/biology", "biorxiv.org", "scholar.google.com",
+      // Authoritative reference
+      "biointeractive.org", "khanacademy.org/science/biology",
+      "ocw.mit.edu/courses/biology", "scitable.nature.com",
+      "genome.gov", "ensembl.org", "uniprot.org", "rcsb.org",
+      "who.int", "cdc.gov",
+    ],
     searchPatterns: [
       /\b(explain|define|describe|compare|suggest|evaluate|discuss|calculate|state|outline|deduce)\b/i,
       /\b(cell|mitosis|meiosis|chromosome|DNA|RNA|gene|allele|genotype|phenotype|mutation|epigenetics)\b/i,
