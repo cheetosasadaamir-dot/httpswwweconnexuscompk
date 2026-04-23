@@ -143,7 +143,20 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'law': {
-    ragDomains: ["legislation.gov.uk", "law.cornell.edu", "eur-lex.europa.eu", "judiciary.uk", "cambridgeinternational.org", "tutor2u.net", "lawteacher.net", "e-lawresources.co.uk", "caselaw.findlaw.com", "icj-cij.org", "supremecourt.uk", "qualifications.pearson.com"],
+    ragDomains: [
+      // Primary law sources
+      "legislation.gov.uk", "law.cornell.edu", "eur-lex.europa.eu", "judiciary.uk",
+      "supremecourt.uk", "bailii.org", "caselaw.nationalarchives.gov.uk",
+      "icj-cij.org", "echr.coe.int", "un.org/en/about-us/un-charter",
+      "caselaw.findlaw.com", "justia.com", "oyez.org", "courtlistener.com",
+      // Legal academia & elite firms
+      "harvardlawreview.org", "yalelawjournal.org", "columbialawreview.org",
+      "law.ox.ac.uk", "cambridge.org/core/journals/cambridge-law-journal",
+      "scholar.google.com", "ssrn.com",
+      // Curriculum + study
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "tutor2u.net", "lawteacher.net", "e-lawresources.co.uk", "lexisnexis.com",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|critically)\b/i,
       /\b(contract|tort|negligence|duty\s*of\s*care|breach|damages|remoteness|causation|contributory)\b/i,
