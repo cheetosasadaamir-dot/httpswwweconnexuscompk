@@ -91,7 +91,20 @@ const PERSONA_CONFIG: Record<Persona, {
   searchPatterns: RegExp[];
 }> = {
   'a-level': {
-    ragDomains: ["economicshelp.org", "tutor2u.net", "imf.org", "tradingeconomics.com", "sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org", "qualifications.pearson.com", "ocr.org.uk", "economicsnetwork.ac.uk"],
+    ragDomains: [
+      // Curriculum + revision
+      "economicshelp.org", "tutor2u.net", "savemyexams.com", "znotes.org", "ocr.org.uk",
+      "qualifications.pearson.com", "cambridgeinternational.org", "economicsnetwork.ac.uk",
+      // Global data + institutions
+      "imf.org", "worldbank.org", "data.worldbank.org", "oecd.org", "data.oecd.org",
+      "wto.org", "unctad.org", "un.org", "tradingeconomics.com", "ourworldindata.org",
+      "fred.stlouisfed.org", "bis.org", "ec.europa.eu/eurostat",
+      // Pakistan-specific (kept)
+      "sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org",
+      // Academic / research
+      "nber.org", "voxeu.org", "ssrn.com", "jstor.org", "academic.oup.com",
+      "cambridge.org/core", "sciencedirect.com",
+    ],
     searchPatterns: [
       /\b(gdp|inflation|cpi|wpi|unemployment|interest rate|exchange rate|growth|deficit|surplus|debt|trade|balance.?of.?payments)\b/i,
       /\b(current|latest|recent|today|now|2024|2025|2026|real.?world|data|statistics?|pakistan|sbp|pbs)\b/i,
@@ -106,9 +119,16 @@ const PERSONA_CONFIG: Record<Persona, {
   },
   'business': {
     ragDomains: [
+      // Revision + curriculum
       "tutor2u.net", "savemyexams.com", "znotes.org", "cambridgeinternational.org",
-      "physicsandmathstutor.com", "hbr.org", "sloanreview.mit.edu", "stern.nyu.edu",
-      "investopedia.com", "corporate.finance.institute", "ibm.com/topics", "qualifications.pearson.com"
+      "physicsandmathstutor.com", "qualifications.pearson.com",
+      // Elite business journals & schools
+      "hbr.org", "sloanreview.mit.edu", "stern.nyu.edu", "knowledge.wharton.upenn.edu",
+      "insead.edu", "lbs.edu", "mckinsey.com", "bcg.com", "bain.com", "strategy-business.com",
+      "deloitte.com/insights", "pwc.com", "weforum.org",
+      // Practitioner + finance
+      "investopedia.com", "corporatefinanceinstitute.com", "ibm.com/topics", "ft.com",
+      "economist.com", "bloomberg.com", "reuters.com",
     ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|justify|identify|calculate|recommend)\b/i,
@@ -123,7 +143,20 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'law': {
-    ragDomains: ["legislation.gov.uk", "law.cornell.edu", "eur-lex.europa.eu", "judiciary.uk", "cambridgeinternational.org", "tutor2u.net", "lawteacher.net", "e-lawresources.co.uk", "caselaw.findlaw.com", "icj-cij.org", "supremecourt.uk", "qualifications.pearson.com"],
+    ragDomains: [
+      // Primary law sources
+      "legislation.gov.uk", "law.cornell.edu", "eur-lex.europa.eu", "judiciary.uk",
+      "supremecourt.uk", "bailii.org", "caselaw.nationalarchives.gov.uk",
+      "icj-cij.org", "echr.coe.int", "un.org/en/about-us/un-charter",
+      "caselaw.findlaw.com", "justia.com", "oyez.org", "courtlistener.com",
+      // Legal academia & elite firms
+      "harvardlawreview.org", "yalelawjournal.org", "columbialawreview.org",
+      "law.ox.ac.uk", "cambridge.org/core/journals/cambridge-law-journal",
+      "scholar.google.com", "ssrn.com",
+      // Curriculum + study
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "tutor2u.net", "lawteacher.net", "e-lawresources.co.uk", "lexisnexis.com",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|critically)\b/i,
       /\b(contract|tort|negligence|duty\s*of\s*care|breach|damages|remoteness|causation|contributory)\b/i,
@@ -138,7 +171,17 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'psychology': {
-    ragDomains: ["cambridgeinternational.org", "psychologywizard.net", "simplypsychology.org", "tutor2u.net", "savemyexams.com", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "psychologywizard.net", "simplypsychology.org", "tutor2u.net", "savemyexams.com",
+      // Primary research + professional bodies
+      "apa.org", "psychologytoday.com", "bps.org.uk", "psycnet.apa.org",
+      "ncbi.nlm.nih.gov/pmc", "pubmed.ncbi.nlm.nih.gov", "nature.com/subjects/psychology",
+      "sciencedirect.com/journal/cognition", "cambridge.org/core/journals",
+      "annualreviews.org", "frontiersin.org/journals/psychology", "plos.org",
+      "verywellmind.com", "scholar.google.com",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|describe|suggest)\b/i,
       /\b(milgram|bandura|zimbardo|asch|loftus|palmer|piliavin|baron.?cohen|grant|freud|skinner|pavlov|watson)\b/i,
@@ -152,7 +195,18 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'accounting': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "ifrs.org", "znotes.org", "accountingtools.com", "qualifications.pearson.com"],
+    ragDomains: [
+      // Standards setters & primary frameworks
+      "ifrs.org", "fasb.org", "iasplus.com", "ifac.org", "icaew.com", "accaglobal.com",
+      "cimaglobal.com", "aicpa-cima.com", "frc.org.uk",
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com",
+      "tutor2u.net", "savemyexams.com", "znotes.org", "accountingtools.com",
+      "accountingcoach.com", "principlesofaccounting.com",
+      // Practitioner / Big Four
+      "deloitte.com", "pwc.com", "ey.com", "kpmg.com", "investopedia.com",
+      "corporatefinanceinstitute.com",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|calculate|prepare)\b/i,
       /\b(double.?entry|debit|credit|ledger|journal|trial\s*balance|day\s*book|suspense)\b/i,
@@ -167,7 +221,19 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'sociology': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "simplysociology.org", "savemyexams.com", "revisesociology.com", "aqa.org.uk", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "tutor2u.net", "savemyexams.com", "simplysociology.org", "revisesociology.com",
+      // Primary research & professional bodies
+      "asanet.org", "britsoc.co.uk", "isa-sociology.org",
+      "journals.sagepub.com", "cambridge.org/core/journals/sociology",
+      "academic.oup.com/socpro", "annualreviews.org/journal/soc",
+      "jstor.org", "scholar.google.com",
+      // Data + global indicators
+      "ourworldindata.org", "data.worldbank.org", "oecd.org", "pewresearch.org",
+      "weforum.org", "un.org", "unesco.org",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|outline)\b/i,
       /\b(functionalism|marxism|feminism|interactionism|postmodernism|weberian|new\s*right)\b/i,
@@ -182,7 +248,20 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'research': {
-    ragDomains: ["cambridgeinternational.org", "methods.sagepub.com", "tutor2u.net", "simplypsychology.org", "socialresearchmethods.net", "qualifications.pearson.com"],
+    ragDomains: [
+      // Methodology authorities
+      "methods.sagepub.com", "socialresearchmethods.net", "scribbr.com",
+      "researchgate.net", "ssrn.com", "scholar.google.com", "jstor.org",
+      // Curriculum
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "tutor2u.net", "simplypsychology.org",
+      // Open science + standards
+      "cos.io", "osf.io", "equator-network.org", "prisma-statement.org",
+      "consort-statement.org", "cochranelibrary.com",
+      // Stats / data
+      "statisticshowto.com", "stats.stackexchange.com", "ourworldindata.org",
+      "data.worldbank.org", "oecd.org", "nature.com/subjects/research-data",
+    ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|design)\b/i,
       /\b(hypothesis|null\s*hypothesis|alternative\s*hypothesis|operationali[sz]e|variable|independent|dependent|extraneous)\b/i,
@@ -197,7 +276,19 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'mathematics': {
-    ragDomains: ["cambridgeinternational.org", "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "mathsisfun.com", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "tutor2u.net", "savemyexams.com", "znotes.org", "physicsandmathstutor.com",
+      "mathsisfun.com",
+      // Authoritative reference
+      "mathworld.wolfram.com", "wolframalpha.com", "encyclopediaofmath.org",
+      "dlmf.nist.gov", "ocw.mit.edu", "khanacademy.org/math",
+      "brilliant.org", "paulsonline.math.lamar.edu", "tutorial.math.lamar.edu",
+      // Research + advanced
+      "arxiv.org/list/math", "ams.org", "lms.ac.uk", "imo-official.org",
+      "projecteuclid.org", "scholar.google.com", "stackexchange.com/sites/math",
+    ],
     searchPatterns: [
       /\b(solve|prove|derive|integrate|differentiate|calculate|find|show\s+that|simplify|expand|factorise|sketch)\b/i,
       /\b(calculus|differentiation|integration|differential\s*equation|chain\s*rule|product\s*rule|quotient\s*rule)\b/i,
@@ -212,7 +303,21 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'physics': {
-    ragDomains: ["cambridgeinternational.org", "physicsandmathstutor.com", "savemyexams.com", "znotes.org", "feynmanlectures.caltech.edu", "hyperphysics.phy-astr.gsu.edu", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "physicsandmathstutor.com", "savemyexams.com", "znotes.org",
+      // Authoritative physics
+      "feynmanlectures.caltech.edu", "hyperphysics.phy-astr.gsu.edu",
+      "ocw.mit.edu/courses/physics", "physics.nist.gov", "iop.org",
+      "aps.org", "physicsworld.com", "physics.aps.org",
+      // Research + journals
+      "arxiv.org/list/physics", "nature.com/subjects/physics",
+      "journals.aps.org", "iopscience.iop.org", "scholar.google.com",
+      // Reference
+      "khanacademy.org/science/physics", "physicsclassroom.com",
+      "compadre.org", "scienceworld.wolfram.com",
+    ],
     searchPatterns: [
       /\b(solve|calculate|derive|find|show\s+that|sketch|measure|determine|estimate)\b/i,
       /\b(kinematics|dynamics|force|momentum|energy|work|power|torque|equilibrium)\b/i,
@@ -229,7 +334,21 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'chemistry': {
-    ragDomains: ["cambridgeinternational.org", "chemguide.co.uk", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "rsc.org", "masterorganicchemistry.com", "chemistrysteps.com", "qualifications.pearson.com"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "chemguide.co.uk", "savemyexams.com", "znotes.org", "physicsandmathstutor.com",
+      "masterorganicchemistry.com", "chemistrysteps.com",
+      // Authoritative bodies
+      "rsc.org", "acs.org", "iupac.org", "nist.gov/chemistry",
+      "pubchem.ncbi.nlm.nih.gov", "webbook.nist.gov", "sigmaaldrich.com",
+      // Research + journals
+      "pubs.acs.org", "nature.com/subjects/chemistry", "rsc.org/journals-books",
+      "sciencedirect.com/journal/tetrahedron", "scholar.google.com",
+      // Reference
+      "ocw.mit.edu/courses/chemistry", "khanacademy.org/science/chemistry",
+      "libretexts.org/Chemistry", "chem.libretexts.org",
+    ],
     searchPatterns: [
       /\b(solve|calculate|derive|find|show\s+that|draw|sketch|predict|explain|define|evaluate|discuss|compare|suggest|deduce)\b/i,
       /\b(atom|molecule|ion|isotope|electron|proton|neutron|orbital|subshell|quantum\s*number|aufbau|hund|pauli)\b/i,
@@ -250,7 +369,21 @@ const PERSONA_CONFIG: Record<Persona, {
     ],
   },
   'biology': {
-    ragDomains: ["cambridgeinternational.org", "savemyexams.com", "znotes.org", "physicsandmathstutor.com", "bbc.co.uk/bitesize", "biologymad.com", "s-cool.co.uk", "qualifications.pearson.com", "ncbi.nlm.nih.gov"],
+    ragDomains: [
+      // Curriculum + revision
+      "cambridgeinternational.org", "qualifications.pearson.com", "aqa.org.uk",
+      "savemyexams.com", "znotes.org", "physicsandmathstutor.com",
+      "bbc.co.uk/bitesize", "biologymad.com", "s-cool.co.uk",
+      // Primary research databases
+      "ncbi.nlm.nih.gov", "pubmed.ncbi.nlm.nih.gov", "ncbi.nlm.nih.gov/pmc",
+      "nature.com/subjects/biological-sciences", "cell.com", "sciencedirect.com",
+      "plos.org/biology", "biorxiv.org", "scholar.google.com",
+      // Authoritative reference
+      "biointeractive.org", "khanacademy.org/science/biology",
+      "ocw.mit.edu/courses/biology", "scitable.nature.com",
+      "genome.gov", "ensembl.org", "uniprot.org", "rcsb.org",
+      "who.int", "cdc.gov",
+    ],
     searchPatterns: [
       /\b(explain|define|describe|compare|suggest|evaluate|discuss|calculate|state|outline|deduce)\b/i,
       /\b(cell|mitosis|meiosis|chromosome|DNA|RNA|gene|allele|genotype|phenotype|mutation|epigenetics)\b/i,
@@ -272,6 +405,22 @@ const PERSONA_CONFIG: Record<Persona, {
 // FIRECRAWL RAG ENGINE
 // ============================================================
 
+// Persona-specific seed terms — appended to focused web searches so Firecrawl
+// returns deeper, more authoritative content even for short user queries.
+const PERSONA_SEED_TERMS: Record<Persona, string> = {
+  'a-level': 'economics theory model empirical evidence policy analysis',
+  'business': 'business strategy framework case study evidence management theory',
+  'law': 'case law statute precedent ratio decidendi judgment legal principle',
+  'psychology': 'psychology study experiment evidence theory peer reviewed',
+  'accounting': 'accounting standard IFRS IAS treatment worked example principle',
+  'sociology': 'sociology theory perspective evidence study research findings',
+  'research': 'research methodology design validity reliability evidence',
+  'mathematics': 'mathematics proof theorem derivation worked example method',
+  'physics': 'physics derivation principle experiment formula worked example',
+  'chemistry': 'chemistry mechanism reaction principle worked example data',
+  'biology': 'biology process mechanism experimental evidence pathway',
+};
+
 async function searchFirecrawl(query: string, persona: Persona): Promise<string> {
   const apiKey = Deno.env.get("FIRECRAWL_API_KEY");
   if (!apiKey) {
@@ -280,12 +429,15 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
   }
 
   const config = PERSONA_CONFIG[persona];
-  const domainFilter = config.ragDomains.map(d => `site:${d}`).join(" OR ");
-  const searchQuery = `(${domainFilter}) ${query}`;
+  // Cap the domain filter — too many `site:` clauses can hurt recall on Firecrawl.
+  const topDomains = config.ragDomains.slice(0, 14);
+  const domainFilter = topDomains.map(d => `site:${d}`).join(" OR ");
+  const seed = PERSONA_SEED_TERMS[persona] ?? "";
+  const searchQuery = `(${domainFilter}) ${query} ${seed}`.slice(0, 500);
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
     const response = await fetch("https://api.firecrawl.dev/v1/search", {
       method: "POST",
@@ -295,8 +447,8 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
       },
       body: JSON.stringify({
         query: searchQuery,
-        limit: 5,
-        scrapeOptions: { formats: ["markdown"] },
+        limit: 8,
+        scrapeOptions: { formats: ["markdown"], onlyMainContent: true },
       }),
       signal: controller.signal,
     });
@@ -314,13 +466,19 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
     if (!Array.isArray(results) || results.length === 0) return "";
 
     const contextParts: string[] = [];
-    for (const result of results.slice(0, 4)) {
+    let totalChars = 0;
+    const MAX_TOTAL = 9000;
+    for (const result of results.slice(0, 6)) {
       const url = result.url || result.sourceURL || "";
       const title = result.title || result.metadata?.title || "";
-      const content = (result.markdown || result.description || "").slice(0, 1200);
-      if (content.trim()) {
-        contextParts.push(`[Academic Reference — ${title}]\n${content}`);
-      }
+      const raw = (result.markdown || result.description || "").trim();
+      if (!raw) continue;
+      const remaining = MAX_TOTAL - totalChars;
+      if (remaining <= 400) break;
+      const snippet = raw.slice(0, Math.min(1800, remaining));
+      const sourceName = getSourceName(url);
+      contextParts.push(`[Authoritative Source — ${sourceName}${title ? ` · ${title}` : ""}]\n${snippet}`);
+      totalChars += snippet.length;
     }
 
     return contextParts.join("\n\n---\n\n");
@@ -333,6 +491,7 @@ async function searchFirecrawl(query: string, persona: Persona): Promise<string>
     return "";
   }
 }
+
 
 function getSourceName(url: string): string {
   if (url.includes("economicshelp.org")) return "Economics Help";
@@ -374,6 +533,78 @@ function getSourceName(url: string): string {
   if (url.includes("rsc.org")) return "Royal Society of Chemistry";
   if (url.includes("masterorganicchemistry.com")) return "Master Organic Chemistry";
   if (url.includes("chemistrysteps.com")) return "Chemistry Steps";
+  // Extended authoritative sources
+  if (url.includes("worldbank.org")) return "World Bank";
+  if (url.includes("oecd.org")) return "OECD";
+  if (url.includes("wto.org")) return "WTO";
+  if (url.includes("unctad.org")) return "UNCTAD";
+  if (url.includes("ourworldindata.org")) return "Our World in Data";
+  if (url.includes("fred.stlouisfed.org")) return "FRED (St. Louis Fed)";
+  if (url.includes("bis.org")) return "Bank for International Settlements";
+  if (url.includes("nber.org")) return "NBER";
+  if (url.includes("voxeu.org")) return "VoxEU / CEPR";
+  if (url.includes("ssrn.com")) return "SSRN";
+  if (url.includes("jstor.org")) return "JSTOR";
+  if (url.includes("nature.com")) return "Nature";
+  if (url.includes("sciencedirect.com")) return "ScienceDirect";
+  if (url.includes("cambridge.org")) return "Cambridge University Press";
+  if (url.includes("annualreviews.org")) return "Annual Reviews";
+  if (url.includes("scholar.google.com")) return "Google Scholar";
+  if (url.includes("hbr.org")) return "Harvard Business Review";
+  if (url.includes("sloanreview.mit.edu")) return "MIT Sloan Management Review";
+  if (url.includes("knowledge.wharton.upenn.edu")) return "Wharton";
+  if (url.includes("mckinsey.com")) return "McKinsey";
+  if (url.includes("bcg.com")) return "BCG";
+  if (url.includes("bain.com")) return "Bain";
+  if (url.includes("deloitte.com")) return "Deloitte Insights";
+  if (url.includes("pwc.com")) return "PwC";
+  if (url.includes("ey.com")) return "EY";
+  if (url.includes("kpmg.com")) return "KPMG";
+  if (url.includes("ft.com")) return "Financial Times";
+  if (url.includes("economist.com")) return "The Economist";
+  if (url.includes("weforum.org")) return "World Economic Forum";
+  if (url.includes("harvardlawreview.org")) return "Harvard Law Review";
+  if (url.includes("yalelawjournal.org")) return "Yale Law Journal";
+  if (url.includes("bailii.org")) return "BAILII";
+  if (url.includes("echr.coe.int")) return "European Court of Human Rights";
+  if (url.includes("oyez.org")) return "Oyez";
+  if (url.includes("justia.com")) return "Justia";
+  if (url.includes("apa.org") || url.includes("psycnet.apa.org")) return "American Psychological Association";
+  if (url.includes("bps.org.uk")) return "British Psychological Society";
+  if (url.includes("pubmed.ncbi.nlm.nih.gov") || url.includes("ncbi.nlm.nih.gov")) return "PubMed / NCBI";
+  if (url.includes("frontiersin.org")) return "Frontiers";
+  if (url.includes("plos.org")) return "PLOS";
+  if (url.includes("fasb.org")) return "FASB";
+  if (url.includes("iasplus.com")) return "IAS Plus (Deloitte)";
+  if (url.includes("icaew.com")) return "ICAEW";
+  if (url.includes("accaglobal.com")) return "ACCA";
+  if (url.includes("cimaglobal.com")) return "CIMA";
+  if (url.includes("asanet.org")) return "American Sociological Association";
+  if (url.includes("britsoc.co.uk")) return "British Sociological Association";
+  if (url.includes("pewresearch.org")) return "Pew Research";
+  if (url.includes("scribbr.com")) return "Scribbr";
+  if (url.includes("cochranelibrary.com")) return "Cochrane Library";
+  if (url.includes("mathworld.wolfram.com")) return "Wolfram MathWorld";
+  if (url.includes("dlmf.nist.gov")) return "NIST DLMF";
+  if (url.includes("ocw.mit.edu")) return "MIT OpenCourseWare";
+  if (url.includes("khanacademy.org")) return "Khan Academy";
+  if (url.includes("arxiv.org")) return "arXiv";
+  if (url.includes("ams.org")) return "American Mathematical Society";
+  if (url.includes("iop.org") || url.includes("iopscience.iop.org")) return "Institute of Physics";
+  if (url.includes("aps.org") || url.includes("journals.aps.org")) return "American Physical Society";
+  if (url.includes("physics.nist.gov")) return "NIST Physics";
+  if (url.includes("acs.org") || url.includes("pubs.acs.org")) return "American Chemical Society";
+  if (url.includes("iupac.org")) return "IUPAC";
+  if (url.includes("pubchem.ncbi.nlm.nih.gov")) return "PubChem";
+  if (url.includes("libretexts.org")) return "LibreTexts";
+  if (url.includes("cell.com")) return "Cell Press";
+  if (url.includes("biorxiv.org")) return "bioRxiv";
+  if (url.includes("biointeractive.org")) return "HHMI BioInteractive";
+  if (url.includes("genome.gov")) return "NHGRI";
+  if (url.includes("uniprot.org")) return "UniProt";
+  if (url.includes("rcsb.org")) return "RCSB PDB";
+  if (url.includes("who.int")) return "World Health Organization";
+  if (url.includes("cdc.gov")) return "CDC";
   try { return new URL(url).hostname; } catch { return "Source"; }
 }
 
@@ -3164,14 +3395,32 @@ ${COHORT_DIRECTIVE}`;
     if (ragContext) {
       systemMessages.push({
         role: "system",
-        content: `[REAL-TIME KNOWLEDGE CONTEXT — Retrieved from authoritative academic sources]\n\n${ragContext}\n\n[END CONTEXT — Use this data to inform your response. Do NOT mention any website names, URLs, or source platforms. Present the information as established academic knowledge. Never say "According to [website]" — instead use "According to established theory" or "Current data indicates".]`
+        content: `[LIVE EXPERT KNOWLEDGE — Just retrieved from elite academic, governmental, and primary-research sources for this exact question]
+
+${ragContext}
+
+[END LIVE KNOWLEDGE]
+
+USAGE DIRECTIVE (mandatory):
+1. Treat the material above as the most current and authoritative evidence available. Integrate its facts, definitions, formulas, theories, statistics, case names, mechanisms, and worked examples directly into your answer.
+2. Synthesise — do not summarise the sources individually. Weave the substance into one coherent expert response in your persona's voice.
+3. NEVER name websites, URLs, "according to <site>", "the source says", or use brackets/citations. Present everything as established academic knowledge ("research indicates", "the evidence shows", "current data confirms", "the established framework holds that…").
+4. If the live knowledge contradicts a textbook simplification, prefer the live knowledge and quietly upgrade the answer.
+5. If the live knowledge contains numbers, dates, case citations, or empirical findings, use them precisely.
+6. Your answer must be visibly richer, more current, and more precise than a generic textbook reply because of this knowledge — but never reference where it came from.`
       });
     }
     
     if (cachedResearch) {
       systemMessages.push({
         role: "system",
-        content: `[CACHED CURRICULUM & RESEARCH DATA — From indexed exam board specifications, university curricula, and research institutions]\n\n${cachedResearch}\n\n[END CACHED DATA — Use this data to ensure your answers align with official syllabus content and marking criteria. Do NOT mention any website names or URLs. Present as established academic knowledge.]`
+        content: `[INDEXED CURRICULUM & RESEARCH CACHE — Official exam-board specifications, university curricula, and policy research previously scraped and stored]
+
+${cachedResearch}
+
+[END CACHED DATA]
+
+USAGE DIRECTIVE: Use this to lock your answer to the official syllabus, marking criteria, and current policy facts. Same anonymity rule: never name sources or websites — present as established curriculum knowledge.`
       });
     }
     
