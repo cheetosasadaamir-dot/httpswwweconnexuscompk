@@ -91,7 +91,20 @@ const PERSONA_CONFIG: Record<Persona, {
   searchPatterns: RegExp[];
 }> = {
   'a-level': {
-    ragDomains: ["economicshelp.org", "tutor2u.net", "imf.org", "tradingeconomics.com", "sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org", "qualifications.pearson.com", "ocr.org.uk", "economicsnetwork.ac.uk"],
+    ragDomains: [
+      // Curriculum + revision
+      "economicshelp.org", "tutor2u.net", "savemyexams.com", "znotes.org", "ocr.org.uk",
+      "qualifications.pearson.com", "cambridgeinternational.org", "economicsnetwork.ac.uk",
+      // Global data + institutions
+      "imf.org", "worldbank.org", "data.worldbank.org", "oecd.org", "data.oecd.org",
+      "wto.org", "unctad.org", "un.org", "tradingeconomics.com", "ourworldindata.org",
+      "fred.stlouisfed.org", "bis.org", "ec.europa.eu/eurostat",
+      // Pakistan-specific (kept)
+      "sbp.org.pk", "pbs.gov.pk", "pide.org.pk", "finance.gov.pk", "sdpi.org",
+      // Academic / research
+      "nber.org", "voxeu.org", "ssrn.com", "jstor.org", "academic.oup.com",
+      "cambridge.org/core", "sciencedirect.com",
+    ],
     searchPatterns: [
       /\b(gdp|inflation|cpi|wpi|unemployment|interest rate|exchange rate|growth|deficit|surplus|debt|trade|balance.?of.?payments)\b/i,
       /\b(current|latest|recent|today|now|2024|2025|2026|real.?world|data|statistics?|pakistan|sbp|pbs)\b/i,
