@@ -119,9 +119,16 @@ const PERSONA_CONFIG: Record<Persona, {
   },
   'business': {
     ragDomains: [
+      // Revision + curriculum
       "tutor2u.net", "savemyexams.com", "znotes.org", "cambridgeinternational.org",
-      "physicsandmathstutor.com", "hbr.org", "sloanreview.mit.edu", "stern.nyu.edu",
-      "investopedia.com", "corporate.finance.institute", "ibm.com/topics", "qualifications.pearson.com"
+      "physicsandmathstutor.com", "qualifications.pearson.com",
+      // Elite business journals & schools
+      "hbr.org", "sloanreview.mit.edu", "stern.nyu.edu", "knowledge.wharton.upenn.edu",
+      "insead.edu", "lbs.edu", "mckinsey.com", "bcg.com", "bain.com", "strategy-business.com",
+      "deloitte.com/insights", "pwc.com", "weforum.org",
+      // Practitioner + finance
+      "investopedia.com", "corporatefinanceinstitute.com", "ibm.com/topics", "ft.com",
+      "economist.com", "bloomberg.com", "reuters.com",
     ],
     searchPatterns: [
       /\b(explain|define|what is|how does|why|analyse|analyze|evaluate|discuss|compare|assess|advise|justify|identify|calculate|recommend)\b/i,
