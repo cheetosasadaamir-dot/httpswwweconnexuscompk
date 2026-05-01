@@ -1,0 +1,2 @@
+DROP POLICY IF EXISTS "Anyone can submit reviews" ON public.reviews;
+CREATE POLICY "Anyone can submit reviews" ON public.reviews FOR INSERT TO public WITH CHECK (rating >= 1 AND rating <= 5 AND char_length(review_text) <= 500 AND char_length(reviewer_name) <= 100 AND char_length(trim(review_text)) > 0 AND char_length(trim(reviewer_name)) > 0);
