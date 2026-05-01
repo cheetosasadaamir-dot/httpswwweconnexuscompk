@@ -14,6 +14,9 @@ import MovementShiftDiagram from '@/components/diagrams/MovementShiftDiagram';
 import ExcessDemandSupplyDiagram from '@/components/diagrams/ExcessDemandSupplyDiagram';
 import PriceFunctionsDiagram from '@/components/diagrams/PriceFunctionsDiagram';
 import SurplusWithTaxDiagram from '@/components/diagrams/SurplusWithTaxDiagram';
+import PriceCeilingDiagram from '@/components/diagrams/PriceCeilingDiagram';
+import PriceFloorDiagram from '@/components/diagrams/PriceFloorDiagram';
+import SubsidyDiagram from '@/components/diagrams/SubsidyDiagram';
 
 const PriceSystem = () => {
   return (
@@ -747,6 +750,128 @@ const PriceSystem = () => {
             <li><strong>Para 5 (AO4):</strong> <span className="text-amber-400">Evaluate further</span>—equity concerns, factor immobility, information asymmetry, and price stickiness</li>
             <li><strong>Conclusion (AO4):</strong> Weighted judgment—effective for private goods in competitive markets; requires complementary government intervention for externalities, public goods, and distributional concerns</li>
           </ul>
+        </ExamTipBox>
+      </ContentSection>
+
+      {/* ============================================================
+          SECTION 2.7: SCHOLARLY SYNTHESIS — INTERVENTIONS IN THE PRICE SYSTEM
+          Synthesised from tutor2u, EconomicsHelp, Khan Academy,
+          Investopedia and Economics Online — diagram-grounded analysis
+          ============================================================ */}
+      <ContentSection
+        title="2.7 Government Intervention in the Price System"
+        subtitle="Price Controls, Indirect Taxes & Subsidies — Diagrammatic Welfare Analysis"
+      >
+        <NoteCard title="Why Intervene? The Theoretical Justification" type="theory">
+          <p className="text-justify">
+            Under a pure laissez-faire price mechanism, equilibrium price clears the market and—under restrictive assumptions—maximises total welfare (the sum of consumer and producer surplus). However, governments intervene whenever the unregulated outcome is judged to be <strong className="text-cyan-400">allocatively inefficient</strong> (externalities, public goods), <strong className="text-cyan-400">distributionally inequitable</strong> (essential goods unaffordable to low-income households), or <strong className="text-cyan-400">macroeconomically destabilising</strong> (volatile commodity prices). The four canonical instruments analysed below—maximum prices, minimum prices, indirect taxes, and subsidies—each modify the price signal received by consumers or producers, with predictable consequences for quantity traded, welfare distribution, and the emergence of non-price rationing mechanisms.
+          </p>
+        </NoteCard>
+
+        {/* PRICE CEILING */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-red-500 pl-6">
+            <h3 className="font-serif text-2xl text-silver-bright mb-4">2.7.1 Maximum Prices (Price Ceilings)</h3>
+            <div className="grid lg:grid-cols-2 gap-6 items-start">
+              <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+                <p>
+                  A <strong className="text-red-400">price ceiling</strong> is a legally imposed maximum price below which transactions must occur. To be <em>binding</em>, the ceiling must lie strictly below the free-market equilibrium price Pₑ; a ceiling set above Pₑ is economically irrelevant. Common applications include rent controls (New York, Berlin, Mumbai), pharmaceutical price caps (NHS in the UK, Medicare Part D negotiations), wartime food rationing, and emergency anti-gouging statutes during natural disasters.
+                </p>
+                <p>
+                  At the maximum price P_max, quantity demanded Q_d exceeds quantity supplied Qₛ, generating a persistent <strong className="text-red-400">shortage</strong>. Because price cannot rise to clear the market, allocation defaults to <strong>non-price mechanisms</strong>: queueing (rationing by patience), first-come-first-served, allocation by social network, or—most perniciously—the emergence of <strong>black markets</strong> where the good is illegally retraded above the ceiling. Empirical work on rent control (Diamond, McQuade & Qian, 2019, San Francisco) documents reduced rental supply, lower mobility, and conversion of rentals to condominiums—all rational responses to the suppressed price signal.
+                </p>
+              </div>
+              <div>
+                <PriceCeilingDiagram />
+              </div>
+            </div>
+
+            <AnalysisBlock title="AO3 Analysis: Welfare Consequences of a Binding Ceiling" type="analysis">
+              <p className="text-justify mb-3">
+                The welfare effects are theoretically ambiguous and empirically context-dependent. Consumer surplus changes by two opposing components: (i) inframarginal consumers who would have purchased at Pₑ now pay P_max and gain area equal to (Pₑ − P_max) × Qₛ; (ii) consumers excluded by the shortage lose the surplus they would have enjoyed on units between Qₛ and Qₑ. Producer surplus unambiguously falls because both price and quantity decline. The <strong>deadweight loss</strong> equals the welfare lost on units no longer traded (between Qₛ and Qₑ)—a triangle whose magnitude grows with the elasticities of demand and supply.
+              </p>
+            </AnalysisBlock>
+
+            <AnalysisBlock title="AO4 Evaluation: When are Ceilings Defensible?" type="evaluation">
+              <p className="text-justify">
+                The case for ceilings strengthens when (a) demand is <em>highly inelastic</em> (necessities such as insulin, staple foods) so welfare gains to remaining consumers are large, (b) supply is <em>highly inelastic in the short run</em> so quantity reduction is small, (c) the underlying market exhibits <em>monopoly power</em> such that the unregulated price is already above marginal cost, or (d) equity considerations dominate efficiency losses (e.g., humanitarian crises). The case weakens whenever ceilings deter long-run investment (housing supply collapses over decades, not months), incentivise quality deterioration (landlords reduce maintenance), or enable corruption in the rationing process.
+              </p>
+            </AnalysisBlock>
+          </div>
+        </div>
+
+        {/* PRICE FLOOR */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-emerald-500 pl-6">
+            <h3 className="font-serif text-2xl text-silver-bright mb-4">2.7.2 Minimum Prices (Price Floors)</h3>
+            <div className="grid lg:grid-cols-2 gap-6 items-start">
+              <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+                <p>
+                  A <strong className="text-emerald-400">price floor</strong> is a legally imposed minimum price above which transactions must occur. The most policy-significant application is the <strong>national minimum wage</strong> in labour markets (UK NLW, US federal minimum wage), where the price floor is the wage and the "good" is labour. Agricultural price supports (the EU Common Agricultural Policy, US dairy price floors) and minimum unit pricing for alcohol (Scotland 2018) constitute further canonical examples.
+                </p>
+                <p>
+                  At the minimum price P_min, quantity supplied Qₛ exceeds quantity demanded Q_d, producing a persistent <strong className="text-emerald-400">surplus</strong>. In labour markets this surplus is <em>classical unemployment</em>—workers willing to work at P_min cannot find employers willing to hire them at that wage. In agricultural markets, governments must either purchase and store the surplus (the EU's notorious "butter mountains" and "wine lakes" of the 1980s) or pay producers to leave land fallow ("set-aside" schemes). The fiscal cost is borne by taxpayers; the deadweight loss arises from units valued by consumers at less than the marginal cost of production.
+                </p>
+              </div>
+              <div>
+                <PriceFloorDiagram />
+              </div>
+            </div>
+
+            <AnalysisBlock title="AO3 Analysis: Minimum Wage and the Monopsony Defence" type="analysis">
+              <p className="text-justify">
+                The simple competitive model predicts that any binding minimum wage above the equilibrium reduces employment. However, the <strong>monopsony model</strong> (Card & Krueger, 1994; Dube, 2019) reverses this prediction: where employers possess wage-setting power, a moderate minimum wage can <em>simultaneously raise wages and increase employment</em> by neutralising the monopsonist's incentive to restrict hiring. Empirical meta-analyses of US state-level minimum wage variation suggest the disemployment effect is small or statistically indistinguishable from zero in the range commonly legislated, though larger increases (e.g., Seattle's $15 floor) generated detectable hours reductions.
+              </p>
+            </AnalysisBlock>
+
+            <AnalysisBlock title="AO4 Evaluation: Stakeholder Impact Matrix" type="evaluation">
+              <div className="grid md:grid-cols-2 gap-3 text-sm">
+                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                  <p className="font-semibold text-emerald-400 mb-1">Beneficiaries</p>
+                  <p className="text-muted-foreground">Workers retaining employment receive higher wages; producers in supported agricultural sectors receive guaranteed revenue; reduced wage inequality at the lower tail of the distribution.</p>
+                </div>
+                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                  <p className="font-semibold text-red-400 mb-1">Losers</p>
+                  <p className="text-muted-foreground">Workers displaced by reduced labour demand (often youth, low-skilled); consumers facing higher prices passed on by firms; taxpayers funding agricultural buy-up; firms with thin margins forced to exit.</p>
+                </div>
+              </div>
+            </AnalysisBlock>
+          </div>
+        </div>
+
+        {/* SUBSIDY */}
+        <div className="glass-card p-8 my-6">
+          <div className="border-l-4 border-cyan-500 pl-6">
+            <h3 className="font-serif text-2xl text-silver-bright mb-4">2.7.3 Producer Subsidies — Welfare Analysis</h3>
+            <div className="grid lg:grid-cols-2 gap-6 items-start">
+              <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
+                <p>
+                  A <strong className="text-cyan-400">subsidy</strong> is a per-unit payment made by government to producers, lowering the marginal cost of production and thereby shifting the supply curve <em>vertically downward</em> by the exact subsidy amount. The new market clears at a lower consumer price Pc and a higher quantity Q₁; the price effectively received by producers, Pp, equals Pc plus the subsidy. The total fiscal cost to government is the rectangle (Pp − Pc) × Q₁, financed through general taxation or borrowing.
+                </p>
+                <p>
+                  Subsidies are economically justified where the subsidised good generates <strong>positive externalities</strong> (vaccinations, education, renewable energy, public transport)—because the unregulated market underproduces such goods relative to the social optimum. Where no externality exists (e.g., fossil fuel consumption subsidies, which the IMF estimates at 6.8% of global GDP in 2020), subsidies <em>reduce</em> welfare by inducing overproduction relative to the unregulated equilibrium and crowding out alternative uses of fiscal resources.
+                </p>
+                <p>
+                  The <strong>incidence</strong> of the subsidy benefit—how it splits between consumers (lower Pc) and producers (higher Pp)—mirrors tax incidence and depends on relative elasticities. When demand is more inelastic than supply, consumers capture the larger share of the subsidy benefit; when supply is more inelastic, producers capture it. This explains why housing subsidies in supply-constrained urban markets (planning restrictions making PES low) tend to inflate prices for landowners rather than improve affordability for tenants.
+                </p>
+              </div>
+              <div>
+                <SubsidyDiagram />
+              </div>
+            </div>
+
+            <AnalysisBlock title="AO4 Evaluation: The Hidden Costs of Subsidies" type="evaluation">
+              <p className="text-justify">
+                Beyond direct fiscal cost, subsidies impose three further welfare burdens that examiners reward for identifying. First, the <strong>opportunity cost</strong> of public funds—each pound spent on subsidies is a pound not spent on healthcare, education, or debt reduction—must be weighed against the marginal benefit of the subsidised activity. Second, subsidies create <strong>X-inefficiency</strong>: shielded from full market pressure, recipient firms have weaker incentives to minimise costs, leading to bloated cost structures (the historic experience of state-subsidised European steel and coal industries). Third, subsidies are politically <strong>sticky</strong>: once granted, they generate concentrated beneficiary lobbies that resist removal even after the original justification has lapsed, producing entrenched market distortions.
+              </p>
+            </AnalysisBlock>
+          </div>
+        </div>
+
+        <ExamTipBox title="Synthesis: Choosing the Right Intervention" variant="gold" className="mt-6">
+          <p className="text-justify">
+            High-scoring evaluative essays explicitly compare alternative interventions rather than analysing each in isolation. For a market exhibiting positive externalities, a <strong>subsidy</strong> dominates a price floor because it expands quantity (welfare-enhancing) rather than contracting it. For a market exhibiting negative externalities, a <strong>Pigouvian tax</strong> dominates a quantity restriction because it allows prices—not bureaucrats—to allocate the residual quantity efficiently. For markets where the policy goal is <em>equity</em> (affordable housing, essential medicines), targeted income transfers or vouchers typically dominate price ceilings because they preserve the allocative role of prices while addressing the distributional concern directly.
+          </p>
         </ExamTipBox>
       </ContentSection>
     </ChapterLayout>
