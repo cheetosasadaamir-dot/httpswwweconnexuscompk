@@ -874,6 +874,8 @@ const PriceSystem = () => {
           </p>
         </ExamTipBox>
       </ContentSection>
-
+    </ChapterLayout>
+  );
+};
 
 export default PriceSystem;
