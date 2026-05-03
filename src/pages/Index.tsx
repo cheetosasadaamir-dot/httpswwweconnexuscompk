@@ -175,6 +175,14 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
+        {/* AI Assignment Architect — generates top-band assignments across 11 subjects */}
+        <AssignmentArchitect />
+
+        {/* Silver Divider */}
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
+        </div>
+
         {/* Simplified Mastery Section */}
         <section className="section-mobile">
           <div className="w-[95%] max-w-[1200px] mx-auto">
