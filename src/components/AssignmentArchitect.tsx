@@ -37,15 +37,25 @@ const ASSIGNMENT_TYPES = [
   { value: 'problem_set', label: 'Problem Set / Worked Solutions' },
   { value: 'lab_report', label: 'Lab Report' },
   { value: 'presentation', label: 'Presentation Outline' },
+  { value: 'practice_questions', label: 'Practice Questions Pack' },
+  { value: 'quiz', label: 'Quiz (MCQ + T/F + Short)' },
+  { value: 'exam_paper', label: 'Full Mock Exam Paper' },
+  { value: 'mcq_bank', label: 'MCQ Bank (40 Qs)' },
 ];
 
 const LEVELS = [
-  { value: 'igcse', label: 'IGCSE / O-Level' },
-  { value: 'as-level', label: 'AS-Level' },
+  { value: 'igcse', label: 'IGCSE / O-Level (Cambridge)' },
+  { value: 'as-level', label: 'AS-Level (Cambridge/Edexcel)' },
   { value: 'a-level', label: 'A-Level / A2' },
   { value: 'ib', label: 'IB Diploma' },
   { value: 'undergraduate', label: 'Undergraduate' },
   { value: 'postgraduate', label: 'Postgraduate' },
+  { value: 'fbise_ssc', label: '🇵🇰 FBISE Matric / SSC (Class 9–10)' },
+  { value: 'fbise_hssc', label: '🇵🇰 FBISE Intermediate / HSSC (Class 11–12)' },
+  { value: 'bise_ssc', label: '🇵🇰 BISE Matric / SSC (Provincial)' },
+  { value: 'bise_hssc', label: '🇵🇰 BISE Intermediate / HSSC (Provincial)' },
+  { value: 'aku_eb_ssc', label: '🇵🇰 AKU-EB SSC (Class 9–10)' },
+  { value: 'aku_eb_hssc', label: '🇵🇰 AKU-EB HSSC (Class 11–12)' },
 ];
 
 const AssignmentArchitect = () => {
