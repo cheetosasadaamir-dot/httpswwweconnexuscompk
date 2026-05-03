@@ -269,7 +269,7 @@ const AssignmentArchitect = () => {
                 </div>
               </div>
               <div className="prose prose-invert prose-sm md:prose-base max-w-none p-5 md:p-6 rounded-xl bg-background/40 border border-border/40 max-h-[600px] overflow-y-auto">
-                <ReactMarkdown remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]}>
+                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                   {output}
                 </ReactMarkdown>
               </div>
@@ -278,7 +278,7 @@ const AssignmentArchitect = () => {
         </motion.div>
       </div>
 
-      {showLogin && <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} />}
+      {showLogin && <LoginModal open={showLogin} onClose={() => setShowLogin(false)} />}
     </section>
   );
 };
