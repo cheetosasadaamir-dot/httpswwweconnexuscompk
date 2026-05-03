@@ -7,11 +7,11 @@ const corsHeaders = {
 };
 
 const SUBJECT_BLUEPRINTS: Record<string, string> = {
-  economics: `Domain: Economics. Use AO1 (knowledge), AO2 (application), AO3 (analysis), AO4 (evaluation). Include real-world data (World Bank, IMF, OECD), diagrams (described as figures: AD/AS, supply/demand, PPF, cost curves), elasticity calculations, and policy evaluation (efficiency, equity, opportunity cost). Reference theorists: Smith, Keynes, Friedman, Hayek, Sen.`,
+  economics: `Domain: Economics. Use AO1 (knowledge), AO2 (application), AO3 (analysis), AO4 (evaluation). Include real-world data (World Bank, IMF, OECD, SBP for Pakistan), diagrams (described as figures: AD/AS, supply/demand, PPF, cost curves), elasticity calculations, and policy evaluation. Reference theorists: Smith, Keynes, Friedman, Hayek, Sen.`,
   business: `Domain: Business. Use Porter's Five Forces, SWOT, PESTLE, Ansoff matrix, BCG. Include financial ratios, break-even, NPV, marketing mix (7Ps), HR theories (Maslow, Herzberg, Mayo), and case studies (HBR-style). Apply CSR and stakeholder analysis.`,
-  law: `Domain: Law. Use IRAC structure (Issue, Rule, Application, Conclusion). Cite leading cases and statutes (with neutral citation), apply ratio decidendi vs obiter dicta, analyze precedent and statutory interpretation (literal, golden, mischief, purposive). Cover constitutional, contract, tort, criminal, or specified branch.`,
+  law: `Domain: Law. Use IRAC structure (Issue, Rule, Application, Conclusion). Cite leading cases and statutes (with neutral citation), apply ratio decidendi vs obiter dicta, analyze precedent and statutory interpretation (literal, golden, mischief, purposive). For Pakistan boards include constitutional law (1973 Constitution) and PPC where relevant.`,
   psychology: `Domain: Psychology. Use APA 7 style. Include hypotheses, IV/DV, operationalisation, sampling, ethics (BPS guidelines), statistical analysis (descriptive + inferential), and theoretical frameworks (cognitive, behaviourist, biological, psychodynamic, humanistic). Cite seminal studies (Milgram, Asch, Loftus, Bandura, Baddeley).`,
-  accounting: `Domain: Accounting. Apply IFRS/IAS standards. Include double-entry workings, T-accounts, trial balance, income statement, SOFP, cash flow, ratio analysis (liquidity, profitability, efficiency, gearing), variance analysis, and ethical considerations (IFAC code).`,
+  accounting: `Domain: Accounting. Apply IFRS/IAS standards (and ICAP guidelines for Pakistan). Include double-entry workings, T-accounts, trial balance, income statement, SOFP, cash flow, ratio analysis (liquidity, profitability, efficiency, gearing), variance analysis, and ethical considerations (IFAC code).`,
   sociology: `Domain: Sociology. Use functionalist, Marxist, feminist, interactionist, postmodernist perspectives. Cite Durkheim, Weber, Marx, Parsons, Goffman, Foucault, Butler. Include methodology evaluation (PET — practical, ethical, theoretical) and contemporary empirical evidence.`,
   research: `Domain: Research Methodology. Structure: Abstract, Introduction, Literature Review, Methodology, Results, Discussion, Conclusion, References (Harvard/APA). Include research question, hypothesis, ontology/epistemology stance, sampling strategy, validity/reliability/triangulation, ethical approval, and limitations.`,
   mathematics: `Domain: Mathematics. Provide full rigorous proofs/derivations with justification at each step. Cover algebra, calculus, statistics, mechanics, or pure as required. Use formal notation, lemmas, theorems, QED. Include worked examples and edge cases.`,
@@ -28,15 +28,27 @@ const ASSIGNMENT_TYPES: Record<string, string> = {
   problem_set: `A structured problem set with 6–10 graduated problems, full worked solutions, mark scheme, and common pitfalls.`,
   lab_report: `A full lab report: aim, hypothesis, apparatus, method, results (tables/graphs described), discussion, error analysis, conclusion.`,
   presentation: `A 10-slide presentation outline with speaker notes, visual cues, and discussion questions per slide.`,
+  practice_questions: `A graded practice-question pack: 15–25 questions split across short-answer, structured, and extended-response. Provide marks per question, an indicative time allocation, complete model answers, mark scheme bullet points, and an examiner's commentary on common mistakes.`,
+  quiz: `A timed quiz: 20 multiple-choice questions (4 options each, only one correct), 5 true/false, and 5 short-answer questions. Provide an answer key with one-line justifications, total marks, recommended duration (e.g., 30 min), and difficulty rating per item (E/M/H).`,
+  exam_paper: `A full mock examination paper following the chosen board's format. Include: cover sheet with instructions, time allowed, total marks, paper structure (Section A: MCQs / Section B: Short / Section C: Extended), each question with marks shown in brackets, command words from the board syllabus, plus a separate detailed Mark Scheme with point-by-point AO descriptors and a grade boundary table.`,
+  mcq_bank: `A structured MCQ bank of 40 multiple-choice questions organized by topic and difficulty (Easy/Medium/Hard), each with 4 options, correct answer marked, and a 1–2 line explanation of why other distractors are wrong.`,
 };
 
 const LEVEL_GUIDANCE: Record<string, string> = {
-  igcse: `IGCSE / O-Level (ages 14–16). Clear concepts, foundational depth, scaffolded explanations.`,
-  'as-level': `AS-Level (Year 12). Analytical depth, intermediate applications, board-style command words.`,
-  'a-level': `A-Level / A2 (Year 13). High analytical and evaluative rigor (AO3/AO4 dominant), synoptic links.`,
+  // International
+  igcse: `IGCSE / O-Level (ages 14–16, Cambridge/Edexcel). Clear concepts, foundational depth, scaffolded explanations, board command words.`,
+  'as-level': `AS-Level (Year 12, Cambridge/Edexcel). Analytical depth, intermediate applications, board-style command words.`,
+  'a-level': `A-Level / A2 (Year 13, Cambridge/Edexcel). High analytical and evaluative rigor (AO3/AO4 dominant), synoptic links.`,
   ib: `IB Diploma (HL/SL). TOK linkage, international perspectives, IA-quality methodology.`,
   undergraduate: `Undergraduate university level. Theoretical sophistication, primary literature engagement, critical evaluation.`,
   postgraduate: `Postgraduate / Master's level. Original synthesis, advanced methodology, gap-in-literature framing.`,
+  // Pakistan boards
+  fbise_ssc: `FBISE Matric / SSC (Class 9–10) — Federal Board of Intermediate and Secondary Education, Islamabad. Follow Curriculum 2024 (SLOs based on National Curriculum of Pakistan). Use FBISE assessment framework: ~40% MCQs/short, ~60% structured/extended. Use bilingual key terms (English with Urdu equivalents) where appropriate. Cite NBF / PCTB textbooks.`,
+  fbise_hssc: `FBISE Intermediate / HSSC (Class 11–12, FA/FSc/ICS/ICOM). Curriculum 2024 SLOs. Paper structure: Section A MCQs (single best), Section B short-response, Section C extended-response. Reference FBISE model papers and Scheme of Studies.`,
+  bise_ssc: `BISE Matric / SSC (Class 9–10) — Provincial Boards (Lahore, Karachi, Peshawar, Rawalpindi, Multan, Gujranwala, etc.) under PCTB / Sindh Textbook Board. Follow Punjab/Sindh curriculum, use PCTB-prescribed textbooks, board paper pattern (Objective + Subjective).`,
+  bise_hssc: `BISE Intermediate / HSSC (FA/FSc/ICS, Class 11–12) — Provincial BISE boards. Follow PCTB syllabus, BISE paper pattern (Section A: MCQs, B: Short, C: Long), Punjab examination commission marking style.`,
+  aku_eb_ssc: `Aga Khan University Examination Board — SSC (Class 9–10). Conceptual, application-heavy SLO-based questions. Higher-order thinking emphasised.`,
+  aku_eb_hssc: `Aga Khan University Examination Board — HSSC (Class 11–12). Strong analytical and applied focus, internationally benchmarked rigour within Pakistani curriculum.`,
 };
 
 serve(async (req) => {
@@ -51,51 +63,56 @@ serve(async (req) => {
       });
     }
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
+    const DEEPSEEK_API_KEY = Deno.env.get("deepseek") || Deno.env.get("DEEPSEEK_API_KEY");
+    if (!DEEPSEEK_API_KEY) throw new Error("DeepSeek API key not configured");
 
     const subjectBlueprint = SUBJECT_BLUEPRINTS[subject.toLowerCase()] || SUBJECT_BLUEPRINTS.economics;
     const typeBlueprint = ASSIGNMENT_TYPES[assignment_type] || ASSIGNMENT_TYPES.essay;
     const levelGuide = LEVEL_GUIDANCE[level] || LEVEL_GUIDANCE['a-level'];
     const targetWords = Math.min(Math.max(parseInt(word_count) || 1500, 500), 5000);
 
-    const systemPrompt = `You are EconNexus Assignment Architect — an elite academic writer producing top-band, examiner-grade assignments indistinguishable from a distinction-level student's polished work.
+    const isPakBoard = level.startsWith('fbise') || level.startsWith('bise') || level.startsWith('aku');
+
+    const systemPrompt = `You are EconNexus Assignment Architect — an elite academic writer producing top-band, examiner-grade assignments, practice papers, quizzes, and full mock exams indistinguishable from a distinction-level expert's polished work.
 
 CURRICULUM CONTEXT: ${levelGuide}
-
+${isPakBoard ? `\nPAKISTAN BOARD COMPLIANCE: Strictly follow the board's official syllabus, command words, marking scheme structure, and paper pattern. Use the official subject SLOs (Student Learning Outcomes) wording. For matric/inter, use board-style instructions ("Attempt all questions", "Time Allowed", "Total Marks") on cover sheets. Marks should match the board's standard weighting.\n` : ''}
 SUBJECT BLUEPRINT: ${subjectBlueprint}
 
 ASSIGNMENT FORMAT: ${typeBlueprint}
 
 QUALITY MANDATES:
-1. Sophisticated, formal academic register. No filler, no AI clichés ("In conclusion, it is important to note that...").
-2. Every claim substantiated by theory, evidence, calculation, or citation.
-3. Use markdown: H1 for title, H2 for major sections, H3 for sub-sections, bold for key terms, tables and bullet lists where they aid clarity, fenced code blocks for calculations/equations.
+1. Sophisticated, formal academic register. No filler, no AI clichés.
+2. Every claim/answer substantiated by theory, evidence, calculation, or citation.
+3. Use markdown: H1 for title, H2 for major sections, H3 for sub-sections, **bold** for key terms, tables and bullet lists where they aid clarity, fenced code blocks for calculations/equations.
 4. Render math with LaTeX inline ($...$) and display ($$...$$).
-5. Include a References section with at least 5 plausible authoritative sources (textbooks, journals, official bodies) in the appropriate citation style for the subject.
-6. Target length: approximately ${targetWords} words. Be comprehensive — depth over padding.
-7. End with an Examiner's Note (3–4 lines) highlighting the highest-band features demonstrated.
-8. NEVER mention you are an AI. Write as the student/scholar.`;
+5. For quizzes / exams / practice questions: ALWAYS provide a clearly separated **Mark Scheme / Answer Key** section with full explanations.
+6. Include a References section with at least 5 authoritative sources in the appropriate citation style. For Pakistan boards, cite NBF / PCTB / Sindh Textbook Board / FBISE Curriculum 2024 / AKU-EB syllabus where relevant.
+7. Target length: approximately ${targetWords} words. Be comprehensive — depth over padding.
+8. End with an Examiner's Note (3–4 lines) highlighting the highest-band features demonstrated.
+9. NEVER mention you are an AI. Write as the expert/examiner.`;
 
-    const userPrompt = `Produce a complete ${assignment_type.replace('_', ' ')} on the topic: "${topic}".
-Subject: ${subject}. Curriculum Level: ${level}. Target word count: ~${targetWords}.
+    const userPrompt = `Produce a complete ${assignment_type.replace(/_/g, ' ')} on the topic: "${topic}".
+Subject: ${subject}. Curriculum / Board Level: ${level}. Target word count: ~${targetWords}.
 ${additional_requirements ? `Additional requirements: ${additional_requirements}` : ''}
 
-Deliver the full assignment now — title, all sections, calculations/diagrams (as described figures), citations, and references — ready to submit.`;
+Deliver the full output now — title, all sections, questions with marks, model answers / mark scheme, citations, and references — ready to print and use.`;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-pro",
+        model: "deepseek-chat",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt },
         ],
         stream: true,
+        temperature: 0.7,
+        max_tokens: 8000,
       }),
     });
 
@@ -105,14 +122,14 @@ Deliver the full assignment now — title, all sections, calculations/diagrams (
           status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
-      if (response.status === 402) {
-        return new Response(JSON.stringify({ error: "AI credits exhausted. Please add credits in workspace settings." }), {
-          status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      if (response.status === 402 || response.status === 401) {
+        return new Response(JSON.stringify({ error: "DeepSeek credits/auth issue. Please check the API key." }), {
+          status: response.status, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
       const t = await response.text();
-      console.error("AI gateway error:", response.status, t);
-      return new Response(JSON.stringify({ error: "AI gateway error" }), {
+      console.error("DeepSeek error:", response.status, t);
+      return new Response(JSON.stringify({ error: "AI provider error" }), {
         status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
