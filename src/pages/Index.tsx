@@ -10,6 +10,7 @@ import EconomicsChatbot from '@/components/EconomicsChatbot';
 import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
+import AssignmentArchitect from '@/components/AssignmentArchitect';
 
 
 import { Button } from '@/components/ui/button';
