@@ -147,7 +147,8 @@ Deliver the full output now — title, all sections, questions with marks and di
           { role: "user", content: userPrompt },
         ],
         stream: true,
-        temperature: 0.7,
+        temperature: 0.3,
+        top_p: 0.9,
         max_tokens: 8000,
       }),
     });
