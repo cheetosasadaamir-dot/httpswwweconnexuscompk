@@ -100,14 +100,21 @@ ${additional_requirements ? `Additional requirements: ${additional_requirements}
 
 Deliver the full output now — title, all sections, questions with marks, model answers / mark scheme, citations, and references — ready to print and use.`;
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const isOpenRouter = OPENAI_API_KEY.startsWith("sk-or-");
+    const endpoint = isOpenRouter
+      ? "https://openrouter.ai/api/v1/chat/completions"
+      : "https://api.openai.com/v1/chat/completions";
+    const model = isOpenRouter ? "openai/gpt-4o-mini" : "gpt-4o-mini";
+
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${OPENAI_API_KEY}`,
         "Content-Type": "application/json",
+        ...(isOpenRouter ? { "HTTP-Referer": "https://econnexus.lovable.app", "X-Title": "EconNexus Assignment Architect" } : {}),
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model,
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt },
