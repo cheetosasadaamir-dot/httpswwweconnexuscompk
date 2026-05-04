@@ -53,7 +53,7 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { subject, topic, assignment_type, level, word_count, additional_requirements } = await req.json();
+    const { subject, topic, assignment_type, level, difficulty, word_count, additional_requirements } = await req.json();
 
     if (!subject || !topic || !assignment_type || !level) {
       return new Response(JSON.stringify({ error: "Missing required fields" }), {
@@ -73,6 +73,14 @@ serve(async (req) => {
     const levelGuide = LEVEL_GUIDANCE[level] || LEVEL_GUIDANCE['a-level'];
     const targetWords = Math.min(Math.max(parseInt(word_count) || 1500, 500), 5000);
 
+    const DIFFICULTY_GUIDE: Record<string, string> = {
+      easy: `EASY tier — foundational recall and direct application. Short command words (define, state, identify, calculate basic). Low cognitive load, minimal multi-step reasoning. Suitable as warm-up or for weaker students.`,
+      medium: `MEDIUM tier — balanced application and analysis. Command words: explain, analyse, compare, calculate (multi-step). Standard exam expectation for the level.`,
+      difficult: `DIFFICULT tier — high-order evaluation, synthesis, and unfamiliar contexts. Command words: evaluate, justify, critically discuss, derive, prove. Stretch-and-challenge questions targeting top-band (A*/Distinction) candidates.`,
+      mixed: `MIXED difficulty — explicitly label every question with [E] / [M] / [H]. Distribute roughly 30% Easy, 40% Medium, 30% Hard, ordered easiest to hardest within each section.`,
+    };
+    const difficultyGuide = DIFFICULTY_GUIDE[difficulty] || DIFFICULTY_GUIDE.medium;
+
     const isPakBoard = level.startsWith('fbise') || level.startsWith('bise') || level.startsWith('aku');
 
     const systemPrompt = `You are EconNexus Assignment Architect — an elite academic writer producing top-band, examiner-grade assignments, practice papers, quizzes, and full mock exams indistinguishable from a distinction-level expert's polished work.
@@ -83,22 +91,33 @@ SUBJECT BLUEPRINT: ${subjectBlueprint}
 
 ASSIGNMENT FORMAT: ${typeBlueprint}
 
+DIFFICULTY CALIBRATION: ${difficultyGuide}
+
 QUALITY MANDATES:
 1. Sophisticated, formal academic register. No filler, no AI clichés.
 2. Every claim/answer substantiated by theory, evidence, calculation, or citation.
 3. Use markdown: H1 for title, H2 for major sections, H3 for sub-sections, **bold** for key terms, tables and bullet lists where they aid clarity, fenced code blocks for calculations/equations.
 4. Render math with LaTeX inline ($...$) and display ($$...$$).
-5. For quizzes / exams / practice questions: ALWAYS provide a clearly separated **Mark Scheme / Answer Key** section with full explanations.
+5. For quizzes / exams / practice questions: ALWAYS provide a clearly separated **Mark Scheme / Answer Key** section with full explanations, and tag each item with its difficulty [E] / [M] / [H].
 6. Include a References section with at least 5 authoritative sources in the appropriate citation style. For Pakistan boards, cite NBF / PCTB / Sindh Textbook Board / FBISE Curriculum 2024 / AKU-EB syllabus where relevant.
 7. Target length: approximately ${targetWords} words. Be comprehensive — depth over padding.
 8. End with an Examiner's Note (3–4 lines) highlighting the highest-band features demonstrated.
-9. NEVER mention you are an AI. Write as the expert/examiner.`;
+9. NEVER mention you are an AI. Write as the expert/examiner.
+
+ABSOLUTE DIAGRAM RULE — APPLIES TO EVERY SUBJECT (Economics, Business, Physics, Chemistry, Biology, Maths, Accounting, Psychology, Sociology, Law, Research):
+- DO NOT generate, draw, render, or attempt to depict any diagram, graph, chart, curve, figure, free-body diagram, mechanism, circuit, structure, table-as-diagram, ASCII art, or SVG.
+- DO NOT use code blocks, ASCII drawings, markdown image syntax, or LaTeX picture/tikz environments to render diagrams.
+- INSTEAD, where a diagram would normally appear, write a single italicised reference line in this exact form:
+  *Diagram reference: [Figure N — concise descriptive title]. Candidates should sketch this themselves; describe the axes/labels/key shifts in words below.*
+- Then immediately follow with a short prose description (2–4 sentences) of what the diagram shows: axes, labels, curves, shifts, equilibrium points — purely as words. Numerical / equation working is still allowed and encouraged.`;
 
     const userPrompt = `Produce a complete ${assignment_type.replace(/_/g, ' ')} on the topic: "${topic}".
-Subject: ${subject}. Curriculum / Board Level: ${level}. Target word count: ~${targetWords}.
+Subject: ${subject}. Curriculum / Board Level: ${level}. Difficulty: ${difficulty || 'medium'}. Target word count: ~${targetWords}.
 ${additional_requirements ? `Additional requirements: ${additional_requirements}` : ''}
 
-Deliver the full output now — title, all sections, questions with marks, model answers / mark scheme, citations, and references — ready to print and use.`;
+Reminder: do NOT draw or render any diagram — only mention it in the prescribed italicised reference form and describe it in words.
+
+Deliver the full output now — title, all sections, questions with marks and difficulty tags, model answers / mark scheme, citations, and references — ready to print and use.`;
 
     const isOpenRouter = OPENAI_API_KEY.startsWith("sk-or-");
     const endpoint = isOpenRouter

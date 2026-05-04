@@ -58,12 +58,20 @@ const LEVELS = [
   { value: 'aku_eb_hssc', label: '🇵🇰 AKU-EB HSSC (Class 11–12)' },
 ];
 
+const DIFFICULTIES = [
+  { value: 'easy', label: 'Easy' },
+  { value: 'medium', label: 'Medium' },
+  { value: 'difficult', label: 'Difficult' },
+  { value: 'mixed', label: 'Mixed (E / M / H)' },
+];
+
 const AssignmentArchitect = () => {
   const { user } = useAuth();
   const [showLogin, setShowLogin] = useState(false);
   const [subject, setSubject] = useState('economics');
   const [assignmentType, setAssignmentType] = useState('essay');
   const [level, setLevel] = useState('a-level');
+  const [difficulty, setDifficulty] = useState('medium');
   const [topic, setTopic] = useState('');
   const [wordCount, setWordCount] = useState('1500');
   const [requirements, setRequirements] = useState('');
@@ -91,6 +99,7 @@ const AssignmentArchitect = () => {
           topic: topic.trim(),
           assignment_type: assignmentType,
           level,
+          difficulty,
           word_count: wordCount,
           additional_requirements: requirements.trim() || undefined,
         }),
@@ -231,6 +240,15 @@ const AssignmentArchitect = () => {
 
           <div className="grid md:grid-cols-3 gap-4 mb-4">
             <div>
+              <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Difficulty</label>
+              <Select value={difficulty} onValueChange={setDifficulty}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {DIFFICULTIES.map(s => <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
               <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Word Count</label>
               <Input
                 type="number"
@@ -241,12 +259,12 @@ const AssignmentArchitect = () => {
                 onChange={(e) => setWordCount(e.target.value)}
               />
             </div>
-            <div className="md:col-span-2">
+            <div>
               <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Additional Requirements (optional)</label>
               <Input
                 value={requirements}
                 onChange={(e) => setRequirements(e.target.value)}
-                placeholder="e.g., focus on UK case law, include 3 graphs, Harvard referencing"
+                placeholder="e.g., focus on UK case law, Harvard referencing"
               />
             </div>
           </div>
