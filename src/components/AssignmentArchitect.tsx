@@ -178,17 +178,20 @@ const AssignmentArchitect = () => {
           viewport={{ once: true }}
           className="text-center mb-10 md:mb-14"
         >
-          <span className="inline-flex items-center gap-2 px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-4 md:mb-6">
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-[11px] md:text-xs uppercase tracking-[0.25em] text-secondary mb-5"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
             <Sparkles className="w-3.5 h-3.5" /> Assignment Architect
           </span>
           <h2
-            className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
-            style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
+            className="text-fluid-4xl lg:text-fluid-5xl mb-3 md:mb-4 text-secondary"
+            style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 700, letterSpacing: '-0.02em', textTransform: 'uppercase' as const }}
           >
             AI Assignment Architect
           </h2>
-          <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
-            Distinction-grade assignments engineered to your exact subject, curriculum level, and format — across eleven disciplines.
+          <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2 leading-relaxed">
+            Distinction-grade assignments, quizzes and mock exams — engineered to your exact subject, curriculum board and difficulty.
           </p>
         </motion.div>
 
