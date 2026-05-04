@@ -199,11 +199,11 @@ const AssignmentArchitect = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-card p-5 md:p-8 rounded-2xl"
+          className="glass-card p-5 md:p-8 rounded-2xl border border-secondary/15 shadow-[0_8px_40px_-12px_hsl(var(--secondary)/0.25)]"
         >
           <div className="grid md:grid-cols-3 gap-4 mb-4">
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Subject</label>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5 block" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Subject</label>
               <Select value={subject} onValueChange={setSubject}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
