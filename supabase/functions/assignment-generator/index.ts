@@ -93,12 +93,20 @@ ASSIGNMENT FORMAT: ${typeBlueprint}
 
 DIFFICULTY CALIBRATION: ${difficultyGuide}
 
+ACCURACY PROTOCOL — NON-NEGOTIABLE:
+A. Every factual claim, statistic, formula, case citation, or definition MUST be verifiable against the official syllabus, prescribed textbook, peer-reviewed source, or recognised institution (World Bank, IMF, OECD, IFRS, BPS, ICAP, FBISE/PCTB, AKU-EB, etc.). If you are not ≥95% confident, STATE the uncertainty explicitly ("approx.", "as of [year]") rather than fabricate.
+B. Use only real authors, real cases, real statutes, real datasets, real years. NEVER invent citations, court cases, journal volumes, page numbers, or DOIs. If unsure of a precise reference, give the canonical real source and the year only.
+C. Numerical work: show every step, units, and a sanity check; a reader must be able to reproduce the answer line-by-line.
+D. For exams/quizzes/MCQs: every distractor must be subject-plausible; the marked answer must be unambiguously correct under the stated syllabus.
+E. Mark schemes must be specific (point-by-point AO mapping, marks justified individually) — never vague phrases like "good answer", "discuss thoroughly".
+F. Self-check pass: before finalising, mentally re-read the output and remove any sentence that is speculative, unsourced, off-syllabus, or off-difficulty.
+
 QUALITY MANDATES:
-1. Sophisticated, formal academic register. No filler, no AI clichés.
+1. Sophisticated, formal academic register. No filler, no AI clichés, no hedging adverbs ("very", "really", "extremely").
 2. Every claim/answer substantiated by theory, evidence, calculation, or citation.
 3. Use markdown: H1 for title, H2 for major sections, H3 for sub-sections, **bold** for key terms, tables and bullet lists where they aid clarity, fenced code blocks for calculations/equations.
 4. Render math with LaTeX inline ($...$) and display ($$...$$).
-5. For quizzes / exams / practice questions: ALWAYS provide a clearly separated **Mark Scheme / Answer Key** section with full explanations, and tag each item with its difficulty [E] / [M] / [H].
+5. For quizzes / exams / practice questions: ALWAYS provide a clearly separated **Mark Scheme / Answer Key** section with full explanations, and tag each item with its difficulty [E] / [M] / [H] and AO descriptor.
 6. Include a References section with at least 5 authoritative sources in the appropriate citation style. For Pakistan boards, cite NBF / PCTB / Sindh Textbook Board / FBISE Curriculum 2024 / AKU-EB syllabus where relevant.
 7. Target length: approximately ${targetWords} words. Be comprehensive — depth over padding.
 8. End with an Examiner's Note (3–4 lines) highlighting the highest-band features demonstrated.
@@ -115,7 +123,7 @@ ABSOLUTE DIAGRAM RULE — APPLIES TO EVERY SUBJECT (Economics, Business, Physics
 Subject: ${subject}. Curriculum / Board Level: ${level}. Difficulty: ${difficulty || 'medium'}. Target word count: ~${targetWords}.
 ${additional_requirements ? `Additional requirements: ${additional_requirements}` : ''}
 
-Reminder: do NOT draw or render any diagram — only mention it in the prescribed italicised reference form and describe it in words.
+Reminder: do NOT draw or render any diagram — only mention it in the prescribed italicised reference form and describe it in words. Apply the ACCURACY PROTOCOL strictly.
 
 Deliver the full output now — title, all sections, questions with marks and difficulty tags, model answers / mark scheme, citations, and references — ready to print and use.`;
 
@@ -123,7 +131,7 @@ Deliver the full output now — title, all sections, questions with marks and di
     const endpoint = isOpenRouter
       ? "https://openrouter.ai/api/v1/chat/completions"
       : "https://api.openai.com/v1/chat/completions";
-    const model = isOpenRouter ? "openai/gpt-4o-mini" : "gpt-4o-mini";
+    const model = isOpenRouter ? "openai/gpt-4o" : "gpt-4o";
 
     const response = await fetch(endpoint, {
       method: "POST",
@@ -139,7 +147,8 @@ Deliver the full output now — title, all sections, questions with marks and di
           { role: "user", content: userPrompt },
         ],
         stream: true,
-        temperature: 0.7,
+        temperature: 0.3,
+        top_p: 0.9,
         max_tokens: 8000,
       }),
     });

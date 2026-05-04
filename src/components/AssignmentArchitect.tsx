@@ -178,17 +178,20 @@ const AssignmentArchitect = () => {
           viewport={{ once: true }}
           className="text-center mb-10 md:mb-14"
         >
-          <span className="inline-flex items-center gap-2 px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-4 md:mb-6">
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-[11px] md:text-xs uppercase tracking-[0.25em] text-secondary mb-5"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
             <Sparkles className="w-3.5 h-3.5" /> Assignment Architect
           </span>
           <h2
-            className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
-            style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
+            className="text-fluid-4xl lg:text-fluid-5xl mb-3 md:mb-4 text-secondary"
+            style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 700, letterSpacing: '-0.02em', textTransform: 'uppercase' as const }}
           >
             AI Assignment Architect
           </h2>
-          <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
-            Distinction-grade assignments engineered to your exact subject, curriculum level, and format — across eleven disciplines.
+          <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2 leading-relaxed">
+            Distinction-grade assignments, quizzes and mock exams — engineered to your exact subject, curriculum board and difficulty.
           </p>
         </motion.div>
 
@@ -196,11 +199,11 @@ const AssignmentArchitect = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-card p-5 md:p-8 rounded-2xl"
+          className="glass-card p-5 md:p-8 rounded-2xl border border-secondary/15 shadow-[0_8px_40px_-12px_hsl(var(--secondary)/0.25)]"
         >
           <div className="grid md:grid-cols-3 gap-4 mb-4">
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Subject</label>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5 block" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Subject</label>
               <Select value={subject} onValueChange={setSubject}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -209,7 +212,7 @@ const AssignmentArchitect = () => {
               </Select>
             </div>
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Assignment Type</label>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5 block" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Assignment Type</label>
               <Select value={assignmentType} onValueChange={setAssignmentType}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -218,7 +221,7 @@ const AssignmentArchitect = () => {
               </Select>
             </div>
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Curriculum Level</label>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5 block" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Curriculum Level</label>
               <Select value={level} onValueChange={setLevel}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -229,7 +232,7 @@ const AssignmentArchitect = () => {
           </div>
 
           <div className="mb-4">
-            <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Topic / Question</label>
+            <label className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5 block" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Topic / Question</label>
             <Input
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
@@ -240,7 +243,7 @@ const AssignmentArchitect = () => {
 
           <div className="grid md:grid-cols-3 gap-4 mb-4">
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Difficulty</label>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5 block" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Difficulty</label>
               <Select value={difficulty} onValueChange={setDifficulty}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -249,7 +252,7 @@ const AssignmentArchitect = () => {
               </Select>
             </div>
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Word Count</label>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5 block" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Word Count</label>
               <Input
                 type="number"
                 min={500}
@@ -260,7 +263,7 @@ const AssignmentArchitect = () => {
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Additional Requirements (optional)</label>
+              <label className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5 block" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Additional Requirements (optional)</label>
               <Input
                 value={requirements}
                 onChange={(e) => setRequirements(e.target.value)}
@@ -273,7 +276,8 @@ const AssignmentArchitect = () => {
             onClick={generate}
             disabled={loading}
             size="lg"
-            className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl"
+            className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl uppercase tracking-[0.2em] text-xs md:text-sm shadow-[0_8px_30px_-8px_hsl(var(--secondary)/0.55)] transition-all"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             {loading ? (
               <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Architecting your assignment…</>
@@ -283,20 +287,28 @@ const AssignmentArchitect = () => {
           </Button>
 
           {output && (
-            <div className="mt-6">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm uppercase tracking-wider text-secondary font-semibold">Your Assignment</h3>
+            <div className="mt-7">
+              <div className="flex items-center justify-between mb-3 pb-3 border-b border-secondary/15">
+                <h3
+                  className="text-[11px] uppercase tracking-[0.28em] text-secondary"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  Your Assignment
+                </h3>
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline" onClick={copyOutput}>
+                  <Button size="sm" variant="outline" onClick={copyOutput} className="rounded-lg border-secondary/30 hover:bg-secondary/10">
                     {copied ? <Check className="w-3.5 h-3.5 mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5" />}
                     {copied ? 'Copied' : 'Copy'}
                   </Button>
-                  <Button size="sm" variant="outline" onClick={downloadOutput}>
+                  <Button size="sm" variant="outline" onClick={downloadOutput} className="rounded-lg border-secondary/30 hover:bg-secondary/10">
                     <Download className="w-3.5 h-3.5 mr-1.5" /> Download .md
                   </Button>
                 </div>
               </div>
-              <div className="prose prose-invert prose-sm md:prose-base max-w-none p-5 md:p-6 rounded-xl bg-background/40 border border-border/40 max-h-[600px] overflow-y-auto">
+              <div
+                className="prose prose-invert prose-sm md:prose-base max-w-none p-5 md:p-7 rounded-xl bg-background/50 border border-secondary/10 backdrop-blur-md max-h-[640px] overflow-y-auto prose-headings:font-[Bodoni_Moda] prose-headings:text-secondary prose-headings:tracking-tight prose-strong:text-secondary/90"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
                 <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                   {output}
                 </ReactMarkdown>
