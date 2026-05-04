@@ -58,12 +58,20 @@ const LEVELS = [
   { value: 'aku_eb_hssc', label: '🇵🇰 AKU-EB HSSC (Class 11–12)' },
 ];
 
+const DIFFICULTIES = [
+  { value: 'easy', label: 'Easy' },
+  { value: 'medium', label: 'Medium' },
+  { value: 'difficult', label: 'Difficult' },
+  { value: 'mixed', label: 'Mixed (E / M / H)' },
+];
+
 const AssignmentArchitect = () => {
   const { user } = useAuth();
   const [showLogin, setShowLogin] = useState(false);
   const [subject, setSubject] = useState('economics');
   const [assignmentType, setAssignmentType] = useState('essay');
   const [level, setLevel] = useState('a-level');
+  const [difficulty, setDifficulty] = useState('medium');
   const [topic, setTopic] = useState('');
   const [wordCount, setWordCount] = useState('1500');
   const [requirements, setRequirements] = useState('');
