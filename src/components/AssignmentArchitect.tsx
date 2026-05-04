@@ -99,6 +99,7 @@ const AssignmentArchitect = () => {
           topic: topic.trim(),
           assignment_type: assignmentType,
           level,
+          difficulty,
           word_count: wordCount,
           additional_requirements: requirements.trim() || undefined,
         }),
