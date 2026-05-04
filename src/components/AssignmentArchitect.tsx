@@ -287,20 +287,28 @@ const AssignmentArchitect = () => {
           </Button>
 
           {output && (
-            <div className="mt-6">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm uppercase tracking-wider text-secondary font-semibold">Your Assignment</h3>
+            <div className="mt-7">
+              <div className="flex items-center justify-between mb-3 pb-3 border-b border-secondary/15">
+                <h3
+                  className="text-[11px] uppercase tracking-[0.28em] text-secondary"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  Your Assignment
+                </h3>
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline" onClick={copyOutput}>
+                  <Button size="sm" variant="outline" onClick={copyOutput} className="rounded-lg border-secondary/30 hover:bg-secondary/10">
                     {copied ? <Check className="w-3.5 h-3.5 mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5" />}
                     {copied ? 'Copied' : 'Copy'}
                   </Button>
-                  <Button size="sm" variant="outline" onClick={downloadOutput}>
+                  <Button size="sm" variant="outline" onClick={downloadOutput} className="rounded-lg border-secondary/30 hover:bg-secondary/10">
                     <Download className="w-3.5 h-3.5 mr-1.5" /> Download .md
                   </Button>
                 </div>
               </div>
-              <div className="prose prose-invert prose-sm md:prose-base max-w-none p-5 md:p-6 rounded-xl bg-background/40 border border-border/40 max-h-[600px] overflow-y-auto">
+              <div
+                className="prose prose-invert prose-sm md:prose-base max-w-none p-5 md:p-7 rounded-xl bg-background/50 border border-secondary/10 backdrop-blur-md max-h-[640px] overflow-y-auto prose-headings:font-[Bodoni_Moda] prose-headings:text-secondary prose-headings:tracking-tight prose-strong:text-secondary/90"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
                 <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                   {output}
                 </ReactMarkdown>
