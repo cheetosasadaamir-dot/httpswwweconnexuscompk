@@ -276,7 +276,8 @@ const AssignmentArchitect = () => {
             onClick={generate}
             disabled={loading}
             size="lg"
-            className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl"
+            className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-xl uppercase tracking-[0.2em] text-xs md:text-sm shadow-[0_8px_30px_-8px_hsl(var(--secondary)/0.55)] transition-all"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             {loading ? (
               <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Architecting your assignment…</>
