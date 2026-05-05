@@ -129,16 +129,21 @@ Reminder: do NOT draw or render any diagram — only mention it in the prescribe
 
 Deliver the full output now — title, all sections, questions with marks and difficulty tags, model answers / mark scheme, citations, and references — ready to print and use.`;
 
-    const isOpenRouter = OPENAI_API_KEY.startsWith("sk-or-");
-    const endpoint = isOpenRouter
-      ? "https://openrouter.ai/api/v1/chat/completions"
-      : "https://api.openai.com/v1/chat/completions";
-    const model = isOpenRouter ? "openai/gpt-4o" : "gpt-4o";
+    const useLovable = !!LOVABLE_API_KEY;
+    const isOpenRouter = !useLovable && API_KEY.startsWith("sk-or-");
+    const endpoint = useLovable
+      ? "https://ai.gateway.lovable.dev/v1/chat/completions"
+      : isOpenRouter
+        ? "https://openrouter.ai/api/v1/chat/completions"
+        : "https://api.openai.com/v1/chat/completions";
+    const model = useLovable
+      ? "google/gemini-2.5-pro"
+      : isOpenRouter ? "openai/gpt-4o" : "gpt-4o";
 
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
+        Authorization: `Bearer ${API_KEY}`,
         "Content-Type": "application/json",
         ...(isOpenRouter ? { "HTTP-Referer": "https://econnexus.lovable.app", "X-Title": "EconNexus Assignment Architect" } : {}),
       },
@@ -151,7 +156,6 @@ Deliver the full output now — title, all sections, questions with marks and di
         stream: true,
         temperature: 0.3,
         top_p: 0.9,
-        max_tokens: 8000,
       }),
     });
 
