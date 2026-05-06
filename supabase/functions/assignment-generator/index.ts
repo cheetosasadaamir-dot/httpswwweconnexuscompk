@@ -143,9 +143,9 @@ ABSOLUTE DIAGRAM RULE — APPLIES TO EVERY SUBJECT:
 Subject: ${subject}. Curriculum / Board Level: ${level}. Difficulty: ${difficulty || 'medium'}. Target word count: ~${targetWords}.
 ${additional_requirements ? `Additional requirements: ${additional_requirements}` : ''}
 
-Reminder: do NOT draw or render any diagram — only mention it in the prescribed italicised reference form and describe it in words. Apply the ACCURACY PROTOCOL strictly.
+Reminder: do NOT draw any diagram (use the italicised reference form) and do NOT write any model answer, sample essay, or solved working — provide only QUESTIONS + Approach Hints (concept signposts, not solutions). Apply the ACCURACY and NO-ANSWER protocols strictly.
 
-Deliver the full output now — title, all sections, questions with marks and difficulty tags, model answers / mark scheme, citations, and references — ready to print and use.`;
+Deliver the full output now — title, instructions, all questions with marks/difficulty tags, Approach Hints (no answers) per question, recommended reading and references — ready for the student to attempt.`;
 
     const useLovable = !!LOVABLE_API_KEY;
     const isOpenRouter = !useLovable && API_KEY.startsWith("sk-or-");
