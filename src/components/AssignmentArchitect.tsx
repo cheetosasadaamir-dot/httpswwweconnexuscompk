@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Loader2, Sparkles, Download, Copy, Check } from 'lucide-react';
+import { FileText, Loader2, Sparkles, Download, Copy, Check, FileType, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from '@/components/ui/select';
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -14,6 +17,7 @@ import 'katex/dist/katex.min.css';
 import { toast } from 'sonner';
 import { useAuth } from '@/hooks/useAuth';
 import LoginModal from '@/components/LoginModal';
+import { exportAsPdf, exportAsDocx } from '@/lib/assignment-export';
 
 const SUBJECTS = [
   { value: 'economics', label: 'Economics' },
