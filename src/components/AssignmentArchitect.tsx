@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Loader2, Sparkles, Download, Copy, Check } from 'lucide-react';
+import { FileText, Loader2, Sparkles, Download, Copy, Check, FileType, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from '@/components/ui/select';
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -14,6 +17,7 @@ import 'katex/dist/katex.min.css';
 import { toast } from 'sonner';
 import { useAuth } from '@/hooks/useAuth';
 import LoginModal from '@/components/LoginModal';
+import { exportAsPdf, exportAsDocx } from '@/lib/assignment-export';
 
 const SUBJECTS = [
   { value: 'economics', label: 'Economics' },
@@ -169,6 +173,10 @@ const AssignmentArchitect = () => {
     URL.revokeObjectURL(url);
   };
 
+  const baseName = `${subject}-${assignmentType}-${Date.now()}`;
+  const exportPdf = () => { exportAsPdf(output, baseName); toast.success('PDF downloaded'); };
+  const exportDocx = async () => { await exportAsDocx(output, baseName); toast.success('Word file downloaded'); };
+
   return (
     <section id="assignment-architect" className="section-mobile scroll-mt-20">
       <div className="w-[95%] max-w-[1200px] mx-auto">
@@ -300,9 +308,24 @@ const AssignmentArchitect = () => {
                     {copied ? <Check className="w-3.5 h-3.5 mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5" />}
                     {copied ? 'Copied' : 'Copy'}
                   </Button>
-                  <Button size="sm" variant="outline" onClick={downloadOutput} className="rounded-lg border-secondary/30 hover:bg-secondary/10">
-                    <Download className="w-3.5 h-3.5 mr-1.5" /> Download .md
-                  </Button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button size="sm" variant="outline" className="rounded-lg border-secondary/30 hover:bg-secondary/10">
+                        <Download className="w-3.5 h-3.5 mr-1.5" /> Export
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border-secondary/30">
+                      <DropdownMenuItem onClick={exportPdf}>
+                        <FileType className="w-3.5 h-3.5 mr-2" /> PDF (.pdf)
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={exportDocx}>
+                        <FileDown className="w-3.5 h-3.5 mr-2" /> Word (.docx)
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={downloadOutput}>
+                        <FileText className="w-3.5 h-3.5 mr-2" /> Markdown (.md)
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </div>
               <div
