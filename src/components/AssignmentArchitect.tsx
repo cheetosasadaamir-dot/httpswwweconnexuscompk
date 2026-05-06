@@ -308,9 +308,24 @@ const AssignmentArchitect = () => {
                     {copied ? <Check className="w-3.5 h-3.5 mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5" />}
                     {copied ? 'Copied' : 'Copy'}
                   </Button>
-                  <Button size="sm" variant="outline" onClick={downloadOutput} className="rounded-lg border-secondary/30 hover:bg-secondary/10">
-                    <Download className="w-3.5 h-3.5 mr-1.5" /> Download .md
-                  </Button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button size="sm" variant="outline" className="rounded-lg border-secondary/30 hover:bg-secondary/10">
+                        <Download className="w-3.5 h-3.5 mr-1.5" /> Export
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border-secondary/30">
+                      <DropdownMenuItem onClick={exportPdf}>
+                        <FileType className="w-3.5 h-3.5 mr-2" /> PDF (.pdf)
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={exportDocx}>
+                        <FileDown className="w-3.5 h-3.5 mr-2" /> Word (.docx)
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={downloadOutput}>
+                        <FileText className="w-3.5 h-3.5 mr-2" /> Markdown (.md)
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </div>
               <div
