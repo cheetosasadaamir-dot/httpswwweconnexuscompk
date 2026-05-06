@@ -21,17 +21,17 @@ const SUBJECT_BLUEPRINTS: Record<string, string> = {
 };
 
 const ASSIGNMENT_TYPES: Record<string, string> = {
-  essay: `A formal academic essay with introduction (thesis), 3–5 body paragraphs (PEEL/PEAL), counter-argument, and conclusion synthesizing argument.`,
-  report: `A structured report with title page, executive summary, numbered sections, findings, analysis, recommendations, and references.`,
-  research_paper: `A full research paper following IMRaD structure with literature review and citations.`,
-  case_study: `An in-depth case analysis with background, problem statement, options, evaluation matrix, recommendation, and implementation plan.`,
-  problem_set: `A structured problem set with 6–10 graduated problems, full worked solutions, mark scheme, and common pitfalls.`,
-  lab_report: `A full lab report: aim, hypothesis, apparatus, method, results (tables/graphs described), discussion, error analysis, conclusion.`,
-  presentation: `A 10-slide presentation outline with speaker notes, visual cues, and discussion questions per slide.`,
-  practice_questions: `A graded practice-question pack: 15–25 questions split across short-answer, structured, and extended-response. Provide marks per question, an indicative time allocation, complete model answers, mark scheme bullet points, and an examiner's commentary on common mistakes.`,
-  quiz: `A timed quiz: 20 multiple-choice questions (4 options each, only one correct), 5 true/false, and 5 short-answer questions. Provide an answer key with one-line justifications, total marks, recommended duration (e.g., 30 min), and difficulty rating per item (E/M/H).`,
-  exam_paper: `A full mock examination paper following the chosen board's format. Include: cover sheet with instructions, time allowed, total marks, paper structure (Section A: MCQs / Section B: Short / Section C: Extended), each question with marks shown in brackets, command words from the board syllabus, plus a separate detailed Mark Scheme with point-by-point AO descriptors and a grade boundary table.`,
-  mcq_bank: `A structured MCQ bank of 40 multiple-choice questions organized by topic and difficulty (Easy/Medium/Hard), each with 4 options, correct answer marked, and a 1–2 line explanation of why other distractors are wrong.`,
+  essay: `A non-formulaic argumentative academic essay built around an original, debatable thesis (not a textbook restatement). Open with a real-world hook or paradox. Develop 3–5 PEEL/PEAL paragraphs each containing: a clear claim, theory-grounded reasoning, *contemporary* (last 5 yrs) empirical evidence with specific data, and a "So-what?" evaluative line. Embed at least one steel-manned counter-argument and a refutation. Conclude with a synthesis that explicitly links to a higher-order debate or unresolved question. Avoid generic five-paragraph templates.`,
+  report: `A practitioner-grade structured report: title page, executive summary (≤150 words, decision-ready), numbered sections, methodology, findings table, critical analysis, prioritised recommendations (with cost/benefit and risk), and references. Include a decision matrix and at least one data-driven insight beyond surface description.`,
+  research_paper: `A rigorous IMRaD research paper with a focused research question, identified gap in the literature, justified methodology (with limitations), data interpretation, theoretical contribution, and avenues for further research. Citations must be real and current.`,
+  case_study: `A Harvard-style decision case: real or realistic scenario, stakeholder map, root-cause analysis (5-Whys or fishbone described in prose), 3 viable options with weighted evaluation matrix (criteria + scores + justification), recommendation with implementation roadmap, KPIs, and risk mitigation. Force the student to *choose* and defend.`,
+  problem_set: `A scaffolded problem set of 8–12 graduated problems moving from skill-builders to multi-step "transfer" problems set in unfamiliar real-world contexts. Each problem must require reasoning beyond plug-and-chug. Provide a fully worked solution, an alternative method where applicable, a mark scheme, common-misconception callouts, and a one-line "stretch" extension.`,
+  lab_report: `A full lab report: aim, testable hypothesis with rationale, variables (IV/DV/controls), apparatus, method (replicable), results (tables/graphs described in words), discussion linking results to theory, quantitative error analysis (% error, propagation), evaluation of validity/reliability, improvements, and conclusion.`,
+  presentation: `A 10-slide presentation outline with: slide title, 3–5 bullet talking points, speaker notes (40–80 words), visual cue (described in words only), and one Socratic discussion question per slide that probes critical thinking rather than recall.`,
+  practice_questions: `A graded practice-question pack of 15–25 items mixing short-answer, structured (a/b/c), data-response, and extended-response. Prioritise application and analysis over recall. Provide marks, indicative time, full model answers, mark-scheme bullets mapped to AOs, and an examiner's commentary on common mistakes per question.`,
+  quiz: `A timed quiz: 20 MCQs (4 options, one unambiguously correct, distractors built from genuine student misconceptions), 5 true/false with a *justify-your-answer* line, and 5 short-answer application questions. Provide an answer key with reasoning, total marks, recommended duration, and difficulty tag [E/M/H] per item.`,
+  exam_paper: `A full mock exam paper matching the chosen board's exact format and rubric. Cover sheet (instructions, time, total marks), Section A (MCQs) / B (Short) / C (Extended/Data-response/Essay), official command words, marks in brackets. Provide a separate detailed Mark Scheme with point-by-point AO descriptors, indicative content, levels-based marking grid, and a grade-boundary table.`,
+  mcq_bank: `An MCQ bank of 40 items grouped by sub-topic and tagged [E/M/H]. Each item: 4 options, correct answer, and a 1–2 line explanation of why each distractor is wrong (diagnosing the misconception). Avoid trivia; target conceptual understanding and application.`,
 };
 
 const LEVEL_GUIDANCE: Record<string, string> = {
@@ -104,7 +104,7 @@ E. Mark schemes must be specific (point-by-point AO mapping, marks justified ind
 F. Self-check pass: before finalising, mentally re-read the output and remove any sentence that is speculative, unsourced, off-syllabus, or off-difficulty.
 
 QUALITY MANDATES:
-1. Sophisticated, formal academic register. No filler, no AI clichés, no hedging adverbs ("very", "really", "extremely").
+1. Sophisticated, formal academic register. No filler, no AI clichés, no hedging adverbs ("very", "really", "extremely"), no boilerplate openings ("In today's world…", "Since the dawn of…").
 2. Every claim/answer substantiated by theory, evidence, calculation, or citation.
 3. Use markdown: H1 for title, H2 for major sections, H3 for sub-sections, **bold** for key terms, tables and bullet lists where they aid clarity, fenced code blocks for calculations/equations.
 4. Render math with LaTeX inline ($...$) and display ($$...$$).
@@ -113,6 +113,16 @@ QUALITY MANDATES:
 7. Target length: approximately ${targetWords} words. Be comprehensive — depth over padding.
 8. End with an Examiner's Note (3–4 lines) highlighting the highest-band features demonstrated.
 9. NEVER mention you are an AI. Write as the expert/examiner.
+
+PEDAGOGICAL ENGINE — STUDENT-CENTRED, NON-TRADITIONAL DESIGN (MANDATORY):
+P1. PROBLEM-SOLVING FIRST: Frame tasks as problems to be *solved*, not topics to be *summarised*. Replace "Describe X" with "Given [scenario], decide/justify/design X".
+P2. BLOOM HIGHER-ORDER BIAS: At least 60% of items/sections must target Apply, Analyse, Evaluate, or Create. Lower-order recall is permitted only as scaffolding.
+P3. UNFAMILIAR / TRANSFER CONTEXTS: Anchor questions in fresh, real-world or interdisciplinary scenarios (current events, datasets, ethical dilemmas, simulations) — never the textbook's own example.
+P4. METACOGNITION: Where appropriate, embed reflective prompts ("Why might your answer be wrong?", "What additional data would change your conclusion?", "Identify your key assumption.").
+P5. MISCONCEPTION-AWARE: Distractors and traps must be engineered from authentic student misconceptions; mark schemes must explicitly diagnose them.
+P6. ORIGINALITY: Avoid clichéd prompts ("Discuss the causes of inflation"). Reformulate as decision tasks, comparative judgements, source-evaluations, or "design-an-investigation" briefs.
+P7. STRETCH LADDER: Every assignment must end with one "Beyond-the-syllabus" extension prompt that nudges curious students to wider reading or open research.
+P8. AUTHENTIC ASSESSMENT: Where possible, mirror real professional/academic tasks (policy memo, court brief, lab proposal, market report, peer-review critique) instead of generic essays.
 
 ABSOLUTE DIAGRAM RULE — APPLIES TO EVERY SUBJECT (Economics, Business, Physics, Chemistry, Biology, Maths, Accounting, Psychology, Sociology, Law, Research):
 - DO NOT generate, draw, render, or attempt to depict any diagram, graph, chart, curve, figure, free-body diagram, mechanism, circuit, structure, table-as-diagram, ASCII art, or SVG.
