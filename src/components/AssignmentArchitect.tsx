@@ -173,6 +173,10 @@ const AssignmentArchitect = () => {
     URL.revokeObjectURL(url);
   };
 
+  const baseName = `${subject}-${assignmentType}-${Date.now()}`;
+  const exportPdf = () => { exportAsPdf(output, baseName); toast.success('PDF downloaded'); };
+  const exportDocx = async () => { await exportAsDocx(output, baseName); toast.success('Word file downloaded'); };
+
   return (
     <section id="assignment-architect" className="section-mobile scroll-mt-20">
       <div className="w-[95%] max-w-[1200px] mx-auto">
