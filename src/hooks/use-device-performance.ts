@@ -77,7 +77,7 @@ export const useDevicePerformance = (): DevicePerformance => {
         particleMultiplier: tier === 'high' ? 1 : tier === 'medium' ? 0.5 : 0.25,
         enableBlur: tier !== 'low',
         enableTrails: tier === 'high',
-        maxFps: tier === 'high' ? 60 : tier === 'medium' ? 30 : 24,
+        maxFps: tier === 'high' ? 90 : tier === 'medium' ? 60 : 30,
       };
       setPerformance(settings);
     };
