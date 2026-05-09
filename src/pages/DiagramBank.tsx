@@ -24,20 +24,6 @@ const DiagramBank = () => {
         transition={{ duration: 0.6 }}
         className="max-w-5xl mx-auto"
       >
-        {/* Header */}
-        <div className="mb-12">
-          <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium mb-4">
-            Bamford & Grant Standard
-          </span>
-          <h1 className="font-serif text-4xl lg:text-5xl section-title mb-4">
-            Diagram Bank
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed-plus max-w-3xl">
-            High-fidelity diagrams drawn exactly as Cambridge 9708 examiners expect. Each diagram uses 
-            standard <span className="text-cyan-400">P, Q, D, S</span> notation with equilibrium shifts marked as 
-            <span className="text-cyan-400"> E₁ → E₂</span>.
-          </p>
-        </div>
 
         {/* Color Legend */}
         <div className="glass-card p-6 mb-12">
