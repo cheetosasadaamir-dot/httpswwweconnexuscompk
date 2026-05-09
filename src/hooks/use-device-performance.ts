@@ -26,7 +26,7 @@ export const useDevicePerformance = (): DevicePerformance => {
     particleMultiplier: 1,
     enableBlur: true,
     enableTrails: true,
-    maxFps: 60,
+    maxFps: 90,
   });
 
   useEffect(() => {
