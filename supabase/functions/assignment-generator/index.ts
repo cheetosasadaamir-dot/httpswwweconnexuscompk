@@ -112,6 +112,39 @@ S5. APPEND a **Syllabus Alignment Summary** table at the END of every output wit
 • Full Mock Exam Paper → cover page + instructions + all sections, mirroring the real board's formatting (CAIE / FBISE / BISE / AKU-EB / HEC).
 • MCQ Bank → 40 questions, 4 options each, topic tags, difficulty level, syllabus reference per question.
 
+📐 OUTPUT EXECUTION — EXACT STRUCTURAL CONTRACTS (use the matching one based on assignment_type, mirror headings verbatim):
+
+[ESSAY] Title → Thesis Statement → Introduction (hook + context + thesis) → Body Paragraphs in PEEL (Point, Evidence, Explanation, Link) → ONE Counter-Argument paragraph → Conclusion (restated thesis + broader implications) → Reference List (Harvard for HEC, Cambridge style for O/A Level). Specify the word-count range for the level. (Set as prompts/scaffolds — DO NOT write the essay.)
+
+[REPORT] Title Page → Abstract (100–150 words placeholder brief) → Table of Contents → Introduction → Methodology (if applicable) → Findings & Analysis (with subheadings) → Discussion → Recommendations → Conclusion → References → Appendices. Formal academic register throughout.
+
+[RESEARCH PAPER] Abstract → Introduction (background + research gap) → Literature Review → Research Methodology → Results & Analysis → Discussion → Conclusion → References (≥10 real academic sources, APA 7th or Harvard). Include a stated Hypothesis and clearly defined Research Questions.
+
+[CASE STUDY] Case Summary → Problem Identification → Theoretical Framework Applied → Analysis (SWOT / PESTLE / Porter's 5 Forces — pick what fits the subject) → Alternative Solutions → Recommended Solution with full justification → Implementation Plan → Limitations of the analysis.
+
+[PROBLEM SET] Each problem: Problem Statement (Given / Required) → Step-by-step Worked Approach (PROMPTED steps only — student fills working) → Final Answer slot with units → Common Error Note → Mark Allocation. Group across THREE tiers labeled **Recall**, **Application**, **Challenge**.
+
+[LAB REPORT] Title → Aim → Hypothesis → Variables Table (Independent / Dependent / Controlled) → Materials & Apparatus list → Numbered Method steps → Results section (table + graph placeholder) → Analysis → Evaluation (sources of error + suggested improvements) → Conclusion. Align to Cambridge Practical Assessment criteria (O/A Level) or HEC lab guidelines.
+
+[PRESENTATION] Slide-by-slide breakdown — each slide has: Slide Number, Slide Title, ≤5 bullet points, full Speaker Notes (complete sentences), Visual/Diagram Suggestion, Estimated Time. Include an opening Hook slide and a closing Q&A guidance slide.
+
+[PRACTICE QUESTIONS] Cover Page (topic, board, level, date) → Section A: 5–8 short-answer → Section B: 3–4 structured multi-part → Section C: 1–2 extended-response/essay → Mark Scheme at the end (rubric/level descriptors only — NO model answers). Mirror real past-paper formatting and command words for the board.
+
+[QUIZ] Mixed-format: MCQs (4 options, one correct, distractor logic in key) + True/False (justification required) + Short Answer (mark-scheme rubric, NOT model answers). Tag every item by difficulty (E/M/H) and syllabus reference. Full answer key (correct option + distractor diagnosis) at the end — NO worked answers for short-answer items.
+
+[EXAM PAPER] Cover Page (board, subject, level, time, total marks, instructions) → all sections mirroring the real exam format → complete Mark Scheme with examiner guidance notes → per-question Bloom's level + AO tag. Replicate exact section structure, question style, command words, and mark distribution of a real board exam.
+
+[MCQ BANK] EXACTLY 40 MCQs. Each: stem, options A–D, correct answer, three plausible distractors with brief "why wrong" note, difficulty tag (E/M/H), syllabus reference code, Bloom's level, AO covered. Distribute across the full topic range. Full answer key at end.
+
+🛑 STANDING RULES (ALL OUTPUTS):
+- Never generate before the Syllabus Alignment Protocol routing is complete.
+- Never produce content that cannot be verified against the stated syllabus.
+- Always match the EXACT command-word definitions used by the specified board.
+- Always mirror the mark-scheme language, rubric structure, and formatting conventions of the specified board.
+- For HEC outputs use Bloom's Taxonomy as defined in the **HEC National Curriculum 2023**.
+- For CAIE outputs use the command-word glossary from the relevant **Cambridge Subject Report**.
+- Every output ENDS with the Syllabus Alignment Summary table (S5).
+
 CURRICULUM CONTEXT: ${levelGuide}
 ${isPakBoard ? `\nPAKISTAN BOARD COMPLIANCE: Strictly follow the board's official syllabus, command words, marking scheme structure, and paper pattern. Use the official subject SLOs (Student Learning Outcomes) wording. For matric/inter, use board-style instructions ("Attempt all questions", "Time Allowed", "Total Marks") on cover sheets. Marks should match the board's standard weighting.\n` : ''}
 SUBJECT BLUEPRINT: ${subjectBlueprint}
