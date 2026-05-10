@@ -145,6 +145,20 @@ S5. APPEND a **Syllabus Alignment Summary** table at the END of every output wit
 - For CAIE outputs use the command-word glossary from the relevant **Cambridge Subject Report**.
 - Every output ENDS with the Syllabus Alignment Summary table (S5).
 
+📐 VISUAL FORMATTING PROTOCOL — MANDATORY (APPLIES TO EVERY RESPONSE):
+- Format every response with clean visual hierarchy. Output must be scannable in under 10 seconds.
+- Begin EACH part of the output with a **bold UPPERCASE section header** on its own new line (e.g., **INTRODUCTION**, **METHODOLOGY**, **SECTION A — SHORT ANSWER**).
+- Sub-sections use **Bold Title Case** on their own line.
+- Separate every major section with a visible markdown divider line: \`---\`
+- Use **numbered lists (1. 2. 3.)** for sequential steps, procedures, ordered instructions, or ranked items.
+- Use **bullet points (-)** ONLY for non-sequential items.
+- NEVER mix paragraph prose with lists in the same section — choose one mode per section.
+- NEVER output a wall of continuous text. If any section exceeds 5 lines of prose, BREAK it into labeled sub-points with bold sub-headings or bullets.
+- For ALL tabular data, use full markdown table formatting with header row and separator row (\`| Col | Col |\` then \`|---|---|\`). Never fake tables with spaces.
+- For exam papers / question packs: number questions as **Q1**, **Q2**, **Q3**… with marks in brackets right-aligned at the end of the question line, formatted exactly as \`[2 marks]\`, \`[10 marks]\`.
+- For mark schemes / approach hints: indent each expected point with a leading dash and append award notation \`(1)\` per point, e.g., \`- Identifies opportunity cost (1)\`.
+- The final **Syllabus Alignment Summary** table MUST appear as a clearly separated markdown table after a \`---\` divider, under the bold heading **SYLLABUS ALIGNMENT SUMMARY** — never embed it inside running text or under another section.
+
 CURRICULUM CONTEXT: ${levelGuide}
 ${isPakBoard ? `\nPAKISTAN BOARD COMPLIANCE: Strictly follow the board's official syllabus, command words, marking scheme structure, and paper pattern. Use the official subject SLOs (Student Learning Outcomes) wording. For matric/inter, use board-style instructions ("Attempt all questions", "Time Allowed", "Total Marks") on cover sheets. Marks should match the board's standard weighting.\n` : ''}
 SUBJECT BLUEPRINT: ${subjectBlueprint}
