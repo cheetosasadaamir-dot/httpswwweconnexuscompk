@@ -2982,6 +2982,43 @@ serve(async (req) => {
     }
 
     // ============================================================
+    // DAILY MESSAGE LIMIT — 11 messages per authenticated user per 24h
+    // ============================================================
+    const authHeader = req.headers.get("Authorization") || "";
+    const jwt = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
+    const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    let authedUserId: string | null = null;
+    if (jwt && jwt !== Deno.env.get("SUPABASE_PUBLISHABLE_KEY") && jwt !== Deno.env.get("SUPABASE_ANON_KEY")) {
+      try {
+        const userResp = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+          headers: { Authorization: `Bearer ${jwt}`, apikey: SERVICE_KEY },
+        });
+        if (userResp.ok) {
+          const u = await userResp.json();
+          authedUserId = u?.id ?? null;
+        }
+      } catch (_e) { /* ignore */ }
+    }
+    if (authedUserId) {
+      try {
+        const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+        const cnt = await fetch(
+          `${SUPABASE_URL}/rest/v1/chat_history?select=id&user_id=eq.${authedUserId}&role=eq.user&created_at=gte.${since}`,
+          { headers: { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}`, Prefer: "count=exact" } }
+        );
+        const range = cnt.headers.get("content-range") || "0-0/0";
+        const total = parseInt(range.split("/")[1] || "0", 10);
+        if (total >= 11) {
+          return new Response(
+            JSON.stringify({ error: "Daily limit reached: you've used all 11 messages for today. Limit refreshes 24 hours after your first message of the day." }),
+            { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+      } catch (_e) { /* fail-open on quota check */ }
+    }
+
+    // ============================================================
     // PERSONA ALIGNMENT GATE — Domain validation for uploaded documents
     // ============================================================
     let docContext = "";
