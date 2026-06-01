@@ -61,6 +61,42 @@ serve(async (req) => {
       });
     }
 
+    // ============================================================
+    // WEEKLY LIMIT — 2 assignments per authenticated user per 7 days
+    // ============================================================
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
+    const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const authHeader = req.headers.get("Authorization") || "";
+    const jwt = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+    let authedUserId: string | null = null;
+    if (jwt && jwt !== Deno.env.get("SUPABASE_PUBLISHABLE_KEY") && jwt !== Deno.env.get("SUPABASE_ANON_KEY")) {
+      try {
+        const ur = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+          headers: { Authorization: `Bearer ${jwt}`, apikey: SERVICE_KEY },
+        });
+        if (ur.ok) { const u = await ur.json(); authedUserId = u?.id ?? null; }
+      } catch (_e) { /* ignore */ }
+    }
+    if (!authedUserId) {
+      return new Response(JSON.stringify({ error: "Please sign in to generate assignments." }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    try {
+      const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+      const cnt = await fetch(
+        `${SUPABASE_URL}/rest/v1/assignment_usage?select=id&user_id=eq.${authedUserId}&created_at=gte.${since}`,
+        { headers: { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}`, Prefer: "count=exact" } }
+      );
+      const range = cnt.headers.get("content-range") || "0-0/0";
+      const total = parseInt(range.split("/")[1] || "0", 10);
+      if (total >= 2) {
+        return new Response(JSON.stringify({ error: "Weekly limit reached: you can generate up to 2 assignments per 7 days. Limit refreshes 7 days after your first weekly assignment." }), {
+          status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    } catch (_e) { /* fail-open */ }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     const USER_KEY = Deno.env.get("chatbotkey") || Deno.env.get("openai") || Deno.env.get("OPENAI_API_KEY");
     const API_KEY = LOVABLE_API_KEY || USER_KEY;
@@ -69,6 +105,18 @@ serve(async (req) => {
         status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+
+    // Record this generation (best-effort)
+    fetch(`${SUPABASE_URL}/rest/v1/assignment_usage`, {
+      method: "POST",
+      headers: {
+        apikey: SERVICE_KEY,
+        Authorization: `Bearer ${SERVICE_KEY}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify({ user_id: authedUserId }),
+    }).catch(() => {});
 
     const subjectBlueprint = SUBJECT_BLUEPRINTS[subject.toLowerCase()] || SUBJECT_BLUEPRINTS.economics;
     const typeBlueprint = ASSIGNMENT_TYPES[assignment_type] || ASSIGNMENT_TYPES.essay;
