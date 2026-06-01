@@ -92,11 +92,14 @@ const AssignmentArchitect = () => {
 
     try {
       const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/assignment-generator`;
+      const { data: { session: currentSession } } = await (await import('@/integrations/supabase/client')).supabase.auth.getSession();
+      const bearer = currentSession?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
       const resp = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${bearer}`,
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
         },
         body: JSON.stringify({
           subject,
