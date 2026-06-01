@@ -640,10 +640,11 @@ const markdownComponents = {
   li: ({ children }: any) => <li>{children}</li>,
 };
 
-const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
+const ChatBubble = memo(({ msg, activeConfig, isLatest, userInfo }: {
   msg: Message;
   activeConfig: { color: string; label: string };
   isLatest: boolean;
+  userInfo: { name: string; avatar: string };
 }) => {
   const bubbleClass = isLatest ? 'chat-bubble chat-bubble-enter' : 'chat-bubble';
   
@@ -673,22 +674,33 @@ const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
 
   return (
     <div className={bubbleClass}>
-      <div className="flex items-start gap-3 py-3 px-4 ml-auto max-w-[90%] sm:max-w-[85%] rounded-xl" style={{
-        background: 'hsl(214 100% 8% / 0.6)',
-        border: '1px solid hsl(214 100% 20% / 0.3)',
-        wordWrap: 'break-word' as any,
-        overflowWrap: 'break-word' as any,
-        whiteSpace: 'pre-wrap',
-      }}>
-        <div className="flex-1 min-w-0">
-          {msg.imageUrl && (
-            <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
-          )}
-          <p className="whitespace-pre-wrap leading-relaxed text-sm font-sans text-foreground">{msg.content}</p>
+      <div className="flex flex-col items-end gap-1 ml-auto max-w-[90%] sm:max-w-[85%]">
+        <div className="flex items-start gap-3 py-3 px-4 rounded-xl w-full" style={{
+          background: 'hsl(214 100% 8% / 0.6)',
+          border: '1px solid hsl(214 100% 20% / 0.3)',
+          wordWrap: 'break-word' as any,
+          overflowWrap: 'break-word' as any,
+          whiteSpace: 'pre-wrap',
+        }}>
+          <div className="flex-1 min-w-0">
+            {msg.imageUrl && (
+              <img src={msg.imageUrl} alt="Uploaded" className="max-w-[200px] rounded-lg mb-2 border border-white/10" />
+            )}
+            <p className="whitespace-pre-wrap leading-relaxed text-sm font-sans text-foreground">{msg.content}</p>
+          </div>
+          <div className="w-8 h-8 rounded-full flex-shrink-0 border border-primary/40 overflow-hidden animate-user-avatar-breathe bg-primary/10 flex items-center justify-center">
+            {userInfo.avatar ? (
+              <img src={userInfo.avatar} alt={userInfo.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            ) : (
+              <span className="text-[10px] font-semibold text-primary uppercase">
+                {userInfo.name.slice(0, 2)}
+              </span>
+            )}
+          </div>
         </div>
-        <div className="w-7 h-7 rounded-full flex-shrink-0 border border-primary/30 overflow-hidden animate-user-avatar-breathe">
-          <img src={userProfilePhoto} alt="User" className="w-full h-full object-cover" />
-        </div>
+        <span className="text-[10px] text-muted-foreground/80 pr-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+          {userInfo.name}
+        </span>
       </div>
     </div>
   );
@@ -697,7 +709,9 @@ const ChatBubble = memo(({ msg, activeConfig, isLatest }: {
   return prev.msg.content === next.msg.content && 
          prev.msg.id === next.msg.id && 
          prev.isLatest === next.isLatest &&
-         prev.activeConfig.color === next.activeConfig.color;
+         prev.activeConfig.color === next.activeConfig.color &&
+         prev.userInfo.avatar === next.userInfo.avatar &&
+         prev.userInfo.name === next.userInfo.name;
 });
 const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
   const isProcessing = streamState !== 'idle' && streamState !== 'error';
