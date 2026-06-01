@@ -891,11 +891,14 @@ export default function EconomicsChatbot() {
     try {
       // Find the last user message to check for image
       const lastUserMsg = userMessages[userMessages.length - 1];
+      const { data: { session: currentSession } } = await supabase.auth.getSession();
+      const bearer = currentSession?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
       const resp = await fetch(CHAT_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${bearer}`,
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
         },
         body: JSON.stringify({ 
           messages: userMessages.slice(-6).map(m => ({ role: m.role, content: m.content })),
