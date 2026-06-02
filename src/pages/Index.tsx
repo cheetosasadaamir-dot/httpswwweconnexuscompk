@@ -104,21 +104,6 @@ const Index = () => {
                     <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Button>
-                <Button
-                  size="lg"
-                  onClick={() => {
-                    const chatbot = document.getElementById('ai-chatbot');
-                    if (chatbot) {
-                      chatbot.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                  }}
-                  className="touch-target bg-primary hover:bg-primary/90 text-primary-foreground px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-medium rounded-xl cursor-pointer w-full sm:w-auto"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <MessageSquare className="w-4 h-4 md:w-5 md:h-5" />
-                    Consult the AI Specialist
-                  </span>
-                </Button>
               </motion.div>
 
             </div>
