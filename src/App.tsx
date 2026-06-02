@@ -65,6 +65,7 @@ const AuthPage = lazy(() => import("./pages/Auth"));
 const DashboardPage = lazy(() => import("./pages/Dashboard"));
 const LoginPage = lazy(() => import("./pages/Login"));
 const ReviewsPage = lazy(() => import("./pages/Reviews"));
+const ChatPage = lazy(() => import("./pages/Chat"));
 
 
 const queryClient = new QueryClient({
