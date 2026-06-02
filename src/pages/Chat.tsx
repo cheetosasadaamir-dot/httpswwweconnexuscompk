@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { MessageSquare, Sparkles } from 'lucide-react';
 import Layout from '@/components/Layout';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 
 const Chat = () => {
   return (
