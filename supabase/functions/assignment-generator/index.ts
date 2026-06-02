@@ -304,28 +304,23 @@ Deliver the full output now — title, instructions, all questions with marks/di
     if (!response.ok) {
       const t = await response.text().catch(() => "");
       console.error("AI provider error:", response.status, t.slice(0, 500));
-    }
-
-    if (!response.ok) {
-      const t = await response.text();
-      console.error("OpenAI error:", response.status, t);
       if (response.status === 429) {
         return new Response(JSON.stringify({ error: "Rate limit reached. Please try again in a moment." }), {
           status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
       if (response.status === 401 || response.status === 402) {
-        return new Response(JSON.stringify({ error: "OpenAI auth/credits issue. Please check the API key." }), {
+        return new Response(JSON.stringify({ error: "AI credits/auth issue. Please contact support." }), {
           status: response.status, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
-      return new Response(JSON.stringify({ error: "AI provider error" }), {
+      return new Response(JSON.stringify({ error: `AI provider error (${response.status})`, detail: t.slice(0, 300) }), {
         status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
     return new Response(response.body, {
-      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+      headers: { ...corsHeaders, "Content-Type": "text/event-stream", "Cache-Control": "no-cache" },
     });
   } catch (e) {
     console.error("assignment-generator error:", e);
