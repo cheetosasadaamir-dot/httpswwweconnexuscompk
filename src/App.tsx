@@ -153,6 +153,7 @@ const AnimatedRoutes = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
           <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/chat" element={<ChatPage />} />
           
           {/* Legacy routes */}
           <Route path="/national-income" element={<NationalIncome />} />
