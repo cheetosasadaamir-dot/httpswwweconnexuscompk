@@ -275,8 +275,21 @@ Deliver the full output now — title, instructions, all questions with marks/di
         ? "https://openrouter.ai/api/v1/chat/completions"
         : "https://api.openai.com/v1/chat/completions";
     const model = useLovable
-      ? "google/gemini-2.5-pro"
+      ? "google/gemini-2.5-flash"
       : isOpenRouter ? "openai/gpt-4o" : "gpt-4o";
+
+    const body: Record<string, unknown> = {
+      model,
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+      stream: true,
+    };
+    if (!useLovable) {
+      body.temperature = 0.3;
+      body.top_p = 0.9;
+    }
 
     const response = await fetch(endpoint, {
       method: "POST",
@@ -285,17 +298,13 @@ Deliver the full output now — title, instructions, all questions with marks/di
         "Content-Type": "application/json",
         ...(isOpenRouter ? { "HTTP-Referer": "https://econnexus.lovable.app", "X-Title": "EconNexus Assignment Architect" } : {}),
       },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-        stream: true,
-        temperature: 0.3,
-        top_p: 0.9,
-      }),
+      body: JSON.stringify(body),
     });
+
+    if (!response.ok) {
+      const t = await response.text().catch(() => "");
+      console.error("AI provider error:", response.status, t.slice(0, 500));
+    }
 
     if (!response.ok) {
       const t = await response.text();
