@@ -6,7 +6,7 @@ import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import KnowledgePillars from '@/components/KnowledgePillars';
-import EconomicsChatbot from '@/components/EconomicsChatbot';
+// EconomicsChatbot moved to its own /chat page
 import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
