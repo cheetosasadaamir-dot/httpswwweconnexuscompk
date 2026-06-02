@@ -130,8 +130,34 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
-        {/* AI Economics Mentor Chatbot — open access (4 free messages then login prompt) */}
-        <EconomicsChatbot />
+        {/* AI Tutor — moved to its own dedicated page (/chat) */}
+        <section id="ai-tutor" className="section-mobile scroll-mt-20">
+          <div className="w-[95%] max-w-[1200px] mx-auto">
+            <a
+              href="/chat"
+              className="block group glass-card rounded-2xl border border-secondary/15 p-8 md:p-12 text-center hover:border-secondary/40 transition-all shadow-[0_8px_40px_-12px_hsl(var(--secondary)/0.25)]"
+            >
+              <span
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 text-[11px] md:text-xs uppercase tracking-[0.25em] text-secondary mb-5"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              >
+                ✨ AI Tutor Workspace
+              </span>
+              <h2
+                className="text-fluid-3xl lg:text-fluid-4xl mb-4 text-secondary"
+                style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 700, letterSpacing: '-0.02em', textTransform: 'uppercase' }}
+              >
+                Chat with EconNexus AI Tutors
+              </h2>
+              <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+                11 specialist personas across Economics, Business, Sciences, Law — board-aware and syllabus-locked.
+              </p>
+              <span className="inline-block px-6 py-3 rounded-xl bg-secondary text-secondary-foreground uppercase tracking-[0.2em] text-xs md:text-sm group-hover:translate-y-[-2px] transition-transform" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                Open Chat →
+              </span>
+            </a>
+          </div>
+        </section>
 
         {/* Silver Divider */}
         <div className="w-[95%] max-w-[1200px] mx-auto">
