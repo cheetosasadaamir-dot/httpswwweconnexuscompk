@@ -5,13 +5,14 @@ import EconomicsChatbot from '@/components/EconomicsChatbot';
 import { useEffect } from 'react';
 
 const Chat = () => {
+  useEffect(() => {
+    document.title = 'AI Tutor Chat — EconNexus';
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute('content', 'Chat with EconNexus AI Tutors. 11 specialist personas across Economics, Business, Sciences, Law and more — board-aware, syllabus-aligned answers.');
+  }, []);
+
   return (
     <Layout>
-      <Helmet>
-        <title>AI Tutor Chat — EconNexus</title>
-        <meta name="description" content="Chat with EconNexus AI Tutors. 11 specialist personas across Economics, Business, Sciences, Law and more — board-aware, syllabus-aligned answers." />
-        <link rel="canonical" href="/chat" />
-      </Helmet>
 
       <div className="mobile-container responsive-container mx-auto px-4 md:px-8 pt-24 md:pt-28 pb-12">
         <motion.div
