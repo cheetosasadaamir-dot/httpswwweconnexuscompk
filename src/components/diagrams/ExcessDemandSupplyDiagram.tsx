@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 /**
  * Interactive diagram showing Excess Demand (Shortage) and Excess Supply (Surplus)
- * at disequilibrium prices - Cambridge 9708 Standard
+ * at disequilibrium prices - Exam Standard
  */
 const ExcessDemandSupplyDiagram = () => {
   const [scenario, setScenario] = useState<'equilibrium' | 'shortage' | 'surplus'>('equilibrium');

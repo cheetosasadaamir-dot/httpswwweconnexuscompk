@@ -7,7 +7,7 @@ interface ADASInteractiveDiagramProps {
 }
 
 /**
- * AD/AS Interactive Model - CIE 9708 Exam Standard
+ * AD/AS Interactive Model -  Exam Standard
  * 
  * Geometric Standards:
  * - AD: Downward sloping (Wealth Effect, Interest Rate Effect, International Trade Effect)
@@ -174,7 +174,7 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
           markerEnd="url(#arrow-adas)"
         />
 
-        {/* CIE 9708 Standard Axis Labels */}
+        {/* Exam Standard Axis Labels */}
         <text x={margin.left + chartWidth / 2} y={height - 15} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="600">
           Real National Output / Real GDP (Y)
         </text>

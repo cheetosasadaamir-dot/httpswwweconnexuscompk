@@ -8,7 +8,7 @@ import { InlineMath } from 'react-katex';
  * Classical/Monetarist AD Shift - Pure Inflation Effect
  * EconomicsHelp Standard: With vertical LRAS, AD increase only raises P
  * Output remains fixed at Yf (full employment)
- * CIE 9708: Demonstrates why Monetarists argue demand-side policy is ineffective
+ *  Demonstrates why Monetarists argue demand-side policy is ineffective
  */
 const ClassicalADInflationDiagram = () => {
   const [showShift, setShowShift] = useState(false);

@@ -9,7 +9,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 /**
  * [A2 Specialist - Keynesian Income Determination]
  * Enhanced Circular Flow, Output Gaps, and Accelerator Theory
- * Based on CIE 9708 A-level Notes
+ * Based on  A-level Notes
  */
 
 // ============================================

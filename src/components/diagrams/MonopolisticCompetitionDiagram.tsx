@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * Cambridge 9708 Accurate Monopolistic Competition Diagram
+ * Accurate Monopolistic Competition Diagram
  * Long-run: AR curve is TANGENT to ATC at profit-maximizing output
  * Key geometric precision: MC intersects MR at same Q where AR is tangent to ATC
  */

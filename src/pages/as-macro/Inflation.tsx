@@ -398,7 +398,7 @@ const Inflation = () => {
         {/* Chapter Summary */}
         <ContentSection title="Chapter Summary">
           <div className="glass-card p-5">
-            <h3 className="font-serif text-lg text-gradient mb-3">Key Takeaways – Price Stability (CIE 9708)</h3>
+            <h3 className="font-serif text-lg text-gradient mb-3">Key Takeaways – Price Stability</h3>
             <ul className="space-y-1.5 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>

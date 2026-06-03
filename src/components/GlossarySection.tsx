@@ -385,13 +385,13 @@ const GlossarySection = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card mb-4">
             <GraduationCap className="w-4 h-4 text-tutor-gold" />
-            <span className="text-sm text-tutor-gold font-medium">CIE 9708 Standard</span>
+            <span className="text-sm text-tutor-gold font-medium">Exam Standard</span>
           </div>
           <h2 className="font-serif text-3xl lg:text-4xl font-bold text-silver-bright mb-2">
             The Master Economist's Glossary
           </h2>
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Master the language of the 9708 Syllabus. These definitions are aligned with the 
+            Master the language of the Syllabus. These definitions are aligned with the 
             2026-2028 Cambridge International Standards to ensure maximum AO1 marks.
           </p>
         </motion.div>

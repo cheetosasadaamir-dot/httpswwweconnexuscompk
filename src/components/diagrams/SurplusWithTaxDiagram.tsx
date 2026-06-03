@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 /**
  * Interactive diagram showing how a tax affects consumer and producer surplus
- * and creates deadweight loss - Cambridge 9708 Standard
+ * and creates deadweight loss - Exam Standard
  */
 const SurplusWithTaxDiagram = () => {
   const [showTax, setShowTax] = useState(false);

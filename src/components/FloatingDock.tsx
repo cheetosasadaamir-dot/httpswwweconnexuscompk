@@ -259,7 +259,7 @@ const FloatingDock = () => {
                 EconNexus
               </span>
               <span className="text-[10px] text-muted-foreground font-medium tracking-wider">
-                CIE 9708
+                
               </span>
             </div>
           </Link>

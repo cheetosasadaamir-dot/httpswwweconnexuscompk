@@ -200,7 +200,7 @@ const InteractivePPCEngine = () => {
             Interactive Production Possibility Curve
           </h3>
           <p className="text-sm text-muted-foreground">
-            CIE 9708 Standard • Drag points A & B to explore opportunity cost
+            Exam Standard • Drag points A & B to explore opportunity cost
           </p>
         </div>
         

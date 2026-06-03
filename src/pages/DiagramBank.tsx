@@ -169,7 +169,7 @@ const DiagramBank = () => {
         <ContentSection title="Chapter 4: Market Failure">
           <NoteCard title="Externalities: Negative Production Externality" type="theory">
             <p>
-              Cambridge 9708 requires the shaded <strong>welfare loss triangle</strong> and clear distinction between 
+              The syllabus requires the shaded <strong>welfare loss triangle</strong> and clear distinction between 
               <strong>MPC (Marginal Private Cost)</strong> and <strong>MSC (Marginal Social Cost)</strong>.
             </p>
           </NoteCard>
@@ -271,7 +271,7 @@ const DiagramBank = () => {
         <ContentSection title="Chapter 7: AD/AS Analysis">
           <NoteCard title="Keynesian LRAS: The Three Phases" type="theory">
             <p>
-              Cambridge 9708 specifically requires the <strong>Keynesian Long-Run Aggregate Supply</strong> 
+              The syllabus specifically requires the <strong>Keynesian Long-Run Aggregate Supply</strong> 
               curve with three distinct sections: <strong>Elastic (horizontal)</strong>, 
               <strong>Intermediate (upward-sloping)</strong>, and <strong>Inelastic (vertical)</strong>.
             </p>

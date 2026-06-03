@@ -42,7 +42,7 @@ const PriceSystem = () => {
         title="2.1 The Law of Demand" 
         subtitle="The Inverse Relationship Between Price and Quantity Demanded"
       >
-        <NoteCard title="Definition of Demand (CIE 9708)" type="definition">
+        <NoteCard title="Definition of Demand" type="definition">
           <p>
             <GlossaryTooltip term="Demand" definition="The quantity of a good or service that consumers are willing and able to purchase at various price levels over a given time period.">
               <strong className="text-cyan-400">Demand</strong>
@@ -208,7 +208,7 @@ const PriceSystem = () => {
         title="2.2 The Law of Supply" 
         subtitle="The Direct Relationship Between Price and Quantity Supplied"
       >
-        <NoteCard title="Definition of Supply (CIE 9708)" type="definition">
+        <NoteCard title="Definition of Supply" type="definition">
           <p>
             <GlossaryTooltip term="Supply" definition="The quantity of a good or service that producers are willing and able to offer for sale at various price levels over a given time period.">
               <strong className="text-magenta-400">Supply</strong>
@@ -379,7 +379,7 @@ const PriceSystem = () => {
         title="2.4 Market Equilibrium" 
         subtitle="Price Determination Through the Interaction of Demand and Supply"
       >
-        <NoteCard title="Definition of Equilibrium (CIE 9708)" type="definition">
+        <NoteCard title="Definition of Equilibrium" type="definition">
           <p>
             <GlossaryTooltip term="Market Equilibrium" definition="The price and quantity where quantity demanded equals quantity supplied. At this point, there is no tendency for the market price to change.">
               <strong className="text-amber-400">Market Equilibrium</strong>

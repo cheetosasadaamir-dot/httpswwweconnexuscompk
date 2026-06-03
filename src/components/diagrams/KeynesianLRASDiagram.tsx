@@ -7,7 +7,7 @@ interface KeynesianLRASDiagramProps {
 
 /**
  * Keynesian LRAS Diagram
- * CIE 9708 Standard: THREE distinct phases reflecting varying degrees of spare capacity
+ * Exam Standard: THREE distinct phases reflecting varying degrees of spare capacity
  * Phase 1: Perfectly Elastic (deep recession, spare capacity)
  * Phase 2: Upward Sloping (approaching full employment, bottlenecks)
  * Phase 3: Perfectly Inelastic (full capacity at Yf)
@@ -33,7 +33,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
     return () => observer.disconnect();
   }, []);
 
-  // CIE 9708 Standard Colors
+  // Exam Standard Colors
   const lrasCurve = 'hsl(var(--cambridge-cyan))'; // Keynesian LRAS
   const adCurve1 = 'hsl(142 76% 45%)'; // Green - AD1 (elastic region)
   const adCurve2 = 'hsl(var(--secondary))'; // AD2 (intermediate)
@@ -148,7 +148,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         <line x1="80" y1="350" x2="500" y2="350" stroke={axisColor} strokeWidth="2" markerEnd="url(#arrow-keynesian)" />
         <polygon points="80,60 75,72 85,72" fill={axisColor} />
 
-        {/* Axis labels - CIE 9708 Standard Notation */}
+        {/* Axis labels - Exam Standard Notation */}
         <text x="28" y="205" fill={labelColor} fontSize="13" fontWeight="600" transform="rotate(-90, 28, 205)">
           General Price Level (GPL)
         </text>

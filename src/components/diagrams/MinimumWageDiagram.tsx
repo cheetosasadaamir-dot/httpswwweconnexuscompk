@@ -7,7 +7,7 @@ interface MinimumWageDiagramProps {
 
 /**
  * Geometrically Precise Minimum Wage Diagram
- * CIE 9708 Standard: Minimum wage line MUST be ABOVE equilibrium to be effective
+ * Exam Standard: Minimum wage line MUST be ABOVE equilibrium to be effective
  * Mathematical precision ensures accurate intersection points
  */
 const MinimumWageDiagram = ({ title = "Minimum Wage in the Labour Market" }: MinimumWageDiagramProps) => {

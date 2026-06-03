@@ -8,7 +8,7 @@ interface ConsumerProducerSurplusDiagramProps {
 
 /**
  * Geometrically Precise Consumer/Producer Surplus Diagram
- * CIE 9708 Standard: Surplus triangles MUST align exactly with equilibrium intersection
+ * Exam Standard: Surplus triangles MUST align exactly with equilibrium intersection
  * Mathematical calculations ensure P* and Q* align with curve intersections
  */
 const ConsumerProducerSurplusDiagram = ({ 

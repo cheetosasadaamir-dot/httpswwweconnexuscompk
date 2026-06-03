@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * AD Curve Diagram - CIE 9708 Exam Standard
+ * AD Curve Diagram -  Exam Standard
  * 
  * Shows the three transmission mechanisms explaining downward slope:
  * 1. Wealth Effect (Pigou Effect)
@@ -112,7 +112,7 @@ const ADCurveDiagram = () => {
           markerEnd="url(#arrowhead-ad)"
         />
 
-        {/* CIE 9708 Standard Axis Labels */}
+        {/* Exam Standard Axis Labels */}
         <text x={margin.left + chartWidth / 2} y={height - 15} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="600">
           Real National Output / Real GDP (Y)
         </text>

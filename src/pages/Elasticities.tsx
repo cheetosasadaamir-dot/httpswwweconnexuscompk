@@ -234,7 +234,7 @@ const Elasticities = () => {
         </div>
 
         <ExamTipBox title="The Total Revenue Test: Examination Application" variant="gold" className="mt-6">
-          <p className="mb-2 text-justify"><strong>Cambridge 9708 frequently tests this relationship:</strong></p>
+          <p className="mb-2 text-justify"><strong>The syllabus frequently tests this relationship:</strong></p>
           <ul className="space-y-1 text-sm">
             <li>• If a price rise causes TR to rise → Demand is <strong>inelastic</strong> (Price Effect &gt; Quantity Effect)</li>
             <li>• If a price rise causes TR to fall → Demand is <strong>elastic</strong> (Quantity Effect &gt; Price Effect)</li>
@@ -596,7 +596,7 @@ const Elasticities = () => {
         </div>
 
         <ExamTipBox title="PES Determinants: Exam Chain of Reasoning" variant="gold" className="mt-6">
-          <p className="mb-2"><strong>Cambridge 9708 expects integrated chains:</strong></p>
+          <p className="mb-2"><strong>The syllabus expects integrated chains:</strong></p>
           <ul className="space-y-1 text-sm">
             <li>• <strong>Time:</strong> Short run → some factors fixed → capacity constraints → inelastic PES</li>
             <li>• <strong>Spare Capacity:</strong> High utilization → rising MC → steeper supply → lower PES</li>

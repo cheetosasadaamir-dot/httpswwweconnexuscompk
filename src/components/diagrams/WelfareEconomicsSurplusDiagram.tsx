@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 
 /**
- * Cambridge 9708 Precision Welfare Economics Diagram
+ * Precision Welfare Economics Diagram
  * Zero-Error Geometric Rules:
  * - Consumer Surplus: Triangle BELOW demand curve, ABOVE price line
  * - Producer Surplus: Triangle ABOVE supply curve, BELOW price line

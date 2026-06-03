@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
  * 1. Signalling - communicating information
  * 2. Incentive - motivating producers/consumers
  * 3. Rationing - allocating scarce resources
- * Cambridge 9708 Standard
+ * Exam Standard
  */
 const PriceFunctionsDiagram = () => {
   const [activeFunction, setActiveFunction] = useState(0);

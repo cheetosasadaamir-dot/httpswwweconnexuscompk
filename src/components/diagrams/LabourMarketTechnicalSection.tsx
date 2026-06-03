@@ -4,7 +4,7 @@ import 'katex/dist/katex.min.css';
 
 /**
  * Technical Analysis: Employment & Labour Market Framework
- * CIE 9708 A2 Syllabus Compliant
+ *  A2 Syllabus Compliant
  * [A2 Specialist - Labour Market & Phillips Curve]
  */
 const LabourMarketTechnicalSection = () => {
@@ -27,7 +27,7 @@ const LabourMarketTechnicalSection = () => {
           Technical Analysis: Labour Force & Employment Framework
         </h3>
         <p className="text-muted-foreground text-sm">
-          This section provides CIE 9708 syllabus-aligned definitions, measurement methodologies, 
+          This section provides  syllabus-aligned definitions, measurement methodologies, 
           and equilibrium analysis for the labour market.
         </p>
       </motion.div>

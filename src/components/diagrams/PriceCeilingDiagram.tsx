@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 /**
- * Price Ceiling (Maximum Price) Diagram — CIE 9708 / Edexcel Standard
+ * Price Ceiling (Maximum Price) Diagram —  / Edexcel Standard
  * Synthesised from tutor2u, EconomicsHelp, Khan Academy and Investopedia
  * conventions. Shows binding maximum price below equilibrium creating a
  * shortage (excess demand) of Q_d − Q_s and welfare loss triangle.

@@ -8,7 +8,7 @@ import { InlineMath, BlockMath } from 'react-katex';
  * Expansionary Fiscal Policy AD Shift Diagram
  * EconomicsHelp Standard: Shows rightward AD shift from ↑G or ↓T
  * with multiplier effect amplifying the initial injection
- * CIE 9708: Y₁ → Y₂ output expansion, P₁ → P₂ price level increase
+ *  Y₁ → Y₂ output expansion, P₁ → P₂ price level increase
  */
 const ExpansionaryFiscalPolicyDiagram = () => {
   const [showShift, setShowShift] = useState(false);
@@ -174,7 +174,7 @@ const ExpansionaryFiscalPolicyDiagram = () => {
           markerEnd="url(#arrow-fiscal)"
         />
 
-        {/* Axis Labels - CIE 9708 Standard */}
+        {/* Axis Labels - Exam Standard */}
         <text 
           x={margin.left + chartWidth / 2} 
           y={height - 20} 

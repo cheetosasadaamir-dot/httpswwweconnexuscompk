@@ -7,7 +7,7 @@ interface WelfareWithWorldPriceDiagramProps {
 }
 
 /**
- * Cambridge 9708 Accurate Welfare Diagram with World Price Line
+ * Accurate Welfare Diagram with World Price Line
  * Shows Consumer/Producer Surplus in international trade context
  * - World Price (Pw) as horizontal line
  * - Imports shown as gap between Qd and Qs at world price
