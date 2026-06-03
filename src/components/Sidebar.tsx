@@ -181,7 +181,7 @@ const Sidebar = () => {
         {/* Logo */}
         <div className="p-5 border-b border-silver/10">
           <EconNexusLogo size="md" />
-          <p className="text-xs text-muted-foreground mt-1 ml-[52px]">Cambridge 9708 Edition</p>
+          <p className="text-xs text-muted-foreground mt-1 ml-[52px]"></p>
         </div>
 
         {/* Navigation */}

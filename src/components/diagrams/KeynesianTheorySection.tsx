@@ -670,7 +670,7 @@ const KeynesianTheorySection = () => {
           <span className="text-2xl">⚠️</span>
           <div>
             <h4 className="font-serif text-lg font-bold text-cambridge-gold">Senior Examiner's Synthesis</h4>
-            <p className="text-xs text-muted-foreground">CIE 9708 Command Word Focus: Evaluate / Discuss</p>
+            <p className="text-xs text-muted-foreground"> Command Word Focus: Evaluate / Discuss</p>
           </div>
         </div>
         <div className="space-y-3 text-xs text-muted-foreground leading-relaxed">

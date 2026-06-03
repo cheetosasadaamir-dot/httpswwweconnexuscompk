@@ -34,7 +34,7 @@ const CaseStudies = () => {
               className="text-center max-w-4xl mx-auto"
             >
               <span className="inline-block text-sm font-medium text-primary uppercase tracking-widest mb-4">
-                CIE 9708 Past Papers
+                Past Papers
               </span>
               
               <h1 className="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 section-title">

@@ -6,7 +6,7 @@ interface CostCurvesDiagramProps {
 }
 
 /**
- * Cambridge 9708 Accurate Cost Curves Diagram
+ * Accurate Cost Curves Diagram
  * - MC MUST intersect AVC at its minimum point
  * - MC MUST intersect ATC at its minimum point
  * - U-shaped curves with proper Bezier paths

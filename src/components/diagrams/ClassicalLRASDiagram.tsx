@@ -9,7 +9,7 @@ interface ClassicalLRASDiagramProps {
 
 /**
  * Classical/Monetarist LRAS Diagram
- * CIE 9708 Standard: LRAS is perfectly VERTICAL at Yf (full employment output)
+ * Exam Standard: LRAS is perfectly VERTICAL at Yf (full employment output)
  * Key Principle: In the long run, all prices are flexible → output determined by supply-side factors only
  */
 const ClassicalLRASDiagram = ({ 
@@ -103,7 +103,7 @@ const ClassicalLRASDiagram = ({
         <div>
           <h3 className="font-serif text-xl text-gradient">{title}</h3>
           <p className="text-muted-foreground text-sm mt-1">
-            CIE 9708: LRAS is <strong>perfectly vertical</strong> at potential output (Y<sub>f</sub>)
+             LRAS is <strong>perfectly vertical</strong> at potential output (Y<sub>f</sub>)
           </p>
         </div>
         <Button
@@ -153,7 +153,7 @@ const ClassicalLRASDiagram = ({
           markerEnd="url(#arrow-classical)"
         />
 
-        {/* Axis Labels - CIE 9708 Standard Notation */}
+        {/* Axis Labels - Exam Standard Notation */}
         <text 
           x={margin.left + chartWidth / 2} 
           y={height - 20} 

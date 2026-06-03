@@ -8,7 +8,7 @@ interface ExternalitiesDiagramProps {
 
 /**
  * Geometrically Precise Externalities Diagram
- * CIE 9708 Standard: DWL triangle points exactly toward social optimum Q*
+ * Exam Standard: DWL triangle points exactly toward social optimum Q*
  * Mathematical intersection calculations ensure curves meet at labeled points
  */
 const ExternalitiesDiagram = ({ title, type = 'negative-production' }: ExternalitiesDiagramProps) => {

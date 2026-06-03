@@ -1,4 +1,4 @@
-// CIE 9708 A-Level Economics MCQ Papers - 2025 Sessions (Additional)
+//  A-Level Economics MCQ Papers - 2025 Sessions (Additional)
 // Solved with Nexus Reasoning
 
 import { MCQQuestion, ExamPaper } from './examPapers';

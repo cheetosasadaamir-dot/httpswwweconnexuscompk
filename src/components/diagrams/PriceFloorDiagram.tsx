@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 /**
- * Price Floor (Minimum Price) Diagram — CIE 9708 / Edexcel Standard
+ * Price Floor (Minimum Price) Diagram —  / Edexcel Standard
  * Synthesised from tutor2u, EconomicsHelp and Khan Academy conventions.
  * Shows binding minimum price above equilibrium creating a surplus
  * (excess supply) of Q_s − Q_d. Common applications: minimum wage, CAP.

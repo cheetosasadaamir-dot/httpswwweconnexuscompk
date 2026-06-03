@@ -1,4 +1,4 @@
-// CIE 9708 A-Level Economics MCQ Papers - October/November 2025
+//  A-Level Economics MCQ Papers - October/November 2025
 // Solved with Nexus Reasoning
 
 export interface MCQQuestion {

@@ -91,7 +91,7 @@ const searchableContent: SearchResult[] = [
   
   // Notes & Case Studies pages
   { id: 'notes', title: 'Notes Library', category: 'notes', href: '/notes', description: 'Complete A-Level Economics Materials' },
-  { id: 'case-studies', title: 'Case Studies Bank', category: 'case-studies', href: '/case-studies', description: 'CIE 9708 Past Papers & Analysis' },
+  { id: 'case-studies', title: 'Case Studies Bank', category: 'case-studies', href: '/case-studies', description: 'Past Papers & Analysis' },
   
   // Exam Intelligence
   { id: 'exam-intelligence', title: 'Exam Intelligence', category: 'chapter', href: '/exam-intelligence', description: 'MCQ Masterclass – 240 Solved Questions' },

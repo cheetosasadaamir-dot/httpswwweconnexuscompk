@@ -6,7 +6,7 @@ interface MonopolyDiagramProps {
 }
 
 /**
- * Cambridge 9708 Accurate Monopoly Diagram
+ * Accurate Monopoly Diagram
  * - MR is twice as steep as AR (intercepts x-axis at half the AR intercept)
  * - MC intersects AC at its minimum point
  * - Profit rectangle between AR and AC at profit-maximizing output

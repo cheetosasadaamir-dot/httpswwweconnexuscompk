@@ -50,7 +50,7 @@ const InternationalTrade = () => {
 
         {/* Topics Overview */}
         <div className="glass-card p-4 mb-6">
-          <h3 className="font-serif text-lg font-semibold mb-2">Syllabus Coverage (CIE 9708)</h3>
+          <h3 className="font-serif text-lg font-semibold mb-2">Syllabus Coverage</h3>
           <div className="grid md:grid-cols-2 gap-1 text-sm">
             <p>1. The Theory of Absolute & Comparative Advantage</p>
             <p>2. The Terms of Trade (ToT)</p>

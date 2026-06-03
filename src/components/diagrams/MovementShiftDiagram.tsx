@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
  * Interactive diagram showing the critical distinction between:
  * - Movement ALONG the curve (price change only)
  * - SHIFT of the curve (non-price determinants)
- * Cambridge 9708 Standard
+ * Exam Standard
  */
 const MovementShiftDiagram = () => {
   const [activeDemo, setActiveDemo] = useState<'none' | 'movement' | 'shift'>('none');

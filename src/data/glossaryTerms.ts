@@ -1,4 +1,4 @@
-// Master Economist's Glossary - CIE 9708 (2026-2028) Aligned Definitions
+// Master Economist's Glossary -  Aligned Definitions
 // All definitions are word-for-word accurate to Cambridge International Standards
 
 export interface GlossaryTerm {

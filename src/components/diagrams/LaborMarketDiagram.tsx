@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 /**
  * Geometrically Precise Labour Market Diagram
- * CIE 9708 Standard: Market sets W*, firm faces horizontal supply at that wage
+ * Exam Standard: Market sets W*, firm faces horizontal supply at that wage
  * Equilibrium points MUST align exactly with curve intersections
  */
 const LaborMarketDiagram = () => {

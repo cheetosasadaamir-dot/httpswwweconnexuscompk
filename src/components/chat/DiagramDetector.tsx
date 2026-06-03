@@ -92,7 +92,7 @@ const DIAGRAM_COMPONENTS = {
 
 type DiagramType = keyof typeof DIAGRAM_COMPONENTS;
 
-// Topic detection patterns with priority ranking - Full CIE 9708 Syllabus Coverage
+// Topic detection patterns with priority ranking - Full Syllabus Coverage
 // Priority 10: Highly specific A2 concepts
 // Priority 8: Major macro/micro frameworks
 // Priority 6: Core AD/AS and welfare

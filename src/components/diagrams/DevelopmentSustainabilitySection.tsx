@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from 'react';
 
 /**
  * Socio-Economic & Sustainability Expansion
- * CIE 9708 A2 Syllabus Compliant
+ *  A2 Syllabus Compliant
  * [A2 Specialist - Development & Sustainability]
  */
 const DevelopmentSustainabilitySection = () => {
@@ -28,7 +28,7 @@ const DevelopmentSustainabilitySection = () => {
           Socio-Economic & Sustainability Framework
         </h3>
         <p className="text-muted-foreground text-sm">
-          This section provides CIE 9708 syllabus-aligned distinctions between growth, development, 
+          This section provides  syllabus-aligned distinctions between growth, development, 
           and sustainability, along with stakeholder impact analysis and environmental evaluation.
         </p>
       </motion.div>

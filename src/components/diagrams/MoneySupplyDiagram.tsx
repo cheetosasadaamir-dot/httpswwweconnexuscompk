@@ -44,7 +44,7 @@ const MoneySupplyDiagram = () => {
         <div>
           <h3 className="font-serif text-xl text-gradient">Money Supply: Narrow vs Broad Money</h3>
           <p className="text-muted-foreground text-sm mt-1">
-            CIE 9708 Classification: M0 (Monetary Base) → M1 → M2 → M4 (Broad Money)
+             Classification: M0 (Monetary Base) → M1 → M2 → M4 (Broad Money)
           </p>
         </div>
         <Button

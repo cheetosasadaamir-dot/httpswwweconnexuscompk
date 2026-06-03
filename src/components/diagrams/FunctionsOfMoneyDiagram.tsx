@@ -73,7 +73,7 @@ const FunctionsOfMoneyDiagram = () => {
         The Four Functions of Money
       </h4>
       <p className="text-sm text-muted-foreground text-center mb-6">
-        As per CIE 9708 Syllabus (Page 16) – Click each function for detailed analysis
+        As per Syllabus (Page 16) – Click each function for detailed analysis
       </p>
 
       {/* Function Cards Grid */}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MessageSquare, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import Layout from '@/components/Layout';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
 import { useEffect } from 'react';
@@ -13,30 +13,25 @@ const Chat = () => {
 
   return (
     <Layout>
-
-      <div className="mobile-container responsive-container mx-auto px-4 md:px-8 pt-24 md:pt-28 pb-12">
+      <div className="w-full max-w-[1920px] mx-auto px-0 sm:px-3 md:px-4 pt-20 md:pt-24 pb-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-8 md:mb-12"
+          transition={{ duration: 0.4 }}
+          className="text-center mb-3 md:mb-4 px-4"
         >
           <span
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-[11px] md:text-xs uppercase tracking-[0.25em] text-secondary mb-5"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-[10px] md:text-xs uppercase tracking-[0.25em] text-secondary mb-2"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
-            <Sparkles className="w-3.5 h-3.5" /> AI Tutor Workspace
+            <Sparkles className="w-3 h-3" /> AI Tutor Workspace
           </span>
           <h1
-            className="text-fluid-4xl lg:text-fluid-5xl mb-3 md:mb-4 text-secondary"
+            className="text-fluid-2xl md:text-fluid-3xl text-secondary"
             style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 700, letterSpacing: '-0.02em', textTransform: 'uppercase' }}
           >
             EconNexus AI Tutors
           </h1>
-          <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed flex items-center justify-center gap-2">
-            <MessageSquare className="w-4 h-4 text-secondary/70" />
-            Specialist personas, board-aware reasoning, syllabus-locked answers.
-          </p>
         </motion.div>
 
         <EconomicsChatbot />

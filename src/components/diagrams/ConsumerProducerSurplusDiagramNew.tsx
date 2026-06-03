@@ -7,7 +7,7 @@ interface ConsumerProducerSurplusDiagramNewProps {
 }
 
 /**
- * Cambridge 9708 Accurate Consumer/Producer Surplus Diagram
+ * Accurate Consumer/Producer Surplus Diagram
  * - Consumer Surplus: Area ABOVE equilibrium price, BELOW demand curve
  * - Producer Surplus: Area BELOW equilibrium price, ABOVE supply curve
  * - Proper triangular shading with accurate labels

@@ -67,7 +67,7 @@ const ExchangeRates = () => {
               </p>
             </div>
 
-            <NoteCard title="Key Exchange Rate Terminology (CIE 9708)" type="definition" className="mb-3">
+            <NoteCard title="Key Exchange Rate Terminology" type="definition" className="mb-3">
               <div className="space-y-2 text-sm">
                 <p><strong className="text-primary">Nominal Exchange Rate:</strong> The rate at which one currency can be exchanged for another at a given moment in the forex market. This is the headline rate quoted by banks and currency traders.</p>
                 <p><strong className="text-primary">Real Exchange Rate (RER):</strong> The nominal rate adjusted for relative price levels between countries. It measures international competitiveness—the price of domestic goods relative to foreign goods. Formula: <span className="font-mono bg-muted/30 px-1 rounded">RER = ER × (Pd/Pf)</span></p>

@@ -500,7 +500,7 @@ const UnemploymentGrowth = () => {
         </ContentSection>
 
         {/* Technical Analysis Section - CIE Framework */}
-        <ContentSection title="Technical Analysis: CIE 9708 Labour Market Framework">
+        <ContentSection title="Technical Analysis: Labour Market Framework">
           <LabourMarketTechnicalSection />
         </ContentSection>
 

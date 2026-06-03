@@ -22,7 +22,7 @@ const PositiveConsumptionExternalityDiagram = () => {
     return () => observer.disconnect();
   }, []);
 
-  // CIE 9708 Standard Colors
+  // Exam Standard Colors
   const mpbColor = 'hsl(185, 100%, 50%)';   // Neon Cyan - Private curves (MPB)
   const msbColor = 'hsl(45, 93%, 55%)';     // Amber Gold - Social curves (MSB)
   const supplyColor = 'hsl(185, 100%, 50%)'; // Neon Cyan - MPC = MSC = S

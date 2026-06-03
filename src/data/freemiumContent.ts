@@ -262,7 +262,7 @@ Key Distinction:
   },
   {
     id: "model-answers-pack",
-    title: "CIE 9708 Model Answers Collection",
+    title: "Model Answers Collection",
     subtitle: "Expert-Written Responses for Paper 2 — Past Exam Questions with Full Analysis",
     sections: [
       {

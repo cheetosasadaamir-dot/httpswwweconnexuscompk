@@ -22,7 +22,7 @@ const NegativeProductionExternalityDiagram = () => {
     return () => observer.disconnect();
   }, []);
 
-  // CIE 9708 Standard Colors
+  // Exam Standard Colors
   const mpcColor = 'hsl(185, 100%, 50%)'; // Neon Cyan - Private curves
   const mscColor = 'hsl(45, 93%, 55%)';   // Amber Gold - Social curves
   const demandColor = 'hsl(185, 100%, 50%)'; // Neon Cyan - MPB/MSB = D

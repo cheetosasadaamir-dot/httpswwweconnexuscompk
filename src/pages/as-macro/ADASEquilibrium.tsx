@@ -697,10 +697,10 @@ const ADASEquilibrium = () => {
           <SRASLRASDiagram />
         </ContentSection>
 
-        {/* Classical vs Keynesian LRAS - CIE 9708 Syllabus Integration */}
+        {/* Classical vs Keynesian LRAS - Syllabus Integration */}
         <ContentSection title="The LRAS Debate: Classical vs Keynesian Views">
           <div className="glass-card p-6 mb-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-l-4 border-primary">
-            <h4 className="font-serif text-xl font-semibold text-gradient mb-4">Why This Matters for CIE 9708</h4>
+            <h4 className="font-serif text-xl font-semibold text-gradient mb-4">Why This Matters for </h4>
             <p className="text-muted-foreground leading-relaxed text-justify mb-3">
               The shape of the LRAS curve is <strong>the fundamental dividing line</strong> between Classical/Monetarist 
               and Keynesian macroeconomics. Your choice of LRAS shape determines your policy recommendations:
@@ -849,7 +849,7 @@ const ADASEquilibrium = () => {
         </ContentSection>
 
         {/* Macroeconomic Equilibrium - CIE AS-Level Enhanced Content */}
-        <ContentSection title="Equilibrium Real National Output: CIE 9708 Framework">
+        <ContentSection title="Equilibrium Real National Output: Framework">
           {/* Integrated CIE Content Section */}
           <ADASEquilibriumSection />
         </ContentSection>

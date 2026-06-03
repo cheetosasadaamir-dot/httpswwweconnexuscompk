@@ -3212,7 +3212,7 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
       'Edexcel A: Thematic approach; includes globalization and development economics',
       'OCR: Emphasis on behavioral economics and market failures; three papers',
       'WJEC (Eduqas): Focus on UK economy; includes essay-based assessments',
-      'CIE 9708: International syllabus (AS + A2); strong on formal theory and diagrams'
+      ' International syllabus (AS + A2); strong on formal theory and diagrams'
     ],
     analysis: 'Exam board choice affects teaching approach: AQA rewards application to current events → requires regular news reading → Students develop evaluative skills through real-world context. Edexcel emphasizes interconnections → synoptic questions require linking micro and macro → Holistic understanding. OCR includes behavioral economics → challenges the rational agent model → Modern perspective.',
     evaluation: 'All UK boards cover similar core content (markets, market failure, macro objectives, policy) but differ in emphasis and assessment style. Students should master their specific board\'s command words and mark schemes. The key to success is not memorizing content but developing chains of analysis (AO3) and critical evaluation (AO4)—skills that transfer across all boards.',
