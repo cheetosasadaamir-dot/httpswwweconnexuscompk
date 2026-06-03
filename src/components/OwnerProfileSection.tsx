@@ -25,7 +25,7 @@ const OwnerProfileSection = () => {
             🎓 Meet the Founder
           </span>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            The Academic Mind Behind Pakistan's First AI-Integrated Ecosystem
+            The Mind Behind one of the Best AI-integrated Academic Ecosystem
           </p>
         </motion.div>
 
