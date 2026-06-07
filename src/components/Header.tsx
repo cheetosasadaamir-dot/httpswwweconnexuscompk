@@ -75,14 +75,7 @@ const Header = () => {
   }, [location.pathname, navigate]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 left-0 right-0 z-[9999] transition-all duration-500 pointer-events-auto",
-        isScrolled
-          ? "bg-[rgba(0,30,60,0.85)] backdrop-blur-xl border-b border-[rgba(58,141,255,0.1)] shadow-lg shadow-black/20 py-0"
-          : "bg-[rgba(0,30,60,0.95)] backdrop-blur-xl py-1"
-      )}
-    >
+    <header className="sticky top-0 left-0 right-0 z-[9999] pointer-events-auto bg-[rgba(0,30,60,0.9)] backdrop-blur-xl border-b border-[rgba(58,141,255,0.1)] shadow-lg shadow-black/20 py-1">
       <div className="w-[95%] max-w-[1200px] mx-auto px-4 lg:px-6">
         <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo */}
