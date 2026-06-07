@@ -84,10 +84,7 @@ const Header = () => {
       )}
     >
       <div className="w-[95%] max-w-[1200px] mx-auto px-4 lg:px-6">
-        <div className={cn(
-          "flex items-center justify-between transition-all duration-500",
-          isScrolled ? "h-12 lg:h-14" : "h-16 lg:h-20"
-        )}>
+        <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo */}
           <div className="sm:hidden">
             <EconNexusLogo size="sm" showText={false} useImage={true} />
