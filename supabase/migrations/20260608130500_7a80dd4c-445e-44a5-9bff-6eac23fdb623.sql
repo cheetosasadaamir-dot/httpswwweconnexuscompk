@@ -1,0 +1,2 @@
+DROP POLICY IF EXISTS "Allow public read of research cache" ON public.research_cache;
+CREATE POLICY "Admins can read research cache" ON public.research_cache FOR SELECT TO authenticated USING (public.has_role(auth.uid(), 'admin'));
