@@ -195,10 +195,7 @@ const AssignmentArchitect = () => {
           >
             <Sparkles className="w-3.5 h-3.5" /> Assignment Architect
           </span>
-          <h2
-            className="text-fluid-4xl lg:text-fluid-5xl mb-3 md:mb-4 text-secondary"
-            style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 700, letterSpacing: '-0.02em', textTransform: 'uppercase' as const }}
-          >
+          <h2 className="font-serif text-fluid-4xl lg:text-fluid-5xl font-bold text-silver-bright mb-3 md:mb-4">
             AI Assignment Architect
           </h2>
           <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2 leading-relaxed">
