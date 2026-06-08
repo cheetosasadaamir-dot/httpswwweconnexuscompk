@@ -26,10 +26,7 @@ const Chat = () => {
           >
             <Sparkles className="w-3 h-3" /> AI Tutor Workspace
           </span>
-          <h1
-            className="text-fluid-2xl md:text-fluid-3xl text-secondary"
-            style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 700, letterSpacing: '-0.02em', textTransform: 'uppercase' }}
-          >
+          <h1 className="font-serif text-fluid-2xl md:text-fluid-3xl font-bold text-silver-bright">
             EconNexus AI Tutors
           </h1>
         </motion.div>
