@@ -27,10 +27,10 @@ const Chat = () => {
             <Sparkles className="w-3 h-3" /> AI Tutor Workspace
           </span>
           <h1
-            className="text-fluid-2xl md:text-fluid-3xl font-bold section-title"
+            className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
             style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' }}
           >
-            EconNexus AI Tutors
+            Chat with EconNexus AI Tutors
           </h1>
         </motion.div>
 

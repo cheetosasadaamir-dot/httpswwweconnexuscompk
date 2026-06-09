@@ -6,9 +6,14 @@ const analyticsClient = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3ZGtidXFqaGFvanNydW9peGpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NTk5ODksImV4cCI6MjA4OTUzNTk4OX0.i0T2YoefyRYtN2YnCjSNfeJhnQlvFS2ON6pEbSR2hMg'
 );
 
-export async function trackInteraction(persona: string) {
+export async function trackInteraction(persona: string, userId?: string | null, queryText?: string | null) {
   try {
-    await analyticsClient.rpc('track_interaction', { _persona: persona });
+    const trimmed = (queryText ?? '').trim();
+    await analyticsClient.rpc('track_interaction', {
+      _persona: persona,
+      _user_id: userId ?? null,
+      _query_text: trimmed.length > 0 ? trimmed : null,
+    });
   } catch (e) {
     console.error('analytics trackInteraction failed:', e);
   }
