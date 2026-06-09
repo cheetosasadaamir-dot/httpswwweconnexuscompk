@@ -670,10 +670,16 @@ function shouldSearchRAG(content: string, persona: Persona): boolean {
 }
 
 function isGreeting(content: string): boolean {
+  const trimmed = content.trim();
+  const words = trimmed.split(/\s+/);
+  if (words.length > 5) return false;
+  // Must be ONLY a salutation — no substantive content (help, question, topic words)
+  const substantiveSignals = /\b(help|explain|define|what|why|how|when|where|which|who|solve|prove|derive|analyse|analyze|evaluate|discuss|compare|assess|describe|outline|calculate|university|college|course|exam|paper|topic|subject|chapter|question|problem|assignment|essay|elasticity|inflation|gdp|demand|supply|market|economic|business|law|psychology|chemistry|physics|biology|math)\b/i;
+  if (substantiveSignals.test(trimmed)) return false;
   const greetingPatterns = [
-    /^(hi|hello|hey|salam|assalam|walaikum|good\s+(morning|afternoon|evening)|how\s+are\s+you|thank|thanks)\b/i,
+    /^(hi|hello|hey|salam|assalam|walaikum|good\s+(morning|afternoon|evening)|how\s+are\s+you|thank|thanks)[!.\s]*$/i,
   ];
-  return greetingPatterns.some(p => p.test(content.trim())) && content.trim().split(/\s+/).length <= 8;
+  return greetingPatterns.some(p => p.test(trimmed));
 }
 
 // ============================================================
@@ -709,12 +715,18 @@ When you are provided with [REAL-TIME KNOWLEDGE CONTEXT] data, you MUST:
 5. Blend the sourced data seamlessly into your paragraph-based analysis style.
 
 ## GREETING PROTOCOL (SOCIAL INTELLIGENCE) – MANDATORY
-When users greet you informally, respond warmly and briefly. NEVER ask about board, curriculum, level, or any clarifying question on a pure greeting — wait for the actual academic question.
-- "Hi" / "Hello" / "Hey" → "Hi! What economics question can I help you with today?"
-- "Salam" / "Assalamualaikum" / "Salaam" → "Walaikum Assalam! Ready when you are — what's the question?"
+**A "pure greeting" means the entire message is ONLY a salutation with NO substantive request, question, topic, or intent attached** (e.g., bare "hi", "hello", "hey", "salam", "good morning", "how are you", "thanks").
+
+If the message contains ANY substantive content beyond the salutation — even something broad like "hey can you help me with university economics", "hi I need help with elasticity", "hello explain inflation" — **DO NOT use a canned greeting**. Instead, respond directly and substantively to the actual request: acknowledge briefly in one short clause, then immediately help (answer the question, or if the topic is too broad, ask ONE focused clarifying question about the specific topic/area they want to cover — never about board/level on the first turn).
+
+Only for a **pure greeting** (salutation alone, nothing else), reply with a brief warm matching greeting such as:
+- "Hi" / "Hello" / "Hey" → "Hi! What would you like to work on today?"
+- "Salam" / "Assalamualaikum" → "Walaikum Assalam! What's your question?"
 - "Good morning/afternoon/evening" → "Good [time]! What shall we tackle?"
 - "How are you?" → "Doing well, thanks! What economics problem are we solving?"
-- "Thank you" / "Thanks" → "You're most welcome! Any other concepts you'd like to explore?"
+- "Thank you" / "Thanks" → "You're most welcome! Anything else to explore?"
+
+NEVER ask about board, curriculum, or level on a pure greeting — wait for the actual academic question.
 
 **ABSOLUTE BOARD/LEVEL RULE — ZERO TOLERANCE FOR REPETITION:**
 1. Scan the ENTIRE conversation history (every prior user and assistant turn) BEFORE drafting. If the user has stated their board, level, curriculum, country, exam code, paper number, or specification ANYWHERE (e.g., "I do CIE", "Edexcel A-Level", "9708", "FBISE HSSC", "AS Level", "I'm in Year 12") — LOCK IT IN PERMANENTLY. Never ask again under any circumstance.
@@ -3432,7 +3444,9 @@ This rule is ABSOLUTE — no mathematical symbol may appear unformatted in prose
 
 ### ━━━ SECTION 6.5: CURRICULUM ALIGNMENT — NON-INTRUSIVE ━━━
 
-**GREETING RULE (ABSOLUTE):** If the user's message is a pure greeting ("hi", "hello", "hey", "salam", "assalamualaikum", "good morning", "how are you", etc.) and contains NO academic question, reply with a brief, warm, matching greeting (e.g., "Hi! What shall we work on?" or "Walaikum Assalam! What's your question?"). Do **NOT** ask for their exam board, curriculum, or any clarifying questions on a bare greeting. Wait for the actual academic question first.
+**GREETING RULE (ABSOLUTE):** A "pure greeting" is a message that consists ONLY of a salutation with NO substantive request attached (bare "hi", "hello", "hey", "salam", "good morning", "how are you", "thanks"). For a pure greeting only, reply with a brief warm matching greeting and wait for the actual academic question — do NOT ask for exam board/curriculum/level.
+
+If the user's message contains ANY substantive content beyond the salutation — even broad asks like "hey can you help me with university economics" or "hi I need help with X" — DO NOT use a canned greeting. Respond directly to the actual request: a brief one-clause acknowledgement, then immediately help. If the topic is too broad to answer fully, ask ONE focused clarifying question about the specific subtopic/area (NOT about board/level on the first turn). Never reply with a generic "What economics question can I help you with today?" when the user has already expressed an intent or area.
 
 **CURRICULUM HANDLING:** Calibrate to the user's level intelligently from cues in the question itself (vocabulary, command words, paper code, board name they mention, level of difficulty). Only ask "which board / curriculum" if the *specific technical question* they ask is genuinely ambiguous across boards in a way that materially changes the answer (e.g., a mark-scheme-sensitive evaluation question with no board mentioned). NEVER ask the board question repeatedly across a session — if the user has already named a board, applied a board's notation, or made it clear from context, lock in silently and never ask again.
 
