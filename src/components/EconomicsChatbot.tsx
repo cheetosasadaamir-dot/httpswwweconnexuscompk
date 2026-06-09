@@ -1145,14 +1145,17 @@ export default function EconomicsChatbot() {
     }
     setIsLoading(true);
 
-    try {
-      await streamChat(newMessages);
-      // Track chatbot interaction
-      const personaLabel = PERSONA_CONFIG[persona]?.label || persona;
+    // Track chatbot interaction BEFORE the AI response (verbatim user query)
+    const personaLabel = PERSONA_CONFIG[persona]?.label || persona;
+    if (messageText && messageText.trim().length > 0) {
       const { error: trackError } = await supabase.rpc('track_interaction', { _persona: personaLabel });
       if (trackError) console.error('track_interaction failed:', trackError);
-      // Track to admin dashboard
-      trackInteraction(personaLabel);
+      // Track to admin dashboard (remote analytics) with user id + raw query text
+      void trackInteraction(personaLabel, user?.id ?? null, messageText);
+    }
+
+    try {
+      await streamChat(newMessages);
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to get response';
