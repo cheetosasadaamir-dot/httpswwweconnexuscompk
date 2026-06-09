@@ -129,10 +129,10 @@ const Index = () => {
                 ✨ AI Tutor Workspace
               </span>
               <h2
-                className="text-fluid-3xl lg:text-fluid-4xl mb-4 text-secondary"
-                style={{ fontFamily: "'Bodoni Moda', serif", fontWeight: 700, letterSpacing: '-0.02em', textTransform: 'uppercase' }}
+                className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
+                style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
               >
-                Chat with EconNexus AI Tutors
+                Chat with Econ Nexus AI Tutors
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 11 specialist personas across Economics, Business, Sciences, Law — board-aware and syllabus-locked.
