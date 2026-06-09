@@ -30,7 +30,7 @@ const Chat = () => {
             className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
             style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' }}
           >
-            Chat with EconNexus AI Tutors
+            Chat with Econ Nexus AI Tutors
           </h1>
         </motion.div>
 
