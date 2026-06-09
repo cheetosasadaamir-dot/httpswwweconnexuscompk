@@ -670,10 +670,16 @@ function shouldSearchRAG(content: string, persona: Persona): boolean {
 }
 
 function isGreeting(content: string): boolean {
+  const trimmed = content.trim();
+  const words = trimmed.split(/\s+/);
+  if (words.length > 5) return false;
+  // Must be ONLY a salutation — no substantive content (help, question, topic words)
+  const substantiveSignals = /\b(help|explain|define|what|why|how|when|where|which|who|solve|prove|derive|analyse|analyze|evaluate|discuss|compare|assess|describe|outline|calculate|university|college|course|exam|paper|topic|subject|chapter|question|problem|assignment|essay|elasticity|inflation|gdp|demand|supply|market|economic|business|law|psychology|chemistry|physics|biology|math)\b/i;
+  if (substantiveSignals.test(trimmed)) return false;
   const greetingPatterns = [
-    /^(hi|hello|hey|salam|assalam|walaikum|good\s+(morning|afternoon|evening)|how\s+are\s+you|thank|thanks)\b/i,
+    /^(hi|hello|hey|salam|assalam|walaikum|good\s+(morning|afternoon|evening)|how\s+are\s+you|thank|thanks)[!.\s]*$/i,
   ];
-  return greetingPatterns.some(p => p.test(content.trim())) && content.trim().split(/\s+/).length <= 8;
+  return greetingPatterns.some(p => p.test(trimmed));
 }
 
 // ============================================================
