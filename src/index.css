@@ -150,6 +150,8 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -160,11 +162,30 @@
     line-height: 1.6;
     letter-spacing: -0.01em;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   #root {
     overflow-x: hidden;
+    isolation: isolate;
   }
+
+  img, video, canvas {
+    transform: translateZ(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Bodoni Moda', serif;
