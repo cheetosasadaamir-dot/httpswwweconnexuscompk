@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import AuthOverlay from '@/components/AuthOverlay';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
-import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import KnowledgePillars from '@/components/KnowledgePillars';
@@ -40,8 +40,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative">
-      
-      <ThreeJsMarketEngine />
       <Header />
 
       <main className="relative z-10 safe-area-inset" style={{ willChange: 'opacity, transform', transform: 'translate3d(0,0,0)' }}>

@@ -1,47 +1,29 @@
-import { createClient } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 
-const analyticsClient = createClient(
-  'https://bwdkbuqjhaojsruoixjg.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3ZGtidXFqaGFvanNydW9peGpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NTk5ODksImV4cCI6MjA4OTUzNTk4OX0.i0T2YoefyRYtN2YnCjSNfeJhnQlvFS2ON6pEbSR2hMg'
-);
-
-export async function trackInteraction(persona: string, userId?: string | null, queryText?: string | null) {
+async function invokeAnalytics(body: Record<string, unknown>) {
   try {
-    const trimmed = (queryText ?? '').trim();
-    await analyticsClient.rpc('track_interaction', {
-      _persona: persona,
-      _user_id: userId ?? null,
-      _query_text: trimmed.length > 0 ? trimmed : null,
-    });
+    await supabase.functions.invoke('analytics-track', { body });
   } catch (e) {
-    console.error('analytics trackInteraction failed:', e);
+    console.error('analytics invoke failed:', e);
   }
 }
 
+export async function trackInteraction(persona: string, _userId?: string | null, queryText?: string | null) {
+  await invokeAnalytics({ kind: 'interaction', persona, query_text: queryText ?? null });
+}
+
 export async function trackPageView(page: string, city?: string | null, country?: string | null) {
-  try {
-    await analyticsClient.rpc('track_page_view', { _page: page, _city: city ?? null, _country: country ?? null });
-  } catch (e) {
-    console.error('analytics trackPageView failed:', e);
-  }
+  await invokeAnalytics({ kind: 'page_view', page, city: city ?? null, country: country ?? null });
 }
 
 export async function syncAnalyticsProfile(user: { id: string; email?: string | null; created_at?: string }) {
   try {
     const { data: { session } } = await supabase.auth.getSession();
     const token = session?.access_token;
+    if (!token) return;
 
-    if (!token) {
-      console.error('analytics syncProfile skipped: no active session');
-      return;
-    }
-
-    // Use edge function to bypass RLS on the remote analytics project
     const { error } = await supabase.functions.invoke('analytics-profile-sync', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
       body: {
         id: user.id,
         email: user.email ?? null,
@@ -49,7 +31,7 @@ export async function syncAnalyticsProfile(user: { id: string; email?: string | 
         last_sign_in_at: new Date().toISOString(),
       },
     });
-    if (error) console.error('analytics syncProfile edge function failed:', error);
+    if (error) console.error('analytics syncProfile failed:', error);
   } catch (e) {
     console.error('analytics syncProfile failed:', e);
   }
