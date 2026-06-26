@@ -165,8 +165,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior-y: none;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+  
   }
 
   #root {
