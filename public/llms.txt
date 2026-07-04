@@ -1,0 +1,44 @@
+# EconNexus
+
+> Agentic AI tutors, notes, diagrams, and exam intelligence for A-Level and university economics.
+
+EconNexus deploys 11 specialist AI personas across Economics, Business, Sciences, and Law. Content is syllabus-locked to A-Level board specifications (AS and A2) with structured notes, interactive diagrams, exam papers, case studies, and a real-time chat tutor.
+
+## Pages
+
+- [Home](/): Overview of the EconNexus agentic ecosystem.
+- [Microeconomics](/microeconomics): AS + A2 microeconomics chapters — scarcity, price system, elasticities, market failure, market structures, labor market, utility, production costs.
+- [Macroeconomics](/macroeconomics): AS + A2 macroeconomics chapters — AD/AS, inflation, trade, exchange rates, balance of payments, national income, money and banking, development.
+- [Notes](/notes): Full notes repository across all chapters.
+- [Case Studies](/case-studies): Applied economics case studies with worked analysis.
+- [Exam Intelligence](/exam-intelligence): Past-paper vault with reasoning and MCQ solutions.
+- [Chat](/chat): Live AI tutor workspace with the 11 specialist personas.
+- [Reviews](/reviews): Student reviews of EconNexus.
+
+## Chapters
+
+- [Basic Economic Ideas](/basic-economic-ideas)
+- [Price System](/price-system)
+- [Elasticities](/elasticities)
+- [Market Failure](/market-failure)
+- [AD/AS Equilibrium](/as-macro/ad-as)
+- [Inflation](/as-macro/inflation)
+- [International Trade](/as-macro/international-trade)
+- [Exchange Rates](/as-macro/exchange-rates)
+- [Balance of Payments](/as-macro/balance-of-payments)
+- [Macroeconomic Policy](/as-macro/policy)
+- [A2 National Income](/a2-macro/national-income)
+- [A2 Money and Banking](/a2-macro/money-banking)
+- [A2 Unemployment and Growth](/a2-macro/unemployment-growth)
+- [A2 Policy Objectives](/a2-macro/policy-objectives)
+- [A2 Development](/a2-macro/development)
+- [A2 Market Structures](/a2-micro/market-structures)
+- [A2 Labor Market](/a2-micro/labor-market)
+- [A2 Utility & Consumer Choice](/a2-micro/utility-consumer-choice)
+- [A2 Economic Efficiency](/a2-micro/economic-efficiency)
+- [A2 Production Costs](/a2-micro/production-costs)
+
+## Optional
+
+- [Terms and Conditions](/terms)
+- [Privacy Policy](/privacy)

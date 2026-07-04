@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -191,6 +192,14 @@ const LevelSection = ({
 const Macroeconomics = () => {
   return (
     <div className="min-h-screen relative">
+      <Helmet>
+        <title>Macroeconomics — EconNexus</title>
+        <meta name="description" content="A-Level macroeconomics chapters on EconNexus — AD/AS, inflation, trade, exchange rates, balance of payments, national income, and development." />
+        <link rel="canonical" href="https://httpswwweconnexuscompk.lovable.app/macroeconomics" />
+        <meta property="og:title" content="Macroeconomics — EconNexus" />
+        <meta property="og:description" content="A-Level macroeconomics chapters — AD/AS, inflation, exchange rates, balance of payments, and more." />
+        <meta property="og:url" content="https://httpswwweconnexuscompk.lovable.app/macroeconomics" />
+      </Helmet>
       <MeshGradientBackground />
       <ParticleField />
       <Header />
