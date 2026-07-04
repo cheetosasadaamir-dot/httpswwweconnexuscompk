@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import AuthOverlay from '@/components/AuthOverlay';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
@@ -40,6 +41,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative">
+      <Helmet>
+        <title>EconNexus — Agentic AI Tutors for A-Level Economics Mastery</title>
+        <meta name="description" content="EconNexus deploys specialist AI tutors for A-Level and university economics — notes, diagrams, exam intelligence, and syllabus-locked answers." />
+        <link rel="canonical" href="https://httpswwweconnexuscompk.lovable.app/" />
+        <meta property="og:title" content="EconNexus — Agentic AI Tutors for A-Level Economics Mastery" />
+        <meta property="og:description" content="Specialist AI tutors, notes, diagrams, and exam intelligence for A-Level and university economics." />
+        <meta property="og:url" content="https://httpswwweconnexuscompk.lovable.app/" />
+      </Helmet>
       <Header />
 
       <main className="relative z-10 safe-area-inset" style={{ willChange: 'opacity, transform', transform: 'translate3d(0,0,0)' }}>
@@ -56,7 +65,7 @@ const Index = () => {
                 className="font-bold leading-tight mb-6 md:mb-8 text-fluid-hero"
                 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
               >
-                <span className="section-title">The Agentic Standard</span>
+                <span className="section-title">EconNexus — The Agentic Standard for Economics Mastery</span>
               </motion.h1>
 
 

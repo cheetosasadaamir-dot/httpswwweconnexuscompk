@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
 import { initPerformanceMonitoring, addPreconnect, addDnsPrefetch } from "./lib/performance";
@@ -12,4 +13,8 @@ addPreconnect('https://fonts.gstatic.com');
 addDnsPrefetch('https://jvgawqkiswotvfqnoiwr.supabase.co');
 addDnsPrefetch('https://ai.gateway.lovable.dev');
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <HelmetProvider>
+    <App />
+  </HelmetProvider>
+);

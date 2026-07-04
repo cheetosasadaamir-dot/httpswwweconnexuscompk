@@ -30,7 +30,7 @@ const EconNexusLogo = ({ size = 'md', showText = true, linkHome = true, classNam
       {useImage ? (
         <img
           src={logoImage}
-          alt="EconNexus"
+          alt="EconNexus Logo"
           className={cn(s.img, 'w-auto object-contain rounded-lg')}
         />
       ) : (

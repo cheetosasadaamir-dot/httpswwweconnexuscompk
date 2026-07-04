@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://httpswwweconnexuscompk.lovable.app/sitemap.xml
