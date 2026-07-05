@@ -486,7 +486,7 @@ const MarketFailure = () => {
           />
         </div>
       </motion.section>
-
+    </ChapterLayout>
   );
 };
 
