@@ -18,8 +18,6 @@ import {
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import MeshGradientBackground from '@/components/MeshGradientBackground';
-import ParticleField from '@/components/ParticleField';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 const asLevelTopics = [
@@ -200,8 +198,6 @@ const Macroeconomics = () => {
         <meta property="og:description" content="A-Level macroeconomics chapters — AD/AS, inflation, exchange rates, balance of payments, and more." />
         <meta property="og:url" content="https://httpswwweconnexuscompk.lovable.app/macroeconomics" />
       </Helmet>
-      <MeshGradientBackground />
-      <ParticleField />
       <Header />
 
       <main className="relative z-20 pt-24 pb-16">

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import ThreeJsMarketEngine from '@/components/ThreeJsMarketEngine';
+
 import FloatingDock from '@/components/FloatingDock';
 
 interface ChapterLayoutProps {
@@ -12,7 +12,7 @@ interface ChapterLayoutProps {
 const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayoutProps) => {
   return (
     <div className="min-h-screen relative">
-      <ThreeJsMarketEngine />
+      
       <FloatingDock />
 
       <main className="relative z-20 pt-20 md:pt-24 lg:pt-28">
