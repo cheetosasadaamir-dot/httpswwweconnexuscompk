@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import ChapterLayout from '@/components/ChapterLayout';
 import KeyTakeaways from '@/components/KeyTakeaways';
+import RealWorldExample from '@/components/RealWorldExample';
 import MarketFailureExternalityDiagram from '@/components/diagrams/MarketFailureExternalityDiagram';
 import NegativeProductionExternalityDiagram from '@/components/diagrams/NegativeProductionExternalityDiagram';
 import PositiveConsumptionExternalityDiagram from '@/components/diagrams/PositiveConsumptionExternalityDiagram';
@@ -420,7 +421,72 @@ const MarketFailure = () => {
           </p>
         </div>
       </motion.section>
-    </ChapterLayout>
+
+      {/* Section 6: Real-World Case Studies (Original Analysis) */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-8"
+      >
+        <h2 className="text-2xl font-serif font-bold text-silver-bright mb-4">
+          6. Real-World Case Studies
+        </h2>
+        <p className="text-muted-foreground text-justify leading-relaxed mb-5">
+          The following cases translate the abstract theory of externalities, merit/demerit goods and government failure into recent, examinable evidence. Use them as evaluation ammunition — attach one case per essay to lift AO3/AO4 marks.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          <RealWorldExample
+            type="positive"
+            title="UK Soft Drinks Industry Levy (2018–present)"
+            description="A tiered Pigouvian tax on sugary drinks aimed at correcting the demerit-good status of high-sugar beverages linked to childhood obesity. Producers reformulated aggressively: total sugar sold in soft drinks fell by roughly 44% within four years of the tax being announced, with most reduction achieved before the levy even took effect via reformulation, not consumer price response."
+            impact="Reformulation shifted the MPC curve toward MSC by cutting the external cost embedded in each unit. The unusual mechanism — supply-side response rather than demand contraction — sidesteps the regressive burden critics predicted, though evaluation must note that overall calorie intake fell only modestly."
+            source="UK Treasury data; BMJ (2020, 2023) reformulation studies"
+          />
+
+          <RealWorldExample
+            type="positive"
+            title="EU Emissions Trading System (EU ETS)"
+            description="The world's largest tradable-permit scheme, capping CO₂ from ~10,000 power and industrial installations. Since 2005 covered emissions have fallen ~47%, and the permit price rose from under €10/tonne (2018) to peaks above €90/tonne (2023), sharply raising the marginal private cost of pollution."
+            impact="Demonstrates cap-and-trade delivering abatement where it is cheapest. Evaluation: initial over-allocation of free permits produced windfall profits for utilities; carbon leakage to non-ETS regions remains a live concern, partially addressed by the incoming Carbon Border Adjustment Mechanism."
+            source="European Environment Agency; ICAP Emissions Trading Worldwide Status Report"
+          />
+
+          <RealWorldExample
+            type="negative"
+            title="US Opioid Crisis — Information Failure at Scale"
+            description="Aggressive marketing of OxyContin from the late 1990s combined with prescriber information failure and asymmetric information about addiction risk. Over 500,000 US overdose deaths from 1999–2021, with vast external costs on families, employers and the state (CDC estimates over $1 trillion cumulative economic burden)."
+            impact="A textbook demerit-good failure: private consumption decisions ignored both internal harm (bounded rationality, addiction) and external costs (crime, healthcare, lost productivity). Corrective policy — prescribing limits, litigation against manufacturers, naloxone subsidies — arrived only after enormous deadweight welfare loss."
+            source="CDC WONDER database; Council of Economic Advisers (2019)"
+          />
+
+          <RealWorldExample
+            type="neutral"
+            title="England 5p Plastic Bag Charge (2015)"
+            description="A minimal per-unit charge internalising the marine-litter externality of single-use bags. Consumption at major supermarkets fell over 95% within six years — from ~7.6 billion bags (2014) to under 200 million (2022). A small nudge produced a disproportionately large behavioural shift."
+            impact="Illustrates that when demand is highly elastic with respect to salient prices, even a token Pigouvian charge closes the gap between MPC and MSC. Evaluation: total plastic use fell less than bag counts suggest because consumers substituted toward heavier 'bags for life', partially reversing the environmental gain."
+            source="UK Department for Environment, Food & Rural Affairs (DEFRA) annual returns"
+          />
+
+          <RealWorldExample
+            type="negative"
+            title="Beijing Air Quality & Congestion — Persistent Negative Externality"
+            description="Rapid motorisation pushed PM2.5 above 500 µg/m³ in 2013. Interventions combined regulation (odd/even licence-plate driving days, coal boiler bans), Pigouvian tools (fuel taxes), and public-good provision (metro expansion from 2 to 27 lines in 20 years). PM2.5 fell to ~30 µg/m³ by 2023."
+            impact="Shows the mixed-instrument approach the theory recommends. Evaluation point: regulation delivered speed and certainty; the tradable/tax component delivered cost-efficiency; the public-good investment (transit) provided the substitute needed for the tax to actually shift behaviour rather than merely raise revenue."
+            source="Beijing Municipal Ecology and Environment Bureau; World Bank Urban Transport reports"
+          />
+
+          <RealWorldExample
+            type="negative"
+            title="EU Common Agricultural Policy — Government Failure Case"
+            description="Decades of price-support subsidies designed to correct rural income failure produced structural over-production ('butter mountains', 'wine lakes'), depressed world prices harming developing-country farmers, and encouraged intensive farming with its own negative externalities (nitrate run-off, biodiversity loss)."
+            impact="Classic government failure: intervention created deadweight welfare loss larger than the original market imperfection. Successive reforms (decoupling in 2003, greening in 2013) illustrate the difficulty of unwinding poorly-designed intervention once producer interest groups organise around it (regulatory capture)."
+            source="OECD Agricultural Policy Monitoring; European Court of Auditors reviews"
+          />
+        </div>
+      </motion.section>
+
   );
 };
 
