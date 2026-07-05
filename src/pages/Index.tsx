@@ -42,10 +42,10 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <Helmet>
-        <title>EconNexus — Agentic AI Tutors for A-Level Economics Mastery</title>
-        <meta name="description" content="EconNexus deploys specialist AI tutors for A-Level and university economics — notes, diagrams, exam intelligence, and syllabus-locked answers." />
+        <title>Econ Nexus-The Agentic Standard For Academic Mastery</title>
+        <meta name="description" content="Econ Nexus deploys specialist AI tutors for A-Level and university academics — notes, diagrams, exam intelligence, and syllabus-locked answers." />
         <link rel="canonical" href="https://httpswwweconnexuscompk.lovable.app/" />
-        <meta property="og:title" content="EconNexus — Agentic AI Tutors for A-Level Economics Mastery" />
+        <meta property="og:title" content="Econ Nexus-The Agentic Standard For Academic Mastery" />
         <meta property="og:description" content="Specialist AI tutors, notes, diagrams, and exam intelligence for A-Level and university economics." />
         <meta property="og:url" content="https://httpswwweconnexuscompk.lovable.app/" />
       </Helmet>
@@ -65,7 +65,7 @@ const Index = () => {
                 className="font-bold leading-tight mb-6 md:mb-8 text-fluid-hero"
                 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
               >
-                <span className="section-title">EconNexus — The Agentic Standard for Economics Mastery</span>
+                <span className="section-title">Econ Nexus-The Agentic Standard For Academic Mastery</span>
               </motion.h1>
 
 
