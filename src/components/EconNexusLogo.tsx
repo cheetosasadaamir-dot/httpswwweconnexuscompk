@@ -4,57 +4,57 @@ import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
 
 interface EconNexusLogoProps {
-  size?: 'sm' | 'md' | 'lg';
-  showText?: boolean;
-  linkHome?: boolean;
-  className?: string;
-  watermark?: boolean;
-  useImage?: boolean;
+ size?: 'sm' | 'md' | 'lg';
+ showText?: boolean;
+ linkHome?: boolean;
+ className?: string;
+ watermark?: boolean;
+ useImage?: boolean;
 }
 
 const sizeMap = {
-  sm: { icon: 'w-5 h-5', iconBox: 'w-8 h-8', text: 'text-base', gap: 'gap-1.5', img: 'h-8' },
-  md: { icon: 'w-6 h-6', iconBox: 'w-10 h-10', text: 'text-lg', gap: 'gap-2', img: 'h-10' },
-  lg: { icon: 'w-7 h-7', iconBox: 'w-12 h-12', text: 'text-2xl', gap: 'gap-2.5', img: 'h-14' },
+ sm: { icon: 'w-5 h-5', iconBox: 'w-8 h-8', text: 'text-base', gap: 'gap-1.5', img: 'h-8' },
+ md: { icon: 'w-6 h-6', iconBox: 'w-10 h-10', text: 'text-lg', gap: 'gap-2', img: 'h-10' },
+ lg: { icon: 'w-7 h-7', iconBox: 'w-12 h-12', text: 'text-2xl', gap: 'gap-2.5', img: 'h-14' },
 };
 
 const EconNexusLogo = ({ size = 'md', showText = true, linkHome = true, className, watermark = false, useImage = true }: EconNexusLogoProps) => {
-  const s = sizeMap[size];
+ const s = sizeMap[size];
 
-  const content = (
-    <div className={cn(
-      'flex items-center', s.gap,
-      watermark && 'opacity-[0.06] select-none pointer-events-none',
-      className
-    )}>
-      {useImage ? (
-        <img
-          src={logoImage}
-          alt="EconNexus Logo"
-          className={cn(s.img, 'w-auto object-contain rounded-lg')}
-        />
-      ) : (
-        <div className={cn(
-          s.iconBox,
-          'rounded-xl bg-gradient-to-br from-[#00f2ff] to-[#7c3aed] flex items-center justify-center shrink-0',
-          'shadow-[0_0_20px_rgba(0,242,255,0.3)]'
-        )}>
-          <TrendingUp className={cn(s.icon, 'text-white')} strokeWidth={2.5} />
-        </div>
-      )}
-      {showText && (
-        <span className={cn(s.text, 'font-bold tracking-tight-premium')}>
-          <span className="text-white">Econ</span>
-          <span className="text-[#00f2ff] drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]">Nexus</span>
-        </span>
-      )}
-    </div>
-  );
+ const content = (
+ <div className={cn(
+ 'flex items-center', s.gap,
+ watermark && 'opacity-[0.06] select-none pointer-events-none',
+ className
+ )}>
+ {useImage ? (
+ <img
+ src={logoImage}
+ alt="EconNexus Logo"
+ className={cn(s.img, 'w-auto object-contain rounded-lg')}
+ />
+ ): (
+ <div className={cn(
+ s.iconBox,
+ 'rounded-xl bg-gradient-to-br from-[#00f2ff] to-[#7c3aed] flex items-center justify-center shrink-0',
+ 'shadow-[0_0_20px_rgba(0,242,255,0.3)]'
+ )}>
+ <TrendingUp className={cn(s.icon, 'text-white')} strokeWidth={2.5} />
+ </div>
+ )}
+ {showText && (
+ <span className={cn(s.text, 'font-bold tracking-tight-premium')}>
+ <span className="text-white">Econ</span>
+ <span className="text-[#00f2ff] drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]">Nexus</span>
+ </span>
+ )}
+ </div>
+ );
 
-  if (linkHome && !watermark) {
-    return <Link to="/" className="inline-flex group">{content}</Link>;
-  }
-  return content;
+ if (linkHome && !watermark) {
+ return <Link to="/" className="inline-flex group">{content}</Link>;
+ }
+ return content;
 };
 
 export default EconNexusLogo;
