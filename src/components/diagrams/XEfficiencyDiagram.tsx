@@ -25,7 +25,7 @@ const XEfficiencyDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const curveVariants = {
@@ -199,7 +199,7 @@ const XEfficiencyDiagram = () => {
         transition={{ delay: 2 }}
       >
         <p className="text-xs text-muted-foreground leading-relaxed">
-          <strong className="text-foreground">Chain of Analysis (AO3):</strong> Monopoly power → 
+          <strong className="text-foreground">Chain of Analysis:</strong> Monopoly power → 
           <span className="text-red-400"> Absence of competitive threat</span> → Managers pursue "quiet life" / 
           satisficing behavior → <span className="text-amber-400">Organizational slack emerges</span> → 
           Costs rise above technical minimum → <span className="text-destructive">Productive inefficiency</span> 

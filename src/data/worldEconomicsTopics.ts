@@ -3215,7 +3215,7 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
       ' International syllabus (AS + A2); strong on formal theory and diagrams'
     ],
     analysis: 'Exam board choice affects teaching approach: AQA rewards application to current events → requires regular news reading → Students develop evaluative skills through real-world context. Edexcel emphasizes interconnections → synoptic questions require linking micro and macro → Holistic understanding. OCR includes behavioral economics → challenges the rational agent model → Modern perspective.',
-    evaluation: 'All UK boards cover similar core content (markets, market failure, macro objectives, policy) but differ in emphasis and assessment style. Students should master their specific board\'s command words and mark schemes. The key to success is not memorizing content but developing chains of analysis (AO3) and critical evaluation (AO4)—skills that transfer across all boards.',
+    evaluation: 'All UK boards cover similar core content (markets, market failure, macro objectives, policy) but differ in emphasis and assessment style. Students should master their specific board\'s command words and mark schemes. The key to success is not memorizing content but developing chains of analysis and critical evaluation—skills that transfer across all boards.',
     realWorldExample: 'An AQA student might analyze the 2022 UK mini-budget using AD/AS diagrams and evaluating bond market reactions. An OCR student might emphasize behavioral explanations for market panic. Same event, different analytical lenses.'
   },
   {

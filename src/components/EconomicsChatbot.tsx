@@ -179,109 +179,109 @@ const QUICK_ACTIONS_BIOLOGY = [
 ];
 
 const COMMAND_WORDS_BIOLOGY = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise biological definition', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Describe', ao: 'AO1', meaning: 'State features, stages, or structures', color: 'hsl(150, 65%, 42%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Give reasons with biological mechanisms', color: 'hsl(150, 65%, 42%)' },
-  { word: 'Compare', ao: 'AO2', meaning: 'Identify similarities and differences', color: 'hsl(150, 65%, 42%)' },
-  { word: 'Suggest', ao: 'AO2', meaning: 'Apply knowledge to unfamiliar context', color: 'hsl(150, 65%, 42%)' },
-  { word: 'Evaluate', ao: 'AO3', meaning: 'Weigh evidence and make judgements', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Calculate', ao: 'AO2', meaning: 'Show formula and full working', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise biological definition', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Describe', ao: '', meaning: 'State features, stages, or structures', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Explain', ao: '+', meaning: 'Give reasons with biological mechanisms', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Compare', ao: '', meaning: 'Identify similarities and differences', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Suggest', ao: '', meaning: 'Apply knowledge to unfamiliar context', color: 'hsl(150, 65%, 42%)' },
+  { word: 'Evaluate', ao: '', meaning: 'Weigh evidence and make judgements', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Calculate', ao: '', meaning: 'Show formula and full working', color: 'hsl(150, 65%, 42%)' },
 ];
 
 const COMMAND_WORDS_PHYSICS = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise physical definition with SI units', color: 'hsl(217, 91%, 60%)' },
-  { word: 'State', ao: 'AO1', meaning: 'Express a law or principle concisely', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out physical reasoning with cause-effect', color: 'hsl(15, 85%, 55%)' },
-  { word: 'Calculate', ao: 'AO2', meaning: 'Show full working with units at every step', color: 'hsl(15, 85%, 55%)' },
-  { word: 'Derive', ao: 'AO2+AO3', meaning: 'Obtain result from first principles with LaTeX', color: 'hsl(15, 85%, 55%)' },
-  { word: 'Sketch', ao: 'AO2', meaning: 'Draw graph/diagram with labelled axes and key features', color: 'hsl(15, 85%, 55%)' },
-  { word: 'Discuss', ao: 'AO1-AO3', meaning: 'Analyse with physical reasoning and limitations', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise physical definition with SI units', color: 'hsl(217, 91%, 60%)' },
+  { word: 'State', ao: '', meaning: 'Express a law or principle concisely', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'Set out physical reasoning with cause-effect', color: 'hsl(15, 85%, 55%)' },
+  { word: 'Calculate', ao: '', meaning: 'Show full working with units at every step', color: 'hsl(15, 85%, 55%)' },
+  { word: 'Derive', ao: '+', meaning: 'Obtain result from first principles with LaTeX', color: 'hsl(15, 85%, 55%)' },
+  { word: 'Sketch', ao: '', meaning: 'Draw graph/diagram with labelled axes and key features', color: 'hsl(15, 85%, 55%)' },
+  { word: 'Discuss', ao: '-', meaning: 'Analyse with physical reasoning and limitations', color: 'hsl(43, 72%, 53%)' },
 ];
 
 // Command words with AO (Assessment Objective) requirements
 const COMMAND_WORDS_ECON = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise meaning', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out purposes/reasons with evidence', color: 'hsl(185, 100%, 50%)' },
-  { word: 'Analyse', ao: 'AO1+AO2', meaning: 'Examine in detail to show meaning and relationships', color: 'hsl(185, 100%, 50%)' },
-  { word: 'Compare', ao: 'AO1+AO2', meaning: 'Identify similarities and/or differences', color: 'hsl(185, 100%, 50%)' },
-  { word: 'Assess', ao: 'AO1+AO2+AO3', meaning: 'Make an informed judgement', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Discuss', ao: 'AO1+AO2+AO3', meaning: 'Write about issues in depth with structure', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Evaluate', ao: 'AO1+AO2+AO3', meaning: 'Judge quality, importance, or value critically', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise meaning', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'Set out purposes/reasons with evidence', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Analyse', ao: '+', meaning: 'Examine in detail to show meaning and relationships', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Compare', ao: '+', meaning: 'Identify similarities and/or differences', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Assess', ao: '++', meaning: 'Make an informed judgement', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Discuss', ao: '++', meaning: 'Write about issues in depth with structure', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Evaluate', ao: '++', meaning: 'Judge quality, importance, or value critically', color: 'hsl(43, 72%, 53%)' },
 ];
 
 const COMMAND_WORDS_BUSINESS = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise meaning (2 marks)', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out purposes/reasons with development', color: 'hsl(185, 100%, 50%)' },
-  { word: 'Analyse', ao: 'AO1-AO3', meaning: 'Chain of analysis: cause → effect → impact', color: 'hsl(185, 100%, 50%)' },
-  { word: 'Evaluate', ao: 'AO1-AO4', meaning: 'Balanced argument + justified judgement', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Advise', ao: 'AO1-AO4', meaning: 'Suggest a course of action with justification', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Justify', ao: 'AO1-AO4', meaning: 'Support a case with evidence/argument', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Calculate', ao: 'AO1', meaning: 'Work out from given facts and figures', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise meaning (2 marks)', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'Set out purposes/reasons with development', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Analyse', ao: '-', meaning: 'Chain of analysis: cause → effect → impact', color: 'hsl(185, 100%, 50%)' },
+  { word: 'Evaluate', ao: '-', meaning: 'Balanced argument + justified judgement', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Advise', ao: '-', meaning: 'Suggest a course of action with justification', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Justify', ao: '-', meaning: 'Support a case with evidence/argument', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Calculate', ao: '', meaning: 'Work out from given facts and figures', color: 'hsl(217, 91%, 60%)' },
 ];
 
 const COMMAND_WORDS_LAW = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise legal definition', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out legal principles with authority', color: 'hsl(280, 70%, 55%)' },
-  { word: 'Analyse', ao: 'AO1-AO3', meaning: 'IRAC: Issue → Rule → Application → Conclusion', color: 'hsl(280, 70%, 55%)' },
-  { word: 'Evaluate', ao: 'AO1-AO4', meaning: 'Critical assessment with academic commentary', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Discuss', ao: 'AO1-AO4', meaning: 'Balanced argument with ratio/obiter distinction', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Advise', ao: 'AO1-AO4', meaning: 'Apply law to facts using IRAC method', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Compare', ao: 'AO1-AO3', meaning: 'Cross-jurisdictional or doctrinal comparison', color: 'hsl(280, 70%, 55%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise legal definition', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'Set out legal principles with authority', color: 'hsl(280, 70%, 55%)' },
+  { word: 'Analyse', ao: '-', meaning: 'IRAC: Issue → Rule → Application → Conclusion', color: 'hsl(280, 70%, 55%)' },
+  { word: 'Evaluate', ao: '-', meaning: 'Critical assessment with academic commentary', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Discuss', ao: '-', meaning: 'Balanced argument with ratio/obiter distinction', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Advise', ao: '-', meaning: 'Apply law to facts using IRAC method', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Compare', ao: '-', meaning: 'Cross-jurisdictional or doctrinal comparison', color: 'hsl(280, 70%, 55%)' },
 ];
 
 const COMMAND_WORDS_PSYCHOLOGY = [
-  { word: 'Describe', ao: 'AO1', meaning: 'Present knowledge of study/theory', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Show understanding with reasons', color: 'hsl(330, 70%, 55%)' },
-  { word: 'Evaluate', ao: 'AO3', meaning: 'GRAVE: Generalizability, Reliability, Application, Validity, Ethics', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Discuss', ao: 'AO1-AO3', meaning: 'Balanced argument with research evidence', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Compare', ao: 'AO1-AO3', meaning: 'Similarities and differences between approaches', color: 'hsl(330, 70%, 55%)' },
-  { word: 'Suggest', ao: 'AO2', meaning: 'Apply knowledge to novel scenario', color: 'hsl(330, 70%, 55%)' },
+  { word: 'Describe', ao: '', meaning: 'Present knowledge of study/theory', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'Show understanding with reasons', color: 'hsl(330, 70%, 55%)' },
+  { word: 'Evaluate', ao: '', meaning: 'GRAVE: Generalizability, Reliability, Application, Validity, Ethics', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Discuss', ao: '-', meaning: 'Balanced argument with research evidence', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Compare', ao: '-', meaning: 'Similarities and differences between approaches', color: 'hsl(330, 70%, 55%)' },
+  { word: 'Suggest', ao: '', meaning: 'Apply knowledge to novel scenario', color: 'hsl(330, 70%, 55%)' },
 ];
 
 const COMMAND_WORDS_ACCOUNTING = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise accounting definition', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out with reasons and examples', color: 'hsl(25, 85%, 55%)' },
-  { word: 'Calculate', ao: 'AO1', meaning: 'Show full workings and formula', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Prepare', ao: 'AO1+AO2', meaning: 'Construct financial statements', color: 'hsl(25, 85%, 55%)' },
-  { word: 'Analyse', ao: 'AO1-AO3', meaning: 'Interpret ratios and financial data', color: 'hsl(25, 85%, 55%)' },
-  { word: 'Evaluate', ao: 'AO1-AO3', meaning: 'Assess and make judgements', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise accounting definition', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'Set out with reasons and examples', color: 'hsl(25, 85%, 55%)' },
+  { word: 'Calculate', ao: '', meaning: 'Show full workings and formula', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Prepare', ao: '+', meaning: 'Construct financial statements', color: 'hsl(25, 85%, 55%)' },
+  { word: 'Analyse', ao: '-', meaning: 'Interpret ratios and financial data', color: 'hsl(25, 85%, 55%)' },
+  { word: 'Evaluate', ao: '-', meaning: 'Assess and make judgements', color: 'hsl(43, 72%, 53%)' },
 ];
 
 const COMMAND_WORDS_SOCIOLOGY = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise sociological definition', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Set out with theoretical reasoning', color: 'hsl(160, 70%, 45%)' },
-  { word: 'Assess', ao: 'AO1-AO3', meaning: 'Weigh competing perspectives', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Evaluate', ao: 'AO1-AO3', meaning: 'Judge theoretical strength with evidence', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Compare', ao: 'AO1-AO3', meaning: 'Identify similarities/differences between perspectives', color: 'hsl(160, 70%, 45%)' },
-  { word: 'Discuss', ao: 'AO1-AO3', meaning: 'Balanced argument from multiple perspectives', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise sociological definition', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'Set out with theoretical reasoning', color: 'hsl(160, 70%, 45%)' },
+  { word: 'Assess', ao: '-', meaning: 'Weigh competing perspectives', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Evaluate', ao: '-', meaning: 'Judge theoretical strength with evidence', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Compare', ao: '-', meaning: 'Identify similarities/differences between perspectives', color: 'hsl(160, 70%, 45%)' },
+  { word: 'Discuss', ao: '-', meaning: 'Balanced argument from multiple perspectives', color: 'hsl(43, 72%, 53%)' },
 ];
 
 const COMMAND_WORDS_RESEARCH = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise methodological definition', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'Describe method with justification', color: 'hsl(200, 70%, 50%)' },
-  { word: 'Design', ao: 'AO2+AO3', meaning: 'Plan a research study', color: 'hsl(200, 70%, 50%)' },
-  { word: 'Evaluate', ao: 'AO3', meaning: 'Assess strengths and limitations', color: 'hsl(43, 72%, 53%)' },
-  { word: 'Compare', ao: 'AO1-AO3', meaning: 'Contrast methods/paradigms', color: 'hsl(200, 70%, 50%)' },
-  { word: 'Justify', ao: 'AO2+AO3', meaning: 'Defend methodological choices', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise methodological definition', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'Describe method with justification', color: 'hsl(200, 70%, 50%)' },
+  { word: 'Design', ao: '+', meaning: 'Plan a research study', color: 'hsl(200, 70%, 50%)' },
+  { word: 'Evaluate', ao: '', meaning: 'Assess strengths and limitations', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Compare', ao: '-', meaning: 'Contrast methods/paradigms', color: 'hsl(200, 70%, 50%)' },
+  { word: 'Justify', ao: '+', meaning: 'Defend methodological choices', color: 'hsl(43, 72%, 53%)' },
 ];
 
 const COMMAND_WORDS_CHEMISTRY = [
-  { word: 'Define', ao: 'AO1', meaning: 'Give precise IUPAC definition', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Explain', ao: 'AO1+AO2', meaning: 'State principle with reasoning', color: 'hsl(120, 60%, 45%)' },
-  { word: 'Calculate', ao: 'AO2', meaning: 'Show formula, working, units, sig figs', color: 'hsl(120, 60%, 45%)' },
-  { word: 'Draw', ao: 'AO1+AO2', meaning: 'Mechanism with curly arrows & charges', color: 'hsl(120, 60%, 45%)' },
-  { word: 'Predict', ao: 'AO2', meaning: 'Apply knowledge to unfamiliar context', color: 'hsl(120, 60%, 45%)' },
-  { word: 'Deduce', ao: 'AO2', meaning: 'Draw conclusions from data', color: 'hsl(120, 60%, 45%)' },
-  { word: 'Evaluate', ao: 'AO1-AO3', meaning: 'Balanced argument with counter-argument', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Define', ao: '', meaning: 'Give precise IUPAC definition', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Explain', ao: '+', meaning: 'State principle with reasoning', color: 'hsl(120, 60%, 45%)' },
+  { word: 'Calculate', ao: '', meaning: 'Show formula, working, units, sig figs', color: 'hsl(120, 60%, 45%)' },
+  { word: 'Draw', ao: '+', meaning: 'Mechanism with curly arrows & charges', color: 'hsl(120, 60%, 45%)' },
+  { word: 'Predict', ao: '', meaning: 'Apply knowledge to unfamiliar context', color: 'hsl(120, 60%, 45%)' },
+  { word: 'Deduce', ao: '', meaning: 'Draw conclusions from data', color: 'hsl(120, 60%, 45%)' },
+  { word: 'Evaluate', ao: '-', meaning: 'Balanced argument with counter-argument', color: 'hsl(43, 72%, 53%)' },
 ];
 
 const COMMAND_WORDS_MATHEMATICS = [
-  { word: 'Solve', ao: 'AO1', meaning: 'Find the answer with full working', color: 'hsl(217, 91%, 60%)' },
-  { word: 'Prove', ao: 'AO1+AO2', meaning: 'Logical deduction to establish truth', color: 'hsl(260, 70%, 55%)' },
-  { word: 'Derive', ao: 'AO1+AO2', meaning: 'Obtain result from first principles', color: 'hsl(260, 70%, 55%)' },
-  { word: 'Show that', ao: 'AO1+AO2', meaning: 'Verify a given result step-by-step', color: 'hsl(260, 70%, 55%)' },
-  { word: 'Sketch', ao: 'AO2', meaning: 'Draw graph with key features labelled', color: 'hsl(260, 70%, 55%)' },
-  { word: 'Hence', ao: 'AO2+AO3', meaning: 'Use previous result to find next', color: 'hsl(43, 72%, 53%)' },
+  { word: 'Solve', ao: '', meaning: 'Find the answer with full working', color: 'hsl(217, 91%, 60%)' },
+  { word: 'Prove', ao: '+', meaning: 'Logical deduction to establish truth', color: 'hsl(260, 70%, 55%)' },
+  { word: 'Derive', ao: '+', meaning: 'Obtain result from first principles', color: 'hsl(260, 70%, 55%)' },
+  { word: 'Show that', ao: '+', meaning: 'Verify a given result step-by-step', color: 'hsl(260, 70%, 55%)' },
+  { word: 'Sketch', ao: '', meaning: 'Draw graph with key features labelled', color: 'hsl(260, 70%, 55%)' },
+  { word: 'Hence', ao: '+', meaning: 'Use previous result to find next', color: 'hsl(43, 72%, 53%)' },
 ];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/economics-chat`;
@@ -468,8 +468,8 @@ const ExamGuidance = ({ commandWords, syllabusCode }: { commandWords: typeof COM
               ))}
             </div>
             <div className="mt-2 pt-2 border-t border-[hsl(43,72%,53%)]/15 space-y-1">
-              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {{ 'Business': 'AO1 (25%) • AO2 (25%) • AO3 (25%) • AO4 (25%)', 'Law': 'IRAC: Issue • Rule • Application • Conclusion', 'Psychology': 'AO1 (25%) • AO2 (25%) • AO3 (50%)', 'Accounting': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', 'Sociology': 'AO1 (30%) • AO2 (30%) • AO3 (40%)', 'Research': 'Research • Analysis • Evaluation • Presentation', 'Mathematics': 'Pure (60%) • Statistics (20%) • Mechanics (20%)', 'Physics': 'Theory (40%) • Practical (20%) • Paper 5 (15%) • Advanced (25%)', 'Chemistry': 'AO1 (35%) • AO2 (40%) • AO3 (25%)', 'Biology': 'AO1 (35%) • AO2 (40%) • AO3 (25%)' }[syllabusCode] || 'AO1 (35%) • AO2 (40%) • AO3 (25%)'}</p>
-              <p className="text-[10px] text-muted-foreground/60">{{ 'Business': 'Use "Evaluate" for top-band AO4 marks', 'Law': 'Always cite case authority (OSCOLA/Bluebook)', 'Psychology': 'Use GRAVE to evaluate core studies', 'Accounting': 'Always show double-entry workings', 'Sociology': 'Present at least TWO contrasting perspectives', 'Research': 'Justify every methodological choice', 'Mathematics': 'Always show full working — marks for method, not just answer', 'Physics': 'Always show units at every step — use I-V-A-U for quantitative problems', 'Chemistry': 'Always include state symbols and units — curly arrows from lone pairs/bonds', 'Biology': 'Always use precise biological terminology — name processes and structures accurately' }[syllabusCode] || 'Use "Evaluate" for A* level answers'}</p>
+              <p className="text-[10px] text-[hsl(43,72%,53%)]/80 font-medium">AO Weightings: {{ 'Business': ' (25%) •  (25%) •  (25%) •  (25%)', 'Law': 'IRAC: Issue • Rule • Application • Conclusion', 'Psychology': ' (25%) •  (25%) •  (50%)', 'Accounting': ' (35%) •  (40%) •  (25%)', 'Sociology': ' (30%) •  (30%) •  (40%)', 'Research': 'Research • Analysis • Evaluation • Presentation', 'Mathematics': 'Pure (60%) • Statistics (20%) • Mechanics (20%)', 'Physics': 'Theory (40%) • Practical (20%) • Paper 5 (15%) • Advanced (25%)', 'Chemistry': ' (35%) •  (40%) •  (25%)', 'Biology': ' (35%) •  (40%) •  (25%)' }[syllabusCode] || ' (35%) •  (40%) •  (25%)'}</p>
+              <p className="text-[10px] text-muted-foreground/60">{{ 'Business': 'Use "Evaluate" for top-band marks', 'Law': 'Always cite case authority (OSCOLA/Bluebook)', 'Psychology': 'Use GRAVE to evaluate core studies', 'Accounting': 'Always show double-entry workings', 'Sociology': 'Present at least TWO contrasting perspectives', 'Research': 'Justify every methodological choice', 'Mathematics': 'Always show full working — marks for method, not just answer', 'Physics': 'Always show units at every step — use I-V-A-U for quantitative problems', 'Chemistry': 'Always include state symbols and units — curly arrows from lone pairs/bonds', 'Biology': 'Always use precise biological terminology — name processes and structures accurately' }[syllabusCode] || 'Use "Evaluate" for A* level answers'}</p>
             </div>
           </motion.div>
         )}
@@ -507,7 +507,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
       const interval = setInterval(() => {
         setMessageIndex(prev => (prev + 1) % loadingStates.length);
       }, 2500);
-      return () => clearInterval(interval);
+      return => clearInterval(interval);
     }
   }, [streamState, loadingStates.length]);
 
@@ -593,7 +593,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
 const CopyButton = ({ text }: { text: string }) => {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = async () => {
+  const handleCopy = async => {
     try {
       // Strip markdown for cleaner copy
       const cleanText = text.replace(/\*\*/g, '').replace(/\$/g, '');
@@ -808,7 +808,7 @@ export default function EconomicsChatbot() {
       { threshold: [0, 0.3, 0.6] }
     );
     observer.observe(section);
-    return () => {
+    return => {
       observer.disconnect();
       document.body.classList.remove('chat-active');
     };
@@ -839,17 +839,17 @@ export default function EconomicsChatbot() {
       setMessages([]);
       return;
     }
-    (async () => {
+    (async => {
       const history = await loadChatHistory(user.id, persona);
       if (cancelled) return;
       setMessages(history);
     })();
-    return () => { cancelled = true; };
+    return => { cancelled = true; };
   }, [user, persona]);
 
   // Cleanup on unmount
   useEffect(() => {
-    return () => {
+    return => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }

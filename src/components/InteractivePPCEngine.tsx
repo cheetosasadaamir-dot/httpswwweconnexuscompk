@@ -42,7 +42,7 @@ const InteractivePPCEngine = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   // Convert percentage coordinates (0-100) to SVG coordinates
@@ -172,7 +172,7 @@ const InteractivePPCEngine = () => {
   useEffect(() => {
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('touchend', handleMouseUp);
-    return () => {
+    return => {
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('touchend', handleMouseUp);
     };
@@ -834,7 +834,7 @@ const InteractivePPCEngine = () => {
         className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20"
       >
         <p className="text-xs text-muted-foreground leading-relaxed">
-          <strong className="text-primary">Exam Tip (AO1/AO2):</strong> Points <em>on</em> the PPC represent <strong>productive efficiency</strong> — 
+          <strong className="text-primary">Exam Tip:</strong> Points <em>on</em> the PPC represent <strong>productive efficiency</strong> — 
           all resources are fully employed. Points <em>inside</em> indicate <strong>unemployed resources</strong> or <strong>technical inefficiency</strong>. 
           Points <em>outside</em> are unattainable without <strong>economic growth</strong> (rightward shift of LRAS).
         </p>

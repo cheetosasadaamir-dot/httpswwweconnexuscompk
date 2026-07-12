@@ -15,7 +15,7 @@ const UserProfileDropdown = () => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   if (!user) return null;
@@ -23,7 +23,7 @@ const UserProfileDropdown = () => {
   const avatarUrl = user.user_metadata?.avatar_url || user.user_metadata?.picture;
   const displayName = user.user_metadata?.full_name || user.user_metadata?.name || user.email;
 
-  const handleLogout = async () => {
+  const handleLogout = async => {
     setOpen(false);
     await signOut();
     navigate('/login');

@@ -118,7 +118,7 @@ const EconomicEfficiency = () => {
           </Card>
         </div>
 
-        <AnalysisBlock title="Efficiency Types: AO3 Synthesis" type="analysis">
+        <AnalysisBlock title="Efficiency Types:  Synthesis" type="analysis">
           <p>
             <strong className="text-cyan-400">Productive Efficiency:</strong> Achieved at minimum ATC where MC = AC. 
             On the PPC, this means operating ON the frontier, not inside it. 
@@ -189,7 +189,7 @@ const EconomicEfficiency = () => {
 
         <MarketFailureExternalityDiagram />
 
-        <AnalysisBlock title="AO3 Chain: Negative Production Externality" type="analysis">
+        <AnalysisBlock title=" Chain: Negative Production Externality" type="analysis">
           <p>
             <strong className="text-cyan-400">Problem:</strong> Factory production creates pollution (MEC = Marginal External Cost) →
             <strong className="text-cyan-400"> Private vs. Social Cost:</strong> MPC (Marginal Private Cost) &lt; MSC (Marginal Social Cost) where MSC = MPC + MEC →
@@ -199,7 +199,7 @@ const EconomicEfficiency = () => {
           </p>
         </AnalysisBlock>
 
-        <AnalysisBlock title="AO3 Chain: Positive Consumption Externality (Merit Good)" type="analysis">
+        <AnalysisBlock title=" Chain: Positive Consumption Externality (Merit Good)" type="analysis">
           <p>
             <strong className="text-cyan-400">Example:</strong> Education generates benefits to society beyond the individual (MEB = Marginal External Benefit) →
             <strong className="text-cyan-400"> Private vs. Social Benefit:</strong> MPB &lt; MSB where MSB = MPB + MEB →
@@ -314,7 +314,7 @@ const EconomicEfficiency = () => {
           </CardContent>
         </Card>
 
-        <AnalysisBlock title="AO4 Evaluation: Government Intervention Effectiveness" type="evaluation">
+        <AnalysisBlock title=" Evaluation: Government Intervention Effectiveness" type="evaluation">
           <p>
             The effectiveness of government intervention "depends on" several critical factors: 
             <strong className="text-amber-400">(1) Information:</strong> Governments may lack knowledge to set optimal tax/subsidy levels; 

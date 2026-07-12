@@ -21,7 +21,7 @@ const MoneySupplyDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 700;

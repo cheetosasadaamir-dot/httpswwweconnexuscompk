@@ -83,7 +83,7 @@ const Development = () => {
               </p>
             </NoteCard>
 
-            <AnalysisBlock title="Chain of Analysis: Growth Without Development (AO3)">
+            <AnalysisBlock title="Chain of Analysis: Growth Without Development">
               <p className="text-sm text-foreground/80 text-justify mb-1">
                 The phenomenon of <em>growth without development</em> demonstrates why GDP expansion is a necessary but insufficient condition for genuine welfare improvement. Consider an economy experiencing 8% annual GDP growth driven by commodity exports: <strong>Initial Impact</strong>—resource extraction generates foreign exchange earnings and fiscal revenues, boosting headline growth figures. <strong>However</strong>, if the extractive sector is capital-intensive and employs few workers, if revenues are captured by political elites or repatriated by multinational corporations, if environmental degradation imposes health costs on local populations, and if the commodity boom induces 'Dutch Disease' (real exchange rate appreciation undermining non-resource tradeable sectors), then the growth episode may deliver minimal improvements—or even deterioration—in human development indicators. This pattern, observed in many resource-rich developing nations, illustrates the critical importance of <em>inclusive growth</em>—economic expansion that creates broad-based opportunities, reduces inequality, and translates into measurable improvements in HDI components.
               </p>
@@ -129,7 +129,7 @@ const Development = () => {
               </p>
             </div>
 
-            <AnalysisBlock title="The Kuznets Hypothesis: Critical Evaluation (AO4)">
+            <AnalysisBlock title="The Kuznets Hypothesis: Critical Evaluation">
               <p className="text-sm text-foreground/80 text-justify">
                 Simon Kuznets (1955) proposed that income inequality follows an <em>inverted-U</em> trajectory during economic development: inequality initially rises during early industrialisation (as a modern, high-wage sector emerges alongside traditional, low-productivity agriculture—the 'dual economy' structure analysed by Arthur Lewis) before eventually declining as the modern sector absorbs surplus labour, education spreads, and progressive taxation/welfare states emerge. <strong>However</strong>, the empirical evidence for this hypothesis is contested. Cross-country data reveals enormous variation in inequality trajectories; some East Asian economies (South Korea, Taiwan) achieved 'growth with equity' through land reform and education investment, while Latin American nations exhibited persistent high inequality despite substantial growth episodes. The policy implication is profound: inequality is not an 'iron law' of development but is shaped by policy choices—labour market institutions, fiscal systems, asset redistribution, and human capital investment can all modify the growth-inequality relationship. The Kuznets Curve, therefore, should be understood not as a deterministic prediction but as a <em>conditional relationship</em> mediated by political economy and institutional context.
               </p>
@@ -137,7 +137,7 @@ const Development = () => {
             
             {/* Senior Examiner's Depends-On Evaluation */}
             <div className="mt-4 p-4 bg-slate-800/50 border border-amber-500/30 rounded-lg">
-              <h4 className="font-serif font-semibold text-amber-400 text-sm mb-2">Senior Examiner's "Depends-On" Analysis (AO4)</h4>
+              <h4 className="font-serif font-semibold text-amber-400 text-sm mb-2">Senior Examiner's "Depends-On" Analysis</h4>
               <p className="text-sm text-foreground/90 leading-relaxed text-justify">
                 <strong>The validity of the Kuznets hypothesis depends critically on:</strong> (1) <em>Policy Regime:</em> Countries pursuing active redistribution (land reform, progressive taxation, universal education) can "flatten" or "break" the curve—East Asian NICs provide counter-evidence to Latin American trajectories. (2) <em>Speed of Structural Transformation:</em> Rapid industrialisation compresses the rising phase; slow transformation prolongs inequality. (3) <em>Global Integration:</em> Openness to FDI and trade may accelerate growth but also widen skill premiums, potentially steepening the upward phase. (4) <em>Environmental Kuznets Curve Extension:</em> Similar inverted-U logic applied to pollution suggests environmental degradation peaks mid-development—equally contested empirically. <strong>Conclusion:</strong> A* candidates recognise the Kuznets Curve as a <em>stylised fact subject to policy mediation</em>, not an iron law of development.
               </p>
@@ -179,7 +179,7 @@ const Development = () => {
               </NoteCard>
             </div>
 
-            <AnalysisBlock title="The Marshall-Lerner Condition & J-Curve Effect (AO3)">
+            <AnalysisBlock title="The Marshall-Lerner Condition & J-Curve Effect">
               <p className="text-sm text-foreground/80 text-justify mb-2">
                 The effectiveness of currency depreciation in improving the Current Account depends critically on the <strong>Marshall-Lerner Condition</strong>: depreciation will improve the trade balance if and only if the sum of the price elasticities of demand for exports and imports exceeds unity:
               </p>
@@ -205,7 +205,7 @@ const Development = () => {
               </p>
             </div>
 
-            <NoteCard title="Senior Examiner's Evaluation: Limits of Depreciation (AO4)" type="concept" className="mb-2">
+            <NoteCard title="Senior Examiner's Evaluation: Limits of Depreciation" type="concept" className="mb-2">
               <p className="text-sm text-foreground/80 text-justify">
                 While depreciation can improve the Current Account when the Marshall-Lerner condition is satisfied, several limitations constrain its effectiveness as a policy tool. <strong>First</strong>, depreciation raises import prices, directly contributing to <em>imported inflation</em>—higher costs for imported raw materials and intermediate goods feed through to domestic prices, eroding competitiveness gains and imposing welfare costs on consumers. <strong>Second</strong>, trading partners may retaliate with competitive devaluations, initiating a 'beggar-thy-neighbour' dynamic that leaves all parties worse off. <strong>Third</strong>, for many developing economies with limited export diversification, supply-side constraints (infrastructure bottlenecks, quality standards) may prevent firms from expanding export volumes even when price competitiveness improves. <strong>Fourth</strong>, where external debt is denominated in foreign currency, depreciation increases the domestic currency value of debt obligations, potentially triggering a debt crisis. The conclusion is that depreciation is a <em>conditional</em> tool whose efficacy depends on structural characteristics—elasticity conditions, supply capacity, inflation pass-through, and external debt exposure.
               </p>
@@ -229,7 +229,7 @@ const Development = () => {
 
             <FixedExchangeRateDiagram />
 
-            <AnalysisBlock title="The Impossible Trinity (Trilemma) – AO3">
+            <AnalysisBlock title="The Impossible Trinity (Trilemma) – ">
               <p className="text-sm text-foreground/80 text-justify mb-2">
                 The <strong>Mundell-Fleming Trilemma</strong> articulates a fundamental constraint on macroeconomic policy: it is impossible to simultaneously achieve all three of the following objectives:
               </p>
@@ -287,7 +287,7 @@ const Development = () => {
 
             <HarrodDomarDiagram />
 
-            <AnalysisBlock title="The Lewis Dual-Sector Model (AO3)">
+            <AnalysisBlock title="The Lewis Dual-Sector Model">
               <p className="text-sm text-foreground/80 text-justify">
                 Arthur Lewis's seminal model conceptualises developing economies as comprising two distinct sectors: a <strong>traditional agricultural sector</strong> characterised by surplus labour (marginal productivity approaching zero), subsistence wages, and low capital intensity; and a <strong>modern capitalist sector</strong> (industry/urban) with higher productivity, capital accumulation, and profit-driven expansion. <strong>Chain of Reasoning:</strong> The modern sector can draw labour from the traditional sector at the subsistence wage (plus a small premium for urban costs) without facing rising labour costs—an 'unlimited supply of labour' that sustains high profits and capital accumulation. This drives self-reinforcing growth until surplus labour is exhausted, at which point wages begin rising (the 'Lewis Turning Point'). The model explains rapid industrialisation in economies like China and highlights the importance of <em>structural transformation</em>—the reallocation of labour from low-productivity to high-productivity sectors—as a driver of development. <strong>Limitations</strong> include its assumption that capital accumulation automatically generates employment, neglect of technological progress and human capital, and the reality that urban unemployment (not absorption) often characterises developing economies.
               </p>
@@ -295,7 +295,7 @@ const Development = () => {
 
             <PrebischSingerDiagram />
 
-            <NoteCard title="The Prebisch-Singer Hypothesis: Policy Implications (AO4)" type="exam-tip" className="mb-2">
+            <NoteCard title="The Prebisch-Singer Hypothesis: Policy Implications" type="exam-tip" className="mb-2">
               <p className="text-sm text-foreground/80 text-justify">
                 Raúl Prebisch and Hans Singer independently argued that the <strong>terms of trade</strong> for primary commodity exporters tend to decline secularly relative to manufactured goods exporters. The mechanism operates through several channels: (1) <strong>Low income elasticity of demand (YED)</strong> for primary products—as global incomes rise, demand for food and raw materials grows more slowly than for manufactures and services (Engel's Law); (2) <strong>Technological substitution</strong>—synthetic materials replace natural commodities; (3) <strong>Asymmetric market power</strong>—manufacturers in developed nations can maintain prices through oligopolistic structures, while commodity markets are competitive. <strong>Policy Implication:</strong> This hypothesis provided intellectual justification for <em>Import Substitution Industrialisation (ISI)</em>—the deliberate promotion of domestic manufacturing through tariff protection to escape the 'primary products trap.' While ISI achieved some successes (Latin American industrialisation), its limitations—inefficiency, lack of competition, balance of payments crises—led to subsequent liberalisation. Modern development strategy emphasises <strong>diversification</strong> (export sophistication) and <strong>value addition</strong> (processing commodities domestically) rather than autarkic protection.
               </p>
@@ -361,7 +361,7 @@ const Development = () => {
             </div>
 
             {/* LEDCs vs MEDCs Analysis */}
-            <AnalysisBlock title="Globalisation: Asymmetric Impacts on LEDCs vs MEDCs (AO3/AO4)">
+            <AnalysisBlock title="Globalisation: Asymmetric Impacts on LEDCs vs MEDCs">
               <div className="space-y-3 text-sm text-foreground/80">
                 <p className="text-justify">
                   <strong className="text-cambridge-cyan">For LEDCs (Benefits):</strong> Access to MEDC markets enables export-led growth; FDI provides scarce capital and technology transfer; integration into global value chains creates manufacturing employment; remittances from migrant workers provide foreign exchange; access to imported capital goods accelerates industrialisation.
@@ -383,7 +383,7 @@ const Development = () => {
               correction="Always specify which type of country (LEDC/MEDC), which sector (tradeable/non-tradeable), and which group (skilled/unskilled workers, capital owners) when evaluating globalisation's distributional impacts."
             />
 
-            <AnalysisBlock title="Chain of Analysis: Transnational Corporations (TNCs) and Development (AO3/AO4)">
+            <AnalysisBlock title="Chain of Analysis: Transnational Corporations (TNCs) and Development">
               <p className="text-sm text-foreground/80 text-justify mb-3">
                 <strong>Positive Chain:</strong> TNC investment brings capital, technology, and management expertise → generates employment (direct and through supply chain linkages) → raises labour productivity and wages → increases tax revenues for host government → demonstration effects and labour mobility spread knowledge to domestic firms → enhances export capacity and foreign exchange earnings.
               </p>
@@ -432,7 +432,7 @@ const Development = () => {
             <TradeCreationDiagram />
             <TradeDiversionDiagram />
 
-            <AnalysisBlock title="Trade Creation vs Trade Diversion: Welfare Analysis (AO3)">
+            <AnalysisBlock title="Trade Creation vs Trade Diversion: Welfare Analysis">
               <p className="text-sm text-foreground/80 text-justify mb-2">
                 <strong>Trade Creation</strong> occurs when the formation of a trading bloc leads to replacement of higher-cost <em>domestic</em> production with lower-cost <em>member country</em> imports. This represents an efficiency gain: resources are reallocated toward activities where the bloc possesses comparative advantage. The welfare gain comprises a <em>production effect</em> (resources released from inefficient import-competing sectors) and a <em>consumption effect</em> (lower prices enable higher consumption). <strong>Trade Diversion</strong> occurs when bloc formation causes replacement of lower-cost imports from efficient <em>non-member</em> producers with higher-cost imports from <em>member</em> producers who now benefit from preferential tariff treatment. This represents an efficiency loss: trade is diverted from the globally most efficient source to a less efficient (but tariff-privileged) source.
               </p>
@@ -441,7 +441,7 @@ const Development = () => {
               </p>
             </AnalysisBlock>
 
-            <NoteCard title="Senior Examiner's Conclusion: Second-Best Theory & Trading Blocs (AO4)" type="concept">
+            <NoteCard title="Senior Examiner's Conclusion: Second-Best Theory & Trading Blocs" type="concept">
               <p className="text-sm text-foreground/80 text-justify">
                 The welfare analysis of trading blocs illustrates a fundamental insight from <strong>'second-best' theory</strong>: in a world already distorted by tariffs and other trade barriers, removing some barriers (preferential liberalisation) while retaining others (external tariffs) does not necessarily improve welfare. Free trade—the first-best solution—would eliminate the diversion problem entirely. Regional blocs represent a <em>second-best</em> approach whose net effect depends on the specific configuration of tariffs, cost structures, and trade patterns. For developing economies, bloc participation offers both opportunities (market access, bargaining power, policy coordination) and risks (premature liberalisation, reduced policy flexibility, lock-in to inefficient regional suppliers). The conclusion for examiners is that blanket pronouncements about 'blocs are good/bad' are inadequate; rigorous analysis requires specification of <em>which</em> bloc, <em>which</em> member, and <em>which</em> sector under consideration.
               </p>
@@ -459,7 +459,7 @@ const Development = () => {
               <p className="mb-2 text-sm">When answering A2 evaluation questions on development:</p>
               <ol className="list-decimal list-inside space-y-1 text-xs">
                 <li><strong>Identify the policy/phenomenon:</strong> What intervention or process is being evaluated?</li>
-                <li><strong>Establish the analytical chain (AO3):</strong> How does the mechanism operate? What are the causal links?</li>
+                <li><strong>Establish the analytical chain:</strong> How does the mechanism operate? What are the causal links?</li>
                 <li><strong>Specify conditions for success:</strong> Under what circumstances does the policy work well?</li>
                 <li><strong>Identify limitations and trade-offs:</strong> What constraints, costs, or unintended consequences exist?</li>
                 <li><strong>Consider distributional effects:</strong> Who gains and who loses? Is the impact equitable?</li>

@@ -130,7 +130,7 @@ const UtilityConsumerChoice = () => {
           </CardContent>
         </Card>
 
-        <AnalysisBlock title="Equi-Marginal Principle: AO3 Chain of Analysis" type="analysis">
+        <AnalysisBlock title="Equi-Marginal Principle:  Chain of Analysis" type="analysis">
           <p>
             <strong className="text-cyan-400">Initial Disequilibrium:</strong> Suppose MUₓ/Pₓ &gt; MUᵧ/Pᵧ — 
             the consumer gets more "bang for buck" from Good X →
@@ -251,7 +251,7 @@ const UtilityConsumerChoice = () => {
           </CardContent>
         </Card>
 
-        <AnalysisBlock title="AO3 Chain: Price Fall and the Total Effect" type="analysis">
+        <AnalysisBlock title=" Chain: Price Fall and the Total Effect" type="analysis">
           <p>
             <strong className="text-cyan-400">Price Change:</strong> Price of Good X falls (Pₓ₁ → Pₓ₂) →
             <strong className="text-cyan-400"> Budget Line Pivots:</strong> Line rotates outward from Y-intercept; X becomes relatively cheaper →

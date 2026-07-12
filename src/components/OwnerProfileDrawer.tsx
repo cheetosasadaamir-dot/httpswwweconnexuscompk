@@ -41,7 +41,7 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
     }
   }, [isOpen]);
 
-  const checkAuth = async () => {
+  const checkAuth = async => {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
       setIsAuthenticated(true);
@@ -73,7 +73,7 @@ const OwnerProfileDrawer = ({ isOpen, onClose }: OwnerProfileDrawerProps) => {
     }
   };
 
-  const fetchEntries = async () => {
+  const fetchEntries = async => {
     setIsLoading(true);
     const { data, error } = await supabase
       .from('premium_access')

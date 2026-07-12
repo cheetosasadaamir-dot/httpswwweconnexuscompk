@@ -274,7 +274,7 @@ const PriceFunctionsDiagram = () => {
       setActiveFunction((prev) => (prev + 1) % functions.length);
     }, 5000);
     
-    return () => clearInterval(interval);
+    return => clearInterval(interval);
   }, [isAutoPlaying]);
 
   const currentFunction = functions[activeFunction];

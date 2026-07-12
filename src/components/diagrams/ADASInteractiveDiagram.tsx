@@ -36,7 +36,7 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 520;

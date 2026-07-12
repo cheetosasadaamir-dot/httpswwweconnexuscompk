@@ -62,7 +62,7 @@ export const DiminishingReturnsEvaluativeJudgement = () => (
       the distinction between short run and long run becomes blurred, and increasing returns may dominate over relevant 
       output ranges. Exam responses should demonstrate awareness that the law's applicability "depends on" the nature of 
       the production process, the degree of capital indivisibility, and whether network or learning effects are present—this 
-      nuance elevates analysis from AO2 (application) to AO4 (evaluation).
+      nuance elevates analysis from (application) to (evaluation).
     </p>
   </EvaluativeJudgementSection>
 );

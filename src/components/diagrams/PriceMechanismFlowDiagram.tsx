@@ -20,7 +20,7 @@ const PriceMechanismFlowDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const PriceMechanismFlowDiagram = () => {
       const interval = setInterval(() => {
         setActiveStep((prev) => (prev + 1) % 5);
       }, 2500);
-      return () => clearInterval(interval);
+      return => clearInterval(interval);
     }
   }, [isVisible]);
 

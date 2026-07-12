@@ -26,7 +26,7 @@ const Dashboard = () => {
     }
   }, [user]);
 
-  const handleSignOut = async () => {
+  const handleSignOut = async => {
     await signOut();
     navigate('/login');
   };

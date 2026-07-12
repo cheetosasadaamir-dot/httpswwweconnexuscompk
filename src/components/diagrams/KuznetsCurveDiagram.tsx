@@ -12,7 +12,7 @@ export const KuznetsCurveDiagram = () => {
       { threshold: 0.2 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   return (
@@ -208,7 +208,7 @@ export const KuznetsCurveDiagram = () => {
           <strong className="text-amber-400">Senior Examiner's Analysis:</strong>{' '}
           Kuznets (1955) hypothesised that inequality follows an inverted-U path during development. Initially, as economies industrialise, 
           inequality rises due to the <em>dual economy</em> structure where a high-productivity modern sector coexists with low-productivity 
-          traditional agriculture. However, <strong className="text-cyan-400">AO4 evaluation</strong> reveals significant critique: the 
+          traditional agriculture. However, <strong className="text-cyan-400"> evaluation</strong> reveals significant critique: the 
           hypothesis was based on limited historical data and may not apply universally. Modern evidence shows that policy choices 
           (progressive taxation, education investment, labour market institutions) can break the 'iron law' of rising inequality—South Korea 
           and Taiwan achieved growth with equity, while Latin American experience suggests the curve is not deterministic.

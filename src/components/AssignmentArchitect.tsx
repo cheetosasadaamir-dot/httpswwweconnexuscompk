@@ -83,7 +83,7 @@ const AssignmentArchitect = () => {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const generate = async () => {
+  const generate = async => {
     if (!user) { setShowLogin(true); return; }
     if (!topic.trim()) { toast.error('Please enter an assignment topic'); return; }
 
@@ -159,7 +159,7 @@ const AssignmentArchitect = () => {
     }
   };
 
-  const copyOutput = async () => {
+  const copyOutput = async => {
     await navigator.clipboard.writeText(output);
     setCopied(true);
     toast.success('Copied to clipboard');
@@ -178,7 +178,7 @@ const AssignmentArchitect = () => {
 
   const baseName = `${subject}-${assignmentType}-${Date.now()}`;
   const exportPdf = () => { exportAsPdf(output, baseName); toast.success('PDF downloaded'); };
-  const exportDocx = async () => { await exportAsDocx(output, baseName); toast.success('Word file downloaded'); };
+  const exportDocx = async => { await exportAsDocx(output, baseName); toast.success('Word file downloaded'); };
 
   return (
     <section id="assignment-architect" className="section-mobile scroll-mt-20">

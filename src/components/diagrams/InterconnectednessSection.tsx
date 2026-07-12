@@ -115,7 +115,7 @@ const ValueOfMoneyContent: React.FC = () => {
         </div>
       </div>
 
-      <AnalysisBlock title="Diagram Analysis (AO3): The Inflation-Exchange Rate Nexus" type="analysis">
+      <AnalysisBlock title="Diagram Analysis: The Inflation-Exchange Rate Nexus" type="analysis">
         <div className="space-y-3">
           <p className="text-sm">
             <strong>Relative Purchasing Power Parity (PPP)</strong> suggests that exchange rates 
@@ -335,7 +335,7 @@ const PhillipsCurveContent: React.FC = () => {
         </div>
       </div>
 
-      <AnalysisBlock title="Critical Evaluation (AO4): Expectations-Augmented Phillips Curve" type="evaluation">
+      <AnalysisBlock title="Critical Evaluation: Expectations-Augmented Phillips Curve" type="evaluation">
         <div className="space-y-3">
           <p className="text-sm">
             <strong>Friedman's Critique:</strong> The short-run trade-off is only temporary. 
@@ -401,7 +401,7 @@ const PhillipsCurveDiagram: React.FC = () => {
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 520;

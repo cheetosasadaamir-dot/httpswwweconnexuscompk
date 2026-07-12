@@ -182,7 +182,7 @@ const ScholarDustParticles = () => {
 
     const animationId = requestAnimationFrame(animate);
 
-    return () => {
+    return => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);

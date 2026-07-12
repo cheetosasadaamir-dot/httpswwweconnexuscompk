@@ -133,7 +133,7 @@ const QuestionCard = ({
                       <BookOpen className="w-3 h-3 text-blue-400" />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-blue-400 mb-1">Knowledge (AO1)</p>
+                      <p className="text-xs font-semibold text-blue-400 mb-1">Knowledge</p>
                       <ul className="text-sm text-muted-foreground space-y-1">
                         {question.answerBlueprint.knowledge.map((point, i) => (
                           <li key={i} className="flex items-start gap-2">
@@ -152,7 +152,7 @@ const QuestionCard = ({
                       <TrendingUp className="w-3 h-3 text-green-400" />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-green-400 mb-1">Analysis (AO3)</p>
+                      <p className="text-xs font-semibold text-green-400 mb-1">Analysis</p>
                       <ul className="text-sm text-muted-foreground space-y-1">
                         {question.answerBlueprint.analysis.map((point, i) => (
                           <li key={i} className="flex items-start gap-2">
@@ -171,7 +171,7 @@ const QuestionCard = ({
                       <Scale className="w-3 h-3 text-purple-400" />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-purple-400 mb-1">Evaluation (AO4)</p>
+                      <p className="text-xs font-semibold text-purple-400 mb-1">Evaluation</p>
                       <ul className="text-sm text-muted-foreground space-y-1">
                         {question.answerBlueprint.evaluation.map((point, i) => (
                           <li key={i} className="flex items-start gap-2">

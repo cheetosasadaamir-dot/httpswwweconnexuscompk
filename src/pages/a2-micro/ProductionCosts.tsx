@@ -738,7 +738,7 @@ const ProductionCosts = () => {
           </div>
         </div>
 
-        <AnalysisBlock title="AO3 Chain: Output Comparison Across Objectives" type="analysis">
+        <AnalysisBlock title=" Chain: Output Comparison Across Objectives" type="analysis">
           <p>
             Starting from profit maximization (MC = MR), compare output levels:
             <strong className="text-cyan-400"> Profit Max:</strong> Q₁ where MC = MR; lowest output, highest price →

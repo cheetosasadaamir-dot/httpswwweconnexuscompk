@@ -24,7 +24,7 @@ const ContestableMarketsDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const curveVariants = {
@@ -266,7 +266,7 @@ const ContestableMarketsDiagram = () => {
         transition={{ delay: 2.2 }}
       >
         <p className="text-xs text-muted-foreground leading-relaxed">
-          <strong className="text-foreground">Chain of Analysis (AO3):</strong> Low sunk costs + freedom of entry → 
+          <strong className="text-foreground">Chain of Analysis:</strong> Low sunk costs + freedom of entry → 
           Market is <span className="text-cyan-400">contestable</span> → Incumbent faces <span className="text-amber-400">hit-and-run threat</span> → 
           If P &gt; AC, entrant can undercut, earn profit, and exit → Incumbent <span className="text-green-400">constrained to P = AC</span> → 
           Normal profit only, despite monopoly structure → <strong className="text-primary">Efficiency without competition</strong>. 

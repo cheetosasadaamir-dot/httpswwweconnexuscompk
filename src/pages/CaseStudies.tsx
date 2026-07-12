@@ -83,7 +83,7 @@ const CaseStudies = () => {
                 },
                 {
                   title: "Answer Blueprints",
-                  description: "AO1 (Knowledge), AO3 (Analysis), and AO4 (Evaluation) breakdown for each question",
+                  description: " (Knowledge), (Analysis), and (Evaluation) breakdown for each question",
                   icon: "📝"
                 },
                 {

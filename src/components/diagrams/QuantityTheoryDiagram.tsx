@@ -20,7 +20,7 @@ const QuantityTheoryDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   // MV = PT constants

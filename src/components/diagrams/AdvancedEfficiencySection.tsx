@@ -233,7 +233,7 @@ const ParetoOptimalityContent = () => {
       { threshold: 0.3 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const curveVariants = {
@@ -577,7 +577,7 @@ const WelfareTrianglesDiagram = () => {
       { threshold: 0.3 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   return (
@@ -912,7 +912,7 @@ const CostBenefitContent = () => {
       {/* Examiner Connection */}
       <div className="p-4 bg-gradient-to-r from-amber-500/10 to-transparent border-l-4 border-amber-500 rounded-r-lg">
         <p className="text-sm text-muted-foreground">
-          <strong className="text-amber-400">Examiner Focus (AO3/AO4):</strong> When evaluating CBA in essays, 
+          <strong className="text-amber-400">Examiner Focus:</strong> When evaluating CBA in essays, 
           always discuss the practical difficulty of <strong>monetizing externalities</strong>, the 
           <strong>time horizon problem</strong> (discount rates), and the <strong>equity dimension</strong> 
           (who wins, who loses). A top-band answer recognizes CBA as a useful <em>framework</em> while 

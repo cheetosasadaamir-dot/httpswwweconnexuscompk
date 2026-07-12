@@ -289,7 +289,7 @@ export const SRASShiftStagflationDiagram = () => {
 
       {/* Chain of Analysis */}
       <div className="mt-6 p-4 rounded-lg bg-slate-800/50 border border-red-500/30">
-        <h4 className="text-red-400 font-semibold mb-2 text-sm">Chain of Analysis (AO3)</h4>
+        <h4 className="text-red-400 font-semibold mb-2 text-sm">Chain of Analysis</h4>
         <p className="text-sm text-white/80 leading-relaxed">
           <strong>Trigger:</strong> Rise in imported raw material costs (e.g., oil price shock) → 
           <strong> Unit Cost Increase:</strong> Firms face higher costs of production at every output level → 
@@ -303,7 +303,7 @@ export const SRASShiftStagflationDiagram = () => {
       {/* Policy Dilemma */}
       <div className="mt-4 p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
         <p className="text-sm text-white/80">
-          <strong className="text-amber-400">Policy Dilemma (AO4):</strong> Stagflation presents policymakers with an impossible trade-off. Expansionary demand policy (shifting AD right) would combat the recession but exacerbate inflation. Contractionary policy would reduce inflation but deepen the output contraction. This explains why the 1970s oil shocks were so devastating—conventional demand management tools were impotent against a supply-side shock. The only solution is supply-side intervention to shift SRAS back rightward.
+          <strong className="text-amber-400">Policy Dilemma:</strong> Stagflation presents policymakers with an impossible trade-off. Expansionary demand policy (shifting AD right) would combat the recession but exacerbate inflation. Contractionary policy would reduce inflation but deepen the output contraction. This explains why the 1970s oil shocks were so devastating—conventional demand management tools were impotent against a supply-side shock. The only solution is supply-side intervention to shift SRAS back rightward.
         </p>
       </div>
     </div>

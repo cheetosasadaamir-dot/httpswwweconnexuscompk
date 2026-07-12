@@ -25,7 +25,7 @@ const LaborMarketDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   // Market diagram calculations

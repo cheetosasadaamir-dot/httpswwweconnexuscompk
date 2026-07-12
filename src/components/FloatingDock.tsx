@@ -224,7 +224,7 @@ const FloatingDock = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
   const isActive = (href: string) => location.pathname === href;

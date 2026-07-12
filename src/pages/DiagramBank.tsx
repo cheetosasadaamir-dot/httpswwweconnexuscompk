@@ -87,7 +87,7 @@ const DiagramBank = () => {
             <ConsumerProducerSurplusDiagram title="Figure 1.3: Consumer & Producer Surplus" />
           </div>
 
-          <AnalysisBlock title="AO3 Analysis: Economic Welfare" type="analysis">
+          <AnalysisBlock title=" Analysis: Economic Welfare" type="analysis">
             <ul className="space-y-2">
               <li><strong>Total welfare = Consumer Surplus + Producer Surplus</strong></li>
               <li><strong>Allocative efficiency:</strong> Achieved when total welfare is maximized (P = MC)</li>
@@ -110,7 +110,7 @@ const DiagramBank = () => {
             <DemandSupplyDiagram title="Figure 2.1: Market Equilibrium & Price Mechanism" />
           </div>
 
-          <AnalysisBlock title="AO3 Analysis: Price Mechanism Functions" type="analysis">
+          <AnalysisBlock title=" Analysis: Price Mechanism Functions" type="analysis">
             <ul className="space-y-2">
               <li><strong>Signaling:</strong> Price changes signal to producers and consumers about scarcity</li>
               <li><strong>Incentive:</strong> Higher prices incentivize increased supply; lower prices incentivize increased demand</li>
@@ -146,7 +146,7 @@ const DiagramBank = () => {
             <AllElasticityDiagrams />
           </div>
 
-          <AnalysisBlock title="AO3 Analysis: Elasticity Determinants" type="analysis">
+          <AnalysisBlock title=" Analysis: Elasticity Determinants" type="analysis">
             <ul className="space-y-2">
               <li><strong>Substitutes:</strong> More substitutes → more elastic</li>
               <li><strong>Necessities vs luxuries:</strong> Necessities → inelastic</li>
@@ -178,7 +178,7 @@ const DiagramBank = () => {
             <ExternalitiesDiagram title="Figure 4.1: Negative Production Externality with Welfare Loss" />
           </div>
 
-          <AnalysisBlock title="AO3 Analysis: Understanding Externalities" type="analysis">
+          <AnalysisBlock title=" Analysis: Understanding Externalities" type="analysis">
             <ul className="space-y-2">
               <li><strong>External cost:</strong> The vertical distance between MSC and MPC represents the external cost per unit</li>
               <li><strong>Overproduction:</strong> Free market produces at Q₁ (where MPC = MPB) instead of socially optimal Q*</li>
@@ -186,7 +186,7 @@ const DiagramBank = () => {
             </ul>
           </AnalysisBlock>
 
-          <AnalysisBlock title="AO4 Evaluation: Policy Interventions" type="evaluation" className="mt-6">
+          <AnalysisBlock title=" Evaluation: Policy Interventions" type="evaluation" className="mt-6">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <h5 className="font-semibold text-silver-bright mb-2">Pigouvian Tax (Strengths):</h5>
@@ -234,7 +234,7 @@ const DiagramBank = () => {
             <MonopolyDiagram title="Figure 5.1: Monopoly Supernormal Profit" />
           </div>
 
-          <AnalysisBlock title="AO3 Analysis: Monopoly Characteristics" type="analysis">
+          <AnalysisBlock title=" Analysis: Monopoly Characteristics" type="analysis">
             <ul className="space-y-2">
               <li><strong>Price maker:</strong> Monopolist faces downward-sloping demand (AR) curve</li>
               <li><strong>MR &lt; AR:</strong> Marginal revenue always below average revenue</li>
@@ -243,7 +243,7 @@ const DiagramBank = () => {
             </ul>
           </AnalysisBlock>
 
-          <AnalysisBlock title="AO4 Evaluation: Monopoly Efficiency" type="evaluation" className="mt-6">
+          <AnalysisBlock title=" Evaluation: Monopoly Efficiency" type="evaluation" className="mt-6">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <h5 className="font-semibold text-silver-bright mb-2">Arguments Against Monopoly:</h5>
@@ -281,7 +281,7 @@ const DiagramBank = () => {
             <KeynesianLRASDiagram title="Figure 7.1: Keynesian LRAS - Three Phases" />
           </div>
 
-          <AnalysisBlock title="AO3 Analysis: Keynesian LRAS Phases" type="analysis">
+          <AnalysisBlock title=" Analysis: Keynesian LRAS Phases" type="analysis">
             <ul className="space-y-2">
               <li><strong>Phase 1 (Elastic):</strong> Economy in deep recession, spare capacity allows output expansion without price increases</li>
               <li><strong>Phase 2 (Intermediate):</strong> Approaching full employment, bottlenecks cause gradual price rises as output expands</li>
@@ -289,7 +289,7 @@ const DiagramBank = () => {
             </ul>
           </AnalysisBlock>
 
-          <AnalysisBlock title="AO4 Evaluation: Policy Implications" type="evaluation" className="mt-6">
+          <AnalysisBlock title=" Evaluation: Policy Implications" type="evaluation" className="mt-6">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <h5 className="font-semibold text-silver-bright mb-2">Demand-Side Policies:</h5>
@@ -325,7 +325,7 @@ const DiagramBank = () => {
             <CircularFlowDiagram title="Figure 9.1: 4-Sector Circular Flow of Income" />
           </div>
 
-          <AnalysisBlock title="AO3 Analysis: Equilibrium in the Circular Flow" type="analysis">
+          <AnalysisBlock title=" Analysis: Equilibrium in the Circular Flow" type="analysis">
             <ul className="space-y-2">
               <li><strong>Equilibrium condition:</strong> Total Injections = Total Leakages (I + G + X = S + T + M)</li>
               <li><strong>Expansion:</strong> If J &gt; W, national income rises</li>
@@ -335,7 +335,7 @@ const DiagramBank = () => {
           </AnalysisBlock>
         </ContentSection>
 
-        <ExamTipBox title="AO4 Evaluation Language" variant="silver" className="mt-6">
+        <ExamTipBox title=" Evaluation Language" variant="silver" className="mt-6">
           <p>
             Use these Cambridge-standard evaluation phrases in your essays:
           </p>

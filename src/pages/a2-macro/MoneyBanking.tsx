@@ -210,7 +210,7 @@ const MoneyBanking = () => {
 
           {/* Senior Examiner's Conclusion */}
           <div className="mt-6 p-4 bg-gradient-to-r from-cambridge-orange/10 to-transparent border-l-4 border-cambridge-orange rounded-lg">
-            <h4 className="font-serif font-semibold text-cambridge-orange mb-2">Senior Examiner's Conclusion (AO4)</h4>
+            <h4 className="font-serif font-semibold text-cambridge-orange mb-2">Senior Examiner's Conclusion</h4>
             <p className="text-sm text-foreground/90 leading-relaxed text-justify">
               <strong>Ultimately, the efficacy of monetary policy is severely compromised during a Liquidity Trap.</strong> When the 
               demand for money is perfectly elastic, any increase in the money supply is simply hoarded by the public, failing to 
@@ -484,7 +484,7 @@ const MoneyBanking = () => {
 
           {/* Senior Examiner's Conclusion */}
           <div className="mt-6 p-4 bg-gradient-to-r from-cambridge-green/10 to-transparent border-l-4 border-cambridge-green rounded-lg">
-            <h4 className="font-serif font-semibold text-cambridge-green mb-2">Senior Examiner's Conclusion (AO4)</h4>
+            <h4 className="font-serif font-semibold text-cambridge-green mb-2">Senior Examiner's Conclusion</h4>
             <p className="text-sm text-foreground/90 leading-relaxed text-justify">
               <strong>In conclusion, even if interest rates fall, the impact on AD depends on the Marginal Efficiency of 
               Investment (MEI).</strong> During a deep recession, business pessimism—what Keynes termed "Animal Spirits"—may 
@@ -697,7 +697,7 @@ const MoneyBanking = () => {
 
           {/* Final Comprehensive Conclusion */}
           <div className="mt-6 p-5 bg-gradient-to-r from-cambridge-orange/15 via-cambridge-magenta/10 to-cambridge-cyan/10 border border-cambridge-orange/30 rounded-lg">
-            <h4 className="font-serif font-semibold text-cambridge-orange mb-3">Comprehensive A2 Evaluation: Monetary Policy Effectiveness (AO4)</h4>
+            <h4 className="font-serif font-semibold text-cambridge-orange mb-3">Comprehensive A2 Evaluation: Monetary Policy Effectiveness</h4>
             <div className="prose prose-invert max-w-none">
               <p className="text-sm text-foreground/90 leading-relaxed text-justify mb-3">
                 <strong>Ultimately, the effectiveness of monetary policy is contingent upon the economic environment in which 

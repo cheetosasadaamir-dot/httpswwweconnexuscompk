@@ -455,7 +455,7 @@ const MacroPolicyAimsSection = () => {
 
       {/* Summary Box */}
       <div className="p-3 bg-gradient-to-r from-primary/10 to-cambridge-cyan/10 rounded-lg mt-4">
-        <h4 className="font-semibold text-sm mb-2">Policy Aims Summary (AO1)</h4>
+        <h4 className="font-semibold text-sm mb-2">Policy Aims Summary</h4>
         <div className="grid md:grid-cols-5 gap-2 text-xs">
           <div className="text-center p-2 bg-background/50 rounded">
             <div className="font-semibold text-primary">Inflation</div>

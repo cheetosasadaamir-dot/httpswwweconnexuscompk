@@ -20,7 +20,7 @@ const MonetaryTransmissionDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const transmissionSteps = [

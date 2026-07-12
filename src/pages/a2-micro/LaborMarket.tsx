@@ -379,7 +379,7 @@ const LaborMarket = () => {
           </div>
         </section>
 
-        <AnalysisBlock title="AO3 Chain: Labor Demand and the MRP Curve" type="analysis">
+        <AnalysisBlock title=" Chain: Labor Demand and the MRP Curve" type="analysis">
           <p>
             <strong className="text-cyan-400">Starting Point:</strong> Firm operates with fixed capital and diminishing returns →
             <strong className="text-cyan-400"> Production Function:</strong> As more labor is hired, MPP initially rises then falls (Law of Diminishing Returns) →
@@ -518,7 +518,7 @@ const LaborMarket = () => {
             </div>
           </div>
 
-          <AnalysisBlock title="AO3 Chain: Monopsony Exploitation" type="analysis">
+          <AnalysisBlock title=" Chain: Monopsony Exploitation" type="analysis">
             <p>
               <strong className="text-cyan-400">Market Structure:</strong> Single employer dominates local labor market (e.g., NHS as major nurse employer) →
               <strong className="text-cyan-400"> Supply Curve:</strong> Firm faces upward-sloping supply; must raise wage to attract more workers →

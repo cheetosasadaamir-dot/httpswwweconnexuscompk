@@ -392,7 +392,7 @@ const GlossarySection = () => {
           </h2>
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Master the language of the Syllabus. These definitions are aligned with the 
-            2026-2028 Cambridge International Standards to ensure maximum AO1 marks.
+            2026-2028 Cambridge International Standards to ensure maximum marks.
           </p>
         </motion.div>
 

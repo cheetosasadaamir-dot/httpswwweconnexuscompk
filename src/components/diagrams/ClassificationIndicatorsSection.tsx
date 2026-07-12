@@ -368,7 +368,7 @@ const ClassificationIndicatorsSection = () => {
       {/* Examiner's Note */}
       <div className="p-4 bg-slate-800/50 border border-amber-500/30 rounded-lg">
         <h5 className="font-serif font-semibold text-amber-400 text-sm mb-2">
-          Senior Examiner's Integration Note (AO4)
+          Senior Examiner's Integration Note
         </h5>
         <p className="text-xs text-muted-foreground leading-relaxed text-justify">
           <strong>Synoptic Link:</strong> The classification framework connects directly to microeconomic market structures. 

@@ -320,11 +320,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO3 Logic Chain */}
+          {/*  Logic Chain */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-cyan-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-cyan-400">AO3</span> Chain of Analysis: Perfect Competition Long-Run Adjustment
+                <span className="text-cyan-400"></span> Chain of Analysis: Perfect Competition Long-Run Adjustment
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed space-y-0">
                 <p className="mb-0">
@@ -338,11 +338,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO4 Evaluation Block */}
+          {/*  Evaluation Block */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-amber-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-amber-400">AO4</span> Senior Examiner's Evaluation: Perfect Competition
+                <span className="text-amber-400"></span> Senior Examiner's Evaluation: Perfect Competition
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed space-y-4">
                 <p className="mb-0">
@@ -526,11 +526,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO3 Logic Chain */}
+          {/*  Logic Chain */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-purple-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-purple-400">AO3</span> Chain of Analysis: Monopolistic Competition Long-Run Adjustment
+                <span className="text-purple-400"></span> Chain of Analysis: Monopolistic Competition Long-Run Adjustment
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed">
                 <p className="mb-0">
@@ -544,11 +544,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO4 Evaluation Block */}
+          {/*  Evaluation Block */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-amber-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-amber-400">AO4</span> Senior Examiner's Evaluation: Monopolistic Competition
+                <span className="text-amber-400"></span> Senior Examiner's Evaluation: Monopolistic Competition
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed space-y-4">
                 <p className="mb-0">
@@ -778,11 +778,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO3 Logic Chain */}
+          {/*  Logic Chain */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-amber-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-amber-400">AO3</span> Chain of Analysis: Kinked Demand Curve Price Rigidity
+                <span className="text-amber-400"></span> Chain of Analysis: Kinked Demand Curve Price Rigidity
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed">
                 <p className="mb-0">
@@ -796,11 +796,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO4 Evaluation Block */}
+          {/*  Evaluation Block */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-amber-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-amber-400">AO4</span> Senior Examiner's Evaluation: Oligopoly Models
+                <span className="text-amber-400"></span> Senior Examiner's Evaluation: Oligopoly Models
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed space-y-4">
                 <p className="mb-0">
@@ -1039,11 +1039,11 @@ const MarketStructuresA2 = () => {
             </NoteCard>
           </div>
 
-          {/* AO3 Logic Chain */}
+          {/*  Logic Chain */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-red-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-red-400">AO3</span> Chain of Analysis: Monopoly Profit Maximization &amp; Welfare Loss
+                <span className="text-red-400"></span> Chain of Analysis: Monopoly Profit Maximization &amp; Welfare Loss
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed">
                 <p className="mb-0">
@@ -1057,11 +1057,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO4 Evaluation Block */}
+          {/*  Evaluation Block */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-amber-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-amber-400">AO4</span> Senior Examiner's Evaluation: Monopoly
+                <span className="text-amber-400"></span> Senior Examiner's Evaluation: Monopoly
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed space-y-4">
                 <p className="mb-0">
@@ -1147,11 +1147,11 @@ const MarketStructuresA2 = () => {
             className="mb-8"
           />
 
-          {/* AO3 Logic Chain */}
+          {/*  Logic Chain */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-cyan-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-cyan-400">AO3</span> Chain of Analysis: Hit-and-Run Entry Mechanism
+                <span className="text-cyan-400"></span> Chain of Analysis: Hit-and-Run Entry Mechanism
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed">
                 <p className="mb-0">
@@ -1166,11 +1166,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO4 Evaluation Block */}
+          {/*  Evaluation Block */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-amber-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-amber-400">AO4</span> Senior Examiner's Evaluation: Contestable Markets Theory
+                <span className="text-amber-400"></span> Senior Examiner's Evaluation: Contestable Markets Theory
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed space-y-4">
                 <p className="mb-0">
@@ -1290,11 +1290,11 @@ const MarketStructuresA2 = () => {
             </div>
           </div>
 
-          {/* AO4 Evaluation Block */}
+          {/*  Evaluation Block */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <div className="border-l-4 border-amber-500 pl-6">
               <h3 className="font-serif text-xl text-silver-bright mb-3 flex items-center gap-2">
-                <span className="text-amber-400">AO4</span> Senior Examiner's Evaluation: Firm Objectives
+                <span className="text-amber-400"></span> Senior Examiner's Evaluation: Firm Objectives
               </h3>
               <div className="text-muted-foreground text-justify leading-relaxed space-y-4">
                 <p className="mb-0">

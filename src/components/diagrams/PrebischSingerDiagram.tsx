@@ -12,7 +12,7 @@ export const PrebischSingerDiagram = () => {
       { threshold: 0.2 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   return (
@@ -257,7 +257,7 @@ export const PrebischSingerDiagram = () => {
       {/* Senior Examiner Analysis */}
       <div className="mt-4 p-4 rounded-lg bg-slate-800/50 border border-amber-500/30">
         <p className="text-sm text-white/80">
-          <strong className="text-amber-400">Senior Examiner's Evaluation (AO4):</strong>{' '}
+          <strong className="text-amber-400">Senior Examiner's Evaluation:</strong>{' '}
           The Prebisch-Singer Hypothesis provides the intellectual foundation for <strong>Import Substitution Industrialisation (ISI)</strong> 
           policies adopted by Latin American nations. However, <span className="text-cyan-400">modern critique</span> questions its universal 
           applicability: (1) commodity 'super-cycles' show periods of rising ToT (e.g., 2000s China boom); (2) quality improvements in 

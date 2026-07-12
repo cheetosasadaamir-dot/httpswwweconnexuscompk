@@ -32,7 +32,7 @@ const KeynesianLRASDiagram = ({ showADShifts = true }: KeynesianLRASProps) => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 560;

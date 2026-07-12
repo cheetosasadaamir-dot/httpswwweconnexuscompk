@@ -23,7 +23,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Positive economics deals with objective, testable statements about "what is" in the economy—claims that can be verified or falsified through empirical evidence. Option A captures this essence: fact-based and testable. Option B describes normative persuasion attempts. Option C defines normative statements (subjective, value-based). Option D conflates "positive" as an adjective meaning "good" with positive economics—a common misconception. The Cambridge syllabus emphasizes this distinction as fundamental to scientific economic analysis.',
-      examinerKey: { ao: 'AO1', topic: 'Positive and Normative Statements' }
+      examinerKey: { ao: '', topic: 'Positive and Normative Statements' }
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'The fundamental economic problem follows a logical sequence: Scarcity (unlimited wants, limited resources) creates the necessity for Choice (decisions about resource allocation), which generates Opportunity Cost (the next-best alternative foregone). Scarcity is the root cause, choice is the forced response, and opportunity cost is the consequence. Option C correctly orders this causal chain. Options A, B, and D disrupt the logical flow—you cannot have opportunity cost without first making choices, and choices are only necessary because scarcity exists.',
-      examinerKey: { ao: 'AO1', topic: 'The Fundamental Economic Problem' }
+      examinerKey: { ao: '', topic: 'The Fundamental Economic Problem' }
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Non-rivalry means consumption by one individual does not diminish another\'s ability to consume—the defining characteristic sought here. Option B precisely captures this: one person\'s consumption doesn\'t reduce availability to others (e.g., national defense protects all simultaneously). Option A describes non-excludability (the other public good characteristic). Option C describes information failure regarding merit goods. Option D is incorrect—public goods are not infinitely supplied, they simply don\'t deplete through use. Understanding both non-rivalry and non-excludability is essential for public goods analysis.',
-      examinerKey: { ao: 'AO1', topic: 'Public Goods' }
+      examinerKey: { ao: '', topic: 'Public Goods' }
     },
     {
       id: 4,
@@ -62,7 +62,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Human capital (skills, knowledge, health of workers) increases through education and training investment—the direct effect of increased spending on these areas. Physical capital (machinery, equipment, infrastructure) decreases because import taxes on machinery raise its cost, reducing quantity demanded and investment in physical capital. The policy represents a trade-off: enhancing worker capabilities while discouraging capital equipment acquisition. Option C correctly identifies both directional effects. This illustrates how policy choices involve opportunity costs across different forms of capital.',
-      examinerKey: { ao: 'AO2', topic: 'Human and Physical Capital' }
+      examinerKey: { ao: '', topic: 'Human and Physical Capital' }
     },
     {
       id: 5,
@@ -75,7 +75,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Outward PPC shifts indicate increased productive capacity—more of both goods can be produced. Technological advancement improves productivity, enabling greater output from existing resources, shifting the frontier outward. Option A (resource decrease) would shift PPC inward. Option B (price changes) affects demand, not production capacity—prices don\'t shift the PPC. Option C (increased employment) expands capacity and could shift PPC outward, but technology (D) is the cleaner answer as it enhances productivity directly. Both C and D could theoretically work, but technological improvement is the textbook cause of parallel outward shifts.',
-      examinerKey: { ao: 'AO2', topic: 'PPC Shifts' },
+      examinerKey: { ao: '', topic: 'PPC Shifts' },
       hasDiagram: true,
       diagramDescription: 'PPC shifting outward from PPC₁ to PPC₂'
     },
@@ -90,7 +90,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Analyzing both shifts: D₂ is leftward (decreased demand), S₂ is leftward (decreased supply). Option A: Income decrease reduces demand for normal goods (cars) → leftward demand shift. Production cost increase reduces supply → leftward supply shift. Both match. Option B would increase demand (cheaper complement) and increase supply (subsidy). Option C increases demand (loan availability) and decreases supply (tax). Option D increases demand (substitute costlier) and increases supply (more producers). Only Option A produces leftward shifts in both curves.',
-      examinerKey: { ao: 'AO2', topic: 'Simultaneous Demand and Supply Shifts' },
+      examinerKey: { ao: '', topic: 'Simultaneous Demand and Supply Shifts' },
       hasDiagram: true,
       diagramDescription: 'Demand shifting from D₁ to D₂ and supply from S₁ to S₂'
     },
@@ -105,7 +105,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Income elasticity of demand (YED) measures how quantity demanded responds to income changes. Negative YED means demand falls when income rises—the defining characteristic of inferior goods. Consumers substitute toward higher-quality alternatives as they become richer. Luxury goods have YED > 1 (highly income-elastic). Necessities have 0 < YED < 1 (positive but inelastic). Normal goods encompass both luxuries and necessities with positive YED. Only inferior goods exhibit the negative relationship where rising incomes reduce demand.',
-      examinerKey: { ao: 'AO1', topic: 'Income Elasticity of Demand' }
+      examinerKey: { ao: '', topic: 'Income Elasticity of Demand' }
     },
     {
       id: 8,
@@ -118,7 +118,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'PES = %ΔQ / %ΔP. Price change: ($2.20-$2.00)/$2.00 = 10%. From the diagram: Short-run quantity changes from 100 to 105 (5% increase). Short-run PES = 5%/10% = 0.5. Long-run quantity changes from 100 to 120 (20% increase). Long-run PES = 20%/10% = 2.0. This confirms the economic principle that supply is more elastic in the long run—firms can adjust all factors of production, expand capacity, and new firms can enter. Short-run fixed factors limit output response.',
-      examinerKey: { ao: 'AO2', topic: 'Price Elasticity of Supply' },
+      examinerKey: { ao: '', topic: 'Price Elasticity of Supply' },
       hasDiagram: true,
       diagramDescription: 'Short-run and long-run supply curves for bakery'
     },
@@ -133,7 +133,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Consumer surplus = area between demand curve and market price. A subsidy to producers shifts supply rightward, lowering equilibrium price and increasing quantity—both expand consumer surplus. Option A (cost increase) shifts supply left, raising price and reducing surplus. Option B (higher maximum price) allows higher prices, reducing surplus if binding. Option C (higher minimum price) has no effect if non-binding or reduces surplus/creates deadweight loss if binding above equilibrium. Only subsidies unambiguously and always increase consumer surplus by lowering what consumers pay.',
-      examinerKey: { ao: 'AO2', topic: 'Consumer Surplus' }
+      examinerKey: { ao: '', topic: 'Consumer Surplus' }
     },
     {
       id: 10,
@@ -146,7 +146,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Joint supply occurs when producing one good automatically yields another—they come from the same production process. Harvesting beehives produces both honey and beeswax simultaneously. Farmers want honey; birds want beeswax. This isn\'t rivalry (A)—they want different products. They\'re not free goods (B)—effort and resources are required for extraction. Opportunity cost (D) implies trade-off, but both are obtained together. Option C correctly identifies joint supply: increasing honey harvesting necessarily increases beeswax availability, the classic joint production relationship.',
-      examinerKey: { ao: 'AO2', topic: 'Joint Supply' }
+      examinerKey: { ao: '', topic: 'Joint Supply' }
     },
     {
       id: 11,
@@ -159,7 +159,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Tax incidence depends on relative elasticities—the more inelastic party bears more burden. With inelastic supply (D), producers cannot easily reduce quantity when the tax is imposed, forcing them to absorb more of the tax rather than pass it to consumers through higher prices. Graphically, inelastic supply means a steep supply curve; the vertical gap between pre- and post-tax equilibria shows larger producer-side loss. Elastic demand (A) would also shift burden to producers, but D is the direct supply-side answer. Inelastic demand (B) or elastic supply (C) would shift burden toward consumers.',
-      examinerKey: { ao: 'AO2', topic: 'Tax Incidence' }
+      examinerKey: { ao: '', topic: 'Tax Incidence' }
     },
     {
       id: 12,
@@ -172,7 +172,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Wealth is a stock concept—total value of assets at a point in time. Income (including wages) is a flow concept—value received over a period. Option D (wages) represents income, not wealth, so it wouldn\'t be included in wealth calculations. Options A (property), B (savings), and C (financial assets) are all asset categories that constitute wealth. Wages might contribute to wealth accumulation over time if saved, but wages themselves are income flows distinct from the stock of wealth. This stock-flow distinction is fundamental to economic measurement.',
-      examinerKey: { ao: 'AO1', topic: 'Income and Wealth' }
+      examinerKey: { ao: '', topic: 'Income and Wealth' }
     },
     {
       id: 13,
@@ -185,7 +185,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Education is a merit good—it generates positive externalities and is underconsumed when left to market forces due to information failure. Children and parents may not fully appreciate long-term benefits (higher earnings, better health, civic participation), leading to suboptimal demand. Government provision corrects this by ensuring consumption regardless of private willingness to pay. Option B is backwards—merit goods are underconsumed, not overconsumed. Option C is incorrect—education is excludable and rivalrous, not a public good. Option D inverts the relationship—private benefits do exist, but external benefits are additionally present.',
-      examinerKey: { ao: 'AO2', topic: 'Merit Goods' }
+      examinerKey: { ao: '', topic: 'Merit Goods' }
     },
     {
       id: 14,
@@ -198,7 +198,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Maximum prices below equilibrium typically create shortages. However, if supply simultaneously increases (shifting right), the new supply curve may intersect demand at or above Pmax. If the new equilibrium price falls to Pmax or below, the price ceiling becomes non-binding and a normal market equilibrium establishes at the legal price. The supply increase lowers the market-clearing price, potentially to the level of Pmax. Option A correctly identifies that increased supply can eliminate the shortage that would otherwise result from a price ceiling.',
-      examinerKey: { ao: 'AO3', topic: 'Price Ceilings' },
+      examinerKey: { ao: '', topic: 'Price Ceilings' },
       hasDiagram: true,
       diagramDescription: 'Rice market with maximum price and supply shift'
     },
@@ -213,7 +213,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Income support requires government purchases when market prices fall below guarantee levels, or direct payments to make up shortfalls. Analyzing each year: when supply increases (shifting S right), market price falls below support level, requiring intervention. Years with supply at S3 and S4 (abundant harvests) generate the largest price gaps requiring compensation. Without seeing exact numbers, the calculation involves: (guaranteed price - market price) × quantity for each year\'s shortfall. The $6000 total reflects cumulative intervention costs across years with price-depressing bumper crops.',
-      examinerKey: { ao: 'AO3', topic: 'Agricultural Price Supports' },
+      examinerKey: { ao: '', topic: 'Agricultural Price Supports' },
       hasDiagram: true,
       diagramDescription: 'Four supply curves showing varying harvest levels'
     },
@@ -228,7 +228,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'CPI is a weighted average—products carry different weights based on typical household expenditure patterns. Price stability (unchanged CPI) can occur through various combinations: some prices rising, others falling, with weights determining overall effect. A large-weight item\'s price fall can offset small-weight items\' price rises. Options A and C incorrectly require uniform price behavior. Option B ignores weights—equal numbers of risers/fallers doesn\'t guarantee stability unless weights are equal. Option D correctly recognizes that the weighting system creates multiple paths to aggregate price stability.',
-      examinerKey: { ao: 'AO2', topic: 'Consumer Price Index' }
+      examinerKey: { ao: '', topic: 'Consumer Price Index' }
     },
     {
       id: 17,
@@ -241,7 +241,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Circular flow equilibrium requires total injections (I + G + X) to equal total withdrawals (S + T + M). When injections exceed withdrawals, national income rises; when withdrawals exceed injections, income falls. Only when they\'re equal is the economy in equilibrium. Option A conflates investment types irrelevantly. Options C and D describe balanced individual components, but equilibrium doesn\'t require each injection-withdrawal pair to balance—only that totals match. Government deficits can be offset by trade surpluses, for instance. Option B states the fundamental equilibrium condition.',
-      examinerKey: { ao: 'AO2', topic: 'Circular Flow of Income' }
+      examinerKey: { ao: '', topic: 'Circular Flow of Income' }
     },
     {
       id: 18,
@@ -254,7 +254,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'The wealth effect explains AD\'s downward slope: lower price levels increase the real value of money-denominated assets (savings, bonds), making households feel wealthier and increasing consumption. Option D captures this. Option A describes the opposite effect—lower domestic prices should reduce imports, not increase them (the net export effect supports downward slope). Option B describes productivity, an aggregate supply concept. Option C is confused—high price levels typically reduce consumption. The three main AD slope explanations are: wealth effect (D), interest rate effect, and international trade effect.',
-      examinerKey: { ao: 'AO2', topic: 'Aggregate Demand' }
+      examinerKey: { ao: '', topic: 'Aggregate Demand' }
     },
     {
       id: 19,
@@ -267,7 +267,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Frictional unemployment arises from job search time—workers between jobs seeking their best match. Information gaps (not knowing about vacancies) prolong search, creating frictional unemployment. Option B identifies this search friction directly. Option A describes structural unemployment (skills mismatch). Option C describes technological unemployment (a structural cause). Option D might affect labor mobility but isn\'t the core frictional mechanism. Frictional unemployment is natural, short-term, and reducible through better job-matching services—addressing the information problem in Option B.',
-      examinerKey: { ao: 'AO2', topic: 'Types of Unemployment' }
+      examinerKey: { ao: '', topic: 'Types of Unemployment' }
     },
     {
       id: 20,
@@ -280,7 +280,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'National income measures market transactions and formal economic activity. Lost ticket revenue ($600,000) represents foregone economic output directly reducing national income. Lost government tax revenue ($40,000) reflects reduced economic activity. These total $640,000 in reduced recorded income. Extra leisure value ($20,000) isn\'t recorded in national income accounts—it\'s imputed value. Police overtime ($30,000) is government expenditure that actually adds to recorded national income (G component of GDP). Option C ($640,000 = $600,000 + $40,000) correctly identifies the reduction in measured economic output.',
-      examinerKey: { ao: 'AO3', topic: 'National Income Measurement' }
+      examinerKey: { ao: '', topic: 'National Income Measurement' }
     },
     {
       id: 21,
@@ -293,7 +293,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Expansionary monetary policy increases money supply and/or reduces interest rates to boost aggregate demand. Exchange rate depreciation (B) is often a monetary policy outcome: lower interest rates reduce capital inflows, depreciating the currency, which boosts net exports—an expansionary effect. Option A (reduced credit) is contractionary. Options C and D are fiscal/supply-side policies, not monetary. While central banks may not directly target exchange rates, the relationship between monetary easing and currency depreciation makes B the best answer for "monetary policy" classification.',
-      examinerKey: { ao: 'AO2', topic: 'Monetary Policy' }
+      examinerKey: { ao: '', topic: 'Monetary Policy' }
     },
     {
       id: 22,
@@ -306,7 +306,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Higher direct taxes reduce disposable income, decreasing consumption and aggregate demand. Effects: Economic growth becomes less likely (reduced AD constrains output growth). Low inflation becomes more likely (reduced demand pressure on prices). Low unemployment becomes less likely (reduced AD means firms need fewer workers). Option C correctly captures all three effects of contractionary fiscal policy. The policy involves a trade-off: achieving fiscal consolidation and price stability at the cost of growth and employment—the classic macroeconomic policy dilemma.',
-      examinerKey: { ao: 'AO3', topic: 'Fiscal Policy Trade-offs' }
+      examinerKey: { ao: '', topic: 'Fiscal Policy Trade-offs' }
     },
     {
       id: 23,
@@ -319,7 +319,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Tax classification depends on how the average tax rate changes with income. With a $10,000 allowance and 25% rate: at $20,000 income, tax = $2,500 (12.5% average rate). At $50,000, tax = $10,000 (20% average rate). At $100,000, tax = $22,500 (22.5% average rate). Average tax rate rises with income—the definition of progressive taxation. The tax-free allowance creates progressivity even with a flat marginal rate. Proportional would have constant average rate; regressive would have falling average rate with income. Ad valorem describes percentage taxes on value, not a progressivity classification.',
-      examinerKey: { ao: 'AO2', topic: 'Tax Systems' }
+      examinerKey: { ao: '', topic: 'Tax Systems' }
     },
     {
       id: 24,
@@ -332,7 +332,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'The IMF was established at Bretton Woods (1944) to promote international monetary cooperation and financial stability. Its core function is providing short-term loans to countries facing balance of payments crises, conditional on policy reforms (structural adjustment programs). Option A describes World Bank/regional development bank functions. Option C describes development objectives but isn\'t the IMF\'s primary mandate. Option D describes WTO\'s role. The IMF specifically addresses currency crises, foreign exchange instability, and external imbalances through its lending facilities.',
-      examinerKey: { ao: 'AO1', topic: 'International Monetary Fund' }
+      examinerKey: { ao: '', topic: 'International Monetary Fund' }
     },
     {
       id: 25,
@@ -345,7 +345,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'The current account records: trade in goods (exports/imports), trade in services, primary income (investment returns, wages), and secondary income (transfers). Options B, C, and D all describe capital/financial account items: FDI involves acquiring productive assets abroad; portfolio investment means buying foreign securities; short-term capital flows include deposits and loans. The goods trade balance (visible trade) is the largest component of most countries\' current accounts, making Option A correct. Services, income flows, and transfers are also current account items but goods dominate.',
-      examinerKey: { ao: 'AO1', topic: 'Balance of Payments' }
+      examinerKey: { ao: '', topic: 'Balance of Payments' }
     },
     {
       id: 26,
@@ -358,7 +358,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Exchange rate depreciation (B) boosts competitiveness: exports become cheaper for foreigners, imports costlier for domestic buyers. This improves the current account (assuming Marshall-Lerner condition holds) while simultaneously stimulating aggregate demand through net export growth, supporting economic growth. Option A increases growth but worsens current account (higher income → more imports). Option C may improve current account through reduced imports but slows growth. Option D worsens current account (cheaper imports) while having ambiguous growth effects. Only B achieves both objectives.',
-      examinerKey: { ao: 'AO3', topic: 'Exchange Rates and Policy Objectives' }
+      examinerKey: { ao: '', topic: 'Exchange Rates and Policy Objectives' }
     },
     {
       id: 27,
@@ -371,7 +371,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Tariff reduction lowers import prices, benefiting consumers through: lower prices (opposite of A), greater choice, and increased consumer surplus—all improving consumer welfare (B). Domestic production falls as imports become more competitive (opposite of C). Government revenue from tariffs declines (opposite of D). While domestic producers lose protection, the gain to consumers typically exceeds producer losses plus revenue loss, creating net welfare improvement. This is the standard free trade argument: reducing tariffs increases total surplus despite redistributive effects.',
-      examinerKey: { ao: 'AO2', topic: 'Tariffs and Welfare' }
+      examinerKey: { ao: '', topic: 'Tariffs and Welfare' }
     },
     {
       id: 28,
@@ -384,7 +384,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Trade bloc progression: Free trade area (internal tariff removal, independent external tariffs) → Customs union (adds common external tariff) → Common market (adds factor mobility) → Single market/Economic union (adds policy harmonization). A customs union has: free internal trade plus common external tariff, but without labor/capital mobility. Option A (common market) includes factor mobility. Option C (FTA) lacks common external tariff. Option D (single market) includes deep integration beyond customs union. Option B correctly identifies the customs union characteristics.',
-      examinerKey: { ao: 'AO1', topic: 'Trading Blocs' }
+      examinerKey: { ao: '', topic: 'Trading Blocs' }
     },
     {
       id: 29,
@@ -397,7 +397,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Flexible exchange rates allow market forces to determine currency values without central bank intervention. The rate adjusts automatically to balance supply and demand, eliminating need for reserve accumulation or interest rate defense of a peg. Option A describes fixed rate advantages (certainty). Options C and D may or may not occur—flexible rates can actually import inflation through depreciation. The key flexible rate advantage is monetary policy independence (impossible trinity) and reduced intervention burden. Central banks can focus on domestic objectives rather than exchange rate targeting.',
-      examinerKey: { ao: 'AO2', topic: 'Exchange Rate Systems' }
+      examinerKey: { ao: '', topic: 'Exchange Rate Systems' }
     },
     {
       id: 30,
@@ -410,7 +410,7 @@ export const paper9708_12_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Customs union defining feature: common external tariff (CET). All members must impose identical tariffs on imports from non-members, preventing tariff circumvention through lowest-tariff member states. Option A describes monetary union (e.g., Eurozone), not required for customs union. Option B describes common market features beyond customs union. Option D is incorrect—customs unions maintain barriers against non-members; only internal barriers are removed. Option C correctly identifies the CET requirement that distinguishes customs unions from free trade areas.',
-      examinerKey: { ao: 'AO1', topic: 'Customs Unions' }
+      examinerKey: { ao: '', topic: 'Customs Unions' }
     }
   ]
 };
@@ -435,7 +435,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Budget line shifts occur through income or price changes. A parallel inward shift from QR to ST (both intercepts moving toward origin proportionally) indicates reduced purchasing power at every combination. If both prices increase proportionally, the consumer can afford less of both goods—the budget line shifts inward while maintaining slope. Option A (real income decrease) would have same effect. Option C (money income increase) shifts line outward. Option B (quality change) doesn\'t affect budget constraints. Option D correctly identifies proportional price increases causing the parallel inward shift.',
-      examinerKey: { ao: 'AO2', topic: 'Budget Lines' },
+      examinerKey: { ao: '', topic: 'Budget Lines' },
       hasDiagram: true,
       diagramDescription: 'Budget line shift from QR to ST'
     },
@@ -450,7 +450,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Allocative efficiency occurs when resources produce the combination of goods most valued by society—satisfied when P = MC for all goods. In perfect competition equilibrium, price (reflecting marginal consumer valuation) equals marginal cost (reflecting resource sacrifice), achieving this condition. Option B describes equity or accessibility, not efficiency. Option C describes productive efficiency (minimum cost production). Option D conflates profit levels with efficiency. Only competitive equilibrium (A) systematically generates P = MC across all markets, the precise condition for allocative efficiency.',
-      examinerKey: { ao: 'AO2', topic: 'Allocative Efficiency' }
+      examinerKey: { ao: '', topic: 'Allocative Efficiency' }
     },
     {
       id: 3,
@@ -463,7 +463,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Utility maximization requires MUx/Px = MUy/Py (equi-marginal principle). If MUy falls while prices remain constant, the ratio MUy/Py decreases. To restore equilibrium: reduce Y consumption (raising MUy due to diminishing marginal utility) and increase X consumption (lowering MUx). Option B describes this rebalancing. Option A reverses the direction. Options C and D only adjust one good—but budget constraint and optimization require coordinated adjustment. The rational consumer substitutes away from the less-satisfying good toward the alternative.',
-      examinerKey: { ao: 'AO2', topic: 'Consumer Choice Theory' }
+      examinerKey: { ao: '', topic: 'Consumer Choice Theory' }
     },
     {
       id: 4,
@@ -476,7 +476,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Moral hazard occurs when one party changes behavior because they don\'t bear the full consequences of their actions—risk is shifted to another party. Option C precisely describes this: taking risks when others bear the cost (e.g., insured driver being reckless). Option A describes general information asymmetry. Option B describes negative externalities. Option D describes adverse selection conditions. The distinction matters: moral hazard involves behavioral change after contract formation, typically in insurance contexts where the insured party has less incentive for caution once covered.',
-      examinerKey: { ao: 'AO1', topic: 'Moral Hazard' }
+      examinerKey: { ao: '', topic: 'Moral Hazard' }
     },
     {
       id: 5,
@@ -489,7 +489,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Diseconomies of scale occur when long-run average cost rises as output increases—the upward-sloping portion of LRAC. This happens beyond minimum efficient scale due to coordination problems, communication failures, and managerial inefficiencies in very large firms. Option C (upward-sloping LRAC) directly shows diseconomies. Options A and B describe SRAC-LRAC relationships, not scale economies. Option D shows the entire LRAC curve including both economies and diseconomies. The question specifically asks for diseconomies, which is only the rising segment.',
-      examinerKey: { ao: 'AO2', topic: 'Economies and Diseconomies of Scale' },
+      examinerKey: { ao: '', topic: 'Economies and Diseconomies of Scale' },
       hasDiagram: true,
       diagramDescription: 'Four different cost curve configurations'
     },
@@ -504,7 +504,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Monopolistic competition features: many firms, differentiated products, low barriers, independent decision-making. Market share gains come through successful product differentiation—branding, quality perception, customer loyalty—achieved largely through advertising. Options A, B, and C contradict the market structure: barriers would create oligopoly/monopoly; collusion requires fewer firms with strategic interaction; lack of competition contradicts the "competition" in monopolistic competition. Only advertising (D) works within the structure, enhancing product differentiation to capture customers from rivals.',
-      examinerKey: { ao: 'AO2', topic: 'Monopolistic Competition' }
+      examinerKey: { ao: '', topic: 'Monopolistic Competition' }
     },
     {
       id: 7,
@@ -517,7 +517,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Horizontal mergers (same industry, similar products) typically yield: bulk-buying discounts (A), technical economies from larger production runs (B), and managerial economies from eliminating duplicate functions (C). However, Option D—reduced supplier dependence—would require vertical integration (merging with suppliers), not horizontal integration. Combining two manufacturers doesn\'t reduce reliance on external raw material suppliers; both still need the same inputs. This makes D the least convincing horizontal merger justification.',
-      examinerKey: { ao: 'AO3', topic: 'Mergers and Integration' }
+      examinerKey: { ao: '', topic: 'Mergers and Integration' }
     },
     {
       id: 8,
@@ -530,7 +530,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'When MSB < MPB, consumption generates negative externalities—private benefit exceeds social benefit (e.g., alcohol causing social costs). The good is overconsumed in free markets. Correction requires reducing consumption to socially optimal level. A per unit tax (D) raises price, reducing quantity demanded toward optimal level and internalizing external costs. Subsidies (A) would increase consumption. More competition (B) lowers price, increasing consumption. Maximum price above equilibrium (C) is non-binding. Only taxation addresses the overconsumption problem.',
-      examinerKey: { ao: 'AO2', topic: 'Negative Externalities' }
+      examinerKey: { ao: '', topic: 'Negative Externalities' }
     },
     {
       id: 9,
@@ -543,7 +543,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Government failure occurs when intervention creates unintended negative consequences or fails to achieve objectives efficiently. Options A and B are intended benefits of the smoking ban—successful policy outcomes, not failures. Option D represents substitution toward harm reduction, generally positive. Option C identifies an unintended negative consequence: displacing smokers outdoors increases litter around building entrances. This is government failure—the regulation achieved health goals but created an environmental externality not anticipated in policy design.',
-      examinerKey: { ao: 'AO2', topic: 'Government Failure' }
+      examinerKey: { ao: '', topic: 'Government Failure' }
     },
     {
       id: 10,
@@ -556,7 +556,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'The poverty trap describes situations where earning more income provides little net benefit because additional earnings trigger benefit withdrawal plus increased tax, creating effective marginal tax rates near or exceeding 100%. The scenario describes someone already working (ruling out unemployment trap—D, which concerns incentives to take work). Liquidity trap (B) is a monetary policy concept. Employment trap (A) isn\'t standard terminology. Poverty trap (C) correctly describes the described situation: disincentive to increase earnings when already in low-paid work due to high marginal deduction rates.',
-      examinerKey: { ao: 'AO1', topic: 'Poverty Trap' }
+      examinerKey: { ao: '', topic: 'Poverty Trap' }
     },
     {
       id: 11,
@@ -569,7 +569,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Property rights enable owners to capture returns from resource use, providing incentives for: conservation when value appreciation is expected (A), careful management to maintain value (B), and accountability for externalities through liability (C). Option D reverses the logic—property rights enable owners to benefit from using resources productively, including when those uses benefit others (through market exchange). Far from preventing gains, property rights are the mechanism through which owners profit from beneficial resource use. D is the false statement.',
-      examinerKey: { ao: 'AO2', topic: 'Property Rights' }
+      examinerKey: { ao: '', topic: 'Property Rights' }
     },
     {
       id: 12,
@@ -582,7 +582,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Monopsony employers restrict employment below competitive levels by using wage-setting power—they hire where MCL = MRP at wage below competitive level, creating unemployment among willing workers. A minimum wage at W₁ (above monopsony wage, at or near competitive level) flattens the effective labor supply curve, encouraging the monopsonist to hire more workers. Unemployment decreases as employment expands toward competitive levels. This is the counter-intuitive result where minimum wages can increase employment in monopsonistic markets—opposite to competitive market predictions.',
-      examinerKey: { ao: 'AO2', topic: 'Monopsony and Minimum Wage' },
+      examinerKey: { ao: '', topic: 'Monopsony and Minimum Wage' },
       hasDiagram: true,
       diagramDescription: 'Monopsony labor market with minimum wage'
     },
@@ -597,7 +597,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Labor supply is determined by: population factors (emigration—A), participation decisions (participation rate—B), and work incentives (benefits affecting reservation wage—D). Productivity (C) affects labor demand (higher productivity → higher MRP → rightward demand shift) not supply. A more productive worker is more valuable to employers but doesn\'t change how many hours workers wish to supply at each wage. Supply determinants focus on worker decisions; productivity is a characteristic affecting what employers are willing to pay.',
-      examinerKey: { ao: 'AO2', topic: 'Labor Supply Determinants' }
+      examinerKey: { ao: '', topic: 'Labor Supply Determinants' }
     },
     {
       id: 14,
@@ -610,7 +610,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Transfer earnings represent the minimum payment needed to keep workers in their current occupation—their opportunity cost. Graphically, this is the area under the labor supply curve up to the employment level, as the supply curve shows the minimum wage at which each additional worker is willing to work. Areas below the supply curve (where workers would have accepted less than the going wage) represent transfer earnings. The area between the wage line and supply curve represents economic rent. Without seeing the exact diagram, areas closest to the origin under the supply curve would be transfer earnings.',
-      examinerKey: { ao: 'AO2', topic: 'Transfer Earnings and Economic Rent' },
+      examinerKey: { ao: '', topic: 'Transfer Earnings and Economic Rent' },
       hasDiagram: true,
       diagramDescription: 'Labor market diagrams with labeled areas'
     },
@@ -625,7 +625,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'The multiplier effect describes how an initial injection generates successive rounds of spending, producing a final change in GDP larger than the original injection. k = ΔY/ΔI where ΔY > ΔI due to the multiplier k > 1. Option D correctly identifies this concept. Autonomous investment (A) is investment independent of income levels. Demand-pull inflation (B) describes price increases from excess demand. The accelerator (C) describes how GDP changes induce investment changes—the reverse relationship. The question\'s phrasing "initial injection causes larger GDP increase" is the textbook multiplier definition.',
-      examinerKey: { ao: 'AO1', topic: 'The Multiplier' }
+      examinerKey: { ao: '', topic: 'The Multiplier' }
     },
     {
       id: 16,
@@ -638,7 +638,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'When real income falls but consumption is maintained, consumers must spend more than their income would normally support at that real income level—they\'re spending independently of (or despite) income changes. Autonomous consumption is the spending that occurs regardless of income level, while induced consumption depends on income. Maintaining living standards during real income decline requires increasing autonomous consumption (drawing on savings or borrowing). Induced spending would fall with income; saving would decrease, not increase. Option A correctly identifies the autonomous consumption increase.',
-      examinerKey: { ao: 'AO2', topic: 'Consumption Function' }
+      examinerKey: { ao: '', topic: 'Consumption Function' }
     },
     {
       id: 17,
@@ -651,7 +651,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Automatic stabilizers dampen economic fluctuations without discretionary policy action. Progressive taxation: during booms, rising incomes push taxpayers into higher brackets, automatically increasing tax take and restraining demand; during recessions, incomes fall into lower brackets, reducing tax burden and supporting spending. Means-tested benefits: automatically increase during downturns as more people qualify, injecting spending; automatically decrease during booms as fewer qualify. Option A combines both stabilizing mechanisms. Regressive taxes and universal benefits would be less responsive to income changes.',
-      examinerKey: { ao: 'AO2', topic: 'Automatic Stabilizers' }
+      examinerKey: { ao: '', topic: 'Automatic Stabilizers' }
     },
     {
       id: 18,
@@ -664,7 +664,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Recession is technically defined as sustained decline in GDP (often two consecutive quarters of negative growth). From the diagram showing short-term GDP fluctuating around long-term trend: identify where short-term GDP falls below the long-term trend, indicating output gap and declining activity. The longest such period represents the answer. Based on typical cyclical patterns shown, 2030 to 2035 (Option C) likely represents the extended downturn phase where actual GDP remains below potential. Other periods may show shorter or partial declines.',
-      examinerKey: { ao: 'AO2', topic: 'Economic Cycles' },
+      examinerKey: { ao: '', topic: 'Economic Cycles' },
       hasDiagram: true,
       diagramDescription: 'GDP forecast showing short-term fluctuations around long-term trend'
     },
@@ -679,7 +679,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Quantitative easing transmission: Central bank BUYS government assets (injecting reserves into banking system) → increased liquidity causes short-term interest rates to FALL → lower borrowing costs cause investment to RISE → higher aggregate demand increases real GDP. The mechanism involves asset purchases (not sales), rate reductions (not increases), and investment growth. Option A correctly traces: purchase → rate fall → investment rise. Option C with "sells" would be quantitative tightening. Option B has rates rising which contradicts QE\'s purpose.',
-      examinerKey: { ao: 'AO2', topic: 'Quantitative Easing' },
+      examinerKey: { ao: '', topic: 'Quantitative Easing' },
       hasDiagram: true,
       diagramDescription: 'Monetary transmission mechanism flowchart with gaps'
     },
@@ -694,7 +694,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Hysteresis in unemployment describes how cyclical unemployment becomes structural—temporary joblessness creates permanent damage. The mechanism: prolonged unemployment causes skill atrophy (C), workers become unemployable even when demand recovers. Interest rate cuts may boost aggregate demand, but hysteresis-affected workers can\'t respond because they\'ve lost relevant skills and employability. Options A, B, and D describe standard monetary policy effects (investment up, saving down, money supply up) that should reduce unemployment—they don\'t explain why policy fails. Skill degradation (C) explains the structural barrier.',
-      examinerKey: { ao: 'AO2', topic: 'Hysteresis' }
+      examinerKey: { ao: '', topic: 'Hysteresis' }
     },
     {
       id: 21,
@@ -707,7 +707,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'Raising interest rates to reduce inflation directly targets price stability—the textbook anti-inflation monetary policy. Higher rates reduce aggregate demand through consumption and investment channels, dampening demand-pull inflationary pressure. Option A is irrelevant in a closed economy (no external trade). Options B and C would be harmed by rate increases (slower growth, higher unemployment). Only Option D (stable prices) is the intended objective of contractionary monetary policy aimed at reducing inflation.',
-      examinerKey: { ao: 'AO1', topic: 'Monetary Policy Objectives' }
+      examinerKey: { ao: '', topic: 'Monetary Policy Objectives' }
     },
     {
       id: 22,
@@ -720,7 +720,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Currency devaluation raises import prices, feeding directly into inflation—imported inflation makes the 3% target harder to achieve. Options B, C, and D are all disinflationary: higher interest rates reduce demand-pull pressure (B), higher taxes reduce disposable income and spending (C), and productivity-linked wages prevent cost-push spirals (D). Only Option A creates inflationary pressure. While trade surplus suggests competitiveness gains, the devaluation mechanism increases import costs, pushing inflation above target despite improving external balance.',
-      examinerKey: { ao: 'AO2', topic: 'Inflation Targeting' }
+      examinerKey: { ao: '', topic: 'Inflation Targeting' }
     },
     {
       id: 23,
@@ -733,7 +733,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Lower interest rates affect both currency values negatively. Internal value (purchasing power): rate cuts stimulate spending, potentially causing inflation which erodes purchasing power—internal value falls. External value (exchange rate): lower rates reduce returns on domestic assets, causing capital outflows and currency depreciation—external value falls. Both dimensions decline. Options with rising values contradict standard monetary transmission mechanisms. Option A correctly identifies the dual decline in currency value from expansionary monetary policy.',
-      examinerKey: { ao: 'AO2', topic: 'Interest Rates and Currency Values' }
+      examinerKey: { ao: '', topic: 'Interest Rates and Currency Values' }
     },
     {
       id: 24,
@@ -746,7 +746,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Increased national debt (government borrowing) raises demand for loanable funds, putting upward pressure on interest rates—the crowding out mechanism. Government competes with private borrowers for available savings, driving up the price of credit. Option A would only occur if debt is monetized (central bank buys bonds). Option B may result from fiscal expansion but isn\'t a direct consequence of debt itself. Option D is optimistic and depends on how borrowed funds are used. Higher interest rates (C) are the most direct, predictable consequence of increased government borrowing.',
-      examinerKey: { ao: 'AO2', topic: 'National Debt Effects' }
+      examinerKey: { ao: '', topic: 'National Debt Effects' }
     },
     {
       id: 25,
@@ -759,7 +759,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'D',
       nexusReasoning: 'The Phillips curve, named after A.W. Phillips\'s 1958 study, depicts the inverse relationship between inflation (or wage growth) and unemployment. Low unemployment correlates with high inflation; high unemployment with low inflation. J-curve (A) shows trade balance response to devaluation over time. Kuznets curve (B) relates inequality to development level. Laffer curve (C) relates tax rates to tax revenue. Only Phillips curve (D) connects inflation and unemployment—the fundamental macroeconomic trade-off debated since its discovery.',
-      examinerKey: { ao: 'AO1', topic: 'Phillips Curve' }
+      examinerKey: { ao: '', topic: 'Phillips Curve' }
     },
     {
       id: 26,
@@ -772,7 +772,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Opportunity cost is the next-best alternative foregone. When joining a customs union, the country gains trade benefits (A, D) and adopts common external tariffs (B requirement, not cost). The sacrifice is sovereignty over trade policy—the country can no longer negotiate bilateral trade deals with non-members independently; it must negotiate collectively through the union. Option C identifies this foregone policy autonomy as the opportunity cost. Options A, B, and D describe features or benefits, not costs of membership.',
-      examinerKey: { ao: 'AO2', topic: 'Customs Union Opportunity Cost' }
+      examinerKey: { ao: '', topic: 'Customs Union Opportunity Cost' }
     },
     {
       id: 27,
@@ -785,7 +785,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'B',
       nexusReasoning: 'Long-run growth requires expanding productive capacity—shifting LRAS rightward through capital accumulation, productivity improvements, or labor force enhancement. Government investment (B) in infrastructure, education, or R&D directly increases the economy\'s productive potential. Subsidies on essentials (A) affect distribution, not capacity. Higher income taxes (C) reduce work incentives and investment—contractionary. Higher interest rates (D) reduce private investment. Only government investment (B) directly contributes to supply-side capacity expansion essential for sustained growth.',
-      examinerKey: { ao: 'AO2', topic: 'Supply-Side Policy' }
+      examinerKey: { ao: '', topic: 'Supply-Side Policy' }
     },
     {
       id: 28,
@@ -798,7 +798,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'A',
       nexusReasoning: 'Currency depreciation means each unit of domestic currency buys fewer units of foreign currency. Effects: Exports priced in domestic currency translate to fewer foreign currency units—making exports cheaper for foreign buyers. Imports priced in foreign currency require more domestic currency to purchase—making imports more expensive domestically. Option A correctly describes both effects: cheaper exports (boosting competitiveness) and costlier imports (encouraging import substitution). This combination, if elasticities are sufficient, improves the trade balance per Marshall-Lerner condition.',
-      examinerKey: { ao: 'AO2', topic: 'Exchange Rate Effects' }
+      examinerKey: { ao: '', topic: 'Exchange Rate Effects' }
     },
     {
       id: 29,
@@ -811,7 +811,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Current account deficits must be financed by capital account surpluses—foreigners acquire domestic assets (investment, loans, property) to fund the spending gap. Persistent deficits accumulate foreign claims on domestic assets, increasing foreign ownership. Option A contradicts balance of payments mechanics—deficits drain reserves, not accumulate them. Option B would worsen the deficit (more imports, fewer exports). Option D has no direct link to current account position. Only Option C correctly identifies the financing mechanism: capital inflows = foreign acquisition of domestic assets.',
-      examinerKey: { ao: 'AO2', topic: 'Current Account Deficits' }
+      examinerKey: { ao: '', topic: 'Current Account Deficits' }
     },
     {
       id: 30,
@@ -824,7 +824,7 @@ export const paper9708_32_s25: ExamPaper = {
       ],
       correctAnswer: 'C',
       nexusReasoning: 'Higher interest rates attract foreign capital seeking better returns—hot money flows and portfolio investment shift toward the higher-yielding country. Increased demand for domestic currency (needed to invest domestically) causes appreciation. Option C correctly links: rate increase → capital inflows → currency appreciation. Option A incorrectly suggests depreciation from cheaper imports. Option B reverses capital flow direction. Option D links appreciation to export competitiveness, which actually worsens with appreciation. The capital account channel dominates exchange rate determination in the short run.',
-      examinerKey: { ao: 'AO2', topic: 'Interest Rates and Exchange Rates' }
+      examinerKey: { ao: '', topic: 'Interest Rates and Exchange Rates' }
     }
   ]
 };

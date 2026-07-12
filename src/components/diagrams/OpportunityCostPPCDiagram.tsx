@@ -24,7 +24,7 @@ const OpportunityCostPPCDiagram = ({ type, title }: OpportunityCostPPCDiagramPro
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 360;

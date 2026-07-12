@@ -12,7 +12,7 @@ const FixedSearchHeader = () => {
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (

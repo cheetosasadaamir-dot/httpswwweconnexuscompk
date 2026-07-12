@@ -26,7 +26,7 @@ const GameTheoryDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const cellVariants = {
@@ -231,7 +231,7 @@ const GameTheoryDiagram = () => {
           transition={{ delay: 1.5 }}
         >
           <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Chain of Analysis (AO3):</strong> In a one-shot game, both firms choose their 
+            <strong className="text-foreground">Chain of Analysis:</strong> In a one-shot game, both firms choose their 
             <span className="text-red-400"> dominant strategy</span> (Low Price) → Nash Equilibrium at (£3m, £3m) → 
             <span className="text-amber-400"> Sub-optimal for both</span> compared to collusion → This "self-defeating rationality" 
             explains price wars, advertising spirals, and the welfare implications of oligopolistic competition. 

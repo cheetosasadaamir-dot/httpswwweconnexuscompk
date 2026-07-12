@@ -135,7 +135,7 @@ const OutputGapsContent: React.FC = () => {
       {/* Output Gaps Diagram */}
       <OutputGapsDiagram />
 
-      <AnalysisBlock title="Diagram Analysis (AO3): Output Gaps & AD Effectiveness" type="analysis">
+      <AnalysisBlock title="Diagram Analysis: Output Gaps & AD Effectiveness" type="analysis">
         <div className="space-y-3">
           <p className="text-sm">
             On an AD/AS diagram, a <strong>negative output gap</strong> corresponds to equilibrium 
@@ -288,7 +288,7 @@ const LafferCurveContent: React.FC = () => {
         </div>
       </div>
 
-      <AnalysisBlock title="Critical Evaluation (AO4): Laffer Curve Limitations" type="evaluation">
+      <AnalysisBlock title="Critical Evaluation: Laffer Curve Limitations" type="evaluation">
         <div className="space-y-3">
           <div className="grid md:grid-cols-2 gap-3">
             <div className="p-3 bg-destructive/10 rounded-lg">
@@ -339,7 +339,7 @@ const LabourMarketContent: React.FC = () => {
       {/* Classical Unemployment Diagram */}
       <ClassicalUnemploymentDiagram />
 
-      <AnalysisBlock title="Diagram Analysis (AO3): Minimum Wage & Unemployment" type="analysis">
+      <AnalysisBlock title="Diagram Analysis: Minimum Wage & Unemployment" type="analysis">
         <div className="space-y-3">
           <p className="text-sm">
             When the minimum wage (<InlineMath math="W_2" />) is set <strong>above</strong> the 
@@ -361,7 +361,7 @@ const LabourMarketContent: React.FC = () => {
         </div>
       </AnalysisBlock>
 
-      <AnalysisBlock title="Critical Evaluation (AO4): Does the NMW Cause Unemployment?" type="evaluation">
+      <AnalysisBlock title="Critical Evaluation: Does the NMW Cause Unemployment?" type="evaluation">
         <div className="space-y-3">
           <div className="grid md:grid-cols-2 gap-3">
             <div className="p-3 bg-cambridge-green/10 rounded-lg">

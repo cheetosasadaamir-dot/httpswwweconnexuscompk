@@ -21,7 +21,7 @@ const PPFDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const growthValue = growth[0];

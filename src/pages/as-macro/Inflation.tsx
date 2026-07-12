@@ -47,7 +47,7 @@ const Inflation = () => {
         <KeyTakeaways takeaways={inflationTakeaways} />
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 4.6.1: DEFINITIONAL FOUNDATIONS (AO1)
+            SECTION 4.6.1: DEFINITIONAL FOUNDATIONS
         ═══════════════════════════════════════════════════════════════════ */}
         <ContentSection title="4.6.1 Definitional Foundations" className="mb-4">
           {/* HIGH-DENSITY ZERO-GAP BLOCK: Definition of Inflation */}
@@ -104,7 +104,7 @@ const Inflation = () => {
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 4.6.2: DEMAND-PULL INFLATION (AO3)
+            SECTION 4.6.2: DEMAND-PULL INFLATION
         ═══════════════════════════════════════════════════════════════════ */}
         <ContentSection title="4.6.2 Demand-Pull Inflation: The Logic Chain" className="mb-4">
           {/* HIGH-DENSITY ZERO-GAP BLOCK */}
@@ -158,7 +158,7 @@ const Inflation = () => {
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 4.6.3: COST-PUSH INFLATION & STAGFLATION (AO3)
+            SECTION 4.6.3: COST-PUSH INFLATION & STAGFLATION
         ═══════════════════════════════════════════════════════════════════ */}
         <ContentSection title="4.6.3 Cost-Push Inflation: Supply-Side Shocks" className="mb-4">
           {/* HIGH-DENSITY ZERO-GAP BLOCK */}
@@ -228,7 +228,7 @@ const Inflation = () => {
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 4.6.5: CONSEQUENCES OF INFLATION (AO4)
+            SECTION 4.6.5: CONSEQUENCES OF INFLATION
         ═══════════════════════════════════════════════════════════════════ */}
         <ContentSection title="4.6.5 Critical Evaluation of Inflationary Consequences" className="mb-4">
           {/* INTERNAL EFFECTS */}
@@ -258,7 +258,7 @@ const Inflation = () => {
 
           {/* SENIOR EXAMINER'S CONCLUSION */}
           <div className="glass-card p-5 border-l-4 border-cambridge-gold">
-            <h4 className="font-semibold text-cambridge-gold mb-3 text-sm">📝 Senior Examiner's Conclusion (AO4)</h4>
+            <h4 className="font-semibold text-cambridge-gold mb-3 text-sm">📝 Senior Examiner's Conclusion</h4>
             <p className="text-sm leading-relaxed text-justify italic">
               "Ultimately, the severity of inflation's macroeconomic damage depends on three critical factors: its <strong>Rate</strong> (creeping inflation under 3% imposes modest costs, whereas galloping inflation above 10% generates substantial resource misallocation and distributional inequity), its <strong>Predictability</strong> (anticipated inflation can be incorporated into contracts and wage negotiations, mitigating redistributive harm, whereas unanticipated inflation catches economic agents unprepared), and its <strong>Cause</strong>. While demand-pull inflation may serve as a symptom of robust aggregate demand and a growing economy operating near full employment—potentially a transitory feature of the business cycle upswing—cost-push inflation is fundamentally more damaging because it forces policymakers into an uncomfortable trade-off between inflation and unemployment. Contractionary demand policies to combat cost-push inflation will exacerbate the output decline and job losses already caused by the supply shock, whereas accommodating the inflation through expansionary policy risks entrenching inflationary expectations. This policy dilemma constitutes the essence of the stagflationary challenge."
             </p>

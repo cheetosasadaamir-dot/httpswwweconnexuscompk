@@ -9,7 +9,7 @@ const MECCurveDiagram = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setIsVisible(true); }, { threshold: 0.2 });
     if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 400, height = 280;

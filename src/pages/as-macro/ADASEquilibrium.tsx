@@ -1025,19 +1025,19 @@ const ADASEquilibrium = () => {
               <h4 className="font-semibold text-primary mb-4">📝 Command Word Strategies</h4>
               <div className="space-y-3 text-sm">
                 <div className="p-3 bg-muted/30 rounded-lg">
-                  <p className="font-semibold text-foreground mb-1">"Analyse" (AO3)</p>
+                  <p className="font-semibold text-foreground mb-1">"Analyse"</p>
                   <p className="text-muted-foreground">Show complete chains of reasoning. Example: ↑Consumer confidence → ↑C → AD shifts right → Excess demand at P₀ → ↑GPL → New equilibrium E₁ at higher P and Y.</p>
                 </div>
                 <div className="p-3 bg-muted/30 rounded-lg">
-                  <p className="font-semibold text-foreground mb-1">"Evaluate" / "Discuss" (AO4)</p>
+                  <p className="font-semibold text-foreground mb-1">"Evaluate" / "Discuss"</p>
                   <p className="text-muted-foreground">Consider: (1) SR vs LR effects, (2) economy's position on AS curve, (3) size of multiplier, (4) time lags, (5) counter-arguments. Use phrases like "However...", "On balance...", "The extent depends on..."</p>
                 </div>
                 <div className="p-3 bg-muted/30 rounded-lg">
-                  <p className="font-semibold text-foreground mb-1">"Explain" (AO1/AO2)</p>
+                  <p className="font-semibold text-foreground mb-1">"Explain"</p>
                   <p className="text-muted-foreground">Define the concept → Describe the mechanism → Link to diagram. Always reference the AD/AS model when explaining macroeconomic outcomes.</p>
                 </div>
                 <div className="p-3 bg-muted/30 rounded-lg">
-                  <p className="font-semibold text-foreground mb-1">"To what extent" (AO4)</p>
+                  <p className="font-semibold text-foreground mb-1">"To what extent"</p>
                   <p className="text-muted-foreground">Requires balanced evaluation with a justified conclusion. Consider magnitude, time horizon, and ceteris paribus assumptions being violated.</p>
                 </div>
               </div>

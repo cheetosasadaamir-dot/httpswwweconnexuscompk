@@ -37,7 +37,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   useEffect(() => {
     setIsTransitioning(true);
     const timer = setTimeout(() => setIsTransitioning(false), 500);
-    return () => clearTimeout(timer);
+    return => clearTimeout(timer);
   }, [location.pathname]);
 
   return (

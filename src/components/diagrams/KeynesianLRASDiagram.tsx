@@ -30,7 +30,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   // Exam Standard Colors

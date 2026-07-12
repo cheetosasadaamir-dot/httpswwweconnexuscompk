@@ -262,19 +262,19 @@ const IncomeDetermination = () => {
           <AnalysisBlock title="Analysis: Equilibrium Adjustment">
             <div className="space-y-4">
               <div>
-                <p className="font-medium text-primary mb-1">AO3 - Analysis:</p>
+                <p className="font-medium text-primary mb-1">Analysis:</p>
                 <p>If AE &gt; Y: Firms experience unplanned inventory depletion. They respond by increasing production, hiring more workers, and expanding output until Y rises to match AE.</p>
               </div>
               <div>
-                <p className="font-medium text-secondary mb-1">AO4 - Evaluation:</p>
+                <p className="font-medium text-secondary mb-1">Evaluation:</p>
                 <p>The adjustment process involves time lags. Firms may be uncertain whether demand changes are temporary or permanent, leading to cautious responses initially.</p>
               </div>
               <div>
-                <p className="font-medium text-primary mb-1">AO3 - Analysis:</p>
+                <p className="font-medium text-primary mb-1">Analysis:</p>
                 <p>If AE &lt; Y: Firms experience unplanned inventory accumulation. They respond by cutting production and laying off workers until Y falls to match AE.</p>
               </div>
               <div>
-                <p className="font-medium text-secondary mb-1">AO4 - Evaluation:</p>
+                <p className="font-medium text-secondary mb-1">Evaluation:</p>
                 <p>This explains how economies can get stuck in recession—if AE is persistently below full-employment output, there is no automatic market mechanism to restore full employment (the Keynesian insight).</p>
               </div>
             </div>

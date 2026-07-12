@@ -194,7 +194,7 @@ const PolicyObjectives = () => {
             </div>
 
             {/* PEEL Structure - Chain of Reasoning for Fiscal Policy */}
-            <AnalysisBlock title="Chain of Reasoning (AO3): Expansionary Fiscal Policy Transmission" type="analysis">
+            <AnalysisBlock title="Chain of Reasoning: Expansionary Fiscal Policy Transmission" type="analysis">
               <div className="space-y-2 text-xs">
                 <div className="p-2 bg-primary/10 rounded-lg">
                   <p className="font-semibold mb-1">PEEL Analysis — Point:</p>
@@ -231,7 +231,7 @@ const PolicyObjectives = () => {
             </div>
 
             {/* A2 Evaluation Section - Enhanced */}
-            <AnalysisBlock title="Critical Evaluation (AO4): Fiscal Policy Limitations & Effectiveness" type="evaluation">
+            <AnalysisBlock title="Critical Evaluation: Fiscal Policy Limitations & Effectiveness" type="evaluation">
               <div className="space-y-2 text-xs">
                 <div className="grid md:grid-cols-3 gap-2">
                   <div className="p-2 bg-destructive/10 rounded-lg">
@@ -339,7 +339,7 @@ const PolicyObjectives = () => {
             </NoteCard>
 
             {/* PEEL Structure - Chain of Reasoning for Monetary Policy */}
-            <AnalysisBlock title="Chain of Reasoning (AO3): Monetary Transmission Mechanism" type="analysis">
+            <AnalysisBlock title="Chain of Reasoning: Monetary Transmission Mechanism" type="analysis">
               <div className="space-y-2 text-xs">
                 <div className="p-2 bg-primary/10 rounded-lg">
                   <p className="font-semibold mb-1">PEEL Analysis — Point:</p>
@@ -376,7 +376,7 @@ const PolicyObjectives = () => {
             </div>
 
             {/* A2 Evaluation Section - Enhanced */}
-            <AnalysisBlock title="Critical Evaluation (AO4): Monetary Policy Limitations & Effectiveness" type="evaluation">
+            <AnalysisBlock title="Critical Evaluation: Monetary Policy Limitations & Effectiveness" type="evaluation">
               <div className="space-y-2 text-xs">
                 <div className="grid md:grid-cols-2 gap-2">
                   <div className="p-2 bg-destructive/10 rounded-lg">
@@ -484,7 +484,7 @@ const PolicyObjectives = () => {
             </p>
 
             {/* PEEL Structure - Chain of Reasoning for Supply-Side Policy */}
-            <AnalysisBlock title="Chain of Reasoning (AO3): Supply-Side Policy Transmission" type="analysis">
+            <AnalysisBlock title="Chain of Reasoning: Supply-Side Policy Transmission" type="analysis">
               <div className="space-y-2 text-xs">
                 <div className="p-2 bg-primary/10 rounded-lg">
                   <p className="font-semibold mb-1">PEEL Analysis — Point:</p>
@@ -548,7 +548,7 @@ const PolicyObjectives = () => {
             </div>
 
             {/* A2 Evaluation Section - Enhanced */}
-            <AnalysisBlock title="Critical Evaluation (AO4): Supply-Side Policy Limitations & Effectiveness" type="evaluation">
+            <AnalysisBlock title="Critical Evaluation: Supply-Side Policy Limitations & Effectiveness" type="evaluation">
               <div className="space-y-2 text-xs">
                 <div className="grid md:grid-cols-3 gap-2">
                   <div className="p-2 bg-destructive/10 rounded-lg">

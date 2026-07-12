@@ -19,7 +19,7 @@ const TradeCreationDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 600;
@@ -278,7 +278,7 @@ const TradeCreationDiagram = () => {
 
         {/* Senior Examiner's Conclusion */}
         <div className="p-4 bg-gradient-to-r from-cambridge-gold/10 to-transparent rounded-lg border-l-4 border-cambridge-gold">
-          <h4 className="font-serif text-sm font-semibold text-cambridge-gold mb-2">Senior Examiner's Conclusion (AO4)</h4>
+          <h4 className="font-serif text-sm font-semibold text-cambridge-gold mb-2">Senior Examiner's Conclusion</h4>
           <p className="text-sm text-foreground/90 leading-relaxed text-justify italic">
             "Ultimately, trade creation represents an unambiguous welfare improvement for society. Unlike trade diversion—which risks substituting efficient global producers with less efficient bloc members—trade creation aligns with the principle of comparative advantage by redirecting resources from high-cost domestic production to lower-cost partner imports. The magnitude of welfare gains (Areas 2 + 4) depends on the elasticities of domestic supply and demand: the more elastic these curves, the larger the efficiency triangles and the greater the benefit from customs union membership. This analysis underpins the economic rationale for regional integration, provided that the bloc's internal producers are globally competitive."
           </p>

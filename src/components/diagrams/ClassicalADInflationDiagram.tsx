@@ -30,7 +30,7 @@ const ClassicalADInflationDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 580;

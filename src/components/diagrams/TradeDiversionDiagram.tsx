@@ -19,7 +19,7 @@ const TradeDiversionDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 600;
@@ -292,7 +292,7 @@ const TradeDiversionDiagram = () => {
 
         {/* Senior Examiner's Conclusion */}
         <div className="p-4 bg-gradient-to-r from-cambridge-gold/10 to-transparent rounded-lg border-l-4 border-cambridge-gold">
-          <h4 className="font-serif text-sm font-semibold text-cambridge-gold mb-2">Senior Examiner's Conclusion (AO4)</h4>
+          <h4 className="font-serif text-sm font-semibold text-cambridge-gold mb-2">Senior Examiner's Conclusion</h4>
           <p className="text-sm text-foreground/90 leading-relaxed text-justify italic">
             "Ultimately, the welfare implications of joining a Customs Union depend critically on the relative magnitudes of trade creation versus trade diversion. When the Common External Tariff diverts imports from a low-cost non-member (Australia) to a higher-cost member (EU), the static efficiency loss (Area 5) may outweigh the triangular gains (Areas 2 + 4). The net outcome is empirically contingent: a country joining a bloc with broadly similar cost structures to global leaders gains; one joining a bloc of high-cost producers risks permanent welfare reduction. This analysis underpins the tension between preferential trading arrangements and the WTO's Most Favoured Nation principle."
           </p>

@@ -45,7 +45,7 @@ const CaseStudyViewer = ({ caseStudy, onBack }: CaseStudyViewerProps) => {
         setHighlightedParagraph(null);
         setHighlightedTable(null);
       }, 3000);
-      return () => clearTimeout(timer);
+      return => clearTimeout(timer);
     }
   }, [highlightedParagraph, highlightedTable]);
 

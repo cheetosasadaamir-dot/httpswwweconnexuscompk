@@ -34,7 +34,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   // Cost curve data points (numerically accurate)

@@ -45,7 +45,7 @@ const BalanceOfPayments = () => {
                 The <strong>Capital Account</strong>, though typically a minor component, records the transfer of ownership of fixed assets and the acquisition or disposal of non-produced, non-financial assets such as patents, copyrights, trademarks, and land purchases by foreign embassies. More substantial is the <strong>Financial Account</strong>, which records transactions involving the acquisition and disposal of financial assets and liabilities, thereby capturing the flows of financial capital that must, by the accounting identity, offset any current account imbalance. The Financial Account distinguishes between <strong>Foreign Direct Investment (FDI)</strong>—long-term investment conferring a lasting managerial interest in foreign enterprises; <strong>Portfolio Investment</strong>—purchases of foreign equities, bonds, and other securities that do not confer control; <strong>Other Investment</strong>—comprising bank loans, trade credits, and currency deposits; and <strong>Reserve Assets</strong>—the Central Bank's holdings of foreign currency reserves and gold, which fluctuate as the monetary authority intervenes to manage the exchange rate.
               </p>
 
-              <AnalysisBlock title="The Balance of Payments Identity (AO3)">
+              <AnalysisBlock title="The Balance of Payments Identity">
                 <p className="mb-3">
                   The fundamental accounting identity governing the BoP dictates that the sum of all accounts must equal zero, expressed formally as:
                 </p>
@@ -72,7 +72,7 @@ const BalanceOfPayments = () => {
 
               <CurrentAccountDeficitDiagram />
 
-              <AnalysisBlock title="Chain of Macroeconomic Consequences (AO3)">
+              <AnalysisBlock title="Chain of Macroeconomic Consequences">
                 <p className="mb-3">
                   A persistent Current Account deficit initiates a self-reinforcing cycle of external vulnerability. The chain of reasoning proceeds as follows:
                 </p>
@@ -107,7 +107,7 @@ const BalanceOfPayments = () => {
                 </p>
               </AnalysisBlock>
 
-              <ExamTipBox title="Senior Examiner's Evaluation: Is a Deficit Always Bad? (AO4)" variant="gold">
+              <ExamTipBox title="Senior Examiner's Evaluation: Is a Deficit Always Bad?" variant="gold">
                 <p className="text-foreground/80 leading-relaxed">
                   <strong>Evaluation:</strong> The welfare implications of a Current Account deficit are fundamentally contingent on its composition and financing mechanism. A deficit driven by the import of capital goods—machinery, technology, and infrastructure components—represents investment that augments the economy's future productive capacity, shifting the Long-Run Aggregate Supply (LRAS) curve rightward and generating export revenues to service the initial borrowing. Conversely, a deficit financing current consumption—imported consumer durables and discretionary goods—represents a transfer of purchasing power from future generations without corresponding productivity gains. Similarly, the source of financing matters: FDI brings technology transfer, managerial expertise, and stable long-term commitment, whereas "hot money" portfolio flows are volatile, subject to sudden reversals that precipitate currency crises. <strong>Conclusion:</strong> "Ultimately, the sustainability of a deficit hinges on whether the borrowed capital is deployed to enhance productive potential, and whether the financing is stable enough to avoid the liquidity crises that have historically devastated emerging market economies."
                 </p>
@@ -128,7 +128,7 @@ const BalanceOfPayments = () => {
                 <strong>Expenditure-switching mechanisms</strong> operate by altering relative prices to favour domestic production. Currency depreciation or devaluation makes exports cheaper in foreign currency terms (enhancing external demand) while making imports more expensive in domestic currency terms (dampening import demand), thereby improving the trade balance provided certain elasticity conditions are satisfied. Tariffs and import quotas achieve a similar effect through direct administrative restriction, though these invite retaliatory protectionism and violate WTO obligations for member states. Supply-side policies—investment in education, infrastructure, and R&D—address the root causes of structural uncompetitiveness, though their effects materialise only over the long run. <strong>Expenditure-reducing mechanisms</strong>, by contrast, operate through demand contraction: higher taxes reduce disposable income and consumption; reduced government spending directly lowers aggregate demand; higher interest rates increase the cost of borrowing, depressing both consumption and investment. As national income (<InlineMath math="Y" />) falls, so too does import demand via the marginal propensity to import relationship: <InlineMath math="\Delta M = MPM \times \Delta Y" />.
               </p>
 
-              <AnalysisBlock title="The Marshall-Lerner Condition: When Does Depreciation Work? (AO3)">
+              <AnalysisBlock title="The Marshall-Lerner Condition: When Does Depreciation Work?">
                 <p className="mb-3">
                   The effectiveness of currency depreciation as an expenditure-switching tool is governed by the <strong className="text-cyan-400">Marshall-Lerner Condition</strong>, which states that a depreciation will improve the Current Account balance only if the sum of the absolute values of the price elasticities of demand for exports and imports exceeds unity:
                 </p>
@@ -173,7 +173,7 @@ const BalanceOfPayments = () => {
                 In the <strong>long run</strong>, however, demand becomes progressively more elastic as economic agents complete their adjustment. New trade contracts are negotiated at the revised exchange rate; consumers substitute away from expensive imports toward domestic alternatives; domestic firms expand capacity to service increased export orders; and producers source inputs from domestic suppliers rather than paying inflated import costs. As <InlineMath math="|PED_X| + |PED_M|" /> rises above unity, the volume effects dominate, and the trade balance improves—the upward slope of the J. Empirical studies suggest that the adjustment period ranges from six months to two years, depending on the flexibility of product and labour markets, the degree of import penetration, and the availability of domestic substitutes.
               </p>
 
-              <ExamTipBox title="Senior Examiner's Conclusion: Limitations of Depreciation (AO4)" variant="gold">
+              <ExamTipBox title="Senior Examiner's Conclusion: Limitations of Depreciation" variant="gold">
                 <p className="text-foreground/80 leading-relaxed">
                   <strong>Evaluation:</strong> While the Marshall-Lerner condition assures ultimate effectiveness, depreciation as a policy instrument carries significant limitations. First, the J-Curve imposes short-run costs that may be politically intolerable, particularly for governments facing imminent elections or populist pressures. Second, depreciation generates <strong>imported inflation</strong>: higher import prices feed through to domestic costs, eroding the competitive advantage and potentially triggering a wage-price spiral if workers demand compensation. Third, competitive devaluations invite retaliation—trading partners may respond with their own depreciation, nullifying the initiator's advantage and potentially igniting a "currency war" that destabilises global trade. Fourth, depreciation is ineffective when the deficit is structural: if low productivity is the root cause, no amount of exchange rate adjustment will restore competitiveness without accompanying supply-side reforms. <strong>Conclusion:</strong> "In conclusion, depreciation represents a palliative rather than a cure for external imbalances; it buys time for structural adjustment but cannot substitute for the fundamental enhancement of productive capacity that sustainable trade balance ultimately requires."
                 </p>
@@ -194,7 +194,7 @@ const BalanceOfPayments = () => {
                 Under a <strong>fixed exchange rate</strong> regime, the central bank commits to maintaining the rate at a target parity through active intervention—selling foreign reserves to support the currency (appreciating pressure) or purchasing foreign currency with newly created domestic money (depreciating pressure). Fixed rates provide stability and certainty for international trade and impose anti-inflationary discipline by anchoring expectations. However, they require substantial foreign exchange reserves, surrender monetary policy autonomy (interest rates must be set to defend the peg rather than target domestic objectives), and create vulnerability to speculative attacks when markets perceive the parity as unsustainable. Most contemporary economies operate a <strong>managed float</strong>—a hybrid system where rates are primarily market-determined but central banks intervene to smooth excessive volatility or correct misalignments.
               </p>
 
-              <AnalysisBlock title="The BoP-Exchange Rate Nexus (AO3)">
+              <AnalysisBlock title="The BoP-Exchange Rate Nexus">
                 <p className="text-foreground/80 mb-3">
                   The relationship between the Balance of Payments and the exchange rate is bidirectional and fundamental. Under floating rates, the BoP determines the exchange rate: a Current Account deficit implies net demand for foreign currency (to pay for imports), depressing the domestic currency's value; conversely, a surplus generates net demand for domestic currency, causing appreciation. Under fixed rates, the exchange rate determines the BoP response: an overvalued peg—where the fixed rate exceeds the market-clearing level—generates a deficit as exports are uncompetitively expensive; the central bank must sell reserves to defend the peg, depleting its capacity for future intervention until either the peg is adjusted (devaluation) or reserves are exhausted (currency crisis).
                 </p>
@@ -236,7 +236,7 @@ const BalanceOfPayments = () => {
               
               {/* Senior Examiner's Comprehensive Evaluation */}
               <div className="mt-4 p-4 bg-slate-800/50 border border-amber-500/30 rounded-lg">
-                <h4 className="font-serif font-semibold text-amber-400 text-sm mb-2">Comprehensive AO4 Evaluation: Policy Trade-offs in BoP Correction</h4>
+                <h4 className="font-serif font-semibold text-amber-400 text-sm mb-2">Comprehensive Evaluation: Policy Trade-offs in BoP Correction</h4>
                 <p className="text-sm text-foreground/90 leading-relaxed text-justify">
                   <strong>Ultimately, no single policy corrects a Current Account deficit without imposing costs elsewhere.</strong> Expenditure-reducing policies (↓G, ↑T, ↑r) impose <em>recessionary costs</em>—higher unemployment, lower growth—sacrificing internal balance for external balance. Expenditure-switching via depreciation risks <em>imported inflation</em> and retaliation. Supply-side improvements require <em>long time horizons</em> (5-10 years for education/infrastructure effects). The optimal policy mix therefore <em>depends on</em>: (1) whether the deficit is structural (requires supply-side) or cyclical (may self-correct); (2) the economy's position in the business cycle (contractionary policies during recession are counterproductive); (3) the composition of imports (essential commodities are price-inelastic); (4) the availability of foreign financing (deficits are sustainable while capital inflows continue). The 1997 Asian Financial Crisis and 2010 Eurozone Debt Crisis demonstrate the catastrophic consequences when these dependencies are misjudged.
                 </p>

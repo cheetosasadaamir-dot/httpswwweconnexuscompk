@@ -27,7 +27,7 @@ const LabourMarketTechnicalSection = () => {
           Technical Analysis: Labour Force & Employment Framework
         </h3>
         <p className="text-muted-foreground text-sm">
-          This section provides  syllabus-aligned definitions, measurement methodologies, 
+          This section provides syllabus-aligned definitions, measurement methodologies, 
           and equilibrium analysis for the labour market.
         </p>
       </motion.div>

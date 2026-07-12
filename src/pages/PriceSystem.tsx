@@ -91,7 +91,7 @@ const PriceSystem = () => {
           </div>
         </div>
 
-        <AnalysisBlock title="AO3 Analysis: The Dual Mechanism of Demand" type="analysis">
+        <AnalysisBlock title=" Analysis: The Dual Mechanism of Demand" type="analysis">
           <p className="mb-4 text-justify">The Law of Demand operates through two simultaneous and reinforcing channels:</p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
@@ -252,7 +252,7 @@ const PriceSystem = () => {
           </div>
         </div>
 
-        <AnalysisBlock title="AO3 Analysis: The Dual Foundation of Supply" type="analysis">
+        <AnalysisBlock title=" Analysis: The Dual Foundation of Supply" type="analysis">
           <p className="mb-4 text-justify">The Law of Supply rests upon two reinforcing theoretical pillars:</p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="p-4 rounded-lg bg-magenta-500/10 border border-magenta-500/20">
@@ -335,7 +335,7 @@ const PriceSystem = () => {
         title="2.3 Movement Along vs. Shift of Curve" 
         subtitle="A Critical Distinction for Cambridge Examinations"
       >
-        <NoteCard title="The Critical Distinction (AO1)" type="definition">
+        <NoteCard title="The Critical Distinction" type="definition">
           <p className="mb-4">
             Cambridge examiners require precise use of terminology when describing changes in demand or supply. <strong>Misusing these terms will lose marks.</strong>
           </p>
@@ -442,7 +442,7 @@ const PriceSystem = () => {
           <ExcessDemandSupplyDiagram />
         </div>
 
-        <AnalysisBlock title="AO3 Analysis: The Self-Correcting Mechanism" type="analysis">
+        <AnalysisBlock title=" Analysis: The Self-Correcting Mechanism" type="analysis">
           <p className="mb-4 text-justify">
             Markets possess an inherent tendency towards equilibrium through the operation of competitive forces. When price deviates from equilibrium, disequilibrium creates pressures that drive price back towards balance:
           </p>
@@ -488,7 +488,7 @@ const PriceSystem = () => {
           <MarketEquilibriumInteractive title="Figure 2.2: Interactive Equilibrium Shifts" />
         </div>
 
-        <AnalysisBlock title="AO3 Analysis: The Four Shift Scenarios" type="analysis">
+        <AnalysisBlock title=" Analysis: The Four Shift Scenarios" type="analysis">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -559,7 +559,7 @@ const PriceSystem = () => {
                 The geometric representation of Consumer Surplus is <strong>the triangular area below the demand curve and above the equilibrium price line</strong>, bounded on the left by the price axis. The height of this triangle is determined by the vertical distance between the <strong>demand curve's Y-intercept</strong> (denoted P<sub>max</sub>, representing the reservation price of the first unit) and the equilibrium price (P<sub>e</sub>). The base of the triangle extends horizontally from the origin to the equilibrium quantity (Q<sub>e</sub>). Mathematically, for linear demand curves, Consumer Surplus is calculated as: <span className="font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">CS = ½ × Qe × (Pmax − Pe)</span>. For non-linear demand functions, Consumer Surplus requires integration of the area under the demand curve from zero to Q<sub>e</sub>, minus the rectangular area representing total expenditure.
               </p>
               <p>
-                <strong className="text-amber-400">Chain of Analysis (AO3):</strong> Consider the welfare implications of a supply contraction—for instance, due to an exogenous increase in raw material costs. The leftward shift of the supply curve establishes a new equilibrium at a higher price (P₁) and lower quantity (Q₁). Consumer Surplus contracts through two mechanisms: first, the <strong>price effect</strong>—the equilibrium price rises, reducing the surplus on each unit still purchased; second, the <strong>quantity effect</strong>—some consumers who previously purchased at P<sub>e</sub> are now priced out of the market entirely, losing their entire consumer surplus. The net result is a geometrically smaller CS triangle, representing an unambiguous welfare loss to the consuming population.
+                <strong className="text-amber-400">Chain of Analysis:</strong> Consider the welfare implications of a supply contraction—for instance, due to an exogenous increase in raw material costs. The leftward shift of the supply curve establishes a new equilibrium at a higher price (P₁) and lower quantity (Q₁). Consumer Surplus contracts through two mechanisms: first, the <strong>price effect</strong>—the equilibrium price rises, reducing the surplus on each unit still purchased; second, the <strong>quantity effect</strong>—some consumers who previously purchased at P<sub>e</sub> are now priced out of the market entirely, losing their entire consumer surplus. The net result is a geometrically smaller CS triangle, representing an unambiguous welfare loss to the consuming population.
               </p>
             </div>
           </div>
@@ -577,7 +577,7 @@ const PriceSystem = () => {
                 The geometric representation of Producer Surplus is <strong>the triangular area above the supply curve and below the equilibrium price line</strong>, bounded on the left by the price axis. The supply curve represents the marginal cost of production at each output level—the minimum price producers require to supply the marginal unit. Units produced at lower marginal cost than the equilibrium price generate surplus. The height of the PS triangle is determined by the vertical distance between the equilibrium price (P<sub>e</sub>) and the <strong>supply curve's Y-intercept</strong> (denoted P<sub>min</sub>, representing the minimum viable supply price for the first unit). For linear supply curves, Producer Surplus is calculated as: <span className="font-mono text-magenta-400 bg-magenta-500/10 px-2 py-1 rounded">PS = ½ × Qe × (Pe − Pmin)</span>.
               </p>
               <p>
-                <strong className="text-amber-400">Chain of Analysis (AO3):</strong> The magnitude of Producer Surplus is critically dependent upon the <strong>slope of the supply curve</strong>, which reflects the rate at which marginal costs rise with output. A relatively <strong>inelastic supply curve</strong> (steep slope) indicates that early units can be produced at costs far below the equilibrium price, generating substantial surplus. This corresponds to the concept of <strong>Economic Rent</strong>: producers with low opportunity costs (fertile land, superior technology, or location advantages) earn rents on their factor inputs. When demand increases, shifting rightward, the new equilibrium occurs at a higher price and quantity. Producer Surplus expands as firms receive the higher price on <strong>all units sold</strong>—including those units they were previously willing to supply at the lower price—representing a direct transfer of welfare from consumers to producers.
+                <strong className="text-amber-400">Chain of Analysis:</strong> The magnitude of Producer Surplus is critically dependent upon the <strong>slope of the supply curve</strong>, which reflects the rate at which marginal costs rise with output. A relatively <strong>inelastic supply curve</strong> (steep slope) indicates that early units can be produced at costs far below the equilibrium price, generating substantial surplus. This corresponds to the concept of <strong>Economic Rent</strong>: producers with low opportunity costs (fertile land, superior technology, or location advantages) earn rents on their factor inputs. When demand increases, shifting rightward, the new equilibrium occurs at a higher price and quantity. Producer Surplus expands as firms receive the higher price on <strong>all units sold</strong>—including those units they were previously willing to supply at the lower price—representing a direct transfer of welfare from consumers to producers.
               </p>
             </div>
           </div>
@@ -611,7 +611,7 @@ const PriceSystem = () => {
         {/* Senior Examiner's Conclusions */}
         <div className="glass-card p-8 my-6 bg-gradient-to-br from-background via-background to-amber-500/5">
           <div className="border-l-4 border-amber-500 pl-6">
-            <h3 className="font-serif text-2xl text-amber-400 mb-4">Senior Examiner's Conclusions (AO4)</h3>
+            <h3 className="font-serif text-2xl text-amber-400 mb-4">Senior Examiner's Conclusions</h3>
             <div className="space-y-6">
               {/* CS Conclusion */}
               <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
@@ -666,7 +666,7 @@ const PriceSystem = () => {
           <PriceFunctionsDiagram />
         </div>
 
-        <AnalysisBlock title="AO3 Analysis: The Three Functions in Detail" type="analysis">
+        <AnalysisBlock title=" Analysis: The Three Functions in Detail" type="analysis">
           <div className="space-y-4">
             <div className="p-4 rounded-lg bg-cyan-500/10 border-l-4 border-cyan-500">
               <h5 className="font-semibold text-cyan-400 mb-2">1. Signaling Function</h5>
@@ -713,7 +713,7 @@ const PriceSystem = () => {
           </div>
         </div>
 
-        <AnalysisBlock title="AO4 Evaluation: The Limitations of Market Allocation" type="evaluation">
+        <AnalysisBlock title=" Evaluation: The Limitations of Market Allocation" type="evaluation">
           <p className="mb-4 text-amber-400 font-medium text-justify">The price mechanism, while efficient under ideal conditions, exhibits significant failures requiring careful evaluation:</p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
@@ -739,16 +739,16 @@ const PriceSystem = () => {
           </div>
         </AnalysisBlock>
 
-        <ExamTipBox title="AO3/AO4 Essay Structure for Price Mechanism (20/20 Template)" variant="gold" className="mt-6">
+        <ExamTipBox title=" Essay Structure for Price Mechanism (20/20 Template)" variant="gold" className="mt-6">
           <p className="text-justify">For 25-mark essays on the effectiveness of the price mechanism, deploy this structure to maximize marks across all assessment objectives:</p>
           <ul className="mt-2 space-y-1 text-sm">
-            <li><strong>Introduction (AO1):</strong> Define price mechanism precisely; state thesis with nuance ("effective under certain conditions")</li>
-            <li><strong>Para 1 (AO1/AO2):</strong> Explain the <strong>signaling function</strong> with demand-supply diagram showing price response to shift</li>
-            <li><strong>Para 2 (AO2/AO3):</strong> Analyze the <strong>incentive function</strong> with real-world example (e.g., oil price shocks stimulating renewable investment)</li>
-            <li><strong>Para 3 (AO2/AO3):</strong> Analyze the <strong>rationing function</strong>, linking to allocative efficiency and welfare maximization</li>
-            <li><strong>Para 4 (AO4):</strong> <span className="text-amber-400">Evaluate critically</span>—externalities with diagram showing social vs. private costs and deadweight loss</li>
-            <li><strong>Para 5 (AO4):</strong> <span className="text-amber-400">Evaluate further</span>—equity concerns, factor immobility, information asymmetry, and price stickiness</li>
-            <li><strong>Conclusion (AO4):</strong> Weighted judgment—effective for private goods in competitive markets; requires complementary government intervention for externalities, public goods, and distributional concerns</li>
+            <li><strong>Introduction:</strong> Define price mechanism precisely; state thesis with nuance ("effective under certain conditions")</li>
+            <li><strong>Para 1:</strong> Explain the <strong>signaling function</strong> with demand-supply diagram showing price response to shift</li>
+            <li><strong>Para 2:</strong> Analyze the <strong>incentive function</strong> with real-world example (e.g., oil price shocks stimulating renewable investment)</li>
+            <li><strong>Para 3:</strong> Analyze the <strong>rationing function</strong>, linking to allocative efficiency and welfare maximization</li>
+            <li><strong>Para 4:</strong> <span className="text-amber-400">Evaluate critically</span>—externalities with diagram showing social vs. private costs and deadweight loss</li>
+            <li><strong>Para 5:</strong> <span className="text-amber-400">Evaluate further</span>—equity concerns, factor immobility, information asymmetry, and price stickiness</li>
+            <li><strong>Conclusion:</strong> Weighted judgment—effective for private goods in competitive markets; requires complementary government intervention for externalities, public goods, and distributional concerns</li>
           </ul>
         </ExamTipBox>
       </ContentSection>
@@ -786,13 +786,13 @@ const PriceSystem = () => {
               </div>
             </div>
 
-            <AnalysisBlock title="AO3 Analysis: Welfare Consequences of a Binding Ceiling" type="analysis">
+            <AnalysisBlock title=" Analysis: Welfare Consequences of a Binding Ceiling" type="analysis">
               <p className="text-justify mb-3">
                 The welfare effects are theoretically ambiguous and empirically context-dependent. Consumer surplus changes by two opposing components: (i) inframarginal consumers who would have purchased at Pₑ now pay P_max and gain area equal to (Pₑ − P_max) × Qₛ; (ii) consumers excluded by the shortage lose the surplus they would have enjoyed on units between Qₛ and Qₑ. Producer surplus unambiguously falls because both price and quantity decline. The <strong>deadweight loss</strong> equals the welfare lost on units no longer traded (between Qₛ and Qₑ)—a triangle whose magnitude grows with the elasticities of demand and supply.
               </p>
             </AnalysisBlock>
 
-            <AnalysisBlock title="AO4 Evaluation: When are Ceilings Defensible?" type="evaluation">
+            <AnalysisBlock title=" Evaluation: When are Ceilings Defensible?" type="evaluation">
               <p className="text-justify">
                 The case for ceilings strengthens when (a) demand is <em>highly inelastic</em> (necessities such as insulin, staple foods) so welfare gains to remaining consumers are large, (b) supply is <em>highly inelastic in the short run</em> so quantity reduction is small, (c) the underlying market exhibits <em>monopoly power</em> such that the unregulated price is already above marginal cost, or (d) equity considerations dominate efficiency losses (e.g., humanitarian crises). The case weakens whenever ceilings deter long-run investment (housing supply collapses over decades, not months), incentivise quality deterioration (landlords reduce maintenance), or enable corruption in the rationing process.
               </p>
@@ -818,13 +818,13 @@ const PriceSystem = () => {
               </div>
             </div>
 
-            <AnalysisBlock title="AO3 Analysis: Minimum Wage and the Monopsony Defence" type="analysis">
+            <AnalysisBlock title=" Analysis: Minimum Wage and the Monopsony Defence" type="analysis">
               <p className="text-justify">
                 The simple competitive model predicts that any binding minimum wage above the equilibrium reduces employment. However, the <strong>monopsony model</strong> (Card & Krueger, 1994; Dube, 2019) reverses this prediction: where employers possess wage-setting power, a moderate minimum wage can <em>simultaneously raise wages and increase employment</em> by neutralising the monopsonist's incentive to restrict hiring. Empirical meta-analyses of US state-level minimum wage variation suggest the disemployment effect is small or statistically indistinguishable from zero in the range commonly legislated, though larger increases (e.g., Seattle's $15 floor) generated detectable hours reductions.
               </p>
             </AnalysisBlock>
 
-            <AnalysisBlock title="AO4 Evaluation: Stakeholder Impact Matrix" type="evaluation">
+            <AnalysisBlock title=" Evaluation: Stakeholder Impact Matrix" type="evaluation">
               <div className="grid md:grid-cols-2 gap-3 text-sm">
                 <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
                   <p className="font-semibold text-emerald-400 mb-1">Beneficiaries</p>
@@ -860,7 +860,7 @@ const PriceSystem = () => {
               </div>
             </div>
 
-            <AnalysisBlock title="AO4 Evaluation: The Hidden Costs of Subsidies" type="evaluation">
+            <AnalysisBlock title=" Evaluation: The Hidden Costs of Subsidies" type="evaluation">
               <p className="text-justify">
                 Beyond direct fiscal cost, subsidies impose three further welfare burdens that examiners reward for identifying. First, the <strong>opportunity cost</strong> of public funds—each pound spent on subsidies is a pound not spent on healthcare, education, or debt reduction—must be weighed against the marginal benefit of the subsidised activity. Second, subsidies create <strong>X-inefficiency</strong>: shielded from full market pressure, recipient firms have weaker incentives to minimise costs, leading to bloated cost structures (the historic experience of state-subsidised European steel and coal industries). Third, subsidies are politically <strong>sticky</strong>: once granted, they generate concentrated beneficiary lobbies that resist removal even after the original justification has lapsed, producing entrenched market distortions.
               </p>

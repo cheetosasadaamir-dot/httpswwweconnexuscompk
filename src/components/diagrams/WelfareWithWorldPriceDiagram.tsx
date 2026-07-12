@@ -35,7 +35,7 @@ const WelfareWithWorldPriceDiagram = ({
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
   
   // SVG dimensions

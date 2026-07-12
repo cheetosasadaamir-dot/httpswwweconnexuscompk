@@ -21,7 +21,7 @@ const FunctionsOfMoneyDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const functions = [
@@ -177,7 +177,7 @@ const FunctionsOfMoneyDiagram = () => {
                 {/* Example */}
                 <div className="p-4 rounded-xl bg-slate-500/10 border border-slate-500/30">
                   <h5 className="font-semibold text-silver-bright mb-2">
-                    <span className="text-cyan-400">AO2</span> Real-World Example
+                    <span className="text-cyan-400"></span> Real-World Example
                   </h5>
                   <p className="text-sm text-muted-foreground">{func.example}</p>
                 </div>

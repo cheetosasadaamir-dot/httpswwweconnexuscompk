@@ -267,7 +267,7 @@ export const ADShiftImpactDiagram = () => {
 
       {/* Chain of Analysis */}
       <div className="mt-6 p-4 rounded-lg bg-slate-800/50 border border-cyan-500/30">
-        <h4 className="text-cyan-400 font-semibold mb-2 text-sm">Chain of Analysis (AO3)</h4>
+        <h4 className="text-cyan-400 font-semibold mb-2 text-sm">Chain of Analysis</h4>
         <p className="text-sm text-white/80 leading-relaxed">
           <strong>Trigger:</strong> Rise in Investment (I) due to improved business confidence → 
           <strong> AD Shift:</strong> AD curve shifts rightward from AD₁ to AD₂ → 
@@ -281,7 +281,7 @@ export const ADShiftImpactDiagram = () => {
       {/* Evaluative note */}
       <div className="mt-4 p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
         <p className="text-sm text-white/80">
-          <strong className="text-amber-400">Evaluative Point (AO4):</strong> The relative magnitude of the output gain (ΔY) versus the price rise (ΔP) depends critically on the elasticity of SRAS. Near full employment (approaching LRAS), the same AD shift would generate primarily inflation with minimal real growth—the economy moves up an increasingly steep portion of the SRAS curve.
+          <strong className="text-amber-400">Evaluative Point:</strong> The relative magnitude of the output gain (ΔY) versus the price rise (ΔP) depends critically on the elasticity of SRAS. Near full employment (approaching LRAS), the same AD shift would generate primarily inflation with minimal real growth—the economy moves up an increasingly steep portion of the SRAS curve.
         </p>
       </div>
     </div>

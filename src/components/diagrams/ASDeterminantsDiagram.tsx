@@ -266,7 +266,7 @@ const ASDeterminantsDiagram = () => {
 
         {/* Senior Examiner's Conclusion */}
         <div className="mt-6 p-6 bg-gradient-to-r from-secondary/15 to-transparent rounded-xl border-l-4 border-secondary">
-          <h4 className="font-serif text-lg font-semibold text-secondary mb-4">Senior Examiner's Conclusion (AO4)</h4>
+          <h4 className="font-serif text-lg font-semibold text-secondary mb-4">Senior Examiner's Conclusion</h4>
           <p className="text-sm text-muted-foreground leading-relaxed text-justify italic">
             "In conclusion, while SRAS shifts are often volatile and driven by external supply shocks—oil price fluctuations, 
             commodity market disruptions, currency movements affecting import costs—the LRAS is the <strong>fundamental 

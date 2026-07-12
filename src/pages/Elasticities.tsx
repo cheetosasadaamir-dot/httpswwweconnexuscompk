@@ -606,12 +606,12 @@ const Elasticities = () => {
           </ul>
         </ExamTipBox>
 
-        <ExamTipBox title="AO3/AO4 Essay Structure for Elasticity (20/20 Template)" variant="gold" className="mt-6">
+        <ExamTipBox title=" Essay Structure for Elasticity (20/20 Template)" variant="gold" className="mt-6">
           <p className="mb-2 text-justify"><strong>For 25-mark essays on elasticity:</strong></p>
           <ul className="space-y-1 text-sm">
-            <li><strong>Introduction (AO1):</strong> Define elasticity precisely with formula</li>
-            <li><strong>Para 1-2 (AO2/AO3):</strong> Analyze applications with diagrams (PED-Revenue, Tax Incidence)</li>
-            <li><strong>Para 3-4 (AO4):</strong> <span className="text-amber-400">Evaluate</span>—data limitations, ceteris paribus violations, competitive responses</li>
+            <li><strong>Introduction:</strong> Define elasticity precisely with formula</li>
+            <li><strong>Para 1-2:</strong> Analyze applications with diagrams (PED-Revenue, Tax Incidence)</li>
+            <li><strong>Para 3-4:</strong> <span className="text-amber-400">Evaluate</span>—data limitations, ceteris paribus violations, competitive responses</li>
             <li><strong>Conclusion:</strong> Weighted judgment acknowledging usefulness and limitations</li>
           </ul>
         </ExamTipBox>

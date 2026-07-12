@@ -132,7 +132,7 @@ const BalancedArgumentTable = () => {
   return (
     <div className="w-full">
       <h4 className="text-lg font-semibold text-silver-bright mb-2 text-center">
-        AO4 Evaluation: Division of Labour – A Balanced Argument
+         Evaluation: Division of Labour – A Balanced Argument
       </h4>
       <p className="text-sm text-muted-foreground text-center mb-6">
         Required for A-grade essays: Present both benefits and risks
@@ -202,7 +202,7 @@ const BalancedArgumentTable = () => {
       <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-cyan-500/10 border border-amber-500/30">
         <p className="text-sm text-center">
           <span className="text-amber-400 font-semibold">🎯 Examiner Tip:</span> For 
-          <span className="text-cyan-400 font-semibold"> AO4 (Evaluation)</span>, always present 
+          <span className="text-cyan-400 font-semibold">  (Evaluation)</span>, always present 
           <strong> both sides</strong> of the argument. Use phrases like: 
           <em className="text-silver-bright">"However, it could be argued that..."</em> and 
           <em className="text-silver-bright">"On balance, the benefits outweigh the costs when..."</em>

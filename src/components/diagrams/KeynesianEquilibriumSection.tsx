@@ -9,7 +9,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 /**
  * [A2 Specialist - Keynesian Income Determination]
  * Enhanced Circular Flow, Output Gaps, and Accelerator Theory
- * Based on  A-level Notes
+ * Based on A-level Notes
  */
 
 // ============================================
@@ -884,7 +884,7 @@ const KeynesianEquilibriumSection = () => {
           </NoteCard>
         </div>
 
-        <AnalysisBlock title="Chain of Analysis (AO3): Gap Adjustment Mechanism" type="analysis">
+        <AnalysisBlock title="Chain of Analysis: Gap Adjustment Mechanism" type="analysis">
           <div className="space-y-3 text-xs">
             <div className="p-3 bg-cambridge-magenta/10 rounded-lg border-l-3 border-cambridge-magenta">
               <p className="font-semibold text-cambridge-magenta mb-1">Closing a Deflationary Gap:</p>

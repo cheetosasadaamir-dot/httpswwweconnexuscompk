@@ -162,7 +162,7 @@ const NationalIncome = () => {
               <KeynesianASCurveDiagram title="The Three-Phase Keynesian Aggregate Supply Curve" />
             </div>
 
-            <AnalysisBlock title="Chain of Analysis (AO3): The Three Ranges of Keynesian AS" type="analysis">
+            <AnalysisBlock title="Chain of Analysis: The Three Ranges of Keynesian AS" type="analysis">
               <div className="space-y-3 text-xs">
                 <div className="p-3 bg-cambridge-cyan/10 rounded-lg border-l-3 border-cambridge-cyan">
                   <p className="font-semibold text-cambridge-cyan mb-1">1. The Horizontal (Keynesian) Range — Perfectly Elastic Supply</p>
@@ -204,7 +204,7 @@ const NationalIncome = () => {
               <LiquidityTrapDiagram />
             </div>
 
-            <AnalysisBlock title="Chain of Analysis (AO3): Money Demand Motives & The Liquidity Trap" type="analysis">
+            <AnalysisBlock title="Chain of Analysis: Money Demand Motives & The Liquidity Trap" type="analysis">
               <div className="space-y-3 text-xs">
                 <p className="text-muted-foreground leading-relaxed text-justify">
                   The <strong className="text-silver-bright">three motives for holding money</strong> create the downward-sloping liquidity preference curve. The <strong className="text-cambridge-cyan">Transactions Motive</strong> generates demand proportional to income (<InlineMath math="M^T = kY" />), as higher income levels require greater cash holdings for routine purchases. The <strong className="text-cambridge-magenta">Precautionary Motive</strong> similarly relates to income, reflecting money held against unforeseen contingencies. Crucially, the <strong className="text-cambridge-orange">Speculative Motive</strong> creates an <em>inverse relationship</em> between money demand and interest rates: when interest rates are high, the opportunity cost of holding money is substantial, and bond prices (being inversely related to yields) are low—people expect rates to fall and bond prices to rise, so they hold bonds. Conversely, when rates are very low, bond prices are high and expected to fall, making money-holding preferable to the risk of capital losses on bonds.
@@ -269,7 +269,7 @@ const NationalIncome = () => {
             </NoteCard>
           </div>
 
-          <AnalysisBlock title="Chain of Reasoning (AO3): Keynesian vs. Monetarist Policy Transmission" type="analysis">
+          <AnalysisBlock title="Chain of Reasoning: Keynesian vs. Monetarist Policy Transmission" type="analysis">
             <div className="space-y-3 text-xs">
               <div className="p-2 bg-cambridge-cyan/10 rounded-lg">
                 <p className="font-semibold text-cambridge-cyan mb-1">Keynesian Transmission (With Spare Capacity):</p>
@@ -292,7 +292,7 @@ const NationalIncome = () => {
             </div>
           </AnalysisBlock>
 
-          <AnalysisBlock title="Critical Evaluation (AO4): State of the Economy Matters" type="evaluation">
+          <AnalysisBlock title="Critical Evaluation: State of the Economy Matters" type="evaluation">
             <div className="grid md:grid-cols-2 gap-2 text-xs">
               <div className="p-2 bg-destructive/10 rounded-lg">
                 <h5 className="font-semibold text-destructive mb-1">When Keynesian Policy Fails</h5>
@@ -422,7 +422,7 @@ const NationalIncome = () => {
               The <strong className="text-silver-bright">Marginal Propensity to Consume</strong>, mathematically expressed as <InlineMath math="MPC = \frac{\Delta C}{\Delta Y}" />, constitutes the slope of the consumption function and determines the responsiveness of aggregate consumption to income changes. Empirically, developed economies typically exhibit MPC values ranging from 0.6 to 0.9, with lower-income households demonstrating systematically higher marginal propensities due to their greater need to satisfy immediate consumption requirements. This distributional characteristic carries profound policy implications: fiscal transfers directed toward lower-income groups generate larger multiplier effects precisely because such recipients spend proportionally more of any additional income received. The <strong className="text-silver-bright">Average Propensity to Consume</strong> (<InlineMath math="APC = \frac{C}{Y}" />) exhibits a declining trajectory as income rises—a phenomenon Keynes termed the "fundamental psychological law"—implying that wealthier societies save proportionally more, potentially creating structural demand deficiencies in mature economies.
             </p>
 
-            <AnalysisBlock title="Chain of Analysis (AO3): The Multiplier Transmission Mechanism" type="analysis">
+            <AnalysisBlock title="Chain of Analysis: The Multiplier Transmission Mechanism" type="analysis">
               <div className="space-y-3 text-xs">
                 <p className="text-muted-foreground leading-relaxed text-justify">
                   The <strong className="text-silver-bright">Keynesian Multiplier Effect</strong> represents the mechanism whereby an initial autonomous injection into the circular flow generates a magnified final impact on equilibrium national income. The transmission operates through successive rounds of induced consumption: an initial investment injection of <InlineMath math="\Delta I" /> creates income for factor owners, who subsequently spend a fraction (<InlineMath math="MPC"  />) on domestic consumption, thereby generating further incomes and further consumption in a geometric series that converges to a finite sum determined by the multiplier coefficient <InlineMath math="k" />.
@@ -649,7 +649,7 @@ const NationalIncome = () => {
               <AEModelDiagram title="The Aggregate Expenditure Model: Ex-Ante Equilibrium & Multiplier" />
             </div>
 
-            <AnalysisBlock title="Chain of Analysis (AO3): Ex-Ante vs. Ex-Post & The Inventory Adjustment Mechanism" type="analysis">
+            <AnalysisBlock title="Chain of Analysis: Ex-Ante vs. Ex-Post & The Inventory Adjustment Mechanism" type="analysis">
               <div className="space-y-3 text-xs">
                 <p className="text-muted-foreground leading-relaxed text-justify">
                   The distinction between <strong className="text-cambridge-cyan">ex-ante (planned)</strong> and <strong className="text-cambridge-magenta">ex-post (actual)</strong> values is fundamental to understanding the disequilibrium adjustment process. In any given period, households and firms make <em>planned</em> decisions about consumption, saving, and investment based on their expectations. However, actual outcomes may differ from plans due to unexpected changes in inventory levels—the crucial buffer variable that absorbs the difference between planned expenditure and actual output. This inventory adjustment mechanism provides the self-correcting force that drives the economy toward equilibrium.
@@ -743,7 +743,7 @@ const NationalIncome = () => {
               <MultiplierDiagram sectors={4} title="The Four-Sector Multiplier: Injections, Withdrawals & Transmission" />
             </div>
 
-            <AnalysisBlock title="Chain of Analysis (AO3): The Multiplier Transmission Mechanism" type="analysis">
+            <AnalysisBlock title="Chain of Analysis: The Multiplier Transmission Mechanism" type="analysis">
               <div className="space-y-3 text-xs">
                 <p className="text-muted-foreground leading-relaxed text-justify">
                   The multiplier process can be mathematically derived as a convergent geometric series. Consider an initial autonomous injection <InlineMath math="\Delta A = £100m" /> with <InlineMath math="MPC = 0.75" /> and no taxation or imports (simple two-sector model). The transmission proceeds as follows:
@@ -806,7 +806,7 @@ const NationalIncome = () => {
               </div>
             </NoteCard>
 
-            <AnalysisBlock title="Critical Evaluation (AO4): Multiplier Effectiveness & Limitations" type="evaluation">
+            <AnalysisBlock title="Critical Evaluation: Multiplier Effectiveness & Limitations" type="evaluation">
               <div className="space-y-3 text-xs">
                 <p className="text-muted-foreground leading-relaxed text-justify">
                   The effectiveness of the fiscal multiplier as a policy instrument is contingent upon multiple factors that A2 candidates must evaluate systematically. Empirical estimates for developed economies suggest actual multipliers range from <strong>1.5–2.5</strong> during recessions (with spare capacity) but fall toward <strong>0.5–1.0</strong> when economies approach full employment—substantially below theoretical maxima due to significant real-world leakages and offsetting mechanisms.

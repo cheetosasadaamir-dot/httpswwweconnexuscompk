@@ -28,7 +28,7 @@ const DevelopmentSustainabilitySection = () => {
           Socio-Economic & Sustainability Framework
         </h3>
         <p className="text-muted-foreground text-sm">
-          This section provides  syllabus-aligned distinctions between growth, development, 
+          This section provides syllabus-aligned distinctions between growth, development, 
           and sustainability, along with stakeholder impact analysis and environmental evaluation.
         </p>
       </motion.div>
@@ -437,7 +437,7 @@ const DevelopmentSustainabilitySection = () => {
         {/* Critical Evaluation */}
         <div className="mt-6 p-4 bg-slate-800/50 border border-amber-500/30 rounded-lg">
           <h5 className="font-semibold text-amber-400 text-sm mb-2">
-            Critical Evaluation: EKC Validity (AO4)
+            Critical Evaluation: EKC Validity
           </h5>
           <p className="text-xs text-muted-foreground mb-2">
             <strong>Supporting Evidence:</strong> As consumer incomes increase, some people show more 
@@ -499,7 +499,7 @@ const BusinessCycleDiagramSVG = () => {
       { threshold: 0.3 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const width = 500;

@@ -21,7 +21,7 @@ const LoginModal = ({ open, onClose, onSuccess }: LoginModalProps) => {
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignIn = async => {
     const { error } = await lovable.auth.signInWithOAuth('google', {
       redirect_uri: window.location.origin,
     });

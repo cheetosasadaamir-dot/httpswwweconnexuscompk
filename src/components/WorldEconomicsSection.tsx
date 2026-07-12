@@ -74,7 +74,7 @@ const TopicCard = ({ topic }: { topic: WorldEconomicsTopic }) => {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="w-4 h-4 text-cyan-400" />
-              <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wide">Chain of Analysis (AO3)</span>
+              <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wide">Chain of Analysis</span>
             </div>
             <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
               <p className="text-sm text-muted-foreground leading-relaxed">{topic.analysis}</p>
@@ -85,7 +85,7 @@ const TopicCard = ({ topic }: { topic: WorldEconomicsTopic }) => {
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="w-4 h-4 text-secondary" />
-                <span className="text-xs font-semibold text-secondary uppercase tracking-wide">Critical Evaluation (AO4)</span>
+                <span className="text-xs font-semibold text-secondary uppercase tracking-wide">Critical Evaluation</span>
               </div>
               <div className="p-3 rounded-lg bg-secondary/10 border border-secondary/20">
                 <p className="text-sm text-muted-foreground leading-relaxed">{topic.evaluation}</p>

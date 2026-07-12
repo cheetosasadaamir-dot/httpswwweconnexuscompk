@@ -30,7 +30,7 @@ const AdminNexusApproval = () => {
     checkAuth();
   }, []);
 
-  const checkAuth = async () => {
+  const checkAuth = async => {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
       setIsAuthenticated(true);
@@ -66,7 +66,7 @@ const AdminNexusApproval = () => {
     }
   };
 
-  const fetchEntries = async () => {
+  const fetchEntries = async => {
     setIsLoading(true);
     const query = supabase.from('freemium_access').select('*').order('created_at', { ascending: false });
     

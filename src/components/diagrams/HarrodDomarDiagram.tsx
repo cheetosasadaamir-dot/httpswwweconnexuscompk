@@ -13,7 +13,7 @@ export const HarrodDomarDiagram = () => {
       { threshold: 0.2 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   const growthRate = (savingsRate / capitalOutput).toFixed(1);
@@ -146,7 +146,7 @@ export const HarrodDomarDiagram = () => {
       {/* Senior Examiner Analysis */}
       <div className="mt-6 p-4 rounded-lg bg-slate-800/50 border border-amber-500/30">
         <p className="text-sm text-white/80">
-          <strong className="text-amber-400">Senior Examiner's Evaluation (AO4):</strong>{' '}
+          <strong className="text-amber-400">Senior Examiner's Evaluation:</strong>{' '}
           The Harrod-Domar model provides a simple, mechanistic view of growth—<em>g = s/k</em>—that emphasises the 
           <strong className="text-cyan-400"> 'financing gap'</strong> in developing economies. Its policy implication is clear: 
           increase savings (through foreign aid, FDI, or forced savings) or reduce the capital-output ratio (through technology transfer). 

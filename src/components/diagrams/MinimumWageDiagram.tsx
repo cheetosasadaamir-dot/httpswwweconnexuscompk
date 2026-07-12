@@ -28,7 +28,7 @@ const MinimumWageDiagram = ({ title = "Minimum Wage in the Labour Market" }: Min
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   // SVG dimensions

@@ -24,7 +24,7 @@ const DemandCurveDiagram = ({ className }: DemandCurveDiagramProps) => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   return (

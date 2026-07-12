@@ -392,7 +392,7 @@ const MarketFailure = () => {
         className="mb-8"
       >
         <h2 className="text-2xl font-serif font-bold text-silver-bright mb-4">
-          5. Evaluation: Limitations and Government Failure (AO4)
+          5. Evaluation: Limitations and Government Failure
         </h2>
 
         {/* Balanced Evaluation Block */}
@@ -433,7 +433,7 @@ const MarketFailure = () => {
           6. Real-World Case Studies
         </h2>
         <p className="text-muted-foreground text-justify leading-relaxed mb-5">
-          The following cases translate the abstract theory of externalities, merit/demerit goods and government failure into recent, examinable evidence. Use them as evaluation ammunition — attach one case per essay to lift AO3/AO4 marks.
+          The following cases translate the abstract theory of externalities, merit/demerit goods and government failure into recent, examinable evidence. Use them as evaluation ammunition — attach one case per essay to lift marks.
         </p>
 
         <div className="grid md:grid-cols-2 gap-4">

@@ -145,19 +145,19 @@ const NationalIncome = () => {
           <AnalysisBlock title="Analysis: The Adjustment Process">
             <div className="space-y-4">
               <div>
-                <p className="font-medium text-primary mb-1">AO3 - Analysis:</p>
+                <p className="font-medium text-primary mb-1">Analysis:</p>
                 <p>If J &gt; W, national income will rise as more is being added to the flow than is being withdrawn. This creates additional income and spending.</p>
               </div>
               <div>
-                <p className="font-medium text-secondary mb-1">AO4 - Evaluation:</p>
+                <p className="font-medium text-secondary mb-1">Evaluation:</p>
                 <p>However, as income rises, households will not only spend more on domestic goods (Cᵈ), but also save more (S), pay more taxes (T), and buy more imports (M). Withdrawals rise until they equal injections.</p>
               </div>
               <div>
-                <p className="font-medium text-primary mb-1">AO3 - Analysis:</p>
+                <p className="font-medium text-primary mb-1">Analysis:</p>
                 <p>Conversely, if J &lt; W, the circular flow contracts. Income falls, reducing the ability of households to save, pay taxes, and import.</p>
               </div>
               <div>
-                <p className="font-medium text-secondary mb-1">AO4 - Evaluation:</p>
+                <p className="font-medium text-secondary mb-1">Evaluation:</p>
                 <p>The magnitude of adjustment depends on the marginal propensities (MPS, MPT, MPM). Higher marginal propensities mean faster adjustment to equilibrium.</p>
               </div>
             </div>

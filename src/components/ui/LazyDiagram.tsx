@@ -40,14 +40,14 @@ export const LazyDiagram = ({
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return => observer.disconnect();
   }, []);
 
   useEffect(() => {
     if (isVisible) {
       // Small delay to ensure smooth transition
       const timer = setTimeout(() => setHasLoaded(true), 50);
-      return () => clearTimeout(timer);
+      return => clearTimeout(timer);
     }
   }, [isVisible]);
 
