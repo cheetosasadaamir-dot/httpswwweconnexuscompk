@@ -21,7 +21,7 @@ const FunctionsOfMoneyDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const functions = [

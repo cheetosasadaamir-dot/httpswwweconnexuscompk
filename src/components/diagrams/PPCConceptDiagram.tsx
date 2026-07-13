@@ -25,7 +25,7 @@ const PPCConceptDiagram = ({ showGrowth = false, showPivot = false, title }: PPC
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const easeInOut: Easing = [0.42, 0, 0.58, 1];

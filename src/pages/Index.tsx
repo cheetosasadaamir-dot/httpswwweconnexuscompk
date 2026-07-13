@@ -12,6 +12,8 @@ import GlossarySection from '@/components/GlossarySection';
 import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
 import AssignmentArchitect from '@/components/AssignmentArchitect';
+import LectureHubCard from '@/components/LectureHubCard';
+
 
 
 import { Button } from '@/components/ui/button';
@@ -170,6 +172,15 @@ const Index = () => {
             <KnowledgePillars />
           </div>
         </section>
+
+        {/* Silver Divider */}
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
+        </div>
+
+        {/* Econ Nexus Lecture Hub — signed-in cinema archive */}
+        <LectureHubCard />
+
 
         {/* Silver Divider */}
         <div className="w-[95%] max-w-[1200px] mx-auto">

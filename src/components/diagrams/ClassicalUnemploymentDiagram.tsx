@@ -17,7 +17,7 @@ const ClassicalUnemploymentDiagram = () => {
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const width = 520;

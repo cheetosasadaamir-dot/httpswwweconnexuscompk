@@ -28,7 +28,7 @@ const FiscalPolicyShiftDiagram: React.FC<FiscalPolicyShiftDiagramProps> = ({
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const width = 500;

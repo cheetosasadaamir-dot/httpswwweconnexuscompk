@@ -103,7 +103,7 @@ const ParticleField = () => {
 
     const animationId = requestAnimationFrame(animate);
 
-    return => {
+    return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationId);

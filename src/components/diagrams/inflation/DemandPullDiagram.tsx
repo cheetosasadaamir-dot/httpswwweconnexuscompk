@@ -11,7 +11,7 @@ const DemandPullDiagram = () => {
       { threshold: 0.2 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const w = 420, h = 340;

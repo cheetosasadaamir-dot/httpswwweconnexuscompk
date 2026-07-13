@@ -419,7 +419,7 @@ const SolarSystemBackground = () => {
 
     animate();
 
-    return => {
+    return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(animationId);

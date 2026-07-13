@@ -24,7 +24,7 @@ const SystemComparisonPPCDiagram = ({ title = "PPC: Resource Allocation by Econo
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const systems = {

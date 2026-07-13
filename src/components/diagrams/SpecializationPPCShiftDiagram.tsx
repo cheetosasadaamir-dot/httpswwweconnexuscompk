@@ -20,7 +20,7 @@ const SpecializationPPCShiftDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const width = 500;

@@ -24,7 +24,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   // Cambridge standard colors

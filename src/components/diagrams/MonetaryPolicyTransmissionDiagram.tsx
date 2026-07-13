@@ -28,7 +28,7 @@ const MonetaryPolicyTransmissionDiagram: React.FC<MonetaryPolicyTransmissionDiag
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const expansionarySteps = [

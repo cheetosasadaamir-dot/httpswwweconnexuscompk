@@ -233,7 +233,7 @@ const ParetoOptimalityContent = () => {
       { threshold: 0.3 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const curveVariants = {
@@ -577,7 +577,7 @@ const WelfareTrianglesDiagram = () => {
       { threshold: 0.3 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   return (

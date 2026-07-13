@@ -805,7 +805,42 @@
     @apply py-12 md:py-16 lg:py-24;
   }
   
+  /* ===== NOTES MOBILE FIT — global overflow guards for all chapter pages ===== */
+  main table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  main table thead, main table tbody, main table tr {
+    width: max-content;
+    min-width: 100%;
+  }
+  /* Any KaTeX / MathML equation scrolls horizontally instead of bleeding */
+  main .katex-display,
+  main .katex,
+  main math {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  main .katex-display { display: block; padding-bottom: 4px; }
+  /* Inline SVG diagrams must never exceed their column */
+  main svg:not([data-allow-overflow]) {
+    max-width: 100%;
+    height: auto;
+  }
+  /* Long inline code / equations wrap on tiny screens */
+  @media (max-width: 640px) {
+    main pre, main code { word-break: break-word; white-space: pre-wrap; }
+    main img { max-width: 100%; height: auto; }
+  }
+  /* ===== END NOTES MOBILE FIT ===== */
+
   /* ===== END MOBILE RESPONSIVENESS SYSTEM ===== */
+
 
   /* Spring animation for buttons and cards */
   .spring-hover {

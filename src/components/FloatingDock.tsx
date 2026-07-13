@@ -15,10 +15,15 @@ import {
   User,
   Landmark,
   Scale,
+  Video,
+  Lock,
+
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
+import { useAuth } from '@/hooks/useAuth';
+
 
 interface SubNavItem {
   title: string;
@@ -172,6 +177,9 @@ const FloatingDock = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const { user } = useAuth();
+  const lectureLocked = !user;
+
 
   const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
     if (closeMobileMenu) {
@@ -224,7 +232,7 @@ const FloatingDock = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
   const isActive = (href: string) => location.pathname === href;
@@ -440,6 +448,34 @@ const FloatingDock = () => {
                     <span>Exams</span>
                   </Link>
                 </div>
+
+                {/* Lecture Hub — locked until sign-in */}
+                <Link
+                  to={lectureLocked ? '/auth?redirect=/lecture-hub' : '/lecture-hub'}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between gap-3 px-4 py-3.5 mb-5 md:mb-6 rounded-xl border transition-all touch-target pointer-events-auto",
+                    lectureLocked
+                      ? "bg-space-void/60 border-neon-gold/25 text-neon-gold hover:border-neon-gold/60"
+                      : "bg-neon-cyan/10 border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/20"
+                  )}
+                >
+                  <span className="flex items-center gap-3">
+                    <Video className="w-4 h-4" />
+                    <span className="text-sm font-semibold tracking-wider uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                      Lecture Hub
+                    </span>
+                  </span>
+                  {lectureLocked ? (
+                    <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em]">
+                      <Lock className="w-3.5 h-3.5" /> Locked
+                    </span>
+                  ) : (
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-neon-cyan/80">Open</span>
+                  )}
+                </Link>
+
+
 
                 {/* TIERED NAVIGATION */}
                 <div className="space-y-4">

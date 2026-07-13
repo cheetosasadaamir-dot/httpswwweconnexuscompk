@@ -29,7 +29,7 @@ const ExternalitiesDiagram = ({ title, type = 'negative-production' }: Externali
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   // SVG dimensions with proper margins

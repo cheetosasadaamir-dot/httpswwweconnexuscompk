@@ -149,7 +149,7 @@ const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
     };
 
     document.addEventListener('keydown', handleKeyDown);
-    return => document.removeEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   // Handle arrow key navigation
@@ -199,7 +199,7 @@ const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return => document.removeEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Reset selected index when results change
