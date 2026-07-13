@@ -535,7 +535,7 @@ const EconomicKineticBackground = () => {
 
     frameRef.current = requestAnimationFrame(animate);
 
-    return => {
+    return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);

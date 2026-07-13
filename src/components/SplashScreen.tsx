@@ -207,7 +207,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
     };
 
     rafRef.current = requestAnimationFrame(render);
-    return => cancelAnimationFrame(rafRef.current);
+    return () => cancelAnimationFrame(rafRef.current);
   }, [mobile]);
 
   // ── Phase sequencing ──
@@ -218,7 +218,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
       setPhase('done');
       onComplete();
     }, TOTAL_DURATION);
-    return => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [onComplete]);
 
   if (phase === 'done') return null;

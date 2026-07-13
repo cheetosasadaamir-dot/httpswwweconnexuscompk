@@ -191,7 +191,7 @@ const CameraRig = memo(() => {
       rafId = requestAnimationFrame(() => onMove(e));
     };
     window.addEventListener('mousemove', throttled, { passive: true });
-    return => {
+    return () => {
       window.removeEventListener('mousemove', throttled);
       cancelAnimationFrame(rafId);
     };
@@ -278,7 +278,7 @@ const ThreeJsMarketEngine = () => {
   useEffect(() => {
     const handler = () => setIsVisible(document.visibilityState === 'visible');
     document.addEventListener('visibilitychange', handler);
-    return => document.removeEventListener('visibilitychange', handler);
+    return () => document.removeEventListener('visibilitychange', handler);
   }, []);
 
   // Pause 3D rendering for 500ms during route transitions to free CPU
@@ -296,7 +296,7 @@ const ThreeJsMarketEngine = () => {
       }
     };
     document.addEventListener('click', handleClick, true);
-    return => document.removeEventListener('click', handleClick, true);
+    return () => document.removeEventListener('click', handleClick, true);
   }, []);
 
   const shouldRender = isVisible && !isPaused;

@@ -27,7 +27,7 @@ const SupplySideLRASDiagram: React.FC<SupplySideLRASDiagramProps> = ({
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const width = 500;

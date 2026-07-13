@@ -19,7 +19,7 @@ const AbsoluteAdvantageDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   // Production data from PDF: Coffenia & Robotia

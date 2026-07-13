@@ -23,7 +23,7 @@ const FloatingReviewsBox = () => {
   const [scrollIndex, setScrollIndex] = useState(0);
   const { toast } = useToast();
 
-  const fetchReviews = useCallback(async => {
+  const fetchReviews = useCallback(async () => {
     const { data } = await supabase
       .from('reviews')
       .select('*')
@@ -40,7 +40,7 @@ const FloatingReviewsBox = () => {
     ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1)
     : '5.0';
 
-  const handleSubmit = async => {
+  const handleSubmit = async () => {
     if (!name.trim() || !text.trim() || rating === 0) {
       toast({ title: 'Please fill all fields', variant: 'destructive' });
       return;

@@ -507,7 +507,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
       const interval = setInterval(() => {
         setMessageIndex(prev => (prev + 1) % loadingStates.length);
       }, 2500);
-      return => clearInterval(interval);
+      return () => clearInterval(interval);
     }
   }, [streamState, loadingStates.length]);
 
@@ -593,7 +593,7 @@ const TypingIndicator = ({ streamState = 'connecting', persona = 'a-level' }: { 
 const CopyButton = ({ text }: { text: string }) => {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = async => {
+  const handleCopy = async () => {
     try {
       // Strip markdown for cleaner copy
       const cleanText = text.replace(/\*\*/g, '').replace(/\$/g, '');
@@ -808,7 +808,7 @@ export default function EconomicsChatbot() {
       { threshold: [0, 0.3, 0.6] }
     );
     observer.observe(section);
-    return => {
+    return () => {
       observer.disconnect();
       document.body.classList.remove('chat-active');
     };
@@ -839,17 +839,17 @@ export default function EconomicsChatbot() {
       setMessages([]);
       return;
     }
-    (async => {
+    (async () => {
       const history = await loadChatHistory(user.id, persona);
       if (cancelled) return;
       setMessages(history);
     })();
-    return => { cancelled = true; };
+    return () => { cancelled = true; };
   }, [user, persona]);
 
   // Cleanup on unmount
   useEffect(() => {
-    return => {
+    return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }

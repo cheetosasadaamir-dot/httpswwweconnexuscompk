@@ -13,7 +13,7 @@ export const HarrodDomarDiagram = () => {
       { threshold: 0.2 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const growthRate = (savingsRate / capitalOutput).toFixed(1);

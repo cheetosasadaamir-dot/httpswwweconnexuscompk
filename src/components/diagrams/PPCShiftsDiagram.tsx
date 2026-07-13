@@ -25,7 +25,7 @@ const PPCShiftsDiagram = ({ type, title }: PPCShiftsDiagramProps) => {
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const width = 400;

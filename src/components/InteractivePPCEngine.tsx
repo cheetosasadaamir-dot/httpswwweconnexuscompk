@@ -42,7 +42,7 @@ const InteractivePPCEngine = () => {
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   // Convert percentage coordinates (0-100) to SVG coordinates
@@ -172,7 +172,7 @@ const InteractivePPCEngine = () => {
   useEffect(() => {
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('touchend', handleMouseUp);
-    return => {
+    return () => {
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('touchend', handleMouseUp);
     };

@@ -21,7 +21,7 @@ const ADShiftDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const width = 520;

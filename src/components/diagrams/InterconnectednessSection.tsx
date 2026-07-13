@@ -401,7 +401,7 @@ const PhillipsCurveDiagram: React.FC = () => {
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const width = 520;

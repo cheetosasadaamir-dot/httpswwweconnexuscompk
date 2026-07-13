@@ -50,7 +50,7 @@ const ReviewWidget = () => {
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const fetchReviews = useCallback(async => {
+  const fetchReviews = useCallback(async () => {
     const { data } = await supabase
       .from('reviews')
       .select('*')
@@ -72,10 +72,10 @@ const ReviewWidget = () => {
         setFading(false);
       }, 400);
     }, 5000);
-    return => clearInterval(interval);
+    return () => clearInterval(interval);
   }, [reviews.length]);
 
-  const handleSubmit = async => {
+  const handleSubmit = async () => {
     if (!name.trim() || !text.trim() || rating === 0) {
       toast({ title: 'Please fill all fields', variant: 'destructive' });
       return;

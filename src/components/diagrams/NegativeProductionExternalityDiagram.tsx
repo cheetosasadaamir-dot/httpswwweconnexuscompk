@@ -19,7 +19,7 @@ const NegativeProductionExternalityDiagram = () => {
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   // Exam Standard Colors

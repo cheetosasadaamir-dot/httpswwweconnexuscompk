@@ -20,7 +20,7 @@ const PolicyConflictsDiagram: React.FC = () => {
       observer.observe(containerRef.current);
     }
 
-    return => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   const objectives = [
