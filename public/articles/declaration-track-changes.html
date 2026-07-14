@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Econ Nexus | The Declaration of Independence, Run Through Track Changes</title>
+<meta name="description" content="Econ Nexus background essay on the drafting history of the Declaration of Independence -- from Jefferson rough draft to final text, including the removed anti-slavery passage.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:        #1B2A41;
+    --ink-soft:   #33465F;
+    --parchment:  #EFEAE0;
+    --parchment-2:#E5DFD1;
+    --paper:      #FBF9F4;
+    --gold:       #96731F;
+    --gold-bright:#B78A2C;
+    --verdigris:  #52705F;
+    --rule:       #C9BFA6;
+    --text:       #26241E;
+    --text-soft:  #55524A;
+    --max-w:      760px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:18px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--gold-bright); color:var(--paper); }
+
+  a{ color:var(--gold); text-decoration-thickness:1px; text-underline-offset:2px; }
+  a:hover{ color:var(--ink); }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--ink);
+    color:var(--parchment);
+    padding:14px 24px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border-bottom:3px double var(--gold-bright);
+  }
+  .masthead span{ opacity:0.6; }
+
+  /* ---------- Header ---------- */
+  header.hero{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:64px 24px 0;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:34px; height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin:0 0 22px;
+  }
+  .title em{ font-style:italic; font-weight:500; color:var(--gold); }
+  .deck{
+    font-family:'Source Serif 4', serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:1.28rem;
+    line-height:1.55;
+    color:var(--text-soft);
+    max-width:62ch;
+    margin:0 0 30px;
+  }
+  .byline{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    align-items:baseline;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    color:var(--text-soft);
+    padding-bottom:28px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:0;
+  }
+  .byline strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Divergence diagram (signature element) ---------- */
+  figure.diagram{
+    max-width:960px;
+    margin:44px auto 8px;
+    padding:0 24px;
+  }
+  .diagram-frame{
+    background:var(--parchment);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:28px clamp(16px,4vw,40px) 20px;
+  }
+  .diagram-frame svg{ width:100%; height:auto; display:block; }
+  figcaption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-soft);
+    text-align:center;
+    padding:14px 10px 0;
+    line-height:1.6;
+  }
+  figcaption .cap-title{ color:var(--ink); font-weight:500; }
+
+  /* ---------- Article body ---------- */
+  main{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:52px 24px 20px;
+  }
+
+  main > p{ margin:0 0 26px; }
+
+  main > p:first-of-type::first-letter{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:4.6em;
+    line-height:0.82;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--ink);
+  }
+
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.7rem;
+    color:var(--ink);
+    margin:56px 0 6px;
+    letter-spacing:-0.005em;
+  }
+  h2 .num{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:400;
+    font-size:12px;
+    letter-spacing:0.16em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:1.22rem;
+    color:var(--ink-soft);
+    margin:34px 0 12px;
+  }
+
+  main p, main li{ color:var(--text); }
+  main ul, main ol{ padding-left:1.25em; margin:0 0 26px; }
+  main li{ margin-bottom:10px; }
+
+  blockquote.pull{
+    margin:40px 0;
+    padding:6px 0 6px 28px;
+    border-left:3px solid var(--gold-bright);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  blockquote.pull cite{
+    display:block;
+    margin-top:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+  }
+
+  .ornament{
+    text-align:center;
+    color:var(--gold);
+    font-size:20px;
+    letter-spacing:0.6em;
+    margin:52px 0;
+    opacity:0.75;
+  }
+
+  .callout{
+    background:var(--parchment);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:26px 28px;
+    margin:36px 0;
+  }
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-bottom:10px;
+    display:block;
+  }
+  .callout p{ margin:0 0 12px; font-size:0.97rem; }
+  .callout p:last-child{ margin-bottom:0; }
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin:32px 0 40px;
+  }
+  .two-col .card{
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:22px 22px 20px;
+    background:var(--paper);
+  }
+  .two-col h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .two-col p{ font-size:0.95rem; color:var(--text-soft); margin:0; }
+  @media (max-width:640px){ .two-col{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer / apparatus ---------- */
+  .apparatus{
+    max-width:var(--max-w);
+    margin:16px auto 0;
+    padding:36px 24px 80px;
+    border-top:1px solid var(--rule);
+  }
+  .apparatus h3.footer-h{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+    font-style:normal;
+    margin:0 0 18px;
+  }
+  .sources{ list-style:none; padding:0; margin:0 0 40px; }
+  .sources li{
+    font-size:0.93rem;
+    color:var(--text-soft);
+    padding:10px 0;
+    border-bottom:1px dashed var(--rule);
+  }
+  .sources li:last-child{ border-bottom:none; }
+  .sources a{ color:var(--ink); font-weight:500; }
+  .sources .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-right:8px;
+  }
+
+  .about-box{
+    background:var(--ink);
+    color:var(--parchment);
+    border-radius:2px;
+    padding:28px 26px;
+  }
+  .about-box h3{
+    font-family:'Fraunces', serif;
+    font-style:normal;
+    font-weight:600;
+    color:var(--parchment);
+    margin:0 0 10px;
+    font-size:1.15rem;
+  }
+  .about-box p{
+    font-size:0.92rem;
+    color:#C9D0D9;
+    margin:0 0 10px;
+  }
+  .about-box p:last-child{ margin-bottom:0; }
+  .about-box .accent{ color:var(--gold-bright); font-weight:600; }
+
+  footer.colophon{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--text-soft);
+    padding:26px 24px 40px;
+  }
+
+  @media (max-width:600px){
+    body{ font-size:16.5px; }
+    header.hero{ padding-top:44px; }
+    main{ padding-top:38px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">Econ Nexus <span>·</span> American History &amp; Founding Documents <span>·</span> Background Briefing</div>
+
+<header class="hero">
+  <div class="eyebrow">American History &amp; Political Economy</div>
+  <h1 class="title">The Declaration of Independence, Run Through <em>Track Changes</em></h1>
+  <p class="deck">Jefferson's first draft was not the document 56 men eventually signed. Reading the edits — word by word, clause by clause — reveals a committee quietly rewriting the philosophical and moral foundations of a revolution in real time.</p>
+  <div class="byline">
+    <span><strong>Background essay</strong> on the drafting history of the Declaration of Independence</span>
+    <span>Sources: Library of Congress &amp; National Archives</span>
+    <span>Topic: founding documents</span>
+  </div>
+</header>
+
+<figure class="diagram">
+  <div class="diagram-frame">
+    <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Timeline of the drafting process of the Declaration of Independence in summer 1776">
+      <line x1="70" y1="150" x2="830" y2="150" stroke="#33465F" stroke-width="1.4"/>
+
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#26241E">
+        <circle cx="120" cy="150" r="6" fill="#96731F"/>
+        <text x="120" y="120" text-anchor="middle">June 11</text>
+        <text x="120" y="102" text-anchor="middle" font-size="10.5" fill="#55524A">Committee of</text>
+        <text x="120" y="88" text-anchor="middle" font-size="10.5" fill="#55524A">Five appointed</text>
+
+        <circle cx="290" cy="150" r="6" fill="#96731F"/>
+        <text x="290" y="180" text-anchor="middle">June 11–28</text>
+        <text x="290" y="198" text-anchor="middle" font-size="10.5" fill="#55524A">Jefferson drafts,</text>
+        <text x="290" y="212" text-anchor="middle" font-size="10.5" fill="#55524A">committee edits</text>
+
+        <circle cx="460" cy="150" r="6" fill="#52705F"/>
+        <text x="460" y="120" text-anchor="middle">June 28</text>
+        <text x="460" y="102" text-anchor="middle" font-size="10.5" fill="#55524A">Draft submitted</text>
+        <text x="460" y="88" text-anchor="middle" font-size="10.5" fill="#55524A">to Congress</text>
+
+        <circle cx="630" cy="150" r="6" fill="#52705F"/>
+        <text x="630" y="180" text-anchor="middle">July 1–4</text>
+        <text x="630" y="198" text-anchor="middle" font-size="10.5" fill="#55524A">Congress debates,</text>
+        <text x="630" y="212" text-anchor="middle" font-size="10.5" fill="#55524A">cuts slave-trade passage</text>
+
+        <circle cx="800" cy="150" r="7" fill="#1B2A41"/>
+        <text x="800" y="120" text-anchor="middle" font-weight="600">July 4, 1776</text>
+        <text x="800" y="102" text-anchor="middle" font-size="10.5" fill="#55524A">Declaration</text>
+        <text x="800" y="88" text-anchor="middle" font-size="10.5" fill="#55524A">adopted</text>
+      </g>
+      <text x="70" y="18" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.08em" fill="#33465F">FROM ROUGH DRAUGHT TO FINAL TEXT — SUMMER 1776</text>
+      <text x="70" y="270" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#55524A">Reconstructed by historian Julian Boyd from the surviving manuscript record, 1950s.</text>
+    </svg>
+  </div>
+  <figcaption><span class="cap-title">Figure 1.</span> The compressed, three-week path from Jefferson's rough draft to the document Congress adopted — with the most consequential edit, the removal of the anti-slavery passage, arriving in the final days.</figcaption>
+</figure>
+
+<main>
+
+<p>Word processors have made "Track Changes" a familiar, almost mundane office tool — the wavy underlines and strikethroughs that show exactly who changed what, and when. It is a strange but genuinely illuminating exercise to apply that same lens to one of the most consequential documents in American history. Thomas Jefferson did not write the Declaration of Independence alone, and he certainly did not write it in one uninterrupted sitting. He wrote a rough draft after weeks of listening to Continental Congress debate about what a declaration should say; that draft was then revised by a five-person committee that also included John Adams, Benjamin Franklin, Roger Sherman, and Robert R. Livingston; and the committee's version was revised again by the full Congress before anyone signed anything.</p>
+
+<p>In the 1950s, the historian Julian Boyd worked back through the surviving documentary record — including handwritten notes layered directly onto Jefferson's early draft — to reconstruct what is now called the "original Rough draught." Comparing that reconstruction to the final adopted text amounts, functionally, to running the Declaration of Independence through Track Changes.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section One</span>Small Words, Large Implications</h2>
+
+<p>Many of the edits are exactly what you'd expect from any committee revision: capitalization, punctuation, minor tightening. But a handful of word-level changes carry real philosophical weight. Jefferson's opening line originally described the American colonists needing to "advance from that subordination" they had been in — language that concedes, however briefly, that the colonies had in fact been subordinate to the Crown. The final text replaces that phrase with "dissolve the political bands which have connected them with another" — a subtler formulation that never explicitly admits prior subordination at all.</p>
+
+<p>The second paragraph shows a similar, more theologically loaded shift. Jefferson's draft calls the truths that follow "sacred and undeniable" — a word choice that, to readers steeped in scripture, would have carried a direct religious resonance. The committee changed "sacred" to "self-evident," a philosophically distinct claim: not that the truths are handed down by religious authority, but that they are knowable through reason alone. Interestingly, the loss of "sacred" is partly counterbalanced elsewhere: "the laws of nature" becomes "the Laws of Nature and of Nature's God," reinserting a religious register at a different point in the sentence. Likewise, Jefferson's plain statement that people are "created" equal becomes "endowed by their Creator" — again restoring an explicit reference to divine authorship that the "self-evident" edit had just removed.</p>
+
+<blockquote class="pull">
+  “Self-evident” replaces “sacred and undeniable” — a shift from religious authority to reasoned certainty, partly offset elsewhere by a new reference to “Nature's God.”
+</blockquote>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Two</span>The Passage That Didn't Survive</h2>
+
+<p>The most consequential change by far is not a word substitution but a wholesale deletion. Jefferson's rough draft included a lengthy grievance against King George III for perpetuating the Atlantic slave trade — language accusing the Crown of waging "cruel war against human nature itself" by capturing and enslaving people from another continent, and of blocking colonial legislative attempts to restrict the trade. The full Continental Congress struck the passage entirely before adopting the final text.</p>
+
+<div class="callout">
+  <span class="callout-label">Why It Was Cut</span>
+  <p>The removal reflects a hard political reality rather than a change of moral conviction among the drafters. Declaring treason against the world's most powerful empire required the broadest possible coalition among the thirteen colonies. Southern delegates, whose economies depended on slavery, would not sign a founding document that condemned the institution outright — and a fractured, partial declaration risked a fractured, partial war effort against Britain. The practical demands of building unanimous colonial support for independence overrode the anti-slavery language, even though a number of delegates evidently held real anti-slavery sentiment.</p>
+</div>
+
+<p>The passage is historically strange in more ways than one. It is a document written in part by Jefferson, himself an enslaver, containing a fierce moral denunciation of slavery — a genuine irony that later generations have had to reckon with. It is also, in a narrow historical sense, accurate: the Atlantic slave trade to British North America had indeed been actively perpetuated and protected by the Crown for decades before 1776, which is part of why the accusation could be aimed at the king specifically rather than at the colonies themselves.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Three</span>A Counterfactual Worth Taking Seriously</h2>
+
+<p>It is always risky to reason confidently about alternate histories, but the stakes of this particular edit are worth sitting with. Had the northern colonies insisted on keeping the anti-slavery language and lost the support of some or all of the southern colonies as a result, the resulting declaration of independence — assuming one still happened — would have been fought by a smaller, more fractured coalition. Britain would have faced a narrower war, without needing to commit resources to Southern theaters like the blockade of Charleston harbor or the guerrilla campaigns waged across the Carolinas. A war fought under those conditions might well have been lost, and the individuals who signed a narrower declaration might be remembered today, if at all, as executed or imprisoned traitors rather than founding fathers.</p>
+
+<p>None of this excuses the moral compromise embedded in the final text. But it does explain, in concrete strategic terms, why a document capable of uniting thirteen colonies against an empire ended up silent on the very injustice some of its authors had just finished condemning in an earlier draft.</p>
+
+</main>
+
+<div class="apparatus">
+  <h3 class="footer-h">Primary Sources</h3>
+  <ul class="sources">
+    <li><span class="tag">Manuscript</span><a href="https://www.loc.gov/exhibits/declara/ruffdrft.html" target="_blank" rel="noopener">Jefferson's "original Rough draught"</a> — Library of Congress.</li>
+    <li><span class="tag">Manuscript</span><a href="https://www.archives.gov/founding-docs/declaration-transcript" target="_blank" rel="noopener">Final adopted text</a> — National Archives.</li>
+    <li><span class="tag">Commentary</span>Timothy Taylor, <a href="https://conversableeconomist.com/2026/07/04/declaration-of-independence-track-changes-version/" target="_blank" rel="noopener">"Declaration of Independence: Track Changes Version"</a> — Conversable Economist, July 4, 2026.</li>
+    <li><span class="tag">Scholarship</span>Julian Boyd, reconstruction of the Declaration's drafting history from the documentary record, 1950s.</li>
+  </ul>
+
+  <div class="about-box">
+    <h3>The Committee of Five</h3>
+    <p>Thomas Jefferson, John Adams, Benjamin Franklin, Roger Sherman, and Robert R. Livingston were appointed by the Continental Congress to draft a declaration of independence; Jefferson produced the initial text, which the committee and then the full Congress revised before its adoption on <span class="accent">July 4, 1776</span>.</p>
+  </div>
+</div>
+
+</body>
+</html>

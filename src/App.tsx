@@ -55,9 +55,7 @@ const UtilityConsumerChoice = lazy(() => import("./pages/a2-micro/UtilityConsume
 const EconomicEfficiency = lazy(() => import("./pages/a2-micro/EconomicEfficiency"));
 const ProductionCosts = lazy(() => import("./pages/a2-micro/ProductionCosts"));
 
-// Freemium & Admin
-const FreemiumPack = lazy(() => import("./pages/FreemiumPack"));
-const AdminNexusApproval = lazy(() => import("./pages/AdminNexusApproval"));
+// Utility / Admin pages
 const OwnerNexusVault = lazy(() => import("./pages/OwnerNexusVault"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -67,6 +65,8 @@ const LoginPage = lazy(() => import("./pages/Login"));
 const ReviewsPage = lazy(() => import("./pages/Reviews"));
 const ChatPage = lazy(() => import("./pages/Chat"));
 const LectureHub = lazy(() => import("./pages/LectureHub"));
+const ArticleHub = lazy(() => import("./pages/ArticleHub"));
+const ArticleViewer = lazy(() => import("./pages/ArticleViewer"));
 
 
 
@@ -145,9 +145,7 @@ const AnimatedRoutes = () => {
           <Route path="/exam-intelligence" element={<ExamIntelligence />} />
           <Route path="/market-structures" element={<MarketStructures />} />
           
-          {/* Freemium & Admin */}
-          <Route path="/freemium-pack" element={<FreemiumPack />} />
-          <Route path="/admin-nexus-approval" element={<AdminNexusApproval />} />
+          {/* Utility & Admin */}
           <Route path="/owner-nexus-vault" element={<OwnerNexusVault />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
@@ -157,6 +155,8 @@ const AnimatedRoutes = () => {
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/lecture-hub" element={<ProtectedRoute><LectureHub /></ProtectedRoute>} />
+          <Route path="/article-hub" element={<ProtectedRoute><ArticleHub /></ProtectedRoute>} />
+          <Route path="/article-hub/:slug" element={<ProtectedRoute><ArticleViewer /></ProtectedRoute>} />
 
           
           {/* Legacy routes */}

@@ -75,7 +75,8 @@ Deno.serve(async (req) => {
       }).eq('id', user.id)
 
       if (error) {
-        return new Response(JSON.stringify({ error: error.message }), { status: 500, headers: corsHeaders })
+        console.error('Profile update failed:', error)
+        return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers: corsHeaders })
       }
     }
 
@@ -83,6 +84,7 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (err) {
-    return new Response(JSON.stringify({ error: String(err) }), { status: 500, headers: corsHeaders })
+    console.error('geo-lookup error:', err)
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers: corsHeaders })
   }
 })

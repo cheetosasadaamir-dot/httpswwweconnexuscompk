@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Econ Nexus | Is the Fed Going Easy on Bank Enforcement? A Data Look</title>
+<meta name="description" content="Econ Nexus background essay on new Brookings research showing Federal Reserve bank enforcement actions have fallen nearly 50% since the pandemic, diverging sharply from the OCC and FDIC.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:        #1B2A41;
+    --ink-soft:   #33465F;
+    --parchment:  #EFEAE0;
+    --parchment-2:#E5DFD1;
+    --paper:      #FBF9F4;
+    --gold:       #96731F;
+    --gold-bright:#B78A2C;
+    --verdigris:  #52705F;
+    --rule:       #C9BFA6;
+    --text:       #26241E;
+    --text-soft:  #55524A;
+    --max-w:      760px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:18px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--gold-bright); color:var(--paper); }
+
+  a{ color:var(--gold); text-decoration-thickness:1px; text-underline-offset:2px; }
+  a:hover{ color:var(--ink); }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--ink);
+    color:var(--parchment);
+    padding:14px 24px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border-bottom:3px double var(--gold-bright);
+  }
+  .masthead span{ opacity:0.6; }
+
+  /* ---------- Header ---------- */
+  header.hero{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:64px 24px 0;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:34px; height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin:0 0 22px;
+  }
+  .title em{ font-style:italic; font-weight:500; color:var(--gold); }
+  .deck{
+    font-family:'Source Serif 4', serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:1.28rem;
+    line-height:1.55;
+    color:var(--text-soft);
+    max-width:62ch;
+    margin:0 0 30px;
+  }
+  .byline{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    align-items:baseline;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    color:var(--text-soft);
+    padding-bottom:28px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:0;
+  }
+  .byline strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Divergence diagram (signature element) ---------- */
+  figure.diagram{
+    max-width:960px;
+    margin:44px auto 8px;
+    padding:0 24px;
+  }
+  .diagram-frame{
+    background:var(--parchment);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:28px clamp(16px,4vw,40px) 20px;
+  }
+  .diagram-frame svg{ width:100%; height:auto; display:block; }
+  figcaption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-soft);
+    text-align:center;
+    padding:14px 10px 0;
+    line-height:1.6;
+  }
+  figcaption .cap-title{ color:var(--ink); font-weight:500; }
+
+  /* ---------- Article body ---------- */
+  main{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:52px 24px 20px;
+  }
+
+  main > p{ margin:0 0 26px; }
+
+  main > p:first-of-type::first-letter{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:4.6em;
+    line-height:0.82;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--ink);
+  }
+
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.7rem;
+    color:var(--ink);
+    margin:56px 0 6px;
+    letter-spacing:-0.005em;
+  }
+  h2 .num{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:400;
+    font-size:12px;
+    letter-spacing:0.16em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:1.22rem;
+    color:var(--ink-soft);
+    margin:34px 0 12px;
+  }
+
+  main p, main li{ color:var(--text); }
+  main ul, main ol{ padding-left:1.25em; margin:0 0 26px; }
+  main li{ margin-bottom:10px; }
+
+  blockquote.pull{
+    margin:40px 0;
+    padding:6px 0 6px 28px;
+    border-left:3px solid var(--gold-bright);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  blockquote.pull cite{
+    display:block;
+    margin-top:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+  }
+
+  .ornament{
+    text-align:center;
+    color:var(--gold);
+    font-size:20px;
+    letter-spacing:0.6em;
+    margin:52px 0;
+    opacity:0.75;
+  }
+
+  .callout{
+    background:var(--parchment);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:26px 28px;
+    margin:36px 0;
+  }
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-bottom:10px;
+    display:block;
+  }
+  .callout p{ margin:0 0 12px; font-size:0.97rem; }
+  .callout p:last-child{ margin-bottom:0; }
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin:32px 0 40px;
+  }
+  .two-col .card{
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:22px 22px 20px;
+    background:var(--paper);
+  }
+  .two-col h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .two-col p{ font-size:0.95rem; color:var(--text-soft); margin:0; }
+  @media (max-width:640px){ .two-col{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer / apparatus ---------- */
+  .apparatus{
+    max-width:var(--max-w);
+    margin:16px auto 0;
+    padding:36px 24px 80px;
+    border-top:1px solid var(--rule);
+  }
+  .apparatus h3.footer-h{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+    font-style:normal;
+    margin:0 0 18px;
+  }
+  .sources{ list-style:none; padding:0; margin:0 0 40px; }
+  .sources li{
+    font-size:0.93rem;
+    color:var(--text-soft);
+    padding:10px 0;
+    border-bottom:1px dashed var(--rule);
+  }
+  .sources li:last-child{ border-bottom:none; }
+  .sources a{ color:var(--ink); font-weight:500; }
+  .sources .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-right:8px;
+  }
+
+  .about-box{
+    background:var(--ink);
+    color:var(--parchment);
+    border-radius:2px;
+    padding:28px 26px;
+  }
+  .about-box h3{
+    font-family:'Fraunces', serif;
+    font-style:normal;
+    font-weight:600;
+    color:var(--parchment);
+    margin:0 0 10px;
+    font-size:1.15rem;
+  }
+  .about-box p{
+    font-size:0.92rem;
+    color:#C9D0D9;
+    margin:0 0 10px;
+  }
+  .about-box p:last-child{ margin-bottom:0; }
+  .about-box .accent{ color:var(--gold-bright); font-weight:600; }
+
+  footer.colophon{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--text-soft);
+    padding:26px 24px 40px;
+  }
+
+  @media (max-width:600px){
+    body{ font-size:16.5px; }
+    header.hero{ padding-top:44px; }
+    main{ padding-top:38px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">Econ Nexus <span>·</span> Bank Supervision &amp; Regulation <span>·</span> Background Briefing</div>
+
+<header class="hero">
+  <div class="eyebrow">Bank Supervision &amp; Regulation</div>
+  <h1 class="title">Is the Fed Going <em>Easy</em> on the Banks It Watches?</h1>
+  <p class="deck">Formal enforcement actions against banks have fallen by nearly half since the pandemic — but only at the Federal Reserve. The other two federal bank regulators tell a different story, and the gap raises an uncomfortable question about supervisory rigor.</p>
+  <div class="byline">
+    <span><strong>Background essay</strong> based on research by Aaron Klein and Cameron Connell</span>
+    <span>Brookings Institution, July 8, 2026</span>
+    <span>Topic: Federal Reserve bank supervision</span>
+  </div>
+</header>
+
+<figure class="diagram">
+  <div class="diagram-frame">
+    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic chart of declining Federal Reserve bank enforcement actions compared to OCC and FDIC">
+      <line x1="60" y1="280" x2="860" y2="280" stroke="#33465F" stroke-width="1.2"/>
+      <line x1="60" y1="30" x2="60" y2="280" stroke="#33465F" stroke-width="1.2"/>
+      <line x1="60" y1="220" x2="860" y2="220" stroke="#C9BFA6" stroke-width="0.6" stroke-dasharray="2 4"/>
+      <line x1="60" y1="150" x2="860" y2="150" stroke="#C9BFA6" stroke-width="0.6" stroke-dasharray="2 4"/>
+      <line x1="60" y1="80" x2="860" y2="80" stroke="#C9BFA6" stroke-width="0.6" stroke-dasharray="2 4"/>
+
+      <!-- Fed: steep decline post-2020 -->
+      <path d="M60,110 C 180,105 300,100 380,108 C 460,118 520,150 600,205 C 700,235 780,245 860,250"
+            fill="none" stroke="#96731F" stroke-width="2.8" stroke-linecap="round"/>
+      <!-- OCC: dip then rise -->
+      <path d="M60,150 C 180,165 300,190 380,205 C 460,215 520,205 600,175 C 700,140 780,120 860,110"
+            fill="none" stroke="#52705F" stroke-width="2.6" stroke-linecap="round"/>
+      <!-- FDIC: milder dip then modest rise -->
+      <path d="M60,170 C 180,178 300,195 380,205 C 460,208 520,200 600,190 C 700,175 780,165 860,158"
+            fill="none" stroke="#1B2A41" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="1 0"/>
+
+      <circle cx="380" cy="108" r="4" fill="#96731F"/>
+      <text x="332" y="94" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#96731F">2020: pandemic onset</text>
+
+      <text x="866" y="253" font-family="Fraunces, serif" font-weight="600" font-size="14" fill="#96731F">Fed</text>
+      <text x="866" y="113" font-family="Fraunces, serif" font-weight="600" font-size="14" fill="#52705F">OCC</text>
+      <text x="866" y="161" font-family="Fraunces, serif" font-weight="600" font-size="14" fill="#1B2A41">FDIC</text>
+
+      <text x="60" y="300" font-family="IBM Plex Mono, monospace" font-size="11" fill="#55524A">Obama (late)</text>
+      <text x="770" y="300" font-family="IBM Plex Mono, monospace" font-size="11" fill="#55524A">Trump II</text>
+      <text x="60" y="18" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.08em" fill="#33465F">SCHEMATIC — FORMAL ENFORCEMENT ACTIONS BY REGULATOR (NOT TO SCALE)</text>
+    </svg>
+  </div>
+  <figcaption><span class="cap-title">Figure 1.</span> A stylized rendering of the pattern documented by Klein and Connell: Fed enforcement actions decline steadily from 2020 onward, while OCC and FDIC actions dip in the late 2010s and then recover.</figcaption>
+</figure>
+
+<main>
+
+<p>Bank supervision is one of those government functions that only makes headlines when it fails. Nobody writes news stories about the thousands of routine examinations that quietly confirm a bank's books are in order. The story only breaks when supervision was supposed to catch a problem and didn't — as it famously didn't at Silicon Valley Bank in March 2023, when examiners were reportedly still assembling an enforcement case as the bank ran out of time. That episode is part of why a new data-driven look at bank enforcement, from Aaron Klein and Cameron Connell of the Brookings Institution, deserves more attention than the dry phrase "enforcement actions" usually attracts.</p>
+
+<p>The Federal Reserve's supervisory role is distinct from its more famous job of setting interest rates. Supervision means examining a bank's finances, risk management, and record-keeping closely enough to catch trouble before it becomes a crisis. Most of the time, that process ends quietly: a bank might not earn a top rating in every category, but examiners conclude its overall condition is satisfactory. When the picture is more troubling, regulators have the power to escalate — formally, through enforcement actions that compel a bank to fix specific problems on a specific timeline.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section One</span>A Decline That Predates Politics</h2>
+
+<p>Klein and Connell's first finding complicates a tempting, tidy political story. If bank enforcement simply tracked which party controlled the White House, you would expect it to loosen under Republican administrations and tighten under Democratic ones. The actual pattern does not cooperate. Fed enforcement actions decline modestly from the later Obama years into the first Trump administration — consistent with the partisan story so far — but then the real break comes with the pandemic in 2020, and the decline continues essentially uninterrupted through the Biden administration and into the second Trump term.</p>
+
+<p>In other words, the steepest and most sustained drop-off in Fed enforcement activity spans three different presidencies and two different parties. Whatever is driving it, a simple partisan account does not explain it.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Two</span>Two Competing Explanations</h2>
+
+<p>Broadly, there are two ways to read a decline in enforcement actions, and they point in opposite directions.</p>
+
+<div class="two-col">
+  <div class="card">
+    <h4>Less need for enforcement</h4>
+    <p>The post-2010 Dodd-Frank regulatory framework may simply have worked: banks are taking less risk, balance sheets are healthier, and supervisors genuinely have less to escalate. Fewer enforcement actions would then be a sign of success, not neglect.</p>
+  </div>
+  <div class="card">
+    <h4>Less rigorous supervision</h4>
+    <p>Alternatively, examiners may be looking less closely, moving more slowly, or facing institutional pressure to avoid formal escalation — allowing problems to build quietly until they surface as a crisis, as arguably happened at Silicon Valley Bank in 2023.</p>
+  </div>
+</div>
+
+<p>Without access to confidential bank examination records, and without the benefit of both perfect foresight and perfect hindsight, it is genuinely difficult to prove which story explains more of the decline. This is where Klein and Connell's comparative approach becomes useful: rather than trying to read minds inside the Fed, they compare the Fed's enforcement record to that of the other two agencies doing essentially the same job on a different slice of the banking system.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Three</span>A Tale of Three Regulators</h2>
+
+<p>The United States splits bank supervision across three federal agencies, largely according to how a bank is chartered. Nationally chartered banks and thrifts fall under the Office of the Comptroller of the Currency (OCC). State-chartered banks that are members of the Federal Reserve System fall under the Fed, along with bank holding companies more broadly. State-chartered banks that opt out of Fed membership fall under the Federal Deposit Insurance Corporation (FDIC).</p>
+
+<p>Because the Fed and the FDIC often supervise similar kinds of institutions — generally smaller, state-chartered banks — Klein and Connell argue there is no obvious reason the two agencies' enforcement records should diverge sharply. Yet they do. The OCC and the FDIC both see enforcement actions decline in the late 2010s, though the OCC's decline is considerably smaller than the Fed's. More strikingly, both other agencies see enforcement activity rise again over the past few years — a resurgence the Fed's own numbers do not show. The Fed's nearly fifty percent drop in enforcement actions since the pandemic stands apart from both of its sister agencies.</p>
+
+<blockquote class="pull">
+  Bank supervision has become more lenient in the past decade — and the Federal Reserve stands out for substantially laxer enforcement than its peer regulators.
+  <cite>Paraphrased from Aaron Klein &amp; Cameron Connell, Brookings Institution, July 2026</cite>
+</blockquote>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Four</span>Why the Comparison Is the Argument</h2>
+
+<p>The strength of Klein and Connell's analysis is not any single number — it's the comparison. If declining Fed enforcement simply reflected healthier banks, there is no obvious reason state member banks supervised by the Fed would be behaving so differently from the state non-member banks supervised by the FDIC, given how structurally similar those two populations of banks are. Nor is there an obvious reason to think the Fed's banks are quietly resolving problems before they reach the enforcement stage at a meaningfully higher rate than banks supervised by the OCC or FDIC.</p>
+
+<div class="callout">
+  <span class="callout-label">Why It Matters</span>
+  <p>Bank supervision is designed to be boring — a steady, largely invisible check that catches problems before they become depositor-facing crises. When enforcement activity at one regulator diverges this sharply from its peers, and diverges in a direction unconnected to any change in the underlying banks it oversees, the divergence itself becomes the more informative data point. It does not prove supervisory laxity, but it substantially narrows the plausible explanations that remain on the table.</p>
+</div>
+
+<p>The Silicon Valley Bank failure of 2023 is often cited as a cautionary tale about supervisory delay, and for good reason: examiners were reportedly aware of the bank's vulnerabilities well before the run that ended it, yet formal enforcement had not yet caught up. Klein and Connell's data suggest that episode may not have been an isolated failure of process, but a visible symptom of a broader, multi-year drift toward less formal enforcement at the Federal Reserve specifically — a drift that predates any single administration and shows no sign, in the data through 2026, of reversing.</p>
+
+</main>
+
+<div class="apparatus">
+  <h3 class="footer-h">Primary Source</h3>
+  <ul class="sources">
+    <li><span class="tag">Research</span>Aaron Klein &amp; Cameron Connell, <a href="https://www.brookings.edu/articles/why-is-bank-enforcement-declining/" target="_blank" rel="noopener">"Why is bank enforcement declining?"</a> — Brookings Institution, July 8, 2026.</li>
+    <li><span class="tag">Commentary</span>Timothy Taylor, <a href="https://conversableeconomist.com/2026/07/10/is-the-fed-taking-it-too-easy-on-bank-enforcement/" target="_blank" rel="noopener">"Is the Fed Taking it Too Easy on Bank Enforcement?"</a> — Conversable Economist, July 10, 2026.</li>
+    <li><span class="tag">Background</span><em>Journal of Economic Perspectives</em>, retrospective analysis of the Silicon Valley Bank failure and supervisory timeline, 2023–24.</li>
+    <li><span class="tag">Context</span>Dodd-Frank Wall Street Reform and Consumer Protection Act (2010) — the post-crisis regulatory framework against which current enforcement trends are measured.</li>
+  </ul>
+
+  <div class="about-box">
+    <h3>The Three Federal Bank Regulators</h3>
+    <p><span class="accent">OCC</span> — supervises nationally chartered banks and federal thrifts.</p>
+    <p><span class="accent">Federal Reserve</span> — supervises bank holding companies and state-chartered banks that are Fed members.</p>
+    <p><span class="accent">FDIC</span> — supervises state-chartered banks that are not Fed members, and insures deposits system-wide.</p>
+  </div>
+</div>
+
+</body>
+</html>
