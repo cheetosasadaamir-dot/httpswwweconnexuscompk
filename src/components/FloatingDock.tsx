@@ -475,6 +475,33 @@ const FloatingDock = () => {
                   )}
                 </Link>
 
+                {/* Article Hub — locked until sign-in */}
+                <Link
+                  to={lectureLocked ? '/auth?redirect=/article-hub' : '/article-hub'}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between gap-3 px-4 py-3.5 mb-5 md:mb-6 rounded-xl border transition-all touch-target pointer-events-auto",
+                    lectureLocked
+                      ? "bg-space-void/60 border-neon-gold/25 text-neon-gold hover:border-neon-gold/60"
+                      : "bg-neon-gold/10 border-neon-gold/30 text-neon-gold hover:bg-neon-gold/20"
+                  )}
+                >
+                  <span className="flex items-center gap-3">
+                    <BookOpen className="w-4 h-4" />
+                    <span className="text-sm font-semibold tracking-wider uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                      Article Hub
+                    </span>
+                  </span>
+                  {lectureLocked ? (
+                    <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em]">
+                      <Lock className="w-3.5 h-3.5" /> Locked
+                    </span>
+                  ) : (
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-neon-gold/80">Open</span>
+                  )}
+                </Link>
+
+
 
 
                 {/* TIERED NAVIGATION */}
