@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Econ Nexus | Shifts in Non-Cash Payments: Value vs. Volume</title>
+<meta name="description" content="Econ Nexus background essay on the Federal Reserve Payments Study, showing how bank transfers dominate by dollar value while cards dominate by transaction count, and what that split reveals.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:        #1B2A41;
+    --ink-soft:   #33465F;
+    --parchment:  #EFEAE0;
+    --parchment-2:#E5DFD1;
+    --paper:      #FBF9F4;
+    --gold:       #96731F;
+    --gold-bright:#B78A2C;
+    --verdigris:  #52705F;
+    --rule:       #C9BFA6;
+    --text:       #26241E;
+    --text-soft:  #55524A;
+    --max-w:      760px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:18px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--gold-bright); color:var(--paper); }
+
+  a{ color:var(--gold); text-decoration-thickness:1px; text-underline-offset:2px; }
+  a:hover{ color:var(--ink); }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--ink);
+    color:var(--parchment);
+    padding:14px 24px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border-bottom:3px double var(--gold-bright);
+  }
+  .masthead span{ opacity:0.6; }
+
+  /* ---------- Header ---------- */
+  header.hero{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:64px 24px 0;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:34px; height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin:0 0 22px;
+  }
+  .title em{ font-style:italic; font-weight:500; color:var(--gold); }
+  .deck{
+    font-family:'Source Serif 4', serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:1.28rem;
+    line-height:1.55;
+    color:var(--text-soft);
+    max-width:62ch;
+    margin:0 0 30px;
+  }
+  .byline{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    align-items:baseline;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    color:var(--text-soft);
+    padding-bottom:28px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:0;
+  }
+  .byline strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Divergence diagram (signature element) ---------- */
+  figure.diagram{
+    max-width:960px;
+    margin:44px auto 8px;
+    padding:0 24px;
+  }
+  .diagram-frame{
+    background:var(--parchment);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:28px clamp(16px,4vw,40px) 20px;
+  }
+  .diagram-frame svg{ width:100%; height:auto; display:block; }
+  figcaption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-soft);
+    text-align:center;
+    padding:14px 10px 0;
+    line-height:1.6;
+  }
+  figcaption .cap-title{ color:var(--ink); font-weight:500; }
+
+  /* ---------- Article body ---------- */
+  main{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:52px 24px 20px;
+  }
+
+  main > p{ margin:0 0 26px; }
+
+  main > p:first-of-type::first-letter{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:4.6em;
+    line-height:0.82;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--ink);
+  }
+
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.7rem;
+    color:var(--ink);
+    margin:56px 0 6px;
+    letter-spacing:-0.005em;
+  }
+  h2 .num{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:400;
+    font-size:12px;
+    letter-spacing:0.16em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:1.22rem;
+    color:var(--ink-soft);
+    margin:34px 0 12px;
+  }
+
+  main p, main li{ color:var(--text); }
+  main ul, main ol{ padding-left:1.25em; margin:0 0 26px; }
+  main li{ margin-bottom:10px; }
+
+  blockquote.pull{
+    margin:40px 0;
+    padding:6px 0 6px 28px;
+    border-left:3px solid var(--gold-bright);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  blockquote.pull cite{
+    display:block;
+    margin-top:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+  }
+
+  .ornament{
+    text-align:center;
+    color:var(--gold);
+    font-size:20px;
+    letter-spacing:0.6em;
+    margin:52px 0;
+    opacity:0.75;
+  }
+
+  .callout{
+    background:var(--parchment);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:26px 28px;
+    margin:36px 0;
+  }
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-bottom:10px;
+    display:block;
+  }
+  .callout p{ margin:0 0 12px; font-size:0.97rem; }
+  .callout p:last-child{ margin-bottom:0; }
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin:32px 0 40px;
+  }
+  .two-col .card{
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:22px 22px 20px;
+    background:var(--paper);
+  }
+  .two-col h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .two-col p{ font-size:0.95rem; color:var(--text-soft); margin:0; }
+  @media (max-width:640px){ .two-col{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer / apparatus ---------- */
+  .apparatus{
+    max-width:var(--max-w);
+    margin:16px auto 0;
+    padding:36px 24px 80px;
+    border-top:1px solid var(--rule);
+  }
+  .apparatus h3.footer-h{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+    font-style:normal;
+    margin:0 0 18px;
+  }
+  .sources{ list-style:none; padding:0; margin:0 0 40px; }
+  .sources li{
+    font-size:0.93rem;
+    color:var(--text-soft);
+    padding:10px 0;
+    border-bottom:1px dashed var(--rule);
+  }
+  .sources li:last-child{ border-bottom:none; }
+  .sources a{ color:var(--ink); font-weight:500; }
+  .sources .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-right:8px;
+  }
+
+  .about-box{
+    background:var(--ink);
+    color:var(--parchment);
+    border-radius:2px;
+    padding:28px 26px;
+  }
+  .about-box h3{
+    font-family:'Fraunces', serif;
+    font-style:normal;
+    font-weight:600;
+    color:var(--parchment);
+    margin:0 0 10px;
+    font-size:1.15rem;
+  }
+  .about-box p{
+    font-size:0.92rem;
+    color:#C9D0D9;
+    margin:0 0 10px;
+  }
+  .about-box p:last-child{ margin-bottom:0; }
+  .about-box .accent{ color:var(--gold-bright); font-weight:600; }
+
+  footer.colophon{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--text-soft);
+    padding:26px 24px 40px;
+  }
+
+  @media (max-width:600px){
+    body{ font-size:16.5px; }
+    header.hero{ padding-top:44px; }
+    main{ padding-top:38px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">Econ Nexus <span>·</span> Payments &amp; Consumer Finance <span>·</span> Background Briefing</div>
+
+<header class="hero">
+  <div class="eyebrow">Payments &amp; Consumer Finance</div>
+  <h1 class="title">The Check Is Nearly Dead. The <em>Bank Transfer</em> Quietly Won.</h1>
+  <p class="deck">The Federal Reserve's latest payments study shows two very different pictures depending on whether you count dollars or transactions — and the gap between them says something important about how modern money actually moves.</p>
+  <div class="byline">
+    <span><strong>Background essay</strong> based on the Federal Reserve Payments Study</span>
+    <span>2024 data, released 2026</span>
+    <span>Topic: non-cash payment trends</span>
+  </div>
+</header>
+
+<figure class="diagram">
+  <div class="diagram-frame">
+    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic contrasting the value and volume of different non-cash payment methods">
+      <text x="60" y="26" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="0.08em" fill="#33465F">BY VALUE ($) — BANK TRANSFERS DOMINATE</text>
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#26241E">
+        <rect x="60" y="40" width="620" height="20" fill="#96731F"/>
+        <text x="690" y="55">Bank transfers</text>
+        <rect x="60" y="68" width="90" height="20" fill="#52705F"/>
+        <text x="160" y="83">Checks</text>
+        <rect x="60" y="96" width="34" height="20" fill="#1B2A41"/>
+        <text x="104" y="111">Cards</text>
+      </g>
+
+      <line x1="60" y1="140" x2="840" y2="140" stroke="#C9BFA6" stroke-width="0.6" stroke-dasharray="2 4"/>
+
+      <text x="60" y="172" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="0.08em" fill="#33465F">BY VOLUME (# OF TRANSACTIONS) — CARDS DOMINATE</text>
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#26241E">
+        <rect x="60" y="186" width="520" height="20" fill="#1B2A41"/>
+        <text x="590" y="201">Debit / credit cards</text>
+        <rect x="60" y="214" width="60" height="20" fill="#96731F"/>
+        <text x="130" y="229">Bank transfers</text>
+        <rect x="60" y="242" width="40" height="20" fill="#52705F"/>
+        <text x="110" y="257">Checks</text>
+      </g>
+
+      <text x="60" y="300" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#55524A">Same economy, two rankings: a handful of large transfers move the money;</text>
+      <text x="60" y="316" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#55524A">hundreds of billions of small card swipes move the transaction count.</text>
+    </svg>
+  </div>
+  <figcaption><span class="cap-title">Figure 1.</span> The core asymmetry in the Fed's data: ranking payment methods by dollar value and ranking them by transaction count produce almost opposite leaderboards.</figcaption>
+</figure>
+
+<main>
+
+<p>Imagine someone whose paycheck is deposited automatically and whose mortgage payment leaves their account automatically, every month, without a card ever being swiped or a check ever being written. That same person might still write the occasional check and pay for lunch with a credit card several times a week. Count transactions, and the credit card purchases and the odd check could easily outnumber the two big automatic transfers many times over. Count dollars, and the two automatic transfers could easily be worth more than everything else combined. That simple thought experiment is the key to reading the Federal Reserve's latest snapshot of how non-cash payments actually move through the American economy.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section One</span>What the Study Covers</h2>
+
+<p>The Federal Reserve Payments Study tracks core non-cash payment methods used by consumers, businesses, and governments across the country: general-purpose and private-label cards, automated clearinghouse (ACH) transfers, and checks, along with ATM cash withdrawals. The most recent release covers 2024 data. Because the study measures both the number of payments and the dollar value they represent, it offers two different lenses on the same underlying activity — and the two lenses tell noticeably different stories.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Two</span>The View by Dollar Value</h2>
+
+<p>Looking purely at value transferred, the twenty-five-year trend is dominated by one category: bank transfers, and in particular transfers received as credits directly to bank accounts. Their value has risen sharply over the period. Checks, by contrast, continue a long, gradual decline in total value. Perhaps the most counterintuitive finding for anyone accustomed to reaching for a card at checkout: the total dollar value of credit card payments is, in this national accounting, strikingly small relative to the value moved by bank transfers.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Three</span>The View by Transaction Count</h2>
+
+<p>Flip to counting individual payments rather than dollars, and the picture inverts. Non-prepaid debit cards generate a surprisingly large share of total transaction volume — plausibly because many debit cards function as a direct, everyday draw against a bank account rather than a separate credit relationship. Credit card transaction counts have also risen substantially, especially since the pandemic reshaped consumer payment habits. Checks, meanwhile, show the clearest decline of any method in this view: the number of checks written has fallen so far that it now sits well below the number of bank transfers — a reversal of what their respective dollar values would suggest, since the average bank transfer is evidently worth vastly more than the average check.</p>
+
+<blockquote class="pull">
+  The value of bank transfers is way up over the last 25 years — while the number of bank transfers remains comparatively low, implying a high average value per transfer.
+  <cite>Paraphrased from the Federal Reserve Payments Study, 2024 data</cite>
+</blockquote>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Four</span>Why the Two Rankings Diverge</h2>
+
+<div class="two-col">
+  <div class="card">
+    <h4>Few, large transfers</h4>
+    <p>Payroll deposits, mortgage payments, business-to-business settlements, and government disbursements tend to be automated, recurring, and large in dollar terms — but each one is a single transaction. A handful of these can move more total money than thousands of smaller payments combined.</p>
+  </div>
+  <div class="card">
+    <h4>Many, small purchases</h4>
+    <p>Everyday card swipes for groceries, coffee, and gas are individually tiny but collectively enormous in number — hundreds of billions of transactions a year, each contributing only a small fraction of total dollar value.</p>
+  </div>
+</div>
+
+<p>Neither ranking is more "correct" than the other; they simply answer different questions. If the question is <em>where does the money move</em>, bank transfers dominate. If the question is <em>how do people actually pay for things day to day</em>, cards dominate. A payments system that looks completely different depending on which of those two questions you ask is, in a sense, exactly what a mature, layered financial system should look like.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Five</span>The Fee Question the Study Doesn't Answer</h2>
+
+<div class="callout">
+  <span class="callout-label">A Note on Scale</span>
+  <p>The Federal Reserve Payments Study is explicitly a measurement exercise — it estimates the value and volume of non-cash payments, and does not make policy recommendations. But every one of those payments involves some party being compensated, however modestly, for processing it. When the counts run into the hundreds of billions of transactions and the values run into the trillions of dollars, even fractions-of-a-cent transaction fees add up to a very large pool of money changing hands behind the scenes — a detail worth keeping in mind any time card networks, banks, or payment processors debate interchange fees and payment rails.</p>
+</div>
+
+</main>
+
+<div class="apparatus">
+  <h3 class="footer-h">Primary Source</h3>
+  <ul class="sources">
+    <li><span class="tag">Data</span><a href="https://www.federalreserve.gov/paymentsystems/frps_cy2015_24_topline.htm" target="_blank" rel="noopener">Federal Reserve Payments Study</a> — 2024 topline data on core non-cash payment methods and ATM withdrawals.</li>
+    <li><span class="tag">Commentary</span>Timothy Taylor, <a href="https://conversableeconomist.com/2026/07/06/shifts-in-non-cash-payments/" target="_blank" rel="noopener">"Shifts in Non-Cash Payments"</a> — Conversable Economist, July 6, 2026.</li>
+  </ul>
+
+  <div class="about-box">
+    <h3>Reading the Two Rankings</h3>
+    <p><span class="accent">By value</span> — bank transfers dominate, checks decline gradually, cards are a small share of total dollars moved.</p>
+    <p><span class="accent">By volume</span> — cards dominate transaction counts, checks have fallen below bank transfers, and both cards and transfers have risen since the pandemic.</p>
+  </div>
+</div>
+
+</body>
+</html>

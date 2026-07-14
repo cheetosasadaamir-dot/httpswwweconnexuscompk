@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Econ Nexus | Tokenized Finance: What Are the Tradeoffs?</title>
+<meta name="description" content="Econ Nexus background essay on IMF research into tokenized finance -- the speed and cost benefits of atomic settlement, and the governance risks of moving financial logic into smart contracts.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:        #1B2A41;
+    --ink-soft:   #33465F;
+    --parchment:  #EFEAE0;
+    --parchment-2:#E5DFD1;
+    --paper:      #FBF9F4;
+    --gold:       #96731F;
+    --gold-bright:#B78A2C;
+    --verdigris:  #52705F;
+    --rule:       #C9BFA6;
+    --text:       #26241E;
+    --text-soft:  #55524A;
+    --max-w:      760px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:18px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--gold-bright); color:var(--paper); }
+
+  a{ color:var(--gold); text-decoration-thickness:1px; text-underline-offset:2px; }
+  a:hover{ color:var(--ink); }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--ink);
+    color:var(--parchment);
+    padding:14px 24px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border-bottom:3px double var(--gold-bright);
+  }
+  .masthead span{ opacity:0.6; }
+
+  /* ---------- Header ---------- */
+  header.hero{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:64px 24px 0;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:34px; height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin:0 0 22px;
+  }
+  .title em{ font-style:italic; font-weight:500; color:var(--gold); }
+  .deck{
+    font-family:'Source Serif 4', serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:1.28rem;
+    line-height:1.55;
+    color:var(--text-soft);
+    max-width:62ch;
+    margin:0 0 30px;
+  }
+  .byline{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    align-items:baseline;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    color:var(--text-soft);
+    padding-bottom:28px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:0;
+  }
+  .byline strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Divergence diagram (signature element) ---------- */
+  figure.diagram{
+    max-width:960px;
+    margin:44px auto 8px;
+    padding:0 24px;
+  }
+  .diagram-frame{
+    background:var(--parchment);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:28px clamp(16px,4vw,40px) 20px;
+  }
+  .diagram-frame svg{ width:100%; height:auto; display:block; }
+  figcaption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-soft);
+    text-align:center;
+    padding:14px 10px 0;
+    line-height:1.6;
+  }
+  figcaption .cap-title{ color:var(--ink); font-weight:500; }
+
+  /* ---------- Article body ---------- */
+  main{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:52px 24px 20px;
+  }
+
+  main > p{ margin:0 0 26px; }
+
+  main > p:first-of-type::first-letter{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:4.6em;
+    line-height:0.82;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--ink);
+  }
+
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.7rem;
+    color:var(--ink);
+    margin:56px 0 6px;
+    letter-spacing:-0.005em;
+  }
+  h2 .num{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:400;
+    font-size:12px;
+    letter-spacing:0.16em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:1.22rem;
+    color:var(--ink-soft);
+    margin:34px 0 12px;
+  }
+
+  main p, main li{ color:var(--text); }
+  main ul, main ol{ padding-left:1.25em; margin:0 0 26px; }
+  main li{ margin-bottom:10px; }
+
+  blockquote.pull{
+    margin:40px 0;
+    padding:6px 0 6px 28px;
+    border-left:3px solid var(--gold-bright);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  blockquote.pull cite{
+    display:block;
+    margin-top:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+  }
+
+  .ornament{
+    text-align:center;
+    color:var(--gold);
+    font-size:20px;
+    letter-spacing:0.6em;
+    margin:52px 0;
+    opacity:0.75;
+  }
+
+  .callout{
+    background:var(--parchment);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:26px 28px;
+    margin:36px 0;
+  }
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-bottom:10px;
+    display:block;
+  }
+  .callout p{ margin:0 0 12px; font-size:0.97rem; }
+  .callout p:last-child{ margin-bottom:0; }
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin:32px 0 40px;
+  }
+  .two-col .card{
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:22px 22px 20px;
+    background:var(--paper);
+  }
+  .two-col h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .two-col p{ font-size:0.95rem; color:var(--text-soft); margin:0; }
+  @media (max-width:640px){ .two-col{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer / apparatus ---------- */
+  .apparatus{
+    max-width:var(--max-w);
+    margin:16px auto 0;
+    padding:36px 24px 80px;
+    border-top:1px solid var(--rule);
+  }
+  .apparatus h3.footer-h{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+    font-style:normal;
+    margin:0 0 18px;
+  }
+  .sources{ list-style:none; padding:0; margin:0 0 40px; }
+  .sources li{
+    font-size:0.93rem;
+    color:var(--text-soft);
+    padding:10px 0;
+    border-bottom:1px dashed var(--rule);
+  }
+  .sources li:last-child{ border-bottom:none; }
+  .sources a{ color:var(--ink); font-weight:500; }
+  .sources .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-right:8px;
+  }
+
+  .about-box{
+    background:var(--ink);
+    color:var(--parchment);
+    border-radius:2px;
+    padding:28px 26px;
+  }
+  .about-box h3{
+    font-family:'Fraunces', serif;
+    font-style:normal;
+    font-weight:600;
+    color:var(--parchment);
+    margin:0 0 10px;
+    font-size:1.15rem;
+  }
+  .about-box p{
+    font-size:0.92rem;
+    color:#C9D0D9;
+    margin:0 0 10px;
+  }
+  .about-box p:last-child{ margin-bottom:0; }
+  .about-box .accent{ color:var(--gold-bright); font-weight:600; }
+
+  footer.colophon{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--text-soft);
+    padding:26px 24px 40px;
+  }
+
+  @media (max-width:600px){
+    body{ font-size:16.5px; }
+    header.hero{ padding-top:44px; }
+    main{ padding-top:38px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">Econ Nexus <span>·</span> Money &amp; Financial Infrastructure <span>·</span> Background Briefing</div>
+
+<header class="hero">
+  <div class="eyebrow">Money, Payments &amp; Financial Infrastructure</div>
+  <h1 class="title">Tokenized Finance: What Gets <em>Faster</em>, and What Gets Riskier</h1>
+  <p class="deck">Programmable digital tokens promise to collapse the slow, layered plumbing of modern finance into instant, borderless settlement. The IMF's own analysis makes the case for why that promise comes with a governance problem nobody has fully solved.</p>
+  <div class="byline">
+    <span><strong>Background essay</strong> based on IMF Note 2026/001</span>
+    <span>Tobias Adrian, International Monetary Fund, April 2026</span>
+    <span>Topic: tokenization &amp; digital settlement</span>
+  </div>
+</header>
+
+<figure class="diagram">
+  <div class="diagram-frame">
+    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic comparing traditional layered settlement with tokenized atomic settlement">
+      <text x="60" y="30" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="0.08em" fill="#33465F">TRADITIONAL: SEQUENTIAL SETTLEMENT</text>
+      <!-- traditional chain -->
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#26241E">
+        <rect x="60" y="50" width="130" height="42" rx="2" fill="#EFEAE0" stroke="#96731F" stroke-width="1.4"/>
+        <text x="125" y="76" text-anchor="middle">Buyer's Bank</text>
+        <rect x="240" y="50" width="130" height="42" rx="2" fill="#EFEAE0" stroke="#96731F" stroke-width="1.4"/>
+        <text x="305" y="76" text-anchor="middle">Clearing House</text>
+        <rect x="420" y="50" width="130" height="42" rx="2" fill="#EFEAE0" stroke="#96731F" stroke-width="1.4"/>
+        <text x="485" y="76" text-anchor="middle">Custodian</text>
+        <rect x="600" y="50" width="130" height="42" rx="2" fill="#EFEAE0" stroke="#96731F" stroke-width="1.4"/>
+        <text x="665" y="76" text-anchor="middle">Seller's Bank</text>
+        <line x1="190" y1="71" x2="240" y2="71" stroke="#96731F" stroke-width="1.4" marker-end="url(#arrow1)"/>
+        <line x1="370" y1="71" x2="420" y2="71" stroke="#96731F" stroke-width="1.4" marker-end="url(#arrow1)"/>
+        <line x1="550" y1="71" x2="600" y2="71" stroke="#96731F" stroke-width="1.4" marker-end="url(#arrow1)"/>
+      </g>
+      <text x="60" y="112" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#55524A">Each stage: separate ledger, batch processing, end-of-day reconciliation — hours to days</text>
+
+      <line x1="60" y1="150" x2="840" y2="150" stroke="#C9BFA6" stroke-width="0.6" stroke-dasharray="2 4"/>
+
+      <text x="60" y="182" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="0.08em" fill="#33465F">TOKENIZED: ATOMIC SETTLEMENT</text>
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#26241E">
+        <circle cx="200" cy="240" r="55" fill="none" stroke="#52705F" stroke-width="1.6"/>
+        <text x="200" y="236" text-anchor="middle">Shared</text>
+        <text x="200" y="250" text-anchor="middle">Ledger</text>
+        <rect x="330" y="215" width="120" height="42" rx="2" fill="#EFEAE0" stroke="#52705F" stroke-width="1.4"/>
+        <text x="390" y="241" text-anchor="middle">Smart Contract</text>
+        <rect x="500" y="215" width="150" height="42" rx="2" fill="#EFEAE0" stroke="#52705F" stroke-width="1.4"/>
+        <text x="575" y="241" text-anchor="middle">Instant Settlement</text>
+        <line x1="255" y1="240" x2="330" y2="236" stroke="#52705F" stroke-width="1.4" marker-end="url(#arrow2)"/>
+        <line x1="450" y1="236" x2="500" y2="236" stroke="#52705F" stroke-width="1.4" marker-end="url(#arrow2)"/>
+      </g>
+      <text x="60" y="300" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#55524A">One synchronized process: real-time, cross-border, governed by code rather than institutions</text>
+
+      <defs>
+        <marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#96731F"/></marker>
+        <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#52705F"/></marker>
+      </defs>
+    </svg>
+  </div>
+  <figcaption><span class="cap-title">Figure 1.</span> The structural shift Adrian describes: multiple institutional handoffs and temporal buffers, replaced by a single synchronized settlement process governed by code.</figcaption>
+</figure>
+
+<main>
+
+<p>Ask most people what "digital currency" means and they will point, reasonably, to something they already have: a bank account, a credit card, a mortgage payment — all maintained electronically for decades, with the speed and accuracy that implies. What is genuinely new is not digitization but <strong>tokenization</strong>: representing money, securities, and other financial claims as programmable tokens on a shared ledger, rather than as entries in separate institutional books that have to be reconciled with one another. Tobias Adrian, writing for the International Monetary Fund, offers one of the clearer dispassionate accounts of what that shift would actually change — and what it would put at risk.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section One</span>Where Trust Currently Lives</h2>
+
+<p>In the financial system most people already use, trust is not really placed in any single technology. It is embedded in a chain of regulated institutions, each maintaining its own ledger and each checking the others' work. A credit card purchase eventually triggers a bank transfer; a bank transfer clears through intermediaries; each step happens with a delay, and each delay does real work. Adrian notes that the "temporal frictions" built into this system — end-of-day settlement, batch processing, delayed reconciliation — are not simply inefficiencies to be engineered away. They also function as buffers: windows of time in which exposures can be netted, liquidity mobilized, and regulators given a chance to intervene before a transaction becomes irreversible.</p>
+
+<p>That friction is exactly what most people experience as an occasional annoyance — the email from a credit card company asking whether a purchase was really authorized, the day or two before a transfer clears — and exactly what a tokenized system proposes to remove.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Two</span>What Tokenization Actually Changes</h2>
+
+<p>A tokenized system represents financial claims as programmable digital tokens recorded on a shared ledger, rather than as parallel entries across separate institutional ledgers. Because every participant is reading from the same record, settlement can in principle happen atomically — instantly and irrevocably, rather than through the multi-stage handoffs described above. Multiple stages of the traditional financial value chain collapse into a single synchronized process.</p>
+
+<p>The appeal is straightforward: lower transaction costs, faster settlement, and — because tokenized ledgers are not bound to any one jurisdiction — the possibility of moving assets and collateral across borders at the speed of the underlying network rather than the speed of correspondent banking relationships.</p>
+
+<blockquote class="pull">
+  Tokenization allows assets, liabilities, and collateral to move across borders at machine speed, without a clear geographic anchor.
+  <cite>Paraphrased from Tobias Adrian, "Tokenized Finance," IMF Note 2026/001</cite>
+</blockquote>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Three</span>The Governance Problem Hiding Inside the Code</h2>
+
+<p>Adrian's analysis is notable for taking the risks as seriously as the benefits. If financial logic migrates into smart contracts — code that calculates margin requirements, executes collateral transfers, and initiates default procedures — then governance has to extend beyond institutions and into the algorithms themselves. That is a genuinely different kind of risk than the operational risk regulators are used to managing.</p>
+
+<div class="callout">
+  <span class="callout-label">Why Algorithmic Risk Is Different</span>
+  <p>A human-mediated error can usually be caught and paused before it cascades. A coding error or a faulty price feed inside a smart contract can trigger automated liquidations instantly and autonomously, propagating across a system before any regulator or risk manager has a chance to intervene. The same speed and automation that make tokenized settlement efficient are exactly what make a design flaw dangerous.</p>
+</div>
+
+<p>Adrian's proposed response is a layered one: mandatory formal verification and independent audits for contracts that are systemically important, transparent and regulator-approved change-management processes, and — critically — clearly defined mechanisms built into the governance framework itself that allow a contract's execution to be paused under predefined emergency conditions. The alternative, sometimes summarized as "code is law," treats the smart contract's logic as final and self-executing. Adrian's position is that for institutions whose stability really matters, legal mandates have to be able to override automated execution when the two conflict — which means that principle has to be designed into the system from the start, not bolted on afterward.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Four</span>The Legal Question Nobody Has Settled</h2>
+
+<p>Beneath the technical governance questions sits a more basic legal one: when an asset exists only as a token on a distributed ledger, what law applies to it, where is it legally located, and is a transaction recorded on that ledger recognized as final in the event of a dispute or insolvency? Without clear answers, Adrian argues, tokenized markets are likely to stay fragmented pilot projects rather than scale into the financial mainstream. The likely resolution, in his account, is a dual-layer approach: smart contracts handle the operational mechanics, while traditional legal agreements continue to establish rights, obligations, and how disputes get resolved — with courts and legislators left to work out exactly how the two layers relate.</p>
+
+<div class="ornament">❦</div>
+
+<h2><span class="num">Section Five</span>A Reasonable Dose of Skepticism</h2>
+
+<p>None of this amounts to a case against tokenization; Adrian's IMF note is explicitly a dispassionate weighing of tradeoffs, not an argument for or against adoption. But it is fair to note that a "code is law" framework applied to the global financial system is, at minimum, an ambitious governance experiment — one that would need to prove itself at small scale before anyone should be comfortable extending it to systemically important markets. A more cautious path, favored by skeptics of rapid adoption, is to let tokenized finance develop first in the private sector, in response to specific and bounded problems, and to broaden its role only once it has demonstrated real resilience under stress — rather than building a single global ledger and hoping the governance catches up afterward.</p>
+
+</main>
+
+<div class="apparatus">
+  <h3 class="footer-h">Primary Source</h3>
+  <ul class="sources">
+    <li><span class="tag">Report</span>Tobias Adrian, <a href="https://www.imf.org/-/media/files/publications/imf-notes/2026/english/insea2026001.pdf" target="_blank" rel="noopener">"Tokenized Finance"</a> — International Monetary Fund, Note/2026/001, April 2026.</li>
+    <li><span class="tag">Commentary</span>Timothy Taylor, <a href="https://conversableeconomist.com/2026/07/09/tokenized-finance-what-are-the-tradeoffs/" target="_blank" rel="noopener">"Tokenized Finance: What Are the Tradeoffs?"</a> — Conversable Economist, July 9, 2026.</li>
+    <li><span class="tag">Reference</span>Financial Stability Board (2024), analysis of algorithmic and smart-contract risk in tokenized markets.</li>
+    <li><span class="tag">Reference</span>Garrido (2023), on legal frameworks for distributed-ledger asset ownership and enforceability.</li>
+  </ul>
+
+  <div class="about-box">
+    <h3>Key Terms</h3>
+    <p><span class="accent">Tokenization</span> — representing a financial claim as a programmable digital token on a shared ledger.</p>
+    <p><span class="accent">Atomic settlement</span> — a transaction that clears instantly and irrevocably, with no gap between the transfer of an asset and the transfer of payment.</p>
+    <p><span class="accent">Code is law</span> — the principle that a smart contract's programmed logic, rather than a human institution, is the final authority over a transaction's execution.</p>
+  </div>
+</div>
+
+</body>
+</html>
