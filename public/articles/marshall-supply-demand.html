@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marshall and Supply and Demand | Research Hub</title>
+<style>
+  :root { --text:#111111; --muted:#4a4a4a; --rule:#111111; --bg:#ffffff; --panel:#f7f7f7; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: Georgia,'Times New Roman',serif; line-height:1.75; }
+  .wrapper { max-width:820px; margin:0 auto; padding:60px 24px 110px; }
+  .kicker { font-family: Arial, Helvetica, sans-serif; text-transform:uppercase; letter-spacing:1.5px; font-size:12px; color:var(--muted); margin-bottom:14px; }
+  h1 { font-size:36px; line-height:1.25; margin:0 0 12px; font-weight:700; }
+  .subtitle { font-size:18px; color:var(--muted); font-style:italic; margin:0 0 20px; }
+  .meta { font-family: Arial, Helvetica, sans-serif; font-size:13px; color:var(--muted); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:10px 0; margin-bottom:32px; display:flex; flex-wrap:wrap; gap:6px 18px; }
+  h2 { font-size:23px; margin:46px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
+  h3 { font-size:17px; margin:28px 0 10px; }
+  p { margin:0 0 16px; font-size:16.5px; }
+  .lead { font-size:19px; margin-bottom:24px; }
+  .panel { background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:20px 24px; margin:24px 0; font-family: Arial, Helvetica, sans-serif; }
+  .panel h3 { margin-top:0; font-family: Georgia, serif; }
+  .panel ul, .panel ol { margin:0; padding-left:20px; }
+  .panel li { margin-bottom:8px; font-size:15px; }
+  .chart-block { margin:30px 0; border:1px solid #d9d9d9; border-radius:4px; padding:18px 18px 8px; background:#ffffff; }
+  .chart-caption { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); margin:10px 2px 0; padding-top:8px; border-top:1px solid #eaeaea; }
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin:24px 0; }
+  .stat-box { border:1px solid #d9d9d9; border-radius:4px; padding:16px; text-align:center; font-family: Arial, Helvetica, sans-serif; }
+  .stat-box .value { font-size:24px; font-weight:700; }
+  .stat-box .label { font-size:12px; color:var(--muted); margin-top:4px; }
+  table { width:100%; border-collapse:collapse; margin:20px 0; font-family: Arial, Helvetica, sans-serif; font-size:14px; }
+  th, td { border:1px solid #d9d9d9; padding:10px 12px; text-align:left; }
+  th { background:var(--panel); font-weight:700; }
+  .glossary dt { font-weight:700; margin-top:14px; font-family: Arial, Helvetica, sans-serif; font-size:15px; }
+  .glossary dd { margin:4px 0 0; color:var(--muted); font-size:14.5px; }
+  .syllabus-tag { display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:0.5px; text-transform:uppercase; border:1px solid var(--text); border-radius:20px; padding:4px 12px; margin:3px 6px 3px 0; }
+  .footer-note { margin-top:50px; padding-top:20px; border-top:1px solid var(--rule); font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); }
+  .discussion ol { padding-left:20px; }
+  .discussion li { margin-bottom:10px; font-size:15.5px; }
+  .toc { font-family: Arial, Helvetica, sans-serif; font-size:14px; background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:20px 24px; margin:28px 0; }
+  .toc h3 { margin-top:0; font-family: Georgia, serif; }
+  .toc ol { margin:0; padding-left:20px; }
+  .toc li { margin-bottom:6px; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="kicker">19th Century &middot; Microeconomics &middot; 1890</div>
+  <h1>Marshall and Supply and Demand</h1>
+  <p class="subtitle">The book that gave economics its most recognizable picture: two curves crossing at a single point.</p>
+
+  <div class="meta">
+    <span>Econ Nexus Research Hub Briefing</span>
+    <span>Topic: Price Theory and Market Equilibrium</span>
+    <span>Reading time: 15 minutes</span>
+  </div>
+
+  <p class="lead">Alfred Marshall's Principles of Economics, published in 1890, merged the older classical cost of production tradition with the newer marginal utility theory into a single teachable diagram. This briefing works through the Marshallian cross, elasticity, and consumer surplus, the three tools nearly every microeconomics essay still relies on.</p>
+
+  <div class="toc">
+    <h3>In this briefing</h3>
+    <ol>
+      <li>Background: reconciling two rival theories</li>
+      <li>The puzzle Marshall had to solve first: why diamonds cost more than water</li>
+      <li>The Marshallian cross</li>
+      <li>Reading the chart: the market clearing price</li>
+      <li>Elasticity and consumer surplus</li>
+      <li>Two ideas Marshall gets far less credit for</li>
+      <li>The Cambridge school Marshall built around himself</li>
+      <li>When the simple model needs adjusting</li>
+      <li>Why it still matters</li>
+      <li>Key takeaways</li>
+      <li>Glossary</li>
+    </ol>
+  </div>
+
+  <h2>1. Background: reconciling two rival theories</h2>
+  <p>By the 1870s, economics had two competing explanations for price: the classical view that price reflects the cost of production, and the newer marginalist view, developed independently by Jevons, Menger, and Walras, that price reflects the satisfaction, or marginal utility, a buyer gets from one more unit. Marshall's Principles of Economics, 1890, argued that neither view alone was sufficient, and proposed that price and quantity are determined jointly by both forces at once.</p>
+
+  <h2>2. The puzzle Marshall had to solve first: why diamonds cost more than water</h2>
+  <p>Before Marshall could merge the classical and marginalist theories, he had to explain a puzzle that had troubled economists since Adam Smith: water is essential to life and diamonds are not, yet water is nearly free while diamonds are extremely expensive. Smith noticed the paradox but could not resolve it within a cost of production framework, since water costs almost nothing to produce.</p>
+  <p>The marginalists solved it by shifting attention from the total value of a good to the value of one additional unit. Water is abundant, so the next liter adds very little extra satisfaction to someone who already has plenty; diamonds are scarce, so the next diamond adds a great deal of extra satisfaction precisely because so few are available. Price, in this view, tracks marginal utility, the value of the next unit, not the total usefulness of the entire category. Marshall's contribution was to show that this marginal utility logic and the classical cost of production logic are not actually rivals: marginal utility governs the demand curve while cost of production governs the supply curve, and the diamond-water paradox dissolves once both curves are drawn on the same diagram.</p>
+
+  <h2>3. The Marshallian cross</h2>
+  <p>Marshall compared demand and supply to the two blades of a pair of scissors: asking which blade cuts the paper misses the point, since neither cuts alone. Demand slopes downward because each additional unit of a good satisfies less additional want than the one before it. Supply slopes upward because producing each additional unit tends to cost more, as firms draw on less efficient resources or bid up input prices. Price and quantity settle where the two curves intersect, the point where the quantity buyers want to purchase exactly equals the quantity sellers want to offer.</p>
+
+  <h2>4. Reading the chart: the market clearing price</h2>
+  <div class="chart-block">
+    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+      <line x1="55" y1="30" x2="670" y2="30" stroke="#e0e0e0" stroke-width="1"/>
+      <text x="47" y="34" font-size="11" fill="#4a4a4a" text-anchor="end">$20</text>
+      <line x1="55" y1="152.5" x2="670" y2="152.5" stroke="#e0e0e0" stroke-width="1"/>
+      <text x="47" y="156.5" font-size="11" fill="#4a4a4a" text-anchor="end">$10</text>
+      <line x1="55" y1="275" x2="670" y2="275" stroke="#e0e0e0" stroke-width="1"/>
+      <text x="47" y="279" font-size="11" fill="#4a4a4a" text-anchor="end">$0</text>
+      <line x1="55" y1="30" x2="55" y2="275" stroke="#111111" stroke-width="1.2"/>
+      <line x1="55" y1="275" x2="670" y2="275" stroke="#111111" stroke-width="1.2"/>
+      <text x="360" y="300" font-size="12" fill="#4a4a4a" text-anchor="middle">QUANTITY (UNITS)</text>
+      <text x="20" y="150" font-size="12" fill="#4a4a4a" text-anchor="middle" transform="rotate(-90 20 150)">PRICE</text>
+
+      <polyline points="70,60 570,260" fill="none" stroke="#111111" stroke-width="2.5"/>
+      <text x="470" y="140" font-size="12" fill="#111111">Supply</text>
+
+      <polyline points="70,260 570,60" fill="none" stroke="#8a8a8a" stroke-width="2.5"/>
+      <text x="470" y="230" font-size="12" fill="#4a4a4a">Demand</text>
+
+      <circle cx="320" cy="160" r="5" fill="#111111"/>
+      <line x1="320" y1="160" x2="320" y2="275" stroke="#111111" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="55" y1="160" x2="320" y2="160" stroke="#111111" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="330" y="155" font-size="12" fill="#111111" font-weight="bold">Equilibrium: P* = $11, Q* = 320 units</text>
+
+      <text x="350" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">The Marshallian Cross: Market Equilibrium</text>
+    </svg>
+    <div class="chart-caption">Figure 1. The classic supply and demand diagram. Illustrative price and quantity axes; the shape and intersection follow Marshall's original reasoning in Principles of Economics, 1890.</div>
+  </div>
+
+  <div class="panel">
+    <h3>What shifts each curve</h3>
+    <ul>
+      <li><strong>Demand shifts</strong> with income, the price of related goods, tastes, expectations, and the number of buyers.</li>
+      <li><strong>Supply shifts</strong> with input costs, technology, taxes and subsidies, and the number of sellers.</li>
+      <li>A shift in either curve moves the equilibrium price and quantity to a new intersection point.</li>
+    </ul>
+  </div>
+
+  <h2>5. Elasticity and consumer surplus</h2>
+  <p>Marshall introduced elasticity, a measure of how strongly quantity demanded or supplied responds to a change in price, essential for predicting the size of a shift's effect. He also introduced consumer surplus, the extra value buyers receive when the price they actually pay is lower than the maximum they would have been willing to pay, visualized as the area between the demand curve and the market price.</p>
+
+  <div class="stat-grid">
+    <div class="stat-box"><div class="value">1890</div><div class="label">Principles of Economics published</div></div>
+    <div class="stat-box"><div class="value">8 editions</div><div class="label">Revised by Marshall through 1920</div></div>
+    <div class="stat-box"><div class="value">2</div><div class="label">Rival theories merged: cost based and marginalist</div></div>
+    <div class="stat-box"><div class="value">Cambridge</div><div class="label">University where Marshall taught and shaped the discipline</div></div>
+  </div>
+
+  <h2>6. Two ideas Marshall gets far less credit for</h2>
+  <p>Supply, demand, elasticity, and consumer surplus dominate the introductory syllabus, but two of Marshall's other contributions rarely make it into a first course, despite still doing real work in the field.</p>
+  <p>The first is quasi-rent, Marshall's term for the return earned by a piece of capital, a machine, a skill, or a patent, that is fixed in supply for the time being even though it was originally produced in response to a price signal like any other input. In the short run such an asset earns whatever the market will pay for its use, exactly like the fixed and irreproducible factor land earns pure rent in classical theory; but in the long run, because more of the capital can eventually be built, that surplus return gets competed away. The idea is essentially why software patents, prime commercial real estate, and scarce professional skills all earn outsized short run returns that inevitably shrink as competitors catch up, imitate, or retrain, and it remains a standard tool in industrial organization economics today.</p>
+  <p>The second is the distinction between internal and external economies of scale. Internal economies are cost advantages a single large firm gains purely from its own size, better machinery, bulk purchasing, and so on. External economies are cost advantages available to every firm in an industry simply because the industry itself is geographically concentrated, a shared pool of skilled local labor, specialist local suppliers, and faster diffusion of technical knowledge between neighboring firms. Marshall used the Sheffield cutlery trade and other English industrial districts as his examples; the same logic is now the standard economic explanation for why technology firms still cluster in Silicon Valley long after fast internet made physical proximity, in principle, unnecessary.</p>
+
+  <h2>7. The Cambridge school Marshall built around himself</h2>
+  <p>Marshall's influence extended well past his own writing because of who he personally trained at Cambridge. Arthur Cecil Pigou, his direct successor in the Cambridge economics chair, developed welfare economics and the modern theory of externalities directly from Marshall's framework. John Maynard Keynes, whose father Neville Keynes was Marshall's close colleague, attended Marshall's lectures and always described his own economics as growing out of, and eventually breaking from, the Marshallian tradition he was raised in. This lineage is why introductory microeconomics still runs on essentially Marshallian foundations while introductory macroeconomics runs on the Keynesian framework built partly in reaction against it: both descend from the same Cambridge department within a single generation.</p>
+  <p>One further link deserves mention because it rarely appears in supply and demand teaching specifically: the Marshall-Lerner condition, named partly for Marshall, describes when a currency devaluation actually improves a country's trade balance rather than worsening it, which depends on whether the combined price elasticities of a country's exports and imports are large enough. It is a direct descendant of Marshall's elasticity concept, applied a generation later to international exchange rates rather than to a single domestic market.</p>
+
+  <h2>8. When the simple model needs adjusting</h2>
+  <table>
+    <tr><th>Market feature</th><th>Effect on the simple model</th></tr>
+    <tr><td>Monopoly or market power</td><td>A single seller can set price above the competitive equilibrium; the simple crossing point no longer applies directly</td></tr>
+    <tr><td>Externalities</td><td>Private cost or benefit diverges from social cost or benefit, so the equilibrium is not automatically efficient</td></tr>
+    <tr><td>Sticky prices or wages</td><td>Prices may not adjust quickly enough to clear the market in the short run, a key point in Keynes's later critique</td></tr>
+  </table>
+
+  <h2>9. Why it still matters</h2>
+  <p>Nearly every microeconomics essay, from the effect of a minimum wage to the impact of a new tax, is argued using shifts of Marshall's supply and demand curves. It remains the shared language examiners expect across high school and university economics courses worldwide.</p>
+
+  <h2>10. Key takeaways</h2>
+  <div class="discussion">
+    <ol>
+      <li><strong>Price and quantity are determined jointly</strong> by supply and demand, not by either force alone.</li>
+      <li><strong>Elasticity determines the size of a shift's impact</strong> on price versus quantity.</li>
+      <li><strong>The model describes a competitive market</strong>; monopoly, externalities, and sticky prices all require modifications examiners expect students to name.</li>
+    </ol>
+  </div>
+
+  <div class="panel">
+    <h3>Topic tags</h3>
+    <span class="syllabus-tag">Microeconomics</span>
+    <span class="syllabus-tag">Market Equilibrium</span>
+    <span class="syllabus-tag">Elasticity</span>
+    <span class="syllabus-tag">Consumer Surplus</span>
+  </div>
+
+  <h2>Glossary</h2>
+  <dl class="glossary">
+    <dt>Equilibrium price</dt>
+    <dd>The price at which the quantity demanded equals the quantity supplied, with no tendency to change.</dd>
+    <dt>Elasticity</dt>
+    <dd>A measure of how responsive quantity demanded or supplied is to a change in price.</dd>
+    <dt>Diamond-water paradox</dt>
+    <dd>The puzzle that essential goods like water can be nearly free while non-essential goods like diamonds are expensive, resolved by marginal utility: price tracks the value of the next unit, not a good's total usefulness.</dd>
+    <dt>Consumer surplus</dt>
+    <dd>The difference between what consumers are willing to pay and what they actually pay.</dd>
+    <dt>Marginal utility</dt>
+    <dd>The additional satisfaction gained from consuming one more unit of a good.</dd>
+    <dt>Quasi-rent</dt>
+    <dd>Marshall's term for the surplus return earned by a temporarily fixed input, which persists in the short run but is competed away once more of that input can be produced.</dd>
+    <dt>External economies of scale</dt>
+    <dd>Cost advantages available to every firm in an industry because the industry is geographically concentrated, distinct from internal economies gained by a single firm's own size.</dd>
+    <dt>Marshall-Lerner condition</dt>
+    <dd>The requirement, derived from Marshallian elasticity, that the combined price elasticities of a country's exports and imports exceed one for a currency devaluation to improve its trade balance.</dd>
+  </dl>
+
+  <div class="footer-note">
+    Prepared as part of a Research Hub reference series on landmark economics texts. Historical argument drawn from Alfred Marshall, Principles of Economics, 1890, and the intellectual lineage documented in standard histories of the Cambridge school of economics, including the careers of A. C. Pigou and John Maynard Keynes.
+  </div>
+
+</div>
+</body>
+</html>

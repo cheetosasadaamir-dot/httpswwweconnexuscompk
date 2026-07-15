@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2007-2008 Financial Crisis: A Complete Account | EconNexus</title>
+<style>
+  :root {
+    --text: #111111;
+    --muted: #4a4a4a;
+    --rule: #111111;
+    --bg: #ffffff;
+    --panel: #f7f7f7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.75;
+  }
+  .wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 24px 110px;
+  }
+  .kicker {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-size: 36px;
+    line-height: 1.25;
+    margin: 0 0 12px;
+    font-weight: 700;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0 0 20px;
+  }
+  .meta {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+  h2 {
+    font-size: 23px;
+    margin: 46px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 { font-size: 17px; margin: 28px 0 10px; }
+  p { margin: 0 0 16px; font-size: 16.5px; }
+  .lead { font-size: 19px; margin-bottom: 24px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .panel h3 { margin-top: 0; font-family: Georgia, serif; }
+  .panel ul, .panel ol { margin: 0; padding-left: 20px; }
+  .panel li { margin-bottom: 8px; font-size: 15px; }
+  .chart-block {
+    margin: 30px 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 18px 18px 8px;
+    background: #ffffff;
+  }
+  .chart-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 10px 2px 0;
+    padding-top: 8px;
+    border-top: 1px solid #eaeaea;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .stat-box {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .stat-box .value { font-size: 24px; font-weight: 700; }
+  .stat-box .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+  th, td {
+    border: 1px solid #d9d9d9;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--panel);
+    font-weight: 700;
+  }
+  .glossary dt {
+    font-weight: 700;
+    margin-top: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+  }
+  .glossary dd { margin: 4px 0 0; color: var(--muted); font-size: 14.5px; }
+  .syllabus-tag {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid var(--text);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin: 3px 6px 3px 0;
+  }
+  .footer-note {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .discussion ol { padding-left: 20px; }
+  .discussion li { margin-bottom: 10px; font-size: 15.5px; }
+  .toc {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    background: var(--panel);
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .toc h3 { margin-top: 0; font-family: Georgia, serif; }
+  .toc ol { margin: 0; padding-left: 20px; columns: 2; -webkit-columns: 2; }
+  .toc li { margin-bottom: 6px; break-inside: avoid; }
+  .timeline {
+    border-left: 2px solid var(--rule);
+    margin: 24px 0 24px 8px;
+    padding-left: 24px;
+  }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item:before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text);
+  }
+  .timeline-date {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+  }
+  .timeline-title { font-weight: 700; margin: 2px 0 4px; font-size: 16.5px; }
+  @media (max-width: 600px) {
+    .toc ol { columns: 1; -webkit-columns: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="kicker">Macroeconomics &middot; Financial Markets &middot; Economic History</div>
+  <h1>The 2007-2008 Financial Crisis: A Complete Account</h1>
+  <p class="subtitle">How a housing downturn in the United States became the worst global financial collapse since the Great Depression, and reshaped banking, regulation, and monetary policy for a generation.</p>
+
+  <div class="meta">
+    <span>EconNexus Research Briefing</span>
+    <span>Topic: Financial Crises, Banking, and Systemic Risk</span>
+    <span>Reading time: 22 minutes</span>
+  </div>
+
+  <p class="lead">In the space of about eighteen months, the United States went from record corporate profits and a booming housing market to the deepest recession in seventy years. Household wealth fell by trillions of dollars, unemployment doubled, nearly 500 banks eventually failed, and governments around the world committed trillions more to stop the financial system from collapsing entirely. This briefing traces the crisis from its roots in the mortgage market through its most dangerous weeks in September 2008, to the policy response and the lasting changes it left behind, using data and charts to show the scale of what happened.</p>
+
+  <div class="toc">
+    <h3>In this briefing</h3>
+    <ol>
+      <li>Executive summary</li>
+      <li>Background: how mortgages became a global product</li>
+      <li>The housing bubble, in numbers</li>
+      <li>Why subprime lending exploded</li>
+      <li>Securitisation and the shadow banking system</li>
+      <li>Credit default swaps and leverage</li>
+      <li>The credit rating agencies</li>
+      <li>Timeline: the crisis unfolds, 2006 to 2009</li>
+      <li>The Lehman Brothers collapse</li>
+      <li>Contagion: stock markets and the real economy</li>
+      <li>The policy response</li>
+      <li>Who was responsible: five explanations</li>
+      <li>Winners, losers, and accountability</li>
+      <li>Regulatory aftermath: Dodd-Frank and Basel III</li>
+      <li>Comparing 2008 with other crises</li>
+      <li>Long-run legacy</li>
+      <li>Key takeaways</li>
+      <li>Glossary</li>
+    </ol>
+  </div>
+
+  <h2>1. Executive summary</h2>
+  <div class="panel">
+    <ul>
+      <li>The crisis originated in the US subprime mortgage market, where lending standards had loosened dramatically during the housing boom of 2001 to 2006.</li>
+      <li>Mortgages were bundled into complex securities and sold to investors worldwide, spreading the risk of a US housing downturn into banks, pension funds, and money market funds far beyond America's borders.</li>
+      <li>When home prices began falling in 2006 and 2007, defaults rose, mortgage-backed securities lost value, and the banks holding them faced enormous losses.</li>
+      <li>The failure of Lehman Brothers in September 2008 triggered a full-blown panic, freezing credit markets worldwide within days.</li>
+      <li>Governments and central banks responded with the largest financial rescue in history, including the 700 billion dollar Troubled Asset Relief Program in the United States and coordinated interest rate cuts by central banks globally.</li>
+      <li>The resulting recession, the Great Recession, pushed US unemployment to 10 percent, wiped out trillions of dollars in household wealth, and triggered a wave of financial reregulation still in effect today.</li>
+    </ul>
+  </div>
+
+  <h2>2. Background: how mortgages became a global product</h2>
+  <p>To understand the crisis, it helps to understand how home lending changed in the decades before it. Traditionally, a bank that issued a mortgage kept that loan on its own books and bore the risk if the borrower defaulted. This gave the bank a strong incentive to lend carefully, since it would suffer directly from a bad loan.</p>
+  <p>From the 1970s onward, this model was gradually replaced by securitisation, a process in which banks sold the mortgages they originated to other institutions, which bundled thousands of individual loans into a single bond-like security called a mortgage-backed security, or MBS. Investors could then buy a slice of this bundle and receive a share of the monthly mortgage payments as their return. This innovation had genuine benefits: it spread risk across many investors, freed up bank capital to make new loans, and lowered borrowing costs for homebuyers.</p>
+  <p>But it also broke the direct link between the lender and the risk of default. A mortgage broker or bank could now originate a loan, collect a fee, and sell the loan onward within weeks, with little financial stake in whether the borrower ever repaid it. Economists call this an agency problem, or more specifically a moral hazard: the party making the lending decision no longer bears the full consequences of that decision. This single shift in incentives sits at the centre of almost every explanation for what went wrong.</p>
+
+  <h2>3. The housing bubble, in numbers</h2>
+  <p>US house prices began rising steadily in the mid-1990s and then accelerated sharply after 2000, fuelled by low interest rates following the dot-com crash, expanding mortgage credit, and a widespread belief that home prices simply did not fall on a national scale. The S&amp;P/Case-Shiller National Home Price Index, the standard benchmark for US home values, very nearly doubled between 2000 and its peak in early 2006.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="65" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">200.0</text>
+<line x1="65" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">172.5</text>
+<line x1="65" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">145.0</text>
+<line x1="65" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">117.5</text>
+<line x1="65" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">90.0</text>
+<line x1="65" y1="30" x2="65" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="65" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<polyline points="65.0,270.9 134.4,222.7 203.9,150.5 273.3,56.5 342.8,78.2 412.2,128.8 481.7,160.1 551.1,167.3 620.6,189.0 690.0,201.0" fill="none" stroke="#111111" stroke-width="2.5"/>
+<circle cx="65.0" cy="270.9" r="4" fill="#111111"/>
+<text x="65.0" y="260.9" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">100</text>
+<text x="65.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2000</text>
+<circle cx="134.4" cy="222.7" r="4" fill="#111111"/>
+<text x="134.4" y="212.7" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">120</text>
+<text x="134.4" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2002</text>
+<circle cx="203.9" cy="150.5" r="4" fill="#111111"/>
+<text x="203.9" y="140.5" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">150</text>
+<text x="203.9" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2004</text>
+<circle cx="273.3" cy="56.5" r="4" fill="#111111"/>
+<text x="273.3" y="46.5" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">189</text>
+<text x="273.3" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2006</text>
+<circle cx="342.8" cy="78.2" r="4" fill="#111111"/>
+<text x="342.8" y="68.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">180</text>
+<text x="342.8" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2007</text>
+<circle cx="412.2" cy="128.8" r="4" fill="#111111"/>
+<text x="412.2" y="118.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">159</text>
+<text x="412.2" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2008</text>
+<circle cx="481.7" cy="160.1" r="4" fill="#111111"/>
+<text x="481.7" y="150.1" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">146</text>
+<text x="481.7" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2009</text>
+<circle cx="551.1" cy="167.3" r="4" fill="#111111"/>
+<text x="551.1" y="157.3" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">143</text>
+<text x="551.1" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2010</text>
+<circle cx="620.6" cy="189.0" r="4" fill="#111111"/>
+<text x="620.6" y="179.0" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">134</text>
+<text x="620.6" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2011</text>
+<circle cx="690.0" cy="201.0" r="4" fill="#111111"/>
+<text x="690.0" y="191.0" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">129</text>
+<text x="690.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2012</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">S&amp;P/Case-Shiller US National Home Price Index (Jan 2000 = 100)</text>
+</svg>
+    <div class="chart-caption">Figure 1. S&amp;P/Case-Shiller US National Home Price Index, annual values illustrating the boom and bust (January 2000 = 100). National prices roughly doubled from 2000 to their 2006 peak, then fell by around a quarter to a third before bottoming out in 2012. Source: S&amp;P Dow Jones Indices, compiled via FRED and Case-Shiller published research.</div>
+  </div>
+
+  <p>From peak to trough, national home prices fell somewhere between 27 and nearly 50 percent depending on the exact index and metro areas used, the deepest sustained national decline in US home prices since the Great Depression. In the hardest-hit markets, the fall was far steeper still: prices in Miami and Tampa, for instance, fell more than 50 percent from their individual peaks.</p>
+
+  <h2>4. Why subprime lending exploded</h2>
+  <p>The term subprime refers to borrowers with weaker credit histories, lower incomes, or higher existing debt loads, who under traditional lending standards would either be denied a mortgage or offered one only at a higher interest rate to compensate for the added risk. Through the early 2000s, the volume of subprime lending expanded enormously, driven by several reinforcing factors.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>Low interest rates.</strong> Following the 2001 recession, the Federal Reserve held its policy rate at historically low levels for an extended period, making borrowing cheap and pushing investors to seek higher returns elsewhere, including in mortgage-backed securities.</li>
+      <li><strong>New mortgage products.</strong> Adjustable-rate mortgages with low "teaser" introductory rates, interest-only loans, and loans requiring little or no income documentation (sometimes called "liar loans" informally) allowed borrowers to qualify for homes they could not comfortably afford once rates reset higher.</li>
+      <li><strong>Rising home prices as their own justification.</strong> As long as prices kept rising, a borrower who could not make payments could simply refinance or sell at a profit, which made risky lending appear safe in practice, even though it was not safe in principle.</li>
+      <li><strong>Originate-to-distribute incentives.</strong> Because lenders quickly sold loans onward into securitisation pools, origination volume and fee income became more important to lenders' profits than the long-term performance of the loans themselves.</li>
+    </ul>
+  </div>
+  <p>By 2006, subprime and other non-traditional mortgages accounted for a substantial share of all new US mortgage originations, a dramatic shift from the much smaller share they represented just a few years earlier.</p>
+
+  <h2>5. Securitisation and the shadow banking system</h2>
+  <p>Mortgage-backed securities were not the end of the process, but the beginning of a much more elaborate structure. Investment banks took pools of mortgage-backed securities, including large numbers of subprime loans, and repackaged them again into collateralised debt obligations, or CDOs. These CDOs were then divided into tranches, or layers, ranked by seniority: senior tranches were paid first and considered safest, while junior, or equity, tranches absorbed losses first but offered higher returns.</p>
+  <p>In principle, this tranching structure should have concentrated risk in the junior layers while protecting senior investors. In practice, when defaults rose broadly across the underlying mortgage pools, even senior tranches suffered losses far beyond what their credit ratings implied, because the mortgages backing them were far more correlated in their risk of default than models had assumed; large numbers of borrowers across the country were exposed to the same underlying housing market decline at the same time.</p>
+  <p>This entire structure operated largely outside the traditional, heavily regulated banking system, in what economists call the shadow banking system: investment banks, hedge funds, structured investment vehicles, and money market funds that performed bank-like functions, borrowing short-term and investing long-term, without the deposit insurance, capital requirements, or central bank support that traditional commercial banks had. When confidence in mortgage-backed securities collapsed, the shadow banking system had no equivalent safety net, and it seized up almost overnight.</p>
+
+  <h2>6. Credit default swaps and leverage</h2>
+  <p>Layered on top of the securitised mortgage market was a vast market for credit default swaps, or CDS, a form of insurance-like contract that paid out if a specified bond or security defaulted. Financial institutions, most notably the insurance giant American International Group, or AIG, sold enormous volumes of CDS protection on mortgage-backed securities and CDOs, collecting premiums while assuming that defaults on such a wide scale were effectively impossible.</p>
+  <p>This market was almost entirely unregulated and traded privately between institutions rather than on public exchanges, meaning nobody, including regulators, had a clear picture of how much exposure existed or who ultimately bore the risk if defaults began. When mortgage securities started losing value in 2007 and 2008, AIG faced enormous collateral demands from the banks it had insured, a demand it could not meet, bringing it to the brink of collapse and directly connecting a housing market downturn to the solvency of one of the world's largest insurers.</p>
+  <p>Compounding these risks was leverage: many of the banks and investment banks at the centre of the crisis were funding a large share of their assets with borrowed money rather than their own capital. Investment banks such as Lehman Brothers were leveraged more than 30 to 1 by some measures shortly before the crisis, meaning a decline in asset values of only a few percentage points could wipe out their entire capital base.</p>
+
+  <h2>7. The credit rating agencies</h2>
+  <p>A crucial and widely criticised link in this chain was the role of the major credit rating agencies, principally Moody's, Standard and Poor's, and Fitch. These agencies were paid by the very banks issuing mortgage-backed securities and CDOs to rate those securities, a business model that created an obvious conflict of interest. Through the boom years, agencies assigned top-tier AAA ratings, normally reserved for the safest government and corporate debt, to enormous volumes of securities built substantially from subprime mortgages.</p>
+  <p>When housing prices fell and defaults rose faster and more broadly than the rating models anticipated, agencies were forced into a wave of dramatic downgrades in 2007 and 2008, sometimes cutting securities from AAA to junk status within a matter of months. This destroyed the value of holdings at banks, insurers, and pension funds that had relied on these ratings, and it badly damaged the credibility of the rating agencies themselves, prompting significant regulatory reform of the industry afterward.</p>
+
+  <h2>8. Timeline: the crisis unfolds, 2006 to 2009</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Early 2006</div>
+      <div class="timeline-title">US home prices peak</div>
+      <p>The Case-Shiller National Home Price Index reaches its high point, then begins a slow initial decline as the pace of new home sales slows.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">February to April 2007</div>
+      <div class="timeline-title">Subprime lenders begin to fail</div>
+      <p>Several major subprime mortgage originators, including New Century Financial, report sharp losses and file for bankruptcy as early payment defaults surge.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">June to August 2007</div>
+      <div class="timeline-title">Bear Stearns hedge funds collapse</div>
+      <p>Two Bear Stearns hedge funds heavily invested in mortgage securities become insolvent, an early sign that losses were spreading beyond subprime originators into major Wall Street institutions.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">August 2007</div>
+      <div class="timeline-title">Interbank lending markets freeze</div>
+      <p>Banks become reluctant to lend to one another overnight, unsure which institutions were exposed to bad mortgage assets, forcing the Federal Reserve and European Central Bank to inject emergency liquidity.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">March 2008</div>
+      <div class="timeline-title">Bear Stearns is rescued</div>
+      <p>Facing a collapse in confidence and a run by its lenders, Bear Stearns is sold to JPMorgan Chase at a fraction of its prior value, with the Federal Reserve providing financial backing for the deal.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">September 6 to 7, 2008</div>
+      <div class="timeline-title">Fannie Mae and Freddie Mac are placed into conservatorship</div>
+      <p>The two government-sponsored mortgage giants, which together backed or owned roughly half of all US mortgages, are taken over by the federal government as their capital positions deteriorate sharply.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">September 15, 2008</div>
+      <div class="timeline-title">Lehman Brothers files for bankruptcy</div>
+      <p>With no buyer found and the government declining to provide a rescue, Lehman Brothers, a 158-year-old investment bank, files the largest bankruptcy in US history.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">September 16, 2008</div>
+      <div class="timeline-title">AIG is bailed out</div>
+      <p>The Federal Reserve extends an emergency loan of up to 85 billion dollars to prevent the collapse of AIG, whose failure was judged too dangerous to the wider financial system to allow.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">September 25, 2008</div>
+      <div class="timeline-title">Washington Mutual fails</div>
+      <p>The largest bank failure in US history occurs as Washington Mutual, with roughly 307 billion dollars in assets, is seized by regulators and its banking operations sold to JPMorgan Chase.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">October 3, 2008</div>
+      <div class="timeline-title">TARP is signed into law</div>
+      <p>After an initial rejection by the House of Representatives days earlier sends stock markets sharply lower, Congress passes the Emergency Economic Stabilization Act, creating the 700 billion dollar Troubled Asset Relief Program.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">October to December 2008</div>
+      <div class="timeline-title">Coordinated global response</div>
+      <p>Central banks around the world cut interest rates in coordinated moves, governments guarantee bank deposits and debt, and the Federal Reserve cuts its target rate toward zero.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">March 2009</div>
+      <div class="timeline-title">Stock markets bottom out</div>
+      <p>The S&amp;P 500 closes at 676.53 on March 9, 2009, down nearly 57 percent from its October 2007 peak, marking the low point of the bear market before a sustained recovery begins.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">June 2009</div>
+      <div class="timeline-title">The recession officially ends</div>
+      <p>The National Bureau of Economic Research later determines that the US recession, which began in December 2007, ended in June 2009, though unemployment continues rising for several more months.</p>
+    </div>
+  </div>
+
+  <h2>9. The Lehman Brothers collapse</h2>
+  <p>The bankruptcy of Lehman Brothers deserves particular attention, since it is widely regarded as the moment the crisis shifted from serious financial stress into a full-blown global panic. Lehman was the fourth-largest investment bank in the United States, with roughly 639 billion dollars in assets, making its bankruptcy filing the largest in US corporate history by a wide margin.</p>
+  <p>In the days before its collapse, US authorities explored a rescue similar to the Bear Stearns deal, but no buyer emerged willing to take on Lehman's liabilities without government guarantees, which the Treasury and Federal Reserve declined to provide, partly out of concern about setting a precedent of unlimited support and partly due to legal constraints on the Fed's emergency lending powers. This decision remains one of the most debated of the entire crisis.</p>
+  <div class="panel">
+    <h3>Why Lehman's failure mattered so much</h3>
+    <ul>
+      <li><strong>Counterparty uncertainty.</strong> Lehman had trading relationships and obligations with thousands of other financial institutions worldwide; its sudden failure left counterparties uncertain about their own exposures, freezing transactions across the system.</li>
+      <li><strong>Money market fund contagion.</strong> The Reserve Primary Fund, a money market mutual fund that held Lehman debt, "broke the buck," meaning its share price fell below the stable one dollar value investors expect, triggering a broader run on money market funds that were previously considered nearly as safe as cash.</li>
+      <li><strong>Loss of confidence in "too big to fail."</strong> Because the government had rescued Bear Stearns six months earlier, many market participants had assumed a similarly systemic institution like Lehman would also be saved. Its failure signalled that the rules of the rescue were unpredictable, amplifying panic.</li>
+    </ul>
+  </div>
+
+  <h2>10. Contagion: stock markets and the real economy</h2>
+  <p>The financial panic quickly transmitted into both stock markets and the broader economy. The S&amp;P 500 lost more than half its value between October 2007 and March 2009, one of the steepest bear markets since the Second World War.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="65" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">1,553</text>
+<line x1="65" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">1,369</text>
+<line x1="65" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">1,186</text>
+<line x1="65" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">1,002</text>
+<line x1="65" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">818</text>
+<line x1="65" y1="30" x2="65" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="65" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<polyline points="65.0,140.0 190.0,78.6 315.0,60.6 440.0,264.4 565.0,187.9 690.0,136.3" fill="none" stroke="#111111" stroke-width="2.5"/>
+<circle cx="65.0" cy="140.0" r="4" fill="#111111"/>
+<text x="65.0" y="130.0" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,248</text>
+<text x="65.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2005</text>
+<circle cx="190.0" cy="78.6" r="4" fill="#111111"/>
+<text x="190.0" y="68.6" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,418</text>
+<text x="190.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2006</text>
+<circle cx="315.0" cy="60.6" r="4" fill="#111111"/>
+<text x="315.0" y="50.6" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,468</text>
+<text x="315.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2007</text>
+<circle cx="440.0" cy="264.4" r="4" fill="#111111"/>
+<text x="440.0" y="254.4" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">903</text>
+<text x="440.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2008</text>
+<circle cx="565.0" cy="187.9" r="4" fill="#111111"/>
+<text x="565.0" y="177.9" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,115</text>
+<text x="565.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2009</text>
+<circle cx="690.0" cy="136.3" r="4" fill="#111111"/>
+<text x="690.0" y="126.3" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,258</text>
+<text x="690.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2010</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">S&amp;P 500 Index, Year-End Close</text>
+</svg>
+    <div class="chart-caption">Figure 2. S&amp;P 500 index, year-end closing values. The index fell from an October 2007 intraday peak near 1,576 to an intraday low of 666.79 on March 6, 2009, a decline of nearly 57 percent, before beginning a multi-year recovery. Source: S&amp;P Dow Jones Indices, compiled via Wikipedia's closing milestones data and Multpl.com.</div>
+  </div>
+
+  <p>As credit markets froze, businesses found it harder to borrow for everyday operations such as payroll and inventory, and consumers pulled back sharply on spending as home equity evaporated and job security worsened. The result was a rapid and severe rise in unemployment.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="65" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">11.0%</text>
+<line x1="65" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">9.2%</text>
+<line x1="65" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">7.5%</text>
+<line x1="65" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">5.8%</text>
+<line x1="65" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">4.0%</text>
+<line x1="65" y1="30" x2="65" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="65" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<polyline points="65.0,257.1 169.2,170.1 273.3,86.8 377.5,67.9 481.7,94.4 585.8,124.6 690.0,147.4" fill="none" stroke="#111111" stroke-width="2.5"/>
+<circle cx="65.0" cy="257.1" r="4" fill="#111111"/>
+<text x="65.0" y="247.1" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">5.0%</text>
+<text x="65.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2007</text>
+<circle cx="169.2" cy="170.1" r="4" fill="#111111"/>
+<text x="169.2" y="160.1" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">7.3%</text>
+<text x="169.2" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2008</text>
+<circle cx="273.3" cy="86.8" r="4" fill="#111111"/>
+<text x="273.3" y="76.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">9.5%</text>
+<text x="273.3" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2009 (Jun)</text>
+<circle cx="377.5" cy="67.9" r="4" fill="#111111"/>
+<text x="377.5" y="57.9" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">10.0%</text>
+<text x="377.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2009 (Oct)</text>
+<circle cx="481.7" cy="94.4" r="4" fill="#111111"/>
+<text x="481.7" y="84.4" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">9.3%</text>
+<text x="481.7" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2010</text>
+<circle cx="585.8" cy="124.6" r="4" fill="#111111"/>
+<text x="585.8" y="114.6" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">8.5%</text>
+<text x="585.8" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2011</text>
+<circle cx="690.0" cy="147.4" r="4" fill="#111111"/>
+<text x="690.0" y="137.4" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">7.9%</text>
+<text x="690.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2012</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">US Unemployment Rate, Year-End (%)</text>
+</svg>
+    <div class="chart-caption">Figure 3. US unemployment rate. The rate rose from 5.0 percent in December 2007 to a peak of 10.0 percent in October 2009, more than doubling in under two years, before a slow multi-year recovery. Source: US Bureau of Labor Statistics, compiled via Federal Reserve History and BLS Spotlight on Statistics.</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="value">$16tn+</div>
+      <div class="label">Estimated US household wealth lost, 2007-2009</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">8.7m</div>
+      <div class="label">US jobs lost, December 2007 to early 2010</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">-4.3%</div>
+      <div class="label">Peak-to-trough decline in real US GDP</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">15m+</div>
+      <div class="label">Americans unemployed at the October 2009 peak</div>
+    </div>
+  </div>
+
+  <p>The damage was not confined to the United States. European banks that had bought large volumes of US mortgage-backed securities faced their own losses; the United Kingdom nationalised parts of its banking sector; and Iceland's banking system, which had grown to many times the size of the country's own economy, collapsed entirely, leading to a government default and a severe national economic crisis. The downturn also set the stage for the European sovereign debt crisis that followed in Greece, Ireland, Portugal, and elsewhere from 2010 onward, as governments that had taken on bank debts or spent heavily on stimulus faced their own fiscal strains.</p>
+
+  <h2>11. The policy response</h2>
+  <p>Policymakers responded on a scale without precedent in peacetime, combining emergency lending, direct capital injections, deposit guarantees, and extraordinary monetary policy.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="65" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">6.0%</text>
+<line x1="65" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">4.5%</text>
+<line x1="65" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">3.0%</text>
+<line x1="65" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">1.5%</text>
+<line x1="65" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">0.0%</text>
+<line x1="65" y1="30" x2="65" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="65" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<polyline points="65.0,63.1 190.0,107.3 315.0,195.6 440.0,250.8 565.0,284.0 690.0,284.0" fill="none" stroke="#111111" stroke-width="2.5"/>
+<circle cx="65.0" cy="63.1" r="4" fill="#111111"/>
+<text x="65.0" y="53.1" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">5.25%</text>
+<text x="65.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Sep 2007</text>
+<circle cx="190.0" cy="107.3" r="4" fill="#111111"/>
+<text x="190.0" y="97.3" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">4.25%</text>
+<text x="190.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Dec 2007</text>
+<circle cx="315.0" cy="195.6" r="4" fill="#111111"/>
+<text x="315.0" y="185.6" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">2.25%</text>
+<text x="315.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Mar 2008</text>
+<circle cx="440.0" cy="250.8" r="4" fill="#111111"/>
+<text x="440.0" y="240.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1.0%</text>
+<text x="440.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Oct 2008</text>
+<circle cx="565.0" cy="284.0" r="4" fill="#111111"/>
+<text x="565.0" y="274.0" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">0.25%</text>
+<text x="565.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Dec 2008</text>
+<circle cx="690.0" cy="284.0" r="4" fill="#111111"/>
+<text x="690.0" y="274.0" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">0.25%</text>
+<text x="690.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2009-15</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Federal Funds Target Rate, 2007-2015 (%)</text>
+</svg>
+    <div class="chart-caption">Figure 4. The Federal Reserve cut its target interest rate from 5.25 percent in September 2007 to a range of 0 to 0.25 percent by December 2008, where it remained for seven years. With conventional policy exhausted, the Fed turned to large-scale asset purchases, commonly known as quantitative easing. Source: Federal Reserve History, Board of Governors of the Federal Reserve System.</div>
+  </div>
+
+  <div class="panel">
+    <h3>Major elements of the rescue</h3>
+    <ul>
+      <li><strong>TARP (Troubled Asset Relief Program).</strong> Congress authorised up to 700 billion dollars, later reduced to 475 billion by the Dodd-Frank Act; roughly 443.5 billion dollars was ultimately disbursed across bank capital injections, the auto industry rescue, AIG support, and foreclosure prevention programmes.</li>
+      <li><strong>Bank capital injections.</strong> Around 250 billion dollars was committed to inject capital directly into banks through preferred stock purchases, aimed at restoring confidence in bank solvency.</li>
+      <li><strong>The AIG rescue.</strong> The federal government ultimately provided roughly 182 billion dollars in support to AIG across multiple facilities to prevent a disorderly collapse that regulators judged would be catastrophic for the wider financial system.</li>
+      <li><strong>The auto industry bailout.</strong> Around 80 billion dollars was extended to General Motors and Chrysler to avoid disorderly bankruptcies that could have eliminated roughly a million jobs.</li>
+      <li><strong>Quantitative easing.</strong> With interest rates near zero, the Federal Reserve purchased hundreds of billions of dollars in mortgage-backed securities and Treasury bonds to push down longer-term borrowing costs and support the housing market directly.</li>
+      <li><strong>Fiscal stimulus.</strong> The American Recovery and Reinvestment Act of 2009 provided roughly 831 billion dollars in tax cuts, direct aid, and infrastructure spending to support demand in the wider economy.</li>
+    </ul>
+  </div>
+
+  <p>Contrary to the popular perception of TARP as pure loss, the government eventually recovered more than it disbursed from the bank and AIG components of the programme, largely through repayments, dividends, and the sale of shares acquired at depressed prices, though the mortgage assistance and some auto industry components resulted in permanent losses.</p>
+
+  <h2>12. Who was responsible: five explanations</h2>
+  <p>No single cause fully explains the crisis; most serious accounts point to several reinforcing failures operating at once.</p>
+  <table>
+    <tr><th>Explanation</th><th>The argument</th></tr>
+    <tr>
+      <td>Loose monetary policy</td>
+      <td>Very low interest rates in the early 2000s encouraged excessive borrowing and risk-taking, inflating the housing bubble beyond what fundamentals justified.</td>
+    </tr>
+    <tr>
+      <td>Failures in mortgage lending and securitisation</td>
+      <td>The separation of loan origination from loan risk, combined with weak underwriting standards, allowed poor-quality mortgages to be issued on a massive scale and then dispersed throughout the financial system.</td>
+    </tr>
+    <tr>
+      <td>Regulatory gaps</td>
+      <td>Large parts of the shadow banking system, including investment banks, CDS markets, and off-balance-sheet vehicles, operated with far less oversight and far less capital than traditional banks, despite posing similar systemic risks.</td>
+    </tr>
+    <tr>
+      <td>Credit rating agency failures</td>
+      <td>Conflicted incentives and flawed models led to overly generous ratings on mortgage-backed securities, giving investors false confidence in their safety.</td>
+    </tr>
+    <tr>
+      <td>Excessive leverage and risk management failures</td>
+      <td>Banks and investment banks operated with thin capital cushions relative to their assets, leaving little room for error when asset values declined, while internal risk models badly underestimated the chance of a broad, correlated housing downturn.</td>
+    </tr>
+  </table>
+
+  <h2>13. Winners, losers, and accountability</h2>
+  <p>The human costs of the crisis were severe and unevenly distributed. Thousands of families lost homes to foreclosure, with foreclosure filings peaking at nearly 2.8 million in 2009, almost four times the number in 2005. Younger households and those with less wealth to begin with tended to suffer proportionally larger and longer-lasting losses. Meanwhile, criticism grew sharply that few senior executives at the institutions most responsible for the crisis faced criminal prosecution, even as millions of ordinary Americans lost jobs and homes; this asymmetry became one of the most politically charged legacies of the period, feeding into broader public anger about inequality and elite accountability in the years that followed.</p>
+  <p>On the banking side, the crisis triggered an unprecedented wave of institutional failure and consolidation. From 2008 through 2013, close to 500 FDIC-insured banks failed, compared with only ten in the five years before the crisis. Several storied Wall Street firms disappeared entirely or were absorbed by rivals under emergency terms.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="55" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">188</text>
+<line x1="55" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">141</text>
+<line x1="55" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">94</text>
+<line x1="55" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">47</text>
+<line x1="55" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">0</text>
+<line x1="55" y1="30" x2="55" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="55" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<rect x="75.4" y="290.8" width="49.9" height="4.2" fill="#111111" opacity="0.85"/>
+<text x="100.4" y="282.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">3</text>
+<text x="100.4" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2007</text>
+<rect x="166.1" y="259.8" width="49.9" height="35.2" fill="#111111" opacity="0.85"/>
+<text x="191.1" y="251.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">25</text>
+<text x="191.1" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2008</text>
+<rect x="256.8" y="98.1" width="49.9" height="196.9" fill="#111111" opacity="0.85"/>
+<text x="281.8" y="90.1" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">140</text>
+<text x="281.8" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2009</text>
+<rect x="347.6" y="74.2" width="49.9" height="220.8" fill="#111111" opacity="0.85"/>
+<text x="372.5" y="66.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">157</text>
+<text x="372.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2010</text>
+<rect x="438.3" y="165.6" width="49.9" height="129.4" fill="#111111" opacity="0.85"/>
+<text x="463.2" y="157.6" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">92</text>
+<text x="463.2" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2011</text>
+<rect x="529.0" y="223.3" width="49.9" height="71.7" fill="#111111" opacity="0.85"/>
+<text x="553.9" y="215.3" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">51</text>
+<text x="553.9" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2012</text>
+<rect x="619.7" y="261.2" width="49.9" height="33.8" fill="#111111" opacity="0.85"/>
+<text x="644.6" y="253.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">24</text>
+<text x="644.6" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2013</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">US FDIC-Insured Bank Failures per Year</text>
+</svg>
+    <div class="chart-caption">Figure 5. Number of FDIC-insured bank failures per year. Failures rose from just 3 in 2007 to a crisis-era peak of 157 in 2010, before gradually declining as the financial system stabilised. Source: FDIC, "Crisis and Response: An FDIC History, 2008-2013."</div>
+  </div>
+
+  <h2>14. Regulatory aftermath: Dodd-Frank and Basel III</h2>
+  <p>The scale of the crisis produced the most significant overhaul of financial regulation since the Great Depression. In the United States, the Dodd-Frank Wall Street Reform and Consumer Protection Act, signed into law in 2010, introduced sweeping changes.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>Higher capital and liquidity requirements</strong> for banks, intended to ensure they could absorb losses without requiring government rescue.</li>
+      <li><strong>The Volcker Rule</strong>, restricting banks that take insured deposits from engaging in speculative proprietary trading for their own profit.</li>
+      <li><strong>The Consumer Financial Protection Bureau</strong>, a new agency dedicated to overseeing consumer lending products, including mortgages, to prevent a recurrence of the predatory and poorly underwritten lending seen before the crisis.</li>
+      <li><strong>The Financial Stability Oversight Council</strong>, tasked with identifying and monitoring risks to the financial system as a whole, including from non-bank institutions.</li>
+      <li><strong>Orderly Liquidation Authority</strong>, giving regulators new tools to wind down large, failing financial institutions without a disorderly bankruptcy like Lehman's or an open-ended taxpayer bailout.</li>
+    </ul>
+  </div>
+  <p>Internationally, the Basel III accord, developed by global banking regulators, raised minimum capital and liquidity standards for banks worldwide and introduced new requirements aimed specifically at large, globally significant institutions whose failure could threaten the wider financial system. Credit rating agencies also faced new oversight requirements aimed at reducing conflicts of interest in how securities were rated.</p>
+
+  <h2>15. Comparing 2008 with other crises</h2>
+  <table>
+    <tr><th>Crisis</th><th>Core mechanism</th><th>How it compares with 2008</th></tr>
+    <tr>
+      <td>The Great Depression, 1929 to 1939</td>
+      <td>Stock market crash, banking panics, and a collapse in the money supply amid a rigid gold standard.</td>
+      <td>2008 is the closest modern comparison in severity, but the 2008 policy response, informed by lessons from the 1930s, was far faster and more aggressive, likely preventing an equally prolonged depression.</td>
+    </tr>
+    <tr>
+      <td>The Savings and Loan crisis, 1980s to early 1990s</td>
+      <td>Deregulated US thrift institutions took on excessive risk in real estate lending, leading to roughly 1,000 institution failures.</td>
+      <td>Smaller in overall scale and largely confined to a specific type of institution, without the global interconnection through securitised assets seen in 2008.</td>
+    </tr>
+    <tr>
+      <td>The Asian Financial Crisis, 1997 to 1998</td>
+      <td>Currency crises and capital flight across several East Asian economies following unsustainable foreign borrowing and pegged exchange rates.</td>
+      <td>Concentrated in emerging markets rather than originating in the world's largest economy, though it similarly demonstrated how quickly capital flight can spread across interconnected economies.</td>
+    </tr>
+    <tr>
+      <td>The Eurozone sovereign debt crisis, 2010 to 2012</td>
+      <td>Several European governments faced unsustainable borrowing costs after absorbing bank debts and stimulus spending following the 2008 crisis.</td>
+      <td>A direct successor to 2008 in many respects, illustrating how a banking crisis can migrate into a sovereign debt crisis when governments backstop their financial systems.</td>
+    </tr>
+  </table>
+
+  <h2>16. Long-run legacy</h2>
+  <p>The 2007-2008 crisis reshaped economic policy and public attitudes in ways still visible today. Central banks retain a far larger toolkit than before, including quantitative easing and expanded emergency lending powers, which were used again, at even greater scale, during the 2020 pandemic downturn. Banks today hold substantially more capital relative to their assets than they did before 2008, a direct consequence of Basel III and Dodd-Frank requirements.</p>
+  <p>The crisis also left a lasting mark on public trust in financial institutions and in the fairness of the economic system more broadly, a sentiment that fed into political movements across the political spectrum in the years that followed, including in the 2016 US presidential election and various European elections. It reinforced the academic and policy view that financial stability cannot be taken for granted even in advanced, well-regulated economies, and that the interconnectedness of the modern financial system means a localised problem, such as US subprime mortgages, can become a global one with remarkable speed.</p>
+
+  <h2>17. Key takeaways</h2>
+  <div class="discussion">
+    <ol>
+      <li><strong>Incentive structures matter.</strong> When the party making a lending decision does not bear the consequences of a bad loan, the average quality of lending tends to deteriorate, a lesson relevant well beyond mortgage markets.</li>
+      <li><strong>Complexity can hide risk rather than eliminate it.</strong> Securitisation and tranching were meant to disperse risk safely, but they also made the true location and scale of risk far harder for anyone, including regulators, to see clearly.</li>
+      <li><strong>Interconnection creates systemic risk.</strong> The failure of a single firm, Lehman Brothers, was able to freeze credit markets worldwide because of the dense web of counterparty relationships built up over the preceding years.</li>
+      <li><strong>Regulation tends to lag innovation.</strong> Much of the riskiest activity before 2008 occurred in lightly regulated corners of the financial system precisely because they had grown up outside the traditional, more heavily supervised banking sector.</li>
+      <li><strong>Crisis response capacity is a public good.</strong> The speed and scale of the 2008 to 2009 policy response, controversial as it was, is now widely credited with preventing a far deeper and longer downturn, and it directly informed the even larger interventions seen in 2020.</li>
+    </ol>
+  </div>
+
+  <div class="panel">
+    <h3>Topic tags</h3>
+    <span class="syllabus-tag">Financial Crises</span>
+    <span class="syllabus-tag">Banking Regulation</span>
+    <span class="syllabus-tag">Housing Markets</span>
+    <span class="syllabus-tag">Systemic Risk</span>
+    <span class="syllabus-tag">Monetary Policy</span>
+    <span class="syllabus-tag">Securitisation</span>
+    <span class="syllabus-tag">Economic History</span>
+  </div>
+
+  <h2>Glossary</h2>
+  <dl class="glossary">
+    <dt>Subprime mortgage</dt>
+    <dd>A home loan extended to a borrower with a weaker credit history or higher risk profile than traditional prime borrowers, typically carrying a higher interest rate to compensate for that risk.</dd>
+    <dt>Securitisation</dt>
+    <dd>The process of pooling financial assets, such as mortgages, and converting them into tradeable securities sold to investors.</dd>
+    <dt>Mortgage-backed security (MBS)</dt>
+    <dd>A bond-like security whose payments are derived from a pool of underlying mortgage loans.</dd>
+    <dt>Collateralised debt obligation (CDO)</dt>
+    <dd>A structured security built from a pool of debt assets, such as mortgage-backed securities, divided into tranches with differing risk and return profiles.</dd>
+    <dt>Credit default swap (CDS)</dt>
+    <dd>A financial contract that functions like insurance, paying out if a specified bond or loan defaults, and traded privately between institutions.</dd>
+    <dt>Shadow banking system</dt>
+    <dd>Non-bank financial institutions and activities that perform bank-like functions, such as maturity transformation, without the regulatory oversight or safety nets applied to traditional banks.</dd>
+    <dt>Leverage</dt>
+    <dd>The use of borrowed money to fund a larger asset base than an institution's own capital would otherwise allow, which magnifies both gains and losses.</dd>
+    <dt>Moral hazard</dt>
+    <dd>A situation in which a party is incentivised to take on more risk because it does not bear the full consequences of that risk, often because those consequences fall on someone else.</dd>
+    <dt>Too big to fail</dt>
+    <dd>A description of financial institutions considered so large or interconnected that their failure would pose unacceptable risks to the wider financial system, making government rescue more likely.</dd>
+    <dt>Quantitative easing</dt>
+    <dd>A monetary policy tool in which a central bank purchases large quantities of financial assets, typically government bonds or mortgage-backed securities, to lower long-term interest rates when conventional rate cuts are no longer possible.</dd>
+    <dt>Systemic risk</dt>
+    <dd>The risk that the failure of one financial institution or market could trigger a cascading collapse across the wider financial system.</dd>
+  </dl>
+
+  <div class="footer-note">
+    Prepared for EconNexus Research Hub as a comprehensive background briefing on the 2007-2008 financial crisis and the Great Recession that followed. Figures are compiled from the Federal Reserve History project, the Federal Reserve Bank of St. Louis (FRED), the US Bureau of Labor Statistics, the FDIC's "Crisis and Response: An FDIC History, 2008-2013," the Congressional Budget Office, the US Department of the Treasury, S&amp;P Dow Jones Indices, and Britannica Money, among other public sources. Figures such as the Case-Shiller index levels and year-by-year values are presented as illustrative annual approximations for chart purposes; readers requiring precise figures for citation should consult FRED or the original source series directly.
+  </div>
+
+</div>
+</body>
+</html>
