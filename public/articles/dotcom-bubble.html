@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dot-Com Bubble: A Complete Account | EconNexus</title>
+<style>
+  :root {
+    --text: #111111;
+    --muted: #4a4a4a;
+    --rule: #111111;
+    --bg: #ffffff;
+    --panel: #f7f7f7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.75;
+  }
+  .wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 24px 110px;
+  }
+  .kicker {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-size: 36px;
+    line-height: 1.25;
+    margin: 0 0 12px;
+    font-weight: 700;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0 0 20px;
+  }
+  .meta {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+  h2 {
+    font-size: 23px;
+    margin: 46px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 { font-size: 17px; margin: 28px 0 10px; }
+  p { margin: 0 0 16px; font-size: 16.5px; }
+  .lead { font-size: 19px; margin-bottom: 24px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .panel h3 { margin-top: 0; font-family: Georgia, serif; }
+  .panel ul, .panel ol { margin: 0; padding-left: 20px; }
+  .panel li { margin-bottom: 8px; font-size: 15px; }
+  .chart-block {
+    margin: 30px 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 18px 18px 8px;
+    background: #ffffff;
+  }
+  .chart-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 10px 2px 0;
+    padding-top: 8px;
+    border-top: 1px solid #eaeaea;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .stat-box {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .stat-box .value { font-size: 24px; font-weight: 700; }
+  .stat-box .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+  th, td {
+    border: 1px solid #d9d9d9;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--panel);
+    font-weight: 700;
+  }
+  .glossary dt {
+    font-weight: 700;
+    margin-top: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+  }
+  .glossary dd { margin: 4px 0 0; color: var(--muted); font-size: 14.5px; }
+  .syllabus-tag {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid var(--text);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin: 3px 6px 3px 0;
+  }
+  .footer-note {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .discussion ol { padding-left: 20px; }
+  .discussion li { margin-bottom: 10px; font-size: 15.5px; }
+  .toc {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    background: var(--panel);
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .toc h3 { margin-top: 0; font-family: Georgia, serif; }
+  .toc ol { margin: 0; padding-left: 20px; columns: 2; -webkit-columns: 2; }
+  .toc li { margin-bottom: 6px; break-inside: avoid; }
+  .timeline {
+    border-left: 2px solid var(--rule);
+    margin: 24px 0 24px 8px;
+    padding-left: 24px;
+  }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item:before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text);
+  }
+  .timeline-date {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+  }
+  .timeline-title { font-weight: 700; margin: 2px 0 4px; font-size: 16.5px; }
+  @media (max-width: 600px) {
+    .toc ol { columns: 1; -webkit-columns: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="kicker">Macroeconomics &middot; Financial Markets &middot; Economic History</div>
+  <h1>The Dot-Com Bubble: A Complete Account</h1>
+  <p class="subtitle">How a five-year, 600 percent surge in internet stocks turned into a 78 percent collapse, wiping out trillions in wealth and reshaping how markets value technology companies for a generation.</p>
+
+  <div class="meta">
+    <span>EconNexus Research Briefing</span>
+    <span>Topic: Asset Bubbles, Technology Markets, and Monetary Policy</span>
+    <span>Reading time: 20 minutes</span>
+  </div>
+
+  <p class="lead">Between January 1995 and March 2000, the NASDAQ Composite index rose roughly 600 percent, as investors poured money into a new class of companies built around the World Wide Web. Many of these companies had never turned a profit, and some had barely any revenue at all, yet they commanded valuations in the billions of dollars on the promise that the internet would remake commerce itself. When the promise collided with reality, the unwind was brutal: the NASDAQ fell 78 percent over the following two and a half years, more than 50 percent of publicly traded dot-com companies had failed by 2004, and the broader stock market lost an estimated 5 trillion dollars in value. This briefing traces the bubble from its origins through its most infamous corporate collapses, to the recession and policy response that followed, and the lasting lessons it left for how markets price innovation.</p>
+
+  <div class="toc">
+    <h3>In this briefing</h3>
+    <ol>
+      <li>Executive summary</li>
+      <li>Background: the internet meets Wall Street</li>
+      <li>The NASDAQ's rise, in numbers</li>
+      <li>The economics of "growth at any cost"</li>
+      <li>The IPO machine</li>
+      <li>Case studies in excess</li>
+      <li>Why the bubble finally burst</li>
+      <li>Timeline: boom to bust, 1995 to 2002</li>
+      <li>The telecom crash and the fraud scandals</li>
+      <li>Contagion: the real economy</li>
+      <li>The policy response</li>
+      <li>Why the dot-com bubble differed from 2008</li>
+      <li>Who was right, and who was wrong</li>
+      <li>Regulatory and market aftermath</li>
+      <li>Comparing 2000 with other speculative bubbles</li>
+      <li>Long-run legacy</li>
+      <li>Key takeaways</li>
+      <li>Glossary</li>
+    </ol>
+  </div>
+
+  <h2>1. Executive summary</h2>
+  <div class="panel">
+    <ul>
+      <li>The commercial internet emerged in the mid-1990s, and investors, venture capitalists, and entrepreneurs raced to fund and float any company associated with it, regardless of its underlying profitability.</li>
+      <li>The NASDAQ Composite index, heavily weighted toward technology stocks, rose approximately 600 percent between January 1995 and its peak on March 10, 2000.</li>
+      <li>Loose monetary conditions, an abundance of venture capital, and an IPO market willing to reward unprofitable companies with enormous valuations combined to detach share prices from business fundamentals.</li>
+      <li>The bubble began deflating in March 2000 and collapsed fully over the following two and a half years, with the NASDAQ falling 78 percent to its October 2002 trough.</li>
+      <li>Corporate accounting scandals at Enron, WorldCom, and others, combined with the September 11 attacks, deepened and prolonged the downturn.</li>
+      <li>The US economy entered a mild recession from March to November 2001, and the Federal Reserve cut interest rates aggressively, from 6.5 percent to 1 percent, to support the economy.</li>
+      <li>Roughly half of all dot-com companies that went public during the boom had failed by 2004, but a handful, including Amazon, eBay, and Google, emerged as some of the most valuable companies in the world.</li>
+    </ul>
+  </div>
+
+  <h2>2. Background: the internet meets Wall Street</h2>
+  <p>The commercialisation of the internet began in earnest in the early 1990s, after the US government lifted restrictions on commercial use of the network and the World Wide Web, invented by Tim Berners-Lee in 1989, made it accessible to ordinary users through graphical web browsers. Netscape Communications, maker of the first widely used commercial browser, went public in August 1995. Its stock, offered at 28 dollars a share, closed its first day at 58.25 dollars, more than doubling in hours despite the company having never turned a profit. This single event is widely regarded as the symbolic start of the dot-com era: it demonstrated, for the first time at scale, that a story about the internet's future could be worth more to public markets than a company's actual financial performance.</p>
+  <p>What followed was a genuine and consequential technological shift, not merely a speculative mania. E-commerce, online advertising, search engines, and networking infrastructure were all real innovations that would go on to reshape the global economy. The problem was not that the internet's promise was false, but that financial markets priced in that promise decades ahead of when it would actually be realised, and did so for companies with wildly varying odds of surviving long enough to see it. Investors could not easily tell which of thousands of internet start-ups would become the next Amazon and which would become the next Pets.com, so in the euphoria of the period, many chose not to try, buying broadly across the sector instead.</p>
+
+  <h2>3. The NASDAQ's rise, in numbers</h2>
+  <p>Because the NASDAQ exchange listed the overwhelming majority of new technology and internet companies, its composite index became the clearest barometer of the bubble. From a level of 751.49 in January 1995, the index climbed with increasing speed through the second half of the decade, gaining 85.6 percent in 1999 alone, before peaking at an intraday high of 5,132.52 and a closing high of 5,048.62 on March 10, 2000.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="65" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">4,522</text>
+<line x1="65" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">3,541</text>
+<line x1="65" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">2,560</text>
+<line x1="65" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">1,580</text>
+<line x1="65" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">599</text>
+<line x1="65" y1="30" x2="65" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="65" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<polyline points="65.0,264.4 143.1,248.3 221.2,229.4 299.4,187.3 377.5,60.6 455.6,168.5 533.8,203.7 611.9,245.2 690.0,200.2" fill="none" stroke="#111111" stroke-width="2.5"/>
+<circle cx="65.0" cy="264.4" r="4" fill="#111111"/>
+<text x="65.0" y="254.4" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,052</text>
+<text x="65.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1995</text>
+<circle cx="143.1" cy="248.3" r="4" fill="#111111"/>
+<text x="143.1" y="238.3" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,291</text>
+<text x="143.1" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1996</text>
+<circle cx="221.2" cy="229.4" r="4" fill="#111111"/>
+<text x="221.2" y="219.4" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,570</text>
+<text x="221.2" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1997</text>
+<circle cx="299.4" cy="187.3" r="4" fill="#111111"/>
+<text x="299.4" y="177.3" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">2,193</text>
+<text x="299.4" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1998</text>
+<circle cx="377.5" cy="60.6" r="4" fill="#111111"/>
+<text x="377.5" y="50.6" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">4,069</text>
+<text x="377.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1999</text>
+<circle cx="455.6" cy="168.5" r="4" fill="#111111"/>
+<text x="455.6" y="158.5" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">2,471</text>
+<text x="455.6" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2000</text>
+<circle cx="533.8" cy="203.7" r="4" fill="#111111"/>
+<text x="533.8" y="193.7" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,950</text>
+<text x="533.8" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2001</text>
+<circle cx="611.9" cy="245.2" r="4" fill="#111111"/>
+<text x="611.9" y="235.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1,336</text>
+<text x="611.9" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2002</text>
+<circle cx="690.0" cy="200.2" r="4" fill="#111111"/>
+<text x="690.0" y="190.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">2,003</text>
+<text x="690.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2003</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">NASDAQ Composite Index, Year-End Close</text>
+</svg>
+    <div class="chart-caption">Figure 1. NASDAQ Composite index, year-end closing values, 1995 to 2003. The index rose roughly fourfold from its 1999 close before peaking intraday at 5,132.52 on March 10, 2000, then collapsed to an intraday low of 1,108.49 on October 10, 2002, a decline of 78 percent from peak to trough. Source: Nasdaq Composite closing milestones, compiled via Wikipedia and fedprimerate.com historical data.</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="value">+572%</div>
+      <div class="label">NASDAQ gain, January 1995 to March 2000</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">-78%</div>
+      <div class="label">NASDAQ decline, March 2000 to October 2002</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">$5tn+</div>
+      <div class="label">Market value lost across NASDAQ-listed companies</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">15 yrs</div>
+      <div class="label">Time for NASDAQ to reclaim its 2000 peak (2015)</div>
+    </div>
+  </div>
+
+  <p>To put the scale of the decline in context, the Dow Jones Industrial Average, which held a much smaller weighting in speculative technology and internet names, fell by a comparatively modest 37 percent over the same period. The divergence illustrates how concentrated the bubble was: it was not a broad market phenomenon so much as a specific, extreme mispricing of one sector that happened to make up a very large share of one particular exchange.</p>
+
+  <h2>4. The economics of "growth at any cost"</h2>
+  <p>A defining feature of the dot-com era was the widespread abandonment of profitability as a benchmark for investment. By October 1999, the 199 internet stocks then tracked by Morgan Stanley analyst Mary Meeker carried a combined market capitalisation of roughly 450 billion dollars, against combined annual sales of only about 21 billion dollars and combined losses of 6.2 billion dollars. Investment bankers openly noted that founders sometimes worried that turning a profit too early would cost them the premium valuation reserved for growth-stage internet companies.</p>
+  <div class="panel">
+    <h3>Why investors tolerated losses on this scale</h3>
+    <ul>
+      <li><strong>"Get big fast" strategy.</strong> Many internet business models assumed that whichever company captured the largest user base first would enjoy durable, winner-take-all advantages, so companies were encouraged to spend heavily on customer acquisition and market share ahead of profitability.</li>
+      <li><strong>Network effects and first-mover belief.</strong> Investors reasoned, correctly in some cases and incorrectly in many others, that certain internet platforms would become more valuable as more users joined, justifying heavy upfront losses to build that user base.</li>
+      <li><strong>New valuation metrics.</strong> Analysts and bankers popularised alternative measures such as "eyeballs," page views, and unique visitors in place of earnings or cash flow, allowing companies with no profit and little revenue to be valued as though profitability was simply a matter of time.</li>
+      <li><strong>Abundant cheap capital.</strong> Historically low interest rates and a booming venture capital industry meant unprofitable companies could keep raising money to cover cash burn well beyond what would have been possible in a tighter capital environment.</li>
+    </ul>
+  </div>
+  <p>The term burn rate, describing how quickly a company was spending its cash reserves, became a central metric of the era precisely because so many companies' survival depended on how long they could keep spending before running out of money and being forced to raise more, or fail.</p>
+
+  <h2>5. The IPO machine</h2>
+  <p>Wall Street's underwriting business fed directly into the mania. Initial public offerings raised more than 69 billion dollars in 1999 alone, and the average first-day return on a US IPO that year reached roughly 65 to 71 percent, compared with an average of just 7.4 percent in the 1980s and around 21 percent in 1995. Nine of the ten largest first-day IPO gains in history occurred in 1999. VA Linux Systems set the era's record, surging 733 percent on its first day of trading in December 1999.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="55" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">812</text>
+<line x1="55" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">609</text>
+<line x1="55" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">406</text>
+<line x1="55" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">203</text>
+<line x1="55" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">0</text>
+<line x1="55" y1="30" x2="55" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="55" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<rect x="83.6" y="74.2" width="69.9" height="220.8" fill="#111111" opacity="0.85"/>
+<text x="118.5" y="66.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">677</text>
+<text x="118.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1996</text>
+<rect x="210.6" y="140.4" width="69.9" height="154.6" fill="#111111" opacity="0.85"/>
+<text x="245.5" y="132.4" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">474</text>
+<text x="245.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1997</text>
+<rect x="337.6" y="203.3" width="69.9" height="91.7" fill="#111111" opacity="0.85"/>
+<text x="372.5" y="195.3" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">281</text>
+<text x="372.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1998</text>
+<rect x="464.6" y="139.7" width="69.9" height="155.3" fill="#111111" opacity="0.85"/>
+<text x="499.5" y="131.7" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">476</text>
+<text x="499.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1999</text>
+<rect x="591.6" y="171.0" width="69.9" height="124.0" fill="#111111" opacity="0.85"/>
+<text x="626.5" y="163.0" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">380</text>
+<text x="626.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2000</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Total US IPOs per Year</text>
+</svg>
+    <div class="chart-caption">Figure 2. Total US initial public offerings per year, 1996 to 2000. IPO volume stayed elevated through the peak of the bubble even as the quality and profitability of listed companies deteriorated sharply; the number of IPOs fell by roughly half in September 2001, when not a single US IPO reached market, the first such month in 26 years. Source: Jay R. Ritter, University of Florida, "Initial Public Offerings: Updated Statistics."</div>
+  </div>
+
+  <p>Venture capital investment expanded in lockstep, growing from roughly 7 billion dollars in 1995 to nearly 100 billion dollars in 2000, with internet-related companies absorbing close to 80 percent of that capital in the peak years of 1999 and 2000.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="55" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">$126</text>
+<line x1="55" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">$94</text>
+<line x1="55" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">$63</text>
+<line x1="55" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">$32</text>
+<line x1="55" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">$0</text>
+<line x1="55" y1="30" x2="55" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="55" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<rect x="75.4" y="280.3" width="49.9" height="14.7" fill="#111111" opacity="0.85"/>
+<text x="100.4" y="272.3" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">$7</text>
+<text x="100.4" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1995</text>
+<rect x="166.1" y="263.5" width="49.9" height="31.5" fill="#111111" opacity="0.85"/>
+<text x="191.1" y="255.5" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">$15</text>
+<text x="191.1" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1997</text>
+<rect x="256.8" y="250.8" width="49.9" height="44.2" fill="#111111" opacity="0.85"/>
+<text x="281.8" y="242.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">$21</text>
+<text x="281.8" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1998</text>
+<rect x="347.6" y="177.2" width="49.9" height="117.8" fill="#111111" opacity="0.85"/>
+<text x="372.5" y="169.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">$56</text>
+<text x="372.5" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">1999</text>
+<rect x="438.3" y="74.2" width="49.9" height="220.8" fill="#111111" opacity="0.85"/>
+<text x="463.2" y="66.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">$105</text>
+<text x="463.2" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2000</text>
+<rect x="529.0" y="208.8" width="49.9" height="86.2" fill="#111111" opacity="0.85"/>
+<text x="553.9" y="200.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">$41</text>
+<text x="553.9" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2001</text>
+<rect x="619.7" y="250.8" width="49.9" height="44.2" fill="#111111" opacity="0.85"/>
+<text x="644.6" y="242.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">$21</text>
+<text x="644.6" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">2002</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">US Venture Capital Investment ($ billions)</text>
+</svg>
+    <div class="chart-caption">Figure 3. US venture capital investment by year. Funding roughly quadrupled from 1998 to 2000, then collapsed by close to 80 percent within two years as the exit market for new listings disappeared. Source: compiled from "Profit over Privacy," Manifold@UMinnPress, and contemporaneous industry reporting.</div>
+  </div>
+
+  <p>Compounding the frenzy was a pattern of extensive insider selling even as retail investors kept buying. Between September 1999 and July 2000, dot-com company insiders cashed out roughly 43 billion dollars in stock, twice the pace of the two preceding years; in the month before the NASDAQ peaked, insiders sold 23 shares for every one they bought. Individual investors, meanwhile, poured an additional 260 billion dollars into US equity funds over the course of 2000 even as the unwind was already underway, a stark illustration of how retail investors were typically the last to recognise the shift in sentiment.</p>
+
+  <h2>6. Case studies in excess</h2>
+  <table>
+    <tr><th>Company</th><th>What happened</th></tr>
+    <tr>
+      <td>Pets.com</td>
+      <td>Became a cultural symbol of the bubble through its sock-puppet mascot and a Super Bowl advertisement; raised 82.5 million dollars in its February 2000 IPO but folded within the year, its market value falling from over 300 million dollars to zero.</td>
+    </tr>
+    <tr>
+      <td>Webvan</td>
+      <td>An online grocery delivery start-up that raised 375 million dollars in its 1999 IPO and spent lavishly on warehouses and infrastructure ahead of demonstrated demand; filed for bankruptcy in 2001 after burning through roughly 800 million dollars in funding.</td>
+    </tr>
+    <tr>
+      <td>Priceline.com</td>
+      <td>Went public in March 1999 at 16 dollars a share, closing its first day at 69 dollars for a 9.8 billion dollar valuation, despite losses of 142.5 million dollars in its first few quarters; unlike many peers, Priceline survived and eventually became one of the sector's success stories under the Booking Holdings umbrella.</td>
+    </tr>
+    <tr>
+      <td>Cisco Systems</td>
+      <td>Briefly became the world's most valuable company, with a market capitalisation exceeding 500 billion dollars on revenue of only about 19 billion dollars; its stock fell roughly 88 percent from peak to 2002 and, remarkably, had still not reclaimed its inflation-adjusted 2000 high more than two decades later.</td>
+    </tr>
+    <tr>
+      <td>Amazon</td>
+      <td>Share price fell approximately 90 percent from its bubble-era peak to a low of around 7 dollars, yet the company's underlying retail and, later, cloud computing businesses continued growing, eventually making it one of the most valuable companies in the world.</td>
+    </tr>
+  </table>
+  <p>The contrast between Amazon's survival and Pets.com's collapse captures the central lesson of the period: the direction of the underlying technological trend was correctly identified by many investors, but the specific companies, timelines, and valuations attached to that trend were often wildly mistaken.</p>
+
+  <h2>7. Why the bubble finally burst</h2>
+  <p>No single event caused the collapse; rather, several pressures converged in early 2000.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>Monetary tightening.</strong> Concerned that speculative excess and rising inflation pressures required a response, the Federal Reserve raised its target interest rate six times between June 1999 and May 2000, from 4.75 percent to 6.5 percent, raising the cost of the capital that had fuelled the boom.</li>
+      <li><strong>Tax-related selling.</strong> Investors who had realised large capital gains in 1999 needed to sell shares in early 2000 to cover tax bills due that April, triggering an initial wave of selling that revealed how fragile market liquidity had become.</li>
+      <li><strong>Margin calls and forced selling.</strong> As prices fell, investors who had borrowed against their portfolios faced margin calls, forcing further sales of their most liquid holdings regardless of individual company fundamentals, a self-reinforcing de-leveraging spiral.</li>
+      <li><strong>A closing IPO window.</strong> As sentiment shifted, the market's appetite for new, unprofitable internet listings evaporated almost overnight, cutting off the primary funding mechanism that had kept many dot-coms alive.</li>
+      <li><strong>Deteriorating fundamentals becoming impossible to ignore.</strong> By 2000, a growing number of high-profile dot-coms were reporting disappointing holiday sales and mounting losses, undermining the growth narratives that had justified their valuations.</li>
+    </ul>
+  </div>
+
+  <h2>8. Timeline: boom to bust, 1995 to 2002</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">August 1995</div>
+      <div class="timeline-title">Netscape's IPO ignites the era</div>
+      <p>Netscape Communications goes public at 28 dollars a share and closes its first day at 58.25 dollars, demonstrating investor appetite for internet companies regardless of profitability.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1996 to 1998</div>
+      <div class="timeline-title">The boom builds</div>
+      <p>Amazon, eBay, and hundreds of other internet companies go public; the NASDAQ climbs from roughly 1,052 to 2,193 over these three years as venture capital and retail enthusiasm grow.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1999</div>
+      <div class="timeline-title">Peak mania</div>
+      <p>The NASDAQ surges 85.6 percent for the year; IPOs raise more than 69 billion dollars with average first-day returns near 65 to 71 percent; VA Linux gains 733 percent on its trading debut in December.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">June 1999 to May 2000</div>
+      <div class="timeline-title">The Fed tightens policy</div>
+      <p>The Federal Reserve raises its target interest rate six times, from 4.75 percent to 6.5 percent, in an effort to cool speculative excess and contain inflation.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">March 10, 2000</div>
+      <div class="timeline-title">The NASDAQ peaks</div>
+      <p>The index closes at 5,048.62, an intraday high of 5,132.52, having risen roughly 572 percent since January 1995.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">April to December 2000</div>
+      <div class="timeline-title">The unwind accelerates</div>
+      <p>The NASDAQ loses 40 percent of its value over the course of the year as tax-related selling, margin calls, and a closing IPO window force a wave of dot-com failures, including the widely publicised collapse of Pets.com in November.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">March to November 2001</div>
+      <div class="timeline-title">The dot-com recession</div>
+      <p>The US economy enters an official recession as the technology-driven investment boom reverses; unemployment rises from 3.9 percent to 5.7 percent over the year.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">September 11, 2001</div>
+      <div class="timeline-title">Terrorist attacks compound the downturn</div>
+      <p>The September 11 attacks deepen the economic shock, and for the first time in 26 years, not a single US IPO reaches market that month.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">December 2001 to July 2002</div>
+      <div class="timeline-title">Corporate fraud scandals surface</div>
+      <p>Enron collapses in December 2001, destroying roughly 68 billion dollars in market value and nine thousand jobs; WorldCom follows with the largest bankruptcy filing in US history to that point in July 2002, deepening investor distrust of corporate accounting.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">October 9 to 10, 2002</div>
+      <div class="timeline-title">The NASDAQ bottoms out</div>
+      <p>The index reaches an intraday low of 1,108.49 and a closing low near 1,114, down 78 percent from its March 2000 peak, having erased the entirety of its gains since January 1995.</p>
+    </div>
+  </div>
+
+  <h2>9. The telecom crash and the fraud scandals</h2>
+  <p>Alongside the collapse in internet stocks proper, a parallel and in some ways even larger crash occurred in the telecommunications sector, sometimes grouped with the dot-com bubble under the broader label of the tech, media, and telecom, or TMT, bubble. Telecom companies had invested enormous sums laying fibre-optic cable in anticipation of surging internet traffic that, at least initially, never fully materialised at the pace assumed. Companies including WorldCom, Global Crossing, and NorthPoint Communications collapsed under the weight of this overbuilt capacity and, in several cases, outright accounting fraud.</p>
+  <p>WorldCom's bankruptcy, filed in July 2002, was at the time the largest corporate bankruptcy in US history, later eclipsed by Lehman Brothers in 2008. Investigations revealed that WorldCom executives, including chief executive Bernard Ebbers, had fraudulently classified billions of dollars in ordinary operating expenses as capital expenditures, artificially inflating reported profits. Enron's collapse the previous December, while centred on energy trading rather than telecoms or dot-coms directly, contributed heavily to the same collapse in investor trust, as it revealed how thoroughly some of the era's most celebrated corporate performances had been fabricated. These scandals prompted a wave of criminal prosecutions, including convictions of Ebbers and Enron executives Jeffrey Skilling and Kenneth Lay, and directly led to the Sarbanes-Oxley Act of 2002, which imposed strict new corporate accounting and disclosure requirements still in force today.</p>
+
+  <h2>10. Contagion: the real economy</h2>
+  <p>Unlike the far larger 2008 financial crisis, the dot-com bust did not threaten the core plumbing of the banking system, since the losses were concentrated in equity markets rather than in leveraged bank balance sheets. Even so, the shock was large enough to tip the US economy into recession and to noticeably slow global growth.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="55" y1="40.0" x2="690" y2="40.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="44.0" font-size="11" fill="#4a4a4a" text-anchor="end">8%</text>
+<line x1="55" y1="105.0" x2="690" y2="105.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="109.0" font-size="11" fill="#4a4a4a" text-anchor="end">6%</text>
+<line x1="55" y1="170.0" x2="690" y2="170.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="174.0" font-size="11" fill="#4a4a4a" text-anchor="end">4%</text>
+<line x1="55" y1="235.0" x2="690" y2="235.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="239.0" font-size="11" fill="#4a4a4a" text-anchor="end">2%</text>
+<line x1="55" y1="300.0" x2="690" y2="300.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="47" y="304.0" font-size="11" fill="#4a4a4a" text-anchor="end">0%</text>
+<line x1="55" y1="40" x2="55" y2="300" stroke="#111111" stroke-width="1.2"/>
+<line x1="55" y1="300" x2="690" y2="300" stroke="#111111" stroke-width="1.2"/>
+<polyline points="55.0,161.3 213.8,164.8 372.5,102.4 531.2,92.0 690.0,102.4" fill="none" stroke="#111111" stroke-width="2.5"/>
+<circle cx="55.0" cy="161.3" r="3.5" fill="#111111"/>
+<circle cx="213.8" cy="164.8" r="3.5" fill="#111111"/>
+<circle cx="372.5" cy="102.4" r="3.5" fill="#111111"/>
+<circle cx="531.2" cy="92.0" r="3.5" fill="#111111"/>
+<circle cx="690.0" cy="102.4" r="3.5" fill="#111111"/>
+<polyline points="55.0,133.6 213.8,157.9 372.5,265.3 531.2,241.1 690.0,202.9" fill="none" stroke="#8a8a8a" stroke-width="2.5"/>
+<circle cx="55.0" cy="133.6" r="3.5" fill="#8a8a8a"/>
+<circle cx="213.8" cy="157.9" r="3.5" fill="#8a8a8a"/>
+<circle cx="372.5" cy="265.3" r="3.5" fill="#8a8a8a"/>
+<circle cx="531.2" cy="241.1" r="3.5" fill="#8a8a8a"/>
+<circle cx="690.0" cy="202.9" r="3.5" fill="#8a8a8a"/>
+<text x="55.0" y="318" font-size="11" fill="#4a4a4a" text-anchor="middle">1999</text>
+<text x="213.8" y="318" font-size="11" fill="#4a4a4a" text-anchor="middle">2000</text>
+<text x="372.5" y="318" font-size="11" fill="#4a4a4a" text-anchor="middle">2001</text>
+<text x="531.2" y="318" font-size="11" fill="#4a4a4a" text-anchor="middle">2002</text>
+<text x="690.0" y="318" font-size="11" fill="#4a4a4a" text-anchor="middle">2003</text>
+<line x1="55" y1="338" x2="75" y2="338" stroke="#111111" stroke-width="3"/>
+<text x="81" y="342" font-size="11" fill="#111111">Unemployment Rate</text>
+<line x1="235" y1="338" x2="255" y2="338" stroke="#8a8a8a" stroke-width="3"/>
+<text x="261" y="342" font-size="11" fill="#111111">Real GDP Growth</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">US Unemployment Rate vs Real GDP Growth (%)</text>
+</svg>
+    <div class="chart-caption">Figure 4. US unemployment rate against real GDP growth, 1999 to 2003. Growth slowed sharply from 4.1 percent in 2000 to just 1.0 percent in 2001 as the recession took hold, while unemployment climbed from 3.9 percent to 6.0 percent by 2002. Source: US Bureau of Labor Statistics and Bureau of Economic Analysis data, compiled via thebalancemoney.com historical tables.</div>
+  </div>
+
+  <p>Hundreds of thousands of technology sector jobs were lost as dot-coms failed and established technology companies scaled back hiring and investment sharply. Advertising, an industry that had grown heavily dependent on dot-com marketing budgets, contracted along with its clients, and commercial real estate in technology hubs such as San Francisco saw a sharp pullback in demand as office space that had been leased for rapid dot-com expansion sat empty.</p>
+
+  <h2>11. The policy response</h2>
+  <p>The Federal Reserve, led by chairman Alan Greenspan, responded to the deteriorating economy with an aggressive and sustained series of interest rate cuts, reducing its target rate from 6.5 percent in May 2000 to 1.75 percent by the end of 2001, and eventually to just 1 percent by June 2003, the lowest level in 45 years at that time.</p>
+
+  <div class="chart-block">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<line x1="65" y1="30.0" x2="690" y2="30.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="34.0" font-size="11" fill="#4a4a4a" text-anchor="end">7.0%</text>
+<line x1="65" y1="96.2" x2="690" y2="96.2" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="100.2" font-size="11" fill="#4a4a4a" text-anchor="end">5.2%</text>
+<line x1="65" y1="162.5" x2="690" y2="162.5" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="166.5" font-size="11" fill="#4a4a4a" text-anchor="end">3.5%</text>
+<line x1="65" y1="228.8" x2="690" y2="228.8" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="232.8" font-size="11" fill="#4a4a4a" text-anchor="end">1.8%</text>
+<line x1="65" y1="295.0" x2="690" y2="295.0" stroke="#e0e0e0" stroke-width="1"/>
+<text x="57" y="299.0" font-size="11" fill="#4a4a4a" text-anchor="end">0.0%</text>
+<line x1="65" y1="30" x2="65" y2="295" stroke="#111111" stroke-width="1.2"/>
+<line x1="65" y1="295" x2="690" y2="295" stroke="#111111" stroke-width="1.2"/>
+<polyline points="65.0,115.2 190.0,48.9 315.0,48.9 440.0,228.8 565.0,247.7 690.0,257.1" fill="none" stroke="#111111" stroke-width="2.5"/>
+<circle cx="65.0" cy="115.2" r="4" fill="#111111"/>
+<text x="65.0" y="105.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">4.75%</text>
+<text x="65.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Jan 1999</text>
+<circle cx="190.0" cy="48.9" r="4" fill="#111111"/>
+<text x="190.0" y="38.9" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">6.5%</text>
+<text x="190.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">May 2000</text>
+<circle cx="315.0" cy="48.9" r="4" fill="#111111"/>
+<text x="315.0" y="38.9" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">6.5%</text>
+<text x="315.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Dec 2000</text>
+<circle cx="440.0" cy="228.8" r="4" fill="#111111"/>
+<text x="440.0" y="218.8" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1.75%</text>
+<text x="440.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Dec 2001</text>
+<circle cx="565.0" cy="247.7" r="4" fill="#111111"/>
+<text x="565.0" y="237.7" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1.25%</text>
+<text x="565.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Nov 2002</text>
+<circle cx="690.0" cy="257.1" r="4" fill="#111111"/>
+<text x="690.0" y="247.1" font-size="11" fill="#111111" text-anchor="middle" font-weight="bold">1.0%</text>
+<text x="690.0" y="313" font-size="11" fill="#4a4a4a" text-anchor="middle">Jun 2003</text>
+<text x="360.0" y="18" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Federal Funds Target Rate, 1999-2003 (%)</text>
+</svg>
+    <div class="chart-caption">Figure 5. Federal funds target rate, 1999 to 2003. The Fed raised rates six times into the peak of the bubble, then cut aggressively, eleven times in total, from 6.5 percent to 1 percent, to support the economy through the recession and its aftermath. Source: Federal Reserve Board of Governors historical data, compiled via Bankrate and the Richmond Fed.</div>
+  </div>
+
+  <p>Alongside monetary easing, Congress passed tax cuts in 2001, including the Economic Growth and Tax Relief Reconciliation Act, intended to support household spending during the downturn. Because the crisis was concentrated in equity markets rather than in the banking system, the policy response was considerably smaller in scale than the emergency measures deployed in 2008, focused primarily on interest rate policy rather than direct financial sector intervention.</p>
+
+  <h2>12. Why the dot-com bubble differed from 2008</h2>
+  <p>It is worth pausing on this comparison directly, since the two episodes are often mentioned together but worked quite differently.</p>
+  <table>
+    <tr><th>Feature</th><th>Dot-com bubble, 2000-02</th><th>Financial crisis, 2007-09</th></tr>
+    <tr>
+      <td>Where the losses were concentrated</td>
+      <td>Public equity markets, venture capital, and corporate balance sheets</td>
+      <td>Bank and shadow-bank balance sheets, backed by leveraged mortgage assets</td>
+    </tr>
+    <tr>
+      <td>Role of leverage</td>
+      <td>Present through IPO speculation and margin lending, but modest relative to 2008</td>
+      <td>Central to the crisis; investment banks were leveraged more than 30 to 1 in some cases</td>
+    </tr>
+    <tr>
+      <td>Threat to the banking system</td>
+      <td>Limited; commercial banks were not the primary holders of dot-com equity risk</td>
+      <td>Severe; the crisis threatened the solvency of major banks and the payments system itself</td>
+    </tr>
+    <tr>
+      <td>Depth of the recession</td>
+      <td>Mild; US GDP growth slowed but stayed positive across the full year in both 2001 and 2002</td>
+      <td>Severe; US GDP fell by 4.3 percent peak to trough, and unemployment doubled to 10 percent</td>
+    </tr>
+    <tr>
+      <td>Government rescue required</td>
+      <td>None directed at markets themselves; response was limited to rate cuts and tax policy</td>
+      <td>Extensive; included TARP, bank recapitalisation, and emergency central bank lending</td>
+    </tr>
+  </table>
+  <p>In short, the dot-com bubble was primarily a story about the mispricing of equity in a genuinely transformative but immature technology, while the 2008 crisis was a story about leverage and interconnection within the financial system itself. This is a large part of why the dot-com bust, despite destroying more headline market value in percentage terms within its own sector, produced a much milder recession than the crisis that followed it seven years later.</p>
+
+  <h2>13. Who was right, and who was wrong</h2>
+  <p>With the benefit of hindsight, the dot-com era offers an unusually clear natural experiment in separating correct big-picture forecasts from incorrect specific bets. The broad thesis, that the internet would fundamentally reshape retail, advertising, communication, and media, proved entirely correct. What proved wrong, in the overwhelming majority of individual cases, was the assumption that being first to market, spending aggressively, and going public quickly were reliable paths to becoming one of the eventual winners.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>Survivors that became giants.</strong> Amazon, eBay, and Google, though Google would not go public until 2004, built durable competitive advantages, strong balance sheets, or genuinely novel technology that let them outlast the funding drought and dominate their categories for decades afterward.</li>
+      <li><strong>Correct ideas, wrong timing.</strong> Webvan's online grocery delivery model was directionally correct, as later demonstrated by the success of similar services roughly two decades later, but it required broadband penetration, smartphone logistics, and consumer habits that simply did not exist yet in 1999 and 2000.</li>
+      <li><strong>Pure speculation with no durable model.</strong> Companies such as Pets.com and Boo.com had thin competitive advantages, unsustainable unit economics, and business plans that depended entirely on continued access to external capital rather than on a credible path to self-sustaining profit.</li>
+    </ul>
+  </div>
+
+  <h2>14. Regulatory and market aftermath</h2>
+  <p>The scandals surrounding Enron and WorldCom, layered on top of the broader collapse in dot-com valuations, produced significant and lasting changes to how US public companies are regulated.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>The Sarbanes-Oxley Act of 2002</strong> introduced strict new requirements for financial disclosure, internal controls, and executive accountability, including personal certification of financial statements by chief executives and chief financial officers.</li>
+      <li><strong>Analyst independence reforms</strong> followed revelations that some Wall Street research analysts had issued favourable ratings on companies to help secure lucrative investment banking business from those same companies, a conflict of interest that regulators moved to separate more clearly.</li>
+      <li><strong>Changes to IPO underwriting practices</strong> followed scrutiny of practices such as "laddering," in which underwriters allocated shares to favoured clients on the condition that they buy more in the aftermarket, artificially inflating first-day price pops.</li>
+      <li><strong>A more cautious venture capital industry</strong> emerged in the years that followed, generally placing greater emphasis on a credible path to profitability, or at least positive unit economics, before backing large follow-on funding rounds or public listings.</li>
+    </ul>
+  </div>
+
+  <h2>15. Comparing 2000 with other speculative bubbles</h2>
+  <table>
+    <tr><th>Bubble</th><th>Core mechanism</th><th>How it compares with the dot-com bubble</th></tr>
+    <tr>
+      <td>Tulip mania, 1630s Netherlands</td>
+      <td>Speculative trading in tulip bulb futures reached extraordinary prices before collapsing within weeks.</td>
+      <td>Far smaller in economic scale, but similarly driven by a genuinely novel and desirable asset whose price became disconnected from any plausible use value.</td>
+    </tr>
+    <tr>
+      <td>The South Sea Bubble, 1720</td>
+      <td>Speculation in the South Sea Company's stock, tied to speculative trading rights, collapsed after prices rose roughly tenfold in a year.</td>
+      <td>Shares the dot-com pattern of a plausible underlying growth story attracting speculative capital that far outran realistic near-term prospects.</td>
+    </tr>
+    <tr>
+      <td>The 1929 stock market crash</td>
+      <td>Excessive margin lending inflated a broad equity bubble across the US market, which collapsed and helped trigger the Great Depression.</td>
+      <td>Involved far more systemic leverage and a much deeper subsequent depression than the dot-com bust, though both featured retail investors buying heavily on the way up.</td>
+    </tr>
+    <tr>
+      <td>The Japanese asset price bubble, late 1980s</td>
+      <td>Real estate and stock prices in Japan reached extreme valuations before a prolonged collapse ushered in decades of stagnation.</td>
+      <td>Produced a far longer-lasting economic malaise than the dot-com bust, since the underlying losses were embedded in the banking system rather than concentrated in venture-funded equity.</td>
+    </tr>
+    <tr>
+      <td>The 2007-08 financial crisis</td>
+      <td>A housing bubble, amplified by mortgage securitisation and bank leverage, triggered a systemic banking crisis.</td>
+      <td>Discussed in detail above; a far more severe crisis precisely because it involved the leveraged core of the financial system rather than public equity markets alone.</td>
+    </tr>
+  </table>
+
+  <h2>16. Long-run legacy</h2>
+  <p>The dot-com bubble reshaped both Silicon Valley and Wall Street in lasting ways. Venture capital firms adopted more disciplined funding practices, generally requiring clearer evidence of product-market fit and a path to sustainable unit economics before committing to large follow-on rounds, though critics have periodically argued that this discipline eroded again during subsequent boom periods. Public market investors became more attentive, at least for a time, to profitability and cash flow alongside growth metrics when valuing technology companies.</p>
+  <p>The underlying technological transformation that the bubble had bet on did, eventually, arrive largely as predicted. E-commerce, online advertising, cloud computing, and mobile internet access went on to become some of the largest and most profitable segments of the global economy, just years or decades later than the market of 1999 had assumed, and dominated by a different set of winners than many investors expected at the time. This pattern, a broadly correct technological thesis combined with badly mistimed and mispriced speculation, has since become a standard reference point whenever a new wave of technological enthusiasm, from mobile apps to cryptocurrency to artificial intelligence, drives rapid gains in market valuations.</p>
+
+  <h2>17. Key takeaways</h2>
+  <div class="discussion">
+    <ol>
+      <li><strong>Being right about a technology does not guarantee being right about which companies win.</strong> The internet's transformative potential was real, but most individual companies that raised money on that promise still failed.</li>
+      <li><strong>Valuation metrics that abandon profitability are a warning sign, not an innovation.</strong> Measures such as "eyeballs" or page views substituted narrative for financial discipline, and their popularity faded once the bubble burst.</li>
+      <li><strong>Cheap capital and easy exits amplify speculative excess.</strong> Low interest rates and a receptive IPO market allowed unprofitable business models to survive and expand far longer than they otherwise could have.</li>
+      <li><strong>Insider behaviour can be a useful signal.</strong> The sharp rise in insider selling ahead of the March 2000 peak illustrates how those with the most information about a company's prospects often act well before public sentiment shifts.</li>
+      <li><strong>Not all bubbles threaten the wider financial system equally.</strong> Because dot-com losses were concentrated in equity markets rather than leveraged bank balance sheets, the resulting recession, while real, was far milder than the systemic crisis that followed the 2008 housing bust.</li>
+    </ol>
+  </div>
+
+  <div class="panel">
+    <h3>Topic tags</h3>
+    <span class="syllabus-tag">Asset Bubbles</span>
+    <span class="syllabus-tag">Stock Markets</span>
+    <span class="syllabus-tag">Venture Capital</span>
+    <span class="syllabus-tag">Monetary Policy</span>
+    <span class="syllabus-tag">Corporate Governance</span>
+    <span class="syllabus-tag">Technology Sector</span>
+    <span class="syllabus-tag">Economic History</span>
+  </div>
+
+  <h2>Glossary</h2>
+  <dl class="glossary">
+    <dt>NASDAQ Composite</dt>
+    <dd>A stock market index tracking almost all companies listed on the NASDAQ exchange, heavily weighted toward technology and internet-related firms.</dd>
+    <dt>Burn rate</dt>
+    <dd>The speed at which a company spends its available cash reserves, a critical metric for unprofitable start-ups dependent on continued external funding.</dd>
+    <dt>First-day pop</dt>
+    <dd>The percentage increase between an IPO's offering price and its closing price on the first day of public trading.</dd>
+    <dt>Venture capital</dt>
+    <dd>Investment capital provided to early-stage, high-growth-potential companies, typically in exchange for equity ownership.</dd>
+    <dt>Network effect</dt>
+    <dd>A phenomenon in which a product or service becomes more valuable to each user as more people use it, often cited to justify aggressive early-stage spending on user acquisition.</dd>
+    <dt>Laddering</dt>
+    <dd>A discredited IPO underwriting practice in which investors were allocated shares on the informal condition that they purchase additional shares in the aftermarket, artificially inflating first-day price gains.</dd>
+    <dt>Sarbanes-Oxley Act</dt>
+    <dd>A 2002 US federal law introducing stricter corporate financial disclosure, internal control, and executive accountability requirements in response to the Enron and WorldCom accounting scandals.</dd>
+    <dt>Tech-media-telecom (TMT) bubble</dt>
+    <dd>A broader term encompassing the dot-com bubble alongside the parallel boom and bust in telecommunications infrastructure and media companies during the same period.</dd>
+    <dt>Margin call</dt>
+    <dd>A demand from a broker that an investor deposit additional funds or securities after the value of assets purchased with borrowed money falls below a required threshold, often forcing rapid asset sales.</dd>
+  </dl>
+
+  <div class="footer-note">
+    Prepared for EconNexus Research Hub as a comprehensive background briefing on the dot-com bubble of 1995 to 2002 and its aftermath. Figures are compiled from Wikipedia's Nasdaq Composite closing milestones, Jay R. Ritter's IPO statistics database at the University of Florida, the Federal Reserve Board of Governors, the US Bureau of Labor Statistics and Bureau of Economic Analysis, "Profit over Privacy" (Manifold, University of Minnesota Press), and contemporaneous financial reporting, among other public sources. Figures such as annual NASDAQ closes and venture capital totals are presented as illustrative approximations for chart purposes; readers requiring precise figures for citation should consult the original source series directly.
+  </div>
+
+</div>
+</body>
+</html>

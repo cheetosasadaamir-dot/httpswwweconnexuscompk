@@ -1284,37 +1284,6 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
     realWorldExample: 'During COVID-19, automatic stabilisers provided initial support as Universal Credit claims surged, but the scale of the shock required massive discretionary measures (furlough scheme).'
   },
   {
-    id: 'automation',
-    title: 'Automation and Labor Markets',
-    category: 'theory',
-    definition: 'The replacement of human labor with machines or software to perform tasks previously done by workers. Automation increases productivity but raises concerns about structural unemployment and the distribution of gains between capital and labor.',
-    keyPoints: [
-      'Technological unemployment: Jobs eliminated by machines',
-      'Creative destruction: New industries and jobs also created',
-      'Skill-biased technical change: Benefits skilled workers, displaces unskilled',
-      'Long-run impact on labor share of income'
-    ],
-    analysis: 'Firm automates production → ↓ Demand for labor (substitution effect) → ↑ Productivity → ↓ Prices → ↑ Real income → ↑ Demand for other goods (income effect) → New jobs created in other sectors. Net employment effect depends on whether income effect > substitution effect.',
-    evaluation: 'Historically, automation has not caused mass unemployment—new jobs replaced old ones. But AI and advanced robotics may be different (broader substitution). The transition period causes dislocation, requiring retraining and safety nets. The key question is distribution: who captures the productivity gains?',
-    realWorldExample: 'Amazon warehouses use robots for picking and packing, but also employ thousands of humans for tasks robots cannot perform—illustrating complementarity alongside substitution.'
-  },
-  {
-    id: 'autonomous-consumption',
-    title: 'Autonomous Consumption',
-    category: 'macro',
-    definition: 'The level of consumption that occurs regardless of income level, represented by the intercept (C₀) in the Keynesian consumption function. It reflects spending financed by savings, borrowing, or wealth, independent of current income.',
-    keyPoints: [
-      'C₀ in the consumption function: C = C₀ + MPC × Yᵈ',
-      'Represents subsistence spending or dissaving when Y = 0',
-      'Shifts in C₀ shift the entire consumption function',
-      'Influenced by: Wealth, confidence, credit availability, expectations'
-    ],
-    analysis: 'Autonomous consumption C₀ = £10,000 → At Y = 0, consumer spends £10,000 (dissaving) → MPC = 0.8 → At Y = £50,000, C = £10,000 + 0.8(£50,000) = £50,000 → Shift in C₀ (e.g., ↑ wealth) → Entire consumption function shifts up → ↑ AE → Multiplier effect → ↑ Equilibrium Y.',
-    evaluation: 'Autonomous consumption explains why consumption doesn\'t fall to zero in recessions—wealth and borrowing sustain spending. However, the Keynesian model assumes a stable consumption function, challenged by the Permanent Income Hypothesis (consumption depends on lifetime wealth, not current income).',
-    formula: 'C = C_0 + MPC \\times Y_d',
-    realWorldExample: 'During the 2020 lockdowns, households with savings maintained consumption despite income losses—demonstrating autonomous consumption financed by drawing down assets.'
-  },
-  {
     id: 'brain-drain',
     title: 'Brain Drain Problem',
     category: 'macro',
