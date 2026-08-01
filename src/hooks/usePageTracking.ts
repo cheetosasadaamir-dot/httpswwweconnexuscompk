@@ -30,15 +30,7 @@ export function usePageTracking() {
 
   useEffect(() => {
     fetchGeo().then(geo => {
-      // Track to local project with geo
-      supabase.rpc('track_page_view', {
-        _page: location.pathname,
-        _city: geo.city,
-        _country: geo.country,
-      } as any).then(({ error }: any) => {
-        if (error) console.error('track_page_view failed:', error);
-      });
-      // Track to admin dashboard
+      // Tracking is performed server-side via a secured edge function
       trackPageView(location.pathname, geo.city, geo.country);
     });
   }, [location.pathname]);
