@@ -69,7 +69,7 @@ const MonopolyDiagram = ({ title }: MonopolyDiagramProps) => {
   const mrAtQm = 200 - 2 * qm; // = 80 (MR at Qm)
   
   // AC at Qm (on AC curve) - set to 90 for visible profit
-  const acAtQm = 90;
+  const acAtQm = 100; // AC at profit-maximising output Qm
   
   // MC curve - U-shaped, intersects AC at AC minimum (around Q=80)
   // MC must pass through (Qm, mrAtQm) = (60, 80)
@@ -80,12 +80,13 @@ const MonopolyDiagram = ({ title }: MonopolyDiagramProps) => {
 
   // AC curve - U-shaped, minimum at approximately Q=80
   // MC must intersect AC at AC's minimum
-  const acMinQ = 80;
-  const acMinP = 85;
-  const acPath = `M ${xScale(15)} ${yScale(180)} 
-                  Q ${xScale(40)} ${yScale(95)}, ${xScale(60)} ${yScale(acAtQm)}
-                  Q ${xScale(80)} ${yScale(acMinP)}, ${xScale(100)} ${yScale(95)}
-                  Q ${xScale(130)} ${yScale(130)}, ${xScale(160)} ${yScale(170)}`;
+  // MC crosses AC exactly at AC's minimum: MC(70) = 95 = min AC
+  const acMinQ = 70;
+  const acMinP = 95;
+  const acPath = `M ${xScale(20)} ${yScale(180)} 
+                  Q ${xScale(45)} ${yScale(120)}, ${xScale(60)} ${yScale(acAtQm)}
+                  Q ${xScale(70)} ${yScale(90)}, ${xScale(80)} ${yScale(acAtQm)}
+                  Q ${xScale(110)} ${yScale(140)}, ${xScale(140)} ${yScale(185)}`;
 
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },

@@ -105,17 +105,31 @@ const TopicCard = ({ topic }: { topic: WorldEconomicsTopic }) => {
   );
 };
 
+const PAGE_SIZE = 24;
+
 const WorldEconomicsSection = () => {
   const [activeCategory, setActiveCategory] = useState<WorldEconomicsTopic['category'] | 'all'>('all');
+  const [query, setQuery] = useState('');
+  const [visible, setVisible] = useState(PAGE_SIZE);
 
   const categories: Array<WorldEconomicsTopic['category'] | 'all'> = ['all', 'theory', 'policy', 'trade', 'market-failure', 'macro'];
 
-  const filteredTopics = useMemo(() => 
-    activeCategory === 'all' 
-      ? worldEconomicsTopics 
-      : worldEconomicsTopics.filter(t => t.category === activeCategory),
-    [activeCategory]
-  );
+  const filteredTopics = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return worldEconomicsTopics.filter(
+      (t) =>
+        (activeCategory === 'all' || t.category === activeCategory) &&
+        (q === '' || t.title.toLowerCase().includes(q) || t.definition.toLowerCase().includes(q))
+    );
+  }, [activeCategory, query]);
+
+  const shownTopics = useMemo(() => filteredTopics.slice(0, visible), [filteredTopics, visible]);
+
+  const selectCategory = (c: WorldEconomicsTopic['category'] | 'all') => {
+    setActiveCategory(c);
+    setVisible(PAGE_SIZE);
+  };
+
 
   return (
     <section className="py-24 lg:py-32">
@@ -134,12 +148,24 @@ const WorldEconomicsSection = () => {
           </p>
         </div>
 
+        {/* Search */}
+        <div className="max-w-md mx-auto mb-6">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => { setQuery(e.target.value); setVisible(PAGE_SIZE); }}
+            placeholder="Search 270+ economic concepts…"
+            aria-label="Search economic concepts"
+            className="w-full px-4 py-3 rounded-full glass-card bg-white/5 text-silver-bright placeholder:text-muted-foreground text-base outline-none focus:ring-2 focus:ring-primary/50"
+          />
+        </div>
+
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => selectCategory(category)}
               className={cn(
                 "px-4 py-2 rounded-full text-sm font-medium transition-all cursor-pointer min-h-[44px]",
                 activeCategory === category
@@ -147,21 +173,39 @@ const WorldEconomicsSection = () => {
                   : "glass-card hover:bg-white/10 text-muted-foreground hover:text-silver-bright"
               )}
             >
-              {category === 'all' ? '🌐 All Topics' : `${getCategoryIcon(category)} ${getCategoryLabel(category)}`}
+              {category === 'all' ? '🌍 All Topics' : `${getCategoryIcon(category)} ${getCategoryLabel(category)}`}
             </button>
           ))}
         </div>
 
         {/* Topic Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredTopics.map((topic) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+          {shownTopics.map((topic) => (
             <TopicCard key={topic.id} topic={topic} />
           ))}
         </div>
 
+        {filteredTopics.length === 0 && (
+          <p className="text-center text-sm text-muted-foreground py-10">
+            No concepts match “{query}”.
+          </p>
+        )}
+
+        {visible < filteredTopics.length && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setVisible((v) => v + PAGE_SIZE)}
+              className="px-6 py-3 rounded-full glass-card text-sm font-medium text-silver-bright hover:bg-white/10 transition-all min-h-[44px]"
+            >
+              Load more ({filteredTopics.length - visible} remaining)
+            </button>
+          </div>
+        )}
+
         <p className="text-center text-sm text-muted-foreground mt-10">
           Click any card to expand and view the full examiner-standard analysis.
         </p>
+
       </div>
     </section>
   );

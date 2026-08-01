@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Structures in the Age of AI: A Complete, Accurate Guide | EconNexus</title>
+<style>
+  :root { --text:#111111; --muted:#4a4a4a; --rule:#111111; --bg:#ffffff; --panel:#f7f7f7; --teal:#0F7173; --teal-soft:#E1F3F0; --amber:#E3A008; --amber-soft:#FCEFC7; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: Georgia, 'Times New Roman', serif; line-height:1.75; }
+  .wrapper { max-width:840px; margin:0 auto; padding:60px 24px 110px; }
+  .kicker { font-family: Arial, Helvetica, sans-serif; text-transform:uppercase; letter-spacing:1.5px; font-size:12px; color:var(--muted); margin-bottom:14px; }
+  h1 { font-size:35px; line-height:1.25; margin:0 0 12px; font-weight:700; }
+  .subtitle { font-size:18px; color:var(--muted); font-style:italic; margin:0 0 20px; }
+  .meta { font-family: Arial, Helvetica, sans-serif; font-size:13px; color:var(--muted); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:10px 0; margin-bottom:32px; display:flex; flex-wrap:wrap; gap:6px 18px; }
+  h2 { font-size:23px; margin:46px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
+  h3 { font-size:17px; margin:28px 0 10px; }
+  p { margin:0 0 16px; font-size:16.5px; }
+  .lead { font-size:19px; margin-bottom:24px; }
+  .panel { background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:20px 24px; margin:24px 0; font-family: Arial, Helvetica, sans-serif; }
+  .panel h3 { margin-top:0; font-family: Georgia, serif; }
+  .panel ul, .panel ol { margin:0; padding-left:20px; }
+  .panel li { margin-bottom:8px; font-size:15px; }
+  .chart-block { position:relative; margin:30px 0; border:1px solid #d9d9d9; border-radius:8px; padding:18px 18px 8px; background:#ffffff; box-shadow:0 2px 10px rgba(20,33,61,0.04); }
+  .chart-caption { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); margin:10px 2px 0; padding-top:8px; border-top:1px solid #eaeaea; }
+  .live-tag { display:inline-flex; align-items:center; gap:6px; font-family: Arial, Helvetica, sans-serif; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--teal); margin-bottom:6px; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 1.4s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+  .replay-btn { position:absolute; top:14px; right:14px; z-index:5; background:#fff; border:1px solid #d9d9d9; border-radius:20px; padding:6px 13px; font-family: Arial, Helvetica, sans-serif; font-size:11px; font-weight:700; color:var(--teal); cursor:pointer; display:inline-flex; align-items:center; gap:5px; transition:background 0.2s ease, border-color 0.2s ease; }
+  .replay-btn:hover { background:var(--teal-soft); border-color:var(--teal); }
+  .replay-icon { display:inline-block; font-size:12px; transition:transform 0.5s ease; }
+  .replay-btn.spinning .replay-icon { transform:rotate(360deg); }
+  @media (max-width:640px) { .replay-btn { position:static; margin-bottom:8px; } }
+  .chart-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .swipe-hint { display:none; font-size:11px; color:var(--muted); text-align:right; font-style:italic; margin-bottom:4px; font-family: Arial, Helvetica, sans-serif; }
+  @media (max-width:640px) { .swipe-hint { display:block; } }
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin:24px 0; }
+  .stat-box { border:1px solid #d9d9d9; border-radius:4px; padding:16px; text-align:center; font-family: Arial, Helvetica, sans-serif; }
+  .stat-box .value { font-size:24px; font-weight:700; color:var(--teal); }
+  .stat-box .label { font-size:12px; color:var(--muted); margin-top:4px; }
+  table { width:100%; border-collapse:collapse; margin:20px 0; font-family: Arial, Helvetica, sans-serif; font-size:13.5px; }
+  th, td { border:1px solid #d9d9d9; padding:9px 11px; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font-weight:700; }
+  .glossary dt { font-weight:700; margin-top:14px; font-family: Arial, Helvetica, sans-serif; font-size:15px; }
+  .glossary dd { margin:4px 0 0; color:var(--muted); font-size:14.5px; }
+  .syllabus-tag { display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:0.5px; text-transform:uppercase; border:1px solid var(--text); border-radius:20px; padding:4px 12px; margin:3px 6px 3px 0; }
+  .footer-note { margin-top:50px; padding-top:20px; border-top:1px solid var(--rule); font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); }
+  .discussion ol { padding-left:20px; }
+  .discussion li { margin-bottom:10px; font-size:15.5px; }
+  .toc { font-family: Arial, Helvetica, sans-serif; font-size:14px; background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:20px 24px; margin:28px 0; }
+  .toc h3 { margin-top:0; font-family: Georgia, serif; }
+  .toc ol { margin:0; padding-left:20px; columns:2; -webkit-columns:2; }
+  .toc li { margin-bottom:6px; break-inside:avoid; }
+  .ai-callout { background: linear-gradient(135deg,#14213D,#1E2E52); color:#fff; border-radius:12px; padding:20px 22px; margin-top:14px; }
+  .ai-callout .ai-label { font-family: Arial, Helvetica, sans-serif; font-size:10.5px; text-transform:uppercase; letter-spacing:1px; color:var(--amber); margin-bottom:8px; }
+  .ai-callout p { color:#E4E8F2; font-size:14.5px; margin-bottom:10px; }
+  .ai-callout p:last-child { margin-bottom:0; }
+  .accuracy-box { background:var(--teal-soft); border-left:4px solid var(--teal); border-radius:4px; padding:12px 16px; margin:16px 0; font-family: Arial, Helvetica, sans-serif; font-size:13.5px; color:#0a4d4e; }
+  @media (max-width:600px) { .toc ol { columns:1; -webkit-columns:1; } }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="kicker">Frontier Research &middot; Microeconomics &middot; AI &amp; the Digital Economy</div>
+  <h1>Market Structures in the Age of AI: A Complete, Accurate Guide</h1>
+  <p class="subtitle">Every demand curve, marginal revenue curve, and profit rectangle below is derived by calculus, not drawn by eye, then paired with real 2025 research on how algorithms are reshaping competition inside each structure.</p>
+
+  <div class="meta">
+    <span>EconNexus Deep Dive</span>
+    <span>Topic: Microeconomics, Competition, and Algorithmic Markets</span>
+    <span>Reading time: 22 minutes &middot; 4 precision diagrams</span>
+  </div>
+
+  <p class="lead">Market structure diagrams are some of the most drawn, and most sloppily drawn, diagrams in all of economics. Students routinely sketch a marginal revenue curve with the wrong slope, or shade a "supernormal profit" rectangle bounded by the wrong two curves. Every diagram in this piece was built the opposite way: the marginal revenue curve below is mathematically derived from the demand curve (it must have exactly double the slope and the same starting price, a direct consequence of calculus, not an aesthetic choice), and the marginal cost curve crosses the average cost curve precisely at its lowest point, because that is a mathematical certainty, not a convention. Once the structures are accurate, the far more interesting question becomes current: how is artificial intelligence changing what actually happens inside each one, from algorithms quietly learning to fix prices in an oligopoly, to the eye-watering cost of AI compute quietly building a new generation of monopolies.</p>
+
+  <div class="toc">
+    <h3>In this deep dive</h3>
+    <ol>
+      <li>What market structure actually means</li>
+      <li>Perfect competition, precisely drawn</li>
+      <li>AI and perfect competition</li>
+      <li>Monopolistic competition, precisely drawn</li>
+      <li>AI and monopolistic competition</li>
+      <li>Oligopoly and the kinked demand curve, precisely drawn</li>
+      <li>AI and oligopoly: the algorithmic collusion problem</li>
+      <li>Monopoly, precisely drawn</li>
+      <li>AI and monopoly: the new barriers to entry</li>
+      <li>The contestability debate: does AI help or hurt competition</li>
+      <li>Real-world spotlight: the AI chip market</li>
+      <li>Market structures and AI, at a glance</li>
+      <li>Key takeaways</li>
+      <li>Glossary</li>
+    </ol>
+  </div>
+
+  <h2>1. What market structure actually means</h2>
+  <p>Market structure describes the competitive environment a firm operates in, defined by how many firms compete, whether their products are identical or differentiated, how easily new firms can enter or leave, and how much control any single firm has over price. Economists arrange four textbook structures along a single spectrum, running from the most competitive to the most concentrated: perfect competition, monopolistic competition, oligopoly, and monopoly. As you move along that spectrum, a consistent pattern holds: the number of firms falls, the market power of each surviving firm rises, and prices tend to climb above the competitive level.</p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="value">Many</div><div class="label">Firms in perfect competition and monopolistic competition</div></div>
+    <div class="stat-box"><div class="value">Few</div><div class="label">Firms in an oligopoly, often measured by a concentration ratio</div></div>
+    <div class="stat-box"><div class="value">One</div><div class="label">Firm in a monopoly, with no close substitute</div></div>
+    <div class="stat-box"><div class="value">4</div><div class="label">Textbook structures sitting on one competitive spectrum</div></div>
+  </div>
+  <p>Real markets rarely sit at the exact textbook extremes, agricultural commodity markets and foreign exchange trading are the closest real approximations to perfect competition, while restaurants, hairdressers, and clothing brands are the standard examples of monopolistic competition. Supermarkets, mobile phone networks, car manufacturers, and airlines are the standard oligopoly examples, and near-monopolies typically show up in rail infrastructure, water utilities, and postal services, industries with either legal protection or such enormous fixed costs that a second competing network rarely makes economic sense.</p>
+
+  <h2>2. Perfect competition, precisely drawn</h2>
+  <p>Perfect competition assumes many small firms selling an identical product, complete information, and completely free entry and exit. Because any single firm is tiny relative to the whole market, it has zero power to influence price, it simply accepts whatever price the industry as a whole determines. That single fact, that the firm's demand curve is a flat horizontal line at the market price, is the entire diagram in miniature.</p>
+
+  <div class="chart-block" id="pcBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('pc', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Perfect Competition: Industry Sets the Price, the Firm Just Takes It</text>
+<line x1="60.0" y1="320.0" x2="290.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="60.0" y1="320.0" x2="60.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="52.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Price</text>
+<text x="290.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Industry Qty</text>
+<text x="175.0" y="354.0" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Panel A: The Industry</text>
+<path id="pc-D" class="mkt-draw" d="M 60.00 86.00 L 290.00 294.00" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<path id="pc-S" class="mkt-draw" d="M 60.00 294.00 L 290.00 86.00" stroke="#111111" stroke-width="2.3" fill="none"/>
+<circle id="pc-eq" cx="175.0" cy="190.0" r="0" fill="#E3A008"/>
+<line id="pc-eq-h" x1="60.0" y1="190.0" x2="175.0" y2="190.0" stroke="#E3A008" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<text x="275.0" y="312.0" font-size="11" fill="#0F7173" font-weight="bold">D</text>
+<text x="275.0" y="76.0" font-size="11" fill="#111" font-weight="bold">S</text>
+<text id="pc-p-label" x="52.0" y="194.0" font-size="10.5" fill="#E3A008" text-anchor="end" font-weight="bold" opacity="0">P*</text>
+<line x1="420.0" y1="320.0" x2="650.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="420.0" y1="320.0" x2="420.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="412.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Cost/Price</text>
+<text x="650.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Firm Qty</text>
+<text x="535.0" y="354.0" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Panel B: The Individual Firm</text>
+<path id="pc-AC" class="mkt-draw" d="M 443.00 115.12 L 446.12 120.11 L 449.24 124.93 L 452.36 129.58 L 455.47 134.05 L 458.59 138.35 L 461.71 142.48 L 464.83 146.44 L 467.95 150.23 L 471.07 153.84 L 474.19 157.28 L 477.31 160.55 L 480.42 163.65 L 483.54 166.57 L 486.66 169.33 L 489.78 171.91 L 492.90 174.32 L 496.02 176.56 L 499.14 178.62 L 502.25 180.51 L 505.37 182.23 L 508.49 183.78 L 511.61 185.16 L 514.73 186.36 L 517.85 187.40 L 520.97 188.26 L 524.08 188.95 L 527.20 189.46 L 530.32 189.81 L 533.44 189.98 L 536.56 189.98 L 539.68 189.81 L 542.80 189.46 L 545.92 188.95 L 549.03 188.26 L 552.15 187.40 L 555.27 186.36 L 558.39 185.16 L 561.51 183.78 L 564.63 182.23 L 567.75 180.51 L 570.86 178.62 L 573.98 176.56 L 577.10 174.32 L 580.22 171.91 L 583.34 169.33 L 586.46 166.57 L 589.58 163.65 L 592.69 160.55 L 595.81 157.28 L 598.93 153.84 L 602.05 150.23 L 605.17 146.44 L 608.29 142.48 L 611.41 138.35 L 614.53 134.05 L 617.64 129.58 L 620.76 124.93 L 623.88 120.11 L 627.00 115.12" stroke="#8a8a8a" stroke-width="2.3" fill="none"/>
+<path id="pc-MC" class="mkt-draw" d="M 443.00 152.56 L 446.12 161.19 L 449.24 169.30 L 452.36 176.89 L 455.47 183.97 L 458.59 190.53 L 461.71 196.57 L 464.83 202.10 L 467.95 207.11 L 471.07 211.61 L 474.19 215.59 L 477.31 219.05 L 480.42 222.00 L 483.54 224.43 L 486.66 226.34 L 489.78 227.74 L 492.90 228.62 L 496.02 228.99 L 499.14 228.84 L 502.25 228.17 L 505.37 226.99 L 508.49 225.29 L 511.61 223.07 L 514.73 220.34 L 517.85 217.09 L 520.97 213.33 L 524.08 209.05 L 527.20 204.25 L 530.32 198.94 L 533.44 193.11 L 536.56 186.76 L 539.68 179.90 L 542.80 172.52 L 545.92 164.63 L 549.03 156.22 L 552.15 147.29 L 555.27 137.85 L 558.39 127.89 L 561.51 117.41 L 564.63 106.42 L 567.75 94.91 L 570.86 82.89 L 573.98 70.34" stroke="#111111" stroke-width="2.3" fill="none"/>
+<path id="pc-firmd" class="mkt-draw2" d="M 431.50 190.00 L 638.50 190.00" stroke="#E3A008" stroke-width="2.3" fill="none" opacity="0"/>
+<circle id="pc-tangent" cx="535.0" cy="190.0" r="0" fill="#C4534A"/>
+<text x="635.0" y="280.0" font-size="11" fill="#8a8a8a" font-weight="bold">AC</text>
+<text x="635.0" y="76.0" font-size="11" fill="#111" font-weight="bold">MC</text>
+<text id="pc-arlabel" x="635.0" y="180.0" font-size="11" fill="#E3A008" font-weight="bold" opacity="0">D = AR = MR (price taker)</text>
+<text id="pc-normal" x="535.0" y="370.0" font-size="11" fill="#C4534A" text-anchor="middle" font-weight="bold" opacity="0">Normal profit only: P = AC at minimum</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 1. Panel A shows the industry-wide supply and demand curves setting equilibrium price P*. Panel B shows the individual firm as a price taker: its demand curve, which also equals its average revenue and marginal revenue, is perfectly horizontal at P*. Because entry is free, any supernormal profit attracts new firms until price is driven down to the exact minimum point of the average cost curve, the tangency point marked in red, leaving only normal profit in the long run.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate, not just illustrative:</strong> the long-run equilibrium point in Panel B is not placed by eye. It is set at exactly the minimum of the AC curve, and the horizontal firm-demand line is positioned at exactly the same price level as industry equilibrium P* from Panel A. This dual constraint, long-run zero economic profit and price-taking, is what makes perfect competition uniquely both allocatively and productively efficient among the four structures.</div>
+
+  <h2>3. AI and perfect competition</h2>
+  <p>Genuinely perfectly competitive markets are rare, but AI is pushing several real markets closer to the textbook ideal by attacking the "complete information" assumption directly. Price-comparison engines, algorithmic trading in foreign exchange and commodity markets, and AI-driven matching on marketplaces like eBay all reduce the information advantage any single seller previously held. In principle, this should be good news for consumers: closer to perfect information means closer to perfectly competitive pricing, and less room for any single seller to charge above the going rate. The same technology that threatens competition in concentrated markets, discussed in Section 7 below, can reinforce competition in already-fragmented ones.</p>
+
+  <h2>4. Monopolistic competition, precisely drawn</h2>
+  <p>Monopolistic competition combines two features that sound contradictory: many firms and free entry, like perfect competition, but each selling a differentiated product, giving each firm a small amount of genuine price-setting power, like a monopoly. Restaurants, cafés, hairdressers, and clothing brands are the standard real-world examples: a coffee shop is not identical to its neighbour, so it faces a downward-sloping demand curve, but because opening a new coffee shop is relatively easy, supernormal profit attracts new entrants until profit is competed away entirely.</p>
+
+  <div class="chart-block" id="mcBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('mc', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Monopolistic Competition: Long Run, Free Entry Erodes Profit to Zero</text>
+<line x1="90.0" y1="320.0" x2="610.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="90.0" y1="320.0" x2="90.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="82.0" y="60.0" font-size="11" fill="#4a4a4a" text-anchor="end">Cost / Price</text>
+<text x="610.0" y="340.0" font-size="11" fill="#4a4a4a" text-anchor="end">Quantity</text>
+<path id="mc-AC" class="mkt-draw" d="M 116.00 171.93 L 123.93 177.90 L 131.86 183.61 L 139.80 189.06 L 147.73 194.23 L 155.66 199.14 L 163.59 203.79 L 171.53 208.16 L 179.46 212.27 L 187.39 216.12 L 195.32 219.70 L 203.25 223.01 L 211.19 226.06 L 219.12 228.84 L 227.05 231.35 L 234.98 233.60 L 242.92 235.58 L 250.85 237.30 L 258.78 238.75 L 266.71 239.93 L 274.64 240.85 L 282.58 241.50 L 290.51 241.88 L 298.44 242.00 L 306.37 241.85 L 314.31 241.44 L 322.24 240.76 L 330.17 239.81 L 338.10 238.60 L 346.03 237.12 L 353.97 235.37 L 361.90 233.36 L 369.83 231.09 L 377.76 228.54 L 385.69 225.73 L 393.63 222.66 L 401.56 219.31 L 409.49 215.71 L 417.42 211.83 L 425.36 207.69 L 433.29 203.28 L 441.22 198.61 L 449.15 193.67 L 457.08 188.46 L 465.02 182.99 L 472.95 177.25 L 480.88 171.25 L 488.81 164.98 L 496.75 158.44 L 504.68 151.64 L 512.61 144.57 L 520.54 137.24 L 528.47 129.63 L 536.41 121.77 L 544.34 113.63 L 552.27 105.23 L 560.20 96.57 L 568.14 87.63 L 576.07 78.43 L 584.00 68.97" stroke="#8a8a8a" stroke-width="2.3" fill="none"/>
+<path id="mc-MC" class="mkt-draw" d="M 116.00 191.95 L 123.93 202.89 L 131.86 213.04 L 139.80 222.39 L 147.73 230.93 L 155.66 238.68 L 163.59 245.63 L 171.53 251.79 L 179.46 257.14 L 187.39 261.69 L 195.32 265.45 L 203.25 268.41 L 211.19 270.57 L 219.12 271.93 L 227.05 272.49 L 234.98 272.25 L 242.92 271.22 L 250.85 269.38 L 258.78 266.75 L 266.71 263.32 L 274.64 259.09 L 282.58 254.06 L 290.51 248.24 L 298.44 241.61 L 306.37 234.19 L 314.31 225.96 L 322.24 216.94 L 330.17 207.12 L 338.10 196.50 L 346.03 185.09 L 353.97 172.87 L 361.90 159.86 L 369.83 146.05 L 377.76 131.43 L 385.69 116.02 L 393.63 99.82 L 401.56 82.81 L 409.49 65.00" stroke="#111111" stroke-width="2.3" fill="none"/>
+<path id="mc-AR" class="mkt-draw" d="M 90.00 209.05 L 98.81 210.60 L 107.63 212.16 L 116.44 213.71 L 125.25 215.26 L 134.07 216.81 L 142.88 218.36 L 151.69 219.91 L 160.51 221.46 L 169.32 223.01 L 178.14 224.56 L 186.95 226.12 L 195.76 227.67 L 204.58 229.22 L 213.39 230.77 L 222.20 232.32 L 231.02 233.87 L 239.83 235.42 L 248.64 236.97 L 257.46 238.53 L 266.27 240.08 L 275.08 241.63 L 283.90 243.18 L 292.71 244.73 L 301.53 246.28 L 310.34 247.83 L 319.15 249.38 L 327.97 250.93 L 336.78 252.49 L 345.59 254.04 L 354.41 255.59 L 363.22 257.14 L 372.03 258.69 L 380.85 260.24 L 389.66 261.79 L 398.47 263.34 L 407.29 264.90 L 416.10 266.45 L 424.92 268.00 L 433.73 269.55 L 442.54 271.10 L 451.36 272.65 L 460.17 274.20 L 468.98 275.75 L 477.80 277.31 L 486.61 278.86 L 495.42 280.41 L 504.24 281.96" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<path id="mc-MR" class="mkt-draw" d="M 90.00 209.05 L 98.81 212.16 L 107.63 215.26 L 116.44 218.36 L 125.25 221.46 L 134.07 224.56 L 142.88 227.67 L 151.69 230.77 L 160.51 233.87 L 169.32 236.97 L 178.14 240.08 L 186.95 243.18 L 195.76 246.28 L 204.58 249.38 L 213.39 252.49 L 222.20 255.59 L 231.02 258.69 L 239.83 261.79 L 248.64 264.90 L 257.46 268.00 L 266.27 271.10 L 275.08 274.20 L 283.90 277.31 L 292.71 280.41 L 301.53 283.51 L 310.34 286.61 L 319.15 289.71" stroke="#C4534A" stroke-width="2.3" fill="none"/>
+<line id="mc-gq" x1="256.4" y1="320.0" x2="256.4" y2="238.3392" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<circle id="mc-tangent" cx="256.4" cy="238.3392" r="0" fill="#E3A008"/>
+<text x="640" y="140" font-size="11" fill="#0F7173" font-weight="bold">AR (=D)</text>
+<text x="330" y="60" font-size="11" fill="#C4534A" font-weight="bold">MR</text>
+<text x="640" y="90" font-size="11" fill="#8a8a8a" font-weight="bold">AC</text>
+<text x="640" y="330" font-size="11" fill="#111" font-weight="bold">MC</text>
+<text id="mc-tangent-label" x="256.4" y="224.3392" font-size="10.5" fill="#E3A008" text-anchor="middle" font-weight="bold" opacity="0">AR touches AC here: P = AC, normal profit only</text>
+<text id="mc-qlabel" x="256.4" y="338.0" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Q*</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 2. The firm still produces where MC = MR, exactly as any profit-maximiser does, but in the long run its downward-sloping demand curve is squeezed inward by new entrants until it becomes tangent to the AC curve at that same output. Price equals average cost, the same normal-profit outcome as perfect competition, but at a higher price and lower output, the economic cost of product differentiation.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the tangency point is solved simultaneously, not approximated. The demand curve's slope and intercept were calculated backward from the requirement that AR = AC and MR = MC hold at the exact same quantity, the precise definition of long-run monopolistic competition equilibrium.</div>
+
+  <h2>5. AI and monopolistic competition</h2>
+  <p>This is the structure AI arguably reshapes the most quietly. Product differentiation, the entire basis of a monopolistically competitive firm's limited pricing power, increasingly comes from AI-driven personalisation rather than the product itself: a streaming platform differentiates through an AI recommendation engine, a retailer through AI-personalised offers, a fitness app through an AI coach. This lets firms sustain a demand curve that is more inelastic than a purely physical product would justify, potentially slowing how quickly free entry erodes profit back to normal levels, since a rival can copy a product far more easily than it can copy a personalisation algorithm trained on years of proprietary user data.</p>
+
+  <h2>6. Oligopoly and the kinked demand curve, precisely drawn</h2>
+  <p>Oligopoly describes a market dominated by a small number of large, interdependent firms, commonly measured using a concentration ratio, such as the combined market share of the largest five firms. The defining feature is interdependence: unlike a monopolistically competitive firm, an oligopolist must explicitly consider how rivals will react to its own pricing decisions. The kinked demand curve model, one of the most famous diagrams in microeconomics, captures exactly why oligopoly prices tend to stay unusually stable, or "sticky", for long periods.</p>
+
+  <div class="chart-block" id="olBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('ol', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Oligopoly: the Kinked Demand Curve and Sticky Prices</text>
+<line x1="90.0" y1="320.0" x2="610.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="90.0" y1="320.0" x2="90.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="82.0" y="60.0" font-size="11" fill="#4a4a4a" text-anchor="end">Price</text>
+<text x="610.0" y="340.0" font-size="11" fill="#4a4a4a" text-anchor="end">Quantity</text>
+<path id="ol-Del" class="mkt-draw" d="M 116.00 112.00 L 298.00 177.00" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<path id="ol-Din" class="mkt-draw" d="M 298.00 177.00 L 532.00 281.00" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<path id="ol-MRel" class="mkt-draw" d="M 116.00 121.29 L 125.58 128.13 L 135.16 134.97 L 144.74 141.81 L 154.32 148.65 L 163.89 155.50 L 173.47 162.34 L 183.05 169.18 L 192.63 176.02 L 202.21 182.86 L 211.79 189.71 L 221.37 196.55 L 230.95 203.39 L 240.53 210.23 L 250.11 217.08 L 259.68 223.92 L 269.26 230.76 L 278.84 237.60 L 288.42 244.44 L 298.00 251.29" stroke="#C4534A" stroke-width="2.3" fill="none"/>
+<path id="ol-MRin" class="mkt-draw" d="M 298.00 269.44 L 310.32 280.39 L 322.63 291.34 L 334.95 302.29 L 347.26 313.23 L 359.58 324.18 L 371.89 335.13 L 384.21 346.08 L 396.53 357.02 L 408.84 367.97 L 421.16 378.92 L 433.47 389.87 L 445.79 400.81 L 458.11 400.00 L 470.42 400.00 L 482.74 400.00 L 495.05 400.00 L 507.37 400.00 L 519.68 400.00 L 532.00 400.00" stroke="#C4534A" stroke-width="2.3" fill="none"/>
+<line id="ol-gap" x1="298.0" y1="251.2857142857143" x2="298.0" y2="269.44444444444446" stroke="#C4534A" stroke-width="3.5" stroke-dasharray="1,5" stroke-linecap="round" opacity="0"/>
+<path id="ol-MC" class="mkt-draw2" d="M 168.00 270.12 L 181.68 269.09 L 195.37 268.06 L 209.05 267.04 L 222.74 266.01 L 236.42 264.98 L 250.11 263.96 L 263.79 262.93 L 277.47 261.90 L 291.16 260.88 L 304.84 259.85 L 318.53 258.83 L 332.21 257.80 L 345.89 256.77 L 359.58 255.75 L 373.26 254.72 L 386.95 253.69 L 400.63 252.67 L 414.32 251.64 L 428.00 250.62" stroke="#111111" stroke-width="2.3" fill="none" opacity="0"/>
+<circle id="ol-kink" cx="298.0" cy="177.0" r="0" fill="#14213D"/>
+<line id="ol-gq" x1="298.0" y1="320.0" x2="298.0" y2="177.0" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<text x="140" y="120" font-size="11" fill="#0F7173" font-weight="bold">D (elastic above kink)</text>
+<text x="440" y="330" font-size="11" fill="#0F7173" font-weight="bold">D (inelastic below kink)</text>
+<text id="ol-gaplabel" x="310.0" y="260.3650793650794" font-size="10" fill="#C4534A" font-weight="bold" opacity="0">MR "gap"</text>
+<text id="ol-mclabel" x="490" y="230" font-size="11" fill="#111" font-weight="bold" opacity="0">MC can shift within the gap...</text>
+<text id="ol-price-sticky" x="350.0" y="370.0" font-size="11" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">...without changing price or quantity: prices stay "sticky"</text>
+<text id="ol-qlabel" x="298.0" y="338.0" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Q*</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 3. Above the kink, demand is relatively elastic: raise your price and rivals do not follow, so you lose customers fast. Below the kink, demand is relatively inelastic: cut your price and rivals match you immediately to defend their share, so you gain little volume. This asymmetry produces a discontinuous "gap" in the marginal revenue curve directly below the kink. As long as marginal cost passes through that gap, the profit-maximising price and quantity do not move at all, explaining why oligopoly prices can stay fixed for long stretches even as costs shift.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> both marginal revenue segments were derived independently from their own demand segment using the same doubled-slope rule as every other diagram here, which is precisely what produces the vertical discontinuity, or "gap", at the kink. This gap is not a stylistic flourish; it is a mathematical consequence of two demand curves with different slopes meeting at a single point.</div>
+
+  <h2>7. AI and oligopoly: the algorithmic collusion problem</h2>
+  <p>Oligopoly is where AI's impact on market structure is best documented, and most concerning to regulators. Because oligopolists are already interdependent by definition, watching and reacting to rivals' prices, handing that exact task to a learning algorithm turns out to produce genuinely collusive-like outcomes without a single human conversation ever taking place.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>The foundational finding.</strong> Economists Emilio Calvano, Giacomo Calzolari, Vincenzo Denicolò, and Sergio Pastorello, in a 2020 paper in the American Economic Review, built simple Q-learning pricing algorithms with no ability to communicate and found they "consistently learn to charge supracompetitive prices" purely through repeated trial-and-error market interaction.</li>
+      <li><strong>Real-world confirmation.</strong> A study of the German retail gasoline market by economists Stephanie Assad, Robert Clark, Daniel Ershov, and Lei Xu, published in the Journal of Political Economy in 2024, found that when enough local petrol stations adopted algorithmic pricing software, margins rose by roughly 15 percent, even though no station ever directly communicated with a rival.</li>
+      <li><strong>Why oligopoly specifically.</strong> This is not a coincidence of subject matter: algorithmic collusion requires repeated interaction between a small number of easily identifiable rivals, exactly the structural condition that defines oligopoly and does not exist in perfect competition or monopolistic competition, where there are simply too many firms for any algorithm to track and coordinate against.</li>
+      <li><strong>The kinked demand curve gets an algorithmic upgrade.</strong> Where the classic kinked demand model assumes rivals match price cuts out of self-interest, an algorithmic oligopoly can enforce that same "punishment" for undercutting far faster and more reliably than any human pricing manager checking a competitor's price once a day, making the effective kink even sharper and prices even stickier.</li>
+    </ul>
+  </div>
+  <div class="ai-callout">
+    <div class="ai-label">Why this matters for antitrust law</div>
+    <p>Competition law in almost every jurisdiction requires proof of an "agreement" to establish illegal price-fixing. When algorithms independently learn to sustain high prices through nothing more than repeated market interaction, there is no meeting, no email, and no conversation for a regulator to point to, even though the economic outcome, and the consumer harm, can look identical to a traditional cartel.</p>
+  </div>
+
+  <h2>8. Monopoly, precisely drawn</h2>
+  <p>A monopoly exists when a single firm dominates a market with no close substitute, typically protected by significant barriers to entry: legal protection, enormous fixed costs, network effects, or control of an essential input. Because the monopolist faces the entire market demand curve rather than a flat, price-taking one, its marginal revenue curve falls below demand at exactly twice the slope, a firm that wants to sell one more unit must lower the price on all the units it was already selling, not just the extra one.</p>
+
+  <div class="chart-block" id="monoBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('mono', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Monopoly: Supernormal Profit Protected by Barriers to Entry</text>
+<line x1="90.0" y1="320.0" x2="610.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="90.0" y1="320.0" x2="90.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="82.0" y="60.0" font-size="11" fill="#4a4a4a" text-anchor="end">Cost / Price</text>
+<text x="610.0" y="340.0" font-size="11" fill="#4a4a4a" text-anchor="end">Quantity</text>
+<path id="mono-rect-path" class="mkt-fill" d="M 90.00 170.75 L 307.21 170.75 L 307.21 254.46 L 90.00 254.46 Z" fill="#E3A008" opacity="0"/>
+<path id="mono-AC" class="mkt-draw" d="M 116.00 171.80 L 123.93 178.02 L 131.86 184.01 L 139.80 189.75 L 147.73 195.25 L 155.66 200.50 L 163.59 205.52 L 171.53 210.29 L 179.46 214.82 L 187.39 219.11 L 195.32 223.16 L 203.25 226.96 L 211.19 230.53 L 219.12 233.85 L 227.05 236.92 L 234.98 239.76 L 242.92 242.36 L 250.85 244.71 L 258.78 246.82 L 266.71 248.69 L 274.64 250.32 L 282.58 251.70 L 290.51 252.84 L 298.44 253.74 L 306.37 254.40 L 314.31 254.82 L 322.24 254.99 L 330.17 254.93 L 338.10 254.62 L 346.03 254.07 L 353.97 253.27 L 361.90 252.24 L 369.83 250.96 L 377.76 249.44 L 385.69 247.68 L 393.63 245.68 L 401.56 243.43 L 409.49 240.94 L 417.42 238.22 L 425.36 235.24 L 433.29 232.03 L 441.22 228.58 L 449.15 224.88 L 457.08 220.94 L 465.02 216.76 L 472.95 212.33 L 480.88 207.67 L 488.81 202.76 L 496.75 197.61 L 504.68 192.22 L 512.61 186.59 L 520.54 180.71 L 528.47 174.60 L 536.41 168.24 L 544.34 161.64 L 552.27 154.79 L 560.20 147.71 L 568.14 140.38 L 576.07 132.81 L 584.00 125.00" stroke="#8a8a8a" stroke-width="2.3" fill="none"/>
+<path id="mono-MC" class="mkt-draw" d="M 116.00 192.60 L 123.93 204.14 L 131.86 214.94 L 139.80 225.03 L 147.73 234.39 L 155.66 243.02 L 163.59 250.92 L 171.53 258.10 L 179.46 264.55 L 187.39 270.28 L 195.32 275.28 L 203.25 279.56 L 211.19 283.11 L 219.12 285.93 L 227.05 288.03 L 234.98 289.40 L 242.92 290.05 L 250.85 289.96 L 258.78 289.16 L 266.71 287.63 L 274.64 285.37 L 282.58 282.38 L 290.51 278.67 L 298.44 274.23 L 306.37 269.07 L 314.31 263.18 L 322.24 256.57 L 330.17 249.23 L 338.10 241.16 L 346.03 232.37 L 353.97 222.85 L 361.90 212.61 L 369.83 201.63 L 377.76 189.94 L 385.69 177.52 L 393.63 164.37 L 401.56 150.49 L 409.49 135.89 L 417.42 120.56 L 425.36 104.51 L 433.29 87.73 L 441.22 70.23" stroke="#111111" stroke-width="2.3" fill="none"/>
+<path id="mono-AR" class="mkt-draw" d="M 90.00 73.00 L 100.61 77.78 L 111.22 82.55 L 121.84 87.33 L 132.45 92.10 L 143.06 96.88 L 153.67 101.65 L 164.29 106.43 L 174.90 111.20 L 185.51 115.98 L 196.12 120.76 L 206.73 125.53 L 217.35 130.31 L 227.96 135.08 L 238.57 139.86 L 249.18 144.63 L 259.80 149.41 L 270.41 154.18 L 281.02 158.96 L 291.63 163.73 L 302.24 168.51 L 312.86 173.29 L 323.47 178.06 L 334.08 182.84 L 344.69 187.61 L 355.31 192.39 L 365.92 197.16 L 376.53 201.94 L 387.14 206.71 L 397.76 211.49 L 408.37 216.27 L 418.98 221.04 L 429.59 225.82 L 440.20 230.59 L 450.82 235.37 L 461.43 240.14 L 472.04 244.92 L 482.65 249.69 L 493.27 254.47 L 503.88 259.24 L 514.49 264.02 L 525.10 268.80 L 535.71 273.57 L 546.33 278.35 L 556.94 283.12 L 567.55 287.90 L 578.16 292.67 L 588.78 297.45 L 599.39 302.22 L 610.00 307.00" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<path id="mono-MR" class="mkt-draw" d="M 90.00 73.00 L 100.61 82.55 L 111.22 92.10 L 121.84 101.65 L 132.45 111.20 L 143.06 120.76 L 153.67 130.31 L 164.29 139.86 L 174.90 149.41 L 185.51 158.96 L 196.12 168.51 L 206.73 178.06 L 217.35 187.61 L 227.96 197.16 L 238.57 206.71 L 249.18 216.27 L 259.80 225.82 L 270.41 235.37 L 281.02 244.92 L 291.63 254.47 L 302.24 264.02 L 312.86 273.57 L 323.47 283.12 L 334.08 292.67 L 344.69 302.22 L 355.31 311.78" stroke="#C4534A" stroke-width="2.3" fill="none"/>
+<line id="mono-gq" x1="307.214623655914" y1="320.0" x2="307.214623655914" y2="170.74658064516132" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<line id="mono-gp" x1="90.0" y1="170.74658064516132" x2="307.214623655914" y2="170.74658064516132" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<line id="mono-gac" x1="90.0" y1="254.45817527112962" x2="307.214623655914" y2="254.45817527112962" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<circle id="mono-mcmr-dot" cx="307.214623655914" cy="268.49316129032263" r="0" fill="#14213D"/>
+<circle id="mono-p-dot" cx="307.214623655914" cy="170.74658064516132" r="0" fill="#0F7173"/>
+<circle id="mono-ac-dot" cx="307.214623655914" cy="254.45817527112962" r="0" fill="#8a8a8a"/>
+<text x="640" y="130" font-size="11" fill="#0F7173" font-weight="bold">AR (=D)</text>
+<text x="500" y="70" font-size="11" fill="#C4534A" font-weight="bold">MR</text>
+<text x="640" y="70" font-size="11" fill="#8a8a8a" font-weight="bold">AC</text>
+<text x="640" y="330" font-size="11" fill="#111" font-weight="bold">MC</text>
+<text id="mono-qlabel" x="307.214623655914" y="338.0" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Q*</text>
+<text id="mono-plabel" x="82.0" y="174.74658064516132" font-size="10.5" fill="#0F7173" text-anchor="end" font-weight="bold" opacity="0">P*</text>
+<text id="mono-aclabel" x="82.0" y="258.4581752711296" font-size="10.5" fill="#8a8a8a" text-anchor="end" font-weight="bold" opacity="0">AC*</text>
+<text id="mono-profit-label" x="198.607311827957" y="212.60237795814547" font-size="10" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Supernormal profit</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 4. The monopolist maximises profit where MC = MR, then reads the price it can charge for that quantity straight up to the demand curve, not from the intersection point itself, a common student error. Because barriers to entry block new firms from competing this profit away, the shaded rectangle, bounded above by price and below by average cost at that same quantity, represents supernormal profit that can persist indefinitely.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the profit rectangle's four corners are computed from three separately solved values, the profit-maximising quantity where MC numerically equals MR, the price read off the demand curve at that quantity, and the average cost at that same quantity, not sketched to "look about right". Note too that price sits above marginal cost at the profit-maximising point, the textbook signature of allocative inefficiency under monopoly.</div>
+
+  <h2>9. AI and monopoly: the new barriers to entry</h2>
+  <p>If oligopoly is where AI most visibly changes firm <em>behaviour</em>, monopoly is where AI is most visibly changing market <em>structure</em> itself, by creating an entirely new category of barrier to entry: the sheer cost of AI infrastructure.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>The scale of the barrier.</strong> The 2025 AI Index Report estimated that training a large foundation model can cost well into the hundreds of millions of dollars, Meta's 405-billion-parameter Llama 3.1 model alone is estimated at roughly 170 million dollars in compute costs, excluding data acquisition and labour.</li>
+      <li><strong>Switching costs entrench incumbents.</strong> The OECD found in 2022 that switching costs for migrating between cloud infrastructure providers can exceed 20 to 25 percent of the value of a multi-year contract, a powerful disincentive for firms or governments to leave a dominant provider once locked in.</li>
+      <li><strong>Regulators are watching closely.</strong> In July 2024, the US Department of Justice, Federal Trade Commission, UK Competition and Markets Authority, and European Commission issued a rare joint statement flagging three shared concerns: concentrated control of key inputs such as specialised chips and computing power, the ability of large incumbent digital firms to entrench their existing market power in AI-related markets, and partnerships among key players that might steer market outcomes in their favour.</li>
+      <li><strong>A genuine counter-argument exists.</strong> Not every economist agrees AI necessarily entrenches monopoly power. The Information Technology and Innovation Foundation has argued that AI's cost-reducing potential can also lower barriers to entry for small and medium-sized businesses, and that rapidly falling compute costs, driven by intense rivalry between chip suppliers and cloud providers, are already making high-end AI hardware more accessible over time, not less.</li>
+    </ul>
+  </div>
+  <div class="ai-callout">
+    <div class="ai-label">A regulatory irony worth knowing</div>
+    <p>The European Union's AI Act, designed partly to constrain the power of large AI firms, may paradoxically reinforce it. A 2023 European Commission Joint Research Centre report estimated compliance costs between 400,000 and 2 million euros annually per company, a rounding error for a large technology firm, but potentially prohibitive for roughly 40 percent of Europe's innovative small and medium-sized AI businesses. Well-intentioned regulation can sometimes raise the very barriers to entry it was designed to lower.</p>
+  </div>
+
+  <h2>10. The contestability debate: does AI help or hurt competition</h2>
+  <p>Stepping back from any single market structure, there is a genuine, live disagreement among economists and regulators about AI's net effect on competition, and it maps directly onto a classic concept called contestable markets: the idea that what disciplines a firm's pricing is not necessarily the number of existing rivals, but the credible threat of new entry.</p>
+  <table>
+    <tr><th>The case that AI concentrates markets</th><th>The case that AI opens markets</th></tr>
+    <tr><td>Training frontier AI models costs hundreds of millions of dollars, a cost only a handful of firms can bear.</td><td>Compute costs have fallen by orders of magnitude over the past decade as chip suppliers and cloud providers compete intensely.</td></tr>
+    <tr><td>Cloud switching costs of 20 to 25 percent of contract value lock customers into dominant providers.</td><td>Open-source models and specialised, smaller foundation models lower the data and compute needed for many applications.</td></tr>
+    <tr><td>Proprietary technical standards controlled by a few large firms act as gateways to the market.</td><td>Firms with smaller data sets can still outcompete incumbents through superior algorithms or user experience.</td></tr>
+    <tr><td>Algorithmic pricing can sustain oligopoly-style collusion without any human agreement.</td><td>AI-driven price comparison and matching can push fragmented markets closer to perfectly competitive information.</td></tr>
+  </table>
+  <p>Both sides of this table are simultaneously true in different corners of the economy, which is precisely why this remains one of the most active areas of applied microeconomic research and antitrust policy today, rather than a settled question.</p>
+
+  <h2>11. Real-world spotlight: the AI chip market</h2>
+  <p>If you want to see a live, real-time market structure case study, look at the market for AI-training chips. It sits close to the monopoly end of the spectrum in practice, dominated overwhelmingly by a single supplier, with a small number of rivals and custom in-house alternatives developed by the largest cloud providers occupying the rest of the market, structurally closer to an oligopoly with one dominant firm than to a duopoly. This single market sits at the root of nearly every barrier-to-entry argument in Section 9: because so much of the AI value chain depends on access to this concentrated hardware layer, competition regulators in the US, UK, and EU have specifically named "concentrated control of specialised chips" as a first-order concern in their joint 2024 statement, treating the chip layer as the foundation the entire debate about AI market structure ultimately rests on.</p>
+
+  <h2>12. Market structures and AI, at a glance</h2>
+  <table>
+    <tr><th>Structure</th><th>Number of firms</th><th>Long-run profit</th><th>Real-world examples</th><th>Main AI effect</th></tr>
+    <tr><td>Perfect competition</td><td>Many</td><td>Normal only</td><td>Agricultural commodities, forex, eBay-style marketplaces</td><td>AI price-comparison pushes markets closer to complete information</td></tr>
+    <tr><td>Monopolistic competition</td><td>Many</td><td>Normal in the long run</td><td>Restaurants, hairdressers, clothing brands, hotels</td><td>AI personalisation sustains differentiation, slowing profit erosion</td></tr>
+    <tr><td>Oligopoly</td><td>Few</td><td>Can be supernormal</td><td>Supermarkets, mobile networks, car makers, airlines</td><td>Algorithmic pricing can sustain tacit collusion without any agreement</td></tr>
+    <tr><td>Monopoly</td><td>One</td><td>Supernormal, protected</td><td>Rail infrastructure, water utilities, postal services</td><td>Compute and data costs create a new, AI-specific barrier to entry</td></tr>
+  </table>
+
+  <h2>13. Key takeaways</h2>
+  <div class="discussion">
+    <ol>
+      <li><strong>Accuracy in these diagrams is not decorative.</strong> The marginal revenue curve must have exactly double the slope of a linear demand curve, and marginal cost must cross average cost precisely at its minimum, both direct results of calculus, not stylistic convention, and getting them wrong changes the economic conclusions the diagram is meant to support.</li>
+      <li><strong>AI's effect on competition is structure-dependent, not uniform.</strong> The same technology that pushes fragmented markets toward perfect information can simultaneously entrench dominant firms in concentrated ones, there is no single "AI is good or bad for competition" answer.</li>
+      <li><strong>Oligopoly is where the algorithmic collusion evidence is strongest.</strong> Both laboratory research and real market data from German petrol stations show algorithms sustaining high prices without any human communication, a genuine gap in how antitrust law currently defines illegal price-fixing.</li>
+      <li><strong>Monopoly power increasingly runs through compute, not just patents or licences.</strong> The cost of training frontier AI models and the stickiness of cloud switching costs are becoming barriers to entry in their own right, a genuinely new addition to the classic list of monopoly sources.</li>
+      <li><strong>The contestability debate remains genuinely open.</strong> Reasonable economists disagree about whether falling compute costs and open-source models will erode AI-driven market power over time, or whether switching costs and proprietary standards will entrench it, and the honest answer is that both forces are visibly at work right now.</li>
+    </ol>
+  </div>
+
+  <div class="panel">
+    <h3>Topic tags</h3>
+    <span class="syllabus-tag">Market Structures</span>
+    <span class="syllabus-tag">Microeconomics</span>
+    <span class="syllabus-tag">Artificial Intelligence</span>
+    <span class="syllabus-tag">Antitrust</span>
+    <span class="syllabus-tag">Game Theory</span>
+    <span class="syllabus-tag">Competition Policy</span>
+  </div>
+
+  <h2>Glossary</h2>
+  <dl class="glossary">
+    <dt>Market structure</dt>
+    <dd>The competitive environment a firm operates in, defined by the number of firms, the nature of the product, barriers to entry, and the degree of price control any firm holds.</dd>
+    <dt>Marginal revenue (MR)</dt>
+    <dd>The additional revenue earned from selling one more unit; for any firm facing a downward-sloping demand curve, MR falls below price because selling an extra unit requires lowering the price on all units sold, not just the last one.</dd>
+    <dt>Supernormal profit</dt>
+    <dd>Profit earned above the normal return needed to keep a firm in business, sustainable only where barriers to entry prevent new firms from competing it away.</dd>
+    <dt>Kinked demand curve</dt>
+    <dd>A model of oligopoly pricing in which a firm's demand curve is more elastic above the current price, since rivals do not follow price rises, and less elastic below it, since rivals match price cuts, producing unusually stable prices.</dd>
+    <dt>Concentration ratio</dt>
+    <dd>The combined market share of the largest firms in an industry, commonly the top five, used to measure how concentrated, or oligopolistic, a market is.</dd>
+    <dt>Contestable market</dt>
+    <dd>A market with free entry and exit and low sunk costs, where the threat of new competition can discipline incumbent pricing even if few firms currently compete.</dd>
+    <dt>Barriers to entry</dt>
+    <dd>Factors that make it difficult for new firms to enter a market and compete with incumbents, including high fixed costs, legal protection, network effects, and, increasingly, the cost of AI compute infrastructure.</dd>
+    <dt>Algorithmic collusion</dt>
+    <dd>Coordinated pricing behaviour that emerges among independently operated pricing algorithms through repeated market interaction, without any explicit human communication or agreement.</dd>
+  </dl>
+
+  <div class="footer-note">
+    Prepared for EconNexus Research Hub as a deep-dive briefing combining precisely derived microeconomic diagrams with current research on artificial intelligence and market structure. The market structure framework and real-world examples draw on the standard treatment at Economics Help (economicshelp.org/microessays/markets), used here as a conceptual reference and reworked into original explanations and original, independently calculated diagrams rather than reproduced. AI and competition findings are drawn from Calvano, Calzolari, Denicolò, and Pastorello, American Economic Review (2020); Assad, Clark, Ershov, and Xu, Journal of Political Economy (2024); the Stanford AI Index Report 2025; the OECD's 2022 and 2025 analyses of competition in AI infrastructure; the joint July 2024 statement by the US DOJ, FTC, UK CMA, and European Commission; the Information Technology and Innovation Foundation's April 2025 congressional testimony; the European Commission Joint Research Centre's 2023 compliance cost estimates; and the Mercatus Center's 2025 analysis of data as a barrier to entry in generative AI. All diagrams were independently computed using standard linear demand and calculus-derived cost curve relationships and are original to this article.
+  </div>
+
+</div>
+
+<script>
+  function animateDraw(id, delay) {
+    const path = document.getElementById(id);
+    if (!path) return;
+    const len = path.getTotalLength();
+    path.style.transition = "none";
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    path.getBoundingClientRect();
+    setTimeout(() => {
+      path.style.transition = "stroke-dashoffset 1.6s cubic-bezier(.22,1,.36,1)";
+      path.style.strokeDashoffset = 0;
+    }, delay || 0);
+  }
+  function fadeIn(id, delay, dur) {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.style.transition = `opacity ${dur||0.6}s ease`; el.style.opacity = 1; }
+    }, delay || 0);
+  }
+  function growCircle(id, r, delay) {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.style.transition = "r 0.5s ease"; el.setAttribute('r', r); }
+    }, delay || 0);
+  }
+  function resetFade(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.transition = "none"; el.style.opacity = 0; }
+  }
+  function resetCircle(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.transition = "none"; el.setAttribute('r', 0); }
+  }
+
+  /* ---------- Perfect Competition ---------- */
+  function playPC() {
+    animateDraw('pc-D', 100); animateDraw('pc-S', 100);
+    growCircle('pc-eq', 5, 1700); fadeIn('pc-eq-h', 1700); fadeIn('pc-p-label', 1900);
+    animateDraw('pc-AC', 300); animateDraw('pc-MC', 300);
+    setTimeout(() => { animateDraw('pc-firmd', 0); fadeIn('pc-firmd', 0); }, 2000);
+    setTimeout(() => { growCircle('pc-tangent', 5, 0); fadeIn('pc-arlabel', 200); fadeIn('pc-normal', 500); }, 2600);
+  }
+  function resetPC() {
+    resetCircle('pc-eq'); resetFade('pc-eq-h'); resetFade('pc-p-label');
+    resetFade('pc-firmd'); resetCircle('pc-tangent'); resetFade('pc-arlabel'); resetFade('pc-normal');
+  }
+
+  /* ---------- Monopolistic Competition ---------- */
+  function playMC() {
+    animateDraw('mc-AC', 100); animateDraw('mc-MC', 100);
+    animateDraw('mc-AR', 100); animateDraw('mc-MR', 100);
+    setTimeout(() => { fadeIn('mc-gq', 0); growCircle('mc-tangent', 5, 0); }, 1900);
+    setTimeout(() => { fadeIn('mc-tangent-label', 0); fadeIn('mc-qlabel', 0); }, 2300);
+  }
+  function resetMC() {
+    resetFade('mc-gq'); resetCircle('mc-tangent'); resetFade('mc-tangent-label'); resetFade('mc-qlabel');
+  }
+
+  /* ---------- Oligopoly ---------- */
+  function playOL() {
+    animateDraw('ol-Del', 100); animateDraw('ol-Din', 100);
+    animateDraw('ol-MRel', 400); animateDraw('ol-MRin', 400);
+    setTimeout(() => { growCircle('ol-kink', 5, 0); fadeIn('ol-gq', 0); }, 1600);
+    setTimeout(() => { fadeIn('ol-gap', 0); fadeIn('ol-gaplabel', 200); }, 2000);
+    setTimeout(() => { animateDraw('ol-MC', 0); fadeIn('ol-MC', 0); fadeIn('ol-mclabel', 400); }, 2600);
+    setTimeout(() => { fadeIn('ol-price-sticky', 0); fadeIn('ol-qlabel', 0); }, 3800);
+  }
+  function resetOL() {
+    resetCircle('ol-kink'); resetFade('ol-gq'); resetFade('ol-gap'); resetFade('ol-gaplabel');
+    resetFade('ol-MC'); resetFade('ol-mclabel'); resetFade('ol-price-sticky'); resetFade('ol-qlabel');
+  }
+
+  /* ---------- Monopoly ---------- */
+  function playMono() {
+    animateDraw('mono-AC', 100); animateDraw('mono-MC', 100);
+    animateDraw('mono-AR', 100); animateDraw('mono-MR', 100);
+    setTimeout(() => {
+      growCircle('mono-mcmr-dot', 5, 0); growCircle('mono-p-dot', 5, 150); growCircle('mono-ac-dot', 5, 300);
+      fadeIn('mono-gq', 0); fadeIn('mono-gp', 150); fadeIn('mono-gac', 300);
+    }, 1900);
+    setTimeout(() => {
+      fadeIn('mono-qlabel', 0); fadeIn('mono-plabel', 0); fadeIn('mono-aclabel', 0);
+      fadeIn('mono-rect-path', 0, 1); fadeIn('mono-profit-label', 400);
+    }, 2500);
+  }
+  function resetMono() {
+    resetCircle('mono-mcmr-dot'); resetCircle('mono-p-dot'); resetCircle('mono-ac-dot');
+    resetFade('mono-gq'); resetFade('mono-gp'); resetFade('mono-gac');
+    resetFade('mono-qlabel'); resetFade('mono-plabel'); resetFade('mono-aclabel');
+    resetFade('mono-rect-path'); resetFade('mono-profit-label');
+  }
+
+  const playFns = { pc: playPC, mc: playMC, ol: playOL, mono: playMono };
+  const resetFns = { pc: resetPC, mc: resetMC, ol: resetOL, mono: resetMono };
+
+  function replay(key, btnEl) {
+    if (btnEl) { btnEl.classList.add('spinning'); setTimeout(() => btnEl.classList.remove('spinning'), 500); }
+    if (resetFns[key]) resetFns[key]();
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (playFns[key]) playFns[key](); }));
+  }
+
+  const triggered = {};
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !triggered[entry.target.id]) {
+        triggered[entry.target.id] = true;
+        if (entry.target.id === 'pcBlock') playPC();
+        if (entry.target.id === 'mcBlock') playMC();
+        if (entry.target.id === 'olBlock') playOL();
+        if (entry.target.id === 'monoBlock') playMono();
+      }
+    });
+  }, { threshold: 0.25 });
+  ['pcBlock','mcBlock','olBlock','monoBlock'].forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+</script>
+</body>
+</html>

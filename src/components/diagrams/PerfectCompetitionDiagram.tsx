@@ -95,7 +95,7 @@ const PerfectCompetitionDiagram = () => {
             
             {/* Equilibrium */}
             <motion.circle
-              cx="165" cy="120"
+              cx="157.5" cy="122.5"
               r="6"
               fill="hsl(var(--accent))"
               initial={{ scale: 0 }}
@@ -105,7 +105,7 @@ const PerfectCompetitionDiagram = () => {
             
             {/* Equilibrium Price Line */}
             <motion.line
-              x1="50" y1="120" x2="165" y2="120"
+              x1="50" y1="122.5" x2="157.5" y2="122.5"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -113,11 +113,11 @@ const PerfectCompetitionDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="40" y="125" textAnchor="end" className="fill-muted-foreground text-xs">P*</text>
+            <text x="40" y="127" textAnchor="end" className="fill-muted-foreground text-xs">P*</text>
             
             {/* Equilibrium Quantity */}
             <motion.line
-              x1="165" y1="120" x2="165" y2="220"
+              x1="157.5" y1="122.5" x2="157.5" y2="220"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -125,7 +125,7 @@ const PerfectCompetitionDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="165" y="235" textAnchor="middle" className="fill-muted-foreground text-xs">Q*</text>
+            <text x="157.5" y="235" textAnchor="middle" className="fill-muted-foreground text-xs">Q*</text>
           </svg>
         </div>
 
@@ -152,19 +152,54 @@ const PerfectCompetitionDiagram = () => {
             
             {/* Axis Labels */}
             <text x="165" y="245" textAnchor="middle" className="fill-muted-foreground text-xs">Quantity</text>
-            <text x="25" y="120" textAnchor="middle" className="fill-muted-foreground text-xs" transform="rotate(-90, 25, 120)">P, MR, AR</text>
-            
+            <text x="25" y="120" textAnchor="middle" className="fill-muted-foreground text-xs" transform="rotate(-90, 25, 120)">Costs, Revenue</text>
+
             {/* Horizontal Demand/Price Line (P = D = MR = AR) */}
             <motion.line
-              x1="50" y1="120" x2="260" y2="120"
+              x1="50" y1="120" x2="245" y2="120"
               stroke="hsl(var(--primary))"
               strokeWidth="3"
               initial={{ pathLength: 0 }}
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 0.8, duration: 1 }}
             />
-            <text x="265" y="115" className="fill-primary text-xs">P = D = MR = AR</text>
-            
+            <text x="248" y="112" className="fill-primary text-[9px]">D = AR = MR</text>
+
+            {/* AC — U-shaped, minimum exactly at (165,120) */}
+            <motion.path
+              d="M 80 55 Q 165 185 250 55"
+              fill="none"
+              stroke="hsl(var(--secondary))"
+              strokeWidth="2.5"
+              variants={curveVariants}
+              initial="hidden"
+              animate={isVisible ? "visible" : "hidden"}
+            />
+            <text x="252" y="52" className="fill-secondary text-[10px] font-medium">AC</text>
+
+            {/* MC — cuts AC at its minimum point (165,120) */}
+            <motion.path
+              d="M 90 170 C 130 190, 150 165, 165 120 S 200 50, 222 32"
+              fill="none"
+              stroke="hsl(var(--accent))"
+              strokeWidth="2.5"
+              variants={curveVariants}
+              initial="hidden"
+              animate={isVisible ? "visible" : "hidden"}
+            />
+            <text x="224" y="30" className="fill-accent text-[10px] font-medium">MC</text>
+
+            {/* Long-run equilibrium: P = MR = MC = AC(min) */}
+            <motion.circle
+              cx="165" cy="120" r="5"
+              fill="hsl(var(--accent))"
+              initial={{ scale: 0 }}
+              animate={isVisible ? { scale: 1 } : {}}
+              transition={{ delay: 1.6, duration: 0.3 }}
+            />
+            <line x1="165" y1="120" x2="165" y2="220" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="4,4" />
+            <text x="165" y="235" textAnchor="middle" className="fill-muted-foreground text-xs">q*</text>
+
             {/* Price Label */}
             <text x="40" y="125" textAnchor="end" className="fill-muted-foreground text-xs">P*</text>
           </svg>
@@ -173,10 +208,13 @@ const PerfectCompetitionDiagram = () => {
 
       <div className="mt-4 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
         <p className="text-muted-foreground text-sm text-center">
-          The market determines the equilibrium price (P*). Each firm faces a perfectly elastic demand curve 
-          at this price — it can sell any quantity at P* but nothing above it.
+          The market sets the equilibrium price P*. The firm is a price taker, so its demand curve is
+          perfectly elastic (D = AR = MR = P*). It maximises profit where MC = MR at q*. In long-run
+          equilibrium, free entry and exit drive P* down to the minimum of AC, so the firm earns only
+          normal profit and is productively (min AC) and allocatively (P = MC) efficient.
         </p>
       </div>
+
     </div>
   );
 };

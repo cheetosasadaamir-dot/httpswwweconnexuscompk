@@ -20,8 +20,9 @@ const PriceFloorDiagram = () => {
   const Qd = 25; // along demand at higher Pmin
   const Qs = 75; // along supply at higher Pmin
 
+  // D: P = 90 − 0.8Q   S: P = 10 + 0.8Q   → intersect exactly at (50, 50)
   const demand = `M ${x(5)} ${y(86)} L ${x(95)} ${y(14)}`;
-  const supply = `M ${x(5)} ${y(13)} L ${x(95)} ${y(67)}`;
+  const supply = `M ${x(5)} ${y(14)} L ${x(95)} ${y(86)}`;
 
   const demandColor = 'hsl(185, 100%, 55%)';
   const supplyColor = 'hsl(300, 100%, 65%)';
@@ -40,7 +41,7 @@ const PriceFloorDiagram = () => {
         <path d={demand} stroke={demandColor} strokeWidth={2.5} fill="none" />
         <path d={supply} stroke={supplyColor} strokeWidth={2.5} fill="none" />
         <text x={x(95) + 4} y={y(14)} fill={demandColor} fontSize={13} fontWeight="bold">D</text>
-        <text x={x(95) + 4} y={y(67)} fill={supplyColor} fontSize={13} fontWeight="bold">S</text>
+        <text x={x(95) + 4} y={y(86)} fill={supplyColor} fontSize={13} fontWeight="bold">S</text>
 
         {/* equilibrium */}
         <line x1={x(Qe)} y1={y(Pe)} x2={m.l} y2={y(Pe)} stroke={axisColor} strokeDasharray="3 3" />

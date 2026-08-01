@@ -21,7 +21,8 @@ const Login = () => {
 
   useEffect(() => {
     if (!loading && user) {
-      navigate('/dashboard', { replace: true });
+      const target = new URLSearchParams(window.location.search).get('redirect') || '/';
+      navigate(target, { replace: true });
     }
   }, [user, loading, navigate]);
 
