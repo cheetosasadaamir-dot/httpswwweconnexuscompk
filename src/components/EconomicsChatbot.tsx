@@ -1148,9 +1148,7 @@ export default function EconomicsChatbot() {
     // Track chatbot interaction BEFORE the AI response (verbatim user query)
     const personaLabel = PERSONA_CONFIG[persona]?.label || persona;
     if (messageText && messageText.trim().length > 0) {
-      const { error: trackError } = await supabase.rpc('track_interaction', { _persona: personaLabel });
-      if (trackError) console.error('track_interaction failed:', trackError);
-      // Track to admin dashboard (remote analytics) with user id + raw query text
+      // Tracking is performed server-side via a secured edge function
       void trackInteraction(personaLabel, user?.id ?? null, messageText);
     }
 
