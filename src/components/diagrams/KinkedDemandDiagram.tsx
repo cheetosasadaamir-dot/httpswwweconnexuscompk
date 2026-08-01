@@ -65,7 +65,7 @@ const KinkedDemandDiagram = () => {
         
         {/* Kinked Demand Curve - Upper segment (elastic) */}
         <motion.path
-          d="M 80 95 L 200 140"
+          d="M 75 110 L 200 140"
           fill="none"
           stroke="hsl(var(--primary))"
           strokeWidth="3"
@@ -76,7 +76,7 @@ const KinkedDemandDiagram = () => {
         
         {/* Kinked Demand Curve - Lower segment (inelastic) */}
         <motion.path
-          d="M 200 140 L 340 224"
+          d="M 200 140 L 340 238"
           fill="none"
           stroke="hsl(var(--primary))"
           strokeWidth="3"
@@ -84,11 +84,11 @@ const KinkedDemandDiagram = () => {
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         />
-        <text x="346" y="229" className="fill-primary text-sm font-medium">D</text>
+        <text x="346" y="243" className="fill-primary text-sm font-medium">D</text>
         
         {/* MR Curve - Upper segment */}
         <motion.path
-          d="M 80 95 L 200 185"
+          d="M 75 110 L 200 170"
           fill="none"
           stroke="#a855f7"
           strokeWidth="2.5"
@@ -99,7 +99,7 @@ const KinkedDemandDiagram = () => {
         
         {/* MR Curve - Gap (vertical discontinuity) */}
         <motion.line
-          x1="200" y1="185" x2="200" y2="212"
+          x1="200" y1="170" x2="200" y2="228"
           stroke="#a855f7"
           strokeWidth="2.5"
           strokeDasharray="4,4"
@@ -110,7 +110,7 @@ const KinkedDemandDiagram = () => {
         
         {/* MR Curve - Lower segment */}
         <motion.path
-          d="M 200 212 L 255 278"
+          d="M 200 228 L 237 280"
           fill="none"
           stroke="#a855f7"
           strokeWidth="2.5"
@@ -118,11 +118,11 @@ const KinkedDemandDiagram = () => {
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         />
-        <text x="260" y="276" className="fill-purple-400 text-sm font-medium">MR</text>
+        <text x="242" y="277" className="fill-purple-400 text-sm font-medium">MR</text>
         
         {/* MC Curve 1 */}
         <motion.path
-          d="M 95 268 Q 150 240, 200 208 Q 235 186, 250 140"
+          d="M 95 270 Q 150 245, 200 215 Q 235 195, 250 150"
           fill="none"
           stroke="#22c55e"
           strokeWidth="2.5"
@@ -130,11 +130,11 @@ const KinkedDemandDiagram = () => {
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         />
-        <text x="254" y="140" className="fill-green-400 text-xs">MC₁</text>
+        <text x="254" y="150" className="fill-green-400 text-xs">MC₁</text>
         
         {/* MC Curve 2 (shifted up) */}
         <motion.path
-          d="M 95 250 Q 150 222, 200 190 Q 235 168, 250 120"
+          d="M 95 245 Q 150 218, 200 185 Q 235 163, 250 118"
           fill="none"
           stroke="#22c55e"
           strokeWidth="2"
@@ -143,7 +143,7 @@ const KinkedDemandDiagram = () => {
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         />
-        <text x="254" y="120" className="fill-green-400 text-xs">MC₂</text>
+        <text x="254" y="118" className="fill-green-400 text-xs">MC₂</text>
         
         {/* The Kink Point */}
         <motion.circle
@@ -156,7 +156,7 @@ const KinkedDemandDiagram = () => {
           animate={isVisible ? { scale: 1 } : {}}
           transition={{ delay: 1.5, duration: 0.3 }}
         />
-        <text x="215" y="135" className="fill-accent text-xs font-medium">Z (Kink)</text>
+        <text x="196" y="128" textAnchor="middle" className="fill-accent text-xs font-medium">Z (Kink)</text>
         
         {/* Price line */}
         <motion.line
@@ -188,15 +188,15 @@ const KinkedDemandDiagram = () => {
           animate={isVisible ? { opacity: 1 } : {}}
           transition={{ delay: 2, duration: 0.5 }}
         >
-          <text x="92" y="62" className="fill-blue-400 text-[10px]">Elastic</text>
-          <text x="92" y="73" className="fill-blue-400 text-[10px]">(rivals don't follow</text>
-          <text x="92" y="84" className="fill-blue-400 text-[10px]">price rises)</text>
+          <text x="90" y="68" className="fill-blue-400 text-[10px]">Elastic</text>
+          <text x="90" y="79" className="fill-blue-400 text-[10px]">(rivals don't follow</text>
+          <text x="90" y="90" className="fill-blue-400 text-[10px]">price rises)</text>
           
           <text x="286" y="160" className="fill-red-400 text-[10px]">Inelastic</text>
           <text x="286" y="171" className="fill-red-400 text-[10px]">(rivals follow</text>
           <text x="286" y="182" className="fill-red-400 text-[10px]">price cuts)</text>
           
-          <text x="206" y="204" className="fill-purple-300 text-[10px]">Gap in MR</text>
+          <text x="206" y="202" className="fill-purple-300 text-[10px]">Gap in MR</text>
         </motion.g>
       </svg>
 
