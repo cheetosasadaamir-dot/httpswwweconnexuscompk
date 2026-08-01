@@ -10,7 +10,7 @@ export interface WorldEconomicsTopic {
   realWorldExample?: string;
 }
 
-export const worldEconomicsTopics: WorldEconomicsTopic[] = [
+const rawWorldEconomicsTopics: WorldEconomicsTopic[] = [
   {
     id: 'a-priori-arguments',
     title: 'A Priori Arguments',
@@ -4352,6 +4352,14 @@ export const worldEconomicsTopics: WorldEconomicsTopic[] = [
   }
 ];
 
+// Deduplicate by id — duplicate entries caused duplicate React keys and
+// repeated cards in the World Economics grid.
+export const worldEconomicsTopics: WorldEconomicsTopic[] = Array.from(
+  new Map(rawWorldEconomicsTopics.map((t) => [t.id, t])).values()
+).sort((a, b) => a.title.localeCompare(b.title));
+
+
+
 export const getTopicsByCategory = (category: WorldEconomicsTopic['category']) => {
   return worldEconomicsTopics.filter(topic => topic.category === category);
 };
@@ -4369,7 +4377,7 @@ export const getCategoryLabel = (category: WorldEconomicsTopic['category']): str
 
 export const getCategoryIcon = (category: WorldEconomicsTopic['category']): string => {
   const icons: Record<WorldEconomicsTopic['category'], string> = {
-    'theory': '📐',
+    'theory': '📘',
     'policy': '🏛️',
     'trade': '🌍',
     'market-failure': '⚠️',

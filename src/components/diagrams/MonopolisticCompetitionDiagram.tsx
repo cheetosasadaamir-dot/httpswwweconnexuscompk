@@ -70,11 +70,11 @@ const MonopolisticCompetitionDiagram = () => {
             />
             
             <text x="185" y="280" textAnchor="middle" className="fill-muted-foreground text-xs font-medium">Quantity</text>
-            <text x="28" y="140" textAnchor="middle" className="fill-muted-foreground text-xs font-medium" transform="rotate(-90, 28, 140)">Price/Cost (£)</text>
+            <text x="18" y="105" textAnchor="middle" className="fill-muted-foreground text-xs font-medium" transform="rotate(-90, 18, 105)">Price/Cost (£)</text>
             
-            {/* MC Curve - intersects MR at Q=145 */}
+            {/* MC Curve - U-shaped, cuts ATC at its minimum (205,183) and MR at Q*=172 */}
             <motion.path
-              d="M 80 235 Q 110 190 130 150 Q 145 115 160 85 Q 175 55 195 35"
+              d="M 90 175 Q 110 205, 135 208 Q 158 210, 172 196 Q 190 190, 205 183 Q 235 170, 258 80"
               fill="none"
               stroke="#22c55e"
               strokeWidth="2.5"
@@ -82,11 +82,11 @@ const MonopolisticCompetitionDiagram = () => {
               initial="hidden"
               animate={isVisible ? "visible" : "hidden"}
             />
-            <text x="200" y="32" className="fill-green-400 text-xs font-semibold">MC</text>
+            <text x="262" y="76" className="fill-green-400 text-xs font-semibold">MC</text>
             
-            {/* ATC Curve - U-shaped, minimum at around Q=160 */}
+            {/* ATC Curve - genuine U-shape, minimum at Q=205 */}
             <motion.path
-              d="M 70 185 Q 95 115 145 100 Q 190 92 230 105 Q 270 125 295 155"
+              d="M 75 95 Q 120 150, 160 172 Q 185 183, 205 183 Q 245 183, 300 105"
               fill="none"
               stroke="#f59e0b"
               strokeWidth="2.5"
@@ -94,7 +94,7 @@ const MonopolisticCompetitionDiagram = () => {
               initial="hidden"
               animate={isVisible ? "visible" : "hidden"}
             />
-            <text x="300" y="160" className="fill-amber-400 text-xs font-semibold">ATC</text>
+            <text x="302" y="100" className="fill-amber-400 text-xs font-semibold">ATC</text>
             
             {/* Demand Curve (AR) - downward sloping, above ATC in short run */}
             <motion.path
@@ -110,7 +110,7 @@ const MonopolisticCompetitionDiagram = () => {
             
             {/* MR Curve - steeper than AR, same intercept */}
             <motion.path
-              d="M 60 55 L 200 210"
+              d="M 60 55 L 178 210"
               fill="none"
               stroke="#a855f7"
               strokeWidth="2.5"
@@ -118,11 +118,11 @@ const MonopolisticCompetitionDiagram = () => {
               initial="hidden"
               animate={isVisible ? "visible" : "hidden"}
             />
-            <text x="205" y="215" className="fill-purple-400 text-xs font-semibold">MR</text>
+            <text x="172" y="224" className="fill-purple-400 text-xs font-semibold">MR</text>
             
             {/* Supernormal Profit area - rectangle between P and ATC at Q* */}
             <motion.rect
-              x="55" y="85" width="90" height="20"
+              x="55" y="129" width="117" height="48"
               fill="hsl(142 76% 36% / 0.35)"
               stroke="hsl(142 76% 45%)"
               strokeWidth="1.5"
@@ -130,11 +130,11 @@ const MonopolisticCompetitionDiagram = () => {
               animate={isVisible ? { opacity: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="100" y="98" textAnchor="middle" className="fill-green-300 text-[9px] font-semibold">Supernormal Profit</text>
+            <text x="113" y="157" textAnchor="middle" className="fill-green-300 text-[9px] font-semibold">Supernormal Profit</text>
             
             {/* MC = MR intersection point */}
             <motion.circle
-              cx="145" cy="125"
+              cx="172" cy="196"
               r="5"
               fill="#a855f7"
               stroke="white"
@@ -146,7 +146,7 @@ const MonopolisticCompetitionDiagram = () => {
             
             {/* Price point on AR */}
             <motion.circle
-              cx="145" cy="85"
+              cx="172" cy="129"
               r="5"
               fill="hsl(var(--accent))"
               stroke="white"
@@ -158,7 +158,7 @@ const MonopolisticCompetitionDiagram = () => {
             
             {/* ATC point */}
             <motion.circle
-              cx="145" cy="105"
+              cx="172" cy="177"
               r="4"
               fill="#f59e0b"
               initial={{ scale: 0 }}
@@ -168,7 +168,7 @@ const MonopolisticCompetitionDiagram = () => {
             
             {/* Price line to Y-axis */}
             <motion.line
-              x1="55" y1="85" x2="145" y2="85"
+              x1="55" y1="129" x2="172" y2="129"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -176,11 +176,11 @@ const MonopolisticCompetitionDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="45" y="88" textAnchor="end" className="fill-accent text-[10px] font-semibold">P</text>
+            <text x="45" y="132" textAnchor="end" className="fill-accent text-[10px] font-semibold">P</text>
             
             {/* ATC line to Y-axis */}
             <motion.line
-              x1="55" y1="105" x2="145" y2="105"
+              x1="55" y1="177" x2="172" y2="177"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -188,11 +188,11 @@ const MonopolisticCompetitionDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.6, duration: 0.5 }}
             />
-            <text x="45" y="108" textAnchor="end" className="fill-amber-400 text-[10px] font-semibold">ATC</text>
+            <text x="45" y="180" textAnchor="end" className="fill-amber-400 text-[10px] font-semibold">ATC</text>
             
             {/* Quantity line */}
             <motion.line
-              x1="145" y1="125" x2="145" y2="255"
+              x1="172" y1="129" x2="172" y2="255"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -200,10 +200,10 @@ const MonopolisticCompetitionDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="145" y="270" textAnchor="middle" className="fill-muted-foreground text-[10px] font-semibold">Q*</text>
+            <text x="172" y="270" textAnchor="middle" className="fill-muted-foreground text-[10px] font-semibold">Q*</text>
             
             {/* MC=MR label */}
-            <text x="158" y="120" className="fill-purple-300 text-[8px]">MC=MR</text>
+            <text x="180" y="205" className="fill-purple-300 text-[8px]">MC=MR</text>
           </svg>
         </div>
 
@@ -228,11 +228,11 @@ const MonopolisticCompetitionDiagram = () => {
             />
             
             <text x="185" y="280" textAnchor="middle" className="fill-muted-foreground text-xs font-medium">Quantity</text>
-            <text x="28" y="140" textAnchor="middle" className="fill-muted-foreground text-xs font-medium" transform="rotate(-90, 28, 140)">Price/Cost (£)</text>
+            <text x="18" y="105" textAnchor="middle" className="fill-muted-foreground text-xs font-medium" transform="rotate(-90, 18, 105)">Price/Cost (£)</text>
             
             {/* MC Curve - intersects MR at Q where AR is tangent to ATC */}
             <motion.path
-              d="M 80 235 Q 105 195 120 160 Q 135 125 150 95 Q 165 70 180 50"
+              d="M 85 185 C 100 210, 112 208, 130 190 Q 138 184, 145 177 Q 168 160, 195 145 C 215 135, 230 105, 242 55"
               fill="none"
               stroke="#22c55e"
               strokeWidth="2.5"
@@ -240,11 +240,11 @@ const MonopolisticCompetitionDiagram = () => {
               initial="hidden"
               animate={isVisible ? "visible" : "hidden"}
             />
-            <text x="185" y="47" className="fill-green-400 text-xs font-semibold">MC</text>
+            <text x="246" y="52" className="fill-green-400 text-xs font-semibold">MC</text>
             
             {/* ATC Curve - TANGENT to AR at the profit-maximizing output */}
             <motion.path
-              d="M 70 200 Q 90 145 125 115 Q 160 95 200 100 Q 250 115 290 145"
+              d="M 72 60 Q 103 101, 145 126 Q 176 145, 195 145 Q 230 145, 292 100"
               fill="none"
               stroke="#f59e0b"
               strokeWidth="2.5"
@@ -252,7 +252,7 @@ const MonopolisticCompetitionDiagram = () => {
               initial="hidden"
               animate={isVisible ? "visible" : "hidden"}
             />
-            <text x="295" y="150" className="fill-amber-400 text-xs font-semibold">ATC</text>
+            <text x="294" y="96" className="fill-amber-400 text-xs font-semibold">ATC</text>
             
             {/* Demand Curve (AR) - EXACTLY TANGENT to ATC at one point */}
             <motion.path
@@ -268,7 +268,7 @@ const MonopolisticCompetitionDiagram = () => {
             
             {/* MR Curve - twice as steep as AR */}
             <motion.path
-              d="M 60 75 L 180 205"
+              d="M 60 75 L 168 205"
               fill="none"
               stroke="#a855f7"
               strokeWidth="2.5"
@@ -276,11 +276,11 @@ const MonopolisticCompetitionDiagram = () => {
               initial="hidden"
               animate={isVisible ? "visible" : "hidden"}
             />
-            <text x="185" y="210" className="fill-purple-400 text-xs font-semibold">MR</text>
+            <text x="178" y="212" className="fill-purple-400 text-xs font-semibold">MR</text>
             
             {/* THE KEY TANGENT POINT - P = ATC, where AR just touches ATC */}
             <motion.circle
-              cx="130" cy="115"
+              cx="145" cy="126"
               r="7"
               fill="hsl(var(--accent))"
               stroke="white"
@@ -292,7 +292,7 @@ const MonopolisticCompetitionDiagram = () => {
             
             {/* MC = MR intersection */}
             <motion.circle
-              cx="130" cy="145"
+              cx="145" cy="177"
               r="5"
               fill="#a855f7"
               stroke="white"
@@ -308,14 +308,14 @@ const MonopolisticCompetitionDiagram = () => {
               animate={isVisible ? { opacity: 1 } : {}}
               transition={{ delay: 1.8, duration: 0.5 }}
             >
-              <line x1="130" y1="115" x2="175" y2="85" stroke="white" strokeWidth="1" strokeDasharray="2,2" />
-              <text x="180" y="80" className="fill-accent text-[9px] font-semibold">Tangent Point</text>
-              <text x="180" y="90" className="fill-accent text-[9px]">(P = ATC)</text>
+              <line x1="145" y1="126" x2="192" y2="96" stroke="white" strokeWidth="1" strokeDasharray="2,2" />
+              <text x="196" y="92" className="fill-accent text-[9px] font-semibold">Tangent Point</text>
+              <text x="196" y="102" className="fill-accent text-[9px]">(P = ATC)</text>
             </motion.g>
             
             {/* Price/ATC line to Y-axis (same point since P=ATC) */}
             <motion.line
-              x1="55" y1="115" x2="130" y2="115"
+              x1="55" y1="126" x2="145" y2="126"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -323,11 +323,11 @@ const MonopolisticCompetitionDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="45" y="118" textAnchor="end" className="fill-accent text-[10px] font-semibold">P=ATC</text>
+            <text x="52" y="120" textAnchor="end" className="fill-accent text-[10px] font-semibold">P=ATC</text>
             
             {/* Quantity line */}
             <motion.line
-              x1="130" y1="115" x2="130" y2="255"
+              x1="145" y1="126" x2="145" y2="255"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -335,10 +335,10 @@ const MonopolisticCompetitionDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="130" y="270" textAnchor="middle" className="fill-muted-foreground text-[10px] font-semibold">Q*</text>
+            <text x="145" y="270" textAnchor="middle" className="fill-muted-foreground text-[10px] font-semibold">Q*</text>
             
             {/* MC=MR label */}
-            <text x="143" y="142" className="fill-purple-300 text-[8px]">MC=MR</text>
+            <text x="152" y="188" className="fill-purple-300 text-[8px]">MC=MR</text>
             
             {/* Excess Capacity indicator */}
             <motion.g
@@ -346,11 +346,11 @@ const MonopolisticCompetitionDiagram = () => {
               animate={isVisible ? { opacity: 1 } : {}}
               transition={{ delay: 2, duration: 0.5 }}
             >
-              <line x1="130" y1="245" x2="165" y2="245" stroke="#ef4444" strokeWidth="2" />
-              <line x1="130" y1="241" x2="130" y2="249" stroke="#ef4444" strokeWidth="2" />
-              <line x1="165" y1="241" x2="165" y2="249" stroke="#ef4444" strokeWidth="2" />
-              <text x="147" y="238" textAnchor="middle" className="fill-red-400 text-[8px]">Excess</text>
-              <text x="147" y="248" textAnchor="middle" className="fill-red-400 text-[8px]">Capacity</text>
+              <line x1="145" y1="248" x2="195" y2="248" stroke="#ef4444" strokeWidth="2" />
+              <line x1="145" y1="244" x2="145" y2="252" stroke="#ef4444" strokeWidth="2" />
+              <line x1="195" y1="244" x2="195" y2="252" stroke="#ef4444" strokeWidth="2" />
+              <text x="170" y="230" textAnchor="middle" className="fill-red-400 text-[8px]">Excess</text>
+              <text x="170" y="240" textAnchor="middle" className="fill-red-400 text-[8px]">Capacity</text>
             </motion.g>
           </svg>
         </div>

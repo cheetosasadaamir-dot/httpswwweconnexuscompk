@@ -13,6 +13,28 @@ export type Article = {
 };
 
 export const ARTICLES: Article[] = [
+  // ── AI & the Economy ────────────────────────────────────────────
+  {
+    slug: 'market-structures-ai',
+    file: '/articles/market-structures-ai.html',
+    title: 'Market Structures in the Age of AI',
+    summary:
+      'How compute, data and model scale are reshaping competition — concentration, contestability and the new barriers to entry.',
+    category: 'Markets',
+    readTime: '14 min read',
+    date: 'Aug 2026',
+  },
+  {
+    slug: 'labour-market-ai',
+    file: '/articles/labour-market-ai.html',
+    title: 'The Labour Market in the Age of AI',
+    summary:
+      'Automation, augmentation and wage structure — what the evidence says about jobs, skills and the returns to human capital.',
+    category: 'Markets',
+    readTime: '16 min read',
+    date: 'Aug 2026',
+  },
+
   // ── Foundational Theory ─────────────────────────────────────────
   {
     slug: 'adam-smith-wealth',

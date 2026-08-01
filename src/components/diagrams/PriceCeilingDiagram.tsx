@@ -16,14 +16,15 @@ const PriceCeilingDiagram = () => {
   const y = (v: number) => m.t + ch - (v / 100) * ch;
 
   // Demand: P = 90 - 0.8Q, Supply: P = 10 + 0.6Q
-  // Equilibrium near Q=57, P=44. Pmax=25 → Qs=25, Qd=81
+  // D: P = 90 − 0.8Q  S: P = 10 + 0.8Q → equilibrium exactly (Q=50, P=50).
+  // Pmax = 25 → Qs = 18.75, Qd = 81.25
   const Pe = 50, Qe = 50;
   const Pmax = 25;
-  const Qs = 25; // along supply at Pmax
-  const Qd = 81; // along demand at Pmax
+  const Qs = 18.75; // along supply at Pmax
+  const Qd = 81.25; // along demand at Pmax
 
   const demand = `M ${x(5)} ${y(86)} L ${x(95)} ${y(14)}`;
-  const supply = `M ${x(5)} ${y(13)} L ${x(95)} ${y(67)}`;
+  const supply = `M ${x(5)} ${y(14)} L ${x(95)} ${y(86)}`;
 
   const demandColor = 'hsl(185, 100%, 55%)';
   const supplyColor = 'hsl(300, 100%, 65%)';
@@ -44,7 +45,7 @@ const PriceCeilingDiagram = () => {
         <path d={demand} stroke={demandColor} strokeWidth={2.5} fill="none" />
         <path d={supply} stroke={supplyColor} strokeWidth={2.5} fill="none" />
         <text x={x(95) + 4} y={y(14)} fill={demandColor} fontSize={13} fontWeight="bold">D</text>
-        <text x={x(95) + 4} y={y(67)} fill={supplyColor} fontSize={13} fontWeight="bold">S</text>
+        <text x={x(95) + 4} y={y(86)} fill={supplyColor} fontSize={13} fontWeight="bold">S</text>
 
         {/* equilibrium */}
         <line x1={x(Qe)} y1={y(Pe)} x2={m.l} y2={y(Pe)} stroke={axisColor} strokeDasharray="3 3" />

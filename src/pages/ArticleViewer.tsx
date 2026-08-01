@@ -145,7 +145,7 @@ const ArticleViewer = () => {
                 opacity: hidden ? 0 : 1,
                 pointerEvents: hidden ? 'none' : 'auto',
               }}
-              sandbox="allow-same-origin"
+              sandbox="allow-same-origin allow-scripts"
               loading="eager"
             />
 

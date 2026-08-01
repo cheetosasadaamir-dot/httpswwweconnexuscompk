@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Labour Market in the Age of AI: A Complete, Accurate Guide | EconNexus</title>
+<style>
+  :root { --text:#111111; --muted:#4a4a4a; --rule:#111111; --bg:#ffffff; --panel:#f7f7f7; --teal:#0F7173; --teal-soft:#E1F3F0; --amber:#E3A008; --amber-soft:#FCEFC7; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: Georgia, 'Times New Roman', serif; line-height:1.75; }
+  .wrapper { max-width:840px; margin:0 auto; padding:60px 24px 110px; }
+  .kicker { font-family: Arial, Helvetica, sans-serif; text-transform:uppercase; letter-spacing:1.5px; font-size:12px; color:var(--muted); margin-bottom:14px; }
+  h1 { font-size:35px; line-height:1.25; margin:0 0 12px; font-weight:700; }
+  .subtitle { font-size:18px; color:var(--muted); font-style:italic; margin:0 0 20px; }
+  .meta { font-family: Arial, Helvetica, sans-serif; font-size:13px; color:var(--muted); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:10px 0; margin-bottom:32px; display:flex; flex-wrap:wrap; gap:6px 18px; }
+  h2 { font-size:23px; margin:46px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
+  h3 { font-size:17px; margin:28px 0 10px; }
+  p { margin:0 0 16px; font-size:16.5px; }
+  .lead { font-size:19px; margin-bottom:24px; }
+  .panel { background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:20px 24px; margin:24px 0; font-family: Arial, Helvetica, sans-serif; }
+  .panel h3 { margin-top:0; font-family: Georgia, serif; }
+  .panel ul, .panel ol { margin:0; padding-left:20px; }
+  .panel li { margin-bottom:8px; font-size:15px; }
+  .chart-block { position:relative; margin:30px 0; border:1px solid #d9d9d9; border-radius:8px; padding:18px 18px 8px; background:#ffffff; box-shadow:0 2px 10px rgba(20,33,61,0.04); }
+  .chart-caption { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); margin:10px 2px 0; padding-top:8px; border-top:1px solid #eaeaea; }
+  .live-tag { display:inline-flex; align-items:center; gap:6px; font-family: Arial, Helvetica, sans-serif; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--teal); margin-bottom:6px; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 1.4s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+  .replay-btn { position:absolute; top:14px; right:14px; z-index:5; background:#fff; border:1px solid #d9d9d9; border-radius:20px; padding:6px 13px; font-family: Arial, Helvetica, sans-serif; font-size:11px; font-weight:700; color:var(--teal); cursor:pointer; display:inline-flex; align-items:center; gap:5px; transition:background 0.2s ease, border-color 0.2s ease; }
+  .replay-btn:hover { background:var(--teal-soft); border-color:var(--teal); }
+  .replay-icon { display:inline-block; font-size:12px; transition:transform 0.5s ease; }
+  .replay-btn.spinning .replay-icon { transform:rotate(360deg); }
+  @media (max-width:640px) { .replay-btn { position:static; margin-bottom:8px; } }
+  .chart-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .swipe-hint { display:none; font-size:11px; color:var(--muted); text-align:right; font-style:italic; margin-bottom:4px; font-family: Arial, Helvetica, sans-serif; }
+  @media (max-width:640px) { .swipe-hint { display:block; } }
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin:24px 0; }
+  .stat-box { border:1px solid #d9d9d9; border-radius:4px; padding:16px; text-align:center; font-family: Arial, Helvetica, sans-serif; }
+  .stat-box .value { font-size:24px; font-weight:700; color:var(--teal); }
+  .stat-box .label { font-size:12px; color:var(--muted); margin-top:4px; }
+  table { width:100%; border-collapse:collapse; margin:20px 0; font-family: Arial, Helvetica, sans-serif; font-size:13.5px; }
+  th, td { border:1px solid #d9d9d9; padding:9px 11px; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font-weight:700; }
+  .glossary dt { font-weight:700; margin-top:14px; font-family: Arial, Helvetica, sans-serif; font-size:15px; }
+  .glossary dd { margin:4px 0 0; color:var(--muted); font-size:14.5px; }
+  .syllabus-tag { display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:0.5px; text-transform:uppercase; border:1px solid var(--text); border-radius:20px; padding:4px 12px; margin:3px 6px 3px 0; }
+  .footer-note { margin-top:50px; padding-top:20px; border-top:1px solid var(--rule); font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); }
+  .discussion ol { padding-left:20px; }
+  .discussion li { margin-bottom:10px; font-size:15.5px; }
+  .toc { font-family: Arial, Helvetica, sans-serif; font-size:14px; background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:20px 24px; margin:28px 0; }
+  .toc h3 { margin-top:0; font-family: Georgia, serif; }
+  .toc ol { margin:0; padding-left:20px; columns:2; -webkit-columns:2; }
+  .toc li { margin-bottom:6px; break-inside:avoid; }
+  .ai-callout { background: linear-gradient(135deg,#14213D,#1E2E52); color:#fff; border-radius:12px; padding:20px 22px; margin-top:14px; }
+  .ai-callout .ai-label { font-family: Arial, Helvetica, sans-serif; font-size:10.5px; text-transform:uppercase; letter-spacing:1px; color:var(--amber); margin-bottom:8px; }
+  .ai-callout p { color:#E4E8F2; font-size:14.5px; margin-bottom:10px; }
+  .ai-callout p:last-child { margin-bottom:0; }
+  .accuracy-box { background:var(--teal-soft); border-left:4px solid var(--teal); border-radius:4px; padding:12px 16px; margin:16px 0; font-family: Arial, Helvetica, sans-serif; font-size:13.5px; color:#0a4d4e; }
+  @media (max-width:600px) { .toc ol { columns:1; -webkit-columns:1; } }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="kicker">Frontier Research &middot; Microeconomics &middot; AI &amp; the Digital Economy</div>
+  <h1>The Labour Market in the Age of AI: A Complete, Accurate Guide</h1>
+  <p class="subtitle">Every supply curve, MRP curve, and monopsony wedge below is derived algebraically, not sketched by eye, then connected to the current 2025-26 research on how artificial intelligence is reshaping wages, hiring, and bargaining power inside the labour market.</p>
+
+  <div class="meta">
+    <span>EconNexus Deep Dive</span>
+    <span>Topic: Labour Economics, Wage Determination, and Algorithmic Employment</span>
+    <span>Reading time: 24 minutes &middot; 5 precision diagrams</span>
+    <span>Source data: Anthropic Economic Index, PwC, S&amp;P Global, ILO</span>
+  </div>
+
+  <p class="lead">Labour market diagrams are where most students first meet a market with two sides that look identical to a normal supply-and-demand diagram but mean something completely different: the "demand curve" is really a firm's marginal revenue product, and the "supply curve" is really the opportunity cost of workers' time. Get the underlying algebra right and the diagram becomes a precision instrument, the marginal cost of labour curve in a monopsony diagram must rise at exactly twice the slope of the supply curve, for exactly the same mathematical reason a monopolist's marginal revenue curve falls at twice the slope of demand. Once the mechanics are accurate, the far more interesting question becomes current: artificial intelligence is now the single largest force rewriting marginal revenue product, wage premiums, and monopsony power inside real labour markets, from a documented 62% wage premium for AI-skilled workers to emerging evidence of algorithmic wage-setting inside gig economy platforms.</p>
+
+  <div class="toc">
+    <h3>In this deep dive</h3>
+    <ol>
+      <li>What the labour market actually is</li>
+      <li>Wage determination in a competitive labour market, precisely drawn</li>
+      <li>AI and the competitive labour market</li>
+      <li>Marginal Revenue Product theory, precisely drawn</li>
+      <li>AI and MRP: rewriting the value of a worker</li>
+      <li>Monopsony power, precisely drawn</li>
+      <li>AI, gig platforms, and algorithmic monopsony</li>
+      <li>The minimum wage, precisely drawn</li>
+      <li>The minimum wage debate in an AI-disrupted labour market</li>
+      <li>AI shifting the demand for labour: augmentation vs automation, precisely drawn</li>
+      <li>The task-based model: how AI displaces and creates work, precisely drawn</li>
+      <li>Real-world spotlight: the AI skills wage premium</li>
+      <li>Labour market and AI, at a glance</li>
+      <li>Key takeaways</li>
+      <li>Glossary</li>
+    </ol>
+  </div>
+
+  <h2>1. What the labour market actually is</h2>
+  <p>The labour market is where the "price" is a wage rate and the "quantity" is hours or number of workers employed. On one side, households supply labour, deciding how many hours to work at a given wage, a trade-off between income and leisure. On the other, firms demand labour, not because workers are valuable in themselves, but because of what they help the firm produce and sell. This second point is the single most important idea in labour economics: the demand for labour is a <strong>derived demand</strong>. Nobody demands a barista for the sake of it, they demand a barista because customers demand coffee. Everything else in this article, wage determination, monopsony, minimum wages, and the entire AI disruption story, follows from tracing what happens to that chain of derived value when a machine can now do part of the job.</p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="value">Derived</div><div class="label">Demand for labour depends entirely on demand for the good it produces</div></div>
+    <div class="stat-box"><div class="value">MRP</div><div class="label">Marginal Revenue Product: MPP &times; MR, the theoretical basis of labour demand</div></div>
+    <div class="stat-box"><div class="value">1</div><div class="label">Buyer in a pure monopsony labour market, versus many sellers</div></div>
+    <div class="stat-box"><div class="value">6.5%</div><div class="label">Share of the UK workforce paid at the National Minimum Wage, 2024</div></div>
+  </div>
+  <p>Real labour markets rarely match the competitive textbook case exactly. Agricultural piece-work and casual retail shifts sit closest to the competitive ideal, many small employers, many mobile workers, wages taken rather than set. At the other extreme, a single coal-mine owner in a one-industry town, or a government that is the near-only employer of nurses and civil servants, exercises genuine wage-setting power, a labour market monopsony. Between these extremes sit most real jobs, and it is precisely in that messy middle ground that AI is now having its largest effect.</p>
+
+  <h2>2. Wage determination in a competitive labour market, precisely drawn</h2>
+  <p>In a competitive labour market, industry-wide supply and demand for labour set the going wage rate, exactly as in a standard product market. Any single firm is too small to influence that wage, so it takes the industry wage as given: its own supply curve of labour is a flat horizontal line, and because the firm is a wage taker, that horizontal line also equals its average cost and marginal cost of labour. The firm then hires workers up to the point where the marginal revenue product of the last worker hired just equals that wage, hiring beyond that point would cost more in wages than the extra worker generates in revenue.</p>
+
+  <div class="chart-block" id="wageBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('wage', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Competitive Labour Market: the Industry Sets the Wage, the Firm Just Pays It</text>
+<line x1="60.0" y1="320.0" x2="290.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="60.0" y1="320.0" x2="60.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="52.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Wage</text>
+<text x="290.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Industry Labour</text>
+<text x="175.0" y="354.0" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Panel A: The Industry</text>
+<path id="w-D" class="mkt-draw" d="M 60.00 86.00 L 290.00 294.00" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<path id="w-S" class="mkt-draw" d="M 60.00 294.00 L 290.00 86.00" stroke="#111111" stroke-width="2.3" fill="none"/>
+<circle id="w-eq" cx="175.0" cy="190.0" r="0" fill="#E3A008"/>
+<line id="w-eq-h" x1="60.0" y1="190.0" x2="175.0" y2="190.0" stroke="#E3A008" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<text x="270.0" y="312.0" font-size="11" fill="#0F7173" font-weight="bold">D (industry MRP)</text>
+<text x="275.0" y="76.0" font-size="11" fill="#111" font-weight="bold">S</text>
+<text id="w-p-label" x="52.0" y="194.0" font-size="10.5" fill="#E3A008" text-anchor="end" font-weight="bold" opacity="0">W*</text>
+<line x1="420.0" y1="320.0" x2="650.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="420.0" y1="320.0" x2="420.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="412.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Wage</text>
+<text x="650.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Firm Labour</text>
+<text x="535.0" y="354.0" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Panel B: The Individual Firm</text>
+<path id="w-MRP" class="mkt-draw" d="M 420.00 110.00 L 650.00 300.00" stroke="#C4534A" stroke-width="2.3" fill="none"/>
+<path id="w-firmS" class="mkt-draw2" d="M 420.00 190.00 L 650.00 190.00" stroke="#0F7173" stroke-width="2.3" fill="none" opacity="0"/>
+<circle id="w-tangent" cx="516.9" cy="190.0" r="0" fill="#14213D"/>
+<text x="645.0" y="80.0" font-size="11" fill="#C4534A" font-weight="bold" text-anchor="end">D = MRP</text>
+<text id="w-arlabel" x="645.0" y="180.0" font-size="11" fill="#0F7173" font-weight="bold" text-anchor="end" opacity="0">S = AC = MC of labour (wage taker)</text>
+<text id="w-qlabel" x="516.9" y="338.0" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Q*</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 1. Panel A: industry supply and demand for labour set the market wage W*. Panel B: the individual firm is a wage taker, its labour supply curve is a horizontal line at W*, which also equals its marginal cost of labour. The firm maximises profit by hiring exactly up to the point where its downward-sloping MRP curve crosses that horizontal wage line, marked Q*.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate, not just illustrative:</strong> the equilibrium in Panel B is not placed by eye. The horizontal wage line is drawn at exactly the same height as the industry equilibrium wage W* from Panel A, and the firm's demand curve is the algebraic MRP line MRP(L) = 110 + 0.826L in screen coordinates, solved for the exact intersection point. This single-price constraint is what makes a firm's labour demand curve identical to its MRP curve in a competitive market.</div>
+
+  <h2>3. AI and the competitive labour market</h2>
+  <p>Genuinely competitive labour markets, where no employer has wage-setting power, benefit from the same information effects that push product markets closer to perfect competition. AI-powered salary benchmarking tools, job-matching platforms, and wage-transparency algorithms reduce the information gap that historically let some employers pay below the going rate simply because workers did not know what comparable jobs paid elsewhere. In principle this should push more real labour markets closer to the competitive ideal in Panel A above: workers who can instantly see market wages are less likely to accept below-MRP pay, and platforms that match workers to jobs faster reduce frictional unemployment, the gap between jobs caused simply by the time it takes to search and match.</p>
+
+  <h2>4. Marginal Revenue Product theory, precisely drawn</h2>
+  <p>MRP theory is the demand-side foundation of the entire labour market: MRP = MPP &times; MR. Marginal Physical Product (MPP) is the extra output one more worker produces; Marginal Revenue (MR) is the extra revenue the firm earns from selling that output. Because of the law of diminishing returns, adding workers to a fixed amount of capital and space eventually adds less and less extra output, MPP, and therefore MRP, rises at first as workers specialise and then falls as the workplace becomes crowded. A profit-maximising firm keeps hiring as long as the MRP of the next worker exceeds the wage, and stops exactly where MRP equals the wage.</p>
+
+  <div class="chart-block" id="mrpBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('mrp', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">MRP Theory: Diminishing Returns Set the Firm's Hiring Point</text>
+<line x1="90.0" y1="320.0" x2="610.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="90.0" y1="320.0" x2="90.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="82.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Revenue (&pound;)</text>
+<text x="610.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Number of workers</text>
+<path id="mrp-curve" class="mkt-draw" d="M 90.00 127.89 L 116.00 115.97 L 142.00 106.22 L 168.00 98.64 L 194.00 93.22 L 220.00 89.97 L 246.00 88.89 L 272.00 89.97 L 298.00 93.22 L 324.00 98.64 L 350.00 106.22 L 376.00 115.97 L 402.00 127.89 L 428.00 141.97 L 454.00 158.22 L 480.00 176.64 L 506.00 197.22 L 532.00 219.97 L 558.00 244.89 L 584.00 271.97 L 610.00 301.22" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<path id="mrp-wage" class="mkt-draw2" d="M 90.00 233.30 L 610.00 233.30" stroke="#C4534A" stroke-width="2.3" fill="none" opacity="0"/>
+<line id="mrp-gv" x1="546.0" y1="320.0" x2="546.0" y2="233.3" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<circle id="mrp-eq" cx="546.0" cy="233.3" r="0" fill="#14213D"/>
+<text x="250" y="76" font-size="11" fill="#0F7173" font-weight="bold">MRP = MPP &times; MR</text>
+<text id="mrp-wlabel" x="98.0" y="228.0" font-size="11" fill="#C4534A" font-weight="bold" opacity="0">Wage = MC of labour</text>
+<text id="mrp-qlabel" x="546.0" y="338.0" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Q* workers</text>
+<text id="mrp-note" x="350.0" y="360.0" font-size="11" fill="#4a4a4a" text-anchor="middle" font-style="italic" opacity="0">Beyond the peak, diminishing returns pull MRP down toward the wage line</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 2. The MRP curve rises as extra workers add specialisation and gains from teamwork, peaks, then falls as diminishing returns set in, exactly the "after 3 workers, employing more workers causes a fall in marginal productivity" pattern described in the standard MRP example. The firm hires up to Q*, where the falling MRP curve crosses the horizontal wage line.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the curve is generated from MRP(n) = 800 &minus; 15(n&minus;3)&sup2;, a genuine downward-opening parabola peaking at the third worker, not a freehand hump. Solving MRP(n) = 300 for the wage line gives an equilibrium at exactly n = 8.77 workers, the point plotted, so the intersection is algebraically guaranteed to fall precisely on both curves.</div>
+
+  <h2>5. AI and MRP: rewriting the value of a worker</h2>
+  <p>AI changes MRP through both of its multiplied components at once, which is why its labour market effects can look contradictory from one occupation to the next.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>AI raises MPP (augmentation).</strong> When AI tools make a worker faster or more capable at the same task, a lawyer reviewing contracts, a programmer debugging code, a customer service agent resolving tickets, the worker's marginal physical product rises. If demand for the underlying good or service doesn't fall, a higher MPP means a higher MRP, and the firm's demand curve for that worker shifts outward.</li>
+      <li><strong>AI can also replace MPP entirely (automation).</strong> When AI performs the task itself rather than assisting a human doing it, translation, routine data entry, first-draft content generation, the human's marginal physical product for that specific task collapses toward zero, pulling MRP down with it regardless of how valuable the human's other skills remain.</li>
+      <li><strong>The empirical picture is genuinely mixed.</strong> A large 2025 Danish study of ChatGPT use by Anders Humlum and Emilie Vestergaard, tracking administrative records across eleven exposed occupations, <cite index="16-1">found essentially zero effects on earnings or hours through 2024</cite>. Anthropic's own Economic Index research similarly reports that across most cuts of the data the employment effect on AI-exposed jobs is <cite index="17-1">flat or even shows unemployment falling for the exposed group</cite>, with the clearest negative signal so far concentrated among young workers aged 22 to 25 in the most AI-exposed roles.</li>
+      <li><strong>Wage effects, where they exist, tend to be positive so far.</strong> Research reviewed by the International Center for Law and Economics <cite index="16-1">found small but statistically significant positive wage effects among the roughly 36% of US workers who reported using generative AI by December 2025</cite>, with no significant fall in job openings in the occupations most exposed to the technology.</li>
+    </ul>
+  </div>
+  <div class="ai-callout">
+    <div class="ai-label">Why the direction of the MRP shift matters</div>
+    <p>The single most useful question a student can ask about any AI tool is not "does it affect this job?" but "does it multiply this worker's output, or replace it?" A tool that helps a paralegal draft twice as many contracts shifts their MRP curve to the right, raising both their wage and the number of paralegals firms want to hire. A tool that drafts the contracts itself shifts the same curve left. Both are "AI affecting the labour market", but they point the wage and employment arrows in opposite directions.</p>
+  </div>
+
+  <h2>6. Monopsony power, precisely drawn</h2>
+  <p>A monopsony exists when a single firm, or a small group acting together, is effectively the only buyer of labour in a market: one coal mine in a mining town, one hospital trust employing nurses in a region. Because the monopsonist is the whole market, its hiring decision moves the wage it has to pay everyone, including workers already employed. That means its marginal cost of hiring one more worker is always higher than the average wage it is currently paying, a direct mirror image of the monopolist's marginal revenue always lying below the price it charges.</p>
+
+  <div class="chart-block" id="monoBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('mono', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Monopsony: One Buyer Pays a Lower Wage and Hires Fewer Workers</text>
+<line x1="90.0" y1="320.0" x2="610.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="90.0" y1="320.0" x2="90.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="82.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Wage</text>
+<text x="610.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Number of workers</text>
+<path id="mono-AC" class="mkt-draw" d="M 90.00 287.50 L 610.00 125.00" stroke="#111111" stroke-width="2.3" fill="none"/>
+<path id="mono-MC" class="mkt-draw" d="M 90.00 287.50 L 454.00 60.00" stroke="#8a8a8a" stroke-width="2.3" fill="none"/>
+<path id="mono-D" class="mkt-draw" d="M 90.00 92.50 L 610.00 287.50" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<line id="mono-gap" x1="285.0" y1="165.6" x2="285.0" y2="226.6" stroke="#C4534A" stroke-width="3.5" stroke-dasharray="1,5" stroke-linecap="round" opacity="0"/>
+<circle id="mono-e2" cx="285.0" cy="165.6" r="0" fill="#14213D"/>
+<circle id="mono-e2p" cx="285.0" cy="226.6" r="0" fill="#C4534A"/>
+<circle id="mono-e1" cx="373.7" cy="198.9" r="0" fill="#E3A008"/>
+<line id="mono-q2" x1="285.0" y1="320.0" x2="285.0" y2="165.6" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<line id="mono-w2" x1="90.0" y1="226.6" x2="285.0" y2="226.6" stroke="#C4534A" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<line id="mono-q1" x1="373.7" y1="320.0" x2="373.7" y2="198.9" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<line id="mono-w1" x1="90.0" y1="198.9" x2="373.7" y2="198.9" stroke="#E3A008" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<text x="605.0" y="118.0" font-size="11" fill="#111" font-weight="bold" text-anchor="end">S = AC of labour</text>
+<text x="448.0" y="76.0" font-size="11" fill="#8a8a8a" font-weight="bold" text-anchor="end">MC of labour</text>
+<text x="605.0" y="281.0" font-size="11" fill="#0F7173" font-weight="bold" text-anchor="end">D = MRP</text>
+<text id="mono-w2label" x="82.0" y="230.0" font-size="10.5" fill="#C4534A" text-anchor="end" font-weight="bold" opacity="0">W2</text>
+<text id="mono-w1label" x="82.0" y="202.5" font-size="10.5" fill="#E3A008" text-anchor="end" font-weight="bold" opacity="0">W1</text>
+<text id="mono-q2label" x="285.0" y="338.0" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Q2</text>
+<text id="mono-q1label" x="373.7" y="338.0" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Q1</text>
+<text id="mono-gaplabel" x="295.0" y="196.0" font-size="10" fill="#C4534A" font-weight="bold" opacity="0">monopsony wedge</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 3. The monopsonist hires where MC of labour equals D = MRP, at Q2, then looks down to its own supply curve to find the lowest wage, W2, that will attract exactly that many workers. This is strictly less than the competitive outcome, Q1 workers paid W1, where supply would have met demand directly. Workers are paid less than their marginal revenue product, the vertical "wedge" shown in red.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> with a linear supply curve W = 10 + 0.5L, the marginal cost of labour is algebraically MC = 10 + 1.0L, exactly double the slope, precisely the same doubling rule used to derive a monopolist's marginal revenue from its demand curve, just applied to buying labour instead of selling output. Every point plotted, Q1, Q2, W1, and W2, is the solution to the two simultaneous equations, not an estimate.</div>
+
+  <h2>7. AI, gig platforms, and algorithmic monopsony</h2>
+  <p>The clearest new source of monopsony-like power in the modern labour market is not a single dominant employer in a single town, it is an algorithm that sets pay for a fragmented, atomised workforce that never bargains collectively. Gig economy platforms already fit the classic description of monopsony power closely: workers face one dominant "buyer" of their labour time, with genuine information and switching frictions even though, in theory, several platforms exist.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>Algorithmic wage-setting.</strong> Ride-share and delivery platforms adjust pay per task using real-time algorithms responding to supply of available drivers and demand for rides, rather than a posted wage. Because the algorithm sees the whole local labour market and individual workers do not, the information asymmetry that underpins monopsony power is built directly into the software.</li>
+      <li><strong>Reduced worker mobility, despite apparent choice.</strong> Even though a driver could technically switch platforms, reputation scores, app-specific incentive structures, and algorithmic account deactivation all raise the effective switching cost, exactly the "occupational and geographical immobility" that labour economists identify as the real-world source of monopsony power, just implemented digitally rather than geographically.</li>
+      <li><strong>Case-rate variation as evidence of market power.</strong> If gig platforms were purely competitive wage-takers, pay per task would track the local competitive wage closely. Instead, documented variation in effective hourly pay for functionally identical tasks across cities and time slots is consistent with a platform sitting somewhere between competitive pricing and the textbook monopsony wedge in Figure 3.</li>
+    </ul>
+  </div>
+  <div class="ai-callout">
+    <div class="ai-label">Why this matters for policy</div>
+    <p>The minimum wage in Figure 3 was designed as a remedy for exactly this kind of employer wage-setting power, forcing the effective marginal cost of labour back down toward the competitive supply curve. As algorithmic monopsony spreads into freelance and gig work, several jurisdictions have begun exploring minimum per-task pay rates for platform workers, a direct policy descendant of the classic monopsony diagram, aimed at a digital rather than a geographic monopsonist.</p>
+  </div>
+
+  <h2>8. The minimum wage, precisely drawn</h2>
+  <p>A minimum wage is a legal price floor set above the level firms would otherwise pay. Its effect depends entirely on which of the two market structures above actually describes the labour market it is imposed on, which is why the same policy tool produces opposite predictions from different economists.</p>
+
+  <div class="chart-block" id="mwBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('mw', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">Minimum Wage: Unemployment in a Competitive Market, a Wage Rise in a Monopsony</text>
+<line x1="60.0" y1="320.0" x2="290.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="60.0" y1="320.0" x2="60.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="52.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Wage</text>
+<text x="290.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Labour</text>
+<text x="175.0" y="354.0" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Panel A: Competitive Market</text>
+<path id="mw-D" class="mkt-draw" d="M 60.00 86.00 L 290.00 294.00" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<path id="mw-S" class="mkt-draw" d="M 60.00 294.00 L 290.00 86.00" stroke="#111111" stroke-width="2.3" fill="none"/>
+<circle id="mw-eq0" cx="175.0" cy="190.0" r="0" fill="#8a8a8a"/>
+<path id="mw-minline" class="mkt-draw2" d="M 60.00 140.00 L 290.00 140.00" stroke="#E3A008" stroke-width="2.3" fill="none" opacity="0"/>
+<line id="mw-gap" x1="119.7" y1="140.0" x2="230.4" y2="140.0" stroke="#C4534A" stroke-width="4" stroke-linecap="round" opacity="0"/>
+<circle id="mw-qd" cx="119.7" cy="140.0" r="0" fill="#C4534A"/>
+<circle id="mw-qs" cx="230.4" cy="140.0" r="0" fill="#C4534A"/>
+<text x="270.0" y="312.0" font-size="10" fill="#0F7173" font-weight="bold">D</text>
+<text x="275.0" y="76.0" font-size="10" fill="#111" font-weight="bold">S</text>
+<text id="mw-minlabel" x="52.0" y="144.0" font-size="10" fill="#E3A008" text-anchor="end" font-weight="bold" opacity="0">NMW</text>
+<text id="mw-gaplabel" x="175.0" y="130.0" font-size="9.5" fill="#C4534A" text-anchor="middle" font-weight="bold" opacity="0">unemployment</text>
+<line x1="420.0" y1="320.0" x2="650.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="420.0" y1="320.0" x2="420.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="412.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Wage</text>
+<text x="650.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Labour</text>
+<text x="535.0" y="354.0" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Panel B: Monopsony Market</text>
+<path id="mw-AC" class="mkt-draw" d="M 420.00 287.50 L 650.00 125.00" stroke="#111111" stroke-width="2.3" fill="none"/>
+<path id="mw-MC" class="mkt-draw" d="M 420.00 287.50 L 581.00 60.00" stroke="#8a8a8a" stroke-width="2.3" fill="none"/>
+<path id="mw-D2" class="mkt-draw" d="M 420.00 92.50 L 650.00 287.50" stroke="#0F7173" stroke-width="2.3" fill="none"/>
+<circle id="mw-old" cx="506.25" cy="226.6" r="0" fill="#8a8a8a"/>
+<path id="mw-floor" class="mkt-draw2" d="M 420.00 198.90 L 545.50 198.90" stroke="#E3A008" stroke-width="3" fill="none" opacity="0"/>
+<circle id="mw-new" cx="545.5" cy="198.9" r="0" fill="#E3A008"/>
+<line id="mw-newq" x1="545.5" y1="320.0" x2="545.5" y2="198.9" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<line id="mw-oldq" x1="506.25" y1="320.0" x2="506.25" y2="226.6" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+<text x="645.0" y="118.0" font-size="10" fill="#111" font-weight="bold" text-anchor="end">S = AC</text>
+<text x="575.0" y="72.0" font-size="10" fill="#8a8a8a" font-weight="bold" text-anchor="end">MC</text>
+<text x="645.0" y="281.0" font-size="10" fill="#0F7173" font-weight="bold" text-anchor="end">D = MRP</text>
+<text id="mw-newlabel" x="428.0" y="192.5" font-size="10" fill="#E3A008" font-weight="bold" opacity="0">NMW raises both wage &amp; jobs</text>
+<text id="mw-oldqlabel" x="506.25" y="338.0" font-size="9.5" fill="#8a8a8a" text-anchor="middle" font-weight="bold" opacity="0">Q2</text>
+<text id="mw-newqlabel" x="545.5" y="352.0" font-size="9.5" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Q1</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 4. Panel A: in a genuinely competitive market, a minimum wage set above equilibrium creates excess supply, the red bar, workers wanting jobs at the new wage exceeds jobs offered, i.e. unemployment. Panel B: in a monopsony market, a minimum wage set exactly at the competitive wage removes the firm's incentive to restrict hiring, since the wage is now fixed regardless of how many workers it hires, up to Q1. The result is a wage rise from W2 to W1 <em>and</em> a rise in employment from Q2 to Q1, unemployment falls rather than rises.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the Panel B minimum-wage line is set at exactly the same wage, W1 = 37.27, that solves AC = D in the competitive benchmark, this is not a coincidence but the entire mechanism: a binding minimum wage makes the firm's marginal cost of labour equal to the wage itself, up to the quantity where the floor meets the original supply curve, collapsing MC back onto AC and restoring the competitive hiring point.</div>
+
+  <h2>9. The minimum wage debate in an AI-disrupted labour market</h2>
+  <p>AI adds a genuinely new argument to both sides of the century-old minimum wage debate, rather than simply restating the old one.</p>
+  <table>
+    <tr><th>Argument</th><th>Pre-AI version</th><th>AI-era twist</th></tr>
+    <tr><td>Unemployment risk</td><td>A minimum wage above equilibrium prices some low-productivity workers out of jobs (Panel A).</td><td>AI tools that automate routine minimum-wage tasks lower those workers' MRP directly, shifting demand left and making the same minimum wage more likely to bind, and to cause job losses, than before AI.</td></tr>
+    <tr><td>Monopsony correction</td><td>A minimum wage can raise both wages and employment where employers have wage-setting power (Panel B).</td><td>Algorithmic monopsony on gig platforms is a newly documented source of employer wage power, strengthening the case for a wage floor as a targeted correction rather than a blunt intervention.</td></tr>
+    <tr><td>Productivity response</td><td>Efficiency wage theory: higher pay can raise effort and productivity.</td><td>AI-assisted training and task-guidance tools make it cheaper for firms to actually lift a minimum-wage worker's productivity in response to a wage floor, rather than simply cutting hours.</td></tr>
+  </table>
+  <p>The UK's own minimum wage data illustrates why the elasticity of demand for labour, not the theory alone, decides which effect dominates in practice: since 1999, employment has stayed at record highs even as the National Minimum Wage has risen faster than median pay, evidence, though not proof, that most of the UK labour market behaves more like Panel B than Panel A, or that demand for low-paid labour has simply been more wage-inelastic than free-market economists like Milton Friedman originally feared.</p>
+
+  <h2>10. AI shifting the demand for labour: augmentation vs automation, precisely drawn</h2>
+  <p>Because demand for labour is a derived MRP curve, AI's biggest structural effect on the labour market is simply to shift that curve, left or right, depending on whether a given AI system multiplies a worker's output or substitutes for it entirely. The direction of the shift, not just its existence, determines whether wages and employment in an occupation rise or fall together.</p>
+
+  <div class="chart-block" id="aiBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('ai', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:600px;">
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111111" text-anchor="middle" font-weight="bold">AI and the Demand for Labour: Two Opposite Shifts</text>
+<line x1="60.0" y1="320.0" x2="290.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="60.0" y1="320.0" x2="60.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="52.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Wage</text>
+<text x="290.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Labour</text>
+<text x="175.0" y="354.0" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Panel A: AI Augments (Complement)</text>
+<path id="ai-S1" class="mkt-draw" d="M 60.00 287.50 L 290.00 125.00" stroke="#111111" stroke-width="2.3" fill="none"/>
+<path id="ai-D0a" class="mkt-draw" d="M 60.00 92.50 L 290.00 287.50" stroke="#8a8a8a" stroke-width="2" stroke-dasharray="5,4" fill="none"/>
+<path id="ai-D1a" class="mkt-draw2" d="M 60.00 53.50 L 290.00 248.50" stroke="#0F7173" stroke-width="2.3" fill="none" opacity="0"/>
+<circle id="ai-e0a" cx="185.5" cy="198.9" r="0" fill="#8a8a8a"/>
+<circle id="ai-e1a" cx="210.5" cy="181.1" r="0" fill="#0F7173"/>
+<line id="ai-guide-a" x1="185.5" y1="198.9" x2="210.5" y2="181.1" stroke="#0F7173" stroke-width="1.3" opacity="0" marker-end="url(#arrowTealAI)"/>
+<text x="270.0" y="80.0" font-size="9.5" fill="#8a8a8a" font-weight="bold" text-anchor="end">D0</text>
+<text x="270.0" y="255.0" font-size="9.5" fill="#0F7173" font-weight="bold" text-anchor="end">D1</text>
+<text id="ai-labela" x="175.0" y="368.0" font-size="10.5" fill="#0F7173" text-anchor="middle" font-weight="bold" opacity="0">Wage &#8593;  Employment &#8593;</text>
+<line x1="420.0" y1="320.0" x2="650.0" y2="320.0" stroke="#111" stroke-width="1.3"/>
+<line x1="420.0" y1="320.0" x2="420.0" y2="60.0" stroke="#111" stroke-width="1.3"/>
+<text x="412.0" y="60.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Wage</text>
+<text x="650.0" y="338.0" font-size="10.5" fill="#4a4a4a" text-anchor="end">Labour</text>
+<text x="535.0" y="354.0" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Panel B: AI Automates (Substitute)</text>
+<path id="ai-S2" class="mkt-draw" d="M 420.00 287.50 L 650.00 125.00" stroke="#111111" stroke-width="2.3" fill="none"/>
+<path id="ai-D0b" class="mkt-draw" d="M 420.00 92.50 L 650.00 287.50" stroke="#8a8a8a" stroke-width="2" stroke-dasharray="5,4" fill="none"/>
+<path id="ai-D1b" class="mkt-draw2" d="M 420.00 141.25 L 630.90 320.00" stroke="#C4534A" stroke-width="2.3" fill="none" opacity="0"/>
+<circle id="ai-e0b" cx="545.5" cy="198.9" r="0" fill="#8a8a8a"/>
+<circle id="ai-e1b" cx="514.1" cy="221.0" r="0" fill="#C4534A"/>
+<line id="ai-guide-b" x1="545.5" y1="198.9" x2="514.1" y2="221.0" stroke="#C4534A" stroke-width="1.3" opacity="0" marker-end="url(#arrowRedAI)"/>
+<text x="630.0" y="80.0" font-size="9.5" fill="#8a8a8a" font-weight="bold" text-anchor="end">D0</text>
+<text x="590.0" y="150.0" font-size="9.5" fill="#C4534A" font-weight="bold">D1</text>
+<text id="ai-labelb" x="535.0" y="368.0" font-size="10.5" fill="#C4534A" text-anchor="middle" font-weight="bold" opacity="0">Wage &#8595;  Employment &#8595;</text>
+<defs>
+<marker id="arrowTealAI" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0F7173"/></marker>
+<marker id="arrowRedAI" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#C4534A"/></marker>
+</defs>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 5. Panel A: when AI raises a worker's MPP faster than it displaces their tasks, the whole demand curve shifts right, both the equilibrium wage and equilibrium employment rise together. Panel B: when AI substitutes directly for the task, demand shifts left, and both wage and employment fall together. Both panels use the identical supply curve, isolating the demand shift as the only thing that differs.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> both new demand lines are genuine parallel-style shifts of the same underlying linear demand equation, D1(L) = 82 &minus; 0.6L in Panel A versus the original D0(L) = 70 &minus; 0.6L, and D1(L) = 58 &minus; 0.6L in Panel B, solved simultaneously against the shared supply curve S(L) = 10 + 0.5L to find each new equilibrium exactly, rather than nudging a curve until it "looks about right."</div>
+
+  <h2>11. The task-based model: how AI displaces and creates work, precisely drawn</h2>
+  <p>The four demand-and-supply diagrams above all treat "labour" as a single, undifferentiated block. The most influential modern account of automation, developed by economists Daron Acemoglu and Pascual Restrepo, zooms in on what is actually happening underneath that block: production is really a continuum of individual <em>tasks</em>, ranked from the most routine to the most complex, and each task is assigned to whichever input, human labour or capital/AI, can perform it more cheaply. This single idea explains something the earlier diagrams cannot: why AI can destroy jobs and create jobs inside the very same labour market at the very same time. The diagram below builds itself up in six slow stages, watch the whole sequence at least once before reading the explanation underneath.</p>
+
+  <div class="chart-block" id="taskBlock">
+    <div class="live-tag"><span class="live-dot"></span>Six-stage build, watch closely</div>
+    <button class="replay-btn" onclick="replay('task', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram</div>
+    <div class="chart-scroll"><div style="min-width:640px;">
+<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;">
+<defs>
+  <pattern id="hatchDisplace" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="7" stroke="#C4534A" stroke-width="2.5"/>
+  </pattern>
+  <pattern id="hatchReinstate" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="7" stroke="#0F7173" stroke-width="2.5"/>
+  </pattern>
+</defs>
+<text x="350" y="24" font-size="13.5" fill="#111111" text-anchor="middle" font-weight="bold">The Task-Based Model: Displacement and Reinstatement Effects of AI</text>
+<rect id="task-stagebox" x="480" y="36" width="200" height="34" rx="6" fill="#14213D"/>
+<text id="task-stagetext" x="580" y="57" font-size="10.5" fill="#FCEFC7" text-anchor="middle" font-weight="bold">Stage 1 / 6 &middot; Setting up the task spectrum</text>
+
+<line id="task-axis-x" x1="90" y1="380" x2="610" y2="380" stroke="#111" stroke-width="1.3" opacity="0"/>
+<line id="task-axis-y" x1="90" y1="380" x2="90" y2="80" stroke="#111" stroke-width="1.3" opacity="0"/>
+<text id="task-ylabel" x="82" y="80" font-size="10.5" fill="#4a4a4a" text-anchor="end" opacity="0">Unit cost of production</text>
+<text id="task-xlabel" x="610" y="400" font-size="10.5" fill="#4a4a4a" text-anchor="end" opacity="0">Task complexity, i (routine &#8594; complex)</text>
+
+<rect id="zone-auto0" x="90" y="80" width="216.66" height="300" fill="#8a8a8a" opacity="0"/>
+<rect id="zone-labor0" x="306.66" y="80" width="216.66" height="300" fill="#0F7173" opacity="0"/>
+<text id="zone-auto0-label" x="198" y="100" font-size="10" fill="#4a4a4a" text-anchor="middle" font-weight="bold" opacity="0">performed by capital</text>
+<text id="zone-labor0-label" x="415" y="100" font-size="10" fill="#0F7173" text-anchor="middle" font-weight="bold" opacity="0">performed by labour</text>
+
+<path id="task-labor0" d="M 90.00 95.00 L 111.67 107.00 L 133.33 119.00 L 155.00 131.00 L 176.67 143.00 L 198.33 155.00 L 220.00 167.00 L 241.67 179.00 L 263.33 191.00 L 285.00 203.00 L 306.66 215.00 L 328.33 227.00 L 350.00 239.00 L 371.66 251.00 L 393.33 263.00 L 415.00 275.00 L 436.66 287.00 L 458.33 299.00 L 480.00 311.00 L 501.66 323.00 L 523.33 335.00" stroke="#111111" stroke-width="2.3" fill="none" opacity="0"/>
+<text id="task-labor0-tag" x="528" y="336" font-size="10" fill="#111" font-weight="bold" opacity="0">cost of labour, w/&#947;(i)</text>
+
+<line id="task-cap-line" x1="90.00" y1="215.00" x2="523.33" y2="215.00" stroke="#C4534A" stroke-width="2.6" opacity="0"/>
+<text id="task-cap-tag" x="528" y="219" font-size="10" fill="#C4534A" font-weight="bold" opacity="0">cost of capital / AI, &#961;</text>
+
+<line id="task-frontier" x1="306.66" y1="380" x2="306.66" y2="215" stroke="#14213D" stroke-width="1.6" stroke-dasharray="4,3" opacity="0"/>
+<circle id="task-frontier-dot" cx="306.66" cy="215" r="0" fill="#14213D"/>
+<text id="task-frontier-label" x="306.66" y="398" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">I* (automation frontier)</text>
+
+<rect id="zone-displace" x="306.66" y="80" width="135.42" height="300" fill="url(#hatchDisplace)" opacity="0"/>
+<text id="zone-displace-label" x="374" y="118" font-size="10" fill="#C4534A" text-anchor="middle" font-weight="bold" opacity="0">Displacement effect</text>
+<text id="zone-displace-sub" x="374" y="131" font-size="9" fill="#C4534A" text-anchor="middle" opacity="0">tasks move from labour to AI</text>
+
+<line id="task-frontier1" x1="442.08" y1="380" x2="442.08" y2="290" stroke="#14213D" stroke-width="1.6" stroke-dasharray="4,3" opacity="0"/>
+<circle id="task-frontier1-dot" cx="442.08" cy="290" r="0" fill="#14213D"/>
+<text id="task-frontier1-label" x="442.08" y="415" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">I*&#8242; (new, wider frontier)</text>
+
+<line id="task-axis-ext" x1="523.33" y1="380" x2="610" y2="380" stroke="#111" stroke-width="1.3" opacity="0"/>
+<path id="task-labor-new" d="M 523.33 335.00 L 534.16 337.25 L 545.00 339.50 L 555.83 341.75 L 566.66 344.00 L 577.50 346.25 L 588.33 348.50 L 599.16 350.75 L 610.00 353.00" stroke="#111111" stroke-width="2.3" fill="none" opacity="0"/>
+<line id="task-cap-new" x1="523.33" y1="110.00" x2="610.00" y2="110.00" stroke="#C4534A" stroke-width="2.3" stroke-dasharray="5,3" opacity="0"/>
+<rect id="zone-reinstate" x="523.33" y="80" width="86.67" height="300" fill="url(#hatchReinstate)" opacity="0"/>
+<text id="zone-reinstate-label" x="566" y="118" font-size="9.5" fill="#0F7173" text-anchor="middle" font-weight="bold" opacity="0">Reinstatement</text>
+<text id="zone-reinstate-sub" x="566" y="131" font-size="8.5" fill="#0F7173" text-anchor="middle" opacity="0">brand-new tasks, labour-only</text>
+<text id="task-cap-new-tag" x="566" y="102" font-size="8.5" fill="#C4534A" text-anchor="middle" opacity="0">AI cannot yet do these</text>
+
+<rect id="task-summary-box" x="90" y="430" width="520" height="70" rx="6" fill="#F7F7F7" stroke="#d9d9d9" opacity="0"/>
+<text id="task-summary-1" x="105" y="452" font-size="11" fill="#111" font-weight="bold" opacity="0">Net effect on labour depends on which force wins:</text>
+<text id="task-summary-2" x="105" y="470" font-size="10.5" fill="#C4534A" opacity="0">&#8226; Displacement effect: labour loses tasks (i &#8712; [5, 8.1]) &#8212; pushes labour share of income down</text>
+<text id="task-summary-3" x="105" y="487" font-size="10.5" fill="#0F7173" opacity="0">&#8226; Reinstatement effect: labour gains brand-new tasks (i &#8712; [10, 12]) &#8212; pushes labour share back up</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 6. Tasks are ranked left to right by how strong labour's comparative advantage is. Originally, capital performs every task cheaper than labour up to the frontier I* (grey zone); labour performs everything to the right of it (teal zone). A fall in the cost of AI/capital (the red line sliding down) pushes the frontier rightward to I*&#8242;, automating tasks labour used to perform, the displacement effect (hatched red). But AI simultaneously makes entirely new, more complex tasks technologically possible, tasks that did not exist before and that only labour can currently perform, the reinstatement effect (hatched teal). Whether AI raises or lowers total demand for labour depends on which of these two effects is larger, exactly the ambiguity found in the empirical research cited throughout this article.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the original labour cost curve is the linear function w/&#947;(i) = 95 &minus; 8i, and the cost of capital falls from &#961;&#8320; = 55 to &#961;&#8321; = 30 following the AI shock. Solving 95 &minus; 8i = &#961; for each value of &#961; gives the frontier algebraically: I*&#8320; = 5.0 before the shock and I*&#8242; = 8.125 after it, the exact positions plotted and animated. This is the formal model behind Daron Acemoglu and Pascual Restrepo's influential account of automation, extended here with a second, newly-created task interval to show the reinstatement effect explicitly.</div>
+
+  <h2>12. Real-world spotlight: the AI skills wage premium</h2>
+  <p>The clearest large-scale evidence that AI is currently shifting labour demand curves rightward for some workers, and creating a widening split in the labour market, comes from recent wage-premium data.</p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="value">62%</div><div class="label">Average wage premium for AI-skilled workers globally, PwC's 2026 AI Jobs Barometer, up from 57% a year earlier</div></div>
+    <div class="stat-box"><div class="value">118%</div><div class="label">AI skills wage premium in the highest-paying sector, consumer markets</div></div>
+    <div class="stat-box"><div class="value">52% vs 36%</div><div class="label">Headcount growth at the most AI-exposed companies versus the least AI-exposed, since 2018</div></div>
+    <div class="stat-box"><div class="value">~9%</div><div class="label">Growth rate of jobs demanding specific AI skills, roughly eight times faster than the overall jobs market</div></div>
+  </div>
+  <p><cite index="14-1">Companies most exposed to AI have grown headcount by 52% since 2018, compared with 36% at the least AI-exposed companies</cite>, evidence against the simplest "robots take all the jobs" story: at the level of whole firms, AI adoption so far correlates with expanding, not shrinking, demand for labour. But the same research shows the gains are highly uneven: <cite index="14-1">the wage premium for workers with AI skills has climbed to 62%, varying from as high as 118% in consumer markets down to just 16% in government and the public sector</cite>. That spread is exactly what the two panels of Figure 5 predict, a widening gap between occupations where AI complements MRP and occupations where it substitutes for it, rather than one uniform national effect.</p>
+  <p>Corporate hiring intentions data tells a more cautious story at the margin. <cite index="12-1">Across the S&amp;P Global 1200 index, 83% of constituent companies had lower headcount in January 2026 than a year earlier</cite>, and <cite index="12-1">survey evidence points to a modestly negative net employment effect from AI adoption, a reversal from the more neutral-to-positive picture seen through most of 2025</cite>. Reconciling this with the AI-skills wage premium above is itself a lesson in derived demand: aggregate headcount can fall even as demand, and pay, for a narrower band of AI-complementary skills rises sharply, exactly the composition effect Figure 5 is built to show.</p>
+
+  <h2>13. Labour market and AI, at a glance</h2>
+  <table>
+    <tr><th>Concept</th><th>Classic mechanism</th><th>AI-era development</th></tr>
+    <tr><td>Competitive wage determination</td><td>Industry S &amp; D sets wage; firms are wage takers</td><td>AI salary-benchmarking tools narrow information gaps, pushing real markets closer to the competitive ideal</td></tr>
+    <tr><td>MRP theory</td><td>Demand for labour = MPP &times; MR; diminishing returns eventually pull MRP down</td><td>AI can raise MPP (augmentation) or replace it outright (automation) task-by-task within the same job</td></tr>
+    <tr><td>Monopsony</td><td>One employer restricts hiring below competitive level to hold wages down</td><td>Algorithmic wage-setting on gig platforms is a documented new source of monopsony-like power</td></tr>
+    <tr><td>Minimum wage</td><td>Raises unemployment in competitive markets, can raise employment in monopsony markets</td><td>AI-driven automation of routine minimum-wage tasks makes the competitive-market unemployment risk more likely to bind</td></tr>
+    <tr><td>Demand for labour</td><td>A derived demand shaped by demand for the underlying product</td><td>AI shifts the demand curve directly, rightward for complementary tasks, leftward for substitutable ones</td></tr>
+  </table>
+
+  <h2>14. Key takeaways</h2>
+  <div class="panel discussion">
+    <ol>
+      <li>Demand for labour is always <em>derived</em> demand, driven by MRP = MPP &times; MR, which is why AI's effect on any single job depends on whether it raises a worker's output (MPP) or replaces it.</li>
+      <li>A firm in a competitive labour market hires up to the point where its MRP curve, its demand curve for labour, crosses the wage it must pay, a wage it takes as given.</li>
+      <li>Monopsony power lets a dominant buyer of labour pay below the competitive wage and hire below the competitive quantity, because its marginal cost of labour always exceeds the average wage, a doubling-slope relationship that mirrors monopoly on the selling side.</li>
+      <li>A minimum wage causes unemployment in a genuinely competitive labour market, but can raise both wages and employment where monopsony power exists, the policy effect depends entirely on market structure, not on the size of the wage floor alone.</li>
+      <li>Algorithmic wage-setting on gig platforms is increasingly treated by economists as a real-world, digitally implemented form of monopsony power, reviving the classic diagram's policy relevance.</li>
+      <li>Current evidence, from Denmark, the US, and Anthropic's own usage data, shows broadly flat or mixed aggregate employment effects from AI so far, alongside a rapidly widening wage premium, up to 62% globally, for workers with AI-complementary skills.</li>
+    </ol>
+  </div>
+
+  <h2>15. Glossary</h2>
+  <dl class="glossary">
+    <dt>Derived demand</dt>
+    <dd>Demand for a factor of production, such as labour, that exists only because of demand for the good or service it helps produce.</dd>
+    <dt>Marginal Physical Product (MPP)</dt>
+    <dd>The extra output produced by employing one additional worker, holding other inputs fixed.</dd>
+    <dt>Marginal Revenue Product (MRP)</dt>
+    <dd>MPP multiplied by marginal revenue; the extra revenue a firm earns from employing one more worker, and the theoretical basis of a firm's demand curve for labour.</dd>
+    <dt>Monopsony</dt>
+    <dd>A market with a single, or dominant, buyer of a factor of production, giving that buyer power to set the price, here, the wage, below the competitive level.</dd>
+    <dt>Wage taker</dt>
+    <dd>A firm in a competitive labour market small enough that it must accept the going market wage, facing a perfectly elastic labour supply curve.</dd>
+    <dt>Marginal cost of labour</dt>
+    <dd>The extra total wage cost of employing one more worker; equals the wage in a competitive market, but exceeds the average wage under monopsony because hiring one more worker raises the wage paid to all existing workers too.</dd>
+    <dt>National Minimum Wage</dt>
+    <dd>A legally binding wage floor; in the UK set at £12.71 per hour for workers aged 21 and over from April 2026.</dd>
+    <dt>AI augmentation</dt>
+    <dd>AI that increases a worker's productivity at a task they still perform, raising MPP and shifting the labour demand curve to the right.</dd>
+    <dt>AI automation</dt>
+    <dd>AI that performs a task in place of a worker, reducing that worker's MPP for the task and shifting the labour demand curve to the left.</dd>
+    <dt>Algorithmic monopsony</dt>
+    <dd>Wage-setting power exercised by a platform's pricing algorithm over a fragmented workforce, functioning like classic geographic monopsony power without a single physical location.</dd>
+  </dl>
+
+  <div class="footer-note">
+    Core labour-market theory, definitions, and diagram conventions in this article follow the standard A-Level / undergraduate labour economics curriculum (derived demand, MRP theory, monopsony, minimum wage analysis, and the Acemoglu &amp; Restrepo task-based model of automation). AI labour-market research is drawn from PwC's 2026 Global AI Jobs Barometer, S&amp;P Global's AI Impact on Employment 2026 report, the Anthropic Economic Index's Labor Market Impacts of AI research, and the International Center for Law &amp; Economics' review of empirical AI-and-productivity studies, including Humlum &amp; Vestergaard (2025). All diagrams on this page were algebraically derived and independently rendered as original SVG artwork for this article; none are copied images. Figures illustrate textbook mechanisms and are not calibrated to any single real economy.
+  </div>
+
+</div>
+
+<script>
+  function animateDraw(id, delay) {
+    const path = document.getElementById(id);
+    if (!path) return;
+    const len = path.getTotalLength ? path.getTotalLength() : 500;
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    path.getBoundingClientRect();
+    setTimeout(() => {
+      path.style.transition = "stroke-dashoffset 1.6s cubic-bezier(.22,1,.36,1)";
+      path.style.strokeDashoffset = 0;
+    }, delay || 0);
+  }
+  function fadeIn(id, delay, dur) {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.style.transition = `opacity ${dur||0.6}s ease`; el.style.opacity = 1; }
+    }, delay || 0);
+  }
+  function growCircle(id, r, delay) {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.style.transition = "r 0.5s ease"; el.setAttribute('r', r); }
+    }, delay || 0);
+  }
+  function resetFade(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.transition = "none"; el.style.opacity = 0; }
+  }
+  function resetCircle(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.transition = "none"; el.setAttribute('r', 0); }
+  }
+
+  /* ---------- Wage Determination ---------- */
+  function playWage() {
+    animateDraw('w-D', 100); animateDraw('w-S', 100);
+    growCircle('w-eq', 5, 1700); fadeIn('w-eq-h', 1700); fadeIn('w-p-label', 1900);
+    animateDraw('w-MRP', 300);
+    setTimeout(() => { animateDraw('w-firmS', 0); fadeIn('w-firmS', 0); }, 2000);
+    setTimeout(() => { growCircle('w-tangent', 5, 0); fadeIn('w-arlabel', 200); fadeIn('w-qlabel', 400); }, 2600);
+  }
+  function resetWage() {
+    resetCircle('w-eq'); resetFade('w-eq-h'); resetFade('w-p-label');
+    resetFade('w-firmS'); resetCircle('w-tangent'); resetFade('w-arlabel'); resetFade('w-qlabel');
+  }
+
+  /* ---------- MRP Theory ---------- */
+  function playMRP() {
+    animateDraw('mrp-curve', 100);
+    setTimeout(() => { animateDraw('mrp-wage', 0); fadeIn('mrp-wage', 0); fadeIn('mrp-wlabel', 300); }, 1800);
+    setTimeout(() => { growCircle('mrp-eq', 5, 0); fadeIn('mrp-gv', 0); fadeIn('mrp-qlabel', 200); }, 2500);
+    setTimeout(() => { fadeIn('mrp-note', 0); }, 3000);
+  }
+  function resetMRP() {
+    resetFade('mrp-wage'); resetFade('mrp-wlabel'); resetCircle('mrp-eq');
+    resetFade('mrp-gv'); resetFade('mrp-qlabel'); resetFade('mrp-note');
+  }
+
+  /* ---------- Monopsony ---------- */
+  function playMono() {
+    animateDraw('mono-AC', 100); animateDraw('mono-MC', 100); animateDraw('mono-D', 100);
+    setTimeout(() => { growCircle('mono-e1', 5, 0); fadeIn('mono-q1', 0); fadeIn('mono-w1', 200); fadeIn('mono-w1label', 200); fadeIn('mono-q1label', 200); }, 1900);
+    setTimeout(() => { growCircle('mono-e2', 5, 0); growCircle('mono-e2p', 5, 150); fadeIn('mono-q2', 0); fadeIn('mono-w2', 150); fadeIn('mono-w2label', 150); fadeIn('mono-q2label', 0); }, 2700);
+    setTimeout(() => { fadeIn('mono-gap', 0); fadeIn('mono-gaplabel', 300); }, 3400);
+  }
+  function resetMono() {
+    resetCircle('mono-e1'); resetFade('mono-q1'); resetFade('mono-w1'); resetFade('mono-w1label'); resetFade('mono-q1label');
+    resetCircle('mono-e2'); resetCircle('mono-e2p'); resetFade('mono-q2'); resetFade('mono-w2'); resetFade('mono-w2label'); resetFade('mono-q2label');
+    resetFade('mono-gap'); resetFade('mono-gaplabel');
+  }
+
+  /* ---------- Minimum Wage ---------- */
+  function playMW() {
+    animateDraw('mw-D', 100); animateDraw('mw-S', 100);
+    animateDraw('mw-AC', 100); animateDraw('mw-MC', 100); animateDraw('mw-D2', 100);
+    setTimeout(() => { growCircle('mw-eq0', 4, 0); growCircle('mw-old', 4, 150); }, 1800);
+    setTimeout(() => {
+      animateDraw('mw-minline', 0); fadeIn('mw-minline', 0); fadeIn('mw-minlabel', 300);
+      animateDraw('mw-floor', 0); fadeIn('mw-floor', 0);
+    }, 2300);
+    setTimeout(() => {
+      fadeIn('mw-gap', 0); fadeIn('mw-gaplabel', 200);
+      growCircle('mw-qd', 4, 0); growCircle('mw-qs', 4, 100);
+      growCircle('mw-new', 5, 0); fadeIn('mw-newq', 0); fadeIn('mw-oldq', 100);
+      fadeIn('mw-newlabel', 300); fadeIn('mw-oldqlabel', 300); fadeIn('mw-newqlabel', 300);
+    }, 3300);
+  }
+  function resetMW() {
+    resetCircle('mw-eq0'); resetCircle('mw-old');
+    resetFade('mw-minline'); resetFade('mw-minlabel'); resetFade('mw-floor');
+    resetFade('mw-gap'); resetFade('mw-gaplabel'); resetCircle('mw-qd'); resetCircle('mw-qs');
+    resetCircle('mw-new'); resetFade('mw-newq'); resetFade('mw-oldq');
+    resetFade('mw-newlabel'); resetFade('mw-oldqlabel'); resetFade('mw-newqlabel');
+  }
+
+  /* ---------- AI Demand Shift ---------- */
+  function playAI() {
+    animateDraw('ai-S1', 100); animateDraw('ai-D0a', 100);
+    animateDraw('ai-S2', 100); animateDraw('ai-D0b', 100);
+    setTimeout(() => { growCircle('ai-e0a', 4, 0); growCircle('ai-e0b', 4, 150); }, 1700);
+    setTimeout(() => {
+      animateDraw('ai-D1a', 0); fadeIn('ai-D1a', 0);
+      animateDraw('ai-D1b', 0); fadeIn('ai-D1b', 0);
+    }, 2200);
+    setTimeout(() => {
+      growCircle('ai-e1a', 5, 0); growCircle('ai-e1b', 5, 100);
+      fadeIn('ai-guide-a', 0); fadeIn('ai-guide-b', 100);
+      fadeIn('ai-labela', 300); fadeIn('ai-labelb', 400);
+    }, 3600);
+  }
+  function resetAI() {
+    resetCircle('ai-e0a'); resetCircle('ai-e0b'); resetFade('ai-D1a'); resetFade('ai-D1b');
+    resetCircle('ai-e1a'); resetCircle('ai-e1b'); resetFade('ai-guide-a'); resetFade('ai-guide-b');
+    resetFade('ai-labela'); resetFade('ai-labelb');
+  }
+
+  /* ---------- Task-Based Automation Model (slow, 6-stage) ---------- */
+  function setStage(n, label) {
+    const el = document.getElementById('task-stagetext');
+    if (el) el.textContent = `Stage ${n} / 6 \u00b7 ${label}`;
+  }
+  function moveLine(id, attrs, dur) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.transition = `all ${dur||2000}ms cubic-bezier(.4,0,.2,1)`;
+    Object.keys(attrs).forEach(k => el.setAttribute(k, attrs[k]));
+  }
+  function playTask() {
+    setStage(1, 'Setting up the task spectrum');
+    fadeIn('task-axis-x', 0, 1); fadeIn('task-axis-y', 0, 1);
+    fadeIn('task-ylabel', 600, 0.8); fadeIn('task-xlabel', 600, 0.8);
+
+    setTimeout(() => {
+      setStage(2, 'Cost of labour across tasks');
+      animateDraw('task-labor0', 0); fadeIn('task-labor0', 0, 0.4); fadeIn('task-labor0-tag', 1800, 0.8);
+    }, 1600);
+
+    setTimeout(() => {
+      setStage(3, 'Original cost of capital / AI');
+      fadeIn('task-cap-line', 0, 1.4); fadeIn('task-cap-tag', 900, 0.8);
+    }, 4200);
+
+    setTimeout(() => {
+      setStage(4, 'The original automation frontier, I*');
+      fadeIn('task-frontier', 0, 1); growCircle('task-frontier-dot', 5, 300);
+      fadeIn('task-frontier-label', 500, 0.8);
+      fadeIn('zone-auto0', 300, 1.4); fadeIn('zone-labor0', 300, 1.4);
+      fadeIn('zone-auto0-label', 1200, 0.8); fadeIn('zone-labor0-label', 1200, 0.8);
+    }, 6600);
+
+    setTimeout(() => {
+      setStage(5, 'AI shock: capital gets cheaper, frontier shifts right');
+      moveLine('task-cap-line', { y1: 290, y2: 290 }, 2200);
+      setTimeout(() => {
+        moveLine('task-frontier', { x1: 442.08, x2: 442.08, y2: 290 }, 1400);
+        moveLine('task-frontier-dot', { cx: 442.08, cy: 290 }, 1400);
+        const lbl = document.getElementById('task-frontier-label');
+        if (lbl) { lbl.style.transition = 'opacity 0.4s ease'; lbl.style.opacity = 0; }
+        fadeIn('task-frontier1', 1500, 1); growCircle('task-frontier1-dot', 5, 1900);
+        fadeIn('task-frontier1-label', 2000, 0.8);
+        fadeIn('zone-displace', 1500, 1.4);
+        fadeIn('zone-displace-label', 2400, 0.8); fadeIn('zone-displace-sub', 2600, 0.8);
+      }, 2200);
+    }, 10200);
+
+    setTimeout(() => {
+      setStage(6, 'AI creates brand-new, labour-only tasks');
+      fadeIn('task-axis-ext', 0, 1);
+      animateDraw('task-labor-new', 200); fadeIn('task-labor-new', 200, 0.4);
+      fadeIn('task-cap-new', 800, 1); fadeIn('task-cap-new-tag', 1400, 0.8);
+      fadeIn('zone-reinstate', 800, 1.4);
+      fadeIn('zone-reinstate-label', 1800, 0.8); fadeIn('zone-reinstate-sub', 2000, 0.8);
+    }, 16500);
+
+    setTimeout(() => {
+      fadeIn('task-summary-box', 0, 1);
+      fadeIn('task-summary-1', 300, 0.8);
+      fadeIn('task-summary-2', 900, 0.8);
+      fadeIn('task-summary-3', 1500, 0.8);
+    }, 20500);
+  }
+  function resetTask() {
+    ['task-axis-x','task-axis-y','task-ylabel','task-xlabel','task-labor0','task-labor0-tag',
+     'task-cap-tag','task-frontier','task-frontier-label','zone-auto0','zone-labor0',
+     'zone-auto0-label','zone-labor0-label','task-frontier1','task-frontier1-label',
+     'zone-displace','zone-displace-label','zone-displace-sub','task-axis-ext','task-labor-new',
+     'task-cap-new','task-cap-new-tag','zone-reinstate','zone-reinstate-label','zone-reinstate-sub',
+     'task-summary-box','task-summary-1','task-summary-2','task-summary-3'].forEach(resetFade);
+    resetFade('task-cap-line');
+    const cap = document.getElementById('task-cap-line');
+    if (cap) { cap.style.transition = 'none'; cap.setAttribute('y1', 215); cap.setAttribute('y2', 215); }
+    resetCircle('task-frontier-dot');
+    const f = document.getElementById('task-frontier');
+    if (f) { f.style.transition = 'none'; f.setAttribute('x1', 306.66); f.setAttribute('x2', 306.66); f.setAttribute('y2', 215); f.style.opacity = 0; }
+    const fl = document.getElementById('task-frontier-label');
+    if (fl) fl.style.opacity = 0;
+    resetCircle('task-frontier1-dot');
+    setStage(1, 'Setting up the task spectrum');
+  }
+
+  const playFns = { wage: playWage, mrp: playMRP, mono: playMono, mw: playMW, ai: playAI, task: playTask };
+  const resetFns = { wage: resetWage, mrp: resetMRP, mono: resetMono, mw: resetMW, ai: resetAI, task: resetTask };
+
+  function replay(key, btnEl) {
+    if (btnEl) { btnEl.classList.add('spinning'); setTimeout(() => btnEl.classList.remove('spinning'), 500); }
+    if (resetFns[key]) resetFns[key]();
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (playFns[key]) playFns[key](); }));
+  }
+
+  const triggered = {};
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !triggered[entry.target.id]) {
+        triggered[entry.target.id] = true;
+        if (entry.target.id === 'wageBlock') playWage();
+        if (entry.target.id === 'mrpBlock') playMRP();
+        if (entry.target.id === 'monoBlock') playMono();
+        if (entry.target.id === 'mwBlock') playMW();
+        if (entry.target.id === 'aiBlock') playAI();
+        if (entry.target.id === 'taskBlock') playTask();
+      }
+    });
+  }, { threshold: 0.25 });
+  ['wageBlock','mrpBlock','monoBlock','mwBlock','aiBlock','taskBlock'].forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+</script>
+</body>
+</html>
