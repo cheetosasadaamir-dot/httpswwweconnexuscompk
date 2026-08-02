@@ -36,14 +36,16 @@ const DemandSupplyEquilibriumDiagram = ({
   // Shifted equilibrium based on shift type
   const getShiftedEquilibrium = () => {
     switch (showShift) {
+      // Coordinates below are numerically-verified intersections of the
+      // (bezier) shifted curve with the original curve, not eyeballed.
       case 'demand-increase':
-        return { x: padding + graphWidth * 0.6, y: padding + graphHeight * 0.4 };
+        return { x: 225.5, y: 144.3 };
       case 'demand-decrease':
-        return { x: padding + graphWidth * 0.4, y: padding + graphHeight * 0.6 };
+        return { x: 168, y: 179.7 };
       case 'supply-increase':
-        return { x: padding + graphWidth * 0.6, y: padding + graphHeight * 0.6 };
+        return { x: 220.8, y: 172.8 };
       case 'supply-decrease':
-        return { x: padding + graphWidth * 0.4, y: padding + graphHeight * 0.4 };
+        return { x: 176.9, y: 145.8 };
       default:
         return eq1;
     }

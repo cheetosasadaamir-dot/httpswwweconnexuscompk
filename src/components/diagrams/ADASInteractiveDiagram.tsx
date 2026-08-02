@@ -54,7 +54,7 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
   const adPoints = [
     { x: 12, y: 88 },
     { x: 28, y: 68 },
-    { x: 48, y: 50 },
+    { x: 48, y: 45 },
     { x: 68, y: 36 },
     { x: 88, y: 25 },
   ];
@@ -80,8 +80,8 @@ const ADASInteractiveDiagram = ({ title = "AD/AS Model" }: ADASInteractiveDiagra
 
   // Equilibrium points
   const eq0 = { x: 48, y: 45 }; // Original equilibrium (AD ∩ SRAS at Yf vicinity)
-  const eq1 = { x: 60, y: 55 }; // After AD increase (demand-pull inflation)
-  const eq2 = { x: 38, y: 55 }; // After SRAS decrease (stagflation)
+  const eq1 = { x: 56, y: 56 }; // After AD increase (demand-pull inflation)
+  const eq2 = { x: 37, y: 58 }; // After SRAS decrease (stagflation)
 
   const pathFromPoints = (points: { x: number; y: number }[]) => {
     if (points.length === 0) return '';

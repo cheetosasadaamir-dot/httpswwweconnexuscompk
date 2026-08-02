@@ -139,13 +139,13 @@ export const EquilibriumAdjustmentDiagram = () => {
 
             {/* Quantity Demanded at P₁ (on AD) */}
             <motion.circle
-              cx={xScale(38)} cy={yScale(70)} r="6"
+              cx={xScale(28.3)} cy={yScale(70)} r="6"
               fill={adColor}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5 }}
             />
-            <text x={xScale(38)} y={yScale(70) - 12} textAnchor="middle" fill={adColor} fontSize="10">Qd</text>
+            <text x={xScale(28.3)} y={yScale(70) - 12} textAnchor="middle" fill={adColor} fontSize="10">Qd</text>
 
             {/* Excess Supply bracket */}
             <motion.g
@@ -153,10 +153,10 @@ export const EquilibriumAdjustmentDiagram = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8 }}
             >
-              <line x1={xScale(38)} y1={yScale(75)} x2={xScale(72)} y2={yScale(75)} stroke="#EF4444" strokeWidth="2" />
-              <line x1={xScale(38)} y1={yScale(77)} x2={xScale(38)} y2={yScale(73)} stroke="#EF4444" strokeWidth="2" />
+              <line x1={xScale(28.3)} y1={yScale(75)} x2={xScale(72)} y2={yScale(75)} stroke="#EF4444" strokeWidth="2" />
+              <line x1={xScale(28.3)} y1={yScale(77)} x2={xScale(28.3)} y2={yScale(73)} stroke="#EF4444" strokeWidth="2" />
               <line x1={xScale(72)} y1={yScale(77)} x2={xScale(72)} y2={yScale(73)} stroke="#EF4444" strokeWidth="2" />
-              <text x={(xScale(38) + xScale(72)) / 2} y={yScale(81)} textAnchor="middle" fill="#EF4444" fontSize="11" fontWeight="bold">
+              <text x={(xScale(28.3) + xScale(72)) / 2} y={yScale(81)} textAnchor="middle" fill="#EF4444" fontSize="11" fontWeight="bold">
                 EXCESS SUPPLY
               </text>
             </motion.g>
@@ -219,13 +219,13 @@ export const EquilibriumAdjustmentDiagram = () => {
 
             {/* Quantity Demanded at P₁ (on AD) */}
             <motion.circle
-              cx={xScale(72)} cy={yScale(35)} r="6"
+              cx={xScale(76.5)} cy={yScale(35)} r="6"
               fill={adColor}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5 }}
             />
-            <text x={xScale(72)} y={yScale(35) - 12} textAnchor="middle" fill={adColor} fontSize="10">Qd</text>
+            <text x={xScale(76.5)} y={yScale(35) - 12} textAnchor="middle" fill={adColor} fontSize="10">Qd</text>
 
             {/* Excess Demand bracket */}
             <motion.g
@@ -233,10 +233,10 @@ export const EquilibriumAdjustmentDiagram = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8 }}
             >
-              <line x1={xScale(35)} y1={yScale(30)} x2={xScale(72)} y2={yScale(30)} stroke="#22D3EE" strokeWidth="2" />
+              <line x1={xScale(35)} y1={yScale(30)} x2={xScale(76.5)} y2={yScale(30)} stroke="#22D3EE" strokeWidth="2" />
               <line x1={xScale(35)} y1={yScale(32)} x2={xScale(35)} y2={yScale(28)} stroke="#22D3EE" strokeWidth="2" />
-              <line x1={xScale(72)} y1={yScale(32)} x2={xScale(72)} y2={yScale(28)} stroke="#22D3EE" strokeWidth="2" />
-              <text x={(xScale(35) + xScale(72)) / 2} y={yScale(25)} textAnchor="middle" fill="#22D3EE" fontSize="11" fontWeight="bold">
+              <line x1={xScale(76.5)} y1={yScale(32)} x2={xScale(76.5)} y2={yScale(28)} stroke="#22D3EE" strokeWidth="2" />
+              <text x={(xScale(35) + xScale(76.5)) / 2} y={yScale(25)} textAnchor="middle" fill="#22D3EE" fontSize="11" fontWeight="bold">
                 EXCESS DEMAND
               </text>
             </motion.g>

@@ -31,12 +31,21 @@ const UtilityDiagram = ({ showMarginal = true }: UtilityDiagramProps) => {
   const yScaleTU = (tu: number) => padding.top + chartHeight - (tu / 60) * chartHeight;
   const yScaleMU = (mu: number) => padding.top + chartHeight - ((mu + 10) / 35) * chartHeight;
 
-  // Generate path for TU curve
-  const tuPath = utilityData.map((d, i) => {
-    const x = xScale(d.quantity);
-    const y = yScaleTU(d.totalUtility);
-    return i === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
-  }).join(' ');
+  // Generate smooth TU curve (Catmull-Rom -> cubic Bezier) so it is not a kinked polyline.
+  // TU peaks exactly at Q=5 where MU=0, matching the data.
+  const tuSmoothPoints = utilityData.map((d) => ({ x: xScale(d.quantity), y: yScaleTU(d.totalUtility) }));
+  const tuPath = tuSmoothPoints.reduce((acc, point, i, pts) => {
+    if (i === 0) return `M ${point.x} ${point.y}`;
+    const p0 = pts[Math.max(0, i - 2)];
+    const p1 = pts[i - 1];
+    const p2 = point;
+    const p3 = pts[Math.min(pts.length - 1, i + 1)];
+    const cp1x = p1.x + (p2.x - p0.x) / 6;
+    const cp1y = p1.y + (p2.y - p0.y) / 6;
+    const cp2x = p2.x - (p3.x - p1.x) / 6;
+    const cp2y = p2.y - (p3.y - p1.y) / 6;
+    return `${acc} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+  }, '');
 
   // Generate path for MU curve
   const muPath = utilityData.map((d, i) => {

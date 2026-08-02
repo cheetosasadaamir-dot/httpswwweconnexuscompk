@@ -33,12 +33,14 @@ const SurplusWithTaxDiagram = () => {
   // Key points - original equilibrium
   const demandIntercept = { x: 0, y: 90 };
   const supplyIntercept = { x: 0, y: 10 };
-  const equilibrium = { x: 50, y: 50 };
+  // D: P = 90 - Q ; S: P = 10 + Q -> Pe=50 at Qe=40
+  const equilibrium = { x: 40, y: 50 };
   
   // Tax parameters
   const taxAmount = 20; // $20 tax per unit
   const newSupplyIntercept = { x: 0, y: supplyIntercept.y + taxAmount }; // Supply shifts up by tax
-  const newEquilibrium = { x: 40, y: 60 }; // New equilibrium after tax
+  // New supply: P = 30 + Q ; intersect D: 90-Q = 30+Q -> Q=30, P=60
+  const newEquilibrium = { x: 30, y: 60 }; // New equilibrium after tax
   const producerReceives = newEquilibrium.y - taxAmount; // Price producers actually receive
 
   // Curve paths

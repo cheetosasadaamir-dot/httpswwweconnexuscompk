@@ -59,7 +59,7 @@ const ADASEquilibriumDiagram = ({
     { x: 10, y: 18 },
     { x: 25, y: 25 },
     { x: 40, y: 35 },
-    { x: 55, y: 50 },
+    { x: 55, y: 48 },
     { x: 70, y: 70 },
     { x: 78, y: 90 },
   ];

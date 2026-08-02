@@ -17,10 +17,13 @@ const SubsidyDiagram = () => {
   const y = (v: number) => m.t + ch - (v / 100) * ch;
 
   // Original eq: Pe=50, Qe=50. Subsidy shifts supply down by 18.
-  const Pe = 50, Qe = 50;
-  const Pc = 38; // new consumer price (lower)
-  const Pp = 56; // new producer effective price (Pc + subsidy)
-  const Q1 = 65; // higher equilibrium quantity
+  // Demand: P = 90 - 0.8Q ; Supply: P = 10 + 0.6Q -> Pe=44.29, Qe=57.14
+  // Subsidy = 18 shifts supply down in parallel: P = -8 + 0.6Q
+  // New equilibrium: 90 - 0.8Q = -8 + 0.6Q -> Q1 = 70, Pc = 34, Pp = Pc + 18 = 52
+  const Pe = 44.29, Qe = 57.14;
+  const Pc = 34; // new consumer price (lower)
+  const Pp = 52; // new producer effective price (Pc + subsidy)
+  const Q1 = 70; // higher equilibrium quantity
 
   const demand = `M ${x(5)} ${y(86)} L ${x(95)} ${y(14)}`;
   const supply = `M ${x(5)} ${y(13)} L ${x(95)} ${y(67)}`;

@@ -20,7 +20,7 @@ const KeynesianCrossDiagram = ({
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
 
   const width = 500;
-  const height = 400;
+  const height = 500;
   const margin = { top: 40, right: 40, bottom: 60, left: 60 };
   const chartWidth = width - margin.left - margin.right;
   const chartHeight = height - margin.top - margin.bottom;

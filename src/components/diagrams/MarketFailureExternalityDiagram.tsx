@@ -15,6 +15,45 @@ const MarketFailureExternalityDiagram = () => {
   const xScale = (x: number) => padding.left + (x / 120) * chartWidth;
   const yScale = (y: number) => padding.top + chartHeight - (y / 120) * chartHeight;
 
+  const lineIntersect = (
+    l1: { start: { x: number; y: number }; end: { x: number; y: number } },
+    l2: { start: { x: number; y: number }; end: { x: number; y: number } }
+  ) => {
+    const m1 = (l1.end.y - l1.start.y) / (l1.end.x - l1.start.x);
+    const b1 = l1.start.y - m1 * l1.start.x;
+    const m2 = (l2.end.y - l2.start.y) / (l2.end.x - l2.start.x);
+    const b2 = l2.start.y - m2 * l2.start.x;
+    const x = (b2 - b1) / (m1 - m2);
+    const y = m1 * x + b1;
+    return { x, y };
+  };
+
+
+  // Precomputed intersections (numerically exact) for each externality scenario
+  const negProdMpc = { start: { x: 10, y: 20 }, end: { x: 100, y: 80 } };
+  const negProdMsc = { start: { x: 10, y: 40 }, end: { x: 100, y: 100 } };
+  const negProdDemand = { start: { x: 10, y: 90 }, end: { x: 100, y: 30 } };
+  const negProdMarket = lineIntersect(negProdMpc, negProdDemand);
+  const negProdOptimal = lineIntersect(negProdMsc, negProdDemand);
+
+  const negConsMpc = { start: { x: 10, y: 20 }, end: { x: 100, y: 80 } };
+  const negConsDemand = { start: { x: 10, y: 90 }, end: { x: 100, y: 30 } };
+  const negConsMsb = { start: { x: 10, y: 70 }, end: { x: 100, y: 10 } };
+  const negConsMarket = lineIntersect(negConsMpc, negConsDemand);
+  const negConsOptimal = lineIntersect(negConsMpc, negConsMsb);
+
+  const posProdMpc = { start: { x: 10, y: 40 }, end: { x: 100, y: 100 } };
+  const posProdMsc = { start: { x: 10, y: 20 }, end: { x: 100, y: 80 } };
+  const posProdDemand = { start: { x: 10, y: 90 }, end: { x: 100, y: 30 } };
+  const posProdMarket = lineIntersect(posProdMpc, posProdDemand);
+  const posProdOptimal = lineIntersect(posProdMsc, posProdDemand);
+
+  const posConsMpc = { start: { x: 10, y: 20 }, end: { x: 100, y: 80 } };
+  const posConsDemand = { start: { x: 10, y: 70 }, end: { x: 100, y: 10 } };
+  const posConsMsb = { start: { x: 10, y: 90 }, end: { x: 100, y: 30 } };
+  const posConsMarket = lineIntersect(posConsMpc, posConsDemand);
+  const posConsOptimal = lineIntersect(posConsMpc, posConsMsb);
+
   const getExternalityData = () => {
     switch (externalityType) {
       case 'negative-production':
@@ -27,10 +66,10 @@ const MarketFailureExternalityDiagram = () => {
           demand: { start: { x: 10, y: 90 }, end: { x: 100, y: 30 } },
           showMSB: false,
           showMSC: true,
-          qMarket: 65,
-          qOptimal: 50,
-          pMarket: 55,
-          pOptimal: 70,
+          qMarket: negProdMarket.x,
+          qOptimal: negProdOptimal.x,
+          pMarket: negProdMarket.y,
+          pOptimal: negProdOptimal.y,
           externalCostLabel: 'External Cost',
           welfare: 'overproduction',
         };
@@ -45,10 +84,10 @@ const MarketFailureExternalityDiagram = () => {
           msb: { start: { x: 10, y: 70 }, end: { x: 100, y: 10 } },
           showMSB: true,
           showMSC: false,
-          qMarket: 65,
-          qOptimal: 50,
-          pMarket: 55,
-          pOptimal: 45,
+          qMarket: negConsMarket.x,
+          qOptimal: negConsOptimal.x,
+          pMarket: negConsMarket.y,
+          pOptimal: negConsOptimal.y,
           externalCostLabel: 'External Cost',
           welfare: 'overproduction',
         };
@@ -62,10 +101,10 @@ const MarketFailureExternalityDiagram = () => {
           demand: { start: { x: 10, y: 90 }, end: { x: 100, y: 30 } },
           showMSB: false,
           showMSC: true,
-          qMarket: 50,
-          qOptimal: 65,
-          pMarket: 70,
-          pOptimal: 55,
+          qMarket: posProdMarket.x,
+          qOptimal: posProdOptimal.x,
+          pMarket: posProdMarket.y,
+          pOptimal: posProdOptimal.y,
           externalCostLabel: 'External Benefit',
           welfare: 'underproduction',
         };
@@ -79,10 +118,10 @@ const MarketFailureExternalityDiagram = () => {
           msb: { start: { x: 10, y: 90 }, end: { x: 100, y: 30 } },
           showMSB: true,
           showMSC: false,
-          qMarket: 50,
-          qOptimal: 65,
-          pMarket: 45,
-          pOptimal: 55,
+          qMarket: posConsMarket.x,
+          qOptimal: posConsOptimal.x,
+          pMarket: posConsMarket.y,
+          pOptimal: posConsOptimal.y,
           externalCostLabel: 'External Benefit',
           welfare: 'underproduction',
         };

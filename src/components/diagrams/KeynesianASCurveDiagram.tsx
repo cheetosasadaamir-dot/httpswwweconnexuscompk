@@ -245,7 +245,7 @@ const KeynesianASCurveDiagram = ({
 
         {/* AD curves to show equilibrium at different phases */}
         <motion.path
-          d="M 120 90 Q 145 160, 175 210 Q 200 255, 240 285"
+          d="M 120 90 Q 148 175, 175 260 Q 205 275, 240 285"
           fill="none"
           stroke="hsl(var(--cambridge-cyan))"
           strokeWidth="2.5"

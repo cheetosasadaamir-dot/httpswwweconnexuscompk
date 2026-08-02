@@ -35,12 +35,14 @@ const MovementShiftDiagram = () => {
   const shiftedDemandPath = `M ${xScale(25)} ${yScale(85)} L ${xScale(100)} ${yScale(25)}`;
 
   // Points for movement demonstration
-  const pointA = { x: 30, y: 70 }; // Higher price, lower quantity
-  const pointB = { x: 60, y: 45 }; // Lower price, higher quantity (on same curve)
-  
-  // Points for shift demonstration
-  const pointC = { x: 50, y: 55 }; // Original equilibrium
-  const pointD = { x: 65, y: 55 }; // Same price, higher quantity (on new curve)
+  // D0: P = 85 - 0.875Q (from (10,85) to (90,15))
+  const pointA = { x: 30, y: 67.5 }; // Higher price, lower quantity (on D0)
+  const pointB = { x: 60, y: 41.25 }; // Lower price, higher quantity (on D0)
+
+  // Points for shift demonstration (same price P=55 on both curves)
+  // D0 at P=55: Q = 44.3 ; D1 (85-0.8Q from (25,85) to (100,25)) at P=55: Q = 62.5
+  const pointC = { x: 44.3, y: 55 }; // On original curve D0
+  const pointD = { x: 62.5, y: 55 }; // Same price, higher quantity (on new curve D1)
 
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },
