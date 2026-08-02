@@ -31,20 +31,21 @@ const TradeCreationDiagram = () => {
   const xScale = (val: number) => margin.left + (val / 100) * chartWidth;
   const yScale = (val: number) => margin.top + chartHeight - (val / 100) * chartHeight;
 
+  // Supply and Demand curve equations (clean linear forms)
+  const supplyY = (x: number) => 12 + x * 0.95;
+  const demandY = (x: number) => 95 - x * 0.88;
+  const supplyX = (p: number) => (p - 12) / 0.95;
+  const demandX = (p: number) => (95 - p) / 0.88;
+
   // Price levels (matching reference image structure)
-  const pDomestic = 75;           // S_Domestic intersects at high price  
   const pEU_tariff = 60;          // P1: S_EU + tariff (before CU)
   const pEU = 42;                 // P2: S_EU price (after joining CU - tariff removed)
   
-  // Quantity points
-  const q1 = 20;   // Q1: Domestic supply at P1 (S_EU + tariff)
-  const q2 = 30;   // Q2: Domestic supply at P2 (S_EU price - lower)
-  const q3 = 60;   // Q3: Demand at P1 (S_EU + tariff)
-  const q4 = 75;   // Q4: Demand at P2 (S_EU price - higher)
-
-  // Supply curve equation
-  const supplyY = (x: number) => 12 + x * 0.95;
-  const demandY = (x: number) => 95 - x * 0.88;
+  // Quantity points, derived exactly from the S and D equations above
+  const q1 = supplyX(pEU_tariff);   // Q1: Domestic supply at P1 (higher, since price is higher)
+  const q2 = supplyX(pEU);          // Q2: Domestic supply at P2 (lower, price fell)
+  const q3 = demandX(pEU_tariff);   // Q3: Demand at P1
+  const q4 = demandX(pEU);          // Q4: Demand at P2 (higher, price fell)
 
   return (
     <div ref={containerRef} className="glass-card p-5 my-5">

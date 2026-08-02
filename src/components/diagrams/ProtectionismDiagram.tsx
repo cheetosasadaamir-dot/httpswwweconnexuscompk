@@ -32,16 +32,30 @@ const ProtectionismDiagram = () => {
   const xScale = (val: number) => margin.left + (val / 100) * chartWidth;
   const yScale = (val: number) => margin.top + chartHeight - (val / 100) * chartHeight;
 
-  // Price and quantity values
+  // Clean linear S and D equations: P = 10 + 0.8Q  (Supply)
+  //                                 P = 90 - 0.8Q  (Demand)
+  // Equilibrium (no trade): 10 + 0.8Q = 90 - 0.8Q => Q = 50, P = 50
+  const supplyP = (q: number) => 10 + 0.8 * q;
+  const demandP = (q: number) => 90 - 0.8 * q;
+  const supplyQ = (p: number) => (p - 10) / 0.8;
+  const demandQ = (p: number) => (90 - p) / 0.8;
+
   const pd = 50; // Domestic equilibrium price
-  const pw = 30; // World price
-  const pwt = 45; // World price + tariff
-  
-  // Quantities
-  const q1 = 20; // Domestic supply at Pw
-  const q2 = 35; // Domestic supply at Pw+t
-  const q3 = 65; // Domestic demand at Pw+t
-  const q4 = 80; // Domestic demand at Pw
+  const qo = 50; // Domestic equilibrium quantity
+
+  const pw = 30; // World price (import scenario)
+  const q1 = supplyQ(pw); // Domestic supply at Pw = 25
+  const q4 = demandQ(pw); // Domestic demand at Pw = 75
+
+  const pwExport = 60; // World price (export scenario)
+  const qdExport = demandQ(pwExport); // Quantity demanded at Pw = 37.5
+  const qsExport = supplyQ(pwExport); // Quantity supplied at Pw = 62.5
+
+  // Common curve endpoints (Q from 5 to 95), computed from the equations above
+  const sX1 = 5, sX2 = 95;
+  const sY1 = supplyP(sX1), sY2 = supplyP(sX2);
+  const dX1 = 5, dX2 = 95;
+  const dY1 = demandP(dX1), dY2 = demandP(dX2);
 
   const NoTradeDiagram = () => (
     <svg viewBox={`0 0 ${width} ${height}`} className="w-full max-w-sm mx-auto">
@@ -61,29 +75,29 @@ const ProtectionismDiagram = () => {
 
       {/* Supply Curve */}
       <motion.line
-        x1={xScale(10)} y1={yScale(15)}
-        x2={xScale(70)} y2={yScale(75)}
+        x1={xScale(sX1)} y1={yScale(sY1)}
+        x2={xScale(sX2)} y2={yScale(sY2)}
         stroke="hsl(var(--cambridge-orange))"
         strokeWidth="2"
         initial={{ pathLength: 0 }}
         animate={isVisible ? { pathLength: 1 } : {}}
       />
-      <text x={xScale(72)} y={yScale(77)} fill="hsl(var(--cambridge-orange))" fontSize="9" fontWeight="600">S = domestic supply</text>
+      <text x={xScale(sX2) + 2} y={yScale(sY2)} fill="hsl(var(--cambridge-orange))" fontSize="9" fontWeight="600">S = domestic supply</text>
 
       {/* Demand Curve */}
       <motion.line
-        x1={xScale(10)} y1={yScale(85)}
-        x2={xScale(90)} y2={yScale(15)}
+        x1={xScale(dX1)} y1={yScale(dY1)}
+        x2={xScale(dX2)} y2={yScale(dY2)}
         stroke="hsl(var(--cambridge-cyan))"
         strokeWidth="2"
         initial={{ pathLength: 0 }}
         animate={isVisible ? { pathLength: 1 } : {}}
       />
-      <text x={xScale(92)} y={yScale(13)} fill="hsl(var(--cambridge-cyan))" fontSize="9" fontWeight="600">D = domestic demand</text>
+      <text x={xScale(dX2) + 2} y={yScale(dY2) - 2} fill="hsl(var(--cambridge-cyan))" fontSize="9" fontWeight="600">D = domestic demand</text>
 
       {/* Equilibrium point */}
       <motion.circle
-        cx={xScale(50)} cy={yScale(pd)}
+        cx={xScale(qo)} cy={yScale(pd)}
         r="5"
         fill="hsl(var(--primary))"
         initial={{ scale: 0 }}
@@ -91,12 +105,12 @@ const ProtectionismDiagram = () => {
       />
       
       {/* Pd line */}
-      <line x1={margin.left} y1={yScale(pd)} x2={xScale(50)} y2={yScale(pd)} stroke="hsl(var(--muted-foreground))" strokeDasharray="3,3" />
+      <line x1={margin.left} y1={yScale(pd)} x2={xScale(qo)} y2={yScale(pd)} stroke="hsl(var(--muted-foreground))" strokeDasharray="3,3" />
       <text x={margin.left - 5} y={yScale(pd) + 4} textAnchor="end" fill="hsl(var(--foreground))" fontSize="9">Pd</text>
       
       {/* Qo line */}
-      <line x1={xScale(50)} y1={yScale(pd)} x2={xScale(50)} y2={yScale(0)} stroke="hsl(var(--muted-foreground))" strokeDasharray="3,3" />
-      <text x={xScale(50)} y={yScale(0) + 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="9">Qo</text>
+      <line x1={xScale(qo)} y1={yScale(pd)} x2={xScale(qo)} y2={yScale(0)} stroke="hsl(var(--muted-foreground))" strokeDasharray="3,3" />
+      <text x={xScale(qo)} y={yScale(0) + 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="9">Qo</text>
     </svg>
   );
 
@@ -118,53 +132,53 @@ const ProtectionismDiagram = () => {
 
       {/* Supply Curve */}
       <motion.line
-        x1={xScale(10)} y1={yScale(15)}
-        x2={xScale(70)} y2={yScale(75)}
+        x1={xScale(sX1)} y1={yScale(sY1)}
+        x2={xScale(sX2)} y2={yScale(sY2)}
         stroke="hsl(var(--cambridge-orange))"
         strokeWidth="2"
         initial={{ pathLength: 0 }}
         animate={isVisible ? { pathLength: 1 } : {}}
       />
-      <text x={xScale(72)} y={yScale(77)} fill="hsl(var(--cambridge-orange))" fontSize="9">S</text>
+      <text x={xScale(sX2) + 2} y={yScale(sY2)} fill="hsl(var(--cambridge-orange))" fontSize="9">S</text>
 
       {/* Demand Curve */}
       <motion.line
-        x1={xScale(10)} y1={yScale(85)}
-        x2={xScale(90)} y2={yScale(15)}
+        x1={xScale(dX1)} y1={yScale(dY1)}
+        x2={xScale(dX2)} y2={yScale(dY2)}
         stroke="hsl(var(--cambridge-cyan))"
         strokeWidth="2"
         initial={{ pathLength: 0 }}
         animate={isVisible ? { pathLength: 1 } : {}}
       />
-      <text x={xScale(92)} y={yScale(13)} fill="hsl(var(--cambridge-cyan))" fontSize="9">D</text>
+      <text x={xScale(dX2) + 2} y={yScale(dY2) - 2} fill="hsl(var(--cambridge-cyan))" fontSize="9">D</text>
 
       {/* World Price (higher than Pd - exports scenario) */}
       <motion.line
-        x1={margin.left} y1={yScale(60)}
-        x2={margin.left + chartWidth} y2={yScale(60)}
+        x1={margin.left} y1={yScale(pwExport)}
+        x2={margin.left + chartWidth} y2={yScale(pwExport)}
         stroke="hsl(var(--cambridge-green))"
         strokeWidth="2"
         initial={{ opacity: 0 }}
         animate={isVisible ? { opacity: 1 } : {}}
       />
-      <text x={margin.left + chartWidth + 5} y={yScale(60) + 4} fill="hsl(var(--cambridge-green))" fontSize="9">Pw</text>
+      <text x={margin.left + chartWidth + 5} y={yScale(pwExport) + 4} fill="hsl(var(--cambridge-green))" fontSize="9">Pw</text>
 
       {/* Quantity markers */}
-      <line x1={xScale(30)} y1={yScale(60)} x2={xScale(30)} y2={yScale(0)} stroke="hsl(var(--muted-foreground))" strokeDasharray="3,3" />
-      <line x1={xScale(70)} y1={yScale(60)} x2={xScale(70)} y2={yScale(0)} stroke="hsl(var(--muted-foreground))" strokeDasharray="3,3" />
-      <text x={xScale(30)} y={yScale(0) + 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="9">Qd</text>
-      <text x={xScale(70)} y={yScale(0) + 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="9">Qs</text>
+      <line x1={xScale(qdExport)} y1={yScale(pwExport)} x2={xScale(qdExport)} y2={yScale(0)} stroke="hsl(var(--muted-foreground))" strokeDasharray="3,3" />
+      <line x1={xScale(qsExport)} y1={yScale(pwExport)} x2={xScale(qsExport)} y2={yScale(0)} stroke="hsl(var(--muted-foreground))" strokeDasharray="3,3" />
+      <text x={xScale(qdExport)} y={yScale(0) + 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="9">Qd</text>
+      <text x={xScale(qsExport)} y={yScale(0) + 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="9">Qs</text>
 
       {/* Export bracket */}
       <motion.path
-        d={`M ${xScale(30)} ${yScale(60) + 8} L ${xScale(30)} ${yScale(60) + 18} L ${xScale(70)} ${yScale(60) + 18} L ${xScale(70)} ${yScale(60) + 8}`}
+        d={`M ${xScale(qdExport)} ${yScale(pwExport) + 8} L ${xScale(qdExport)} ${yScale(pwExport) + 18} L ${xScale(qsExport)} ${yScale(pwExport) + 18} L ${xScale(qsExport)} ${yScale(pwExport) + 8}`}
         fill="none"
         stroke="hsl(var(--cambridge-green))"
         strokeWidth="1.5"
         initial={{ opacity: 0 }}
         animate={isVisible ? { opacity: 1 } : {}}
       />
-      <text x={(xScale(30) + xScale(70)) / 2} y={yScale(60) + 28} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="9" fontWeight="600">Exports</text>
+      <text x={(xScale(qdExport) + xScale(qsExport)) / 2} y={yScale(pwExport) + 28} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="9" fontWeight="600">Exports</text>
     </svg>
   );
 
@@ -186,25 +200,25 @@ const ProtectionismDiagram = () => {
 
       {/* Supply Curve */}
       <motion.line
-        x1={xScale(10)} y1={yScale(15)}
-        x2={xScale(70)} y2={yScale(75)}
+        x1={xScale(sX1)} y1={yScale(sY1)}
+        x2={xScale(sX2)} y2={yScale(sY2)}
         stroke="hsl(var(--cambridge-orange))"
         strokeWidth="2"
         initial={{ pathLength: 0 }}
         animate={isVisible ? { pathLength: 1 } : {}}
       />
-      <text x={xScale(72)} y={yScale(77)} fill="hsl(var(--cambridge-orange))" fontSize="9">S</text>
+      <text x={xScale(sX2) + 2} y={yScale(sY2)} fill="hsl(var(--cambridge-orange))" fontSize="9">S</text>
 
       {/* Demand Curve */}
       <motion.line
-        x1={xScale(10)} y1={yScale(85)}
-        x2={xScale(90)} y2={yScale(15)}
+        x1={xScale(dX1)} y1={yScale(dY1)}
+        x2={xScale(dX2)} y2={yScale(dY2)}
         stroke="hsl(var(--cambridge-cyan))"
         strokeWidth="2"
         initial={{ pathLength: 0 }}
         animate={isVisible ? { pathLength: 1 } : {}}
       />
-      <text x={xScale(92)} y={yScale(13)} fill="hsl(var(--cambridge-cyan))" fontSize="9">D</text>
+      <text x={xScale(dX2) + 2} y={yScale(dY2) - 2} fill="hsl(var(--cambridge-cyan))" fontSize="9">D</text>
 
       {/* World Price (lower than Pd - imports scenario) */}
       <motion.line

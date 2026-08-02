@@ -27,7 +27,27 @@ const PEDRevenueDiagram = ({ title = "PED and Total Revenue Relationship" }: PED
   const demandEndY = padding + graphHeight - 10;
   const demandStartX = padding + 20;
   const demandEndX = padding + graphWidth - 20;
-  
+
+  // Origin of the top graph (bottom-left corner of the axes)
+  const originX = padding;
+  const originY = padding + graphHeight;
+
+  // Point on the linear demand curve at parameter t in [0, 1]
+  const demandPointAt = (t: number) => ({
+    x: demandStartX + (demandEndX - demandStartX) * t,
+    y: demandStartY + (demandEndY - demandStartY) * t,
+  });
+
+  // Two points in the elastic (left) section of demand: a price cut here raises TR
+  // because a linear demand curve's TR = P*Q rises with Q left of the midpoint.
+  const elasticHighP = demandPointAt(0.15);
+  const elasticLowP = demandPointAt(0.4);
+
+  // Two points in the inelastic (right) section: a price cut here lowers TR
+  // because TR falls with Q right of the midpoint on a linear demand curve.
+  const inelasticHighP = demandPointAt(0.6);
+  const inelasticLowP = demandPointAt(0.85);
+
   // TR curve (parabola - inverted U)
   const trBaseY = padding + graphHeight + 60;
   const trHeight = graphHeight - 20;
@@ -103,6 +123,62 @@ const PEDRevenueDiagram = ({ title = "PED and Total Revenue Relationship" }: PED
           animate="visible"
         />
         <text x={demandEndX + 5} y={demandEndY} fill={demandColor} fontSize="13" fontWeight="600">D</text>
+
+        {/* Total revenue rectangles: elastic segment - price cut EXPANDS the rectangle area */}
+        <motion.rect
+          x={originX}
+          y={elasticHighP.y}
+          width={elasticHighP.x - originX}
+          height={originY - elasticHighP.y}
+          fill="none"
+          stroke={elasticColor}
+          strokeWidth="1.5"
+          strokeDasharray="4,3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.6, duration: 0.5 }}
+        />
+        <motion.rect
+          x={originX}
+          y={elasticLowP.y}
+          width={elasticLowP.x - originX}
+          height={originY - elasticLowP.y}
+          fill={elasticColor}
+          fillOpacity={0.18}
+          stroke={elasticColor}
+          strokeWidth="1.5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.9, duration: 0.5 }}
+        />
+
+        {/* Total revenue rectangles: inelastic segment - price cut SHRINKS the rectangle area */}
+        <motion.rect
+          x={originX}
+          y={inelasticHighP.y}
+          width={inelasticHighP.x - originX}
+          height={originY - inelasticHighP.y}
+          fill={inelasticColor}
+          fillOpacity={0.18}
+          stroke={inelasticColor}
+          strokeWidth="1.5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.6, duration: 0.5 }}
+        />
+        <motion.rect
+          x={originX}
+          y={inelasticLowP.y}
+          width={inelasticLowP.x - originX}
+          height={originY - inelasticLowP.y}
+          fill="none"
+          stroke={inelasticColor}
+          strokeWidth="1.5"
+          strokeDasharray="4,3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.9, duration: 0.5 }}
+        />
 
         {/* Elastic section highlight */}
         <motion.rect

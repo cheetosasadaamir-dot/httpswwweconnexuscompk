@@ -22,32 +22,63 @@ const PriceElasticityDiagram = ({ type, title }: PriceElasticityDiagramProps) =>
   const gridColor = '#334155';
   const highlightColor = '#FFD700';
 
-  const getDemandPath = () => {
+  // Builds a true rectangular hyperbola P*Q = k sampled into a polyline
+  const getHyperbolaPath = (x0: number, y0: number, x1: number, y1: number, steps = 24) => {
+    const Qmin = 1;
+    const Qmax = 4;
+    const k = 4; // Pmax = k/Qmin = 4, Pmin = k/Qmax = 1
+    const Pmax = k / Qmin;
+    const Pmin = k / Qmax;
+    let d = '';
+    for (let i = 0; i <= steps; i++) {
+      const Q = Qmin + ((Qmax - Qmin) * i) / steps;
+      const P = k / Q;
+      const xt = x0 + (x1 - x0) * ((Q - Qmin) / (Qmax - Qmin));
+      const yt = y0 + (y1 - y0) * ((Pmax - P) / (Pmax - Pmin));
+      d += `${i === 0 ? 'M' : 'L'} ${xt.toFixed(2)} ${yt.toFixed(2)} `;
+    }
+    return d.trim();
+  };
+
+  const getDemandGeometry = () => {
     const startX = padding + 10;
     const endX = padding + graphWidth - 10;
     const startY = padding + 20;
     const endY = padding + graphHeight - 20;
-    
+
     switch (type) {
-      case 'elastic':
-        // Flatter curve (more horizontal)
-        return `M ${startX} ${startY + 20} L ${endX} ${endY - 40}`;
-      case 'inelastic':
+      case 'elastic': {
+        // Flatter curve (more horizontal) - visibly flatter than inelastic
+        const y0 = startY + 30;
+        const y1 = endY - 55;
+        return { path: `M ${startX} ${y0} L ${endX} ${y1}`, endPoint: { x: endX, y: y1 } };
+      }
+      case 'inelastic': {
         // Steeper curve (more vertical)
-        return `M ${startX + 60} ${startY} L ${endX - 60} ${endY}`;
-      case 'unitary':
-        // Curved hyperbola-like
-        return `M ${startX} ${startY} Q ${padding + graphWidth * 0.3} ${padding + graphHeight * 0.7} ${endX} ${endY}`;
-      case 'perfectly-elastic':
-        // Horizontal line
-        return `M ${startX} ${padding + graphHeight * 0.4} L ${endX} ${padding + graphHeight * 0.4}`;
-      case 'perfectly-inelastic':
-        // Vertical line
-        return `M ${padding + graphWidth * 0.5} ${startY} L ${padding + graphWidth * 0.5} ${endY}`;
+        const x0 = startX + 70;
+        const x1 = endX - 70;
+        return { path: `M ${x0} ${startY} L ${x1} ${endY}`, endPoint: { x: x1, y: endY } };
+      }
+      case 'unitary': {
+        // Rectangular hyperbola (constant total revenue along the curve)
+        const path = getHyperbolaPath(startX, startY, endX, endY);
+        return { path, endPoint: { x: endX, y: endY } };
+      }
+      case 'perfectly-elastic': {
+        const y = padding + graphHeight * 0.4;
+        return { path: `M ${startX} ${y} L ${endX} ${y}`, endPoint: { x: endX, y } };
+      }
+      case 'perfectly-inelastic': {
+        const x = padding + graphWidth * 0.5;
+        return { path: `M ${x} ${startY} L ${x} ${endY}`, endPoint: { x, y: startY } };
+      }
       default:
-        return `M ${startX} ${startY} L ${endX} ${endY}`;
+        return { path: `M ${startX} ${startY} L ${endX} ${endY}`, endPoint: { x: endX, y: endY } };
     }
   };
+
+  const { path: demandPathD, endPoint: demandEndPoint } = getDemandGeometry();
+  const getDemandPath = () => demandPathD;
 
   const getElasticityLabel = () => {
     switch (type) {
@@ -151,13 +182,14 @@ const PriceElasticityDiagram = ({ type, title }: PriceElasticityDiagramProps) =>
           style={{ transition: 'stroke 0.3s, stroke-width 0.3s' }}
         />
         
-        {/* D label */}
-        <text 
-          x={padding + graphWidth - 15} 
-          y={type === 'perfectly-elastic' ? padding + graphHeight * 0.4 - 10 : padding + graphHeight - 35} 
-          fill={demandColor} 
-          fontSize="13" 
+        {/* D label positioned at the curve's real endpoint */}
+        <text
+          x={demandEndPoint.x - (type === 'perfectly-inelastic' ? 18 : 4)}
+          y={demandEndPoint.y - (type === 'perfectly-inelastic' ? 8 : 10)}
+          fill={demandColor}
+          fontSize="13"
           fontWeight="600"
+          textAnchor={type === 'perfectly-inelastic' ? 'middle' : 'end'}
         >
           D
         </text>

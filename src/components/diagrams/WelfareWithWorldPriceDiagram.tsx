@@ -59,21 +59,28 @@ const WelfareWithWorldPriceDiagram = ({
   const xScale = (val: number) => margin.left + (val / 100) * chartWidth;
   const yScale = (val: number) => margin.top + chartHeight - (val / 100) * chartHeight;
 
+  // Clean linear equations: D: P = 95 - Q,  S: P = 5 + Q
+  // Autarky equilibrium: 95 - Q = 5 + Q => Q = 45, P = 50
+  const demandP = (q: number) => 95 - q;
+  const supplyP = (q: number) => 5 + q;
+  const demandQ = (p: number) => 95 - p;
+  const supplyQ = (p: number) => p - 5;
+
   // Key points
   const demandIntercept = { x: 0, y: 95 }; // Demand curve starts at P=95
   const supplyIntercept = { x: 0, y: 5 };   // Supply curve starts at P=5
-  const domesticEq = { x: 50, y: 50 };      // Domestic equilibrium (autarky)
+  const domesticEq = { x: demandQ(50), y: 50 };      // Domestic equilibrium (autarky), Q=45, P=50
   const worldPrice = 30;                     // World price below domestic equilibrium
   
-  // At world price
-  const qDemandAtPw = 70;  // Quantity demanded at world price
-  const qSupplyAtPw = 20;  // Quantity supplied domestically at world price
+  // At world price (derived from the same S and D equations)
+  const qDemandAtPw = demandQ(worldPrice);  // Quantity demanded at world price = 65
+  const qSupplyAtPw = supplyQ(worldPrice);  // Quantity supplied domestically at world price = 25
   
   // With tariff
   const tariffRate = 15;
-  const priceWithTariff = worldPrice + tariffRate;
-  const qDemandWithTariff = 55;
-  const qSupplyWithTariff = 35;
+  const priceWithTariff = worldPrice + tariffRate; // 45
+  const qDemandWithTariff = demandQ(priceWithTariff);  // 50
+  const qSupplyWithTariff = supplyQ(priceWithTariff);  // 40
 
   // Demand curve path
   const demandPath = `M ${xScale(0)} ${yScale(demandIntercept.y)} L ${xScale(95)} ${yScale(0)}`;

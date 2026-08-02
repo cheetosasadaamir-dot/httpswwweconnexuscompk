@@ -22,32 +22,68 @@ const PESDiagram = ({ type, title }: PESDiagramProps) => {
   const gridColor = '#334155';
   const highlightColor = '#FFD700';
 
-  const getSupplyPath = () => {
-    const startX = padding + 10;
+  // Origin of the graph in pixel space (bottom-left corner of the axes)
+  const originX = padding;
+  const originY = padding + graphHeight;
+
+  const getSupplyGeometry = () => {
     const endX = padding + graphWidth - 10;
-    const startY = padding + graphHeight - 20;
-    const endY = padding + 20;
-    
+    const topY = padding + 10;
+
     switch (type) {
-      case 'elastic':
-        // Flatter curve (more horizontal)
-        return `M ${startX} ${startY - 40} L ${endX} ${endY + 20}`;
-      case 'inelastic':
-        // Steeper curve (more vertical)
-        return `M ${startX + 60} ${startY} L ${endX - 60} ${endY}`;
-      case 'unitary':
-        // 45-degree line through origin
-        return `M ${padding} ${padding + graphHeight} L ${padding + graphWidth - 10} ${padding + 10}`;
-      case 'perfectly-elastic':
-        // Horizontal line
-        return `M ${startX} ${padding + graphHeight * 0.5} L ${endX} ${padding + graphHeight * 0.5}`;
-      case 'perfectly-inelastic':
-        // Vertical line
-        return `M ${padding + graphWidth * 0.5} ${startY} L ${padding + graphWidth * 0.5} ${endY}`;
-      default:
-        return `M ${startX} ${startY} L ${endX} ${endY}`;
+      case 'elastic': {
+        // Elastic supply cuts the PRICE (vertical) axis at a positive price.
+        // Slope chosen to be visibly flatter (less steep) than the inelastic case.
+        const priceIntercept = originY - graphHeight * 0.35; // point where line crosses x = padding
+        const startX = originX; // start exactly on the P axis
+        const startY = priceIntercept;
+        const endY = topY;
+        return {
+          path: `M ${startX} ${startY} L ${endX} ${endY}`,
+          endPoint: { x: endX, y: endY },
+        };
+      }
+      case 'inelastic': {
+        // Inelastic supply cuts the QUANTITY (horizontal) axis at a positive quantity.
+        // Slope chosen to be visibly steeper than the elastic case.
+        const quantityIntercept = originX + graphWidth * 0.35; // point where line crosses y = originY
+        const startX = quantityIntercept;
+        const startY = originY;
+        const endY = topY;
+        const endX = padding + graphWidth * 0.62;
+        return {
+          path: `M ${startX} ${startY} L ${endX} ${endY}`,
+          endPoint: { x: endX, y: endY },
+        };
+      }
+      case 'unitary': {
+        // Straight line through the origin = unit elastic at every point
+        const endYUnit = padding + 10;
+        return {
+          path: `M ${originX} ${originY} L ${endX} ${endYUnit}`,
+          endPoint: { x: endX, y: endYUnit },
+        };
+      }
+      case 'perfectly-elastic': {
+        const y = padding + graphHeight * 0.5;
+        const startX = padding + 10;
+        return { path: `M ${startX} ${y} L ${endX} ${y}`, endPoint: { x: endX, y } };
+      }
+      case 'perfectly-inelastic': {
+        const x = padding + graphWidth * 0.5;
+        const startY = padding + graphHeight - 20;
+        return { path: `M ${x} ${startY} L ${x} ${topY}`, endPoint: { x, y: topY } };
+      }
+      default: {
+        const startX = padding + 10;
+        const startY = padding + graphHeight - 20;
+        return { path: `M ${startX} ${startY} L ${endX} ${topY}`, endPoint: { x: endX, y: topY } };
+      }
     }
   };
+
+  const { path: supplyPathD, endPoint: supplyEndPoint } = getSupplyGeometry();
+  const getSupplyPath = () => supplyPathD;
 
   const getElasticityLabel = () => {
     switch (type) {
@@ -151,13 +187,14 @@ const PESDiagram = ({ type, title }: PESDiagramProps) => {
           style={{ transition: 'stroke 0.3s, stroke-width 0.3s' }}
         />
         
-        {/* S label */}
-        <text 
-          x={padding + graphWidth - 15} 
-          y={type === 'perfectly-elastic' ? padding + graphHeight * 0.5 - 10 : padding + 45} 
-          fill={supplyColor} 
-          fontSize="13" 
+        {/* S label positioned at the curve's real endpoint */}
+        <text
+          x={supplyEndPoint.x + (type === 'perfectly-inelastic' ? 0 : 6)}
+          y={supplyEndPoint.y - (type === 'perfectly-inelastic' ? 10 : 2)}
+          fill={supplyColor}
+          fontSize="13"
           fontWeight="600"
+          textAnchor={type === 'perfectly-inelastic' ? 'middle' : 'start'}
         >
           S
         </text>
