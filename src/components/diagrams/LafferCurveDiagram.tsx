@@ -38,14 +38,17 @@ const LafferCurveDiagram = () => {
   const maxRevenue = 0.9; // Maximum revenue at T*
 
   // Generate Laffer curve points using quadratic function
+  // Beta-curve shaped so revenue is exactly 0 at t=0 and t=1, with a single
+  // peak (Rmax) at t = optimalTaxRate (computed numerically, not eyeballed).
+  const p = 2;
+  const q = (p * (1 - optimalTaxRate)) / optimalTaxRate;
+  const rafRaw = (t: number) => Math.pow(t, p) * Math.pow(1 - t, q);
+  const rafPeak = rafRaw(optimalTaxRate);
+
   const generateLafferPoints = () => {
     const points: { x: number; y: number }[] = [];
     for (let t = 0; t <= 1; t += 0.02) {
-      // Parabola: Revenue = 4 * maxRevenue * t * (1 - t)
-      // This creates a symmetric curve with max at t = 0.5, adjusted for T* = 0.45
-      const revenue = 4 * maxRevenue * (t / optimalTaxRate) * (1 - t / (2 - optimalTaxRate)) * optimalTaxRate;
-      // Simplified: R = -4 * t^2 + 4 * t (normalized)
-      const normalizedRevenue = -4 * Math.pow(t - optimalTaxRate, 2) + maxRevenue;
+      const normalizedRevenue = maxRevenue * (rafRaw(t) / rafPeak);
       points.push({
         x: margin.left + t * chartWidth,
         y: margin.top + chartHeight - Math.max(0, normalizedRevenue) * chartHeight

@@ -181,7 +181,7 @@ const LiquidityTrapDiagram = ({
         {/* Equilibrium at normal rate */}
         <motion.circle
           cx="240"
-          cy="230"
+          cy="223.75"
           r="6"
           fill="hsl(var(--cambridge-magenta))"
           filter="drop-shadow(0 0 4px hsl(var(--cambridge-magenta) / 0.6))"
@@ -189,14 +189,14 @@ const LiquidityTrapDiagram = ({
           animate={{ scale: 1 }}
           transition={{ delay: 1.2, type: "spring" }}
         />
-        <text x="225" y="220" fill="hsl(var(--cambridge-magenta))" fontSize="11" fontWeight="600">E₀</text>
+        <text x="225" y="213" fill="hsl(var(--cambridge-magenta))" fontSize="11" fontWeight="600">E₀</text>
         
         {/* Dashed line to r₀ */}
         <motion.line
           x1={margin.left}
-          y1="230"
+          y1="223.75"
           x2="240"
-          y2="230"
+          y2="223.75"
           stroke="hsl(var(--cambridge-magenta))"
           strokeWidth="1.5"
           strokeDasharray="5,3"
@@ -204,7 +204,7 @@ const LiquidityTrapDiagram = ({
           animate={{ pathLength: 1 }}
           transition={{ delay: 1.4, duration: 0.4 }}
         />
-        <text x={margin.left - 10} y="234" textAnchor="end" fill="hsl(var(--cambridge-magenta))" fontSize="11">r₀</text>
+        <text x={margin.left - 10} y="228" textAnchor="end" fill="hsl(var(--cambridge-magenta))" fontSize="11">r₀</text>
 
         {/* Shifted Money Supply - in the trap zone */}
         {showShift && (
