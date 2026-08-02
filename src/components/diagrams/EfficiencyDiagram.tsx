@@ -232,7 +232,7 @@ const EfficiencyDiagram = () => {
 
                 {/* P = MC point */}
                 <motion.circle
-                  cx={xScale(60)}
+                  cx={xScale(61.62)}
                   cy={yScale(45)}
                   r="8"
                   fill="hsl(var(--cambridge-green))"
@@ -242,7 +242,7 @@ const EfficiencyDiagram = () => {
                   animate={{ scale: 1 }}
                   transition={{ delay: 1 }}
                 />
-                <text x={xScale(60) + 12} y={yScale(45) - 8} className="fill-green-400 text-xs font-medium">
+                <text x={xScale(61.62) + 12} y={yScale(45) - 8} className="fill-green-400 text-xs font-medium">
                   P = MC
                 </text>
               </>

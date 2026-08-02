@@ -48,7 +48,7 @@ const BudgetIndifferenceDiagram = () => {
   };
 
   const ic1 = generateIC(1.5);
-  const ic2 = generateIC(2.5);
+  const ic2 = generateIC(2.86);
   const ic3 = generateIC(3.5);
 
   const createCurvePath = (points: { x: number; y: number }[]) => {
@@ -59,7 +59,7 @@ const BudgetIndifferenceDiagram = () => {
   };
 
   // Optimal point (tangency)
-  const optimalPoint = { x: 10, y: 5 };
+  const optimalPoint = { x: 7.57, y: 6.22 };
 
   return (
     <div className="glass-card p-6 rounded-xl">

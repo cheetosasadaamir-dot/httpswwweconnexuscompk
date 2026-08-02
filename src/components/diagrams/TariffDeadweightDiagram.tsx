@@ -36,11 +36,14 @@ const TariffDeadweightDiagram = () => {
   const worldPrice = 30;
   const tariffPrice = 50;
   
-  // Quantity points
-  const q1 = 20; // Domestic supply at world price
-  const q2 = 35; // Domestic supply at tariff price
-  const q3 = 65; // Domestic demand at tariff price
-  const q4 = 80; // Domestic demand at world price
+  // Supply: P = Q + 10 ; Demand: P = 100 - Q (chosen so intersections are exact)
+  const supplyQ = (p: number) => p - 10;
+  const demandQ = (p: number) => 100 - p;
+  // Quantity points - computed numerically from the curve equations, not eyeballed
+  const q1 = supplyQ(worldPrice);   // Domestic supply at world price = 20
+  const q2 = supplyQ(tariffPrice);  // Domestic supply at tariff price = 40
+  const q3 = demandQ(tariffPrice);  // Domestic demand at tariff price = 50
+  const q4 = demandQ(worldPrice);   // Domestic demand at world price = 70
 
   const DiagramSVG = ({ showTariff }: { showTariff: boolean }) => (
     <svg viewBox={`0 0 ${width} ${height}`} className="w-full max-w-lg mx-auto">
@@ -62,27 +65,27 @@ const TariffDeadweightDiagram = () => {
 
       {/* Supply Curve (domestic) - Neon Cyan */}
       <motion.line
-        x1={xScale(5)} y1={yScale(10)}
-        x2={xScale(70)} y2={yScale(80)}
+        x1={xScale(0)} y1={yScale(10)}
+        x2={xScale(90)} y2={yScale(100)}
         stroke="hsl(var(--cambridge-cyan))"
         strokeWidth="2.5"
         initial={{ pathLength: 0 }}
         animate={isVisible ? { pathLength: 1 } : {}}
         transition={{ duration: 0.6 }}
       />
-      <text x={xScale(72)} y={yScale(82)} fill="hsl(var(--cambridge-cyan))" fontSize="11" fontWeight="600">S (domestic)</text>
+      <text x={xScale(90)} y={yScale(100) - 4} fill="hsl(var(--cambridge-cyan))" fontSize="11" fontWeight="600">S (domestic)</text>
 
       {/* Demand Curve - Neon Cyan */}
       <motion.line
-        x1={xScale(5)} y1={yScale(90)}
-        x2={xScale(95)} y2={yScale(10)}
+        x1={xScale(10)} y1={yScale(90)}
+        x2={xScale(100)} y2={yScale(0)}
         stroke="hsl(var(--cambridge-cyan))"
         strokeWidth="2.5"
         initial={{ pathLength: 0 }}
         animate={isVisible ? { pathLength: 1 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
       />
-      <text x={xScale(97)} y={yScale(8)} fill="hsl(var(--cambridge-cyan))" fontSize="11" fontWeight="600">D</text>
+      <text x={xScale(100) - 20} y={yScale(0) - 6} fill="hsl(var(--cambridge-cyan))" fontSize="11" fontWeight="600">D</text>
 
       {/* World Price Line - Amber Gold */}
       <motion.line

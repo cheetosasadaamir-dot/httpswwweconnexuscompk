@@ -33,9 +33,20 @@ const LiquidityPreferenceDiagram = () => {
   const ms1X = 200;
   const ms2X = 300;
 
-  // Equilibrium points
-  const eq1Y = 4; // At Ms1 = 200
-  const eq2Y = 2.8; // At Ms2 = 300
+  // Equilibrium points - computed by linearly interpolating the LP (money demand) curve
+  const getLPValueAt = (x: number) => {
+    for (let i = 0; i < lpPoints.length - 1; i++) {
+      const a = lpPoints[i];
+      const b = lpPoints[i + 1];
+      if (x >= a.x && x <= b.x) {
+        const t = (x - a.x) / (b.x - a.x);
+        return a.y + t * (b.y - a.y);
+      }
+    }
+    return lpPoints[lpPoints.length - 1].y;
+  };
+  const eq1Y = getLPValueAt(ms1X); // At Ms1 = 200 -> intersects LP curve exactly at y=4
+  const eq2Y = getLPValueAt(ms2X); // At Ms2 = 300 -> interpolated intersection with LP curve
 
   return (
     <div className="glass-card p-6 rounded-xl">

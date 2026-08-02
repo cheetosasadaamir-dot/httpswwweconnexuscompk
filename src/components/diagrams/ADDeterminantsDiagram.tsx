@@ -103,7 +103,7 @@ const ADDeterminantsDiagram = () => {
 
             {/* Shift arrow */}
             <motion.path
-              d="M 350 220 L 410 220"
+              d="M 355 236 L 378 236"
               stroke="#00FFFF"
               strokeWidth="2"
               markerEnd="url(#arrowCyanDet)"
@@ -115,61 +115,61 @@ const ADDeterminantsDiagram = () => {
             {/* Equilibrium points */}
             {/* E1 */}
             <motion.circle
-              cx="360" cy="238" r="6"
+              cx="348" cy="245" r="6"
               fill="#00FFFF"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3, delay: 1 }}
             />
-            <text x="345" y="255" fill="#00FFFF" fontSize="12" fontWeight="600">E₁</text>
+            <text x="330" y="262" fill="#00FFFF" fontSize="12" fontWeight="600">E₁</text>
 
             {/* E2 */}
             <motion.circle
-              cx="420" cy="205" r="6"
+              cx="384" cy="229" r="6"
               fill="#FFD700"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3, delay: 1.1 }}
             />
-            <text x="428" y="200" fill="#FFD700" fontSize="12" fontWeight="600">E₂</text>
+            <text x="392" y="222" fill="#FFD700" fontSize="12" fontWeight="600">E₂</text>
 
             {/* Price level lines */}
             <motion.line
-              x1="100" y1="238" x2="360" y2="238"
+              x1="100" y1="245" x2="348" y2="245"
               stroke="rgba(0, 255, 255, 0.4)" strokeWidth="1" strokeDasharray="4,4"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 1.3 }}
             />
-            <text x="85" y="242" fill="#00FFFF" fontSize="11" textAnchor="end">P₁</text>
+            <text x="85" y="249" fill="#00FFFF" fontSize="11" textAnchor="end">P₁</text>
 
             <motion.line
-              x1="100" y1="205" x2="420" y2="205"
+              x1="100" y1="229" x2="384" y2="229"
               stroke="rgba(255, 215, 0, 0.4)" strokeWidth="1" strokeDasharray="4,4"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 1.4 }}
             />
-            <text x="85" y="209" fill="#FFD700" fontSize="11" textAnchor="end">P₂</text>
+            <text x="85" y="233" fill="#FFD700" fontSize="11" textAnchor="end">P₂</text>
 
             {/* Output lines */}
             <motion.line
-              x1="360" y1="238" x2="360" y2="360"
+              x1="348" y1="245" x2="348" y2="360"
               stroke="rgba(0, 255, 255, 0.4)" strokeWidth="1" strokeDasharray="4,4"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 1.5 }}
             />
-            <text x="360" y="378" fill="#00FFFF" fontSize="11" textAnchor="middle">Y₁</text>
+            <text x="348" y="378" fill="#00FFFF" fontSize="11" textAnchor="middle">Y₁</text>
 
             <motion.line
-              x1="420" y1="205" x2="420" y2="360"
+              x1="384" y1="229" x2="384" y2="360"
               stroke="rgba(255, 215, 0, 0.4)" strokeWidth="1" strokeDasharray="4,4"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 1.6 }}
             />
-            <text x="420" y="378" fill="#FFD700" fontSize="11" textAnchor="middle">Y₂</text>
+            <text x="384" y="378" fill="#FFD700" fontSize="11" textAnchor="middle">Y₂</text>
 
             {/* Full employment marker */}
             <text x="480" y="378" fill="rgba(255,255,255,0.7)" fontSize="11" textAnchor="middle">Yfe</text>

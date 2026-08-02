@@ -128,8 +128,8 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
 
         {/* Original Equilibrium E₁ */}
         <motion.circle 
-          cx="260" 
-          cy="200" 
+          cx="271" 
+          cy="208" 
           r="8" 
           fill={equilibriumPoint}
           initial={{ scale: 0, opacity: 0 }}
@@ -137,8 +137,8 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
           transition={{ delay: 1.5, type: "spring" }}
         />
         <motion.text 
-          x="275" 
-          y="195" 
+          x="286" 
+          y="203" 
           fill={equilibriumPoint} 
           fontSize="14" 
           fontWeight="600"
@@ -151,7 +151,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
 
         {/* Dashed lines to axes from E₁ */}
         <motion.line 
-          x1="260" y1="200" x2="260" y2="350" 
+          x1="271" y1="208" x2="271" y2="350" 
           stroke={axisColor} 
           strokeWidth="1.5" 
           strokeDasharray="6,4"
@@ -160,7 +160,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
           transition={{ delay: 1.7, duration: 0.5 }}
         />
         <motion.line 
-          x1="80" y1="200" x2="260" y2="200" 
+          x1="80" y1="208" x2="271" y2="208" 
           stroke={axisColor} 
           strokeWidth="1.5" 
           strokeDasharray="6,4"
@@ -172,7 +172,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
         {/* P₁ and Q₁ labels */}
         <motion.text 
           x="60" 
-          y="205" 
+          y="212" 
           fill={labelColor} 
           fontSize="14" 
           textAnchor="end"
@@ -225,8 +225,8 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
 
             {/* New Equilibrium E₂ */}
             <motion.circle 
-              cx="310" 
-              cy="165" 
+              cx="289" 
+              cy="191" 
               r="8" 
               fill={shiftedCurve}
               initial={{ scale: 0, opacity: 0 }}
@@ -234,8 +234,8 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
               transition={{ delay: 3.2, type: "spring" }}
             />
             <motion.text 
-              x="325" 
-              y="160" 
+              x="304" 
+              y="186" 
               fill={shiftedCurve} 
               fontSize="14" 
               fontWeight="600"
@@ -248,7 +248,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
 
             {/* Arrow showing shift */}
             <motion.path
-              d="M 270 260 L 310 260"
+              d="M 271 260 L 289 260"
               fill="none"
               stroke={shiftedCurve}
               strokeWidth="2"
@@ -260,7 +260,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
 
             {/* Dashed lines to axes from E₂ */}
             <motion.line 
-              x1="310" y1="165" x2="310" y2="350" 
+              x1="289" y1="191" x2="289" y2="350" 
               stroke={shiftedCurve} 
               strokeWidth="1.5" 
               strokeDasharray="6,4"
@@ -270,7 +270,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
               transition={{ delay: 3.4, duration: 0.5 }}
             />
             <motion.line 
-              x1="80" y1="165" x2="310" y2="165" 
+              x1="80" y1="191" x2="289" y2="191" 
               stroke={shiftedCurve} 
               strokeWidth="1.5" 
               strokeDasharray="6,4"
@@ -283,7 +283,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
             {/* P₂ and Q₂ labels */}
             <motion.text 
               x="60" 
-              y="170" 
+              y="196" 
               fill={shiftedCurve} 
               fontSize="14" 
               textAnchor="end"
@@ -294,7 +294,7 @@ const DemandSupplyDiagram = ({ title, showShift = 'demand-increase' }: DemandSup
               P₂
             </motion.text>
             <motion.text 
-              x="310" 
+              x="289" 
               y="370" 
               fill={shiftedCurve} 
               fontSize="14" 

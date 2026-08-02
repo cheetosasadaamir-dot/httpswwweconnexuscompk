@@ -123,7 +123,7 @@ const RevenueCurvesDiagram: React.FC = () => {
               <>
                 <motion.path
                   key="tr-curve-maker"
-                  d="M 50,190 Q 100,140 150,70 Q 180,40 200,35 Q 230,40 260,70 Q 280,100 290,140"
+                  d="M 50,190 Q 90,140 125,80 Q 145,45 165,35 Q 185,45 205,80 Q 240,110 280,150"
                   fill="none"
                   stroke="#22d3ee"
                   strokeWidth="3"
@@ -133,7 +133,7 @@ const RevenueCurvesDiagram: React.FC = () => {
                 />
                 {/* Max TR point */}
                 <motion.circle
-                  cx="200"
+                  cx="165"
                   cy="35"
                   r="6"
                   fill="#f472b6"
@@ -143,8 +143,8 @@ const RevenueCurvesDiagram: React.FC = () => {
                   animate={{ scale: 1 }}
                   transition={{ delay: 1.3 }}
                 />
-                <text x="208" y="28" fill="#f472b6" fontSize="10" fontWeight="500">Max TR</text>
-                <text x="208" y="50" fill="#94a3b8" fontSize="9">(where MR = 0)</text>
+                <text x="173" y="28" fill="#f472b6" fontSize="10" fontWeight="500">Max TR</text>
+                <text x="173" y="50" fill="#94a3b8" fontSize="9">(where MR = 0)</text>
               </>
             )}
             

@@ -14,26 +14,60 @@ const ElasticityDiagram = ({ type, title }: ElasticityDiagramProps) => {
 
   const cyanColor = 'hsl(185, 100%, 50%)';
 
-  const getDemandPath = () => {
+  // Rectangular hyperbola (P*Q = k) sampled into a polyline for the unit-elastic case
+  const getHyperbolaPath = (x0: number, y0: number, x1: number, y1: number, steps = 24) => {
+    const Qmin = 1;
+    const Qmax = 4;
+    const k = 4;
+    const Pmax = k / Qmin;
+    const Pmin = k / Qmax;
+    let d = '';
+    for (let i = 0; i <= steps; i++) {
+      const Q = Qmin + ((Qmax - Qmin) * i) / steps;
+      const P = k / Q;
+      const xt = x0 + (x1 - x0) * ((Q - Qmin) / (Qmax - Qmin));
+      const yt = y0 + (y1 - y0) * ((Pmax - P) / (Pmax - Pmin));
+      d += `${i === 0 ? 'M' : 'L'} ${xt.toFixed(2)} ${yt.toFixed(2)} `;
+    }
+    return d.trim();
+  };
+
+  const getDemandGeometry = () => {
     const startX = margin.left;
     const endX = margin.left + innerWidth;
     const startY = margin.top;
     const endY = margin.top + innerHeight;
 
     switch (type) {
-      case 'perfectly-elastic':
-        return `M ${startX} ${startY + innerHeight * 0.3} L ${endX} ${startY + innerHeight * 0.3}`;
-      case 'perfectly-inelastic':
-        return `M ${startX + innerWidth * 0.5} ${startY} L ${startX + innerWidth * 0.5} ${endY}`;
-      case 'elastic':
-        return `M ${startX} ${startY + innerHeight * 0.15} L ${endX} ${endY - innerHeight * 0.1}`;
-      case 'inelastic':
-        return `M ${startX + innerWidth * 0.1} ${startY} L ${endX - innerWidth * 0.1} ${endY}`;
+      case 'perfectly-elastic': {
+        const y = startY + innerHeight * 0.3;
+        return { path: `M ${startX} ${y} L ${endX} ${y}`, endPoint: { x: endX, y } };
+      }
+      case 'perfectly-inelastic': {
+        const x = startX + innerWidth * 0.5;
+        return { path: `M ${x} ${startY} L ${x} ${endY}`, endPoint: { x, y: startY } };
+      }
+      case 'elastic': {
+        // Visibly flatter than the inelastic curve
+        const y0 = startY + innerHeight * 0.25;
+        const y1 = endY - innerHeight * 0.35;
+        return { path: `M ${startX} ${y0} L ${endX} ${y1}`, endPoint: { x: endX, y: y1 } };
+      }
+      case 'inelastic': {
+        const x0 = startX + innerWidth * 0.15;
+        const x1 = endX - innerWidth * 0.15;
+        return { path: `M ${x0} ${startY} L ${x1} ${endY}`, endPoint: { x: x1, y: endY } };
+      }
       case 'unit':
-      default:
-        return `M ${startX} ${startY} L ${endX} ${endY}`;
+      default: {
+        const path = getHyperbolaPath(startX, startY, endX, endY);
+        return { path, endPoint: { x: endX, y: endY } };
+      }
     }
   };
+
+  const { path: demandPathD, endPoint: demandEndPoint } = getDemandGeometry();
+  const getDemandPath = () => demandPathD;
 
   const getElasticityLabel = () => {
     switch (type) {
@@ -132,8 +166,17 @@ const ElasticityDiagram = ({ type, title }: ElasticityDiagramProps) => {
           {getElasticityLabel()}
         </motion.text>
 
-        {/* D label */}
-        <text x={width - margin.right - 10} y={type === 'perfectly-elastic' ? margin.top + innerHeight * 0.3 - 10 : height - margin.bottom - 20} fill={cyanColor} fontSize="12" fontWeight="600">D</text>
+        {/* D label positioned at the curve's real endpoint */}
+        <text
+          x={demandEndPoint.x - (type === 'perfectly-inelastic' ? 16 : 4)}
+          y={demandEndPoint.y - (type === 'perfectly-inelastic' ? 8 : 8)}
+          fill={cyanColor}
+          fontSize="12"
+          fontWeight="600"
+          textAnchor={type === 'perfectly-inelastic' ? 'middle' : 'end'}
+        >
+          D
+        </text>
 
         {/* Origin */}
         <text x={margin.left - 8} y={height - margin.bottom + 15} fill="hsl(220, 14%, 60%)" fontSize="10" textAnchor="middle">0</text>

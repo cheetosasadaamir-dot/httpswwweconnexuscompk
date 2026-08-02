@@ -20,7 +20,7 @@ const IncomeSubstitutionDiagram = () => {
     switch (goodType) {
       case 'normal':
         return {
-          A: { x: 8, y: 12 },   // Original equilibrium
+          A: { x: 6.4, y: 9.6 },   // Original equilibrium (on BL1)
           B: { x: 15, y: 9 },   // After substitution effect
           C: { x: 20, y: 7 },   // Final equilibrium (both effects positive)
           description: 'Normal Good: Both substitution and income effects are positive. When price falls, quantity demanded increases significantly.',
@@ -29,7 +29,7 @@ const IncomeSubstitutionDiagram = () => {
         };
       case 'inferior':
         return {
-          A: { x: 8, y: 12 },
+          A: { x: 6.4, y: 9.6 },
           B: { x: 18, y: 8 },   // After substitution effect
           C: { x: 14, y: 10 },  // Final (income effect negative but smaller)
           description: 'Inferior Good: Substitution effect is positive, income effect is negative but smaller. Net effect is still positive.',
@@ -38,7 +38,7 @@ const IncomeSubstitutionDiagram = () => {
         };
       case 'giffen':
         return {
-          A: { x: 12, y: 10 },
+          A: { x: 8.73, y: 7.27 },
           B: { x: 18, y: 7 },   // After substitution effect
           C: { x: 6, y: 14 },   // Final (income effect negative and larger)
           description: 'Giffen Good: Substitution effect is positive, but income effect is negative and larger. Price fall leads to quantity decrease—violating the law of demand.',

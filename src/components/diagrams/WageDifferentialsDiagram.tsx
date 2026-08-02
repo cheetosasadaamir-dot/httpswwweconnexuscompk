@@ -93,7 +93,7 @@ const WageDifferentialsDiagram = () => {
             
             {/* Equilibrium */}
             <motion.circle
-              cx="130" cy="100"
+              cx="135.9" cy="96.4"
               r="5"
               fill="hsl(var(--accent))"
               initial={{ scale: 0 }}
@@ -103,7 +103,7 @@ const WageDifferentialsDiagram = () => {
             
             {/* High wage line */}
             <motion.line
-              x1="50" y1="100" x2="130" y2="100"
+              x1="50" y1="96.4" x2="135.9" y2="96.4"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -111,11 +111,11 @@ const WageDifferentialsDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="40" y="105" textAnchor="end" className="fill-indigo-400 text-xs font-bold">W<tspan baselineShift="sub" fontSize="7">H</tspan></text>
+            <text x="40" y="101.4" textAnchor="end" className="fill-indigo-400 text-xs font-bold">W<tspan baselineShift="sub" fontSize="7">H</tspan></text>
             
             {/* Employment */}
             <motion.line
-              x1="130" y1="100" x2="130" y2="200"
+              x1="135.9" y1="96.4" x2="135.9" y2="200"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -123,7 +123,7 @@ const WageDifferentialsDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="130" y="215" textAnchor="middle" className="fill-muted-foreground text-[10px]">N<tspan baselineShift="sub" fontSize="7">s</tspan></text>
+            <text x="135.9" y="215" textAnchor="middle" className="fill-muted-foreground text-[10px]">N<tspan baselineShift="sub" fontSize="7">s</tspan></text>
           </svg>
         </div>
 
@@ -176,7 +176,7 @@ const WageDifferentialsDiagram = () => {
             
             {/* Equilibrium */}
             <motion.circle
-              cx="150" cy="140"
+              cx="144" cy="137.3"
               r="5"
               fill="hsl(var(--accent))"
               initial={{ scale: 0 }}
@@ -186,7 +186,7 @@ const WageDifferentialsDiagram = () => {
             
             {/* Low wage line */}
             <motion.line
-              x1="50" y1="140" x2="150" y2="140"
+              x1="50" y1="137.3" x2="144" y2="137.3"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -194,11 +194,11 @@ const WageDifferentialsDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="40" y="145" textAnchor="end" className="fill-orange-400 text-xs font-bold">W<tspan baselineShift="sub" fontSize="7">L</tspan></text>
+            <text x="40" y="142.3" textAnchor="end" className="fill-orange-400 text-xs font-bold">W<tspan baselineShift="sub" fontSize="7">L</tspan></text>
             
             {/* Employment */}
             <motion.line
-              x1="150" y1="140" x2="150" y2="200"
+              x1="144" y1="137.3" x2="144" y2="200"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1"
               strokeDasharray="4,4"
@@ -206,7 +206,7 @@ const WageDifferentialsDiagram = () => {
               animate={isVisible ? { pathLength: 1 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
             />
-            <text x="150" y="215" textAnchor="middle" className="fill-muted-foreground text-[10px]">N<tspan baselineShift="sub" fontSize="7">u</tspan></text>
+            <text x="144" y="215" textAnchor="middle" className="fill-muted-foreground text-[10px]">N<tspan baselineShift="sub" fontSize="7">u</tspan></text>
           </svg>
         </div>
       </div>

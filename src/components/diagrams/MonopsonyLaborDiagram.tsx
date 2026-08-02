@@ -101,7 +101,7 @@ const MonopsonyLaborDiagram = () => {
         
         {/* Monopsony Equilibrium (MFC = MRP) */}
         <motion.circle
-          cx="185" cy="115"
+          cx="176" cy="122"
           r="6"
           fill="hsl(var(--accent))"
           initial={{ scale: 0 }}
@@ -111,7 +111,7 @@ const MonopsonyLaborDiagram = () => {
         
         {/* Line from equilibrium to supply curve (to find wage) */}
         <motion.line
-          x1="185" y1="115" x2="185" y2="175"
+          x1="176" y1="122" x2="176" y2="175"
           stroke="hsl(var(--muted-foreground))"
           strokeWidth="1.5"
           strokeDasharray="4,4"
@@ -122,7 +122,7 @@ const MonopsonyLaborDiagram = () => {
         
         {/* Point on supply curve (wage paid) */}
         <motion.circle
-          cx="185" cy="175"
+          cx="176" cy="175"
           r="5"
           fill="hsl(var(--secondary))"
           initial={{ scale: 0 }}
@@ -132,7 +132,7 @@ const MonopsonyLaborDiagram = () => {
         
         {/* Monopsony wage line */}
         <motion.line
-          x1="60" y1="175" x2="185" y2="175"
+          x1="60" y1="175" x2="176" y2="175"
           stroke="hsl(var(--muted-foreground))"
           strokeWidth="1"
           strokeDasharray="4,4"
@@ -144,7 +144,7 @@ const MonopsonyLaborDiagram = () => {
         
         {/* Competitive wage line */}
         <motion.line
-          x1="60" y1="140" x2="220" y2="140"
+          x1="60" y1="147" x2="213" y2="147"
           stroke="hsl(var(--muted-foreground))"
           strokeWidth="1"
           strokeDasharray="2,2"
@@ -152,11 +152,11 @@ const MonopsonyLaborDiagram = () => {
           animate={isVisible ? { pathLength: 1 } : {}}
           transition={{ delay: 2.8, duration: 0.4 }}
         />
-        <text x="50" y="145" textAnchor="end" className="fill-green-400 text-xs font-medium">W<tspan baselineShift="sub" fontSize="8">c</tspan></text>
+        <text x="50" y="151" textAnchor="end" className="fill-green-400 text-xs font-medium">W<tspan baselineShift="sub" fontSize="8">c</tspan></text>
         
         {/* Competitive equilibrium point */}
         <motion.circle
-          cx="220" cy="140"
+          cx="213" cy="147"
           r="4"
           fill="#22c55e"
           stroke="white"
@@ -168,7 +168,7 @@ const MonopsonyLaborDiagram = () => {
         
         {/* Monopsony employment */}
         <motion.line
-          x1="185" y1="175" x2="185" y2="270"
+          x1="176" y1="175" x2="176" y2="270"
           stroke="hsl(var(--muted-foreground))"
           strokeWidth="1"
           strokeDasharray="4,4"
@@ -176,11 +176,11 @@ const MonopsonyLaborDiagram = () => {
           animate={isVisible ? { pathLength: 1 } : {}}
           transition={{ delay: 2.5, duration: 0.4 }}
         />
-        <text x="185" y="285" textAnchor="middle" className="fill-purple-400 text-xs font-medium">L<tspan baselineShift="sub" fontSize="8">m</tspan></text>
+        <text x="176" y="285" textAnchor="middle" className="fill-purple-400 text-xs font-medium">L<tspan baselineShift="sub" fontSize="8">m</tspan></text>
         
         {/* Competitive employment */}
         <motion.line
-          x1="220" y1="140" x2="220" y2="270"
+          x1="213" y1="147" x2="213" y2="270"
           stroke="hsl(var(--muted-foreground))"
           strokeWidth="1"
           strokeDasharray="2,2"
@@ -188,7 +188,7 @@ const MonopsonyLaborDiagram = () => {
           animate={isVisible ? { pathLength: 1 } : {}}
           transition={{ delay: 3.2, duration: 0.4 }}
         />
-        <text x="220" y="285" textAnchor="middle" className="fill-green-400 text-xs font-medium">L<tspan baselineShift="sub" fontSize="8">c</tspan></text>
+        <text x="213" y="285" textAnchor="middle" className="fill-green-400 text-xs font-medium">L<tspan baselineShift="sub" fontSize="8">c</tspan></text>
         
         {/* Zone of bargaining annotation */}
         <motion.g
@@ -206,9 +206,9 @@ const MonopsonyLaborDiagram = () => {
           animate={isVisible ? { opacity: 1 } : {}}
           transition={{ delay: 3.8, duration: 0.5 }}
         >
-          <line x1="300" y1="115" x2="185" y2="115" stroke="#ef4444" strokeWidth="1" markerEnd="url(#arrow)" />
-          <text x="310" y="110" className="fill-red-400 text-[10px]">MRP = MFC</text>
-          <text x="310" y="122" className="fill-red-400 text-[10px]">(profit max)</text>
+          <line x1="300" y1="122" x2="176" y2="122" stroke="#ef4444" strokeWidth="1" markerEnd="url(#arrow)" />
+          <text x="310" y="117" className="fill-red-400 text-[10px]">MRP = MFC</text>
+          <text x="310" y="129" className="fill-red-400 text-[10px]">(profit max)</text>
         </motion.g>
       </svg>
 

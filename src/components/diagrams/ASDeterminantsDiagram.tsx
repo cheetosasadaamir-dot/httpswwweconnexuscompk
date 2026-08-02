@@ -127,27 +127,27 @@ const ASDeterminantsDiagram = () => {
 
             {/* Equilibrium E1 (original) */}
             <motion.circle
-              cx="365" cy="230" r="6"
+              cx="349" cy="221" r="6"
               fill="#FFD700"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3, delay: 1.2 }}
             />
-            <text x="350" y="248" fill="#FFD700" fontSize="12" fontWeight="600">E₁</text>
+            <text x="332" y="240" fill="#FFD700" fontSize="12" fontWeight="600">E₁</text>
 
             {/* Equilibrium E2 (after cost-push - stagflation) */}
             <motion.circle
-              cx="320" cy="190" r="6"
+              cx="290" cy="177" r="6"
               fill="#FF6B6B"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3, delay: 1.3 }}
             />
-            <text x="308" y="180" fill="#FF6B6B" fontSize="12" fontWeight="600">E₂</text>
+            <text x="272" y="168" fill="#FF6B6B" fontSize="12" fontWeight="600">E₂</text>
 
             {/* Stagflation area - shaded region */}
             <motion.path
-              d="M 320 190 L 320 360 L 365 360 L 365 230 L 320 190"
+              d="M 290 177 L 290 360 L 349 360 L 349 221 L 290 177"
               fill="url(#stagflationArea)"
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.6 }}
@@ -156,41 +156,41 @@ const ASDeterminantsDiagram = () => {
 
             {/* Price lines */}
             <motion.line
-              x1="100" y1="230" x2="365" y2="230"
+              x1="100" y1="221" x2="349" y2="221"
               stroke="rgba(255, 215, 0, 0.4)" strokeWidth="1" strokeDasharray="4,4"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 1.4 }}
             />
-            <text x="85" y="234" fill="#FFD700" fontSize="11" textAnchor="end">P₁</text>
+            <text x="85" y="225" fill="#FFD700" fontSize="11" textAnchor="end">P₁</text>
 
             <motion.line
-              x1="100" y1="190" x2="320" y2="190"
+              x1="100" y1="177" x2="290" y2="177"
               stroke="rgba(255, 107, 107, 0.5)" strokeWidth="1" strokeDasharray="4,4"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 1.5 }}
             />
-            <text x="85" y="194" fill="#FF6B6B" fontSize="11" textAnchor="end">P₂</text>
+            <text x="85" y="181" fill="#FF6B6B" fontSize="11" textAnchor="end">P₂</text>
 
             {/* Output lines */}
             <motion.line
-              x1="365" y1="230" x2="365" y2="360"
+              x1="349" y1="221" x2="349" y2="360"
               stroke="rgba(255, 215, 0, 0.4)" strokeWidth="1" strokeDasharray="4,4"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 1.6 }}
             />
-            <text x="365" y="378" fill="#FFD700" fontSize="11" textAnchor="middle">Y₁</text>
+            <text x="349" y="378" fill="#FFD700" fontSize="11" textAnchor="middle">Y₁</text>
 
             <motion.line
-              x1="320" y1="190" x2="320" y2="360"
+              x1="290" y1="177" x2="290" y2="360"
               stroke="rgba(255, 107, 107, 0.5)" strokeWidth="1" strokeDasharray="4,4"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 1.7 }}
             />
-            <text x="320" y="378" fill="#FF6B6B" fontSize="11" textAnchor="middle">Y₂</text>
+            <text x="290" y="378" fill="#FF6B6B" fontSize="11" textAnchor="middle">Y₂</text>
 
             {/* Full employment markers */}
             <text x="420" y="378" fill="rgba(255,255,255,0.6)" fontSize="10" textAnchor="middle">Yfe₁</text>
@@ -214,10 +214,10 @@ const ASDeterminantsDiagram = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 2.1 }}
             >
-              <text x="345" y="300" fill="#FF6B6B" fontSize="10" textAnchor="middle" fontWeight="600">
+              <text x="320" y="300" fill="#FF6B6B" fontSize="10" textAnchor="middle" fontWeight="600">
                 STAGFLATION
               </text>
-              <text x="345" y="314" fill="rgba(255,107,107,0.7)" fontSize="9" textAnchor="middle">
+              <text x="320" y="314" fill="rgba(255,107,107,0.7)" fontSize="9" textAnchor="middle">
                 ↑P + ↓Y
               </text>
             </motion.g>
