@@ -86,7 +86,7 @@ const ActualPotentialGrowthDiagram = ({ title }: ActualPotentialGrowthDiagramPro
           <svg viewBox="0 0 280 240" className="w-full h-auto">
             {/* Grid */}
             <defs>
-              <linearGradient id="ppcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="ppcGrad-ActualPotentialGrowthDiagram" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="hsl(var(--primary))" />
                 <stop offset="100%" stopColor="hsl(217 91% 60%)" />
               </linearGradient>
@@ -126,7 +126,7 @@ const ActualPotentialGrowthDiagram = ({ title }: ActualPotentialGrowthDiagramPro
             <motion.path
               d="M 55 40 Q 80 70 130 130 Q 180 180 230 185"
               fill="none"
-              stroke="url(#ppcGrad)"
+              stroke="url(#ppcGrad-ActualPotentialGrowthDiagram)"
               strokeWidth="2.5"
               strokeLinecap="round"
               variants={curveVariants}
@@ -156,13 +156,13 @@ const ActualPotentialGrowthDiagram = ({ title }: ActualPotentialGrowthDiagramPro
                   d="M 130 130 L 150 120"
                   stroke="hsl(142 69% 58%)"
                   strokeWidth="1.5"
-                  markerEnd="url(#arrowGreen)"
+                  markerEnd="url(#arrowGreen-ActualPotentialGrowthDiagram)"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.4 }}
                 />
                 <defs>
-                  <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <marker id="arrowGreen-ActualPotentialGrowthDiagram" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
                     <path d="M 0 0 L 8 4 L 0 8 Z" fill="hsl(142 69% 58%)" />
                   </marker>
                 </defs>
@@ -199,13 +199,13 @@ const ActualPotentialGrowthDiagram = ({ title }: ActualPotentialGrowthDiagramPro
                   d="M 105 130 L 124 130"
                   stroke="hsl(var(--cambridge-cyan))"
                   strokeWidth="1.5"
-                  markerEnd="url(#arrowCyan)"
+                  markerEnd="url(#arrowCyan-ActualPotentialGrowthDiagram)"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ delay: 0.7, duration: 0.4 }}
                 />
                 <defs>
-                  <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <marker id="arrowCyan-ActualPotentialGrowthDiagram" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
                     <path d="M 0 0 L 8 4 L 0 8 Z" fill="hsl(var(--cambridge-cyan))" />
                   </marker>
                 </defs>

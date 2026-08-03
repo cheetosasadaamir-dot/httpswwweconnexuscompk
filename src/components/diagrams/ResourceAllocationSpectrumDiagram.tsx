@@ -81,7 +81,7 @@ const ResourceAllocationSpectrumDiagram = () => {
             <stop offset="75%" stopColor="hsl(190, 95%, 50%)" />
             <stop offset="100%" stopColor="hsl(217, 91%, 60%)" />
           </linearGradient>
-          <filter id="glow">
+          <filter id="glow-ResourceAllocationSpectrumDiagram">
             <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
@@ -154,7 +154,7 @@ const ResourceAllocationSpectrumDiagram = () => {
                 cy="130"
                 r={isHovered ? 14 : 10}
                 fill={system.color}
-                filter="url(#glow)"
+                filter="url(#glow-ResourceAllocationSpectrumDiagram)"
                 animate={{ scale: isHovered ? 1.2 : 1 }}
                 transition={{ duration: 0.2 }}
               />

@@ -205,7 +205,7 @@ const ConsumptionFunctionDiagram = ({
               fill="none"
               stroke="hsl(var(--cambridge-orange))"
               strokeWidth={2}
-              markerEnd="url(#shiftArrow)"
+              markerEnd="url(#shiftArrow-ConsumptionFunctionDiagram)"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.5 }}
@@ -295,7 +295,7 @@ const ConsumptionFunctionDiagram = ({
         {/* Arrow definition */}
         <defs>
           <marker
-            id="shiftArrow"
+            id="shiftArrow-ConsumptionFunctionDiagram"
             markerWidth="10"
             markerHeight="7"
             refX="5"

@@ -92,7 +92,7 @@ const TradeLoopDiagram = () => {
       </p>
 
       <div className="relative flex justify-center">
-        <svg width={width} height={height}>
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
           <defs>
             <filter id="tradeGlow">
               <feGaussianBlur stdDeviation="4" result="coloredBlur"/>

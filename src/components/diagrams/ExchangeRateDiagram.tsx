@@ -204,13 +204,13 @@ export const ExchangeRateDiagram = () => {
                   fill="none"
                   stroke="hsl(var(--primary))"
                   strokeWidth="2"
-                  markerEnd="url(#arrowhead)"
+                  markerEnd="url(#arrowhead-ExchangeRateDiagram)"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.7 }}
                 />
                 <defs>
-                  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                  <marker id="arrowhead-ExchangeRateDiagram" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                     <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--primary))" />
                   </marker>
                 </defs>

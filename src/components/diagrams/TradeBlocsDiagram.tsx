@@ -147,7 +147,7 @@ const TradeBlocsDiagram = () => {
 
         {/* Arrow indicating increasing integration */}
         <defs>
-          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <marker id="arrowhead-TradeBlocsDiagram" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
             <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--muted-foreground))" />
           </marker>
         </defs>
@@ -158,7 +158,7 @@ const TradeBlocsDiagram = () => {
           y2={40}
           stroke="hsl(var(--muted-foreground))"
           strokeWidth="2"
-          markerEnd="url(#arrowhead)"
+          markerEnd="url(#arrowhead-TradeBlocsDiagram)"
         />
         <text
           x={width - 20}

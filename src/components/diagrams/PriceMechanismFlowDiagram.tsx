@@ -55,7 +55,7 @@ const PriceMechanismFlowDiagram = () => {
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
-          <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <marker id="arrowCyan-PriceMechanismFlowDiagram" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
             <path d="M0,0 L0,6 L9,3 z" fill="hsl(190, 95%, 50%)" />
           </marker>
           <marker id="arrowGold" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
