@@ -2,16 +2,15 @@ import { useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import AuthOverlay from '@/components/AuthOverlay';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, LineChart, MessageSquare, Target } from 'lucide-react';
+import { ArrowRight, Sparkles, LineChart, MessageSquare, Target, FileText, PenLine, GraduationCap, BookOpen, Globe, Landmark, Coins, TrendingUp } from 'lucide-react';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import KnowledgePillars from '@/components/KnowledgePillars';
 // EconomicsChatbot moved to its own /chat page
 import GlossarySection from '@/components/GlossarySection';
-import WorldEconomicsSection from '@/components/WorldEconomicsSection';
 import OwnerProfileSection from '@/components/OwnerProfileSection';
-import AssignmentArchitect from '@/components/AssignmentArchitect';
+import HubEntryCard from '@/components/HubEntryCard';
 import LectureHubCard from '@/components/LectureHubCard';
 import ArticleHubCard from '@/components/ArticleHubCard';
 
@@ -197,8 +196,47 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
-        {/* AI Assignment Architect — generates top-band assignments across 11 subjects */}
-        <AssignmentArchitect />
+        {/* Assignment Architect & World Economics — dedicated pages */}
+        <section id="workspaces" className="section-mobile scroll-mt-20">
+          <div className="w-[95%] max-w-[1200px] mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-10 md:mb-16"
+            >
+              <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
+                Academic Workspaces
+              </h2>
+              <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
+                Two dedicated environments — draft top-band assignments, or explore the global economy concept by concept.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+              <HubEntryCard
+                title="Assignment Architect"
+                description="Draft professionally structured essays, reports and research papers with proper headings and referencing."
+                href="/assignment-architect"
+                cta="Open Architect"
+                icons={[FileText, PenLine, GraduationCap, BookOpen]}
+                gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(234 60% 12%) 50%, hsl(var(--navy-light)) 100%)"
+                hoverGradient="linear-gradient(135deg, hsl(234 60% 15%) 0%, hsl(217 60% 18%) 50%, hsl(234 50% 20%) 100%)"
+                delay={0}
+              />
+              <HubEntryCard
+                title="World Economics"
+                description="Search a living encyclopedia of global economics — models, indicators and real-world context."
+                href="/world-economics"
+                cta="Explore Topics"
+                icons={[Globe, Landmark, Coins, TrendingUp]}
+                gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(217 50% 12%) 50%, hsl(var(--navy-light)) 100%)"
+                hoverGradient="linear-gradient(135deg, hsl(217 50% 15%) 0%, hsl(200 50% 18%) 50%, hsl(217 40% 20%) 100%)"
+                delay={0.15}
+              />
+            </div>
+          </div>
+        </section>
 
         {/* Silver Divider */}
         <div className="w-[95%] max-w-[1200px] mx-auto">
@@ -254,14 +292,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-
-        {/* Silver Divider */}
-        <div className="w-[95%] max-w-[1200px] mx-auto">
-          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
-        </div>
-
-        {/* World Economics Section */}
-        <WorldEconomicsSection />
 
         {/* Silver Divider */}
         <div className="w-[95%] max-w-[1200px] mx-auto">

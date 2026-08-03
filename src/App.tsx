@@ -67,6 +67,8 @@ const ChatPage = lazy(() => import("./pages/Chat"));
 const LectureHub = lazy(() => import("./pages/LectureHub"));
 const ArticleHub = lazy(() => import("./pages/ArticleHub"));
 const ArticleViewer = lazy(() => import("./pages/ArticleViewer"));
+const AssignmentArchitectPage = lazy(() => import("./pages/AssignmentArchitectPage"));
+const WorldEconomics = lazy(() => import("./pages/WorldEconomics"));
 
 
 
@@ -157,6 +159,8 @@ const AnimatedRoutes = () => {
           <Route path="/lecture-hub" element={<ProtectedRoute><LectureHub /></ProtectedRoute>} />
           <Route path="/article-hub" element={<ProtectedRoute><ArticleHub /></ProtectedRoute>} />
           <Route path="/article-hub/:slug" element={<ProtectedRoute><ArticleViewer /></ProtectedRoute>} />
+          <Route path="/assignment-architect" element={<AssignmentArchitectPage />} />
+          <Route path="/world-economics" element={<WorldEconomics />} />
 
           
           {/* Legacy routes */}
