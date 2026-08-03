@@ -85,12 +85,13 @@ const FiscalPolicyADDiagram: React.FC<FiscalPolicyADDiagramProps> = ({
   const lrasX = xScale(0.7);
 
   // SRAS (upward sloping)
+  // SRAS: P = 0.145 + 0.3Q, chosen so AD1 intersects SRAS exactly at Yp (X = 0.7)
   const generateSRAS = () => {
     const points: { x: number; y: number }[] = [];
     for (let q = 0.1; q <= 0.9; q += 0.05) {
       points.push({
         x: xScale(q),
-        y: yScale(0.1 + q * 0.8)
+        y: yScale(0.145 + q * 0.3)
       });
     }
     return points;
@@ -229,7 +230,7 @@ const FiscalPolicyADDiagram: React.FC<FiscalPolicyADDiagramProps> = ({
                 initial="hidden"
                 animate={isVisible ? "visible" : "hidden"}
               />
-              <text x={xScale(0.85)} y={yScale(0.82)} className="fill-chart-4 text-xs font-semibold">SRAS</text>
+              <text x={xScale(0.85)} y={yScale(0.145 + 0.85 * 0.3) - 8} className="fill-chart-4 text-xs font-semibold">SRAS</text>
 
               {/* AD1 */}
               <motion.path
@@ -264,22 +265,22 @@ const FiscalPolicyADDiagram: React.FC<FiscalPolicyADDiagramProps> = ({
                     AD₂
                   </text>
 
-                  {/* Equilibrium points */}
-                  <motion.circle cx={lrasX} cy={yScale(0.52)} r={5} fill="hsl(var(--primary))" initial={{ scale: 0 }} animate={{ scale: 1 }} />
-                  <text x={lrasX - 15} y={yScale(0.55)} className="fill-foreground text-xs">E₁</text>
-                  <text x={margin.left - 5} y={yScale(0.52)} textAnchor="end" className="fill-foreground text-xs">P₁</text>
+                  {/* Equilibrium points: solved from AD(shift, X) = 0.95+0.85*shift-0.85X against SRAS = 0.145+0.3X at X = Yp = 0.7 */}
+                  <motion.circle cx={lrasX} cy={yScale(0.355)} r={5} fill="hsl(var(--primary))" initial={{ scale: 0 }} animate={{ scale: 1 }} />
+                  <text x={lrasX - 15} y={yScale(0.355) - 8} className="fill-foreground text-xs">E₁</text>
+                  <text x={margin.left - 5} y={yScale(0.355) + 4} textAnchor="end" className="fill-foreground text-xs">P₁</text>
 
                   {policyType === 'expansionary' ? (
                     <>
-                      <motion.circle cx={lrasX} cy={yScale(0.67)} r={5} fill="hsl(var(--chart-1))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
-                      <text x={lrasX + 10} y={yScale(0.70)} className="fill-chart-1 text-xs">E₂</text>
-                      <text x={margin.left - 5} y={yScale(0.67)} textAnchor="end" className="fill-chart-1 text-xs">P₂</text>
+                      <motion.circle cx={lrasX} cy={yScale(0.4825)} r={5} fill="hsl(var(--chart-1))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+                      <text x={lrasX + 10} y={yScale(0.4825) - 4} className="fill-chart-1 text-xs">E₂</text>
+                      <text x={margin.left - 5} y={yScale(0.4825) + 4} textAnchor="end" className="fill-chart-1 text-xs">P₂</text>
                     </>
                   ) : (
                     <>
-                      <motion.circle cx={lrasX} cy={yScale(0.37)} r={5} fill="hsl(var(--chart-1))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
-                      <text x={lrasX + 10} y={yScale(0.40)} className="fill-chart-1 text-xs">E₂</text>
-                      <text x={margin.left - 5} y={yScale(0.37)} textAnchor="end" className="fill-chart-1 text-xs">P₂</text>
+                      <motion.circle cx={lrasX} cy={yScale(0.2275)} r={5} fill="hsl(var(--chart-1))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+                      <text x={lrasX + 10} y={yScale(0.2275) - 4} className="fill-chart-1 text-xs">E₂</text>
+                      <text x={margin.left - 5} y={yScale(0.2275) + 4} textAnchor="end" className="fill-chart-1 text-xs">P₂</text>
                     </>
                   )}
 
@@ -380,23 +381,23 @@ const FiscalPolicyADDiagram: React.FC<FiscalPolicyADDiagramProps> = ({
                     AD₂
                   </text>
 
-                  {/* Equilibrium in horizontal section */}
-                  <motion.circle cx={xScale(0.35)} cy={yScale(0.25)} r={5} fill="hsl(var(--primary))" initial={{ scale: 0 }} animate={{ scale: 1 }} />
-                  <text x={xScale(0.35) - 10} y={yScale(0.28)} className="fill-foreground text-xs">E₁</text>
+                  {/* Equilibria solved algebraically: AD(shift,X)=0.95+0.85*shift-0.85X against Keynesian AS upward segment P=0.25+(X-0.6)*2.5 */}
+                  <motion.circle cx={xScale(0.6567)} cy={yScale(0.3918)} r={5} fill="hsl(var(--primary))" initial={{ scale: 0 }} animate={{ scale: 1 }} />
+                  <text x={xScale(0.6567) - 10} y={yScale(0.3918) - 8} className="fill-foreground text-xs">E₁</text>
 
                   {policyType === 'expansionary' ? (
                     <>
-                      <motion.circle cx={xScale(0.50)} cy={yScale(0.25)} r={5} fill="hsl(var(--chart-1))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
-                      <text x={xScale(0.50) + 10} y={yScale(0.28)} className="fill-chart-1 text-xs">E₂</text>
-                      <text x={xScale(0.35)} y={margin.top + chartHeight + 20} textAnchor="middle" className="fill-foreground text-xs">Y<tspan baselineShift="sub" fontSize="8">rec</tspan></text>
-                      <text x={xScale(0.50)} y={margin.top + chartHeight + 20} textAnchor="middle" className="fill-chart-1 text-xs">Y₂</text>
+                      <motion.circle cx={xScale(0.6948)} cy={yScale(0.4870)} r={5} fill="hsl(var(--chart-1))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+                      <text x={xScale(0.6948) + 10} y={yScale(0.4870) - 4} className="fill-chart-1 text-xs">E₂</text>
+                      <text x={xScale(0.6567)} y={margin.top + chartHeight + 20} textAnchor="middle" className="fill-foreground text-xs">Y₁</text>
+                      <text x={xScale(0.6948)} y={margin.top + chartHeight + 34} textAnchor="middle" className="fill-chart-1 text-xs">Y₂</text>
                     </>
                   ) : (
                     <>
-                      <motion.circle cx={xScale(0.20)} cy={yScale(0.25)} r={5} fill="hsl(var(--chart-1))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
-                      <text x={xScale(0.20) - 10} y={yScale(0.28)} className="fill-chart-1 text-xs">E₂</text>
-                      <text x={xScale(0.35)} y={margin.top + chartHeight + 20} textAnchor="middle" className="fill-foreground text-xs">Y₁</text>
-                      <text x={xScale(0.20)} y={margin.top + chartHeight + 20} textAnchor="middle" className="fill-chart-1 text-xs">Y₂</text>
+                      <motion.circle cx={xScale(0.6187)} cy={yScale(0.2966)} r={5} fill="hsl(var(--chart-1))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+                      <text x={xScale(0.6187) - 10} y={yScale(0.2966) - 8} className="fill-chart-1 text-xs">E₂</text>
+                      <text x={xScale(0.6567)} y={margin.top + chartHeight + 20} textAnchor="middle" className="fill-foreground text-xs">Y₁</text>
+                      <text x={xScale(0.6187)} y={margin.top + chartHeight + 34} textAnchor="middle" className="fill-chart-1 text-xs">Y₂</text>
                     </>
                   )}
 
