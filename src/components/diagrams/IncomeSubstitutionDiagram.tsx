@@ -51,11 +51,16 @@ const IncomeSubstitutionDiagram = () => {
   const points = getPoints();
 
   // Generate curved indifference curve path
-  const generateIC = (centerX: number, centerY: number, size: number) => {
+  // Vertex sits exactly at (centerX, centerY) so labelled points always lie on the curve.
+  // leftSpan/rightSpan let the curve be widened asymmetrically to reach a second labelled point.
+  const generateIC = (centerX: number, centerY: number, leftSpan: number, rightSpan: number) => {
     const pathPoints: string[] = [];
-    for (let t = 0; t <= 1; t += 0.05) {
-      const x = centerX - size * 0.8 + t * size * 1.6;
-      const y = centerY + size * 0.4 * Math.pow(t - 0.5, 2) * 8 - size * 0.2;
+    const steps = 24;
+    for (let i = 0; i <= steps; i += 1) {
+      const s = (i / steps) * 2 - 1; // -1 .. 1
+      const span = s < 0 ? leftSpan : rightSpan;
+      const x = centerX + s * span;
+      const y = centerY + 0.5 * s * s * span;
       pathPoints.push(`${xScale(x)},${yScale(y)}`);
     }
     return `M ${pathPoints.join(' L ')}`;
@@ -188,7 +193,7 @@ const IncomeSubstitutionDiagram = () => {
         {/* Indifference Curves */}
         <motion.path
           key={`ic1-${goodType}`}
-          d={generateIC(points.A.x, points.A.y, 8)}
+          d={generateIC(points.A.x, points.A.y, points.A.x, Math.abs(points.B.x - points.A.x) + 3)}
           fill="none"
           stroke="hsl(var(--secondary))"
           strokeWidth="2"
@@ -199,7 +204,7 @@ const IncomeSubstitutionDiagram = () => {
         />
         <motion.path
           key={`ic2-${goodType}`}
-          d={generateIC(points.C.x, points.C.y, 10)}
+          d={generateIC(points.C.x, points.C.y, Math.abs(points.C.x - points.B.x) + 3, 10)}
           fill="none"
           stroke="hsl(var(--secondary))"
           strokeWidth="2.5"

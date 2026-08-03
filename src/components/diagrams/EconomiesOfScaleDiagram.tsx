@@ -214,11 +214,11 @@ const EconomiesOfScaleDiagram: React.FC = () => {
           </text>
 
           {/* Arrows showing direction */}
-          <path d="M 100,220 L 180,180" fill="none" stroke="rgb(52, 211, 153)" strokeWidth="2" markerEnd="url(#arrowGreen)" />
+          <path d="M 100,220 L 180,180" fill="none" stroke="rgb(52, 211, 153)" strokeWidth="2" markerEnd="url(#arrowGreen-EconomiesOfScaleDiagram)" />
           <path d="M 400,180 L 480,220" fill="none" stroke="rgb(239, 68, 68)" strokeWidth="2" markerEnd="url(#arrowRed)" />
           
           <defs>
-            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <marker id="arrowGreen-EconomiesOfScaleDiagram" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
               <path d="M0,0 L0,6 L9,3 z" fill="rgb(52, 211, 153)" />
             </marker>
             <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">

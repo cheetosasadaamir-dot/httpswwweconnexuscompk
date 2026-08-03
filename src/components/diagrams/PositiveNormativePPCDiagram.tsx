@@ -21,7 +21,7 @@ const PositiveNormativePPCDiagram = () => {
                 <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.3" />
                 <stop offset="100%" stopColor="#d4af37" stopOpacity="0.1" />
               </linearGradient>
-              <filter id="glow">
+              <filter id="glow-PositiveNormativePPCDiagram">
                 <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                 <feMerge>
                   <feMergeNode in="coloredBlur" />
@@ -86,7 +86,7 @@ const PositiveNormativePPCDiagram = () => {
               fill="none"
               stroke="#22d3ee"
               strokeWidth="3"
-              filter="url(#glow)"
+              filter="url(#glow-PositiveNormativePPCDiagram)"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 1.5, ease: 'easeInOut' }}
@@ -105,7 +105,7 @@ const PositiveNormativePPCDiagram = () => {
                   className="cursor-pointer"
                   whileHover={{ scale: 1.3 }}
                   onClick={() => setSelectedPoint(key as 'A' | 'B' | 'C')}
-                  filter="url(#glow)"
+                  filter="url(#glow-PositiveNormativePPCDiagram)"
                 />
                 <text
                   x={point.x + 15}

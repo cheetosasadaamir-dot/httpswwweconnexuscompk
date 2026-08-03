@@ -238,41 +238,30 @@ const RevenueCurvesDiagram: React.FC = () => {
                   x1="50"
                   y1="40"
                   x2="280"
-                  y2="180"
+                  y2="190"
                   stroke="#22d3ee"
                   strokeWidth="2.5"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 1 }}
                 />
-                <text x="285" y="175" fill="#22d3ee" fontSize="11" fontWeight="500">AR = D</text>
+                <text x="240" y="175" fill="#22d3ee" fontSize="11" fontWeight="500">AR = D</text>
 
-                {/* MR curve - steeper slope, twice the gradient */}
+                {/* MR curve - twice the gradient of AR, hits x-axis at half the quantity */}
                 <motion.line
                   key="mr-line-maker"
                   x1="50"
                   y1="40"
                   x2="165"
-                  y2="180"
+                  y2="190"
                   stroke="#f472b6"
                   strokeWidth="2.5"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 1, delay: 0.3 }}
                 />
-                <text x="170" y="178" fill="#f472b6" fontSize="11" fontWeight="500">MR</text>
+                <text x="130" y="178" fill="#f472b6" fontSize="11" fontWeight="500">MR</text>
 
-                {/* MR = 0 dashed line */}
-                <line 
-                  x1="165" 
-                  y1="180" 
-                  x2="165" 
-                  y2="190" 
-                  stroke="#f472b6" 
-                  strokeWidth="1.5" 
-                  strokeDasharray="3,3" 
-                />
-                
                 {/* Quantity labels on x-axis */}
                 <text x="165" y="205" fill="#f472b6" fontSize="9" textAnchor="middle">Q*</text>
                 <text x="280" y="205" fill="#22d3ee" fontSize="9" textAnchor="middle">2Q*</text>

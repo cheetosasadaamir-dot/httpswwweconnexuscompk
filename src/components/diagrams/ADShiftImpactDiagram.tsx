@@ -32,7 +32,7 @@ export const ADShiftImpactDiagram = () => {
 
       <svg key={animationKey} viewBox={`0 0 ${width} ${height}`} className="w-full max-w-xl mx-auto">
         <defs>
-          <marker id="shiftArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <marker id="shiftArrow-ADShiftImpactDiagram" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
             <polygon points="0 0, 10 3.5, 0 7" fill="white" />
           </marker>
           <marker id="shiftArrowCyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -42,9 +42,9 @@ export const ADShiftImpactDiagram = () => {
 
         {/* Axes */}
         <line x1={margin.left} y1={margin.top + chartHeight} x2={margin.left + chartWidth + 15} y2={margin.top + chartHeight} 
-              stroke="white" strokeOpacity="0.5" strokeWidth="2" markerEnd="url(#shiftArrow)" />
+              stroke="white" strokeOpacity="0.5" strokeWidth="2" markerEnd="url(#shiftArrow-ADShiftImpactDiagram)" />
         <line x1={margin.left} y1={margin.top + chartHeight} x2={margin.left} y2={margin.top - 15} 
-              stroke="white" strokeOpacity="0.5" strokeWidth="2" markerEnd="url(#shiftArrow)" />
+              stroke="white" strokeOpacity="0.5" strokeWidth="2" markerEnd="url(#shiftArrow-ADShiftImpactDiagram)" />
         
         {/* Axis Labels */}
         <text x={margin.left + chartWidth / 2} y={height - 15} textAnchor="middle" fill="white" fontSize="13" fontWeight="600">
@@ -220,14 +220,14 @@ export const ADShiftImpactDiagram = () => {
         >
           {/* ΔY arrow */}
           <line x1={xScale(50) + 3} y1={yScale(3)} x2={xScale(62) - 3} y2={yScale(3)} 
-                stroke="#10B981" strokeWidth="2" markerEnd="url(#shiftArrow)" />
+                stroke="#10B981" strokeWidth="2" markerEnd="url(#shiftArrow-ADShiftImpactDiagram)" />
           <text x={(xScale(50) + xScale(62)) / 2} y={yScale(7)} textAnchor="middle" fill="#10B981" fontSize="10">
             ΔY (Growth)
           </text>
 
           {/* ΔP arrow */}
           <line x1={margin.left + 8} y1={yScale(48) - 3} x2={margin.left + 8} y2={yScale(58) + 3} 
-                stroke="#10B981" strokeWidth="2" markerEnd="url(#shiftArrow)" />
+                stroke="#10B981" strokeWidth="2" markerEnd="url(#shiftArrow-ADShiftImpactDiagram)" />
           <text x={margin.left + 25} y={(yScale(48) + yScale(58)) / 2 + 3} fill="#10B981" fontSize="10">
             ΔP
           </text>

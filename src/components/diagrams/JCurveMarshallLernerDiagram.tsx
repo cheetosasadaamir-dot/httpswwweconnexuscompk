@@ -58,7 +58,7 @@ export const JCurveMarshallLernerDiagram = () => {
             <stop offset="30%" stopColor="#F59E0B" />
             <stop offset="100%" stopColor="#22D3EE" />
           </linearGradient>
-          <filter id="glow">
+          <filter id="glow-JCurveMarshallLernerDiagram">
             <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
@@ -105,7 +105,7 @@ export const JCurveMarshallLernerDiagram = () => {
           stroke="url(#jCurveGradient)"
           strokeWidth="4"
           strokeLinecap="round"
-          filter="url(#glow)"
+          filter="url(#glow-JCurveMarshallLernerDiagram)"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
           transition={{ duration: 2.5, ease: "easeInOut" }}

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>JPMorgan, the World's Banking Giants, and AI: A Complete Guide | EconNexus</title>
+<style>
+  :root { --text:#111111; --muted:#4a4a4a; --rule:#111111; --bg:#ffffff; --panel:#f7f7f7; --teal:#0F7173; --teal-soft:#E1F3F0; --amber:#E3A008; --amber-soft:#FCEFC7; --red:#C4534A; --navy:#14213D; }
+  * { box-sizing: border-box; -webkit-text-size-adjust:100%; }
+  html { overflow-x:hidden; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: Georgia, 'Times New Roman', serif; line-height:1.72; overflow-x:hidden; }
+  .wrapper { max-width:840px; margin:0 auto; padding:44px 18px 90px; }
+  .kicker { font-family: Arial, Helvetica, sans-serif; text-transform:uppercase; letter-spacing:1.4px; font-size:11.5px; color:var(--muted); margin-bottom:12px; }
+  h1 { font-size:clamp(24px,6vw,35px); line-height:1.25; margin:0 0 12px; font-weight:700; }
+  .subtitle { font-size:clamp(15px,3.6vw,18px); color:var(--muted); font-style:italic; margin:0 0 20px; }
+  .meta { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:10px 0; margin-bottom:30px; display:flex; flex-wrap:wrap; gap:6px 16px; }
+  h2 { font-size:clamp(19px,4.6vw,23px); margin:44px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
+  h3 { font-size:16.5px; margin:26px 0 10px; }
+  p { margin:0 0 16px; font-size:clamp(15px,3.9vw,16.5px); }
+  .lead { font-size:clamp(16px,4.2vw,19px); margin-bottom:22px; }
+  .panel { background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:18px 20px; margin:22px 0; font-family: Arial, Helvetica, sans-serif; }
+  .panel h3 { margin-top:0; font-family: Georgia, serif; }
+  .panel ul, .panel ol { margin:0; padding-left:20px; }
+  .panel li { margin-bottom:8px; font-size:14.5px; }
+  .chart-block { position:relative; margin:28px 0; border:1px solid #d9d9d9; border-radius:8px; padding:16px 12px 8px; background:#ffffff; box-shadow:0 2px 10px rgba(20,33,61,0.04); }
+  .chart-block svg { width:100%; height:auto; display:block; }
+  .chart-caption { font-family: Arial, Helvetica, sans-serif; font-size:12px; color:var(--muted); margin:10px 2px 0; padding-top:8px; border-top:1px solid #eaeaea; }
+  .live-tag { display:inline-flex; align-items:center; gap:6px; font-family: Arial, Helvetica, sans-serif; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--teal); margin-bottom:6px; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 1.4s infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+  .replay-btn { position:absolute; top:12px; right:12px; z-index:5; background:#fff; border:1px solid #d9d9d9; border-radius:20px; padding:8px 14px; font-family: Arial, Helvetica, sans-serif; font-size:11.5px; font-weight:700; color:var(--teal); cursor:pointer; display:inline-flex; align-items:center; gap:5px; min-height:44px; min-width:44px; touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; }
+  .replay-btn:hover { background:var(--teal-soft); border-color:var(--teal); }
+  .replay-icon { display:inline-block; font-size:12px; transition:transform 0.5s ease; }
+  .replay-btn.spinning .replay-icon { transform:rotate(360deg); }
+  @media (max-width:820px) { .replay-btn { position:static; margin-bottom:10px; width:100%; justify-content:center; } }
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(135px,1fr)); gap:12px; margin:22px 0; }
+  .stat-box { border:1px solid #d9d9d9; border-radius:4px; padding:13px 10px; text-align:center; font-family: Arial, Helvetica, sans-serif; }
+  .stat-box .value { font-size:clamp(18px,4.6vw,23px); font-weight:700; color:var(--teal); }
+  .stat-box .label { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
+  .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:18px 0; }
+  table { width:100%; min-width:480px; border-collapse:collapse; font-family: Arial, Helvetica, sans-serif; font-size:13px; }
+  th, td { border:1px solid #d9d9d9; padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font-weight:700; }
+  .glossary dt { font-weight:700; margin-top:14px; font-family: Arial, Helvetica, sans-serif; font-size:14.5px; }
+  .glossary dd { margin:4px 0 0; color:var(--muted); font-size:14px; }
+  .footer-note { margin-top:46px; padding-top:18px; border-top:1px solid var(--rule); font-family: Arial, Helvetica, sans-serif; font-size:12px; color:var(--muted); }
+  .discussion ol { padding-left:20px; }
+  .discussion li { margin-bottom:9px; font-size:15px; }
+  .toc { font-family: Arial, Helvetica, sans-serif; font-size:13.5px; background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:18px 20px; margin:26px 0; }
+  .toc h3 { margin-top:0; font-family: Georgia, serif; }
+  .toc ol { margin:0; padding-left:19px; columns:2; -webkit-columns:2; column-gap:22px; }
+  .toc li { margin-bottom:6px; break-inside:avoid; }
+  @media (max-width:600px) { .toc ol { columns:1; -webkit-columns:1; } .wrapper { padding:30px 14px 70px; } .panel { padding:15px; } }
+  .ai-callout { background: linear-gradient(135deg,#14213D,#1E2E52); color:#fff; border-radius:12px; padding:18px 18px; margin-top:14px; }
+  .ai-callout .ai-label { font-family: Arial, Helvetica, sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--amber); margin-bottom:8px; }
+  .ai-callout p { color:#E4E8F2; font-size:14px; margin-bottom:10px; }
+  .ai-callout p:last-child { margin-bottom:0; }
+  .accuracy-box { background:var(--teal-soft); border-left:4px solid var(--teal); border-radius:4px; padding:11px 14px; margin:14px 0; font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#0a4d4e; }
+  a { color:var(--teal); }
+  .chart-scroll { overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y; border-radius:6px; }
+  .chart-scroll > div { min-width:640px; }
+  .swipe-hint { display:none; font-size:11px; color:var(--muted); text-align:right; font-style:italic; margin-bottom:6px; font-family: Arial, Helvetica, sans-serif; }
+  @media (max-width:820px) { .swipe-hint { display:block; } }
+  @media (max-width:640px) { .stage-btn { padding:11px 12px; font-size:12px; min-height:44px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot { animation: none; }
+    .replay-icon { transition: none !important; }
+  }
+
+
+  .stage-bar { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px; font-family: Arial, Helvetica, sans-serif; }
+  .stage-btn { flex:1 1 auto; min-width:110px; background:#fff; border:1.5px solid #d9d9d9; border-radius:20px; padding:8px 10px; font-size:11.5px; font-weight:700; color:var(--muted); cursor:pointer; text-align:center; transition:all 0.2s ease; }
+  .stage-btn:hover { border-color:var(--teal); color:var(--teal); }
+  .stage-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+  .stage-hint { font-family: Arial, Helvetica, sans-serif; font-size:11.5px; color:var(--muted); margin:0 0 10px; font-style:italic; }
+  .stage-desc { font-family: Arial, Helvetica, sans-serif; font-size:13px; background:var(--amber-soft); border-left:4px solid var(--amber); border-radius:4px; padding:10px 14px; margin:12px 0 4px; color:#5c4300; min-height:20px; }
+  .chart-block, .chart-block svg { -webkit-tap-highlight-color:transparent; }
+  /* Fail-safe: diagrams render fully visible/complete by default. Only once
+     the tiny bootstrap script below confirms JS is actually running do we
+     switch to the "start hidden, animate in on scroll" behaviour. This means
+     a context that blocks or never runs JS (iOS Files-app preview, some
+     in-app browsers' document viewers, an unrelated script error) shows a
+     complete static diagram instead of a permanently blank one. */
+  html:not(.js-ready) .chart-block svg [opacity="0"] { opacity:1 !important; }
+  html:not(.js-ready) .chart-block svg [r="0"] { r:4.5; }
+  /* will-change is applied dynamically (JS) only to elements that are actively
+     animating, not globally — keeping it on every shape permanently pins extra
+     GPU layers for the whole page's lifetime, which is a real battery/memory
+     cost on low-end Android devices once six diagrams have finished playing. */
+</style>
+</head>
+<body>
+<script>
+  // Runs first, in isolation, so one small failure here can't take the whole
+  // page down. If this succeeds, the CSS fail-safe above hands control of
+  // diagram visibility over to the main animation script further down.
+  try { document.documentElement.classList.add('js-ready'); } catch (e) {}
+</script>
+<div class="wrapper">
+
+  <div class="kicker">Frontier Research &middot; Money &amp; Banking &middot; AI &amp; the Digital Economy</div>
+  <h1>JPMorgan, the World's Banking Giants, and AI: A Complete Guide</h1>
+  <p class="subtitle">How one bank's balance sheet moves global markets, how commercial banks quietly create most of the money in the economy, why the biggest banks almost never compete on price, and how JPMorgan, Goldman Sachs, Morgan Stanley, and Bank of America are actually deploying artificial intelligence right now, in plain, accurate English, with A-Level-standard diagrams built up slowly, stage by stage.</p>
+
+  <div class="meta">
+    <span>EconNexus Deep Dive</span>
+    <span>Topic: Global Banking, Monetary Economics, and AI</span>
+    <span>Reading time: 25 minutes &middot; 3 precision diagrams</span>
+    <span>Sources: Federal Reserve, FSB, Forbes Global 2000, company disclosures</span>
+  </div>
+
+  <p class="lead">When people talk about "the economy," they usually picture governments, central banks, and companies. They forget the institution sitting underneath all three: the commercial bank. Every pound or dollar you own is really just an entry on a bank's books, every mortgage, every business loan, and every wire transfer between countries passes through a small number of enormous banks, and JPMorgan Chase sits at the very centre of that system, officially ranked the world's single most systemically important bank. This guide explains how that system actually works, using real A-Level economics diagrams built from real numbers rather than sketched by eye, and connects each one to what JPMorgan and its closest rivals are doing with AI right now, not as a future prediction, but as it stands in 2026.</p>
+
+  <div class="toc">
+    <h3>In this deep dive</h3>
+    <ol>
+      <li>Who actually runs the global banking system</li>
+      <li>Where banks sit in the circular flow of income, precisely drawn</li>
+      <li>How commercial banks create money, precisely drawn</li>
+      <li>The money market: how JPMorgan-sized banks move interest rates, precisely drawn</li>
+      <li>AI and monetary policy: faster money, a quieter multiplier</li>
+      <li>From interest rates to the real economy: monetary transmission, precisely drawn</li>
+      <li>JPMorgan and the foreign exchange market, precisely drawn</li>
+      <li>Why the giants rarely compete on price: the banking oligopoly, precisely drawn</li>
+      <li>AI and the kinked demand curve: cutting costs without cutting prices</li>
+      <li>Real-world spotlight: how the world's top banks are using AI right now</li>
+      <li>Too big to fail, too automated to trust?</li>
+      <li>Global banking and AI, at a glance</li>
+      <li>Key takeaways</li>
+      <li>Glossary</li>
+    </ol>
+  </div>
+
+  <h2>1. Who actually runs the global banking system</h2>
+  <p>JPMorgan Chase is not just a large bank, it is officially the largest and most important bank on Earth, by two different, very deliberate measures. First, by size: with roughly $3.2 trillion in assets and a market value crossing $830 billion, JPMorgan retained the top spot on Forbes' Global 2000 ranking of the world's largest public companies for the fourth year running in 2026. Second, and more importantly, by systemic weight: the Financial Stability Board's annual list of Global Systemically Important Banks (G-SIBs), the official ranking regulators use to decide which banks would do the most damage to the world economy if they failed, has placed JPMorgan in its highest risk category, "bucket 4," every year since 2021, the only bank in the world currently in that category. That single fact forces JPMorgan to hold an extra 2.5% capital buffer above every other bank on the planet, a direct regulatory acknowledgement that if JPMorgan wobbles, the whole system wobbles with it.</p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="value">$3.2tn</div><div class="label">JPMorgan's total assets in 2026</div></div>
+    <div class="stat-box"><div class="value">Bucket 4</div><div class="label">The FSB's highest G-SIB risk category, JPMorgan is the only bank in it</div></div>
+    <div class="stat-box"><div class="value">8</div><div class="label">US banks classed as globally systemically important by the Federal Reserve</div></div>
+    <div class="stat-box"><div class="value">94</div><div class="label">US financial firms in the Forbes Global 2000, more than any other country</div></div>
+  </div>
+  <p>JPMorgan and its closest peers, Bank of America, Citigroup, Goldman Sachs, Morgan Stanley, Wells Fargo, and internationally HSBC and China's four giant state banks, influence the world economy through channels most people never see directly: they are the primary dealers who buy government debt directly from central banks and resell it to the market, the market-makers who quote prices in almost every currency pair traded globally, the underwriters who decide which companies get to raise capital and on what terms, and, as the next section explains, the actual creators of most of the money supply itself.</p>
+
+  <h2 id="hdr-cf">2. Where banks sit in the circular flow of income, precisely drawn</h2>
+  <p>Before going further, it helps to place JPMorgan on the simplest possible map of the whole economy: the circular flow of income. Households and firms exchange income for output in a closed loop, and sitting between them is the financial sector, banks like JPMorgan, which channels household saving out of the loop and firm investment back into it. Everything in the rest of this article, credit creation, interest rates, and the foreign exchange market, is really just a close-up of what happens inside that one box.</p>
+
+  <div class="chart-block" id="cfBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('cf', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <defs>
+        <marker id="arrowNavyCf" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#14213D"/></marker>
+        <marker id="arrowRedCf" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C4534A"/></marker>
+        <marker id="arrowTealCf" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0F7173"/></marker>
+      </defs>
+      <text x="350" y="22" font-size="13.5" fill="#111" text-anchor="middle" font-weight="bold">The Circular Flow of Income: Where JPMorgan Sits</text>
+
+      <rect id="cf-house" x="45" y="55" width="175" height="62" rx="8" fill="#E1F3F0" stroke="#0F7173" stroke-width="1.6" opacity="0"/>
+      <text id="cf-house-t" x="132.5" y="92" font-size="13.5" fill="#0a4d4e" text-anchor="middle" font-weight="bold" opacity="0">Households</text>
+      <rect id="cf-firm" x="480" y="55" width="175" height="62" rx="8" fill="#FCEFC7" stroke="#E3A008" stroke-width="1.6" opacity="0"/>
+      <text id="cf-firm-t" x="567.5" y="92" font-size="13.5" fill="#7a5300" text-anchor="middle" font-weight="bold" opacity="0">Firms</text>
+
+      <path id="cf-income" class="cf-draw" d="M 480 75 L 220 75" stroke="#14213D" stroke-width="2.4" fill="none" marker-end="url(#arrowNavyCf)" opacity="0"/>
+      <text id="cf-income-t" x="350" y="66" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">Factor income: wages, rent, interest, profit</text>
+      <path id="cf-expend" class="cf-draw" d="M 220 100 L 480 100" stroke="#14213D" stroke-width="2.4" fill="none" marker-end="url(#arrowNavyCf)" opacity="0"/>
+      <text id="cf-expend-t" x="350" y="118" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">Consumer spending on goods &amp; services</text>
+
+      <rect id="cf-fin" x="230" y="190" width="240" height="64" rx="6" fill="#14213D" opacity="0"/>
+      <text id="cf-fin-t" x="350" y="216" font-size="13" fill="#FCEFC7" text-anchor="middle" font-weight="bold" opacity="0">Financial Sector</text>
+      <text id="cf-fin-s" x="350" y="235" font-size="10.5" fill="#cfd6e8" text-anchor="middle" opacity="0">JPMorgan, Goldman Sachs, Bank of America...</text>
+      <text id="cf-fin-s2" x="350" y="248" font-size="10" fill="#cfd6e8" text-anchor="middle" opacity="0">Savings in (S) &#8226; Investment lending out (I)</text>
+
+      <rect id="cf-gov" x="255" y="290" width="190" height="52" rx="6" fill="#fff" stroke="#8a8a8a" stroke-width="1.4" opacity="0"/>
+      <text id="cf-gov-t" x="350" y="312" font-size="12" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Government</text>
+      <text id="cf-gov-s" x="350" y="330" font-size="10.5" fill="#4a4a4a" text-anchor="middle" opacity="0">Taxes in &#8226; Spending out</text>
+
+      <rect id="cf-for" x="255" y="365" width="190" height="52" rx="6" fill="#fff" stroke="#8a8a8a" stroke-width="1.4" opacity="0"/>
+      <text id="cf-for-t" x="350" y="387" font-size="12" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Overseas Sector</text>
+      <text id="cf-for-s" x="350" y="405" font-size="10.5" fill="#4a4a4a" text-anchor="middle" opacity="0">Imports in &#8226; Exports out (JPMorgan as FX dealer)</text>
+
+      <path id="cf-leak1" class="cf-draw2" d="M 132 117 Q 132 200 230 210" stroke="#C4534A" stroke-width="2" fill="none" stroke-dasharray="5,4" marker-end="url(#arrowRedCf)" opacity="0"/>
+      <text id="cf-leak1-t" x="150" y="160" font-size="11" fill="#C4534A" font-weight="bold" opacity="0">S (deposits)</text>
+
+      <path id="cf-inj1" class="cf-draw2" d="M 470 210 Q 568 200 568 117" stroke="#0F7173" stroke-width="2" fill="none" marker-end="url(#arrowTealCf)" opacity="0"/>
+      <text id="cf-inj1-t" x="550" y="160" font-size="11" fill="#0F7173" font-weight="bold" opacity="0">I (loans, Figure 1)</text>
+
+      <path id="cf-leak2" class="cf-draw2" d="M 250 254 L 320 290" stroke="#8a8a8a" stroke-width="1.6" fill="none" stroke-dasharray="4,3" marker-end="url(#arrowRedCf)" opacity="0"/>
+      <text id="cf-leak2-t" x="245" y="278" font-size="10" fill="#8a8a8a" font-weight="bold" opacity="0">T</text>
+      <path id="cf-inj2" class="cf-draw2" d="M 450 290 L 460 254" stroke="#8a8a8a" stroke-width="1.6" fill="none" marker-end="url(#arrowTealCf)" opacity="0"/>
+      <text id="cf-inj2-t" x="463" y="278" font-size="10" fill="#8a8a8a" font-weight="bold" opacity="0">G</text>
+
+      <path id="cf-leak3" class="cf-draw2" d="M 250 330 L 320 365" stroke="#8a8a8a" stroke-width="1.6" fill="none" stroke-dasharray="4,3" marker-end="url(#arrowRedCf)" opacity="0"/>
+      <text id="cf-leak3-t" x="245" y="352" font-size="10" fill="#8a8a8a" font-weight="bold" opacity="0">M</text>
+      <path id="cf-inj3" class="cf-draw2" d="M 450 365 L 460 330" stroke="#8a8a8a" stroke-width="1.6" fill="none" marker-end="url(#arrowTealCf)" opacity="0"/>
+      <text id="cf-inj3-t" x="463" y="352" font-size="10" fill="#8a8a8a" font-weight="bold" opacity="0">X</text>
+
+      <text id="cf-note" x="350" y="432" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" font-style="italic" opacity="0">Every deposit that flows into the Financial Sector box is where Figure 1's credit multiplier begins.</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 0. Households and firms exchange income for output around the inner loop. The financial sector, dominated by JPMorgan and its closest peers, sits directly in the path of household saving (S), turning it into business investment (I). Government (taxes T, spending G) and the overseas sector (imports M, exports X) complete the picture, with JPMorgan itself active as a market maker in the overseas sector's currency flows, covered in Section 7.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this matters:</strong> the financial sector box in this diagram is not decoration, it is the exact starting point of Figure 1's credit multiplier. Every dollar of household saving (S) that flows into JPMorgan is a potential deposit that the credit-creation process can multiply up to ten times over, which is precisely why the size and behaviour of a handful of banks like JPMorgan can move the entire economy's money supply.</div>
+
+  <h2>3. How commercial banks create money, precisely drawn</h2>
+  <p>Here is the idea that surprises almost every student the first time they meet it properly: banks do not simply lend out money that savers have deposited with them. When JPMorgan approves a loan, it does not search its vaults for spare cash, it creates a brand new deposit in the borrower's account, out of nothing, on the spot. That new deposit is new money. It did not exist a second before the loan was approved. This is not a conspiracy theory, it is standard central bank doctrine: the Bank of England has stated explicitly that the principal way money is created in a modern economy is through commercial banks making loans.</p>
+  <p>What stops banks creating infinite money is the reserve requirement: regulators require banks to hold back a fraction of every deposit as reserves, rather than lending all of it out. The diagram below shows exactly how one deposit at JPMorgan cascades through the banking system, shrinking a little at each step, but adding up to a total money supply many times larger than where it started.</p>
+
+  <div class="chart-block" id="creditBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll, watch each round build</div>
+    <button class="replay-btn" onclick="replay('credit', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">The Credit Multiplier: How a $1,000 Deposit Becomes $10,000</text>
+      <rect id="cr-stagebox" x="470" y="30" width="210" height="28" rx="6" fill="#14213D"/>
+      <text id="cr-stagetext" x="575" y="49" font-size="10" fill="#FCEFC7" text-anchor="middle" font-weight="bold">Round 0 &middot; A new deposit arrives</text>
+
+      <line x1="90" y1="340" x2="610" y2="340" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="340" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Cumulative new money ($)</text>
+      <text x="610" y="358" font-size="10.5" fill="#4a4a4a" text-anchor="end">Round (bank in the chain)</text>
+      <line id="cr-ceiling" x1="90" y1="70" x2="610" y2="70" stroke="#E3A008" stroke-width="1.6" stroke-dasharray="6,3" opacity="0"/>
+      <text id="cr-ceiling-t" x="96" y="65" font-size="10" fill="#E3A008" font-weight="bold" opacity="0">Theoretical ceiling: $10,000 (money multiplier = 1/10% = 10)</text>
+
+      <g id="cr-bar1" opacity="0">
+        <rect x="115" y="313.00" width="60" height="27.00" fill="#0F7173"/>
+        <text x="145" y="356" font-size="10" fill="#111" text-anchor="middle" font-weight="bold">JPMorgan</text>
+        <text x="145" y="307" font-size="9.5" fill="#0F7173" text-anchor="middle" font-weight="bold">$1,000</text>
+      </g>
+      <g id="cr-lbl1" opacity="0"><text x="145" y="380" font-size="8.5" fill="#4a4a4a" text-anchor="middle">keeps $100, lends $900</text></g>
+
+      <g id="cr-bar2" opacity="0">
+        <rect x="195" y="288.70" width="60" height="51.30" fill="#0F7173"/>
+        <text x="225" y="356" font-size="10" fill="#111" text-anchor="middle" font-weight="bold">Bank B</text>
+        <text x="225" y="283" font-size="9.5" fill="#0F7173" text-anchor="middle" font-weight="bold">$1,900</text>
+      </g>
+      <g id="cr-lbl2" opacity="0"><text x="225" y="380" font-size="8.5" fill="#4a4a4a" text-anchor="middle">keeps $90, lends $810</text></g>
+
+      <g id="cr-bar3" opacity="0">
+        <rect x="275" y="266.83" width="60" height="73.17" fill="#0F7173"/>
+        <text x="305" y="356" font-size="10" fill="#111" text-anchor="middle" font-weight="bold">Bank C</text>
+        <text x="305" y="261" font-size="9.5" fill="#0F7173" text-anchor="middle" font-weight="bold">$2,710</text>
+      </g>
+      <g id="cr-lbl3" opacity="0"><text x="305" y="380" font-size="8.5" fill="#4a4a4a" text-anchor="middle">keeps $81, lends $729</text></g>
+
+      <g id="cr-bar4" opacity="0">
+        <rect x="355" y="247.15" width="60" height="92.85" fill="#0F7173"/>
+        <text x="385" y="356" font-size="10" fill="#111" text-anchor="middle" font-weight="bold">Bank D</text>
+        <text x="385" y="241" font-size="9.5" fill="#0F7173" text-anchor="middle" font-weight="bold">$3,439</text>
+      </g>
+      <g id="cr-lbl4" opacity="0"><text x="385" y="380" font-size="8.5" fill="#4a4a4a" text-anchor="middle">keeps $73, lends $656</text></g>
+
+      <g id="cr-bar5" opacity="0">
+        <rect x="435" y="229.43" width="60" height="110.57" fill="#0F7173"/>
+        <text x="465" y="356" font-size="10" fill="#111" text-anchor="middle" font-weight="bold">Bank E</text>
+        <text x="465" y="223" font-size="9.5" fill="#0F7173" text-anchor="middle" font-weight="bold">$4,095</text>
+      </g>
+      <g id="cr-lbl5" opacity="0"><text x="465" y="380" font-size="8.5" fill="#4a4a4a" text-anchor="middle">keeps $66, lends $590</text></g>
+
+      <g id="cr-bar6" opacity="0">
+        <rect x="515" y="213.49" width="60" height="126.51" fill="#0F7173"/>
+        <text x="545" y="356" font-size="10" fill="#111" text-anchor="middle" font-weight="bold">Bank F...</text>
+        <text x="545" y="207" font-size="9.5" fill="#0F7173" text-anchor="middle" font-weight="bold">$4,686</text>
+      </g>
+      <g id="cr-lbl6" opacity="0"><text x="545" y="380" font-size="8.5" fill="#4a4a4a" text-anchor="middle">...and so on, converging on $10,000</text></g>
+
+      <path id="cr-arrow1" d="M 175 300 Q 187 285 195 288" stroke="#C4534A" stroke-width="1.6" fill="none" marker-end="url(#arrowRedCr)" opacity="0"/>
+      <path id="cr-arrow2" d="M 255 280 Q 267 268 275 271" stroke="#C4534A" stroke-width="1.6" fill="none" marker-end="url(#arrowRedCr)" opacity="0"/>
+      <path id="cr-arrow3" d="M 335 260 Q 347 249 355 252" stroke="#C4534A" stroke-width="1.6" fill="none" marker-end="url(#arrowRedCr)" opacity="0"/>
+      <path id="cr-arrow4" d="M 415 242 Q 427 231 435 234" stroke="#C4534A" stroke-width="1.6" fill="none" marker-end="url(#arrowRedCr)" opacity="0"/>
+      <path id="cr-arrow5" d="M 495 224 Q 507 213 515 216" stroke="#C4534A" stroke-width="1.6" fill="none" marker-end="url(#arrowRedCr)" opacity="0"/>
+      <defs><marker id="arrowRedCr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#C4534A"/></marker></defs>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 1. JPMorgan receives a $1,000 deposit, keeps the required 10% reserve, and lends the rest onward. That loan becomes a new deposit at the next bank, which repeats the process, keeping 10% and lending 90%, forever shrinking. Add up every round and the total money supply created converges on $10,000, exactly ten times the original deposit, because the money multiplier is the inverse of the reserve ratio, 1 &divide; 10% = 10.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> with an initial deposit D&#8320;=$1,000 and reserve ratio r=10%, each successive deposit is exactly 90% of the last: $1,000, $900, $810, $729&hellip;, a genuine geometric series. The cumulative total after n rounds is D&#8320;&middot;(1&minus;0.9<sup>n</sup>)/(1&minus;0.9), which is why the bars in the diagram are computed values, $1,000, $1,900, $2,710, $3,439, $4,095.10, $4,685.59, converging on the algebraic limit of $10,000, not an artist's impression of "banks lending more than one bank has."</div>
+
+  <h2>4. The money market: how JPMorgan-sized banks move interest rates, precisely drawn</h2>
+  <p>Interest rates, the single most important price in the entire economy, are set where the demand to hold money meets the supply of it. Economists call this the liquidity preference model, or simply the money market. The demand for money slopes downward because, as interest rates rise, the opportunity cost of holding non-interest-bearing cash rather than an interest-paying bond rises with it, so people and firms choose to hold less idle cash. The supply of money, at any given moment, is treated as fixed by the central bank and the banking system together, drawn as a vertical line.</p>
+
+  <div class="chart-block" id="moneyBlock">
+    <div class="live-tag"><span class="live-dot"></span>Three-stage build, watch closely</div>
+    <button class="replay-btn" onclick="replay('money', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">The Money Market: How Bank Lending Moves the Interest Rate</text>
+      <rect id="mm-stagebox" x="460" y="30" width="220" height="28" rx="6" fill="#14213D"/>
+      <text id="mm-stagetext" x="570" y="49" font-size="10" fill="#FCEFC7" text-anchor="middle" font-weight="bold">Stage 1 / 3 &middot; Starting equilibrium</text>
+
+      <line x1="90" y1="320" x2="610" y2="320" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="320" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Interest rate, r (%)</text>
+      <text x="610" y="338" font-size="10.5" fill="#4a4a4a" text-anchor="end">Quantity of money</text>
+
+      <path id="mm-md0" d="M 173.20 76.25 L 194.00 125.00 L 214.80 157.50 L 235.60 180.71 L 256.40 198.12 L 277.20 211.67 L 298.00 222.50 L 318.80 231.36 L 339.60 238.75 L 360.40 245.00 L 381.20 250.36 L 402.00 255.00 L 422.80 259.06 L 443.60 262.65 L 464.40 265.83 L 485.20 268.68 L 506.00 271.25 L 526.80 273.57 L 547.60 275.68 L 568.40 277.61 L 589.20 279.38 L 610.00 281.00" stroke="#0F7173" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="mm-md0-t" x="616" y="279" font-size="10" fill="#0F7173" font-weight="bold" opacity="0">MD0</text>
+
+      <line id="mm-ms0" x1="246.00" y1="320.00" x2="246.00" y2="60.00" stroke="#111111" stroke-width="2.4" opacity="0"/>
+      <text id="mm-ms0-t" x="252" y="70" font-size="10" fill="#111" font-weight="bold" opacity="0">MS0</text>
+      <circle id="mm-e0" cx="246.0" cy="190" r="0" fill="#111"/>
+      <line id="mm-e0h" x1="90" y1="190" x2="246.0" y2="190" stroke="#111" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+      <text id="mm-e0-lbl" x="82" y="194" font-size="10" fill="#111" text-anchor="end" font-weight="bold" opacity="0">r0</text>
+
+      <line id="mm-ms1" x1="324.00" y1="320.00" x2="324.00" y2="60.00" stroke="#E3A008" stroke-width="2.4" opacity="0"/>
+      <text id="mm-ms1-t" x="330" y="70" font-size="10" fill="#E3A008" font-weight="bold" opacity="0">MS1 (bank lending expands)</text>
+      <circle id="mm-e1" cx="324.0" cy="233.33" r="0" fill="#E3A008"/>
+      <line id="mm-e1h" x1="90" y1="233.33" x2="324.0" y2="233.33" stroke="#E3A008" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+      <text id="mm-e1-lbl" x="82" y="237" font-size="10" fill="#E3A008" text-anchor="end" font-weight="bold" opacity="0">r1</text>
+
+      <path id="mm-md1" d="M 157.60 95.00 L 178.40 147.94 L 199.20 180.71 L 220.00 203.00 L 240.80 219.14 L 261.60 231.36 L 282.40 240.95 L 303.20 248.66 L 324.00 255.00 L 344.80 260.31 L 365.60 264.81 L 386.40 268.68 L 407.20 272.05 L 428.00 275.00 L 448.80 277.61 L 469.60 279.93 L 490.40 282.01 L 511.20 283.89 L 532.00 285.59 L 552.80 287.13 L 573.60 288.55 L 594.40 289.85" stroke="#C4534A" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="mm-md1-t" x="600" y="291" font-size="10" fill="#C4534A" font-weight="bold" opacity="0">MD1 (AI cuts transaction demand)</text>
+      <circle id="mm-e2" cx="324.0" cy="255.0" r="0" fill="#C4534A"/>
+      <line id="mm-e2h" x1="90" y1="255.0" x2="324.0" y2="255.0" stroke="#C4534A" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+      <text id="mm-e2-lbl" x="82" y="259" font-size="10" fill="#C4534A" text-anchor="end" font-weight="bold" opacity="0">r2</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 2. Stage 1: the money market starts in equilibrium at r0, where MD0 meets MS0. Stage 2: when JPMorgan and its peers expand lending, using exactly the credit-creation mechanism from Figure 1, the money supply shifts right to MS1, pulling the interest rate down to r1. Stage 3: AI-driven real-time payments and cash management reduce how much idle money firms need to hold day to day, shifting money demand left to MD1, and pulling the rate down further still, to r2.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> MD0 is the genuine hyperbola r = 300/Q, and MD1 is the same family of curve scaled down to r = 225/Q, a true leftward shift at every quantity. MS0 (vertical at Q=30) and MS1 (vertical at Q=45) meet these curves at exactly the algebraic points r0=10%, r1=6.67%, and r2=5%, each solved directly from the equations, not estimated from the picture.</div>
+
+  <h2>5. AI and monetary policy: faster money, a quieter multiplier</h2>
+  <p>Figure 2's second shift is not hypothetical. JPMorgan has spent years building Kinexys (formerly Onyx), its blockchain-based wholesale payments platform, which already moves over $2 billion a day and allows corporate clients to settle transactions between accounts instantly, twenty-four hours a day, instead of waiting for next-day settlement. Every dollar that used to sit idle in a corporate account "just in case," waiting for a payment to clear, is exactly the kind of transactions demand for money that the MD curve in Figure 2 represents. The faster and more predictable payments become, the less idle cash firms need to hold, and the further left the MD curve shifts.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>AI-driven cash forecasting.</strong> Large corporate treasuries increasingly use AI models to predict their cash needs hour by hour rather than day by day, letting them hold smaller cash buffers and shifting money demand left, exactly as in Figure 2's third stage.</li>
+      <li><strong>A quieter multiplier, not a smaller one.</strong> AI does not change the mathematics of the credit multiplier in Figure 1, the reserve ratio still governs how much new money each loan can generate, but it does change the speed at which each round happens: an AI-assisted loan approval that once took days can now be underwritten in minutes, compressing the whole multiplier process into a much shorter window of time.</li>
+      <li><strong>Central banks are watching closely.</strong> A money supply that can expand and contract faster because of AI-accelerated lending decisions is, in principle, a money supply that is harder for a central bank to steer smoothly, one of the newer risks regulators are actively studying.</li>
+    </ul>
+  </div>
+
+  <h2 id="hdr-trans">6. From interest rates to the real economy: monetary transmission, precisely drawn</h2>
+  <p>Figure 2 showed how AI-driven bank lending and AI-driven cash efficiency pull the interest rate down. That interest rate change does not stop inside the money market, it flows straight into the real economy: a lower interest rate makes borrowing cheaper for firms, so investment spending (I) rises, which is itself an injection into the circular flow from Figure 0. Aggregate demand shifts right, and, exactly as in the AD/AS model, that shows up as some mix of higher real output and higher prices.</p>
+
+  <div class="chart-block" id="transBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('trans', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">Monetary Transmission: From Bank Lending to Real GDP</text>
+      <line x1="90" y1="320" x2="610" y2="320" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="320" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Price Level</text>
+      <text x="610" y="338" font-size="10.5" fill="#4a4a4a" text-anchor="end">Real GDP</text>
+
+      <path id="tr-sras" class="mkt-draw" d="M 142.00 280.00 L 558.00 160.00" stroke="#111111" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="tr-sras-t" x="562" y="164" font-size="10.5" fill="#111" font-weight="bold" opacity="0">SRAS</text>
+      <path id="tr-ad0" class="mkt-draw" d="M 142.00 160.00 L 558.00 280.00" stroke="#0F7173" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="tr-ad0-t" x="562" y="284" font-size="10.5" fill="#0F7173" font-weight="bold" opacity="0">AD0</text>
+      <circle id="tr-e0" cx="350.0" cy="220.0" r="0" fill="#111"/>
+      <text id="tr-e0-t" x="350" y="238" font-size="10" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">E0</text>
+
+      <path id="tr-inj" d="M 350 220 L 350 260" stroke="#E3A008" stroke-width="3" fill="none" opacity="0"/>
+      <text id="tr-inj-t" x="356" y="248" font-size="9.5" fill="#E3A008" font-weight="bold" opacity="0">lower r &#8594; more bank lending &#8594; &#8364;I</text>
+
+      <path id="tr-ad1" class="mkt-draw2" d="M 142.00 130.00 L 558.00 250.00" stroke="#C4534A" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="tr-ad1-t" x="562" y="254" font-size="10.5" fill="#C4534A" font-weight="bold" opacity="0">AD1 (cheaper borrowing)</text>
+      <circle id="tr-e1" cx="402.0" cy="205.0" r="0" fill="#C4534A"/>
+      <line id="tr-e1v" x1="402.0" y1="320" x2="402.0" y2="205.0" stroke="#C4534A" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+      <line id="tr-e1h" x1="90" y1="205.0" x2="402.0" y2="205.0" stroke="#C4534A" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+      <text id="tr-e1-t" x="408" y="199" font-size="10" fill="#C4534A" font-weight="bold" opacity="0">E1: higher real output, mildly higher prices</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 4. When bank lending expands and interest rates fall (Figure 2), firms find borrowing cheaper and invest more. That extra investment (I) is a genuine injection into aggregate demand, shifting AD0 to AD1, moving the economy from E0 to E1: higher real GDP and a somewhat higher price level. This is the transmission mechanism through which a handful of banks the size of JPMorgan can influence growth and inflation across the entire economy.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> SRAS is the line PL=10+0.6Y and AD0 is PL=70&minus;0.6Y, meeting at the exact point (Y=50, PL=40). AD1 (PL=82&minus;0.6Y) is a genuine parallel rightward shift representing the extra investment spending unlocked by cheaper credit, meeting SRAS at (Y=60, PL=46), both real output and the price level rise by amounts computed directly from the algebra, not sketched by eye.</div>
+
+  <h2 id="hdr-fx">7. JPMorgan and the foreign exchange market, precisely drawn</h2>
+  <p>JPMorgan is not just a lender, it is also one of the handful of banks that make the market in almost every major currency pair traded globally, quoting the prices that determine what a dollar is worth against a pound, a euro, or a yen at any given moment. The foreign exchange market works exactly like any other market: an exchange rate is simply the price of one currency in terms of another, set where global supply and demand for that currency meet.</p>
+
+  <div class="chart-block" id="fxBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('fx', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">The Foreign Exchange Market: Capital Flows into AI-Era Dollar Assets</text>
+      <line x1="90" y1="320" x2="610" y2="320" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="320" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Exchange rate (foreign currency per $)</text>
+      <text x="610" y="338" font-size="10.5" fill="#4a4a4a" text-anchor="end">Quantity of $</text>
+
+      <path id="fx-supply" class="mkt-draw" d="M 90.00 294.00 L 610.00 164.00" stroke="#111111" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="fx-supply-t" x="605" y="158" font-size="10.5" fill="#111" font-weight="bold" text-anchor="end" opacity="0">S of $</text>
+
+      <path id="fx-d0" class="mkt-draw" d="M 90.00 138.00 L 610.00 268.00" stroke="#0F7173" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="fx-d0-t" x="605" y="262" font-size="10.5" fill="#0F7173" font-weight="bold" text-anchor="end" opacity="0">D0 of $</text>
+      <circle id="fx-e0" cx="402.0" cy="216.0" r="0" fill="#0F7173"/>
+      <line id="fx-e0h" x1="90" y1="216.0" x2="402.0" y2="216.0" stroke="#0F7173" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+      <text id="fx-e0-lbl" x="82" y="220" font-size="10" fill="#0F7173" text-anchor="end" font-weight="bold" opacity="0">r0</text>
+
+      <path id="fx-d1" class="mkt-draw2" d="M 90.00 99.00 L 610.00 229.00" stroke="#C4534A" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="fx-d1-t" x="605" y="93" font-size="10.5" fill="#C4534A" font-weight="bold" text-anchor="end" opacity="0">D1 of $ (AI capex inflows, via JPMorgan &amp; peers)</text>
+      <circle id="fx-e1" cx="480.0" cy="196.5" r="0" fill="#C4534A"/>
+      <line id="fx-e1h" x1="90" y1="196.5" x2="480.0" y2="196.5" stroke="#C4534A" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+      <line id="fx-e1v" x1="480.0" y1="320" x2="480.0" y2="196.5" stroke="#C4534A" stroke-width="1" stroke-dasharray="3,3" opacity="0"/>
+      <text id="fx-e1-lbl" x="82" y="192" font-size="10" fill="#C4534A" text-anchor="end" font-weight="bold" opacity="0">r1</text>
+
+      <text id="fx-note" x="350" y="360" font-size="11" fill="#C4534A" text-anchor="middle" font-weight="bold" opacity="0">Higher demand for $ &#8594; the dollar appreciates from r0 to r1</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 5. Foreign investors seeking exposure to US AI infrastructure spending buy dollar-denominated assets, routing much of that flow directly through JPMorgan's trading desks as one of the market's largest FX dealers. Demand for dollars shifts right from D0 to D1, appreciating the currency from r0 to r1 and increasing the quantity of dollars traded, exactly the capital-flow channel the IMF and BIS have flagged as a financial-stability risk if AI investment expectations were ever sharply revised down.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> supply of dollars is the linear function r = 10+0.5Q and D0 is r = 70&minus;0.5Q, meeting at exactly (Q=60, r=40). D1 (r = 85&minus;0.5Q) is a genuine parallel rightward shift, meeting supply at (Q=75, r=47.5), so the higher exchange rate and higher quantity traded are both algebraic results of the shift, not visual approximations.</div>
+
+  <h2>8. Why the giants rarely compete on price: the banking oligopoly, precisely drawn</h2>
+  <p>Global banking looks like a competitive industry, thousands of banks worldwide, but the vast majority of investment banking fees, trading volume, and cross-border payments flow through a small handful of giants: JPMorgan, Bank of America, Citigroup, Goldman Sachs, Morgan Stanley, and a handful of international peers. This is a textbook oligopoly, a market dominated by a few large, interdependent firms, and oligopolies famously produce a very specific pattern: prices that barely move for years at a time, even while costs shift underneath them. The kinked demand curve model explains exactly why.</p>
+
+  <div class="chart-block" id="kinkBlock">
+    <div class="live-tag"><span class="live-dot"></span>Four-stage build, watch closely</div>
+    <button class="replay-btn" onclick="replay('kink', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">The Kinked Demand Curve: Why Big Banks' Fees Barely Move</text>
+      <rect id="kk-stagebox" x="460" y="30" width="220" height="28" rx="6" fill="#14213D"/>
+      <text id="kk-stagetext" x="570" y="49" font-size="10" fill="#FCEFC7" text-anchor="middle" font-weight="bold">Stage 1 / 4 &middot; If JPMorgan raises its price</text>
+
+      <line x1="90" y1="320" x2="610" y2="320" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="320" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Price (fees / margin)</text>
+      <text x="610" y="338" font-size="10.5" fill="#4a4a4a" text-anchor="end">Quantity (market share)</text>
+
+      <path id="kk-upper" d="M 142.00 120.00 L 350.00 195.00" stroke="#0F7173" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="kk-upper-t" x="148" y="112" font-size="10" fill="#0F7173" font-weight="bold" opacity="0">elastic: rivals do NOT follow a price rise, JPMorgan loses customers fast</text>
+
+      <path id="kk-lower" d="M 350.00 195.00 L 454.00 270.00" stroke="#C4534A" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="kk-lower-t" x="360" y="280" font-size="10" fill="#C4534A" font-weight="bold" opacity="0">inelastic: rivals DO match a price cut, JPMorgan gains little volume</text>
+
+      <circle id="kk-kink" cx="350.0" cy="195.0" r="0" fill="#14213D"/>
+      <text id="kk-kink-t" x="356" y="185" font-size="10" fill="#14213D" font-weight="bold" opacity="0">the kink: today's price, P0</text>
+
+      <path id="kk-mr1" d="M 142.00 138.75 L 350.00 288.75" stroke="#111111" stroke-width="2" fill="none" opacity="0"/>
+      <text id="kk-mr1-t" x="148" y="132" font-size="10" fill="#111" font-weight="bold" opacity="0">MR</text>
+      <line id="kk-gap" x1="350.00" y1="288.75" x2="350.00" y2="320.00" stroke="#111111" stroke-width="4" stroke-dasharray="1,5" stroke-linecap="round" opacity="0"/>
+      <text id="kk-gap-t" x="356" y="308" font-size="10" fill="#111" font-weight="bold" opacity="0">the MR gap</text>
+
+      <path id="kk-mc0" d="M 116.00 295.00 L 532.00 295.00" stroke="#8a8a8a" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="kk-mc0-t" x="536" y="298" font-size="10" fill="#8a8a8a" font-weight="bold" opacity="0">MC0 (before AI)</text>
+
+      <path id="kk-mc1" d="M 116.00 307.50 L 532.00 307.50" stroke="#E3A008" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="kk-mc1-t" x="536" y="322" font-size="10" fill="#E3A008" font-weight="bold" opacity="0">MC1 (AI lowers costs)</text>
+
+      <text id="kk-note" x="350" y="358" font-size="11" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">Both MC0 and MC1 sit inside the gap: price stays at P0 either way</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 3. Above today's price P0, demand is elastic, rivals let a price rise happen and simply absorb the customers who leave, so the curve is flat. Below P0, demand is inelastic, rivals match every price cut immediately, so a bank gains almost no extra volume for a lower price, and the curve is steep. This kink creates a vertical break, or "gap," in the marginal revenue curve directly below it. As long as a bank's marginal cost curve passes through that gap, the profit-maximising price stays glued to P0, no matter how much costs actually move.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the upper (elastic) demand segment is the true line P = 87.5&minus;0.75Q, giving marginal revenue MR = 87.5&minus;1.5Q by the standard doubling rule, so MR at the kink (Q=50) is exactly 12.5. The lower (inelastic) segment, P = 125&minus;1.5Q, gives MR = 125&minus;3Q, which is already negative at Q=50, this sharp drop from +12.5 to a negative value is the genuine algebraic source of the MR gap, not an artistic exaggeration. MC0 (a constant $10) and MC1 (a constant $5, representing AI-driven cost savings) both fall inside that gap, which is precisely why the diagram can show two very different cost levels landing on the exact same price and quantity.</div>
+
+  <h2>9. AI and the kinked demand curve: cutting costs without cutting prices</h2>
+  <p>Figure 3's final stage describes something genuinely happening across the banking industry right now. AI has driven real, measurable cost savings inside the biggest banks, JPMorgan alone reports its AI tools have generated efficiency gains of 30% to 40% for staff using its LLM Suite platform, and roughly $2 billion a year in total savings from AI initiatives. Under normal competitive conditions, a cost saving that large would be expected to show up as lower fees for customers. In an oligopoly with a kinked demand curve, it usually does not, because no individual bank wants to be the one that breaks ranks and starts a fee war its rivals will simply match.</p>
+  <div class="ai-callout">
+    <div class="ai-label">Where the competition actually happens instead</div>
+    <p>Instead of competing on price, the world's top banks are pouring their AI-driven savings into non-price competition, better research tools for financial advisors, faster fraud detection, more personalised digital assistants, exactly the pattern the kinked demand curve model predicts oligopolists will do when direct price competition is too costly to start. Bank of America's AI assistant Erica has handled more than 3.2 billion client interactions; Morgan Stanley built a dedicated AI research assistant directly with OpenAI for its 16,000 financial advisors; Goldman Sachs rolled its GS AI Assistant out firm-wide after reporting developer productivity gains north of 20%. Each bank is racing to out-serve its rivals with AI rather than to out-price them.</p>
+  </div>
+
+  <h2>10. Real-world spotlight: how the world's top banks are using AI right now</h2>
+  <p>The scale of AI investment among the world's biggest banks is now genuinely enormous, and it is concentrated overwhelmingly in a handful of firms.</p>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Bank</th><th>Headline AI investment</th><th>What it is actually used for</th></tr>
+    <tr><td>JPMorgan Chase</td><td>~$19.8bn total tech budget for 2026, roughly $2&ndash;3bn specifically on AI</td><td>LLM Suite (200,000+ employees), COiN contract-analysis platform (automated 360,000 hours of legal work), fraud detection, trading</td></tr>
+    <tr><td>Goldman Sachs</td><td>AI folded into $15bn+ annual tech and operating spend</td><td>GS AI Assistant firm-wide (~46,000 staff), ~20% developer productivity gains, piloting autonomous coding agents</td></tr>
+    <tr><td>Morgan Stanley</td><td>Hundreds of millions on generative AI; helped arrange $40bn+ in AI-related debt for clients</td><td>AI @ Morgan Stanley Assistant and "Debrief" built with OpenAI for ~16,000 financial advisors, saving 10&ndash;15 hours per advisor per week</td></tr>
+    <tr><td>Bank of America</td><td>~$13bn annual tech spend, $4bn+ in new tech investment in 2026</td><td>Erica, the AI assistant used by over 20 million customers across 3.2 billion+ interactions; AI used by 90%+ of its 213,000 employees</td></tr>
+  </table>
+  </div>
+  <p>CEO Jamie Dimon has been unusually direct about the scale of the shift, describing AI's importance in his 2026 shareholder letter as genuinely "transformational" and predicting its rollout across banking will move faster than the decades-long adoption curves of electricity or the internet. Across the industry, the consistent message from every major bank so far is the same: AI is being used to augment existing staff and cut costs, not to replace headcount at scale, though several firms have already trimmed projected entry-level analyst hiring by an estimated 10&ndash;20% as routine tasks like pitch-book drafting and document review are increasingly automated.</p>
+
+  <h2>11. Too big to fail, too automated to trust?</h2>
+  <p>JPMorgan's position at the top of the G-SIB list exists precisely because regulators learned, in 2008, what happens when a bank this interconnected gets into trouble, everyone else gets pulled down with it. AI adds a genuinely new dimension to that old worry. As more of the credit-creation process described in Figure 1, and more of the trading and risk decisions inside these institutions, become partly automated, regulators are increasingly asking a new version of the "too big to fail" question: what happens if the automated systems across several of the world's most interconnected banks make correlated mistakes at the same time, not because any single bank behaved recklessly, but because they were all trained on similar data and reacting to the same market signal?</p>
+  <div class="panel">
+    <ul>
+      <li><strong>Concentration risk.</strong> A small number of AI model providers (OpenAI, Anthropic, Google) now sit underneath the AI tools at JPMorgan, Goldman Sachs, and Morgan Stanley simultaneously, a new kind of interconnection regulators did not have to model in 2008.</li>
+      <li><strong>Explainability requirements.</strong> Because JPMorgan sits in the strictest regulatory bucket, its own public statements on LLM Suite specifically emphasise explainability and data governance, a direct response to the expectation that a bank this systemically important cannot deploy AI decisions it cannot later explain to a regulator.</li>
+      <li><strong>Jamie Dimon's own framing.</strong> Even the industry's most prominent AI advocate has called for governments and employers to share responsibility for supporting workers displaced by AI-driven automation, an unusually candid acknowledgement from the CEO of the world's most systemically important bank that the technology's benefits and risks will not be evenly distributed.</li>
+    </ul>
+  </div>
+
+  <h2>12. Global banking and AI, at a glance</h2>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Concept</th><th>Classic mechanism</th><th>AI-era development</th></tr>
+    <tr><td>Money creation</td><td>Commercial banks create new deposits every time they issue a loan; the reserve ratio caps the total credit multiplier</td><td>AI-accelerated loan approval speeds up each round of the multiplier without changing its mathematical size</td></tr>
+    <tr><td>Money market</td><td>Interest rates are set where money demand meets a centrally-controlled money supply</td><td>AI-driven cash forecasting and instant payments (e.g. JPMorgan's Kinexys) reduce transactions demand for money, pulling rates down further</td></tr>
+    <tr><td>Banking oligopoly</td><td>A kinked demand curve keeps prices rigid even as costs shift, because rivals match cuts but not rises</td><td>AI cost savings (30&ndash;40% efficiency gains) are being absorbed as extra profit and non-price competition rather than passed on as lower fees</td></tr>
+    <tr><td>Systemic risk</td><td>G-SIB status forces the most interconnected banks to hold extra capital against contagion risk</td><td>Shared reliance on a small number of AI model providers creates a new, less-tested form of interconnection between the world's largest banks</td></tr>
+  </table>
+  </div>
+
+  <h2>13. Key takeaways</h2>
+  <div class="panel discussion">
+    <ol>
+      <li>JPMorgan is not just the world's largest bank by several rankings, it is officially the single most systemically important bank on Earth, the only institution in the FSB's highest G-SIB risk category.</li>
+      <li>Commercial banks create most of the money supply themselves, every loan is a new deposit, and the credit multiplier (1 &divide; reserve ratio) determines exactly how far a single deposit can expand through the banking system.</li>
+      <li>Interest rates are set in the money market where money demand meets money supply, and both AI-driven bank lending and AI-driven cash efficiency are actively shifting both curves right now.</li>
+      <li>The kinked demand curve explains why the biggest banks' fees stay rigid even when AI genuinely cuts their costs, the marginal revenue "gap" absorbs cost changes without moving the price.</li>
+      <li>AI investment at the top of global banking is now measured in the tens of billions of dollars a year, and every major bank so far reports using it to augment staff and cut costs rather than to replace headcount at scale.</li>
+      <li>AI introduces a new, still poorly understood form of systemic interconnection between the world's largest banks, through their shared reliance on a small number of AI model providers, precisely the kind of concentrated risk that G-SIB regulation was designed to catch.</li>
+    </ol>
+  </div>
+
+  <h2>14. Glossary</h2>
+  <dl class="glossary">
+    <dt>Global Systemically Important Bank (G-SIB)</dt>
+    <dd>A bank designated by the Financial Stability Board as posing significant risk to the global financial system if it were to fail, requiring extra capital buffers.</dd>
+    <dt>Credit creation</dt>
+    <dd>The process by which commercial banks create new money by issuing loans, which appear as new deposits rather than transfers of existing cash.</dd>
+    <dt>Reserve ratio</dt>
+    <dd>The fraction of each deposit a bank is required to hold back rather than lend out, which determines the size of the credit (money) multiplier.</dd>
+    <dt>Money multiplier</dt>
+    <dd>The ratio by which an initial deposit can expand the total money supply; calculated as 1 &divide; the reserve ratio.</dd>
+    <dt>Liquidity preference (money market) model</dt>
+    <dd>A model of interest rate determination where a downward-sloping demand for money meets a supply of money treated as fixed by the central bank and banking system.</dd>
+    <dt>Oligopoly</dt>
+    <dd>A market structure dominated by a small number of large, interdependent firms, where each firm's pricing decisions must account for how rivals will react.</dd>
+    <dt>Kinked demand curve</dt>
+    <dd>A model explaining price rigidity in oligopoly: demand is elastic above the current price (rivals ignore a rise) and inelastic below it (rivals match a cut), producing a discontinuous marginal revenue curve.</dd>
+    <dt>Marginal revenue (MR) gap</dt>
+    <dd>The vertical discontinuity in the marginal revenue curve directly beneath a kink in demand, within which a firm's marginal cost can shift without changing its profit-maximising price or output.</dd>
+    <dt>Primary dealer</dt>
+    <dd>A bank authorised to trade government securities directly with a central bank, giving it a privileged role in the transmission of monetary policy.</dd>
+  </dl>
+
+  <div class="footer-note">
+    Core monetary and market-structure theory in this article follows the standard A-Level / undergraduate economics curriculum (credit creation and the money multiplier, the liquidity preference model of the money market, and the kinked demand curve model of oligopoly). Banking sector facts are drawn from the Financial Stability Board's G-SIB list, the US Federal Reserve's G-SIB supervisory program, Forbes' Global 2000 (2026), and company disclosures and reporting on AI adoption at JPMorgan Chase, Goldman Sachs, Morgan Stanley, and Bank of America through mid-2026. All diagrams on this page were algebraically derived and independently rendered as original SVG artwork for this article; none are copied images. Figures illustrate textbook mechanisms and are not calibrated to any single real economy or company's actual cost or revenue structure.
+  </div>
+
+</div>
+
+<script>
+  // Mobile browsers (esp. iOS low-power mode / Android battery saver) can have
+  // prefers-reduced-motion set, or can simply be too slow for 1.5s per-path
+  // draw animations across six diagrams. REDUCE_MOTION makes every element
+  // jump straight to its finished state instead of animating.
+  const REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Two rAFs (rather than a synchronous getBoundingClientRect() reflow) is the
+  // reliable way to force a browser to paint the "start" state before we flip
+  // to the "end" state and trigger the CSS transition. A single reflow can be
+  // coalesced away by some mobile GPUs/compositors, which makes the draw-on
+  // animation skip straight to fully-drawn with no visible motion.
+  function nextPaint(fn) {
+    requestAnimationFrame(() => requestAnimationFrame(fn));
+  }
+
+  function animateDraw(id, delay) {
+    const path = document.getElementById(id);
+    if (!path) return;
+    let len = 500;
+    try { if (path.getTotalLength) len = path.getTotalLength() || 500; } catch (e) { /* some mobile WebViews throw on 0-length/detached paths */ }
+    if (REDUCE_MOTION) { path.style.transition = "none"; path.style.strokeDasharray = "none"; path.style.strokeDashoffset = 0; return; }
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    setTimeout(() => {
+      nextPaint(() => {
+        path.style.willChange = "stroke-dashoffset";
+        path.style.transition = "stroke-dashoffset 1.5s cubic-bezier(.22,1,.36,1)";
+        path.style.strokeDashoffset = 0;
+        releaseWillChange(path);
+      });
+    }, delay || 0);
+  }
+  function releaseWillChange(el) {
+    // Release the GPU layer hint once the transition finishes (with a timeout
+    // fallback in case transitionend never fires, e.g. reduced-motion or an
+    // interrupted/backgrounded mobile tab).
+    let done = false;
+    const clear = () => { if (done) return; done = true; el.style.willChange = "auto"; };
+    el.addEventListener('transitionend', clear, { once: true });
+    setTimeout(clear, 2200);
+  }
+  function fadeIn(id, delay, dur) {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (REDUCE_MOTION) { el.style.transition = "none"; el.style.opacity = 1; return; }
+      el.style.willChange = "opacity";
+      el.style.transition = `opacity ${dur||0.6}s ease`; el.style.opacity = 1;
+      releaseWillChange(el);
+    }, delay || 0);
+  }
+  function growCircle(id, r, delay) {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.transition = REDUCE_MOTION ? "none" : "r 0.5s ease";
+      el.style.willChange = "r";
+      el.setAttribute('r', r);
+      releaseWillChange(el);
+    }, delay || 0);
+  }
+  function resetFade(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.transition = "none"; el.style.opacity = 0; }
+  }
+  function resetCircle(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.transition = "none"; el.setAttribute('r', 0); }
+  }
+
+  /* ---------- Credit Multiplier (slow staged bars) ---------- */
+  function setCrStage(label) {
+    const el = document.getElementById('cr-stagetext');
+    if (el) el.textContent = label;
+  }
+  function playCredit() {
+    setCrStage('Round 0 \u00b7 A new deposit arrives');
+    const rounds = [
+      { bar:'cr-bar1', lbl:'cr-lbl1', arrow:null, text:'Round 1 \u00b7 JPMorgan keeps 10% reserve, lends the rest' },
+      { bar:'cr-bar2', lbl:'cr-lbl2', arrow:'cr-arrow1', text:'Round 2 \u00b7 The loan becomes a new deposit at Bank B' },
+      { bar:'cr-bar3', lbl:'cr-lbl3', arrow:'cr-arrow2', text:'Round 3 \u00b7 Bank C repeats the process' },
+      { bar:'cr-bar4', lbl:'cr-lbl4', arrow:'cr-arrow3', text:'Round 4 \u00b7 Each round is 90% of the last' },
+      { bar:'cr-bar5', lbl:'cr-lbl5', arrow:'cr-arrow4', text:'Round 5 \u00b7 The total keeps climbing, more slowly each time' },
+      { bar:'cr-bar6', lbl:'cr-lbl6', arrow:'cr-arrow5', text:'Round 6 \u00b7 Converging toward the $10,000 ceiling' },
+    ];
+    rounds.forEach((r, i) => {
+      const t = 700 + i * 1400;
+      setTimeout(() => {
+        setCrStage(r.text);
+        fadeIn(r.bar, 0, 0.6);
+        fadeIn(r.lbl, 400, 0.6);
+        if (r.arrow) fadeIn(r.arrow, 0, 0.5);
+      }, t);
+    });
+    setTimeout(() => { fadeIn('cr-ceiling', 0, 0.8); fadeIn('cr-ceiling-t', 300, 0.8); }, 700 + rounds.length * 1400 + 400);
+  }
+  function resetCredit() {
+    ['cr-bar1','cr-lbl1','cr-bar2','cr-lbl2','cr-arrow1','cr-bar3','cr-lbl3','cr-arrow2',
+     'cr-bar4','cr-lbl4','cr-arrow3','cr-bar5','cr-lbl5','cr-arrow4','cr-bar6','cr-lbl6','cr-arrow5',
+     'cr-ceiling','cr-ceiling-t'].forEach(resetFade);
+    setCrStage('Round 0 \u00b7 A new deposit arrives');
+  }
+
+  /* ---------- Money Market (three-stage) ---------- */
+  function setMMStage(n, label) {
+    const el = document.getElementById('mm-stagetext');
+    if (el) el.textContent = `Stage ${n} / 3 \u00b7 ${label}`;
+  }
+  function playMoney() {
+    setMMStage(1, 'Starting equilibrium');
+    animateDraw('mm-md0', 200); fadeIn('mm-md0', 200, 0.4); fadeIn('mm-md0-t', 700, 0.6);
+    setTimeout(() => { fadeIn('mm-ms0', 0, 0.8); fadeIn('mm-ms0-t', 300, 0.6); }, 1900);
+    setTimeout(() => { growCircle('mm-e0', 5, 0); fadeIn('mm-e0h', 0); fadeIn('mm-e0-lbl', 200, 0.6); }, 2700);
+    setTimeout(() => {
+      setMMStage(2, 'Bank lending expands the money supply');
+      fadeIn('mm-ms1', 0, 1); fadeIn('mm-ms1-t', 500, 0.6);
+    }, 4200);
+    setTimeout(() => { growCircle('mm-e1', 5, 0); fadeIn('mm-e1h', 0); fadeIn('mm-e1-lbl', 200, 0.6); }, 5800);
+    setTimeout(() => {
+      setMMStage(3, 'AI cuts transactions demand for money');
+      animateDraw('mm-md1', 0); fadeIn('mm-md1', 0, 0.5); fadeIn('mm-md1-t', 900, 0.6);
+    }, 7300);
+    setTimeout(() => { growCircle('mm-e2', 5, 0); fadeIn('mm-e2h', 0); fadeIn('mm-e2-lbl', 200, 0.6); }, 9000);
+  }
+  function resetMoney() {
+    ['mm-md0','mm-md0-t','mm-ms0','mm-ms0-t','mm-e0h','mm-e0-lbl','mm-ms1','mm-ms1-t','mm-e1h','mm-e1-lbl',
+     'mm-md1','mm-md1-t','mm-e2h','mm-e2-lbl'].forEach(resetFade);
+    resetCircle('mm-e0'); resetCircle('mm-e1'); resetCircle('mm-e2');
+    setMMStage(1, 'Starting equilibrium');
+  }
+
+  /* ---------- Kinked demand curve (four-stage) ---------- */
+  function setKKStage(n, label) {
+    const el = document.getElementById('kk-stagetext');
+    if (el) el.textContent = `Stage ${n} / 4 \u00b7 ${label}`;
+  }
+  function playKink() {
+    setKKStage(1, 'If JPMorgan raises its price');
+    animateDraw('kk-upper', 200); fadeIn('kk-upper', 200, 0.4); fadeIn('kk-upper-t', 900, 0.7);
+    setTimeout(() => { growCircle('kk-kink', 5, 0); fadeIn('kk-kink-t', 200, 0.6); }, 2200);
+    setTimeout(() => {
+      setKKStage(2, 'If JPMorgan cuts its price');
+      animateDraw('kk-lower', 0); fadeIn('kk-lower', 0, 0.5); fadeIn('kk-lower-t', 700, 0.7);
+    }, 3200);
+    setTimeout(() => {
+      setKKStage(3, 'The resulting marginal revenue gap');
+      animateDraw('kk-mr1', 0); fadeIn('kk-mr1', 0, 0.5); fadeIn('kk-mr1-t', 600, 0.6);
+      fadeIn('kk-gap', 900, 0.8); fadeIn('kk-gap-t', 1300, 0.6);
+    }, 5300);
+    setTimeout(() => {
+      setKKStage(4, 'AI cuts costs, price does not move');
+      fadeIn('kk-mc0', 0, 0.7); fadeIn('kk-mc0-t', 500, 0.6);
+    }, 7800);
+    setTimeout(() => { fadeIn('kk-mc1', 0, 0.7); fadeIn('kk-mc1-t', 500, 0.6); }, 9200);
+    setTimeout(() => { fadeIn('kk-note', 300, 0.8); }, 10400);
+  }
+  function resetKink() {
+    ['kk-upper','kk-upper-t','kk-lower','kk-lower-t','kk-kink-t','kk-mr1','kk-mr1-t','kk-gap','kk-gap-t',
+     'kk-mc0','kk-mc0-t','kk-mc1','kk-mc1-t','kk-note'].forEach(resetFade);
+    resetCircle('kk-kink');
+    setKKStage(1, 'If JPMorgan raises its price');
+  }
+
+  /* ---------- Circular Flow (slow, staged) ---------- */
+  function playCF() {
+    fadeIn('cf-house', 0, 1); fadeIn('cf-house-t', 300, 0.8);
+    fadeIn('cf-firm', 0, 1); fadeIn('cf-firm-t', 300, 0.8);
+    setTimeout(() => { animateDraw('cf-income', 0); fadeIn('cf-income', 0, 0.3); fadeIn('cf-income-t', 900, 0.8); }, 1200);
+    setTimeout(() => { animateDraw('cf-expend', 0); fadeIn('cf-expend', 0, 0.3); fadeIn('cf-expend-t', 900, 0.8); }, 2200);
+    setTimeout(() => {
+      fadeIn('cf-fin', 0, 1); fadeIn('cf-fin-t', 300, 0.7); fadeIn('cf-fin-s', 600, 0.7); fadeIn('cf-fin-s2', 900, 0.7);
+      animateDraw('cf-leak1', 300); fadeIn('cf-leak1', 300, 0.4); fadeIn('cf-leak1-t', 1000, 0.6);
+      animateDraw('cf-inj1', 1000); fadeIn('cf-inj1', 1000, 0.4); fadeIn('cf-inj1-t', 1700, 0.6);
+    }, 3400);
+    setTimeout(() => {
+      fadeIn('cf-gov', 0, 0.8); fadeIn('cf-gov-t', 300, 0.6); fadeIn('cf-gov-s', 500, 0.6);
+      animateDraw('cf-leak2', 200); fadeIn('cf-leak2', 200, 0.3); fadeIn('cf-leak2-t', 700, 0.6);
+      animateDraw('cf-inj2', 700); fadeIn('cf-inj2', 700, 0.3); fadeIn('cf-inj2-t', 1200, 0.6);
+    }, 6300);
+    setTimeout(() => {
+      fadeIn('cf-for', 0, 0.8); fadeIn('cf-for-t', 300, 0.6); fadeIn('cf-for-s', 500, 0.6);
+      animateDraw('cf-leak3', 200); fadeIn('cf-leak3', 200, 0.3); fadeIn('cf-leak3-t', 700, 0.6);
+      animateDraw('cf-inj3', 700); fadeIn('cf-inj3', 700, 0.3); fadeIn('cf-inj3-t', 1200, 0.6);
+    }, 8500);
+    setTimeout(() => { fadeIn('cf-note', 0, 1); }, 10800);
+  }
+  function resetCF() {
+    ['cf-house','cf-house-t','cf-firm','cf-firm-t','cf-income','cf-income-t','cf-expend','cf-expend-t',
+     'cf-fin','cf-fin-t','cf-fin-s','cf-fin-s2','cf-gov','cf-gov-t','cf-gov-s','cf-for','cf-for-t','cf-for-s',
+     'cf-leak1','cf-leak1-t','cf-leak2','cf-leak2-t','cf-leak3','cf-leak3-t',
+     'cf-inj1','cf-inj1-t','cf-inj2','cf-inj2-t','cf-inj3','cf-inj3-t','cf-note'].forEach(resetFade);
+  }
+
+  /* ---------- Monetary Transmission (AD/AS) ---------- */
+  function playTrans() {
+    animateDraw('tr-sras', 100); fadeIn('tr-sras', 100, 0.4); fadeIn('tr-sras-t', 600, 0.6);
+    animateDraw('tr-ad0', 100); fadeIn('tr-ad0', 100, 0.4); fadeIn('tr-ad0-t', 600, 0.6);
+    setTimeout(() => { growCircle('tr-e0', 5, 0); fadeIn('tr-e0-t', 200, 0.6); }, 1900);
+    setTimeout(() => { fadeIn('tr-inj', 0, 0.6); fadeIn('tr-inj-t', 300, 0.6); }, 2700);
+    setTimeout(() => {
+      animateDraw('tr-ad1', 0); fadeIn('tr-ad1', 0, 0.5); fadeIn('tr-ad1-t', 800, 0.6);
+    }, 4200);
+    setTimeout(() => {
+      growCircle('tr-e1', 5, 0); fadeIn('tr-e1v', 0); fadeIn('tr-e1h', 0); fadeIn('tr-e1-t', 300, 0.7);
+    }, 6000);
+  }
+  function resetTrans() {
+    ['tr-sras','tr-sras-t','tr-ad0','tr-ad0-t','tr-e0-t','tr-inj','tr-inj-t','tr-ad1','tr-ad1-t',
+     'tr-e1v','tr-e1h','tr-e1-t'].forEach(resetFade);
+    resetCircle('tr-e0'); resetCircle('tr-e1');
+  }
+
+  /* ---------- Forex ---------- */
+  function playFX() {
+    animateDraw('fx-supply', 100); fadeIn('fx-supply', 100, 0.4); fadeIn('fx-supply-t', 600, 0.6);
+    animateDraw('fx-d0', 100); fadeIn('fx-d0', 100, 0.4); fadeIn('fx-d0-t', 600, 0.6);
+    setTimeout(() => { growCircle('fx-e0', 5, 0); fadeIn('fx-e0h', 0); fadeIn('fx-e0-lbl', 200, 0.6); }, 1900);
+    setTimeout(() => {
+      animateDraw('fx-d1', 0); fadeIn('fx-d1', 0, 0.5); fadeIn('fx-d1-t', 700, 0.6);
+    }, 2700);
+    setTimeout(() => {
+      growCircle('fx-e1', 5, 0); fadeIn('fx-e1h', 0); fadeIn('fx-e1v', 0); fadeIn('fx-e1-lbl', 200, 0.6);
+      fadeIn('fx-note', 400, 0.7);
+    }, 4500);
+  }
+  function resetFX() {
+    ['fx-supply','fx-supply-t','fx-d0','fx-d0-t','fx-e0h','fx-e0-lbl','fx-d1','fx-d1-t',
+     'fx-e1h','fx-e1v','fx-e1-lbl','fx-note'].forEach(resetFade);
+    resetCircle('fx-e0'); resetCircle('fx-e1');
+  }
+
+  const playFns = { credit: playCredit, money: playMoney, kink: playKink, cf: playCF, trans: playTrans, fx: playFX };
+  const resetFns = { credit: resetCredit, money: resetMoney, kink: resetKink, cf: resetCF, trans: resetTrans, fx: resetFX };
+
+  function replay(key, btnEl) {
+    if (btnEl) { btnEl.classList.add('spinning'); setTimeout(() => btnEl.classList.remove('spinning'), 500); }
+    if (resetFns[key]) resetFns[key]();
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (playFns[key]) playFns[key](); }));
+  }
+
+  const triggered = {};
+  const blockPlayers = {
+    creditBlock: playCredit, moneyBlock: playMoney, kinkBlock: playKink,
+    cfBlock: playCF, transBlock: playTrans, fxBlock: playFX
+  };
+  const blockIds = Object.keys(blockPlayers);
+
+  function fireBlock(id) {
+    if (triggered[id]) return;
+    triggered[id] = true;
+    const fn = blockPlayers[id];
+    if (fn) fn();
+  }
+
+  // A plain bounding-rect check, used as the fallback path AND as a periodic
+  // safety net alongside IntersectionObserver. Tablets and in-app browsers
+  // (iPadOS Safari, Android WebViews, split-screen multitasking) can resize,
+  // rotate, or restore scroll position in ways that don't always produce a
+  // clean IntersectionObserver callback, so this catches anything already
+  // on-screen that hasn't animated yet.
+  function checkVisible() {
+    blockIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el || triggered[id]) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) fireBlock(id);
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) fireBlock(entry.target.id);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+    blockIds.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+  } else {
+    window.addEventListener('scroll', checkVisible, { passive: true });
+  }
+
+  // Safety net for tablets/iPads/phones: re-check on load, orientation change,
+  // and resize (covers rotation and iPad split-view/Slide Over width changes),
+  // plus a delayed pass shortly after load in case the page was opened
+  // already scrolled mid-article.
+  window.addEventListener('load', checkVisible);
+  window.addEventListener('orientationchange', () => setTimeout(checkVisible, 300));
+  window.addEventListener('resize', checkVisible, { passive: true });
+  setTimeout(checkVisible, 800);
+  checkVisible();
+
+  // Tapping/pressing anywhere on a not-yet-animated chart also triggers it
+  // immediately, so a diagram never feels "stuck" on touch, trackpad, or
+  // stylus input (pointerdown covers touch, pen, and mouse in one listener).
+  blockIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const trigger = () => fireBlock(id);
+    if (window.PointerEvent) {
+      el.addEventListener('pointerdown', trigger, { passive: true, once: true });
+    } else {
+      el.addEventListener('touchstart', trigger, { passive: true, once: true });
+      el.addEventListener('mousedown', trigger, { once: true });
+    }
+  });
+</script>
+</body>
+</html>

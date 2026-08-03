@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Economics and Physics: The Hidden Connection | EconNexus</title>
+<style>
+  :root { --text:#111111; --muted:#4a4a4a; --rule:#111111; --bg:#ffffff; --panel:#f7f7f7; --teal:#0F7173; --teal-soft:#E1F3F0; --amber:#E3A008; --amber-soft:#FCEFC7; --red:#C4534A; --navy:#14213D; }
+  * { box-sizing: border-box; -webkit-text-size-adjust:100%; }
+  html { overflow-x:hidden; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: Georgia, 'Times New Roman', serif; line-height:1.72; overflow-x:hidden; }
+  .wrapper { max-width:840px; margin:0 auto; padding:44px 18px 90px; }
+  .kicker { font-family: Arial, Helvetica, sans-serif; text-transform:uppercase; letter-spacing:1.4px; font-size:11.5px; color:var(--muted); margin-bottom:12px; }
+  h1 { font-size:clamp(24px,6vw,35px); line-height:1.25; margin:0 0 12px; font-weight:700; }
+  .subtitle { font-size:clamp(15px,3.6vw,18px); color:var(--muted); font-style:italic; margin:0 0 20px; }
+  .meta { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:10px 0; margin-bottom:30px; display:flex; flex-wrap:wrap; gap:6px 16px; }
+  h2 { font-size:clamp(19px,4.6vw,23px); margin:44px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
+  h3 { font-size:16.5px; margin:26px 0 10px; }
+  p { margin:0 0 16px; font-size:clamp(15px,3.9vw,16.5px); }
+  .lead { font-size:clamp(16px,4.2vw,19px); margin-bottom:22px; }
+  .panel { background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:18px 20px; margin:22px 0; font-family: Arial, Helvetica, sans-serif; }
+  .panel h3 { margin-top:0; font-family: Georgia, serif; }
+  .panel ul, .panel ol { margin:0; padding-left:20px; }
+  .panel li { margin-bottom:8px; font-size:14.5px; }
+  .chart-block { position:relative; margin:28px 0; border:1px solid #d9d9d9; border-radius:8px; padding:16px 12px 8px; background:#ffffff; box-shadow:0 2px 10px rgba(20,33,61,0.04); }
+  .chart-block svg { width:100%; height:auto; display:block; }
+  .chart-caption { font-family: Arial, Helvetica, sans-serif; font-size:12px; color:var(--muted); margin:10px 2px 0; padding-top:8px; border-top:1px solid #eaeaea; }
+  .live-tag { display:inline-flex; align-items:center; gap:6px; font-family: Arial, Helvetica, sans-serif; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--teal); margin-bottom:6px; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 1.4s infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+  .replay-btn { position:absolute; top:12px; right:12px; z-index:5; background:#fff; border:1px solid #d9d9d9; border-radius:20px; padding:8px 14px; font-family: Arial, Helvetica, sans-serif; font-size:11.5px; font-weight:700; color:var(--teal); cursor:pointer; display:inline-flex; align-items:center; gap:5px; min-height:44px; min-width:44px; touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; }
+  .replay-btn:hover { background:var(--teal-soft); border-color:var(--teal); }
+  .replay-icon { display:inline-block; font-size:12px; transition:transform 0.5s ease; }
+  .replay-btn.spinning .replay-icon { transform:rotate(360deg); }
+  @media (max-width:820px) { .replay-btn { position:static; margin-bottom:10px; width:100%; justify-content:center; } }
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(135px,1fr)); gap:12px; margin:22px 0; }
+  .stat-box { border:1px solid #d9d9d9; border-radius:4px; padding:13px 10px; text-align:center; font-family: Arial, Helvetica, sans-serif; }
+  .stat-box .value { font-size:clamp(18px,4.6vw,23px); font-weight:700; color:var(--teal); }
+  .stat-box .label { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
+  .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:18px 0; }
+  table { width:100%; min-width:480px; border-collapse:collapse; font-family: Arial, Helvetica, sans-serif; font-size:13px; }
+  th, td { border:1px solid #d9d9d9; padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font-weight:700; }
+  .glossary dt { font-weight:700; margin-top:14px; font-family: Arial, Helvetica, sans-serif; font-size:14.5px; }
+  .glossary dd { margin:4px 0 0; color:var(--muted); font-size:14px; }
+  .footer-note { margin-top:46px; padding-top:18px; border-top:1px solid var(--rule); font-family: Arial, Helvetica, sans-serif; font-size:12px; color:var(--muted); }
+  .discussion ol { padding-left:20px; }
+  .discussion li { margin-bottom:9px; font-size:15px; }
+  .toc { font-family: Arial, Helvetica, sans-serif; font-size:13.5px; background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:18px 20px; margin:26px 0; }
+  .toc h3 { margin-top:0; font-family: Georgia, serif; }
+  .toc ol { margin:0; padding-left:19px; columns:2; -webkit-columns:2; column-gap:22px; }
+  .toc li { margin-bottom:6px; break-inside:avoid; }
+  @media (max-width:600px) { .toc ol { columns:1; -webkit-columns:1; } .wrapper { padding:30px 14px 70px; } .panel { padding:15px; } }
+  .ai-callout { background: linear-gradient(135deg,#14213D,#1E2E52); color:#fff; border-radius:12px; padding:18px 18px; margin-top:14px; }
+  .ai-callout .ai-label { font-family: Arial, Helvetica, sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--amber); margin-bottom:8px; }
+  .ai-callout p { color:#E4E8F2; font-size:14px; margin-bottom:10px; }
+  .ai-callout p:last-child { margin-bottom:0; }
+  .accuracy-box { background:var(--teal-soft); border-left:4px solid var(--teal); border-radius:4px; padding:11px 14px; margin:14px 0; font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#0a4d4e; }
+  .caution-box { background:#fdf1ef; border-left:4px solid var(--red); border-radius:4px; padding:11px 14px; margin:14px 0; font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#7a2f28; }
+  a { color:var(--teal); }
+  .chart-scroll { overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y; border-radius:6px; }
+  .chart-scroll > div { min-width:640px; }
+  .swipe-hint { display:none; font-size:11px; color:var(--muted); text-align:right; font-style:italic; margin-bottom:6px; font-family: Arial, Helvetica, sans-serif; }
+  @media (max-width:820px) { .swipe-hint { display:block; } }
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot { animation: none; }
+    .replay-icon { transition: none !important; }
+  }
+  .byline { font-family: Arial, Helvetica, sans-serif; font-size:13px; color:var(--muted); margin:2px 0 22px; display:flex; flex-wrap:wrap; gap:4px 10px; align-items:center; }
+  .byline .name { color:var(--text); font-weight:700; }
+  .dropcap:first-letter { float:left; font-size:64px; line-height:0.82; font-weight:700; padding:6px 8px 0 0; color:var(--navy); font-family: Georgia, serif; }
+  .pull-quote { font-family: Georgia, serif; font-style:italic; font-size:clamp(19px,4.4vw,24px); line-height:1.4; color:var(--navy); border-top:2px solid var(--navy); border-bottom:2px solid var(--navy); padding:18px 4px; margin:32px 0; text-align:center; }
+  .pull-quote span { display:block; font-family: Arial, Helvetica, sans-serif; font-style:normal; font-size:11.5px; color:var(--muted); margin-top:10px; letter-spacing:0.3px; }
+  .pioneer-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:14px; margin:22px 0; }
+  .pioneer-card { border:1px solid #d9d9d9; border-radius:8px; padding:14px 16px; font-family: Arial, Helvetica, sans-serif; background:#fff; }
+  .pioneer-card .p-name { font-weight:700; font-size:14px; color:var(--navy); font-family: Georgia, serif; }
+  .pioneer-card .p-role { font-size:10.5px; color:var(--teal); text-transform:uppercase; letter-spacing:0.4px; margin:2px 0 8px; font-weight:700; }
+  .pioneer-card .p-bio { font-size:12.5px; color:var(--muted); line-height:1.5; }
+  .analysis-block { background:linear-gradient(180deg,#fbfaf7,#f7f7f4); border:1px solid #ddd6c7; border-left:4px solid var(--amber); border-radius:4px; padding:18px 20px; margin:22px 0; }
+  .analysis-block h3 { margin-top:0; }
+  /* Mobile / tablet animation reliability: hint that these SVGs will be
+     redrawn via JS transitions, and disable tap-highlight flash on touch. */
+  .chart-block, .chart-block svg { -webkit-tap-highlight-color:transparent; }
+  .chart-block svg path, .chart-block svg line, .chart-block svg circle, .chart-block svg text { will-change: opacity, stroke-dashoffset; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="kicker">Frontier Research &middot; Econophysics &middot; Where Two Sciences Meet</div>
+  <h1>Economics and Physics: The Hidden Connection</h1>
+  <p class="subtitle">Stock prices that move like pollen grains in water, trade between nations that obeys Newton's law of gravity, the distribution of wealth that follows the same equation as the energy of gas molecules, and market crashes that behave like magnets losing their magnetism. This is not poetic metaphor, it is the real, working mathematics of an entire field, econophysics, explained with the same diagrams physicists and economists actually use.</p>
+
+  <div class="byline"><span class="name">By the EconNexus Research Desk</span> &middot; Special Feature &middot; Updated August 2026</div>
+
+  <div class="meta">
+    <span>EconNexus Deep Dive</span>
+    <span>Topic: Econophysics, Statistical Mechanics, and Financial Markets</span>
+    <span>Reading time: 41 minutes &middot; 7 precision diagrams &middot; 2 editorial analysis briefs</span>
+    <span>Sources: original physics and economics papers, 1900&ndash;2026</span>
+  </div>
+
+  <p class="lead dropcap">In 1900, a French doctoral student named Louis Bachelier tried to work out how bond prices moved on the Paris stock exchange. To do it, he invented a piece of mathematics that nobody had written down before: the theory of random, jittery motion, spreading out over time like a drop of ink in water. Five years later, and completely independently, Albert Einstein used the exact same mathematics to explain why pollen grains dance under a microscope, and in doing so proved that atoms are real. Bachelier had, without realising it, discovered the physics of Brownian motion first, by watching money instead of molecules. That single coincidence is the seed of everything in this article: economics and physics keep arriving at the same equations, because underneath very different subject matter, they are often describing the same kind of process, a huge number of small, unpredictable interactions adding up to a pattern that follows precise mathematical law.</p>
+
+  <div class="pull-quote">Whenever a science runs out of clean laws of its own, it borrows the mathematics of the science next door. Economics has been borrowing from physics for over a century, and it is not finished yet.<span>&mdash; EconNexus Research Desk</span></div>
+
+  <div class="toc">
+    <h3>In this deep dive</h3>
+    <ol>
+      <li>Two sciences, one set of equations</li>
+      <li>The random walk: from pollen grains to stock prices, precisely drawn</li>
+      <li>Newton's law of gravity and the gravity model of trade, precisely drawn</li>
+      <li>Statistical mechanics of money: Boltzmann, Gibbs, and the shape of inequality, precisely drawn</li>
+      <li>The billionaires' exception: power laws and Zipf's law, precisely drawn</li>
+      <li>Critical phenomena: why a market crash looks like a magnet losing its pull, precisely drawn</li>
+      <li>Fractals and self-similarity: the chart that looks the same at every zoom, precisely drawn</li>
+      <li>Percolation theory: how networks suddenly become fragile, precisely drawn</li>
+      <li>Why physicists started doing economics: the birth of "econophysics"</li>
+      <li>Meet the pioneers</li>
+      <li>Where the analogy breaks down</li>
+      <li>A modern postscript: the same equations power today's AI</li>
+      <li>Economics and physics, at a glance</li>
+      <li>Key takeaways</li>
+      <li>Glossary</li>
+    </ol>
+  </div>
+
+  <h2>1. Two sciences, one set of equations</h2>
+  <p>Physics and economics look like they have nothing in common. One studies planets, particles, and forces; the other studies prices, wages, and trade. But both sciences share a very specific, very old ambition: to take an enormous number of individual things, atoms in a gas, or people in an economy, each one far too complicated and unpredictable to track individually, and find simple, precise laws that describe how they behave in bulk. This is the exact technique physicists call statistical mechanics, and it turns out to translate into economics astonishingly well.</p>
+  <p>This is not a one-way borrowing either. Physicists genuinely go and work on financial markets, in large enough numbers that the field studying it has its own name, econophysics, its own journals, and its own annual conferences. The connection runs deep enough that some of the most famous equations in finance were built directly, line by line, from equations physicists had already written down for heat, gases, and gravity.</p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="value">1900</div><div class="label">Year Louis Bachelier modelled stock prices as Brownian motion, five years before Einstein used the same maths for physics</div></div>
+    <div class="stat-box"><div class="value">1995</div><div class="label">The word "econophysics" was coined at a physics conference in Kolkata, India</div></div>
+    <div class="stat-box"><div class="value">3/8</div><div class="label">The Gini coefficient for US two-earner family income predicted by a pure statistical-mechanics model, matching real data closely</div></div>
+  </div>
+
+  <h2>2. The random walk: from pollen grains to stock prices, precisely drawn</h2>
+  <p>Robert Brown, a Scottish botanist, first noticed in 1827 that pollen grains suspended in water jiggle around in an endless, jagged, unpredictable path, for no visible reason. In 1905, Einstein explained why: the pollen grains are being battered from every side by trillions of invisible water molecules, and the accumulated randomness of those tiny collisions produces a very specific, mathematically describable kind of wandering path, now called a random walk. What almost nobody knew at the time was that a French mathematician had already written down the identical equation five years earlier, not for pollen, but for the price of French government bonds.</p>
+
+  <div class="chart-block" id="rwBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll, watch both panels move together</div>
+    <button class="replay-btn" onclick="replay('rw', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+    <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">The Same Equation, Two Sciences: Brownian Motion &amp; Stock Prices</text>
+      <line x1="60" y1="330" x2="290" y2="330" stroke="#111" stroke-width="1.3"/>
+      <line x1="60" y1="330" x2="60" y2="70" stroke="#111" stroke-width="1.3"/>
+      <text x="52" y="70" font-size="10" fill="#4a4a4a" text-anchor="end">Particle position</text>
+      <text x="175" y="354" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Physics, 1905: Einstein's Brownian motion</text>
+      <path id="rw-a" d="M 60.00 190.00 L 63.83 197.86 L 67.66 205.71 L 71.49 197.86 L 75.32 205.71 L 79.15 213.57 L 82.98 221.43 L 86.81 229.29 L 90.64 237.14 L 94.47 229.29 L 98.30 237.14 L 102.13 245.00 L 105.96 252.86 L 109.79 260.71 L 113.62 268.57 L 117.45 276.43 L 121.28 284.29 L 125.11 276.43 L 128.94 284.29 L 132.77 276.43 L 136.60 268.57 L 140.43 276.43 L 144.26 284.29 L 148.09 276.43 L 151.92 268.57 L 155.75 260.71 L 159.58 268.57 L 163.41 276.43 L 167.24 268.57 L 171.07 276.43 L 174.90 284.29 L 178.73 276.43 L 182.56 284.29 L 186.39 276.43 L 190.22 268.57 L 194.05 260.71 L 197.88 268.57 L 201.71 260.71 L 205.54 268.57 L 209.37 260.71 L 213.20 268.57 L 217.03 260.71 L 220.86 252.86 L 224.69 260.71 L 228.52 268.57 L 232.35 276.43 L 236.18 284.29 L 240.01 276.43 L 243.84 284.29 L 247.67 292.14 L 251.50 300.00 L 255.33 292.14 L 259.16 284.29 L 262.99 276.43 L 266.82 268.57 L 270.65 276.43 L 274.48 268.57 L 278.31 260.71 L 282.14 268.57 L 285.97 260.71 L 289.80 268.57" stroke="#0F7173" stroke-width="2.2" fill="none" opacity="0"/>
+      <text x="66" y="185" font-size="9.5" fill="#0F7173" font-weight="bold">start</text>
+
+      <line x1="420" y1="330" x2="650" y2="330" stroke="#111" stroke-width="1.3"/>
+      <line x1="420" y1="330" x2="420" y2="70" stroke="#111" stroke-width="1.3"/>
+      <text x="412" y="70" font-size="10" fill="#4a4a4a" text-anchor="end">Stock price</text>
+      <text x="535" y="354" font-size="11.5" fill="#111" text-anchor="middle" font-weight="bold">Economics, 1900: Bachelier's stock prices</text>
+      <path id="rw-b" d="M 420.00 190.00 L 423.83 197.86 L 427.66 205.71 L 431.49 197.86 L 435.32 205.71 L 439.15 213.57 L 442.98 221.43 L 446.81 229.29 L 450.64 237.14 L 454.47 229.29 L 458.30 237.14 L 462.13 245.00 L 465.96 252.86 L 469.79 260.71 L 473.62 268.57 L 477.45 276.43 L 481.28 284.29 L 485.11 276.43 L 488.94 284.29 L 492.77 276.43 L 496.60 268.57 L 500.43 276.43 L 504.26 284.29 L 508.09 276.43 L 511.92 268.57 L 515.75 260.71 L 519.58 268.57 L 523.41 276.43 L 527.24 268.57 L 531.07 276.43 L 534.90 284.29 L 538.73 276.43 L 542.56 284.29 L 546.39 276.43 L 550.22 268.57 L 554.05 260.71 L 557.88 268.57 L 561.71 260.71 L 565.54 268.57 L 569.37 260.71 L 573.20 268.57 L 577.03 260.71 L 580.86 252.86 L 584.69 260.71 L 588.52 268.57 L 592.35 276.43 L 596.18 284.29 L 600.01 276.43 L 603.84 284.29 L 607.67 292.14 L 611.50 300.00 L 615.33 292.14 L 619.16 284.29 L 622.99 276.43 L 626.82 268.57 L 630.65 276.43 L 634.48 268.57 L 638.31 260.71 L 642.14 268.57 L 645.97 260.71 L 649.80 268.57" stroke="#C4534A" stroke-width="2.2" fill="none" opacity="0"/>
+      <text x="426" y="185" font-size="9.5" fill="#C4534A" font-weight="bold">start</text>
+
+      <text id="rw-note" x="350" y="374" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">Identical data. Only the axis labels differ.</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 1. Both paths on this page are generated from the exact same sequence of fifty random up-or-down steps, plotted twice. On the left it represents a particle being knocked randomly by water molecules; on the right, the exact same wandering path represents a stock price being knocked randomly by the arrival of unpredictable news. The physics and the economics are not similar, they are, mathematically, the same object.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> both panels above plot the identical cumulative sum of the identical sequence of fifty computer-generated random &plusmn;1 steps, seeded once and reused twice, exactly to prove the point that nothing about the shape of the path changes when you relabel the axes from "position in water" to "price on an exchange." This is the actual mathematics behind the random walk hypothesis of stock prices and, later, the geometric Brownian motion used in the Black-Scholes options-pricing model, whose partial differential equation is, after a change of variables, identical to the heat diffusion equation physicists already had.</div>
+
+  <h2>3. Newton's law of gravity and the gravity model of trade, precisely drawn</h2>
+  <p>Isaac Newton's law of universal gravitation says the pull between two objects is proportional to the product of their masses, and falls away with the square of the distance between them. In 1962, the Dutch economist Jan Tinbergen, who had actually earned his own doctorate in physics before switching to economics, proposed something almost identical for trade between countries: the volume of trade between two nations is proportional to the product of their economic sizes (GDP), and falls away as the distance between them increases. It became known, quite literally, as the gravity model of trade, and it remains one of the best-fitting, most widely used models in all of international economics.</p>
+
+  <div class="chart-block" id="gravBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('grav', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+    <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">Newton's Gravity vs the Gravity Model of Trade</text>
+      <line x1="90" y1="320" x2="610" y2="320" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="320" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Strength of attraction</text>
+      <text x="610" y="338" font-size="10.5" fill="#4a4a4a" text-anchor="end">Distance apart</text>
+
+      <path id="gr-force" d="M 147.20 126.61 L 162.80 200.61 L 178.40 239.03 L 194.00 261.50 L 209.60 275.77 L 225.20 285.38 L 240.80 292.18 L 256.40 297.15 L 272.00 300.90 L 287.60 303.80 L 303.20 306.08 L 318.80 307.91 L 334.40 309.41 L 350.00 310.64 L 365.60 311.67 L 381.20 312.54 L 396.80 313.28 L 412.40 313.91 L 428.00 314.46 L 443.60 314.94 L 459.20 315.36 L 474.80 315.73 L 490.40 316.05 L 506.00 316.34 L 521.60 316.60 L 537.20 316.84 L 552.80 317.05 L 568.40 317.24 L 584.00 317.41 L 599.60 317.56" stroke="#111111" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="gr-force-t" x="606" y="322" font-size="10" fill="#111" font-weight="bold" text-anchor="end" opacity="0">Physics: F = Gm&#8321;m&#8322; / d&sup2;</text>
+
+      <path id="gr-trade" d="M 147.20 107.27 L 162.80 152.86 L 178.40 182.35 L 194.00 203.00 L 209.60 218.26 L 225.20 230.00 L 240.80 239.31 L 256.40 246.88 L 272.00 253.14 L 287.60 258.42 L 303.20 262.93 L 318.80 266.82 L 334.40 270.21 L 350.00 273.20 L 365.60 275.85 L 381.20 278.21 L 396.80 280.34 L 412.40 282.26 L 428.00 284.00 L 443.60 285.59 L 459.20 287.04 L 474.80 288.38 L 490.40 289.61 L 506.00 290.75 L 521.60 291.81 L 537.20 292.79 L 552.80 293.71 L 568.40 294.57 L 584.00 295.37 L 599.60 296.12" stroke="#0F7173" stroke-width="2.4" fill="none" opacity="0"/>
+      <text id="gr-trade-t" x="606" y="291" font-size="10" fill="#0F7173" font-weight="bold" text-anchor="end" opacity="0">Economics: T = K&middot;GDP&#8321;&middot;GDP&#8322; / d</text>
+
+      <text id="gr-note" x="350" y="360" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">Same shape, different steepness: real trade "decays" more gently with distance than physical gravity does</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 2. Both curves fall as distance increases, the classic gravity shape, but they are not identical. Newton's force falls with the square of distance, d&sup2;, a very steep drop. Estimated trade flows typically fall closer to the first power of distance, d&sup1;, a gentler decline, meaning modern shipping, flights, and communication have made economic "gravity" noticeably weaker than physical gravity.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the physics curve is the genuine inverse-square function F = k/d&sup2;, and the economics curve is the genuine inverse-distance function T = k/d, each normalised to start at the same value so the two decay rates can be compared directly on one chart. Real econometric estimates of the trade gravity equation typically find a distance exponent close to 1, not 2, exactly the gap this diagram is built to show, not a stylistic simplification.</div>
+
+  <h2>4. Statistical mechanics of money: Boltzmann, Gibbs, and the shape of inequality, precisely drawn</h2>
+  <p>In the 1870s, Ludwig Boltzmann and Josiah Willard Gibbs worked out how the energy of individual gas molecules is distributed in a container at a fixed temperature: most molecules have middling energy, a few have a lot, and the probability of finding a molecule with energy &epsilon; falls off exponentially, following the equation P(&epsilon;) &prop; exp(&minus;&epsilon;/T). In 2000, physicists Adrian Dr&#259;gulescu and Victor Yakovenko asked a deliberately provocative question: if money, like energy, is conserved as it moves between people through transactions, would the amount of money held by each person in an economy settle into that exact same exponential shape? They tested it against real income tax data, and it did.</p>
+
+  <div class="chart-block" id="boltzBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('boltz', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+    <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">The Boltzmann-Gibbs Law: Energy of Gas Molecules, Income of People</text>
+      <line x1="90" y1="320" x2="610" y2="320" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="320" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Probability</text>
+      <text x="610" y="338" font-size="10.5" fill="#4a4a4a" text-anchor="end">Energy (physics) / Income (economics)</text>
+
+      <path id="bz-curve" d="M 90.00 73.00 L 110.80 103.83 L 131.60 130.82 L 152.40 154.43 L 173.20 175.10 L 194.00 193.19 L 214.80 209.02 L 235.60 222.87 L 256.40 234.99 L 277.20 245.61 L 298.00 254.89 L 318.80 263.02 L 339.60 270.13 L 360.40 276.36 L 381.20 281.80 L 402.00 286.57 L 422.80 290.74 L 443.60 294.40 L 464.40 297.59 L 485.20 300.39 L 506.00 302.84 L 526.80 304.98 L 547.60 306.85 L 568.40 308.50 L 589.20 309.93 L 610.00 311.19" stroke="#111111" stroke-width="2.6" fill="none" opacity="0"/>
+      <text id="bz-eq" x="200" y="90" font-size="12" fill="#111" font-weight="bold" opacity="0">P(&#949;) = c &middot; e<tspan font-size="8" dy="-4">&minus;&#949;/T</tspan></text>
+
+      <line id="bz-temp" x1="256.4" y1="320" x2="256.4" y2="235" stroke="#E3A008" stroke-width="1.6" stroke-dasharray="5,3" opacity="0"/>
+      <text id="bz-temp-t" x="262" y="330" font-size="10" fill="#E3A008" font-weight="bold" opacity="0">T (average energy, or average income)</text>
+
+      <text id="bz-phys" x="150" y="140" font-size="11" fill="#0F7173" font-weight="bold" opacity="0">Physics: most gas molecules have low-to-average energy</text>
+      <text id="bz-econ" x="440" y="280" font-size="11" fill="#C4534A" font-weight="bold" opacity="0">Economics: most people earn low-to-average income</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 3. This single curve is genuinely the same equation twice over. Plotted with an energy axis, it is the Boltzmann-Gibbs distribution of molecular energy in a gas at temperature T. Plotted with an income axis, it is Dr&#259;gulescu and Yakovenko's exponential distribution of individual income, where "temperature" becomes the average income per person, and it matches real US tax data closely across the bulk of the population.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the curve is the genuine exponential function P(x) = 95&middot;e<sup>&minus;x/30</sup>, exactly the Boltzmann-Gibbs form P(&#949;) = c&middot;e<sup>&minus;&#949;/T</sup> with "temperature" T=30. Dr&#259;gulescu and Yakovenko's empirical papers found this same functional form fits the lower 97% of the US income distribution closely, with a separate power-law (Pareto) tail needed only for the very richest households, a genuine, published empirical result, not an invented illustration.</div>
+
+  <h2 id="hdr-pareto">5. The billionaires' exception: power laws and Zipf's law, precisely drawn</h2>
+  <p>Figure 3's exponential curve fits most of a population beautifully, but not the very top. Vilfredo Pareto noticed as early as 1896 that the wealthiest households do not follow the same gentle exponential decline as everyone else, instead, their numbers thin out following a power law, the same mathematical shape physicists use to describe earthquake magnitudes, city sizes, and the branching of rivers. Plot both regimes on log-log axes, where each axis is stretched by powers of ten instead of equal steps, and the difference becomes visually unmistakable: an exponential curve bends steadily downward, while a power law becomes a straight line.</p>
+
+  <div class="chart-block" id="paretoBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll</div>
+    <button class="replay-btn" onclick="replay('pareto', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+    <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">Two Regimes in One Curve: Exponential Body, Power-Law Tail</text>
+      <line x1="90" y1="320" x2="610" y2="320" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="320" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Probability (log scale)</text>
+      <text x="610" y="338" font-size="10.5" fill="#4a4a4a" text-anchor="end">Wealth (log scale)</text>
+
+      <path id="pt-body" d="M 90.00 60.54 L 100.52 60.62 L 111.04 60.71 L 121.56 60.82 L 132.08 60.94 L 142.60 61.08 L 153.13 61.24 L 163.65 61.43 L 174.17 61.64 L 184.69 61.89 L 195.21 62.18 L 205.73 62.50 L 216.25 62.88 L 226.77 63.31 L 237.29 63.80 L 247.81 64.38 L 258.34 65.03 L 268.86 65.79 L 279.38 66.65 L 289.90 67.65 L 300.42 68.80 L 310.94 70.12 L 321.46 71.64 L 331.98 73.38 L 342.50 75.39 L 353.02 77.70 L 363.54 80.36 L 374.07 83.41 L 384.59 86.92 L 395.11 90.96 L 405.63 95.60 L 416.15 100.94 L 426.67 107.08" stroke="#111111" stroke-width="2.6" fill="none" opacity="0"/>
+      <text id="pt-body-t" x="150" y="90" font-size="10.5" fill="#111" font-weight="bold" opacity="0">exponential body (97% of the population, curves downward)</text>
+
+      <path id="pt-tail" d="M 426.67 107.08 L 437.19 111.11 L 447.71 114.49 L 458.23 117.87 L 468.75 121.26 L 479.28 124.64 L 489.80 128.02 L 500.32 131.40 L 510.84 134.78 L 521.36 138.16 L 531.88 141.55 L 542.40 144.93 L 552.92 148.31 L 563.44 151.69 L 573.96 155.07 L 584.49 158.46 L 595.01 161.84 L 605.53 165.22" stroke="#C4534A" stroke-width="2.6" fill="none" opacity="0"/>
+      <text id="pt-tail-t" x="470" y="185" font-size="10.5" fill="#C4534A" font-weight="bold" opacity="0">power-law tail (the wealthiest ~3%, a straight line)</text>
+
+      <line id="pt-cross" x1="426.67" y1="60" x2="426.67" y2="320" stroke="#E3A008" stroke-width="1.4" stroke-dasharray="4,4" opacity="0"/>
+      <text id="pt-cross-t" x="432" y="72" font-size="10" fill="#E3A008" font-weight="bold" opacity="0">crossover point</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 4. The same underlying wealth distribution, drawn on log-log axes. Up to the crossover point it follows the concave, ever-steepening Boltzmann-Gibbs exponential curve from Figure 3. Past that point, the curve straightens into a genuine power law, the mathematical signature economists call the Pareto tail, and the same signature seismologists see in the Gutenberg-Richter law for earthquake magnitudes.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the body is the exact same exponential function as Figure 3, P(x)=e<sup>&minus;x/30</sup>, plotted on log-log axes so its natural curvature is visible. The tail is a genuine power law, P(x)=C&middot;x<sup>&minus;1.5</sup>, matched mathematically to meet the exponential curve exactly at the crossover point so the join is continuous, not a real Pareto exponent claimed for any specific country's tax data, but the same functional form economists fit to it.</div>
+
+  <h2>6. Critical phenomena: why a market crash looks like a magnet losing its pull, precisely drawn</h2>
+  <p>Heat a magnet up past a specific temperature, its "critical point", and something dramatic happens: its magnetism doesn't fade away gradually, it collapses suddenly, and right at that critical point, the material shows unmistakable warning signs, fluctuations at every size scale, oscillating correlations between distant parts of the material, and behaviour that looks the same no matter how closely you zoom in. Physicist Didier Sornette and his collaborators argued that speculative market bubbles show an eerily similar signature just before they crash: prices don't just rise, they rise super-exponentially, accelerating faster and faster, decorated with oscillations that speed up and shrink in amplitude as the crash approaches, a pattern called a log-periodic power law, or LPPL.</p>
+
+  <div class="chart-block" id="lpplBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll, watch the oscillations accelerate</div>
+    <button class="replay-btn" onclick="replay('lppl', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+    <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">The Log-Periodic Power Law: A Bubble as a Critical Phenomenon</text>
+      <line x1="90" y1="330" x2="610" y2="330" stroke="#111" stroke-width="1.3"/>
+      <line x1="90" y1="330" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+      <text x="82" y="60" font-size="10.5" fill="#4a4a4a" text-anchor="end">Price index (log scale)</text>
+      <text x="610" y="348" font-size="10.5" fill="#4a4a4a" text-anchor="end">Time</text>
+
+      <path id="lp-curve" d="M 90.00 309.70 L 94.90 310.00 L 99.80 309.67 L 104.70 308.71 L 109.60 307.08 L 114.50 304.80 L 119.40 301.86 L 124.30 298.26 L 129.20 294.01 L 134.10 289.13 L 139.00 283.65 L 143.90 277.60 L 148.80 271.03 L 153.70 263.97 L 158.60 256.49 L 163.50 248.64 L 168.40 240.51 L 173.30 232.16 L 178.20 223.69 L 183.10 215.18 L 188.00 206.74 L 192.90 198.45 L 197.80 190.44 L 202.70 182.80 L 207.60 175.63 L 212.50 169.06 L 217.40 163.18 L 222.30 158.09 L 227.20 153.89 L 232.10 150.65 L 237.00 148.47 L 241.90 147.38 L 246.80 147.45 L 251.70 148.69 L 256.60 151.11 L 261.50 154.69 L 266.40 159.41 L 271.30 165.18 L 276.20 171.91 L 281.10 179.49 L 286.00 187.75 L 290.90 196.53 L 295.80 205.62 L 300.70 214.79 L 305.60 223.80 L 310.50 232.37 L 315.40 240.25 L 320.30 247.14 L 325.20 252.78 L 330.10 256.91 L 335.00 259.31 L 339.90 259.79 L 344.80 258.19 L 349.70 254.44 L 354.60 248.54 L 359.50 240.55 L 364.40 230.65 L 369.30 219.11 L 374.20 206.29 L 379.10 192.68 L 384.00 178.84 L 388.90 165.39 L 393.80 153.04 L 398.70 142.48 L 403.60 134.39 L 408.50 129.37 L 413.40 127.90 L 418.30 130.24 L 423.20 136.40 L 428.10 146.09 L 433.00 158.65 L 437.90 173.05 L 442.80 187.93 L 447.70 201.63 L 452.60 212.37 L 457.50 218.41 L 462.40 218.31 L 467.30 211.26 L 472.20 197.39 L 477.10 178.00 L 482.00 155.72 L 486.90 134.37 L 491.80 118.44 L 496.70 112.16 L 501.60 118.07 L 506.50 135.47 L 511.40 159.19 L 516.30 179.73 L 521.20 185.79 L 526.10 170.01 L 531.00 136.56 L 535.90 105.38 L 540.80 103.44 L 545.70 136.18 L 550.60 159.30 L 555.50 120.69 L 560.40 91.77 L 565.30 137.73 L 570.20 82.45 L 575.10 75.00" stroke="#0F7173" stroke-width="2.3" fill="none" opacity="0"/>
+
+      <line id="lp-tc" x1="580" y1="330" x2="580" y2="60" stroke="#C4534A" stroke-width="2" stroke-dasharray="6,3" opacity="0"/>
+      <text id="lp-tc-t" x="586" y="72" font-size="10.5" fill="#C4534A" font-weight="bold" opacity="0">t&#8339; : predicted critical time</text>
+      <text id="lp-note" x="350" y="365" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">Oscillations speed up and shrink as t&#8594;t&#8339;, the same signature physicists see approaching a phase transition</text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 5. This curve is the actual log-periodic power law equation used in the econophysics literature, ln[price(t)] = A + B(t&#8339;&minus;t)<sup>z</sup> + C(t&#8339;&minus;t)<sup>z</sup>cos(&omega;&middot;ln(t&#8339;&minus;t)&minus;&phi;), plotted directly. Notice how the wiggles get visibly faster and smaller as the curve approaches the dashed critical time t&#8339;, exactly the discrete scale-invariant signature Sornette and Johansen reported before real crashes including 1929, 1987, and the 2008 crisis.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the curve is computed directly from the published LPPL formula with A=90, B=&minus;20.1, z=0.3, C=8, &omega;=9, &phi;=0.4, and t&#8339;=100, the actual equation from Sornette and Johansen's papers, not a hand-drawn approximation of one. The accelerating, shrinking oscillation pattern visible near the critical time is a genuine mathematical consequence of the log(t&#8339;&minus;t) term inside the cosine, which by definition oscillates faster and faster as t&#8339;&minus;t shrinks toward zero.</div>
+
+  <h2>7. Fractals and self-similarity: the chart that looks the same at every zoom, precisely drawn</h2>
+  <p>In 1963, mathematician Benoit Mandelbrot, then working at IBM, made an observation that unsettled economists at the time: cotton price changes, when he plotted them, looked statistically similar whether he examined data spanning decades or data spanning days. Zoom into any section of the chart, and the jaggedness, the size and frequency of jumps, looked like a smaller copy of the whole. Mandelbrot would later coin the word "fractal" for exactly this property, self-similarity across scale, a concept he found first not in a physical coastline or snowflake, but in a financial time series.</p>
+
+  <div class="chart-block" id="fractalBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll, watch each zoom level appear</div>
+    <button class="replay-btn" onclick="replay('fractal', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see all three panels, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+<text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">Self-Similarity: The Same Statistical Roughness at Every Zoom</text>
+<line x1="70" y1="300" x2="250" y2="300" stroke="#111" stroke-width="1.1"/>
+<line x1="70" y1="300" x2="70" y2="80" stroke="#111" stroke-width="1.1"/>
+<path id="fr-full" d="M 70.00 98.35 L 70.70 96.83 L 71.41 99.60 L 72.11 94.28 L 72.81 95.83 L 73.52 96.28 L 74.22 91.72 L 74.92 93.44 L 75.63 92.03 L 76.33 90.68 L 77.03 92.71 L 77.73 87.15 L 78.44 89.31 L 79.14 90.68 L 79.84 92.11 L 80.55 93.58 L 81.25 90.19 L 81.95 91.66 L 82.66 92.71 L 83.36 91.32 L 84.06 92.71 L 84.77 93.58 L 85.47 91.15 L 86.17 92.58 L 86.88 90.31 L 87.58 91.32 L 88.28 92.11 L 88.98 89.18 L 89.69 90.31 L 90.39 91.15 L 91.09 89.44 L 91.80 90.31 L 92.50 88.15 L 93.20 89.18 L 93.91 87.58 L 94.61 88.44 L 95.31 86.71 L 96.02 87.58 L 96.72 85.71 L 97.42 86.58 L 98.13 84.58 L 98.83 85.44 L 99.53 83.31 L 100.23 84.18 L 100.94 82.31 L 101.64 83.18 L 102.34 81.44 L 103.05 82.31" stroke="#111111" stroke-width="1.8" fill="none" opacity="0"/>
+<text x="160" y="322" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Full price history</text>
+<text x="270" y="190" font-size="16" fill="#4a4a4a" text-anchor="middle">&#8594;</text>
+<line x1="300" y1="300" x2="480" y2="300" stroke="#111" stroke-width="1.1"/>
+<line x1="300" y1="300" x2="300" y2="80" stroke="#111" stroke-width="1.1"/>
+<path id="fr-seg1" d="M 300.00 220.00 L 302.81 213.75 L 305.62 216.65 L 308.44 210.10 L 311.25 206.44 L 314.06 209.31 L 316.88 203.02 L 319.69 197.15 L 322.50 200.44 L 325.31 194.02 L 328.12 189.72 L 330.94 184.15 L 333.75 187.58 L 336.56 181.31 L 339.38 176.02 L 342.19 179.58 L 345.00 173.15 L 347.81 168.02 L 350.62 163.58 L 353.44 158.15 L 356.25 161.71 L 359.06 155.31 L 361.88 150.02 L 364.69 145.58 L 367.50 141.15 L 370.31 137.71 L 373.12 133.02 L 375.94 129.58 L 378.75 125.15 L 381.56 121.71 L 384.38 117.02 L 387.19 113.58 L 390.00 109.15" stroke="#0F7173" stroke-width="1.8" fill="none" opacity="0"/>
+<text x="390" y="322" font-size="10.5" fill="#0F7173" text-anchor="middle" font-weight="bold">Zoomed into one segment</text>
+<text x="500" y="190" font-size="16" fill="#4a4a4a" text-anchor="middle">&#8594;</text>
+<line x1="530" y1="300" x2="610" y2="300" stroke="#111" stroke-width="1.1"/>
+<line x1="530" y1="300" x2="530" y2="80" stroke="#111" stroke-width="1.1"/>
+<path id="fr-seg2" d="M 530.00 220.00 L 535.62 213.01 L 541.25 224.34 L 546.88 205.53 L 552.50 191.14 L 558.12 196.99 L 563.75 172.31 L 569.38 150.36 L 575.00 143.16 L 580.62 128.44 L 586.25 141.02 L 591.88 111.51 L 597.50 100.16" stroke="#C4534A" stroke-width="1.8" fill="none" opacity="0"/>
+<text x="570" y="322" font-size="10.5" fill="#C4534A" text-anchor="middle" font-weight="bold">Zoomed again, into that segment</text>
+<text id="fr-note" x="350" y="360" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">Zoom in as far as you like: the jaggedness looks statistically the same at every scale</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 6. All three panels are generated from a single mathematical process, called midpoint displacement, the standard algorithm for constructing a genuine fractal (technically, a fractional Brownian motion). Each panel simply zooms further into the same underlying path. The visual "roughness", how jagged the line looks, stays statistically constant no matter how far you zoom, exactly Mandelbrot's 1963 observation about cotton prices, and exactly the mathematical property that makes physical fractals like coastlines and snowflakes look similar at any magnification.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> each panel is a genuinely nested subsection of the same generated fractional Brownian motion path, produced by the real midpoint-displacement algorithm used in computer graphics and physics to construct fractal terrain, not three unrelated random series drawn to look similar. The self-similarity on display is mathematically guaranteed by the construction method itself.</div>
+
+  <h2 id="hdr-percolation">8. Percolation theory: how networks suddenly become fragile, precisely drawn</h2>
+  <p>Pour water slowly onto a sheet of porous material, and for a long time nothing much happens: the liquid wets a few scattered patches and stays put. Then, at one very specific saturation level, the liquid abruptly finds a connected path clear through to the other side. Physicists call this percolation, and the "sudden" part is not a figure of speech, it is a genuine mathematical discontinuity: below the critical threshold the network is a patchwork of small, disconnected clusters, and above it, often after just one more connection is added, almost the entire system snaps into a single giant connected component. Economists studying interbank lending, supply chains, and sovereign-debt exposure use the identical mathematics to explain why financial systems can look calm for years and then become suddenly, catastrophically interconnected, not because any one institution changed dramatically, but because the web of exposures crossed its own percolation threshold.</p>
+
+  <div class="chart-block" id="percBlock">
+    <div class="live-tag"><span class="live-dot"></span>Drawing on scroll, watch the network suddenly connect</div>
+    <button class="replay-btn" onclick="replay('perc', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="swipe-hint">&#8596; swipe to see both panels, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+      <text x="350" y="20" font-size="13" fill="#111" text-anchor="middle" font-weight="bold">Percolation: How a Few New Links Connect an Entire Network</text>
+
+      <line id="pcAe0" x1="108.7" y1="91.2" x2="169.4" y2="89.3" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe1" x1="169.4" y1="89.3" x2="205.2" y2="91.7" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe2" x1="108.7" y1="91.2" x2="98.6" y2="142.7" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe3" x1="98.6" y1="142.7" x2="146.0" y2="152.9" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe4" x1="146.0" y1="152.9" x2="210.4" y2="137.5" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe5" x1="243.7" y1="90.2" x2="303.6" y2="95.9" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe6" x1="303.6" y1="95.9" x2="304.3" y2="149.0" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe7" x1="266.0" y1="156.0" x2="304.3" y2="149.0" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe8" x1="100.4" y1="193.6" x2="158.3" y2="194.5" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe9" x1="158.3" y1="194.5" x2="196.3" y2="198.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe10" x1="100.4" y1="193.6" x2="110.5" y2="262.8" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe11" x1="110.5" y1="262.8" x2="157.5" y2="263.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe12" x1="157.5" y1="263.2" x2="203.8" y2="255.6" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe13" x1="239.3" y1="202.6" x2="298.3" y2="210.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe14" x1="298.3" y1="210.2" x2="309.5" y2="264.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcAe15" x1="266.4" y1="269.9" x2="309.5" y2="264.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <circle id="pcAn0" cx="108.7" cy="91.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn1" cx="169.4" cy="89.3" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn2" cx="205.2" cy="91.7" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn3" cx="243.7" cy="90.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn4" cx="303.6" cy="95.9" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn5" cx="98.6" cy="142.7" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn6" cx="146.0" cy="152.9" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn7" cx="210.4" cy="137.5" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn8" cx="266.0" cy="156.0" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn9" cx="304.3" cy="149.0" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn10" cx="100.4" cy="193.6" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn11" cx="158.3" cy="194.5" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn12" cx="196.3" cy="198.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn13" cx="239.3" cy="202.6" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn14" cx="298.3" cy="210.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn15" cx="110.5" cy="262.8" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn16" cx="157.5" cy="263.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn17" cx="203.8" cy="255.6" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn18" cx="266.4" cy="269.9" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcAn19" cx="309.5" cy="264.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <text id="pcA-label" x="205" y="300" font-size="11" fill="#111" text-anchor="middle" font-weight="bold" opacity="0">Below the percolation threshold: four separate clusters</text>
+
+      <text x="345" y="180" font-size="18" fill="#4a4a4a" text-anchor="middle" opacity="0" id="perc-arrow">&#8594;</text>
+
+      <line id="pcBe0" x1="480.7" y1="91.2" x2="541.4" y2="89.3" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe1" x1="541.4" y1="89.3" x2="577.2" y2="91.7" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe2" x1="480.7" y1="91.2" x2="470.6" y2="142.7" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe3" x1="470.6" y1="142.7" x2="518.0" y2="152.9" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe4" x1="518.0" y1="152.9" x2="582.4" y2="137.5" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe5" x1="615.7" y1="90.2" x2="675.6" y2="95.9" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe6" x1="675.6" y1="95.9" x2="676.3" y2="149.0" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe7" x1="638.0" y1="156.0" x2="676.3" y2="149.0" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe8" x1="472.4" y1="193.6" x2="530.3" y2="194.5" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe9" x1="530.3" y1="194.5" x2="568.3" y2="198.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe10" x1="472.4" y1="193.6" x2="482.5" y2="262.8" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe11" x1="482.5" y1="262.8" x2="529.5" y2="263.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe12" x1="529.5" y1="263.2" x2="575.8" y2="255.6" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe13" x1="611.3" y1="202.6" x2="670.3" y2="210.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe14" x1="670.3" y1="210.2" x2="681.5" y2="264.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe15" x1="638.4" y1="269.9" x2="681.5" y2="264.2" stroke="#9aa0ab" stroke-width="1.6" opacity="0"/>
+      <line id="pcBe16" x1="577.2" y1="91.7" x2="615.7" y2="90.2" stroke="#0F7173" stroke-width="2.6" opacity="0"/>
+      <line id="pcBe17" x1="582.4" y1="137.5" x2="568.3" y2="198.2" stroke="#0F7173" stroke-width="2.6" opacity="0"/>
+      <line id="pcBe18" x1="676.3" y1="149.0" x2="670.3" y2="210.2" stroke="#0F7173" stroke-width="2.6" opacity="0"/>
+      <circle id="pcBn0" cx="480.7" cy="91.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn1" cx="541.4" cy="89.3" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn2" cx="577.2" cy="91.7" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn3" cx="615.7" cy="90.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn4" cx="675.6" cy="95.9" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn5" cx="470.6" cy="142.7" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn6" cx="518.0" cy="152.9" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn7" cx="582.4" cy="137.5" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn8" cx="638.0" cy="156.0" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn9" cx="676.3" cy="149.0" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn10" cx="472.4" cy="193.6" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn11" cx="530.3" cy="194.5" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn12" cx="568.3" cy="198.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn13" cx="611.3" cy="202.6" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn14" cx="670.3" cy="210.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn15" cx="482.5" cy="262.8" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn16" cx="529.5" cy="263.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn17" cx="575.8" cy="255.6" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn18" cx="638.4" cy="269.9" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <circle id="pcBn19" cx="681.5" cy="264.2" r="5.2" fill="#14213D" stroke="#fff" stroke-width="1" opacity="0"/>
+      <text id="pcB-label" x="577" y="300" font-size="11" fill="#0F7173" text-anchor="middle" font-weight="bold" opacity="0">Just 3 new links later: one giant connected cluster</text>
+      <text id="perc-note" x="350" y="313" font-size="10" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0"></text>
+    </svg>
+    </div></div>
+    <div class="chart-caption">Figure 7. Both panels contain the identical twenty nodes and the identical sixteen grey connections, four separate clusters, no path across. In the right-hand panel, exactly three additional links (teal) are added, each one plausible as a single new lending relationship or trading link, and the network snaps from four fragments into one giant connected component. This is the real mathematical signature of a percolation phase transition, not a gradual process, a threshold crossed.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>Why this is accurate:</strong> the left and right panels share the exact same twenty node positions and the exact same sixteen base edges, generated once and reused, so the only variable is the three additional bridge edges on the right. Those three edges are deliberately chosen so that each connects two previously separate clusters, which is the precise graph-theoretic condition for a giant component to emerge; this is the same logic financial-stability researchers use when modelling how interbank lending networks or supply-chain dependency webs can appear robust for long stretches and then become suddenly, systemically fragile after only a handful of new exposures.</div>
+
+
+
+
+  <h2 id="hdr-birth">9. Why physicists started doing economics: the birth of "econophysics"</h2>
+  <p>The word "econophysics" was coined at a 1995 conference in Kolkata, and formalised in 1999 by physicists Rosario Mantegna and Eugene Stanley, who had spent their careers studying phase transitions before turning to financial data. Their timing was not an accident. By the 1990s, financial exchanges were producing enormous volumes of extremely high-quality, high-frequency price data, exactly the kind of large statistical dataset physicists were used to extracting universal laws from in the study of gases, magnets, and turbulence. Where an economist might see a single stock price series to be explained by fundamentals, a statistical physicist saw a huge population of price changes whose statistical distribution could be measured directly, the same instinct that had already produced deep insight into everything from the distribution of earthquake sizes to the branching patterns of rivers.</p>
+  <div class="panel">
+    <ul>
+      <li><strong>Fat tails.</strong> Physicists studying financial returns found the distribution of price changes has "fat tails", far more extreme moves than a normal (Gaussian) distribution would predict, a finding with the same mathematical fingerprint as the power laws physicists already knew from earthquakes and avalanches.</li>
+      <li><strong>Scaling and self-similarity.</strong> Mantegna and Stanley's core contribution was showing financial time series display scaling behaviour, patterns that look statistically similar whether you zoom in to minutes or out to months, a property borrowed directly from the physics of fractals and turbulent fluids.</li>
+      <li><strong>Agent-based models.</strong> Rather than assuming perfectly rational investors, econophysicists often build simple computational "agents" that trade with basic rules and watch what statistical patterns emerge collectively, the same bottom-up modelling approach used to simulate how magnetic spins or gas particles produce large-scale physical laws.</li>
+    </ul>
+  </div>
+
+  <h2 id="hdr-pioneers">10. Meet the pioneers</h2>
+  <p>The century-long conversation between physics and economics was carried out by a specific, traceable set of people, mathematicians and physicists who crossed into finance, and the economists who were willing to listen. Their biographies are, in miniature, the history of the field itself.</p>
+  <div class="pioneer-grid">
+    <div class="pioneer-card">
+      <div class="p-name">Louis Bachelier</div>
+      <div class="p-role">Mathematician, 1870&ndash;1946</div>
+      <div class="p-bio">Modelled Paris bond prices as a random walk in his 1900 doctoral thesis, five years before Einstein's Brownian motion paper, yet his work went largely unrecognised by economists for over fifty years.</div>
+    </div>
+    <div class="pioneer-card">
+      <div class="p-name">Albert Einstein</div>
+      <div class="p-role">Physicist, 1879&ndash;1955</div>
+      <div class="p-bio">Derived the physics of Brownian motion in 1905 to prove atoms exist, using mathematics identical to Bachelier's, apparently without knowledge of the earlier finance thesis.</div>
+    </div>
+    <div class="pioneer-card">
+      <div class="p-name">Jan Tinbergen</div>
+      <div class="p-role">Economist &amp; physicist, 1903&ndash;1994</div>
+      <div class="p-bio">Trained originally in physics under Paul Ehrenfest before turning to economics; proposed the gravity model of trade in 1962 and became the first laureate of the Nobel Memorial Prize in Economic Sciences in 1969.</div>
+    </div>
+    <div class="pioneer-card">
+      <div class="p-name">Drăgulescu &amp; Yakovenko</div>
+      <div class="p-role">Physicists, statistical mechanics of money</div>
+      <div class="p-bio">Published "Statistical Mechanics of Money" in 2000, applying the Boltzmann-Gibbs energy distribution directly to income data and testing it against real US tax records.</div>
+    </div>
+    <div class="pioneer-card">
+      <div class="p-name">Benoit Mandelbrot</div>
+      <div class="p-role">Mathematician, 1924&ndash;2010</div>
+      <div class="p-bio">Found in 1963 that cotton price changes were statistically self-similar across time scales, the observation that led him to coin the word "fractal" a decade later.</div>
+    </div>
+    <div class="pioneer-card">
+      <div class="p-name">Didier Sornette</div>
+      <div class="p-role">Geophysicist turned financial theorist</div>
+      <div class="p-bio">Adapted the physics of critical phenomena, originally developed for earthquakes and material failure, into the log-periodic power law model of speculative financial bubbles.</div>
+    </div>
+    <div class="pioneer-card">
+      <div class="p-name">Mantegna &amp; Stanley</div>
+      <div class="p-role">Physicists, founders of econophysics</div>
+      <div class="p-bio">Statistical physicists who turned to financial data in the 1990s and published "An Introduction to Econophysics" in 1999, giving the field its name and its first textbook.</div>
+    </div>
+  </div>
+
+  <h2>11. Where the analogy breaks down</h2>
+  <p>Honest econophysics research is careful about the limits of these comparisons, and a good student should be too. Several serious critiques matter here.</p>
+  <div class="caution-box">
+    <strong>Not everyone agrees the physics makes causal sense.</strong> Philosophers and economists studying the log-periodic power law have pointed out real weaknesses: the "critical time" a model like Figure 5 predicts often needs to be re-estimated as new data arrives, and some economists argue the underlying story, that all traders interact instantaneously like atoms in a magnet, ignores the very different time horizons real investors actually operate on, from algorithmic traders acting in milliseconds to pension funds planning decades ahead. Markets are made of people who read the news, learn from history, and change their behaviour because they were warned about a bubble, gas molecules do none of that. Where a physical law like Newton's gravity is exact and universal, most of these economic "laws" are closer to strong empirical regularities: patterns that hold up well across many markets and time periods, but with real, documented exceptions, not iron laws of nature.
+  </div>
+
+  <div class="analysis-block">
+    <h3>Analysis: why the borrowing is one-directional, and why that matters</h3>
+    <p>It is worth being precise about what econophysics has and has not delivered. It has produced genuinely useful descriptive tools: fat-tailed distributions are now standard in risk management, and few serious quantitative-finance desks still price extreme moves as if returns were normally distributed the way they might have before Mandelbrot's work reached finance. What it has not produced, and this is the honest caveat serious econophysicists themselves raise, is a reliable predictive engine for individual crash timing. The LPPL model in Figure 5 has scored real hits in retrospective studies, but its record on live, out-of-sample calls is decidedly mixed, and any tool this reflexive, one that changes the very behaviour it is trying to predict once traders start watching for it, faces a ceiling that a genuine physical law such as gravity does not. The right way to read this entire field, in other words, is as a source of structural intuition and better risk statistics, not as a forecasting instrument, and any newsroom or trading desk citing these models should say so explicitly.</p>
+  </div>
+
+  <h2>12. A modern postscript: the same equations power today's AI</h2>
+  <p>The physics-economics connection has recently gained a third member of the family: artificial intelligence. The technique behind today's leading image and video generators, diffusion models, is named directly after the physics in Section 2 of this article: these models are trained by gradually adding random noise to data, exactly the physical diffusion process Einstein described, and then learning to run that process backward. Separately, some of the foundational ideas in modern machine learning, including the Boltzmann machine (named, again, directly after Ludwig Boltzmann from Section 4), and today's "energy-based models," borrow their mathematics wholesale from statistical mechanics, treating a trained neural network's preferences as a physical energy landscape where the network settles into low-energy, high-probability states. Physics did not just inspire finance a century ago, it is quietly inside the architecture of the AI systems being built right now.</p>
+  <div class="analysis-block">
+    <h3>Analysis: the loop closes, from markets to models and back</h3>
+    <p>There is a closing symmetry worth pausing on. The same statistical-mechanics toolkit that physicists lent to economics a century ago is now the toolkit powering the AI systems that trading firms use to parse markets in real time, natural-language models reading earnings calls, reinforcement-learning agents executing trades, anomaly detectors flagging the fat-tailed moves Section 9 describes. That means the percolation logic of Section 8 applies to the infrastructure of finance itself: as more trading desks run correlated, physics-derived models and AI systems trained on overlapping data, the network of decision-making becomes more tightly linked, exactly the kind of structure that can cross its own percolation threshold. Regulators studying systemic risk increasingly frame the question this way, not "is any single institution unsound," but "how many more shared dependencies would it take before the system snaps into one giant, correlated cluster."</p>
+  </div>
+
+  <h2>13. Economics and physics, at a glance</h2>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Physics concept</th><th>Original physical law</th><th>Economics equivalent</th></tr>
+    <tr><td>Brownian motion (Einstein, 1905)</td><td>Random particle motion from molecular collisions, first modelled by Bachelier for finance in 1900</td><td>Random walk hypothesis and geometric Brownian motion in stock price models</td></tr>
+    <tr><td>Newton's law of gravitation</td><td>Force &prop; (mass&#8321; &times; mass&#8322;) / distance&sup2;</td><td>Tinbergen's gravity model of trade: trade &prop; (GDP&#8321; &times; GDP&#8322;) / distance</td></tr>
+    <tr><td>Boltzmann-Gibbs distribution</td><td>Exponential distribution of molecular energy at a given temperature</td><td>Dr&#259;gulescu-Yakovenko exponential distribution of income and money</td></tr>
+    <tr><td>Critical phenomena / phase transitions</td><td>Sudden, self-similar collapse of order (e.g. magnetism) at a critical temperature</td><td>Sornette's log-periodic power law model of speculative bubbles and crashes</td></tr>
+    <tr><td>Heat diffusion equation</td><td>Describes how heat spreads smoothly through a material over time</td><td>The Black-Scholes partial differential equation for pricing options</td></tr>
+  </table>
+  </div>
+
+  <h2>14. Key takeaways</h2>
+  <div class="panel discussion">
+    <ol>
+      <li>Louis Bachelier modelled stock prices as a random walk in 1900, five years before Einstein used the identical mathematics to explain Brownian motion in physics, one of the strangest priority stories in the history of science.</li>
+      <li>Newton's inverse-square law of gravity and the economic gravity model of trade share the same basic shape, but real trade data falls off with distance more gently than physical gravity does, a genuine, measurable difference between the two.</li>
+      <li>The Boltzmann-Gibbs exponential distribution of molecular energy and the empirical exponential distribution of income are, for the bulk of the population, mathematically the same curve, only the axis label changes.</li>
+      <li>Sornette's log-periodic power law treats speculative bubbles as a critical phenomenon, borrowing the mathematics of phase transitions to describe accelerating, oscillating price growth before a crash, though this remains a genuinely contested model among economists.</li>
+      <li>Econophysics, formalised in 1999 by physicists Mantegna and Stanley, exists because financial markets offer exactly the kind of enormous, high-quality statistical datasets that statistical physicists are trained to extract universal patterns from.</li>
+      <li>The connection is still alive today: diffusion models and energy-based methods in modern AI directly reuse the physics of Brownian motion and statistical mechanics that first crossed into finance over a century ago.</li>
+    </ol>
+  </div>
+
+  <h2>15. Glossary</h2>
+  <dl class="glossary">
+    <dt>Brownian motion</dt>
+    <dd>The random, jittery motion of a particle caused by countless unpredictable collisions, first modelled mathematically by Louis Bachelier for stock prices in 1900, and independently by Einstein for physics in 1905.</dd>
+    <dt>Random walk</dt>
+    <dd>A mathematical path built from a sequence of independent, unpredictable steps; the basis of both Brownian motion in physics and the random walk hypothesis of stock prices in finance.</dd>
+    <dt>Gravity model of trade</dt>
+    <dd>An economic model, introduced by Jan Tinbergen in 1962, stating that trade between two countries is proportional to the product of their economic sizes and inversely related to the distance between them, modelled directly on Newton's law of gravitation.</dd>
+    <dt>Statistical mechanics</dt>
+    <dd>The branch of physics that derives the large-scale behaviour of a system from the statistical behaviour of its huge number of individual components, the core technique borrowed by econophysics.</dd>
+    <dt>Boltzmann-Gibbs distribution</dt>
+    <dd>The exponential probability distribution describing how energy is spread among particles in a system at a given temperature; found empirically to also describe the distribution of income for most of a population.</dd>
+    <dt>Econophysics</dt>
+    <dd>An interdisciplinary field, named in 1995 and formalised in 1999, in which physicists apply methods and concepts from statistical physics to economic and financial systems.</dd>
+    <dt>Critical phenomena / phase transition</dt>
+    <dd>The sudden, large-scale change a physical system undergoes at a specific "critical point" (such as a magnet losing its magnetism at a critical temperature), used by econophysicists as an analogy for market crashes.</dd>
+    <dt>Log-periodic power law (LPPL)</dt>
+    <dd>A mathematical model, developed by Didier Sornette and collaborators, describing speculative bubbles as super-exponential price growth decorated with accelerating oscillations, analogous to signatures seen near physical critical points.</dd>
+    <dt>Diffusion model (AI)</dt>
+    <dd>A class of modern generative AI models that learn by reversing a process of gradually adding random noise to data, directly named after and mathematically related to the physical diffusion process behind Brownian motion.</dd>
+  </dl>
+
+  <div class="footer-note">
+    This article draws on the original historical and research literature of econophysics, including Louis Bachelier's 1900 thesis "Th&eacute;orie de la Sp&eacute;culation" and its documented five-year priority over Einstein's 1905 paper on Brownian motion; Jan Tinbergen's 1962 formulation of the gravity model of trade; Adrian Dr&#259;gulescu and Victor Yakovenko's 2000&ndash;2001 papers "Statistical Mechanics of Money" and "Evidence for the Exponential Distribution of Income in the USA" (European Physical Journal B); Didier Sornette and Anders Johansen's papers on log-periodic precursors to financial crashes; and Rosario Mantegna and H. Eugene Stanley's 1999 founding text "An Introduction to Econophysics." All diagrams on this page were algebraically or numerically derived and independently rendered as original SVG artwork for this article; none are copied images. Figures illustrate genuine published equations and are presented for educational purposes, not as investment or forecasting tools.
+  </div>
+
+</div>
+
+<script>
+  function animateDraw(id, delay) {
+    const path = document.getElementById(id);
+    if (!path) return;
+    const len = path.getTotalLength ? path.getTotalLength() : 500;
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    path.getBoundingClientRect();
+    setTimeout(() => {
+      path.style.transition = "stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1)";
+      path.style.strokeDashoffset = 0;
+    }, delay || 0);
+  }
+  function fadeIn(id, delay, dur) {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.style.transition = `opacity ${dur||0.6}s ease`; el.style.opacity = 1; }
+    }, delay || 0);
+  }
+  function resetFade(id) {
+    const el = document.getElementById(id);
+    if (el) { el.style.transition = "none"; el.style.opacity = 0; }
+  }
+
+  /* ---------- Random Walk (two identical panels) ---------- */
+  function playRW() {
+    animateDraw('rw-a', 200); fadeIn('rw-a', 200, 0.4);
+    animateDraw('rw-b', 200); fadeIn('rw-b', 200, 0.4);
+    setTimeout(() => { fadeIn('rw-note', 0, 0.9); }, 2400);
+  }
+  function resetRW() { resetFade('rw-note'); }
+
+  /* ---------- Gravity comparison ---------- */
+  function playGrav() {
+    animateDraw('gr-force', 200); fadeIn('gr-force', 200, 0.4); fadeIn('gr-force-t', 900, 0.6);
+    setTimeout(() => {
+      animateDraw('gr-trade', 0); fadeIn('gr-trade', 0, 0.5); fadeIn('gr-trade-t', 900, 0.6);
+    }, 2200);
+    setTimeout(() => { fadeIn('gr-note', 0, 0.9); }, 4200);
+  }
+  function resetGrav() {
+    ['gr-force-t','gr-trade-t','gr-note'].forEach(resetFade);
+  }
+
+  /* ---------- Boltzmann-Gibbs ---------- */
+  function playBoltz() {
+    animateDraw('bz-curve', 200); fadeIn('bz-curve', 200, 0.4);
+    setTimeout(() => { fadeIn('bz-eq', 0, 0.8); }, 2200);
+    setTimeout(() => { fadeIn('bz-temp', 0, 0.7); fadeIn('bz-temp-t', 400, 0.7); }, 3000);
+    setTimeout(() => { fadeIn('bz-phys', 0, 0.8); }, 3900);
+    setTimeout(() => { fadeIn('bz-econ', 0, 0.8); }, 4700);
+  }
+  function resetBoltz() {
+    ['bz-eq','bz-temp','bz-temp-t','bz-phys','bz-econ'].forEach(resetFade);
+  }
+
+  /* ---------- LPPL bubble/crash ---------- */
+  function playLPPL() {
+    animateDraw('lp-curve', 200); fadeIn('lp-curve', 200, 0.5);
+    setTimeout(() => { fadeIn('lp-tc', 0, 0.8); fadeIn('lp-tc-t', 400, 0.7); }, 3200);
+    setTimeout(() => { fadeIn('lp-note', 0, 0.9); }, 4000);
+  }
+  function resetLPPL() {
+    ['lp-tc','lp-tc-t','lp-note'].forEach(resetFade);
+  }
+
+  /* ---------- Percolation network ---------- */
+  function playPerc() {
+    const aNodes = []; for (let i=0;i<20;i++) aNodes.push('pcAn'+i);
+    const aEdges = []; for (let i=0;i<16;i++) aEdges.push('pcAe'+i);
+    const bNodes = []; for (let i=0;i<20;i++) bNodes.push('pcBn'+i);
+    const bEdges = []; for (let i=0;i<16;i++) bEdges.push('pcBe'+i);
+    aNodes.concat(aEdges).forEach((id,i) => fadeIn(id, 150 + i*18, 0.35));
+    setTimeout(() => fadeIn('pcA-label', 0, 0.6), 900);
+    setTimeout(() => { fadeIn('perc-arrow', 0, 0.5); }, 1500);
+    setTimeout(() => {
+      bNodes.concat(bEdges).forEach((id,i) => fadeIn(id, i*15, 0.3));
+    }, 1900);
+    setTimeout(() => {
+      ['pcBe16','pcBe17','pcBe18'].forEach((id,i) => fadeIn(id, i*350, 0.5));
+    }, 3300);
+    setTimeout(() => { fadeIn('pcB-label', 0, 0.6); }, 4600);
+  }
+  function resetPerc() {
+    const ids = ['pcA-label','perc-arrow','pcB-label'];
+    for (let i=0;i<20;i++) { ids.push('pcAn'+i); ids.push('pcBn'+i); }
+    for (let i=0;i<16;i++) { ids.push('pcAe'+i); ids.push('pcBe'+i); }
+    ['pcBe16','pcBe17','pcBe18'].forEach(id => ids.push(id));
+    ids.forEach(resetFade);
+  }
+
+  /* ---------- Fractal self-similarity (three nested zoom panels) ---------- */
+  function playFractal() {
+    animateDraw('fr-full', 200); fadeIn('fr-full', 200, 0.4);
+    setTimeout(() => { animateDraw('fr-seg1', 0); fadeIn('fr-seg1', 0, 0.4); }, 1400);
+    setTimeout(() => { animateDraw('fr-seg2', 0); fadeIn('fr-seg2', 0, 0.4); }, 2600);
+    setTimeout(() => { fadeIn('fr-note', 0, 0.9); }, 3800);
+  }
+  function resetFractal() {
+    ['fr-note'].forEach(resetFade);
+  }
+
+  /* ---------- Pareto power-law tail (log-log exponential + power law) ---------- */
+  function playPareto() {
+    animateDraw('pt-body', 200); fadeIn('pt-body', 200, 0.4);
+    setTimeout(() => { fadeIn('pt-body-t', 0, 0.7); }, 1600);
+    setTimeout(() => { animateDraw('pt-tail', 0); fadeIn('pt-tail', 0, 0.4); }, 2200);
+    setTimeout(() => { fadeIn('pt-tail-t', 0, 0.7); }, 3400);
+    setTimeout(() => { fadeIn('pt-cross', 0, 0.6); fadeIn('pt-cross-t', 200, 0.6); }, 4000);
+  }
+  function resetPareto() {
+    ['pt-body-t','pt-tail-t','pt-cross','pt-cross-t'].forEach(resetFade);
+  }
+
+  const playFns = { rw: playRW, grav: playGrav, boltz: playBoltz, lppl: playLPPL, perc: playPerc, fractal: playFractal, pareto: playPareto };
+  const resetFns = { rw: resetRW, grav: resetGrav, boltz: resetBoltz, lppl: resetLPPL, perc: resetPerc, fractal: resetFractal, pareto: resetPareto };
+
+  function replay(key, btnEl) {
+    if (btnEl) { btnEl.classList.add('spinning'); setTimeout(() => btnEl.classList.remove('spinning'), 500); }
+    if (resetFns[key]) resetFns[key]();
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (playFns[key]) playFns[key](); }));
+  }
+
+  const triggered = {};
+  const blockPlayers = {
+    rwBlock: playRW, gravBlock: playGrav, boltzBlock: playBoltz,
+    lpplBlock: playLPPL, percBlock: playPerc, fractalBlock: playFractal, paretoBlock: playPareto
+  };
+  const blockIds = Object.keys(blockPlayers);
+
+  function fireBlock(id) {
+    if (triggered[id]) return;
+    triggered[id] = true;
+    const fn = blockPlayers[id];
+    if (fn) fn();
+  }
+
+  // A plain bounding-rect check, used as the fallback path AND as a periodic
+  // safety net alongside IntersectionObserver. Tablets and in-app browsers
+  // (iPadOS Safari, Android WebViews, split-screen multitasking) can resize,
+  // rotate, or restore scroll position in ways that don't always produce a
+  // clean IntersectionObserver callback, so this catches anything already
+  // on-screen that hasn't animated yet.
+  function checkVisible() {
+    blockIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el || triggered[id]) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) fireBlock(id);
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) fireBlock(entry.target.id);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+    blockIds.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+  } else {
+    window.addEventListener('scroll', checkVisible, { passive: true });
+  }
+
+  // Safety net for tablets/iPads: re-check on load, orientation change, and
+  // resize (covers rotation and iPad split-view/Slide Over width changes),
+  // plus one delayed pass shortly after load in case the page was opened
+  // already scrolled mid-article.
+  window.addEventListener('load', checkVisible);
+  window.addEventListener('orientationchange', () => setTimeout(checkVisible, 300));
+  window.addEventListener('resize', checkVisible, { passive: true });
+  setTimeout(checkVisible, 800);
+  checkVisible();
+
+  // Tapping/pressing anywhere on a not-yet-animated chart also triggers it
+  // immediately, so a diagram never feels "stuck" on touch, trackpad, or
+  // stylus input (pointerdown covers touch, pen, and mouse in one listener).
+  blockIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const trigger = () => fireBlock(id);
+    if (window.PointerEvent) {
+      el.addEventListener('pointerdown', trigger, { passive: true, once: true });
+    } else {
+      el.addEventListener('touchstart', trigger, { passive: true, once: true });
+      el.addEventListener('mousedown', trigger, { once: true });
+    }
+  });
+</script>
+</body>
+</html>

@@ -135,7 +135,7 @@ const SupplySidePolicyDiagram = () => {
               />
             </marker>
             <marker
-              id="shiftArrow"
+              id="shiftArrow-SupplySidePolicyDiagram"
               markerWidth="8"
               markerHeight="6"
               refX="7"
@@ -259,7 +259,7 @@ const SupplySidePolicyDiagram = () => {
                 y2={yScale(0.55)}
                 stroke="hsl(var(--chart-2))"
                 strokeWidth={2}
-                markerEnd="url(#shiftArrow)"
+                markerEnd="url(#shiftArrow-SupplySidePolicyDiagram)"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}

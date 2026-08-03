@@ -58,12 +58,15 @@ export const ExchangeRateDiagram = () => {
               <pattern id="exchangeGrid" width="50" height="50" patternUnits="userSpaceOnUse">
                 <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--muted))" strokeWidth="0.5" opacity="0.3" />
               </pattern>
+              <marker id="axisArrowER" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--foreground))" />
+              </marker>
             </defs>
             <rect x="60" y="20" width="400" height="320" fill="url(#exchangeGrid)" />
 
             {/* Axes */}
-            <line x1="60" y1="340" x2="460" y2="340" stroke="hsl(var(--foreground))" strokeWidth="2" />
-            <line x1="60" y1="340" x2="60" y2="20" stroke="hsl(var(--foreground))" strokeWidth="2" />
+            <line x1="60" y1="340" x2="460" y2="340" stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#axisArrowER)" />
+            <line x1="60" y1="340" x2="60" y2="20" stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#axisArrowER)" />
 
             {/* Axis Labels */}
             <text x="260" y="380" textAnchor="middle" className="fill-foreground text-sm">
@@ -99,7 +102,7 @@ export const ExchangeRateDiagram = () => {
 
             {/* Original Equilibrium */}
             <motion.circle
-              cx="250"
+              cx="231.86"
               cy="190"
               r="6"
               className="fill-foreground"
@@ -112,7 +115,7 @@ export const ExchangeRateDiagram = () => {
             <motion.line
               x1="60"
               y1="190"
-              x2="250"
+              x2="231.86"
               y2="190"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1.5"
@@ -122,9 +125,9 @@ export const ExchangeRateDiagram = () => {
               transition={{ delay: 1 }}
             />
             <motion.line
-              x1="250"
+              x1="231.86"
               y1="190"
-              x2="250"
+              x2="231.86"
               y2="340"
               stroke="hsl(var(--muted-foreground))"
               strokeWidth="1.5"
@@ -136,7 +139,7 @@ export const ExchangeRateDiagram = () => {
 
             {/* Labels */}
             <text x="45" y="195" className="fill-foreground text-sm">e₁</text>
-            <text x="245" y="360" className="fill-foreground text-sm">Q₁</text>
+            <text x="226.86" y="360" className="fill-foreground text-sm">Q₁</text>
 
             {/* Shifted Demand (Appreciation) */}
             {showShift && shiftType === 'appreciation' && (
@@ -163,8 +166,8 @@ export const ExchangeRateDiagram = () => {
 
                 {/* New Equilibrium */}
                 <motion.circle
-                  cx="290"
-                  cy="150"
+                  cx="252.17"
+                  cy="175.49"
                   r="6"
                   className="fill-green-500"
                   initial={{ scale: 0 }}
@@ -174,9 +177,9 @@ export const ExchangeRateDiagram = () => {
 
                 <motion.line
                   x1="60"
-                  y1="150"
-                  x2="290"
-                  y2="150"
+                  y1="175.49"
+                  x2="252.17"
+                  y2="175.49"
                   stroke="hsl(var(--primary))"
                   strokeWidth="1.5"
                   strokeDasharray="5,5"
@@ -187,7 +190,7 @@ export const ExchangeRateDiagram = () => {
 
                 <motion.text 
                   x="45" 
-                  y="155" 
+                  y="179.5" 
                   className="fill-primary text-sm font-semibold"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -197,17 +200,17 @@ export const ExchangeRateDiagram = () => {
 
                 {/* Arrow showing appreciation */}
                 <motion.path
-                  d="M 35 185 L 35 160"
+                  d="M 35 186 L 35 179"
                   fill="none"
                   stroke="hsl(var(--primary))"
                   strokeWidth="2"
-                  markerEnd="url(#arrowhead)"
+                  markerEnd="url(#arrowhead-ExchangeRateDiagram)"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.7 }}
                 />
                 <defs>
-                  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                  <marker id="arrowhead-ExchangeRateDiagram" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                     <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--primary))" />
                   </marker>
                 </defs>
@@ -251,8 +254,8 @@ export const ExchangeRateDiagram = () => {
 
                 {/* New Equilibrium */}
                 <motion.circle
-                  cx="210"
-                  cy="230"
+                  cx="212.17"
+                  cy="204.51"
                   r="6"
                   className="fill-red-500"
                   initial={{ scale: 0 }}
@@ -262,9 +265,9 @@ export const ExchangeRateDiagram = () => {
 
                 <motion.line
                   x1="60"
-                  y1="230"
-                  x2="210"
-                  y2="230"
+                  y1="204.51"
+                  x2="212.17"
+                  y2="204.51"
                   stroke="hsl(var(--destructive))"
                   strokeWidth="1.5"
                   strokeDasharray="5,5"
@@ -275,7 +278,7 @@ export const ExchangeRateDiagram = () => {
 
                 <motion.text 
                   x="45" 
-                  y="235" 
+                  y="208.5" 
                   className="fill-destructive text-sm font-semibold"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -308,11 +311,16 @@ export const ExchangeRateDiagram = () => {
         <TabsContent value="fixed">
           <svg viewBox="0 0 500 400" className="w-full h-auto bg-background/50 rounded-lg">
             {/* Grid */}
+            <defs>
+              <marker id="axisArrowERFixed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--foreground))" />
+              </marker>
+            </defs>
             <rect x="60" y="20" width="400" height="320" fill="url(#exchangeGrid)" />
 
             {/* Axes */}
-            <line x1="60" y1="340" x2="460" y2="340" stroke="hsl(var(--foreground))" strokeWidth="2" />
-            <line x1="60" y1="340" x2="60" y2="20" stroke="hsl(var(--foreground))" strokeWidth="2" />
+            <line x1="60" y1="340" x2="460" y2="340" stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#axisArrowERFixed)" />
+            <line x1="60" y1="340" x2="60" y2="20" stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#axisArrowERFixed)" />
 
             {/* Axis Labels */}
             <text x="260" y="380" textAnchor="middle" className="fill-foreground text-sm">

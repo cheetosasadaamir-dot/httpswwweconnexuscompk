@@ -90,7 +90,7 @@ const SpecializationPPCShiftDiagram = () => {
         </button>
       </div>
 
-      <svg width={width} height={height} className="mx-auto">
+      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto mx-auto">
         {/* Grid */}
         <defs>
           <pattern id="specGrid" width="40" height="40" patternUnits="userSpaceOnUse">

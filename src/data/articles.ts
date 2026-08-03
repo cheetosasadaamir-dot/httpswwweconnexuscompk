@@ -13,6 +13,27 @@ export type Article = {
 };
 
 export const ARTICLES: Article[] = [
+  // ── Featured ────────────────────────────────────────────────────
+  {
+    slug: 'jpmorgan-ai-banking',
+    file: '/articles/jpmorgan-ai-banking.html',
+    title: "JPMorgan, the World's Banking Giants, and AI",
+    summary:
+      'How the largest banks are deploying artificial intelligence — balance sheets, risk models, productivity and the competitive landscape of global finance.',
+    category: 'Finance',
+    readTime: '18 min read',
+    date: 'Aug 2026',
+  },
+  {
+    slug: 'economics-and-physics',
+    file: '/articles/economics-and-physics.html',
+    title: 'Economics and Physics: The Hidden Connection',
+    summary:
+      'Equilibrium, entropy and dynamical systems — the shared mathematical grammar linking physical laws to economic behaviour.',
+    category: 'Theory',
+    readTime: '15 min read',
+    date: 'Aug 2026',
+  },
   // ── AI & the Economy ────────────────────────────────────────────
   {
     slug: 'market-structures-ai',

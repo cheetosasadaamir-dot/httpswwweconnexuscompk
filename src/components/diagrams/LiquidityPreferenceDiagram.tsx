@@ -135,9 +135,9 @@ const LiquidityPreferenceDiagram = () => {
 
         {/* Liquidity Trap Zone */}
         <motion.rect
-          x={xScale(250)}
+          x={xScale(350)}
           y={yScale(2.5)}
-          width={xScale(450) - xScale(250)}
+          width={xScale(450) - xScale(350)}
           height={yScale(1.5) - yScale(2.5)}
           fill="hsl(var(--cambridge-orange))"
           fillOpacity={0.1}

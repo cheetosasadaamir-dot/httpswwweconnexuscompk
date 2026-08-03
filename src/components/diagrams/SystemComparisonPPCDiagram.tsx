@@ -94,7 +94,7 @@ const SystemComparisonPPCDiagram = ({ title = "PPC: Resource Allocation by Econo
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
-          <linearGradient id="ppcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="ppcGrad-SystemComparisonPPCDiagram" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="hsl(190, 95%, 50%)" />
             <stop offset="100%" stopColor="hsl(217, 91%, 60%)" />
           </linearGradient>
@@ -143,7 +143,7 @@ const SystemComparisonPPCDiagram = ({ title = "PPC: Resource Allocation by Econo
         <motion.path
           d={ppcPath}
           fill="none"
-          stroke="url(#ppcGrad)"
+          stroke="url(#ppcGrad-SystemComparisonPPCDiagram)"
           strokeWidth="3"
           strokeLinecap="round"
           filter="url(#ppcGlow)"

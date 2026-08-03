@@ -354,7 +354,7 @@ const NegativeProductionExternalityDiagram = () => {
           <line 
             x1={xScale(qOptimal) + 5} y1={height - padding.bottom + 35} 
             x2={xScale(qMarket) - 5} y2={height - padding.bottom + 35} 
-            stroke={welfareLossColor} strokeWidth="2" markerEnd="url(#arrowhead)"
+            stroke={welfareLossColor} strokeWidth="2" markerEnd="url(#arrowhead-NegativeProductionExternalityDiagram)"
           />
           <text 
             x={(xScale(qOptimal) + xScale(qMarket)) / 2} 
@@ -364,7 +364,7 @@ const NegativeProductionExternalityDiagram = () => {
             Overproduction
           </text>
           <defs>
-            <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <marker id="arrowhead-NegativeProductionExternalityDiagram" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
               <polygon points="0 0, 8 3, 0 6" fill={welfareLossColor} />
             </marker>
           </defs>

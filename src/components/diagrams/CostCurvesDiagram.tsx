@@ -439,7 +439,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
 
               {/* MP Curve */}
               <motion.path
-                d="M 80,350 Q 120,320 160,290 Q 200,260 240,280 Q 280,310 320,350 Q 360,390 400,420 Q 430,440 450,460"
+                d="M 80,350 Q 120,320 160,290 Q 200,260 240,280 Q 280,310 320,350 Q 355,385 380,410 Q 400,428 415,435"
                 fill="none"
                 stroke="hsl(var(--neon-magenta))"
                 strokeWidth="2.5"

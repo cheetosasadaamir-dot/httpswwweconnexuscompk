@@ -326,7 +326,7 @@ const KeynesianCrossDiagram = ({
               fill="none"
               stroke="hsl(var(--cambridge-orange))"
               strokeWidth={2}
-              markerEnd="url(#arrowhead)"
+              markerEnd="url(#arrowhead-KeynesianCrossDiagram)"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
@@ -346,7 +346,7 @@ const KeynesianCrossDiagram = ({
         {/* Arrow marker definition */}
         <defs>
           <marker
-            id="arrowhead"
+            id="arrowhead-KeynesianCrossDiagram"
             markerWidth="10"
             markerHeight="7"
             refX="9"
