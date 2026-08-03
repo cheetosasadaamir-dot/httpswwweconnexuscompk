@@ -1,24 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Home, 
-  TrendingUp, 
-  Globe, 
-  BookOpen,
-  ChevronDown,
-  GraduationCap,
-  Menu,
-  X,
-  Sparkles,
-  Library,
-  User,
-  Landmark,
-  Scale,
-  Video,
-  Lock,
-
-} from 'lucide-react';
+from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
@@ -500,6 +480,26 @@ const FloatingDock = () => {
                     <span className="text-[10px] uppercase tracking-[0.2em] text-neon-gold/80">Open</span>
                   )}
                 </Link>
+
+                {/* Assignment Architect & World Economics */}
+                <div className="flex gap-2 mb-5 md:mb-6">
+                  <Link
+                    to="/assignment-architect"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-cyan/10 border border-neon-cyan/20 text-neon-cyan hover:bg-neon-cyan/20 transition-all text-sm touch-target pointer-events-auto"
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>Architect</span>
+                  </Link>
+                  <Link
+                    to="/world-economics"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-gold/10 border border-neon-gold/20 text-neon-gold hover:bg-neon-gold/20 transition-all text-sm touch-target pointer-events-auto"
+                  >
+                    <Globe className="w-4 h-4" />
+                    <span>World Econ</span>
+                  </Link>
+                </div>
 
 
 

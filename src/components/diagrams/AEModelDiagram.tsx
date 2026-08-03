@@ -27,8 +27,8 @@ const AEModelDiagram = ({
   const chartHeight = height - margin.top - margin.bottom;
 
   // Scale functions
-  const xScale = (val: number) => margin.left + (val / 3000) * chartWidth;
-  const yScale = (val: number) => height - margin.bottom - (val / 3000) * chartHeight;
+  const xScale = (val: number) => margin.left + (val / 4000) * chartWidth;
+  const yScale = (val: number) => height - margin.bottom - (val / 4000) * chartHeight;
 
   // Consumption function parameters: C = a + bYd where a = 200, b = 0.75
   const a = 200; // Autonomous consumption
@@ -37,10 +37,10 @@ const AEModelDiagram = ({
 
   // Initial autonomous expenditure: a + I + G + X = 200 + 300 + 200 + 100 = 800
   const autonomousBase = 800;
-  const autonomousShifted = 1000; // After ΔI = 200
+  const autonomousShifted = 950; // After ΔA = 150
 
   // AE = A + bY where A = autonomous expenditure
-  const aePoints = (autonomous: number) => Array.from({ length: 31 }, (_, i) => {
+  const aePoints = (autonomous: number) => Array.from({ length: 41 }, (_, i) => {
     const y = i * 100;
     const ae = autonomous + MPC * y;
     return { x: xScale(y), y: yScale(ae) };
@@ -50,34 +50,34 @@ const AEModelDiagram = ({
   const eq1Y = autonomousBase / MPW; // 800 / 0.25 = 3200 -> clamp to view
   const eq2Y = autonomousShifted / MPW; // 1000 / 0.25 = 4000 -> clamp
 
-  // Recalculate for visible range
-  const visibleEq1Y = 2000; // Adjusted for diagram clarity
-  const visibleEq1AE = autonomousBase + MPC * visibleEq1Y; // = 800 + 1500 = 2300
-  const visibleEq2Y = 2600; // After shift
-  const visibleEq2AE = autonomousShifted + MPC * visibleEq2Y; // = 1000 + 1950 = 2950
+  // Exact algebraic equilibria: Y = AE => Y = A + bY => Y* = A / MPW
+  const visibleEq1Y = eq1Y; // = 800 / 0.25 = 3200 (exact intersection of AE0 and 45° line)
+  const visibleEq1AE = visibleEq1Y; // on the 45° line, AE = Y at equilibrium
+  const visibleEq2Y = eq2Y; // = 950 / 0.25 = 3800 (exact intersection of AE1 and 45° line)
+  const visibleEq2AE = visibleEq2Y;
 
-  // Full employment output
-  const Yf = 2400;
+  // Full employment output (between the two equilibria to illustrate both gap types)
+  const Yf = 3400;
 
   // 45-degree line
   const line45Start = { x: xScale(0), y: yScale(0) };
-  const line45End = { x: xScale(2800), y: yScale(2800) };
+  const line45End = { x: xScale(4000), y: yScale(4000) };
 
   // Consumption only (C = a + bY)
-  const consumptionPoints = Array.from({ length: 31 }, (_, i) => {
+  const consumptionPoints = Array.from({ length: 41 }, (_, i) => {
     const y = i * 100;
     const c = a + MPC * y;
     return { x: xScale(y), y: yScale(c) };
   });
 
   // AE curves
-  const ae1Points = Array.from({ length: 31 }, (_, i) => {
+  const ae1Points = Array.from({ length: 41 }, (_, i) => {
     const y = i * 100;
     const ae = autonomousBase + MPC * y;
     return { x: xScale(y), y: yScale(ae) };
   });
 
-  const ae2Points = Array.from({ length: 31 }, (_, i) => {
+  const ae2Points = Array.from({ length: 41 }, (_, i) => {
     const y = i * 100;
     const ae = autonomousShifted + MPC * y;
     return { x: xScale(y), y: yScale(ae) };
@@ -88,7 +88,7 @@ const AEModelDiagram = ({
   };
 
   // Disequilibrium points for inventory adjustment
-  const disequilibriumY = 1400;
+  const disequilibriumY = 2000;
   const aeAtDisequilibrium = autonomousBase + MPC * disequilibriumY; // = 800 + 1050 = 1850
 
   return (
@@ -123,7 +123,7 @@ const AEModelDiagram = ({
 
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
         {/* Grid lines */}
-        {[500, 1000, 1500, 2000, 2500].map((val) => (
+        {[500, 1000, 1500, 2000, 2500, 3000, 3500].map((val) => (
           <g key={val}>
             <line
               x1={xScale(val)}
@@ -253,8 +253,8 @@ const AEModelDiagram = ({
           transition={{ duration: 1, ease: "easeInOut" }}
         />
         <text
-          x={xScale(2650)}
-          y={yScale(2750)}
+          x={xScale(3500)}
+          y={yScale(3650)}
           fill="hsl(var(--silver))"
           className="text-xs font-medium"
         >
@@ -275,8 +275,8 @@ const AEModelDiagram = ({
           onMouseLeave={() => setHoveredElement(null)}
         />
         <text
-          x={xScale(2400)}
-          y={yScale(a + MPC * 2400) - 8}
+          x={xScale(3200)}
+          y={yScale(a + MPC * 3200) - 8}
           fill="hsl(var(--cambridge-green))"
           className="text-[10px]"
           opacity={0.7}
@@ -299,7 +299,7 @@ const AEModelDiagram = ({
         />
         <text
           x={xScale(2600)}
-          y={yScale(autonomousBase + MPC * 2600) - 10}
+          y={yScale(autonomousBase + MPC * 2600) - 12}
           fill="hsl(var(--cambridge-cyan))"
           className="text-xs font-semibold"
         >
@@ -324,8 +324,8 @@ const AEModelDiagram = ({
               transition={{ duration: 0.8 }}
             />
             <text
-              x={xScale(2400)}
-              y={yScale(autonomousShifted + MPC * 2400) - 10}
+              x={xScale(2000)}
+              y={yScale(autonomousShifted + MPC * 2000) - 12}
               fill="hsl(var(--cambridge-magenta))"
               className="text-xs font-semibold"
             >
