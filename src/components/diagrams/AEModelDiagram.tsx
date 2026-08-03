@@ -47,8 +47,8 @@ const AEModelDiagram = ({
   });
 
   // Equilibrium: Y = AE => Y = A + bY => Y(1-b) = A => Y = A / (1-b) = A / MPW
-  const eq1Y = autonomousBase / MPW; // 800 / 0.25 = 3200 -> clamp to view
-  const eq2Y = autonomousShifted / MPW; // 1000 / 0.25 = 4000 -> clamp
+  const eq1Y = autonomousBase / MPW; // 800 / 0.25 = 3200
+  const eq2Y = autonomousShifted / MPW; // 950 / 0.25 = 3800
 
   // Exact algebraic equilibria: Y = AE => Y = A + bY => Y* = A / MPW
   const visibleEq1Y = eq1Y; // = 800 / 0.25 = 3200 (exact intersection of AE0 and 45° line)
