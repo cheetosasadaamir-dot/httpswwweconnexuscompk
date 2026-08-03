@@ -1,4 +1,24 @@
-from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Home,
+  TrendingUp,
+  Globe,
+  BookOpen,
+  ChevronDown,
+  GraduationCap,
+  Menu,
+  X,
+  Sparkles,
+  Library,
+  User,
+  Landmark,
+  Scale,
+  Video,
+  Lock,
+  FileText,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
