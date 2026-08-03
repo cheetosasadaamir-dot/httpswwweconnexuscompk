@@ -45,9 +45,9 @@ const LoanableFundsDiagram = () => {
   // Original equilibrium at Q=50, r=5
   const eq1 = { x: 50, y: 5 };
   // New equilibrium after demand shift: Q≈58, r≈5.8
-  const eq2Demand = { x: 58, y: 5.8 };
+  const eq2Demand = { x: 57.5, y: 5.75 };
   // New equilibrium after supply shift: Q≈58, r≈4.2
-  const eq2Supply = { x: 58, y: 4.2 };
+  const eq2Supply = { x: 57.5, y: 4.25 };
 
   const getEq2 = () => shiftType === 'demand' ? eq2Demand : eq2Supply;
 

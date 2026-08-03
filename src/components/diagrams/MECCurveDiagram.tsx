@@ -20,7 +20,7 @@ const MECCurveDiagram = () => {
   const xScale = (val: number) => margin.left + (val / 400) * chartWidth;
   const yScale = (val: number) => margin.top + chartHeight - (val / 25) * chartHeight;
   
-  const investmentAtRate = 400 - interestRate * 16;
+  const investmentAtRate = 320 - interestRate * 16;
 
   return (
     <div ref={containerRef} className="glass-card p-6 my-6">
