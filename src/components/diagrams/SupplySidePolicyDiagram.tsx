@@ -80,13 +80,13 @@ const SupplySidePolicyDiagram = () => {
   const as1Points = generateASPoints(0);
   const as2Points = generateASPoints(0.15);  // Rightward shift
 
-  // Equilibrium points - calculated from curve intersections
-  // E1: AD and AS1 intersect
-  const eq1X = xScale(0.45);
-  const eq1Y = yScale(0.49);
-  // E2: AD and AS2 intersect (shifted right, lower price)
-  const eq2X = xScale(0.55);
-  const eq2Y = yScale(0.42);
+  // Equilibrium points solved algebraically:
+  // AD: P=0.9-0.75Q ; AS1: P=0.15+0.75Q  =>  Q=0.75/1.5=0.5, P=0.525
+  // AS2 (shift=0.15) as function of X: P=0.0375+0.75X ; AD=AS2 => X=0.8625/1.5=0.575, P=0.46875
+  const eq1X = xScale(0.5);
+  const eq1Y = yScale(0.525);
+  const eq2X = xScale(0.575);
+  const eq2Y = yScale(0.46875);
 
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },

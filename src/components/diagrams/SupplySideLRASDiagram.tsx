@@ -83,11 +83,13 @@ const SupplySideLRASDiagram: React.FC<SupplySideLRASDiagramProps> = ({
   const lras1X = xScale(0.55);
   const lras2X = xScale(0.67);
 
-  // Equilibrium points
-  const eq1X = xScale(0.48);
-  const eq1Y = yScale(0.50);
-  const eq2X = xScale(0.58);
-  const eq2Y = yScale(0.42);
+  // Equilibrium points solved algebraically:
+  // AD: P=0.88-0.75Q ; SRAS1: P=0.12+0.75Q  =>  Q=0.76/1.5=0.50667, P=0.5
+  // SRAS2 (shift=0.12) as function of X: P=0.03+0.75X ; AD=SRAS2 => X=0.85/1.5=0.56667, P=0.455
+  const eq1X = xScale(0.50667);
+  const eq1Y = yScale(0.5);
+  const eq2X = xScale(0.56667);
+  const eq2Y = yScale(0.455);
 
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },
