@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Instagram, Mail } from 'lucide-react';
+import { Instagram, Mail, Linkedin } from 'lucide-react';
 
 const founders = [
   {
@@ -7,12 +7,16 @@ const founders = [
     title: 'Founder & Lead Curator',
     email: 'asadaamir496@gmail.com',
     instagram: 'https://www.instagram.com/econ.nexus.pk/',
+    linkedin: 'https://www.linkedin.com/in/asad-aamir-khan-3b5416379',
+    bio: "My name is Asad Aamir, founder of Econ Nexus and an innovator selected for the MIT Energy & Climate Hackathon. I built Econ Nexus because the traditional education system is fundamentally broken — trapping students in a loop of static textbooks, rigid memorization, and uninspired study methods that drain the curiosity out of complex subjects. Staring at finished, overwhelming graphs and walls of dry text forces students to blindly memorize instead of logically understanding cause and effect. Econ Nexus was created to solve this core friction point, replacing boring, one-way learning with dynamic AI personas, step-by-step animated diagrams, and adaptive tools tailored to how modern students actually process information. My mission is to eliminate static overwhelm and transform education into an interactive, intuitive, and global experience.",
   },
   {
     name: 'Zafeer Ahmed',
     title: 'Co-Founder',
-    email: 'asadaamir496@gmail.com',
+    email: 'zafeerahmed2005@gmail.com',
     instagram: 'https://www.instagram.com/econ.nexus.pk/',
+    linkedin: 'https://www.linkedin.com/in/zafeer-ahmed-84a413283',
+    bio: "My name is Zafeer Ahmed, Co-Founder of Econ Nexus. I drive the technical architecture and AI integration for Econ Nexus. Currently pursuing my B.S. in Computer Science at the University of the People, I specialize in AI-native development and vibe coding to rapidly deploy complex multi-agent workflows. Prior to Econ Nexus, I founded Luxe Voice AI and have built a diverse portfolio of functional software platforms, including Omnia, CarbonLens, and Safa AI. My work brings a deep focus to autonomous systems and rapid product iteration, and my technical initiatives have earned me a spot in the MIT Energy & Climate Hackathon 2026.",
   },
 ];
 
@@ -66,14 +70,30 @@ const OwnerProfileSection = () => {
                     </p>
                   </div>
 
-                  <div className="mt-auto flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <p className="text-sm md:text-[15px] leading-relaxed text-muted-foreground text-left mb-8">
+                    {f.bio}
+                  </p>
+
+                  <div className="mt-auto flex flex-col sm:flex-row flex-wrap gap-3 justify-center items-center">
                     <a
                       href={`mailto:${f.email}`}
-                      className="inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-space-void/60 border border-neon-cyan/30 hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all duration-300 group min-h-[44px]"
+                      className="inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-space-void/60 border border-neon-cyan/30 hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all duration-300 group min-h-[44px] max-w-full"
                     >
-                      <Mail className="w-4 h-4 text-white group-hover:text-neon-cyan transition-colors" />
+                      <Mail className="w-4 h-4 shrink-0 text-white group-hover:text-neon-cyan transition-colors" />
                       <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/80 group-hover:text-neon-cyan transition-colors truncate">
                         {f.email}
+                      </span>
+                    </a>
+                    <a
+                      href={f.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${f.name} on LinkedIn`}
+                      className="inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-space-void/60 border border-neon-cyan/30 hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all duration-300 group min-h-[44px]"
+                    >
+                      <Linkedin className="w-4 h-4 shrink-0 text-white group-hover:text-neon-cyan transition-colors" />
+                      <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/80 group-hover:text-neon-cyan transition-colors">
+                        LinkedIn
                       </span>
                     </a>
                     <a
@@ -82,7 +102,7 @@ const OwnerProfileSection = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-space-void/60 border border-neon-cyan/30 hover:border-neon-cyan hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all duration-300 group min-h-[44px]"
                     >
-                      <Instagram className="w-4 h-4 text-white group-hover:text-neon-cyan transition-colors" />
+                      <Instagram className="w-4 h-4 shrink-0 text-white group-hover:text-neon-cyan transition-colors" />
                       <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/80 group-hover:text-neon-cyan transition-colors">
                         Instagram
                       </span>
@@ -99,4 +119,3 @@ const OwnerProfileSection = () => {
 };
 
 export default OwnerProfileSection;
-

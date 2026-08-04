@@ -164,9 +164,9 @@ const ExchangeRateShiftsDiagram = () => {
             />
             <motion.text x={margin.left + chartWidth} y={margin.top + chartHeight - 55} fill="hsl(var(--cambridge-cyan))" fontSize="14" fontWeight="700" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>D₁</motion.text>
             
-            <motion.circle cx={margin.left + 286.35} cy={margin.top + 127.06} r="6" fill="hsl(var(--cambridge-green))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
-            <motion.line x1={margin.left} y1={margin.top + 127.06} x2={margin.left + 286.35} y2={margin.top + 127.06} stroke="hsl(var(--cambridge-cyan))" strokeWidth="1.5" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
-            <text x={margin.left - 15} y={margin.top + 131} fill="hsl(var(--cambridge-cyan))" fontSize="11" fontWeight="700">e₁</text>
+            <motion.circle cx={margin.left + 222.08} cy={margin.top + 123.59} r="6" fill="hsl(var(--cambridge-green))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+            <motion.line x1={margin.left} y1={margin.top + 123.59} x2={margin.left + 222.08} y2={margin.top + 123.59} stroke="hsl(var(--cambridge-cyan))" strokeWidth="1.5" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
+            <text x={margin.left - 15} y={margin.top + 127} fill="hsl(var(--cambridge-cyan))" fontSize="11" fontWeight="700">e₁</text>
             
             <motion.text x={width / 2} y={margin.top - 10} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="13" fontWeight="700" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>Currency Appreciates (e₀ → e₁)</motion.text>
           </>
@@ -187,9 +187,9 @@ const ExchangeRateShiftsDiagram = () => {
             />
             <motion.text x={margin.left + chartWidth - 60} y={margin.top + chartHeight - 35} fill="hsl(var(--cambridge-cyan))" fontSize="14" fontWeight="700" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>D₁</motion.text>
             
-            <motion.circle cx={margin.left + 243.65} cy={margin.top + 152.94} r="6" fill="hsl(var(--destructive))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
-            <motion.line x1={margin.left} y1={margin.top + 152.94} x2={margin.left + 243.65} y2={margin.top + 152.94} stroke="hsl(var(--destructive))" strokeWidth="1.5" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
-            <text x={margin.left - 15} y={margin.top + 157} fill="hsl(var(--destructive))" fontSize="11" fontWeight="700">e₁</text>
+            <motion.circle cx={margin.left + 180.44} cy={margin.top + 148.82} r="6" fill="hsl(var(--destructive))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+            <motion.line x1={margin.left} y1={margin.top + 148.82} x2={margin.left + 180.44} y2={margin.top + 148.82} stroke="hsl(var(--destructive))" strokeWidth="1.5" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
+            <text x={margin.left - 15} y={margin.top + 153} fill="hsl(var(--destructive))" fontSize="11" fontWeight="700">e₁</text>
             
             <motion.text x={width / 2} y={margin.top - 10} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="13" fontWeight="700" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>Currency Depreciates (e₀ → e₁)</motion.text>
           </>
@@ -210,9 +210,9 @@ const ExchangeRateShiftsDiagram = () => {
             />
             <motion.text x={margin.left + chartWidth} y={margin.top + 55} fill="hsl(var(--cambridge-orange))" fontSize="14" fontWeight="700" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>S₁</motion.text>
             
-            <motion.circle cx={margin.left + 286.35} cy={margin.top + 152.94} r="6" fill="hsl(var(--destructive))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
-            <motion.line x1={margin.left} y1={margin.top + 152.94} x2={margin.left + 286.35} y2={margin.top + 152.94} stroke="hsl(var(--destructive))" strokeWidth="1.5" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
-            <text x={margin.left - 15} y={margin.top + 157} fill="hsl(var(--destructive))" fontSize="11" fontWeight="700">e₁</text>
+            <motion.circle cx={margin.left + 203.51} cy={margin.top + 145.16} r="6" fill="hsl(var(--destructive))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+            <motion.line x1={margin.left} y1={margin.top + 145.16} x2={margin.left + 203.51} y2={margin.top + 145.16} stroke="hsl(var(--destructive))" strokeWidth="1.5" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
+            <text x={margin.left - 15} y={margin.top + 149} fill="hsl(var(--destructive))" fontSize="11" fontWeight="700">e₁</text>
             
             <motion.text x={width / 2} y={margin.top - 10} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="13" fontWeight="700" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>Currency Depreciates (e₀ → e₁)</motion.text>
           </>
@@ -233,9 +233,9 @@ const ExchangeRateShiftsDiagram = () => {
             />
             <motion.text x={margin.left + chartWidth - 60} y={margin.top + 35} fill="hsl(var(--cambridge-orange))" fontSize="14" fontWeight="700" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>S₁</motion.text>
             
-            <motion.circle cx={margin.left + 243.65} cy={margin.top + 127.06} r="6" fill="hsl(var(--cambridge-green))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
-            <motion.line x1={margin.left} y1={margin.top + 127.06} x2={margin.left + 243.65} y2={margin.top + 127.06} stroke="hsl(var(--cambridge-cyan))" strokeWidth="1.5" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
-            <text x={margin.left - 15} y={margin.top + 131} fill="hsl(var(--cambridge-cyan))" fontSize="11" fontWeight="700">e₁</text>
+            <motion.circle cx={margin.left + 162.16} cy={margin.top + 120.09} r="6" fill="hsl(var(--cambridge-green))" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+            <motion.line x1={margin.left} y1={margin.top + 120.09} x2={margin.left + 162.16} y2={margin.top + 120.09} stroke="hsl(var(--cambridge-cyan))" strokeWidth="1.5" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
+            <text x={margin.left - 15} y={margin.top + 124} fill="hsl(var(--cambridge-cyan))" fontSize="11" fontWeight="700">e₁</text>
             
             <motion.text x={width / 2} y={margin.top - 10} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="13" fontWeight="700" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>Currency Appreciates (e₀ → e₁)</motion.text>
           </>

@@ -85,10 +85,15 @@ const FiscalPolicyShiftDiagram: React.FC<FiscalPolicyShiftDiagramProps> = ({
   const srasPoints = generateSRASPoints();
 
   // Equilibrium calculations
-  const eq1X = xScale(0.48);
-  const eq1Y = yScale(0.50);
-  const eq2X = policyType === 'expansionary' ? xScale(0.58) : xScale(0.38);
-  const eq2Y = policyType === 'expansionary' ? yScale(0.58) : yScale(0.42);
+  // Equilibria solved algebraically:
+  // AD1: P = 0.92 - 0.82Q ; SRAS: P = 0.12 + 0.78Q  =>  Q = 0.5, P = 0.51
+  // AD2(Q) = 0.92 + 0.82*shift - 0.82Q ; intersect with SRAS
+  const eq1X = xScale(0.5);
+  const eq1Y = yScale(0.51);
+  const eq2QExp = (0.92 + 0.82 * 0.12 - 0.12) / 1.6; // = 0.56150
+  const eq2QCon = (0.92 + 0.82 * -0.12 - 0.12) / 1.6; // = 0.43850
+  const eq2X = policyType === 'expansionary' ? xScale(eq2QExp) : xScale(eq2QCon);
+  const eq2Y = policyType === 'expansionary' ? yScale(0.12 + 0.78 * eq2QExp) : yScale(0.12 + 0.78 * eq2QCon);
 
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },
