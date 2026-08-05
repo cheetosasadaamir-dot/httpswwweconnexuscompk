@@ -2,6 +2,8 @@
 // misconceptions, evaluation lines and precise diagram specifications.
 // Written in-house; sources consulted for understanding only.
 
+import { MACRO_ENRICHMENT_DATA } from './enrichment/macro';
+
 export interface ChapterEnrichmentEntry {
   id: string;
   title: string;
@@ -20,7 +22,7 @@ export interface ChapterEnrichmentEntry {
 
 export const MICRO_ENRICHMENT: ChapterEnrichmentEntry[] = [];
 
-export const MACRO_ENRICHMENT: ChapterEnrichmentEntry[] = [];
+export const MACRO_ENRICHMENT: ChapterEnrichmentEntry[] = MACRO_ENRICHMENT_DATA;
 
 export const CHAPTER_ENRICHMENT: ChapterEnrichmentEntry[] = [
   ...MICRO_ENRICHMENT,
