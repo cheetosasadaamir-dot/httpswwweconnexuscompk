@@ -13,7 +13,28 @@ export type Article = {
 };
 
 export const ARTICLES: Article[] = [
+  {
+    slug: 'tariff-controversy-2026',
+    file: '/articles/tariff-controversy-2026.html',
+    title: 'The 2026 Tariff Controversy: A Complete, Balanced Guide',
+    summary:
+      'Who really pays a tariff, what the evidence shows on prices, jobs and retaliation — and the strongest arguments on both sides of the 2026 debate.',
+    category: 'Trade',
+    readTime: '20 min read',
+    date: 'Aug 2026',
+  },
+  {
+    slug: 'the-loop',
+    file: '/articles/the-loop.html',
+    title: 'The Loop',
+    summary:
+      'How expectations, credit and output feed back into one another — a long-form essay on the self-reinforcing circuits that drive modern economies.',
+    category: 'Theory',
+    readTime: '18 min read',
+    date: 'Aug 2026',
+  },
   // ── Featured ────────────────────────────────────────────────────
+
   {
     slug: 'jpmorgan-ai-banking',
     file: '/articles/jpmorgan-ai-banking.html',

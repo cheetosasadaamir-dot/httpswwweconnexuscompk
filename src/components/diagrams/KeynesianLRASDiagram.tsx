@@ -341,7 +341,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         {/* E₂: AD2 intersects curved LRAS at approximately Q=55, P=55 */}
         <motion.circle 
           cx={xScale(55)} 
-          cy={yScale(55)} 
+          cy={yScale(58.5)} 
           r="6" 
           fill={adCurve2}
           stroke="white"
@@ -352,7 +352,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         />
         <motion.text 
           x={xScale(55) + 10} 
-          y={yScale(55) - 8} 
+          y={yScale(58.5) - 8} 
           fill={adCurve2} 
           fontSize="12" 
           fontWeight="600"
@@ -366,7 +366,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         {/* E₃: AD3 intersects vertical LRAS at Q=75 (Yf) */}
         <motion.circle 
           cx={xScale(75)} 
-          cy={yScale(40)} 
+          cy={yScale(52)} 
           r="6" 
           fill={adCurve3}
           stroke="white"
@@ -377,7 +377,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         />
         <motion.text 
           x={xScale(75) - 18} 
-          y={yScale(40) - 10} 
+          y={yScale(52) - 10} 
           fill={adCurve3} 
           fontSize="12" 
           fontWeight="600"
@@ -456,7 +456,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         </motion.text>
         <motion.text 
           x="72" 
-          y={yScale(55) + 4} 
+          y={yScale(58.5) + 4} 
           fill={adCurve2} 
           fontSize="11" 
           textAnchor="end"
@@ -469,7 +469,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         </motion.text>
         <motion.text 
           x="72" 
-          y={yScale(40) + 4} 
+          y={yScale(52) + 4} 
           fill={adCurve3} 
           fontSize="11" 
           textAnchor="end"
@@ -499,14 +499,14 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
 
         {/* Dashed lines from E₂ to axes */}
         <motion.line 
-          x1={xScale(55)} y1={yScale(55)} x2={xScale(55)} y2="350" 
+          x1={xScale(55)} y1={yScale(58.5)} x2={xScale(55)} y2="350" 
           stroke={adCurve2} strokeWidth="1" strokeDasharray="4,3"
           initial={{ pathLength: 0 }}
           animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
           transition={{ delay: 3.7, duration: 0.4 }}
         />
         <motion.line 
-          x1="80" y1={yScale(55)} x2={xScale(55)} y2={yScale(55)} 
+          x1="80" y1={yScale(58.5)} x2={xScale(55)} y2={yScale(58.5)} 
           stroke={adCurve2} strokeWidth="1" strokeDasharray="4,3"
           initial={{ pathLength: 0 }}
           animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
@@ -515,7 +515,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
 
         {/* Dashed lines from E₃ to axes */}
         <motion.line 
-          x1="80" y1={yScale(40)} x2={xScale(75)} y2={yScale(40)} 
+          x1="80" y1={yScale(52)} x2={xScale(75)} y2={yScale(52)} 
           stroke={adCurve3} strokeWidth="1" strokeDasharray="4,3"
           initial={{ pathLength: 0 }}
           animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}

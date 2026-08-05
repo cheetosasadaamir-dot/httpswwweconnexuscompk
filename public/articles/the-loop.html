@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Loop | EconNexus</title>
+<style>
+  :root { --text:#111111; --muted:#4a4a4a; --rule:#111111; --bg:#ffffff; --teal:#0F7173; --teal-soft:#E1F3F0; --amber:#E3A008; --red:#C4534A; --navy:#14213D; --purple:#5B3A9B; }
+  * { box-sizing: border-box; -webkit-text-size-adjust:100%; }
+  html { overflow-x:hidden; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: Georgia, 'Times New Roman', serif; line-height:1.75; overflow-x:hidden; }
+  .wrapper { max-width:760px; margin:0 auto; padding:54px 20px 100px; }
+  .kicker { font-family: Arial, Helvetica, sans-serif; text-transform:uppercase; letter-spacing:1.6px; font-size:11.5px; color:var(--muted); margin-bottom:16px; text-align:center; }
+  h1 { font-size:clamp(28px,7vw,42px); line-height:1.18; margin:0 0 18px; font-weight:700; text-align:center; }
+  .subtitle { font-size:clamp(15.5px,3.8vw,19px); color:var(--muted); font-style:italic; margin:0 0 34px; text-align:center; line-height:1.5; }
+  .byline { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); text-align:center; border-top:1px solid #ddd; border-bottom:1px solid #ddd; padding:12px 0; margin-bottom:40px; }
+  h2 { font-size:clamp(20px,4.8vw,25px); margin:56px 0 20px; font-weight:700; }
+  h3 { font-size:clamp(17px,4vw,19.5px); margin:34px 0 14px; font-weight:700; color:var(--navy); }
+  p { margin:0 0 20px; font-size:clamp(16px,4vw,17.5px); }
+  .drop p:first-of-type::first-letter { float:left; font-size:64px; line-height:0.82; padding:6px 8px 0 0; font-weight:700; color:var(--navy); }
+  figure { margin:38px 0; }
+  .chart-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y; border:1px solid #e2e2e2; border-radius:8px; background:#fff; padding:14px 10px 4px; }
+  .chart-scroll > div { min-width:600px; }
+  .chart-scroll svg { width:100%; height:auto; display:block; }
+  .swipe-hint { display:none; font-family: Arial, Helvetica, sans-serif; font-size:11px; color:var(--muted); font-style:italic; text-align:right; margin:0 0 6px; }
+  @media (max-width:700px) { .swipe-hint { display:block; } }
+  figcaption { font-family: Arial, Helvetica, sans-serif; font-size:13px; color:var(--muted); margin-top:10px; line-height:1.55; }
+  .proof { margin-top:14px; border-left:3px solid var(--navy); background:#f7f7f5; border-radius:0 4px 4px 0; padding:12px 16px; }
+  .proof .label { font-family: Arial, Helvetica, sans-serif; font-size:10.5px; text-transform:uppercase; letter-spacing:1px; color:var(--navy); font-weight:700; margin-bottom:6px; }
+  .proof p { font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#333; margin:0; line-height:1.6; }
+  .pull { font-family: Georgia, serif; font-style:italic; font-size:clamp(19px,4.6vw,23px); color:var(--navy); text-align:center; line-height:1.5; margin:44px auto; max-width:560px; }
+  .end-mark { text-align:center; font-size:20px; letter-spacing:6px; color:var(--muted); margin-top:50px; }
+
+  /* ---- Diagram scroll-reveal animation ----
+     Elements only ever get hidden by JS adding .az-armed (progressive
+     enhancement: if JS never runs, nothing is hidden and diagrams render
+     exactly as before). Respects prefers-reduced-motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    .chart-scroll svg.az-armed .az-box {
+      opacity: 0;
+      transform: scale(.94);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .chart-scroll svg.az-armed .az-text { opacity: 0; }
+    .chart-scroll svg.az-armed .az-bar {
+      transform: scaleY(0);
+      transform-box: fill-box;
+      transform-origin: bottom;
+    }
+    .chart-scroll svg.az-armed .az-pop {
+      opacity: 0;
+      transform: scale(0);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .chart-scroll svg.az-armed.az-in .az-box {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.3,1);
+    }
+    .chart-scroll svg.az-armed.az-in .az-text {
+      opacity: 1;
+      transition: opacity .8s ease;
+    }
+    .chart-scroll svg.az-armed.az-in .az-bar {
+      transform: scaleY(1);
+      transition: transform 1.4s cubic-bezier(.16,1,.3,1);
+    }
+    .chart-scroll svg.az-armed.az-in .az-pop {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity .6s ease, transform .8s cubic-bezier(.34,1.56,.64,1);
+    }
+  }
+
+  .az-replay {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 6px 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11.5px;
+    letter-spacing: .2px;
+    color: var(--muted);
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .az-replay:hover, .az-replay:focus-visible { color: var(--teal); border-color: var(--teal); background: var(--teal-soft); }
+  .az-replay .ico { display:inline-block; transition: transform .5s ease; }
+  .az-replay:active .ico { transform: rotate(-70deg); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="kicker">EconNexus &middot; Markets &amp; Infrastructure</div>
+  <h1>The Loop</h1>
+  <p class="subtitle">Inside the trillion dollar machine Wall Street and Silicon Valley built to fund the AI boom, and the quiet argument over what happens if the picture underneath it turns out to be wrong.</p>
+  <div class="byline">A Longread &middot; 40 minute read &middot; Sources: Bloomberg, Forbes, Axios, CreditSights, Quinn Emanuel, company filings and disclosures</div>
+
+  <div class="drop">
+  <p>There is a patch of farmland in Richland Parish, Louisiana, that used to grow soybeans. It now grows a two gigawatt data center campus called Hyperion, and if you want to understand the strangest financial engineering story of 2026, this is a reasonable place to start, mostly because almost nobody has actually been there. What has been there, or at least what has been wired through there on paper, is $27.3 billion. Meta owns twenty percent of it. A joint venture nobody outside a handful of law firms and bond desks had heard of a year ago owns the rest, and that joint venture sold bonds to Pimco and BlackRock and a small army of pension funds, all of it arranged quietly by Morgan Stanley, all of it rated investment grade by Moody's, and all of it priced at a yield that, as one credit analyst dryly put it in a research note, would normally belong to a much junkier piece of paper.</p>
+  </div>
+
+  <p>Nobody involved thinks they are doing anything strange. That is, in a way, the whole point of this story. Every individual person at every individual desk, at Meta, at Blue Owl, at Nvidia, at OpenAI, at the ratings agencies, is doing something that makes complete sense given what the person next to them is doing. It is only when you step back far enough to see the whole shape of it, the way money leaves one building and travels through four or five others before landing, astonishingly, back where it started, that the thing starts to look less like an industry and more like a machine somebody built specifically to keep a number climbing.</p>
+
+  <p>Call that machine the loop. This is a story about how it works, who is actually holding the risk once you trace the money past the press releases, what it is already doing to a very ordinary monthly bill that has nothing to do with computers at all, and the argument now happening in low voices across trading floors and private credit committees about what happens if the assumption sitting underneath the entire structure, that the world needs an almost unimaginable amount of computing power forever, turns out to be even slightly wrong.</p>
+
+  <h2>The Loop</h2>
+
+  <p>Start with a single sentence that sounds almost too tidy to be true, and yet is not exaggerated in the slightest. Nvidia invests billions of dollars in OpenAI. OpenAI turns around and commits hundreds of billions of dollars to Oracle, so that Oracle can build the data centers OpenAI needs. Oracle then spends a huge share of that money buying, you guessed it, Nvidia chips, to fill those very data centers. The dollars leave Nvidia's balance sheet, take a scenic tour through two other companies, and arrive back at Nvidia with a receipt attached. Do this enough times, with enough companies, and by mid 2026 analysts tracking the pattern had put the total scale of these interlocking arrangements somewhere north of $800 billion.</p>
+
+  <p>It gets more tangled the closer you look, which is exactly why it deserves a picture rather than a paragraph.</p>
+
+  <figure>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 740 640" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+  <defs>
+    <marker id="aG" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0F7173"/></marker>
+    <marker id="aR" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C4534A"/></marker>
+    <marker id="aN" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#14213D"/></marker>
+    <marker id="aA" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#E3A008"/></marker>
+  </defs>
+  <text class="az-text" x="370" y="20" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">The Loop: How the Same Dollars Change Hands</text>
+  <text class="az-text" x="370" y="36" font-size="10.5" fill="#666" text-anchor="middle" font-style="italic">Every arrow below is a real, publicly disclosed commitment as of mid 2026</text>
+
+  <rect class="az-box" x="40" y="70" width="160" height="64" rx="8" fill="#E1F3F0" stroke="#0F7173" stroke-width="1.8"/>
+  <text class="az-text" x="120" y="98" font-size="13.5" text-anchor="middle" font-weight="bold" fill="#0a4d4e">Nvidia</text>
+  <text class="az-text" x="120" y="115" font-size="9.5" text-anchor="middle" fill="#0a4d4e">chip supplier and investor</text>
+
+  <rect class="az-box" x="540" y="70" width="160" height="64" rx="8" fill="#FCEFC7" stroke="#E3A008" stroke-width="1.8"/>
+  <text class="az-text" x="620" y="98" font-size="13.5" text-anchor="middle" font-weight="bold" fill="#7a5300">Oracle</text>
+  <text class="az-text" x="620" y="115" font-size="9.5" text-anchor="middle" fill="#7a5300">Stargate data centers</text>
+
+  <rect class="az-box" x="290" y="288" width="160" height="70" rx="8" fill="#14213D"/>
+  <text class="az-text" x="370" y="317" font-size="14" text-anchor="middle" font-weight="bold" fill="#fff">OpenAI</text>
+  <text class="az-text" x="370" y="335" font-size="9.5" text-anchor="middle" fill="#cfd6e8">buyer, borrower, tenant</text>
+  <text class="az-text" x="370" y="349" font-size="9.5" text-anchor="middle" fill="#cfd6e8">of nearly everyone above</text>
+
+  <rect class="az-box" x="600" y="288" width="140" height="64" rx="8" fill="#F3ECFB" stroke="#5B3A9B" stroke-width="1.8"/>
+  <text class="az-text" x="670" y="315" font-size="13" text-anchor="middle" font-weight="bold" fill="#3e2569">Microsoft</text>
+  <text class="az-text" x="670" y="332" font-size="9.5" text-anchor="middle" fill="#3e2569">Azure cloud capacity</text>
+
+  <rect class="az-box" x="540" y="506" width="160" height="64" rx="8" fill="#FBEAE8" stroke="#C4534A" stroke-width="1.8"/>
+  <text class="az-text" x="620" y="534" font-size="13.5" text-anchor="middle" font-weight="bold" fill="#7a2c25">CoreWeave</text>
+  <text class="az-text" x="620" y="551" font-size="9.5" text-anchor="middle" fill="#7a2c25">"neocloud" GPU renter</text>
+
+  <rect class="az-box" x="40" y="506" width="160" height="64" rx="8" fill="#F0F0F0" stroke="#666" stroke-width="1.8"/>
+  <text class="az-text" x="120" y="534" font-size="13.5" text-anchor="middle" font-weight="bold" fill="#333">AMD</text>
+  <text class="az-text" x="120" y="551" font-size="9.5" text-anchor="middle" fill="#333">rival chip supplier</text>
+
+  <path class="az-line" d="M 195 120 Q 260 200 300 288" stroke="#0F7173" stroke-width="2.2" fill="none" marker-end="url(#aG)"/>
+  <text class="az-text" x="205" y="200" font-size="9.5" fill="#0F7173" font-weight="bold">up to $100bn compute LOI (2025);</text>
+  <text class="az-text" x="205" y="212" font-size="9.5" fill="#0F7173" font-weight="bold">$30bn equity in $110bn round (2026)</text>
+
+  <path class="az-line" d="M 445 290 Q 500 190 545 128" stroke="#E3A008" stroke-width="2.2" fill="none" marker-end="url(#aA)"/>
+  <text class="az-text" x="450" y="200" font-size="9.5" fill="#7a5300" font-weight="bold">$300bn Stargate</text>
+  <text class="az-text" x="450" y="212" font-size="9.5" fill="#7a5300" font-weight="bold">cloud commitment</text>
+
+  <path class="az-line" d="M 555 66 Q 370 14 205 64" stroke="#C4534A" stroke-width="2.2" fill="none" marker-end="url(#aR)"/>
+  <text class="az-text" x="370" y="56" font-size="9.5" fill="#7a2c25" font-weight="bold" text-anchor="middle">Oracle buys Nvidia GPUs to fill the leased capacity, closing the loop</text>
+
+  <path class="az-line" d="M 452 315 L 598 317" stroke="#5B3A9B" stroke-width="2.2" fill="none" marker-end="url(#aG)"/>
+  <text class="az-text" x="460" y="308" font-size="9.5" fill="#3e2569" font-weight="bold">$250bn committed</text>
+  <text class="az-text" x="460" y="298" font-size="9.5" fill="#3e2569" font-weight="bold">Azure spend</text>
+
+  <path class="az-text" d="M 150 138 Q 480 320 610 500" stroke="#14213D" stroke-width="1.8" fill="none" marker-end="url(#aN)" stroke-dasharray="5,4"/>
+  <text class="az-text" x="220" y="470" font-size="9.5" fill="#14213D" font-weight="bold">Nvidia: $6.3bn cloud</text>
+  <text class="az-text" x="220" y="482" font-size="9.5" fill="#14213D" font-weight="bold">capacity purchase, plus equity</text>
+
+  <path class="az-line" d="M 590 505 Q 480 400 450 350" stroke="#C4534A" stroke-width="2.2" fill="none" marker-end="url(#aR)"/>
+  <text class="az-text" x="560" y="470" font-size="9.5" fill="#7a2c25" font-weight="bold" text-anchor="middle">$22.4bn compute deal;</text>
+  <text class="az-text" x="560" y="482" font-size="9.5" fill="#7a2c25" font-weight="bold" text-anchor="middle">equity handed to OpenAI</text>
+
+  <path class="az-line" d="M 300 345 Q 220 430 165 505" stroke="#666" stroke-width="2.2" fill="none" marker-end="url(#aN)"/>
+  <text class="az-text" x="160" y="420" font-size="9.5" fill="#333" font-weight="bold" text-anchor="end">multiyear chip deal;</text>
+  <text class="az-text" x="160" y="432" font-size="9.5" fill="#333" font-weight="bold" text-anchor="end">AMD hands OpenAI warrants</text>
+  <text class="az-text" x="160" y="444" font-size="9.5" fill="#333" font-weight="bold" text-anchor="end">worth up to 10% of the company</text>
+</svg>
+    </div></div>
+    <figcaption>Six companies, seven arrows, and the same handful of dollars visiting nearly all of them before landing back where they began. Nvidia funds OpenAI, OpenAI funds Oracle's build out, Oracle spends much of that on Nvidia chips. A second loop runs through CoreWeave and AMD. Every figure here is a disclosed, real world commitment, not an estimate.</figcaption>
+    <button type="button" class="az-replay" aria-label="Replay this diagram's animation"><span class="ico">&#8635;</span> Replay animation</button>
+    <div class="proof">
+      <div class="label">The mechanics</div>
+      <p>None of this is illegal, secret, or even unusual by the standards of a capital hungry industry racing to lock up scarce chips and land. What makes it worth diagramming is the accounting question sitting underneath it. When Nvidia's investment shows up as OpenAI's revenue for Oracle, and Oracle's spending shows up as Nvidia's revenue again, each company can point to real, audited growth while the underlying question, whether an independent customer with no financial tie to any of these firms would pay for this much compute, never actually gets tested.</p>
+    </div>
+  </figure>
+
+  <p>Jensen Huang, Nvidia's chief executive, has heard the word circular applied to his company's dealmaking more times than he would probably like, and his answer is always some version of the same thing. The dollars Nvidia puts into these companies, he argues, are a small fraction of what those companies would have had to raise anyway, and Nvidia gets a genuine equity stake and a genuine investment return out of it, not just a sale. It's a fair point, as far as it goes. It just does not address the part that actually worries analysts, which has nothing to do with whether the deals are legal or even smart, and everything to do with what they do to the picture of demand that every other investor in the sector is relying on.</p>
+
+  <h3>This has happened before, wearing a different suit</h3>
+
+  <p>Anyone who covered telecoms in 1999 gets a very specific feeling reading about this stuff, the feeling of a rhyme rather than a repeat. Lucent Technologies used to lend money to the same telecom startups that were buying Lucent's networking equipment. Nortel did something similar. It worked beautifully, right up until it didn't, at which point it turned out that a meaningful share of the industry's apparent growth had been the same capital taking a lap around a small circle of companies rather than new demand walking in the door. When the music stopped, both Lucent and Nortel discovered that vendor financed customers do not pay their bills any better than customers who financed themselves, and in some cases they pay them worse, because they were often the customers who could not get financing anywhere else.</p>
+
+  <p>That comparison gets made constantly now, usually with a defensive shrug attached, on the grounds that this time the underlying product actually works. Fair enough. Nobody serious argues that large language models are vaporware the way some 1999 era networking startups plainly were. But the demand question is not really about whether the technology works. It is about whether enough of the world is willing to pay enough money for it to justify the spending, and on that question the jury has been out for a while, getting testier by the quarter.</p>
+
+  <p>There's a second, less flattering echo worth naming plainly, and it isn't about vendor financing at all. It's about where debt gets parked. Enron's collapse in 2001 is remembered, correctly, as a story about fraud, but the specific mechanism was almost boring: a web of off balance sheet special purpose entities that let Enron keep debt and risk technically separate from its own books while still controlling the underlying assets. Nobody sensible is accusing Meta or Oracle of Enron style fraud, and the structures described in this piece are disclosed, rated, and legal in a way Enron's were explicitly designed not to be. But the underlying instinct, keep the liability off your own balance sheet while keeping the upside, is the same instinct, wearing a much better tailored suit and carrying an actual credit rating. History does not repeat the crime. It repeats the shape of the temptation.</p>
+
+  <p>Watching the timeline unfold, month by month, is its own kind of education, because it shows how quickly a handful of individually reasonable deals compound into something much larger.</p>
+
+  <figure>
+    <div class="swipe-hint">&#8596; swipe to see the full timeline, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 980 340" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+  <text class="az-text" x="490" y="24" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">The Road to $800 Billion: A Timeline of the Loop</text>
+  <line class="az-line" x1="50" y1="170" x2="930" y2="170" stroke="#14213D" stroke-width="2.5"/>
+  <g>
+    <circle class="az-pop" cx="80" cy="170" r="6" fill="#0F7173"/>
+    <line class="az-line" x1="80" y1="164" x2="80" y2="130" stroke="#0F7173" stroke-width="1.3"/>
+    <text class="az-text" x="80" y="118" font-size="9.5" text-anchor="middle" fill="#0a4d4e" font-weight="bold">Oct 2024</text>
+    <text class="az-text" x="80" y="105" font-size="9" text-anchor="middle" fill="#333">Nvidia puts ~$100m into</text>
+    <text class="az-text" x="80" y="94" font-size="9" text-anchor="middle" fill="#333">OpenAI's $6.6bn round</text>
+  </g>
+  <g>
+    <circle class="az-pop" cx="200" cy="170" r="6" fill="#E3A008"/>
+    <line class="az-line" x1="200" y1="176" x2="200" y2="210" stroke="#E3A008" stroke-width="1.3"/>
+    <text class="az-text" x="200" y="224" font-size="9.5" text-anchor="middle" fill="#7a5300" font-weight="bold">Dec 2024</text>
+    <text class="az-text" x="200" y="238" font-size="9" text-anchor="middle" fill="#333">Nvidia joins xAI's</text>
+    <text class="az-text" x="200" y="249" font-size="9" text-anchor="middle" fill="#333">$6bn raise</text>
+  </g>
+  <g>
+    <circle class="az-pop" cx="340" cy="170" r="6" fill="#0F7173"/>
+    <line class="az-line" x1="340" y1="164" x2="340" y2="130" stroke="#0F7173" stroke-width="1.3"/>
+    <text class="az-text" x="340" y="118" font-size="9.5" text-anchor="middle" fill="#0a4d4e" font-weight="bold">Sep 2025</text>
+    <text class="az-text" x="340" y="105" font-size="9" text-anchor="middle" fill="#333">$6.3bn Nvidia to CoreWeave;</text>
+    <text class="az-text" x="340" y="94" font-size="9" text-anchor="middle" fill="#333">Nvidia to OpenAI LOI, up to $100bn</text>
+  </g>
+  <g>
+    <circle class="az-pop" cx="470" cy="170" r="7" fill="#C4534A"/>
+    <line class="az-line" x1="470" y1="176" x2="470" y2="210" stroke="#C4534A" stroke-width="1.5"/>
+    <text class="az-text" x="470" y="224" font-size="9.5" text-anchor="middle" fill="#7a2c25" font-weight="bold">Oct 2025</text>
+    <text class="az-text" x="470" y="238" font-size="9" text-anchor="middle" fill="#333">Meta and Blue Owl close</text>
+    <text class="az-text" x="470" y="249" font-size="9" text-anchor="middle" fill="#333">$27.3bn Hyperion SPV;</text>
+    <text class="az-text" x="470" y="260" font-size="9" text-anchor="middle" fill="#333">OpenAI confirms $300bn</text>
+    <text class="az-text" x="470" y="271" font-size="9" text-anchor="middle" fill="#333">Oracle Stargate deal</text>
+  </g>
+  <g>
+    <circle class="az-pop" cx="600" cy="170" r="6" fill="#5B3A9B"/>
+    <line class="az-line" x1="600" y1="164" x2="600" y2="130" stroke="#5B3A9B" stroke-width="1.3"/>
+    <text class="az-text" x="600" y="118" font-size="9.5" text-anchor="middle" fill="#3e2569" font-weight="bold">Nov 2025</text>
+    <text class="az-text" x="600" y="105" font-size="9" text-anchor="middle" fill="#333">Nvidia + Microsoft commit</text>
+    <text class="az-text" x="600" y="94" font-size="9" text-anchor="middle" fill="#333">up to $15bn to Anthropic</text>
+  </g>
+  <g>
+    <circle class="az-pop" cx="720" cy="170" r="6" fill="#0F7173"/>
+    <line class="az-line" x1="720" y1="176" x2="720" y2="210" stroke="#0F7173" stroke-width="1.3"/>
+    <text class="az-text" x="720" y="224" font-size="9.5" text-anchor="middle" fill="#0a4d4e" font-weight="bold">Jan 2026</text>
+    <text class="az-text" x="720" y="238" font-size="9" text-anchor="middle" fill="#333">Nvidia adds $2bn</text>
+    <text class="az-text" x="720" y="249" font-size="9" text-anchor="middle" fill="#333">more to CoreWeave</text>
+  </g>
+  <g>
+    <circle class="az-pop" cx="830" cy="170" r="6" fill="#E3A008"/>
+    <line class="az-line" x1="830" y1="164" x2="830" y2="130" stroke="#E3A008" stroke-width="1.3"/>
+    <text class="az-text" x="830" y="118" font-size="9.5" text-anchor="middle" fill="#7a5300" font-weight="bold">Feb 2026</text>
+    <text class="az-text" x="830" y="105" font-size="9" text-anchor="middle" fill="#333">Original $100bn OpenAI LOI</text>
+    <text class="az-text" x="830" y="94" font-size="9" text-anchor="middle" fill="#333">collapses, replaced by $30bn</text>
+    <text class="az-text" x="830" y="83" font-size="9" text-anchor="middle" fill="#333">stake in $110bn round</text>
+  </g>
+  <g>
+    <circle class="az-pop" cx="905" cy="170" r="7" fill="#C4534A"/>
+    <line class="az-line" x1="905" y1="176" x2="905" y2="210" stroke="#C4534A" stroke-width="1.5"/>
+    <text class="az-text" x="905" y="224" font-size="9.5" text-anchor="middle" fill="#7a2c25" font-weight="bold">Jul 2026</text>
+    <text class="az-text" x="905" y="238" font-size="9" text-anchor="middle" fill="#333">Nvidia in talks to guarantee</text>
+    <text class="az-text" x="905" y="249" font-size="9" text-anchor="middle" fill="#333">up to $250bn of OpenAI's</text>
+    <text class="az-text" x="905" y="260" font-size="9" text-anchor="middle" fill="#333">US data center lease</text>
+  </g>
+</svg>
+    </div></div>
+    <figcaption>Fifteen months, seven headline deals, and a pattern that keeps repeating: chip maker funds AI lab, AI lab commits to cloud provider, cloud provider buys chips. By July 2026 Nvidia was reportedly discussing a guarantee equal to roughly seventy times its own disclosed lease guarantee capacity, according to figures pulled from Nvidia's own quarterly filing.</figcaption>
+    <button type="button" class="az-replay" aria-label="Replay this diagram's animation"><span class="ico">&#8635;</span> Replay animation</button>
+    <div class="proof">
+      <div class="label">The mechanics</div>
+      <p>A guarantee is not a payment. It is a promise to pay if someone else fails to. That distinction matters enormously here, because a $250 billion guarantee does not cost Nvidia $250 billion today, but it does mean Nvidia's own financial health becomes entangled with whether OpenAI can make its lease payments for years to come, on top of everything else Nvidia has already put at stake through direct investment.</p>
+    </div>
+  </figure>
+
+  <h3>The other side of the desk</h3>
+
+  <p>It would be a disservice to stop here without giving equal room to the argument on the other side, because it is not a fringe argument, and the people making it are not fools. Deutsche Bank's global economics team, in a mid year outlook, described 2026 as anything but dull and reaffirmed a year end S&amp;P 500 target of 8,000, built on an expected price to earnings multiple around 25 and earnings per share growth across the index of roughly 14.2%, driven substantially by strength in technology and financial companies. Goldman Sachs raised its own forecast for 2026 US IPO proceeds to $225 billion from $160 billion in the space of a few months, and pushed its estimate of total US corporate equity issuance for the year up to around $675 billion. Bank of America's head of US equity strategy has argued that, by her team's analysis of prior bubbles, the technology sector still sits on solid ground, expecting continued double digit earnings growth even while flagging what she calls an air pocket risk somewhere ahead.</p>
+
+  <p>The bull case, stripped of its charts and multiples, comes down to something fairly intuitive. Advanced chips remain genuinely scarce. Building a data center takes years, not months, so any company that waits for certainty before committing capital risks arriving at the party after the good seats are gone. Locking in supply through a mix of long term purchase agreements and financing, the argument goes, is not evidence of desperation, it is simply how you compete in a market where the thing everyone wants cannot be manufactured fast enough. Asset manager Janus Henderson has described the wave of interlocking AI deals as something closer to a virtuous circle than a vicious one, a way of lining up suppliers, builders, and customers fast enough to meet demand that is, in this telling, embarrassingly real rather than manufactured.</p>
+
+  <p>Reasonable people can hold both of these views at once, incidentally, which is closer to what is actually happening on trading floors than the loud arguments on financial television would suggest. A survey of strategists heading into 2026 found Wall Street broadly expecting further gains in the market, even as nearly everyone quoted also wanted more downside protection than they'd bothered buying the year before. As JPMorgan's own chief global strategist for asset management told Axios, most years investing is about finding new ways to increase return, and this year looks more like it will be about finding cheap ways to reduce risk. That is not the sound of a market convinced a bubble is about to pop. It is the sound of a market that has stopped being sure it isn't.</p>
+
+  <p>With both sides of the argument on the table honestly, it's worth going back to the actual plumbing, because plumbing is where bubbles either get slowly defused or quietly get worse, largely unnoticed by anyone who isn't required to read a bond prospectus for a living.</p>
+
+  <p>Here is a question that sounds simple and turns out to have a genuinely interesting answer. If Meta wants to spend $27 billion building a data center, why doesn't it just borrow $27 billion the ordinary way, the way it borrowed $30 billion in a single, very ordinary bond sale back in October 2025?</p>
+
+  <p>The answer has almost nothing to do with interest rates and almost everything to do with a company's balance sheet, which is a duller sentence than the actual explanation deserves. Every dollar of debt Meta puts directly on its own books drags down the ratios that credit rating agencies watch, and dragging those ratios down for long enough eventually costs the company money on every other loan it has, in the form of a slightly worse rating and a slightly higher rate. So instead of borrowing the money itself, Meta set up a joint venture, gave it twenty percent of the equity, let outside investors, mainly Pimco and BlackRock, put in the debt and the rest of the equity, and had that joint venture build the data center. Meta will lease the finished campus back once it's built, sometime around 2029, paying rent instead of carrying debt. The data center still gets built. The GPUs still go in. The only thing that changes is which balance sheet the liability sits on, and whose credit rating has to absorb the risk.</p>
+
+  <figure>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+  <defs><marker id="aSpv" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#14213D"/></marker></defs>
+  <text class="az-text" x="350" y="24" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">How a Data Center Gets Built Off the Books</text>
+  <text class="az-text" x="350" y="42" font-size="10" fill="#666" text-anchor="middle" font-style="italic">The Hyperion campus, Richland Parish, Louisiana, arranged by Morgan Stanley</text>
+
+  <rect class="az-box" x="40" y="70" width="200" height="70" rx="8" fill="#E1F3F0" stroke="#0F7173" stroke-width="1.8"/>
+  <text class="az-text" x="140" y="98" font-size="13.5" text-anchor="middle" font-weight="bold" fill="#0a4d4e">Meta</text>
+  <text class="az-text" x="140" y="115" font-size="9.5" text-anchor="middle" fill="#0a4d4e">wants the compute,</text>
+  <text class="az-text" x="140" y="128" font-size="9.5" text-anchor="middle" fill="#0a4d4e">not the debt on its books</text>
+
+  <rect class="az-box" x="460" y="70" width="200" height="80" rx="8" fill="#F3ECFB" stroke="#5B3A9B" stroke-width="1.8"/>
+  <text class="az-text" x="560" y="94" font-size="12.5" text-anchor="middle" font-weight="bold" fill="#3e2569">Pimco &amp; BlackRock</text>
+  <text class="az-text" x="560" y="110" font-size="9.5" text-anchor="middle" fill="#3e2569">anchor lenders</text>
+  <text class="az-text" x="560" y="124" font-size="9.5" text-anchor="middle" fill="#3e2569">$18bn + $3bn of the</text>
+  <text class="az-text" x="560" y="138" font-size="9.5" text-anchor="middle" fill="#3e2569">$27.3bn bond sale</text>
+
+  <rect class="az-box" x="200" y="230" width="300" height="90" rx="8" fill="#14213D"/>
+  <text class="az-text" x="350" y="258" font-size="13.5" text-anchor="middle" font-weight="bold" fill="#fff">Hyperion SPV (the joint venture)</text>
+  <text class="az-text" x="350" y="276" font-size="9.5" text-anchor="middle" fill="#cfd6e8">Legally separate from Meta.</text>
+  <text class="az-text" x="350" y="291" font-size="9.5" text-anchor="middle" fill="#cfd6e8">Owns the 2 gigawatt data center.</text>
+  <text class="az-text" x="350" y="306" font-size="9.5" text-anchor="middle" fill="#cfd6e8">Blue Owl manages the structure.</text>
+
+  <path class="az-line" d="M 160 140 Q 200 190 260 230" stroke="#0F7173" stroke-width="2.4" fill="none" marker-end="url(#aSpv)"/>
+  <text class="az-text" x="130" y="185" font-size="10" fill="#0a4d4e" font-weight="bold">$2.5bn equity</text>
+  <text class="az-text" x="130" y="198" font-size="10" fill="#0a4d4e" font-weight="bold">(20% stake)</text>
+
+  <path class="az-line" d="M 540 150 Q 470 195 420 230" stroke="#5B3A9B" stroke-width="2.4" fill="none" marker-end="url(#aSpv)"/>
+  <text class="az-text" x="470" y="200" font-size="10" fill="#3e2569" font-weight="bold">$27.3bn in bonds</text>
+  <text class="az-text" x="470" y="213" font-size="10" fill="#3e2569" font-weight="bold">(senior tranche rated A+)</text>
+
+  <path class="az-text" d="M 260 320 Q 130 400 150 150" stroke="#C4534A" stroke-width="2.2" fill="none" marker-end="url(#aSpv)" stroke-dasharray="6,4"/>
+  <text class="az-text" x="70" y="380" font-size="10" fill="#7a2c25" font-weight="bold">long term lease payments</text>
+  <text class="az-text" x="70" y="393" font-size="10" fill="#7a2c25" font-weight="bold">once built, around 2029</text>
+  <text class="az-text" x="70" y="406" font-size="10" fill="#7a2c25" font-weight="bold">Meta's new "rent"</text>
+
+  <rect class="az-box" x="200" y="380" width="300" height="70" rx="8" fill="#fff" stroke="#8a8a8a" stroke-width="1.4"/>
+  <text class="az-text" x="350" y="405" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#111">Result: capex becomes opex</text>
+  <text class="az-text" x="350" y="422" font-size="9.5" text-anchor="middle" fill="#4a4a4a">Meta's balance sheet and credit rating</text>
+  <text class="az-text" x="350" y="435" font-size="9.5" text-anchor="middle" fill="#4a4a4a">stay clean. The debt lives somewhere else.</text>
+  <path class="az-line" d="M 350 320 L 350 378" stroke="#8a8a8a" stroke-width="1.6" fill="none" marker-end="url(#aSpv)"/>
+</svg>
+    </div></div>
+    <figcaption>Meta keeps twenty percent ownership and full operational control of the data center, while Pimco, BlackRock, and a syndicate of bond buyers hold the debt through a legally separate entity. Meta's own balance sheet never touches the $27.3 billion. It shows up years later, quietly, as rent.</figcaption>
+    <button type="button" class="az-replay" aria-label="Replay this diagram's animation"><span class="ico">&#8635;</span> Replay animation</button>
+    <div class="proof">
+      <div class="label">The mechanics</div>
+      <p>The senior tranche of this deal priced at roughly 1.20 percentage points over its benchmark and carried an A+ rating from Moody's, its first time grading this kind of hyperscale securitization at all. Multiple reports on comparable deals noted yields around 6.58%, a level normally associated with high yield, meaning junk rated, debt rather than an investment grade tranche. The gap between the label on the bond and the yield it actually carries is exactly the kind of discrepancy that keeps credit analysts up at night, because it suggests the market is quietly pricing in more risk than the official rating admits to.</p>
+    </div>
+  </figure>
+
+  <p>Multiply Hyperion by every hyperscaler doing something similar, and you get a genuinely new corner of the debt markets. Hyperscalers issued around $121 billion in bonds in 2025 alone, more than four times the five year average, and total data center debt issuance across all channels nearly doubled to $182 billion. That is only the visible part. Sitting alongside it, and growing faster, is a much less visible pool of money: private credit.</p>
+
+  <p>Hyperion is not even the largest example, just the best documented one, because Meta's lawyers happened to be unusually willing to talk about the structure. Oracle has been running a nearly identical playbook across multiple sites simultaneously, mostly in service of its Stargate commitments to OpenAI. One arrangement, an SPV that owns Oracle's data center facility in Abilene, Texas, drew roughly $13 billion from Blue Owl and JPMorgan, $10 billion of it structured as debt. A separate $38 billion debt package is funding two more Oracle data centers in Texas and Wisconsin. A third, an $18 billion loan, is financing a site in New Mexico. None of these three deals shows up on Oracle's own balance sheet in the way a traditional construction loan would, and none of them, individually, looks alarming. Collectively, they describe an entire industry that has settled, almost without public debate, on keeping the actual debt for the actual buildings one legal layer removed from the companies whose names are on the press releases.</p>
+
+  <h2>Who is actually holding the bag</h2>
+
+  <p>Private credit is one of those phrases that sounds abstract right up until you realize it means a small number of enormous, lightly regulated investment firms, Blackstone, Blue Owl, Apollo, Pimco, and BlackRock chief among them, lending directly to companies instead of going through a bank. It grew explosively over the last decade doing fairly boring things, financing leveraged buyouts, funding mid sized companies that couldn't easily tap public bond markets. Then the AI buildout arrived, needing money faster than banks, constrained by their own capital rules, could comfortably provide, and private credit did what capital always does when it smells a shortage. It rushed in.</p>
+
+  <p>Outstanding private credit loans to AI related companies went from something close to zero to more than $200 billion in just a few years. Morgan Stanley's own analysts project private credit will supply an additional $800 billion of data center financing over the following two years on top of that. Put those numbers next to each other and you get one of the fastest expansions of lending into a single, narrow sector that anyone currently working in credit markets has ever personally witnessed.</p>
+
+  <figure>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+  <text class="az-text" x="350" y="22" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">Private Credit Poured Into AI Faster Than Almost Anything Else</text>
+  <line x1="90" y1="320" x2="640" y2="320" stroke="#111" stroke-width="1.3"/>
+  <line x1="90" y1="320" x2="90" y2="55" stroke="#111" stroke-width="1.3"/>
+  <text x="95" y="42" font-size="10" fill="#4a4a4a">Outstanding lending to</text>
+  <text x="95" y="54" font-size="10" fill="#4a4a4a">AI infrastructure ($bn)</text>
+  <text x="640" y="338" font-size="10.5" fill="#4a4a4a" text-anchor="end">Year</text>
+  <rect class="az-bar" x="130" y="315" width="70" height="5" fill="#0F7173"/>
+  <text class="az-text" x="165" y="345" font-size="10.5" text-anchor="middle" fill="#333" font-weight="bold">2022</text>
+  <text class="az-text" x="165" y="308" font-size="9.5" text-anchor="middle" fill="#0a4d4e">near zero</text>
+  <rect class="az-bar" x="260" y="255" width="70" height="65" fill="#0F7173"/>
+  <text class="az-text" x="295" y="345" font-size="10.5" text-anchor="middle" fill="#333" font-weight="bold">2024</text>
+  <text class="az-text" x="295" y="248" font-size="9.5" text-anchor="middle" fill="#0a4d4e">tens of billions</text>
+  <rect class="az-bar" x="390" y="140" width="70" height="180" fill="#E3A008"/>
+  <text class="az-text" x="425" y="345" font-size="10.5" text-anchor="middle" fill="#333" font-weight="bold">2026</text>
+  <text class="az-text" x="425" y="133" font-size="9.5" text-anchor="middle" fill="#7a5300" font-weight="bold">$200bn+ outstanding</text>
+  <rect class="az-bar" x="520" y="80" width="70" height="240" fill="#C4534A" fill-opacity="0.35" stroke="#C4534A" stroke-width="2" stroke-dasharray="5,4"/>
+  <text class="az-text" x="555" y="345" font-size="10.5" text-anchor="middle" fill="#333" font-weight="bold">2026 to 2028</text>
+  <text class="az-text" x="555" y="73" font-size="9.5" text-anchor="middle" fill="#7a2c25" font-weight="bold">+$800bn projected</text>
+  <text class="az-text" x="555" y="60" font-size="9" text-anchor="middle" fill="#7a2c25" font-style="italic">(Morgan Stanley estimate)</text>
+</svg>
+    </div></div>
+    <figcaption>Private lending to AI infrastructure went from a rounding error to more than $200 billion outstanding in roughly three years, with another $800 billion projected over the following two, according to Morgan Stanley's own analysts. Blackstone, Blue Owl, Apollo, Pimco, and BlackRock originate most of it.</figcaption>
+    <button type="button" class="az-replay" aria-label="Replay this diagram's animation"><span class="ico">&#8635;</span> Replay animation</button>
+    <div class="proof">
+      <div class="label">The mechanics</div>
+      <p>Private credit funds raise money from pension funds, insurance companies, and increasingly retail investors, promise those investors a return, and then lend that pooled capital directly to borrowers like data center developers. Unlike a bank loan, this debt rarely trades on an open market and gets marked at whatever value the lending fund itself assigns it, which is a polite way of saying that if something goes wrong, the market may not find out how badly for quite some time.</p>
+    </div>
+  </figure>
+
+  <p>Trace that money back far enough and it does not belong to Blackstone or Apollo at all. It belongs to schoolteachers' pension funds, to state employee retirement systems, and, in a detail that has started showing up in more critical coverage this year, to life insurance companies. Several of the largest private credit firms also own or are closely affiliated with life insurers, and those insurers have been buying up exactly this kind of debt as part of their investment portfolios. Life insurers are backstopped, in the event of failure, by state guaranty associations, meaning the ultimate, worst case backstop for a chunk of this lending chain runs disturbingly close to the public purse, not because anyone planned it that way, but because that is simply where the ownership structures happened to land.</p>
+
+  <div class="pull">Nobody signed up to bet their pension on whether a chatbot subscription business hits its 2029 revenue target. Nearly everyone with a pension now has.</div>
+
+  <h2>The bill nobody voted for</h2>
+
+  <p>Step away from bond desks and pension funds for a moment, because this story has a second half that shows up somewhere much more familiar: the electricity bill sitting on the kitchen counter. A single AI optimized server rack can draw somewhere between thirty and over a hundred kilowatts, compared with five to fifteen kilowatts for a traditional rack, and hyperscalers are installing this equipment by the thousand. Gartner projects worldwide data center power demand will climb 27% in 2026 alone, reaching 132 gigawatts, on its way to roughly 290 gigawatts by 2030. In the mid Atlantic region served by the grid operator PJM, which covers roughly sixty seven million people across thirteen states and Washington, DC, the capacity price utilities pay to secure future power, a cost that eventually flows through to ratepayers, jumped by 833% between the 2024 to 2025 delivery year and the 2025 to 2026 delivery year. That is not a typo, and it is not a ten year trend. That is one year to the next.</p>
+
+  <p>Residential electricity prices in the areas most affected by this buildout have already moved in ways that would have been treated as a political emergency in a calmer decade. Between March 2021 and March 2026, average residential electricity prices rose 94% in Washington, DC, 74% in Maryland, 73% in Maine, and 58% in New York, according to federal energy data, a period that overlaps almost exactly with the AI data center buildout, though it is worth being precise about causation here rather than reaching for the tidiest possible villain. Data centers are not the only reason electricity got more expensive over those five years; extreme weather, aging infrastructure, and broad inflation all did real work too. But independent monitors inside PJM itself have projected that data center demand specifically will keep pushing generation costs higher for everyone else on the same grid, and the Federal Reserve Bank of Dallas has estimated that if data center electricity demand simply doubles over the next five years, as most projections now expect, wholesale power prices in affected regions could rise by as much as fifty percent on top of whatever else is happening to the grid.</p>
+
+  <figure>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+  <text class="az-text" x="350" y="22" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">Where the Grid Feels the Buildout First</text>
+  <text class="az-text" x="350" y="40" font-size="10" fill="#666" text-anchor="middle" font-style="italic">Residential electricity price change, March 2021 to March 2026 (US Energy Information Administration data)</text>
+  <line x1="90" y1="330" x2="650" y2="330" stroke="#111" stroke-width="1.3"/>
+  <line x1="90" y1="330" x2="90" y2="60" stroke="#111" stroke-width="1.3"/>
+  <text x="95" y="55" font-size="10" fill="#4a4a4a">% change in</text>
+  <text x="95" y="67" font-size="10" fill="#4a4a4a">average bill</text>
+  <g>
+    <rect class="az-bar" x="130" y="70" width="70" height="260" fill="#C4534A"/>
+    <text class="az-text" x="165" y="63" font-size="12" text-anchor="middle" fill="#7a2c25" font-weight="bold">+94%</text>
+    <text class="az-text" x="165" y="347" font-size="10" text-anchor="middle" fill="#333" font-weight="bold">Washington DC</text>
+  </g>
+  <g>
+    <rect class="az-bar" x="250" y="122" width="70" height="208" fill="#E3A008"/>
+    <text class="az-text" x="285" y="115" font-size="12" text-anchor="middle" fill="#7a5300" font-weight="bold">+74%</text>
+    <text class="az-text" x="285" y="347" font-size="10" text-anchor="middle" fill="#333" font-weight="bold">Maryland</text>
+  </g>
+  <g>
+    <rect class="az-bar" x="370" y="128" width="70" height="202" fill="#E3A008"/>
+    <text class="az-text" x="405" y="121" font-size="12" text-anchor="middle" fill="#7a5300" font-weight="bold">+73%</text>
+    <text class="az-text" x="405" y="347" font-size="10" text-anchor="middle" fill="#333" font-weight="bold">Maine</text>
+  </g>
+  <g>
+    <rect class="az-bar" x="490" y="168" width="70" height="162" fill="#0F7173"/>
+    <text class="az-text" x="525" y="161" font-size="12" text-anchor="middle" fill="#0a4d4e" font-weight="bold">+58%</text>
+    <text class="az-text" x="525" y="347" font-size="10" text-anchor="middle" fill="#333" font-weight="bold">New York</text>
+  </g>
+  <line class="az-text" x1="90" y1="285" x2="650" y2="285" stroke="#666" stroke-width="1.4" stroke-dasharray="5,4"/>
+  <text class="az-text" x="565" y="279" font-size="9.5" fill="#666" font-weight="bold">national avg: +42%</text>
+</svg>
+    </div></div>
+    <figcaption>All four regions shown here sit inside or near major data center clusters. None of them are the whole national story on their own, but each one is running well ahead of the already elevated national average electricity price increase over the same five years.</figcaption>
+    <button type="button" class="az-replay" aria-label="Replay this diagram's animation"><span class="ico">&#8635;</span> Replay animation</button>
+    <div class="proof">
+      <div class="label">The mechanics</div>
+      <p>Utilities recover the cost of new transmission lines, substations, and power plants through rates charged to everyone on the grid, not only to the new, very large customer that made the upgrade necessary. When a single data center campus needs as much power as a mid sized city arriving all at once, in a location where the grid was never built for that kind of load, the upgrade bill gets spread across every ratepayer on that grid unless someone specifically negotiates otherwise, which is exactly the fight now playing out state by state.</p>
+    </div>
+  </figure>
+
+  <p>That fight has already reached the White House. In March 2026, seven of the largest AI companies, Amazon, Google, Meta, Microsoft, OpenAI, Oracle, and xAI, signed what got named the Ratepayer Protection Pledge, a White House facilitated agreement in which the companies committed to directly funding the grid infrastructure improvements their own buildouts require, rather than letting the cost land on ordinary residential bills. Whether that pledge holds up in practice, state by state, utility by utility, over years rather than headlines, is precisely the kind of thing nobody can honestly promise in advance. Senator Elizabeth Warren has been considerably less measured about it in public, at one point putting the increase for households living near the largest data centers as high as 267%, a figure that independent fact checkers found to be an outlier on the high end of a real and verifiable trend rather than a fabricated one. Texas, for its part, passed a law requiring any new electricity load over 75 megawatts to participate in demand response programs, including provisions for emergency disconnection during grid stress, which is a fairly blunt way of saying the state reserves the right to cut a data center's power before it cuts anyone's air conditioning.</p>
+
+  <p>Why does any of this belong in a story about circular financing and private credit? Because it is the clearest possible evidence that the AI buildout has already left the realm of an abstract financial argument and started showing up in places voters actually notice, which tends to be exactly the moment a purely financial story turns into a political one, with all the unpredictable pressure that shift usually brings.</p>
+
+  <h2>The depreciation problem</h2>
+
+  <p>Now for the part of this story that involves the least drama and the most actual math, which is usually a sign that it deserves more attention than it gets, not less.</p>
+
+  <p>When a company buys an expensive piece of equipment, accounting rules let it spread the cost of that equipment across the years the equipment is expected to be useful, rather than booking the entire expense on day one. This is called depreciation, and the number of years a company chooses, called the useful life, is mostly a judgment call. It is a judgment call with enormous consequences, because a longer useful life means a smaller expense shows up on the books each year, which means higher reported profit, all else being equal, for exactly the same pile of physical hardware.</p>
+
+  <p>Here is where the AI buildout gets genuinely uncomfortable. Nvidia's own product cycle turns over roughly every two to three years, with each new chip generation delivering large enough efficiency gains that operating the older chips for AI training becomes uneconomic well before the hardware physically wears out. And yet the major hyperscalers, the companies buying these chips by the hundreds of thousands, mostly depreciate them over five to six years. Microsoft stretched its schedule from four years to six. Meta adopted five and a half. Amazon, notably, moved in the opposite direction in early 2025, shortening the useful life of part of its fleet, citing the pace of change in AI hardware specifically, which makes it something of an outlier worth remembering the next time someone insists this is all just normal accounting practice.</p>
+
+  <p>Michael Burry, the investor who became famous for correctly betting against mortgage backed securities before the 2008 crash, put a number on the gap: roughly $176 billion of understated depreciation across the industry's major players between 2026 and 2028, which by his estimate inflates reported profits at some companies by more than twenty percent above what a shorter, arguably more realistic useful life would show. Nvidia and CoreWeave have pushed back hard, pointing to multi year customer contracts and strong resale values on older chips as evidence the longer schedules are defensible. Both sides are, in a sense, right about their own narrow claim and talking past the actual disagreement, which is not really about accounting rules at all. It's about whether the chips sitting in these data centers today will still be earning their keep in year five, or whether they'll have been quietly replaced by something better long before the depreciation schedule says they're even half used up.</p>
+
+  <figure>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+  <text class="az-text" x="350" y="22" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">Capital Spending Is Outrunning Reported Depreciation</text>
+  <line x1="90" y1="330" x2="650" y2="330" stroke="#111" stroke-width="1.3"/>
+  <line x1="90" y1="330" x2="90" y2="55" stroke="#111" stroke-width="1.3"/>
+  <text x="95" y="42" font-size="10" fill="#4a4a4a">$ billions per year</text>
+  <text x="95" y="54" font-size="10" fill="#4a4a4a">(top hyperscalers)</text>
+  <text x="650" y="348" font-size="10.5" fill="#4a4a4a" text-anchor="end">Year</text>
+  <g>
+    <rect class="az-bar" x="130" y="228" width="46" height="102" fill="#0F7173"/>
+    <text class="az-text" x="153" y="220" font-size="9.5" text-anchor="middle" fill="#0a4d4e" font-weight="bold">$256bn</text>
+    <rect class="az-bar" x="180" y="290" width="46" height="40" fill="#E3A008"/>
+    <text class="az-text" x="203" y="282" font-size="9" text-anchor="middle" fill="#7a5300" font-weight="bold">~$90bn</text>
+    <text class="az-text" x="178" y="347" font-size="10" text-anchor="middle" fill="#333" font-weight="bold">2024</text>
+  </g>
+  <g>
+    <rect class="az-bar" x="270" y="150" width="46" height="180" fill="#0F7173"/>
+    <text class="az-text" x="293" y="142" font-size="9.5" text-anchor="middle" fill="#0a4d4e" font-weight="bold">$443bn</text>
+    <rect class="az-bar" x="320" y="265" width="46" height="65" fill="#E3A008"/>
+    <text class="az-text" x="343" y="257" font-size="9" text-anchor="middle" fill="#7a5300" font-weight="bold">~$120bn</text>
+    <text class="az-text" x="318" y="347" font-size="10" text-anchor="middle" fill="#333" font-weight="bold">2025</text>
+  </g>
+  <g>
+    <rect class="az-bar" x="410" y="90" width="46" height="240" fill="#0F7173"/>
+    <text class="az-text" x="433" y="82" font-size="9.5" text-anchor="middle" fill="#0a4d4e" font-weight="bold">$602bn</text>
+    <rect class="az-bar" x="460" y="238" width="46" height="92" fill="#E3A008"/>
+    <text class="az-text" x="483" y="230" font-size="9" text-anchor="middle" fill="#7a5300" font-weight="bold">~$149bn</text>
+    <text class="az-text" x="458" y="347" font-size="10" text-anchor="middle" fill="#333" font-weight="bold">2026</text>
+  </g>
+  <path class="az-text" d="M 200 250 L 340 245 L 480 190" stroke="#C4534A" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+  <text class="az-text" x="560" y="150" font-size="10.5" fill="#7a2c25" font-weight="bold" text-anchor="middle">the widening gap:</text>
+  <text class="az-text" x="560" y="165" font-size="10.5" fill="#7a2c25" font-weight="bold" text-anchor="middle">roughly $176bn understated</text>
+  <text class="az-text" x="560" y="180" font-size="10.5" fill="#7a2c25" font-weight="bold" text-anchor="middle">depreciation, 2026 to 2028</text>
+  <text class="az-text" x="560" y="195" font-size="9" fill="#7a2c25" font-style="italic" text-anchor="middle">(Burry estimate)</text>
+  <rect x="90" y="360" width="14" height="14" fill="#0F7173"/>
+  <text x="112" y="371" font-size="10" fill="#333">Capital spending (top hyperscalers, annual)</text>
+  <rect x="330" y="360" width="14" height="14" fill="#E3A008"/>
+  <text x="352" y="371" font-size="10" fill="#333">Reported depreciation (approximate)</text>
+</svg>
+    </div></div>
+    <figcaption>Capital spending among the largest hyperscalers roughly doubled between 2024 and 2026, while reported depreciation grew far more slowly, a gap that shows up plainly in the four US hyperscalers' own numbers: $433.9 billion of property and equipment purchased against roughly $149 billion of depreciation over the four quarters through March 2026.</figcaption>
+    <button type="button" class="az-replay" aria-label="Replay this diagram's animation"><span class="ico">&#8635;</span> Replay animation</button>
+    <div class="proof">
+      <div class="label">The mechanics</div>
+      <p>Depreciation math is not complicated once you strip the jargon away. Spread a $100 GPU's cost over six years and it costs $16.67 a year on the books. Spread that same $100 GPU over three years, arguably closer to its real economic life given how fast the chips improve, and it costs $33.33 a year, roughly double, eating directly into reported profit with no change whatsoever to the physical hardware sitting in the building. That difference, multiplied across an industry now spending over $600 billion a year on this exact kind of equipment, is where a number like $176 billion comes from.</p>
+    </div>
+  </figure>
+
+  <h2>The number nobody can quite agree on</h2>
+
+  <p>Zoom all the way out and the scale of this becomes almost difficult to hold in your head properly. CreditSights projects the top five hyperscalers alone will spend around $602 billion on capital expenditure in 2026, up from $443 billion the year before and $256 billion the year before that. Other analysts, counting slightly differently, put the 2026 figure closer to $725 billion. Roughly seventy five percent of that, by most estimates, is going directly toward AI infrastructure. Amazon's capital spending this year alone reportedly exceeds the combined capital spending of the entire publicly traded US energy sector, which is the kind of sentence that should probably stop a reader mid paragraph, so take a second with it if you need to.</p>
+
+  <p>To fund a buildout this size, Morgan Stanley and JPMorgan's own analysts estimate the technology sector will need to issue somewhere around $1.5 trillion in new debt over the next three years. PIMCO, separately, estimates combined hyperscaler capital spending will consume roughly ninety four percent of these companies' operating cash flow by 2026 and 2027, which leaves very little room for anything to go even mildly wrong before the math starts requiring either more borrowing or a slower buildout, and slower buildouts are not exactly what these companies have been promising their investors.</p>
+
+  <p>Sitting underneath all of it is OpenAI, the single company whose future revenue is doing more implicit load bearing for this entire structure than any other. OpenAI has reportedly signed infrastructure commitments totaling something like $1.15 trillion across seven major vendors between 2025 and 2035, while the company itself is projected to lose around $14 billion in 2026, nearly triple its 2025 loss, against a hoped for path to $100 billion in annual revenue by 2029. That gap, between commitments already signed and revenue still very much unproven, is the actual fulcrum this whole essay has been circling. Every diagram above, the loop, the SPVs, the private credit wave, the depreciation schedules, is ultimately a bet, made by dozens of different institutions through dozens of different financial instruments, that this one company and a handful of peers will grow into commitments roughly the size of a mid sized country's entire annual economic output.</p>
+
+  <p>There is one more piece of this worth sitting with before moving to the harder question of what happens if it goes wrong, and it has nothing to do with debt at all. It has to do with equity, and with how much of the entire American stock market now rides on this exact same bet succeeding. A small handful of technology companies, the ones building and financing the loop described earlier, account for a share of total US stock market value that would have seemed almost fictional a decade ago. Millions of ordinary retirement accounts, invested passively in index funds that simply buy the whole market in proportion to company size, are consequently far more exposed to the fortunes of this small cluster of companies than most account holders realize, or would choose, if they sat down and picked stocks individually. A slowdown in AI spending would not stay contained to specialist credit funds and rural Louisiana bond prospectuses. It would show up directly in the quarterly statement of nearly anyone with a retirement account, whether or not they have ever typed a prompt into a chatbot in their life.</p>
+
+  <h2>What happens if the picture is wrong</h2>
+
+  <p>Nobody actually knows the answer to that question, including the people whose job it is to know. What people in credit markets can do, and have started doing over the last several months in research notes that sound calm on the surface and considerably less calm once you read the footnotes, is trace the sequence of what would happen if AI demand simply grows more slowly than the current buildout assumes. Not collapses. Just grows more slowly than planned, which given the numbers above is a considerably lower bar to clear than most people appreciate.</p>
+
+  <figure>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 640 560" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+  <defs><marker id="aU" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C4534A"/></marker></defs>
+  <text class="az-text" x="320" y="22" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">If Demand Growth Merely Slows: The Unwind Sequence</text>
+
+  <rect class="az-box" x="130" y="45" width="380" height="58" rx="6" fill="#FCEFC7" stroke="#E3A008" stroke-width="1.6"/>
+  <text class="az-text" x="320" y="70" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#7a5300">AI revenue growth comes in below what the</text>
+  <text class="az-text" x="320" y="87" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#7a5300">buildout and depreciation schedules assumed</text>
+  <path class="az-line" d="M 320 103 L 320 133" stroke="#C4534A" stroke-width="2.4" fill="none" marker-end="url(#aU)"/>
+
+  <rect class="az-box" x="130" y="136" width="380" height="58" rx="6" fill="#FBEAE8" stroke="#C4534A" stroke-width="1.6"/>
+  <text class="az-text" x="320" y="161" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#7a2c25">Hyperscalers shorten useful life assumptions</text>
+  <text class="az-text" x="320" y="178" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#7a2c25">or take one time impairment charges</text>
+  <path class="az-line" d="M 320 194 L 320 224" stroke="#C4534A" stroke-width="2.4" fill="none" marker-end="url(#aU)"/>
+
+  <rect class="az-box" x="130" y="227" width="380" height="58" rx="6" fill="#FBEAE8" stroke="#C4534A" stroke-width="1.6"/>
+  <text class="az-text" x="320" y="252" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#7a2c25">Reported earnings fall; leased data center</text>
+  <text class="az-text" x="320" y="269" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#7a2c25">capacity gets reappraised at a lower value</text>
+  <path class="az-line" d="M 320 285 L 320 315" stroke="#C4534A" stroke-width="2.4" fill="none" marker-end="url(#aU)"/>
+
+  <rect class="az-box" x="90" y="318" width="460" height="58" rx="6" fill="#F3ECFB" stroke="#5B3A9B" stroke-width="1.6"/>
+  <text class="az-text" x="320" y="343" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#3e2569">SPV and joint venture debt gets marked down</text>
+  <text class="az-text" x="320" y="360" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#3e2569">by the private credit funds that hold it</text>
+  <path class="az-line" d="M 320 376 L 320 406" stroke="#C4534A" stroke-width="2.4" fill="none" marker-end="url(#aU)"/>
+
+  <rect class="az-box" x="60" y="409" width="520" height="58" rx="6" fill="#E1F3F0" stroke="#0F7173" stroke-width="1.6"/>
+  <text class="az-text" x="320" y="431" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#0a4d4e">Losses reach pension funds, insurers, and the</text>
+  <text class="az-text" x="320" y="448" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#0a4d4e">retirement savers who ultimately fund private credit</text>
+  <path class="az-line" d="M 320 467 L 320 497" stroke="#C4534A" stroke-width="2.4" fill="none" marker-end="url(#aU)"/>
+
+  <rect class="az-box" x="130" y="500" width="380" height="52" rx="6" fill="#14213D"/>
+  <text class="az-text" x="320" y="524" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#fff">Credit tightens for the next round of builds,</text>
+  <text class="az-text" x="320" y="541" font-size="11.5" text-anchor="middle" font-weight="bold" fill="#fff">right as the industry needs it most</text>
+</svg>
+    </div></div>
+    <figcaption>None of these six steps requires a crash, a scandal, or bad faith from anyone involved. It only requires demand growth landing meaningfully below the trajectory currently priced into depreciation schedules, lease valuations, and private credit marks, all at once, across an industry that has spent the last two years building on the assumption that it wouldn't.</figcaption>
+    <button type="button" class="az-replay" aria-label="Replay this diagram's animation"><span class="ico">&#8635;</span> Replay animation</button>
+    <div class="proof">
+      <div class="label">The mechanics</div>
+      <p>The specific danger private credit introduces here is opacity rather than size. Bank loans get marked to market constantly and publicly. Private credit loans get marked by the fund holding them, on a schedule the fund controls, which means a slowdown can sit quietly on private books for months, understated, before it fully surfaces, the exact dynamic that made the run up to 2008 so much harder to see coming than it looks in hindsight.</p>
+    </div>
+  </figure>
+
+  <p>What makes 2026 different from 2008, at least so far, is where the leverage sits. The last crisis ran through banks that were themselves leveraged roughly thirty to one, borrowing short to lend long, vulnerable to a bank run in the most literal sense of the phrase. This time, a large share of the risk sits inside private credit funds and insurance companies that generally borrow less against their assets and don't face the same overnight withdrawal risk a deposit taking bank does. That is a genuine structural difference, and it is the argument regulators and bank executives reach for whenever this comparison comes up. It is also not quite the comfort it sounds like, because it swaps one kind of fragility for another: less risk of an overnight bank run, replaced by more risk that nobody outside the fund itself can see the damage clearly until it is already done.</p>
+
+  <p>Regulators are watching, in the specific, understated way regulators watch things before they're prepared to say so publicly. Federal Reserve officials have flagged AI related capital expenditure concentration as a topic worth monitoring in recent financial stability commentary, without yet declaring it a crisis in waiting, which is roughly the same tone regulators took toward subprime mortgages in 2006, for whatever that historical footnote is worth. The honest, unsatisfying truth is that nobody currently sitting inside the Fed, the Treasury, or any major bank's risk committee can tell you with confidence whether the private credit exposure sitting behind this buildout is more like the mortgage backed securities of 2007, dangerously interconnected and improperly priced, or more like the fiber optic cable laid during the dot com bust, genuinely overbuilt in the short run but quietly useful for the next two decades once the excess capacity got absorbed. Both stories are available. Both have serious, credentialed people telling them. That is usually what it looks like in the middle of one of these things, before anyone gets to find out which story turns out to be true.</p>
+
+  <p>Wall Street, to its credit, is not exactly asleep at the wheel here. Strategists surveyed by Axios heading into 2026 described the mood less as fear and more as a scramble for insurance, buying downside protection just in case, even while staying invested, because as one derivatives strategist put it, there is real career risk in being the analyst who called the top too early and missed the last leg of the rally. That single sentence probably tells you more about how bubbles actually behave in real time than any amount of retrospective analysis of 2008 or 1999 ever could. Almost nobody thinks the party is definitely over. Almost everybody is quietly buying an umbrella anyway.</p>
+
+  <p>So where does that leave things, honestly? Somewhere uncomfortable, and probably somewhere that stays uncomfortable for a while. The compute is real. The demand for it, at least some meaningful amount of it, is real too. What's genuinely uncertain is whether it is anywhere near $1.15 trillion worth of real, whether the chips will still be earning their keep on the schedule the accountants have assumed, and whether the small number of firms now holding the other side of that bet, the ones with your pension fund's name quietly attached to theirs, have actually priced that uncertainty in, or just decided, as an entire industry, that asking the question too loudly was bad for business.</p>
+
+  <p>Go back to Richland Parish for a moment, because it's worth picturing plainly rather than abstractly. Somewhere on that old soybean ground, cranes are lifting steel into place on a schedule that assumes, with total confidence, that five years from now the world will still want what Hyperion is being built to sell. Maybe it will. The historical base rate for genuinely transformative technologies eventually finding their market, given enough time, is actually not bad, and fiber laid in 1999 that looked absurdly excessive at the time carried most of the internet traffic of the following two decades. But base rates are cold comfort to the specific lender holding a specific bond on a specific building if the timeline runs long, and nobody involved in financing Hyperion, or Abilene, or any of the dozen other sites like them, gets to find out whether they picked the right decade for another few years yet.</p>
+
+  <p>In the meantime the cranes keep lifting, the bond desks keep pricing, the depreciation schedules keep assuming six years for chips that might realistically last three, and somewhere in Maryland or Maine or Washington, DC, a household that has never once thought about Nvidia's product cycle opens an electricity bill that has quietly, mechanically, become part of the same story. That's the thing about a loop. You don't have to be inside it to be standing on it.</p>
+
+  <div class="end-mark">&#8226; &#8226; &#8226;</div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var svgs = Array.prototype.slice.call(document.querySelectorAll(".chart-scroll svg"));
+  var replayBtns = Array.prototype.slice.call(document.querySelectorAll(".az-replay"));
+
+  if (!svgs.length || reduceMotion || !("IntersectionObserver" in window)) {
+    // graceful degradation: diagrams render fully visible, statically;
+    // a replay control with nothing to replay would only confuse, so hide it
+    replayBtns.forEach(function (b) { b.style.display = "none"; });
+    return;
+  }
+
+  // Arm each diagram: mark it so CSS can hide its pieces, and precisely
+  // measure every "drawn line" path/line so it can be revealed stroke by
+  // stroke with no dash-pattern guessing (avoids any stutter or overshoot).
+  svgs.forEach(function (svg) {
+    svg.classList.add("az-armed");
+    var lines = svg.querySelectorAll(".az-line");
+    lines.forEach(function (el) {
+      try {
+        var len = el.getTotalLength();
+        el.style.strokeDasharray = String(len);
+        el.style.strokeDashoffset = String(len);
+        el.style.transition = "none";
+      } catch (e) { /* if measurement fails, leave the line fully visible */ }
+    });
+  });
+
+  // Paced for following along, not just for effect: each element waits its
+  // turn (capped so dense diagrams don't crawl) at a "read the last step"
+  // pace rather than a quick flash.
+  function reveal(svg) {
+    if (svg.__azRevealed) return;
+    svg.__azRevealed = true;
+
+    var items = svg.querySelectorAll(".az-box, .az-text, .az-bar, .az-pop, .az-line");
+    var step = items.length ? Math.min(0.09, 2.4 / items.length) : 0;
+
+    items.forEach(function (el, i) {
+      var delay = (i * step).toFixed(3) + "s";
+      if (el.classList.contains("az-line")) {
+        el.style.transition = "stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1) " + delay;
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { el.style.strokeDashoffset = "0"; });
+        });
+      } else {
+        el.style.transitionDelay = delay;
+      }
+    });
+
+    requestAnimationFrame(function () { svg.classList.add("az-in"); });
+  }
+
+  // Snaps every piece back to its hidden starting state, instantly and
+  // without any backward animation, so a replay always starts clean.
+  function hide(svg) {
+    svg.classList.remove("az-in");
+    var items = svg.querySelectorAll(".az-box, .az-text, .az-bar, .az-pop, .az-line");
+    items.forEach(function (el) {
+      el.style.transitionDelay = "";
+      if (el.classList.contains("az-line")) {
+        el.style.transition = "none";
+        var full = el.style.strokeDasharray;
+        if (full) { el.style.strokeDashoffset = full; }
+      }
+    });
+    void svg.getBoundingClientRect(); // flush the reset before replaying
+  }
+
+  function replay(svg) {
+    hide(svg);
+    svg.__azRevealed = false;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { reveal(svg); });
+    });
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        reveal(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+
+  svgs.forEach(function (svg) { observer.observe(svg); });
+
+  replayBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var figure = btn.closest("figure");
+      var svg = figure && figure.querySelector(".chart-scroll svg");
+      if (svg) { replay(svg); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
