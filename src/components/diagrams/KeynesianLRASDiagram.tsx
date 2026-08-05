@@ -499,14 +499,14 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
 
         {/* Dashed lines from E₂ to axes */}
         <motion.line 
-          x1={xScale(55)} y1={yScale(55)} x2={xScale(55)} y2="350" 
+          x1={xScale(55)} y1={yScale(58.5)} x2={xScale(55)} y2="350" 
           stroke={adCurve2} strokeWidth="1" strokeDasharray="4,3"
           initial={{ pathLength: 0 }}
           animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
           transition={{ delay: 3.7, duration: 0.4 }}
         />
         <motion.line 
-          x1="80" y1={yScale(55)} x2={xScale(55)} y2={yScale(55)} 
+          x1="80" y1={yScale(58.5)} x2={xScale(55)} y2={yScale(58.5)} 
           stroke={adCurve2} strokeWidth="1" strokeDasharray="4,3"
           initial={{ pathLength: 0 }}
           animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
