@@ -341,7 +341,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         {/* E₂: AD2 intersects curved LRAS at approximately Q=55, P=55 */}
         <motion.circle 
           cx={xScale(55)} 
-          cy={yScale(55)} 
+          cy={yScale(58.5)} 
           r="6" 
           fill={adCurve2}
           stroke="white"
@@ -352,7 +352,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         />
         <motion.text 
           x={xScale(55) + 10} 
-          y={yScale(55) - 8} 
+          y={yScale(58.5) - 8} 
           fill={adCurve2} 
           fontSize="12" 
           fontWeight="600"
@@ -366,7 +366,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         {/* E₃: AD3 intersects vertical LRAS at Q=75 (Yf) */}
         <motion.circle 
           cx={xScale(75)} 
-          cy={yScale(40)} 
+          cy={yScale(52)} 
           r="6" 
           fill={adCurve3}
           stroke="white"
@@ -456,7 +456,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         </motion.text>
         <motion.text 
           x="72" 
-          y={yScale(55) + 4} 
+          y={yScale(58.5) + 4} 
           fill={adCurve2} 
           fontSize="11" 
           textAnchor="end"
@@ -469,7 +469,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         </motion.text>
         <motion.text 
           x="72" 
-          y={yScale(40) + 4} 
+          y={yScale(52) + 4} 
           fill={adCurve3} 
           fontSize="11" 
           textAnchor="end"

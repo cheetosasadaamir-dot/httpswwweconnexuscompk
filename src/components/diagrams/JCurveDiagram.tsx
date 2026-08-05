@@ -119,7 +119,7 @@ const JCurveDiagram = () => {
 
         {/* J-Curve Path */}
         <motion.path
-          d={`M ${margin.left + 60} ${baselineY - 15} 
+          d={`M ${margin.left + 60} ${baselineY - 2} 
               Q ${margin.left + 90} ${baselineY + 20}, ${margin.left + 110} ${baselineY + 55}
               Q ${margin.left + 140} ${baselineY + 75}, ${margin.left + 180} ${baselineY + 55}
               Q ${margin.left + 250} ${baselineY}, ${margin.left + chartWidth - 20} ${baselineY - 70}`}
@@ -135,7 +135,7 @@ const JCurveDiagram = () => {
         {/* Starting point */}
         <motion.circle
           cx={margin.left + 60}
-          cy={baselineY - 15}
+          cy={baselineY - 2}
           r="5"
           fill="hsl(var(--foreground))"
           initial={{ scale: 0 }}

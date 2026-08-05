@@ -61,7 +61,7 @@ const DemandPullInflationDiagram = () => {
 
   // Equilibrium points
   const eq1 = { x: 55, y: 45 };
-  const eq2 = { x: 68, y: 60 };
+  const eq2 = { x: 61.5, y: 52.9 };
 
   const pathFromPoints = (points: { x: number; y: number }[]) => {
     if (points.length === 0) return '';
