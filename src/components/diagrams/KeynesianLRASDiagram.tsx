@@ -377,7 +377,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
         />
         <motion.text 
           x={xScale(75) - 18} 
-          y={yScale(40) - 10} 
+          y={yScale(52) - 10} 
           fill={adCurve3} 
           fontSize="12" 
           fontWeight="600"
@@ -515,7 +515,7 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
 
         {/* Dashed lines from E₃ to axes */}
         <motion.line 
-          x1="80" y1={yScale(40)} x2={xScale(75)} y2={yScale(40)} 
+          x1="80" y1={yScale(52)} x2={xScale(75)} y2={yScale(52)} 
           stroke={adCurve3} strokeWidth="1" strokeDasharray="4,3"
           initial={{ pathLength: 0 }}
           animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
