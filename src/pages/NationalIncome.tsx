@@ -5,6 +5,7 @@ import ExamTipBox from '@/components/ExamTipBox';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ContentSection from '@/components/ContentSection';
 import CircularFlowDiagram from '@/components/diagrams/CircularFlowDiagram';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const NationalIncome = () => {
   return (
@@ -245,6 +246,7 @@ const NationalIncome = () => {
           </div>
         </ContentSection>
       </div>
+      <ChapterEnrichment id="measuring-performance" />
     </Layout>
   );
 };

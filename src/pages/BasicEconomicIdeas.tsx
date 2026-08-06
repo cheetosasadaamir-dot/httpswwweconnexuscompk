@@ -13,6 +13,7 @@ import PriceMechanismFlowDiagram from '@/components/diagrams/PriceMechanismFlowD
 import PositiveNormativePPCDiagram from '@/components/diagrams/PositiveNormativePPCDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const BasicEconomicIdeas = () => {
   return (
@@ -367,6 +368,7 @@ const BasicEconomicIdeas = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="basic-economic-concepts" />
     </Layout>
   );
 };

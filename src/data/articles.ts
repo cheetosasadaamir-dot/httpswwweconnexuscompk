@@ -14,6 +14,16 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: 'pakistan-banking-dark-side',
+    file: '/articles/pakistan-banking-dark-side.html',
+    title: "Banking on Collapse: The Dark Side of Pakistan's Bank Profits",
+    summary:
+      'Record bank profits alongside stagnant private-sector credit — how sovereign lending, high policy rates and crowding out reshaped Pakistan’s financial system.',
+    category: 'Finance',
+    readTime: '16 min read',
+    date: 'Sep 2026',
+  },
+  {
     slug: 'tariff-controversy-2026',
     file: '/articles/tariff-controversy-2026.html',
     title: 'The 2026 Tariff Controversy: A Complete, Balanced Guide',

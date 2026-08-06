@@ -10,6 +10,7 @@ import LaborMarketDiagram from '@/components/diagrams/LaborMarketDiagram';
 import MonopsonyLaborDiagram from '@/components/diagrams/MonopsonyLaborDiagram';
 import WageDifferentialsDiagram from '@/components/diagrams/WageDifferentialsDiagram';
 import { MRPTheoryAnalyticalDepth, MRPTheoryEvaluativeJudgement } from '@/components/a2-depth/LaborMarketDepthSections';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const LaborMarket = () => {
   return (
@@ -905,6 +906,7 @@ const LaborMarket = () => {
           </Link>
         </nav>
       </div>
+      <ChapterEnrichment id="labour-market" />
     </Layout>
   );
 };

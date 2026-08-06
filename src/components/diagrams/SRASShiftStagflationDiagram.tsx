@@ -62,7 +62,7 @@ export const SRASShiftStagflationDiagram = () => {
 
         {/* AD Curve */}
         <motion.path
-          d={`M ${xScale(10)} ${yScale(85)} Q ${xScale(35)} ${yScale(65)}, ${xScale(55)} ${yScale(50)} Q ${xScale(70)} ${yScale(40)}, ${xScale(85)} ${yScale(30)}`}
+          d={`M ${xScale(10)} ${yScale(85)} Q ${xScale(35)} ${yScale(63)}, ${xScale(55)} ${yScale(50)} Q ${xScale(70)} ${yScale(40)}, ${xScale(85)} ${yScale(30)}`}
           fill="none" stroke={adColor} strokeWidth="3.5"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
@@ -134,7 +134,7 @@ export const SRASShiftStagflationDiagram = () => {
 
         {/* Shift Arrow (leftward/upward) */}
         <motion.path
-          d={`M ${xScale(55)} ${yScale(58)} Q ${xScale(45)} ${yScale(68)}, ${xScale(40)} ${yScale(58)}`}
+          d={`M ${xScale(55)} ${yScale(58)} Q ${xScale(45)} ${yScale(68)}, ${xScale(38)} ${yScale(58)}`}
           fill="none" stroke={sras2Color} strokeWidth="2.5"
           markerEnd="url(#stagArrowRed)"
           initial={{ pathLength: 0, opacity: 0 }}
@@ -144,7 +144,7 @@ export const SRASShiftStagflationDiagram = () => {
 
         {/* New SRAS Curve (SRAS₂) - shifted left */}
         <motion.path
-          d={`M ${xScale(5)} ${yScale(35)} Q ${xScale(25)} ${yScale(50)}, ${xScale(40)} ${yScale(65)} Q ${xScale(55)} ${yScale(82)}, ${xScale(65)} ${yScale(95)}`}
+          d={`M ${xScale(5)} ${yScale(35)} Q ${xScale(25)} ${yScale(50)}, ${xScale(38)} ${yScale(63)} Q ${xScale(55)} ${yScale(82)}, ${xScale(65)} ${yScale(95)}`}
           fill="none" stroke={sras2Color} strokeWidth="3.5"
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
@@ -162,14 +162,14 @@ export const SRASShiftStagflationDiagram = () => {
 
         {/* New Equilibrium E₂ */}
         <motion.circle
-          cx={xScale(40)} cy={yScale(65)} r="7"
+          cx={xScale(38)} cy={yScale(63)} r="7"
           fill="white" stroke={sras2Color} strokeWidth="3"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 2.5, type: "spring" }}
         />
         <motion.text 
-          x={xScale(40) - 18} y={yScale(65) - 10} 
+          x={xScale(38) - 18} y={yScale(63) - 10} 
           fill="white" fontSize="13" fontWeight="bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -180,21 +180,21 @@ export const SRASShiftStagflationDiagram = () => {
 
         {/* New dashed lines */}
         <motion.line 
-          x1={xScale(40)} y1={yScale(65)} x2={xScale(40)} y2={yScale(0)} 
+          x1={xScale(38)} y1={yScale(63)} x2={xScale(38)} y2={yScale(0)} 
           stroke={sras2Color} strokeOpacity="0.6" strokeWidth="1.5" strokeDasharray="4,4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6 }}
         />
         <motion.line 
-          x1={xScale(40)} y1={yScale(65)} x2={margin.left} y2={yScale(65)} 
+          x1={xScale(38)} y1={yScale(63)} x2={margin.left} y2={yScale(63)} 
           stroke={sras2Color} strokeOpacity="0.6" strokeWidth="1.5" strokeDasharray="4,4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6 }}
         />
         <motion.text 
-          x={xScale(40)} y={yScale(0) + 16} textAnchor="middle" 
+          x={xScale(38)} y={yScale(0) + 16} textAnchor="middle" 
           fill={sras2Color} fontSize="11" fontWeight="bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -203,7 +203,7 @@ export const SRASShiftStagflationDiagram = () => {
           Y₂
         </motion.text>
         <motion.text 
-          x={margin.left - 12} y={yScale(65) + 4} textAnchor="middle" 
+          x={margin.left - 12} y={yScale(63) + 4} textAnchor="middle" 
           fill={sras2Color} fontSize="11" fontWeight="bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -219,30 +219,30 @@ export const SRASShiftStagflationDiagram = () => {
           transition={{ delay: 3 }}
         >
           {/* ΔY arrow (negative) */}
-          <line x1={xScale(55) - 3} y1={yScale(3)} x2={xScale(40) + 3} y2={yScale(3)} 
+          <line x1={xScale(55) - 3} y1={yScale(3)} x2={xScale(38) + 3} y2={yScale(3)} 
                 stroke={sras2Color} strokeWidth="2" markerEnd="url(#stagArrowRed)" />
-          <text x={(xScale(40) + xScale(55)) / 2} y={yScale(8)} textAnchor="middle" fill={sras2Color} fontSize="10">
+          <text x={(xScale(38) + xScale(55)) / 2} y={yScale(8)} textAnchor="middle" fill={sras2Color} fontSize="10">
             ΔY {'<'} 0 (Stagnation)
           </text>
 
           {/* ΔP arrow (positive) */}
-          <line x1={margin.left + 8} y1={yScale(50) + 3} x2={margin.left + 8} y2={yScale(65) - 3} 
+          <line x1={margin.left + 8} y1={yScale(50) + 3} x2={margin.left + 8} y2={yScale(63) - 3} 
                 stroke={sras2Color} strokeWidth="2" markerEnd="url(#stagArrowRed)" />
-          <text x={margin.left + 30} y={(yScale(50) + yScale(65)) / 2 + 3} fill={sras2Color} fontSize="10">
+          <text x={margin.left + 30} y={(yScale(50) + yScale(63)) / 2 + 3} fill={sras2Color} fontSize="10">
             ΔP {'>'} 0
           </text>
         </motion.g>
 
         {/* STAGFLATION box */}
         <motion.rect
-          x={(xScale(40) + xScale(55)) / 2 - 55} y={yScale(55) - 15} width="110" height="30" rx="6"
+          x={(xScale(38) + xScale(55)) / 2 - 55} y={yScale(55) - 15} width="110" height="30" rx="6"
           fill="rgba(239, 68, 68, 0.25)" stroke="#EF4444" strokeWidth="2"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 3.2, type: "spring" }}
         />
         <motion.text 
-          x={(xScale(40) + xScale(55)) / 2} y={yScale(55) + 5} 
+          x={(xScale(38) + xScale(55)) / 2} y={yScale(55) + 5} 
           textAnchor="middle" fill="#EF4444" fontSize="14" fontWeight="bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

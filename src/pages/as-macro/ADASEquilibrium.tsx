@@ -24,6 +24,7 @@ import ClassicalADInflationDiagram from '@/components/diagrams/ClassicalADInflat
 import ADASEquilibriumSection from '@/components/diagrams/ADASEquilibriumSection';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const ADASEquilibrium = () => {
   return (
@@ -1106,6 +1107,7 @@ const ADASEquilibrium = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="ad-as" />
     </Layout>
   );
 };

@@ -10,6 +10,7 @@ import ActualPotentialGrowthDiagram from '@/components/diagrams/ActualPotentialG
 import BusinessCycleDiagram from '@/components/diagrams/BusinessCycleDiagram';
 import GiniLorenzDiagram from '@/components/diagrams/GiniLorenzDiagram';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const growthTakeaways = [
   "Actual Growth: increase in real GDP (movement towards PPF); Potential Growth: increase in productive capacity (outward PPF shift / rightward LRAS shift)",
@@ -691,6 +692,7 @@ const EconomicGrowth = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="national-income-growth" />
     </Layout>
   );
 };

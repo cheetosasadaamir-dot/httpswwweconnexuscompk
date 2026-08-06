@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Banking on Collapse: The Dark Side of Pakistan's Bank Profits | EconNexus</title>
+<style>
+  :root { --text:#111111; --muted:#4a4a4a; --rule:#111111; --bg:#ffffff; --panel:#f7f7f7; --teal:#0F7173; --teal-soft:#E1F3F0; --amber:#E3A008; --amber-soft:#FCEFC7; --red:#C4534A; --red-soft:#F7E4E2; --navy:#14213D; --green:#1E6B3E; }
+  * { box-sizing: border-box; -webkit-text-size-adjust:100%; }
+  html { overflow-x:hidden; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: Georgia, 'Times New Roman', serif; line-height:1.72; overflow-x:hidden; }
+  .wrapper { max-width:840px; margin:0 auto; padding:44px 18px 90px; }
+  .kicker { font-family: Arial, Helvetica, sans-serif; text-transform:uppercase; letter-spacing:1.4px; font-size:11.5px; color:var(--muted); margin-bottom:12px; }
+  h1 { font-size:clamp(23px,6.4vw,34px); line-height:1.22; margin:0 0 12px; font-weight:700; }
+  .subtitle { font-size:clamp(15px,3.8vw,18px); color:var(--muted); font-style:italic; margin:0 0 20px; }
+  .meta { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:10px 0; margin-bottom:30px; display:flex; flex-wrap:wrap; gap:6px 16px; }
+  h2 { font-size:clamp(18px,4.6vw,22px); margin:44px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
+  h3 { font-size:16px; margin:24px 0 10px; }
+  p { margin:0 0 16px; font-size:clamp(15px,4vw,16.5px); }
+  .lead { font-size:clamp(16px,4.3vw,19px); margin-bottom:22px; }
+  .byline { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; color:var(--muted); margin:0 0 26px; }
+  .panel { background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:18px 20px; margin:22px 0; font-family: Arial, Helvetica, sans-serif; }
+  .panel h3 { margin-top:0; font-family: Georgia, serif; }
+  .panel ul, .panel ol { margin:0; padding-left:20px; }
+  .panel li { margin-bottom:8px; font-size:14.5px; }
+  .chart-block { position:relative; margin:28px 0; border:1px solid #d9d9d9; border-radius:8px; padding:16px 12px 8px; background:#ffffff; box-shadow:0 2px 10px rgba(20,33,61,0.04); }
+  .chart-block svg { width:100%; height:auto; display:block; }
+  .chart-caption { font-family: Arial, Helvetica, sans-serif; font-size:12px; color:var(--muted); margin:10px 2px 0; padding-top:8px; border-top:1px solid #eaeaea; }
+  .live-tag { display:inline-flex; align-items:center; gap:6px; font-family: Arial, Helvetica, sans-serif; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--teal); margin-bottom:6px; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 1.6s infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+  .replay-btn { position:absolute; top:12px; right:12px; z-index:5; background:#fff; border:1px solid #d9d9d9; border-radius:20px; padding:10px 16px; font-family: Arial, Helvetica, sans-serif; font-size:12px; font-weight:700; color:var(--teal); cursor:pointer; display:inline-flex; align-items:center; gap:6px; min-height:44px; min-width:44px; touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; }
+  .replay-btn:hover, .replay-btn:active { background:var(--teal-soft); border-color:var(--teal); }
+  .replay-icon { display:inline-block; font-size:13px; transition:transform 0.6s ease; }
+  .replay-btn.spinning .replay-icon { transform:rotate(360deg); }
+  @media (max-width:820px) { .replay-btn { position:static; margin-bottom:10px; width:100%; justify-content:center; } }
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:12px; margin:22px 0; }
+  .stat-box { border:1px solid #d9d9d9; border-radius:4px; padding:14px 10px; text-align:center; font-family: Arial, Helvetica, sans-serif; }
+  .stat-box .value { font-size:clamp(17px,4.6vw,21px); font-weight:700; color:var(--teal); }
+  .stat-box.red .value { color:var(--red); }
+  .stat-box .label { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
+  .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:18px 0; }
+  table { width:100%; min-width:480px; border-collapse:collapse; font-family: Arial, Helvetica, sans-serif; font-size:13px; }
+  th, td { border:1px solid #d9d9d9; padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font-weight:700; }
+  .glossary dt { font-weight:700; margin-top:14px; font-family: Arial, Helvetica, sans-serif; font-size:14.5px; }
+  .glossary dd { margin:4px 0 0; color:var(--muted); font-size:14px; }
+  .footer-note { margin-top:46px; padding-top:18px; border-top:1px solid var(--rule); font-family: Arial, Helvetica, sans-serif; font-size:12px; color:var(--muted); }
+  .discussion ol { padding-left:20px; }
+  .discussion li { margin-bottom:9px; font-size:15px; }
+  .toc { font-family: Arial, Helvetica, sans-serif; font-size:13.5px; background:var(--panel); border:1px solid #d9d9d9; border-radius:4px; padding:18px 20px; margin:26px 0; }
+  .toc h3 { margin-top:0; font-family: Georgia, serif; }
+  .toc ol { margin:0; padding-left:19px; columns:2; -webkit-columns:2; column-gap:22px; }
+  .toc li { margin-bottom:6px; break-inside:avoid; }
+  @media (max-width:600px) { .toc ol { columns:1; -webkit-columns:1; } .wrapper { padding:28px 14px 70px; } .panel { padding:15px; } }
+  .accuracy-box { background:var(--teal-soft); border-left:4px solid var(--teal); border-radius:4px; padding:12px 14px; margin:14px 0; font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#0a4d4e; }
+  .side-box { background:var(--red-soft); border-left:4px solid var(--red); border-radius:4px; padding:12px 14px; margin:14px 0; font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#7a2a22; }
+  .fair-box { background:var(--amber-soft); border-left:4px solid var(--amber); border-radius:4px; padding:12px 14px; margin:14px 0; font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#5c4300; }
+  .method-box { background:#eef1f7; border-left:4px solid var(--navy); border-radius:4px; padding:12px 14px; margin:14px 0; font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#14213D; }
+  a { color:var(--teal); }
+  .chart-scroll { overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y; border-radius:6px; }
+  .chart-scroll > div { min-width:600px; }
+  .roadmap-scroll > div { min-width:1050px; }
+  .swipe-hint { display:none; font-size:11.5px; color:var(--muted); text-align:right; font-style:italic; margin-bottom:6px; font-family: Arial, Helvetica, sans-serif; }
+  @media (max-width:820px) { .swipe-hint { display:block; } }
+  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } .replay-icon { transition: none !important; } }
+  .stage-bar { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px; font-family: Arial, Helvetica, sans-serif; }
+  .stage-btn { flex:1 1 auto; min-width:120px; min-height:44px; background:#fff; border:1.5px solid #d9d9d9; border-radius:20px; padding:10px 12px; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; text-align:center; transition:all 0.2s ease; touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; }
+  .stage-btn:hover, .stage-btn:active { border-color:var(--teal); color:var(--teal); }
+  .stage-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+  .toggle-bar { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; font-family: Arial, Helvetica, sans-serif; }
+  .toggle-btn { flex:1 1 auto; min-width:130px; min-height:46px; background:#fff; border:2px solid #d9d9d9; border-radius:8px; padding:11px 10px; font-size:12.5px; font-weight:700; color:var(--muted); cursor:pointer; text-align:center; transition:all .2s ease; touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; }
+  .toggle-btn.active { background:var(--teal-soft); border-color:var(--teal); color:#0a4d4e; }
+  html:not(.js-ready) .chart-block svg [opacity="0"] { opacity:1 !important; }
+  html:not(.js-ready) .chart-block svg [r="0"] { r:4.5; }
+  .region-hover { cursor:pointer; transition:opacity .15s ease; touch-action:manipulation; }
+  .region-hover:hover, .region-hover:active { opacity:0.75 !important; }
+  .info-panel { font-family: Arial, Helvetica, sans-serif; font-size:12.5px; background:var(--panel); border:1px dashed #c9c9c9; border-radius:6px; padding:10px 12px; margin:10px 0 0; color:var(--muted); min-height:38px; }
+  .info-panel b { color:var(--text); }
+  .chip-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+  .chip { font-family: Arial, Helvetica, sans-serif; font-size:11.5px; font-weight:700; border-radius:16px; padding:8px 12px; min-height:38px; cursor:pointer; border:1.5px solid #d9d9d9; background:#fff; color:var(--muted); touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; }
+  .chip:hover, .chip:active { border-color:var(--teal); color:var(--teal); }
+</style>
+</head>
+<body>
+<script>try { document.documentElement.classList.add('js-ready'); } catch (e) {}</script>
+<div class="wrapper">
+
+  <div class="kicker">Investigative Economics &middot; South Asia &middot; Banking &amp; Public Debt</div>
+  <h1>Banking on Collapse: The Dark Side of Pakistan's Bank Profits</h1>
+  <p class="subtitle">Pakistan's economy is being told a recovery story, rising GDP, falling inflation, praise from the IMF. Its banks are living a different story entirely: record profits, built almost exclusively on lending to the same government whose fragility created the crisis in the first place. This is how that machine actually works, with the paper trail, and precision-built charts drawn directly from that paper trail, to prove it.</p>
+  <div class="byline">Investigative Desk &middot; EconNexus &middot; Reporting drawn from State Bank of Pakistan data, court records, and financial press across 2023&ndash;2026</div>
+
+  <div class="meta">
+    <span>EconNexus Investigation</span>
+    <span>Topic: Banking, Sovereign Debt, and Fiscal Extraction</span>
+    <span>Reading time: ~65 minutes &middot; 7 interactive, data-scaled diagrams</span>
+    <span>Sources: State Bank of Pakistan, Dawn, The Express Tribune, Profit by Pakistan Today, Business Recorder, IMF, World Bank, IHC/SHC/FSC court records</span>
+    <span>Updated: August 2026</span>
+  </div>
+
+  <p class="lead">Here is a sentence that should not be able to make sense, and yet, in Pakistan, it does: in 2025, the country's banks posted their most profitable year on record, Rs671 billion after tax, while the same year, unemployment remained elevated, private businesses got one of the smallest shares of bank credit in over a decade, and the government spent nearly half of everything it collected in taxes just to pay interest on what it had already borrowed, largely from those same banks. This isn't a coincidence and it isn't a mystery. It's a business model, and it has a paper trail: State Bank data, court filings, and tax records that, read together, describe a financial system that has quietly stopped financing the economy and started financing the state's own debt, at a markup, with taxpayers picking up both sides of the bill.</p>
+
+  <div class="method-box"><strong>A note on the charts in this piece:</strong> every diagram below is rebuilt from scaled, verified data points rather than drawn freehand. Line charts sit on true numeric axes with gridlines; timelines are spaced either to real elapsed time or explicitly flagged as sequence-only when the underlying dates span decades too unevenly to plot to scale. Where a chart is illustrative rather than a single published series (Figure 2), that is stated plainly in its caption. Tap "Replay" on any chart to re-run its animation, and swipe horizontally on wide diagrams to see the full timeline.</div>
+
+  <div class="toc">
+    <h3>In this investigation</h3>
+    <ol>
+      <li>The headline nobody reconciles</li>
+      <li>How a Pakistani bank actually makes money now</li>
+      <li>The great divergence: profits up, credit down</li>
+      <li>The windfall: how banks made Rs110bn from a currency collapse</li>
+      <li>Who really pays the bill</li>
+      <li>The defaulters nobody names</li>
+      <li>The IMF, the debt trap, and who benefits from the cycle</li>
+      <li>Named and shamed: bank-by-bank profit ledger</li>
+      <li>The counter-argument: what banks and regulators say</li>
+      <li>2026 update: the rate-cut whiplash and the credit tug-of-war</li>
+      <li>The deadline hanging over the entire model: interest-free banking by 2028</li>
+      <li>Winners and losers</li>
+      <li>What real reform would require</li>
+      <li>Key takeaways, glossary &amp; sources</li>
+    </ol>
+  </div>
+
+  <h2>1. The headline nobody reconciles</h2>
+  <p>Two headlines ran in Pakistani business pages within months of each other in 2025 and 2026, and almost nobody put them side by side. The first: Pakistan's banking sector was "one of the country's most profitable industries," with listed banks posting cumulative after-tax profits of Rs671 billion for 2025, an 11% increase on the year before, according to Dawn's corporate reporting and a Topline Securities research report. Return on equity across the sector hit 19.8%, with return on assets at 1.2% and a capital adequacy ratio of 20.8%, nearly double the regulatory minimum, a number most industrial companies anywhere in the world would consider extraordinary. The second: private-sector lending, the credit that actually funds factories, shops, farms, and jobs, contracted sharply in the first half of 2025, pushing the ratio of loans to deposits toward its lowest level in over a decade.</p>
+  <p>Put plainly, Pakistan's banks had their best year in memory in a year when they lent less, proportionally, to the actual economy than at almost any point in the last decade. That is only possible if the money went somewhere else. It did: into the government's own debt. By December 2025, scheduled banks' holdings of government securities had reached Rs38.25 trillion, up from Rs35.85 trillion in September and Rs30 trillion at the start of the same year, an increase of over Rs8 trillion in twelve months, faster than the private-credit market grew in the entire preceding decade.</p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="value">Rs671bn</div><div class="label">Pakistani banks' combined after-tax profit, 2025, up 11% year-on-year</div></div>
+    <div class="stat-box"><div class="value">19.8%</div><div class="label">Sector-wide return on equity by December 2025</div></div>
+    <div class="stat-box red"><div class="value">&minus;16.4%</div><div class="label">Contraction in private-sector lending, first half of 2025</div></div>
+    <div class="stat-box red"><div class="value">35.3%</div><div class="label">Advances-to-deposit ratio, June 2025 &mdash; the lowest in over a decade</div></div>
+  </div>
+
+  <h2 id="hdr-mechanics">2. How a Pakistani bank actually makes money now</h2>
+  <p>Ask a banker in Karachi how the model works and, off the record, several have said versions of the same thing: why lend to a struggling textile exporter, chase collateral, provision for default, and staff a credit department to assess risk, when you can hand the same rupee to the Ministry of Finance, take a government-guaranteed 10 to 22 percent depending on the year, and never have to think about it again? By December 2024, banks' investments in government paper, treasury bills and Pakistan Investment Bonds, had reached Rs26 trillion, financing 57.6% of the central government's entire domestic debt. By December 2025, that figure had grown to Rs38.25 trillion. As of March 2026, private-sector credit accounted for just 22% of total banking assets, and by June 2026 the sector-wide investment-to-deposit ratio, the mirror image of that same imbalance, stood at 104.2%, meaning banks were, in aggregate, invested in securities worth more than their entire deposit base.</p>
+
+    <div class="chart-block" id="f1Block">
+    <div class="live-tag"><span class="live-dot"></span>Bars build proportionally to scale, tap either segment for detail</div>
+    <button class="replay-btn" onclick="replay('f1', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 940 460" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+<text x="470" y="24" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">Where a Rupee of Bank Assets Actually Goes</text>
+<text x="470" y="40" font-size="10" fill="#4a4a4a" text-anchor="middle">Row 1: full allocation, March 2026. Row 2: zoom into the private-credit slice only.</text>
+<line x1="150.00" y1="120" x2="150.00" y2="194" stroke="#eee" stroke-width="1"/>
+<text x="150.00" y="114" font-size="9" fill="#9a9a9a" text-anchor="middle">0%</text>
+<line x1="310.00" y1="120" x2="310.00" y2="194" stroke="#eee" stroke-width="1"/>
+<text x="310.00" y="114" font-size="9" fill="#9a9a9a" text-anchor="middle">25%</text>
+<line x1="470.00" y1="120" x2="470.00" y2="194" stroke="#eee" stroke-width="1"/>
+<text x="470.00" y="114" font-size="9" fill="#9a9a9a" text-anchor="middle">50%</text>
+<line x1="630.00" y1="120" x2="630.00" y2="194" stroke="#eee" stroke-width="1"/>
+<text x="630.00" y="114" font-size="9" fill="#9a9a9a" text-anchor="middle">75%</text>
+<line x1="790.00" y1="120" x2="790.00" y2="194" stroke="#eee" stroke-width="1"/>
+<text x="790.00" y="114" font-size="9" fill="#9a9a9a" text-anchor="middle">100%</text>
+<rect x="150" y="128" width="640" height="58" fill="none" stroke="#ccc" stroke-width="1"/>
+<rect id="f1-gov" x="150" y="128" width="0" height="58" fill="#E3A008" class="region-hover" onclick="tapF1('gov')"/>
+<rect id="f1-priv" x="649.20" y="128" width="0" height="58" fill="#0F7173" class="region-hover" onclick="tapF1('priv')"/>
+<text id="f1-gov-lab" x="399.60" y="162.00" font-size="15" fill="#fff" text-anchor="middle" font-weight="bold" opacity="0">78%</text>
+<text id="f1-priv-lab" x="719.60" y="162.00" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold" opacity="0">22%</text>
+<text x="399.60" y="212" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Government securities</text>
+<text x="399.60" y="225" font-size="8.5" fill="#4a4a4a" text-anchor="middle">T-bills &amp; PIBs — Rs38.25tr, Dec 2025</text>
+<text x="719.60" y="212" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Private-sector loans</text>
+<text x="719.60" y="225" font-size="8.5" fill="#4a4a4a" text-anchor="middle">businesses, farms &amp; households</text>
+<path id="f1-zoomline" d="M649.20,186 L150,330 M790,186 L790,330" stroke="#0F7173" stroke-width="1" stroke-dasharray="4,4" fill="none" opacity="0"/>
+<text x="470" y="316" font-size="10.5" fill="#0a4d4e" text-anchor="middle" font-weight="bold" opacity="0" id="f1-zoom-title">Zoom — who gets the 22% private-credit slice?</text>
+<rect x="150" y="330" width="640" height="46" fill="none" stroke="#ccc" stroke-width="1"/>
+<rect id="f1-sme" x="150" y="330" width="0" height="46" fill="#C4534A"/>
+<rect id="f1-rest" x="194.80" y="330" width="0" height="46" fill="#8fb9ba"/>
+<text id="f1-sme-lab" x="172.40" y="324" font-size="11" fill="#C4534A" text-anchor="middle" font-weight="bold" opacity="0">SMEs: under 7%</text>
+<text id="f1-rest-lab" x="492.40" y="358.00" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold" opacity="0">Large corporates, consumer &amp; other — 93%+</text>
+<text x="150.00" y="394" font-size="9" fill="#9a9a9a" text-anchor="middle">0%</text>
+<text x="310.00" y="394" font-size="9" fill="#9a9a9a" text-anchor="middle">25%</text>
+<text x="470.00" y="394" font-size="9" fill="#9a9a9a" text-anchor="middle">50%</text>
+<text x="630.00" y="394" font-size="9" fill="#9a9a9a" text-anchor="middle">75%</text>
+<text x="790.00" y="394" font-size="9" fill="#9a9a9a" text-anchor="middle">100%</text>
+<text x="470" y="410" font-size="8.5" fill="#4a4a4a" text-anchor="middle">share of the private-credit slice shown in Row 1, not of total bank assets</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 1. Row 1 shows the full allocation of a Pakistani bank's assets on a true 0&ndash;100% axis: 78 cents of every rupee is invested in the government's own debt, not lent to the economy. Row 2 zooms into that remaining 22% private-credit slice specifically: small and medium enterprises, the sector every finance minister since 2022 has publicly promised to prioritise, receive less than 7% of it, one of the lowest shares in South Asia. Both rows share the same percentage axis, drawn to scale, so bar widths are directly comparable within each row.</div>
+  </div>
+  <div class="accuracy-box"><strong>Sourcing:</strong> the 78%/22% split reflects Daily Times' May 2026 reporting that private-sector credit accounted for 22% of total banking assets as of March 2026. The Rs38.25 trillion government-securities figure and the SME "under 7% of private credit" figure are both drawn directly from Dawn's Corporate Window reporting and Dawn's SME financing coverage cited in Section 8. By June 2026 the sector-wide investment-to-deposit ratio, the inverse lens on the same imbalance, had reached 104.2%. <strong>This is a snapshot, not the end of the story:</strong> by the close of FY26 in June, private-sector credit had rebounded sharply, and government bank borrowing swung wildly within the same year. Section 10 walks through that reversal, and what it does and doesn't change about the underlying model.</div>
+
+  <h2>3. The great divergence: profits up, credit down</h2>
+  <p>Zoom out to a decade and the picture stops looking like a bad year and starts looking like a business strategy. Government borrowing from banks has risen from 43% of all bank lending in 2010 to 73.4% by the mid-2020s, according to World Bank analysis, a structural shift, not a cyclical one. The chart below indexes two numbers against each other: banking-sector profitability and the share of deposits actually reaching private businesses. They move in almost perfect opposite directions for most of the period, only beginning to reconverge, modestly, in the most recent data.</p>
+
+    <div class="chart-block" id="f2Block">
+    <div class="live-tag"><span class="live-dot"></span>Two lines draw together on a shared 0&ndash;200 index axis, then diverge</div>
+    <button class="replay-btn" onclick="replay('f2', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 920 440" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+<text x="460" y="22" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">Bank Profitability vs. Private-Sector Credit Access, 2018–2026 (indexed, 2018=100)</text>
+<text x="460" y="38" font-size="9.5" fill="#4a4a4a" text-anchor="middle">Illustrative index built around two verified endpoints — see caption. Every year is an independent index point, not smoothed.</text>
+<line x1="140" y1="372.00" x2="780" y2="372.00" stroke="#eee" stroke-width="1"/>
+<text x="130" y="375.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">0</text>
+<line x1="140" y1="295.50" x2="780" y2="295.50" stroke="#eee" stroke-width="1"/>
+<text x="130" y="299.00" font-size="9.5" fill="#4a4a4a" text-anchor="end">50</text>
+<line x1="140" y1="219.00" x2="780" y2="219.00" stroke="#eee" stroke-width="1"/>
+<text x="130" y="222.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">100</text>
+<line x1="140" y1="142.50" x2="780" y2="142.50" stroke="#eee" stroke-width="1"/>
+<text x="130" y="146.00" font-size="9.5" fill="#4a4a4a" text-anchor="end">150</text>
+<line x1="140" y1="66.00" x2="780" y2="66.00" stroke="#eee" stroke-width="1"/>
+<text x="130" y="69.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">200</text>
+<text x="140.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2018</text>
+<text x="220.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2019</text>
+<text x="300.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2020</text>
+<text x="380.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2021</text>
+<text x="460.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2022</text>
+<text x="540.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2023</text>
+<text x="620.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2024</text>
+<text x="700.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2025</text>
+<text x="780.00" y="392" font-size="9.5" fill="#4a4a4a" text-anchor="middle">2026</text>
+<line x1="140" y1="372" x2="780" y2="372" stroke="#111" stroke-width="1.4"/>
+<line x1="140" y1="66" x2="140" y2="372" stroke="#111" stroke-width="1.4"/>
+<text x="130" y="52" font-size="9.5" fill="#4a4a4a" text-anchor="end">index</text>
+<path id="f2-profit" d="M 140.00,219.00 L 220.00,209.82 L 300.00,203.70 L 380.00,189.93 L 460.00,168.51 L 540.00,142.50 L 620.00,114.96 L 700.00,84.36 L 780.00,72.12" stroke="#0F7173" stroke-width="2.8" fill="none" opacity="0" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="f2-credit" d="M 140.00,142.50 L 220.00,156.27 L 300.00,171.57 L 380.00,188.40 L 460.00,212.88 L 540.00,234.30 L 620.00,251.13 L 700.00,267.96 L 780.00,258.78" stroke="#C4534A" stroke-width="2.8" fill="none" opacity="0" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="140.00" cy="219.00" r="3" fill="#0F7173"/>
+<circle cx="220.00" cy="209.82" r="3" fill="#0F7173"/>
+<circle cx="300.00" cy="203.70" r="3" fill="#0F7173"/>
+<circle cx="380.00" cy="189.93" r="3" fill="#0F7173"/>
+<circle cx="460.00" cy="168.51" r="3" fill="#0F7173"/>
+<circle cx="540.00" cy="142.50" r="3" fill="#0F7173"/>
+<circle cx="620.00" cy="114.96" r="3" fill="#0F7173"/>
+<circle cx="700.00" cy="84.36" r="3" fill="#0F7173"/>
+<circle cx="780.00" cy="72.12" r="3" fill="#0F7173"/>
+<circle cx="140.00" cy="142.50" r="3" fill="#C4534A"/>
+<circle cx="220.00" cy="156.27" r="3" fill="#C4534A"/>
+<circle cx="300.00" cy="171.57" r="3" fill="#C4534A"/>
+<circle cx="380.00" cy="188.40" r="3" fill="#C4534A"/>
+<circle cx="460.00" cy="212.88" r="3" fill="#C4534A"/>
+<circle cx="540.00" cy="234.30" r="3" fill="#C4534A"/>
+<circle cx="620.00" cy="251.13" r="3" fill="#C4534A"/>
+<circle cx="700.00" cy="267.96" r="3" fill="#C4534A"/>
+<circle cx="780.00" cy="258.78" r="3" fill="#C4534A"/>
+<circle id="f2-cross" cx="382.67" cy="189.22" r="0" fill="#14213D"/>
+<text id="f2-cross-t1" x="382.67" y="165.22" font-size="10" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">2022: profitability index</text>
+<text id="f2-cross-t2" x="382.67" y="178.22" font-size="10" fill="#14213D" text-anchor="middle" font-weight="bold" opacity="0">overtakes private-credit access</text>
+<text id="f2-profit-end" x="788.00" y="66.12" font-size="10.5" fill="#0a4d4e" font-weight="bold" opacity="0">Bank profit</text>
+<text id="f2-profit-end2" x="788.00" y="80.12" font-size="8.5" fill="#4a4a4a" opacity="0">Rs671bn, 2025 (+11% y/y)</text>
+<text id="f2-credit-end" x="788.00" y="252.78" font-size="10.5" fill="#7a2a22" font-weight="bold" opacity="0">Private credit access</text>
+<text id="f2-credit-end2" x="788.00" y="266.78" font-size="8.5" fill="#4a4a4a" opacity="0">ADR 35.3% low (2025); FY26 flow rebounds +35%</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 2. An illustrative index built to make a documented directional relationship visible on one chart with a true numeric axis, not a single published dataset &mdash; every year is plotted independently rather than smoothed. Every endpoint is real: Rs671 billion in 2025 profit (up 11% year-on-year, Dawn/Topline Securities), and a 35.3% advances-to-deposit ratio in mid-2025, the lowest in over a decade (State Bank of Pakistan, via Profit by Pakistan Today). The lines cross almost exactly when Pakistan's rupee crisis and interest-rate spike began in 2022, and the small 2026 uptick in the credit-access line reflects the genuine private-credit rebound documented in Section 10, shown here without erasing the decade-long gap that preceded it.</div>
+  </div>
+
+  <h2>4. The windfall: how banks made Rs110bn from a currency collapse</h2>
+  <p>If one episode captures the pattern in miniature, it's what happened between 2021 and 2023, and it is worth walking through slowly, because it is a matter of court record, not allegation. The rupee, worth roughly Rs168 to the US dollar in 2020, collapsed to Rs286 by 2023 as Pakistan's foreign reserves crisis deepened. That collapse opened a wide, exploitable gap between the official interbank exchange rate and the open market rate, and banks, sitting at the center of every dollar transaction in the country, traded into that gap aggressively. The State Bank of Pakistan's own former governor put it in blunt terms afterward: banks had reaped windfall profits "not only from their foreign exchange dealings&hellip; but more importantly from the opportunity provided&hellip; to do effortless and risk-free financial intermediation."</p>
+
+    <div class="chart-block" id="f3Block">
+    <div class="live-tag"><span class="live-dot"></span>Timeline draws left to right, spaced to real elapsed time</div>
+    <button class="replay-btn" onclick="replay('f3', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll roadmap-scroll"><div>
+<svg viewBox="0 0 1450 400" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+<text x="725.0" y="24" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">The Windfall Tax Fight: A Timeline of Court Record</text>
+<text x="725.0" y="42" font-size="9.5" fill="#4a4a4a" text-anchor="middle">Node spacing is proportional to real elapsed time (Jan 2020 → 2026), so gaps you see are gaps that happened</text>
+<line x1="90.0" y1="190" x2="1360.0" y2="190" stroke="#e3e3e3" stroke-width="1" stroke-dasharray="2,5"/>
+<path id="f3-seg1" d="M90.00,132.00 C258.80,132.00 258.80,248.00 427.59,248.00" stroke="#C4534A" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f3-seg2" d="M427.59,248.00 C628.54,248.00 628.54,132.00 829.49,132.00" stroke="#E3A008" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f3-seg3" d="M829.49,132.00 C837.53,132.00 837.53,248.00 845.57,248.00" stroke="#E3A008" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f3-seg4" d="M845.57,248.00 C958.10,248.00 958.10,132.00 1070.63,132.00" stroke="#0F7173" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f3-seg5" d="M1070.63,132.00 C1151.01,132.00 1151.01,248.00 1231.39,248.00" stroke="#0F7173" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f3-seg6" d="M1231.39,248.00 C1295.70,248.00 1295.70,132.00 1360.00,132.00" stroke="#4a4a4a" stroke-width="2.6" fill="none" opacity="0"/>
+<g id="f3-n1" opacity="0">
+<circle cx="90.00" cy="132.00" r="7" fill="#14213D" stroke="#fff" stroke-width="1.6"/>
+<text x="90.00" y="92.00" font-size="12" fill="#14213D" text-anchor="middle" font-weight="bold">2020</text>
+<text x="90.00" y="106.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">The baseline</text>
+<text x="90.00" y="120.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Rupee trades near</text>
+<text x="90.00" y="132.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Rs168 to the dollar</text>
+</g>
+<g id="f3-n2" opacity="0">
+<circle cx="427.59" cy="248.00" r="0" fill="#C4534A" stroke="#fff" stroke-width="1.6"/>
+<text x="427.59" y="274.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">The collapse</text>
+<text x="427.59" y="288.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Rupee falls toward Rs286;</text>
+<text x="427.59" y="300.00" font-size="9" fill="#4a4a4a" text-anchor="middle">banks earn Rs110bn on the gap</text>
+<text x="427.59" y="314.00" font-size="12" fill="#C4534A" text-anchor="middle" font-weight="bold">2021–22</text>
+</g>
+<g id="f3-n3" opacity="0">
+<circle cx="829.49" cy="132.00" r="0" fill="#E3A008" stroke="#fff" stroke-width="1.6"/>
+<text x="829.49" y="92.00" font-size="12" fill="#E3A008" text-anchor="middle" font-weight="bold">Nov 2023</text>
+<text x="829.49" y="106.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">The tax</text>
+<text x="829.49" y="120.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Caretaker govt imposes a</text>
+<text x="829.49" y="132.00" font-size="9" fill="#4a4a4a" text-anchor="middle">40% windfall tax, Section 99D</text>
+</g>
+<g id="f3-n4" opacity="0">
+<circle cx="845.57" cy="248.00" r="0" fill="#E3A008" stroke="#fff" stroke-width="1.6"/>
+<text x="845.57" y="274.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">The pushback</text>
+<text x="845.57" y="288.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Banks sue in the Islamabad &amp;</text>
+<text x="845.57" y="300.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Sindh High Courts; tax stayed</text>
+<text x="845.57" y="314.00" font-size="12" fill="#E3A008" text-anchor="middle" font-weight="bold">Nov–Dec 2023</text>
+</g>
+<g id="f3-n5" opacity="0">
+<circle cx="1070.63" cy="132.00" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="1070.63" y="92.00" font-size="12" fill="#0F7173" text-anchor="middle" font-weight="bold">21 Feb 2025</text>
+<text x="1070.63" y="106.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">The ruling</text>
+<text x="1070.63" y="120.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Sindh High Court upholds it;</text>
+<text x="1070.63" y="132.00" font-size="9" fill="#4a4a4a" text-anchor="middle">FBR recovers Rs23bn from 16 banks in a day</text>
+</g>
+<g id="f3-n6" opacity="0">
+<circle cx="1231.39" cy="248.00" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="1231.39" y="274.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Business as usual</text>
+<text x="1231.39" y="288.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Sector still posts a record</text>
+<text x="1231.39" y="300.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Rs671bn after-tax profit</text>
+<text x="1231.39" y="314.00" font-size="12" fill="#0F7173" text-anchor="middle" font-weight="bold">Late 2025</text>
+</g>
+<g id="f3-n7" opacity="0">
+<circle cx="1360.00" cy="132.00" r="0" fill="#4a4a4a" stroke="#fff" stroke-width="1.6"/>
+<text x="1360.00" y="92.00" font-size="12" fill="#4a4a4a" text-anchor="middle" font-weight="bold">2026</text>
+<text x="1360.00" y="106.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Litigation continues</text>
+<text x="1360.00" y="120.00" font-size="9" fill="#4a4a4a" text-anchor="middle">IHC backs an Rs11bn Meezan super-tax;</text>
+<text x="1360.00" y="132.00" font-size="9" fill="#4a4a4a" text-anchor="middle">SC rules against FBR on dividend tax</text>
+</g>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 3. Node spacing on this timeline is proportional to real elapsed time from January 2020 through 2026, so the gaps you see are gaps that actually happened, not decorative spacing. Every date, figure, and legal detail is drawn from contemporaneous reporting in Dawn, The News, Geo, and Profit by Pakistan Today, cited in full in the sources note at the end of this article. It took the government fifteen months, from the tax's approval to actual cash recovery, and a favorable court ruling, to collect money from windfall profits its own central bank governor had already publicly described as effectively unearned &mdash; and, as the final node shows, related tax litigation was still working through Pakistan's courts in 2026.</div>
+  </div>
+  <div class="side-box"><strong>What the record shows, plainly:</strong> this section describes a documented regulatory and legal dispute, banks challenging a tax assessment in court, which they are legally entitled to do, and ultimately losing. It is not an allegation that any individual banker broke the law. The pattern worth sitting with is structural: the same currency instability that pushed millions of Pakistani households into poverty through imported inflation was, for the banking sector, a Rs110 billion earnings opportunity.</div>
+
+  <p>That pattern has not stopped repeating. In 2026, the Islamabad High Court dismissed a separate petition from Meezan Bank challenging an Rs11 billion super tax assessment under a related section of the Income Tax Ordinance, upholding Parliament's authority to impose it, court records show. The same year, the Supreme Court dismissed a set of Federal Board of Revenue appeals seeking to tax corporate dividend income at 35%, this time ruling against the tax authority. Read together, the two rulings say something more precise than "banks always win" or "banks always lose": Pakistan's tax fights with its banking sector are now a permanent, ongoing feature of the system, not a one-off 2023 episode, and the outcomes cut in both directions depending on the specific legal question.</p>
+
+  <h2>5. Who really pays the bill</h2>
+  <p>Pakistan's tax system has a well-documented and almost perfectly regressive shape: the sectors easiest to tax get taxed the hardest, and the sectors with the most political and economic power, agriculture, real estate, large parts of retail, get taxed the least. Only around 2% of Pakistanis pay income tax at all. Meanwhile, in the tax year following the current IMF programme's start, the salaried class's tax payments jumped 57% in just five months, to Rs198 billion, after their effective burden was pushed toward 39%. Industry groups told Arab News in 2026 that the salaried class had contributed 352% more in taxes than several other major sectors combined.</p>
+
+    <div class="chart-block" id="f4Block">
+    <div class="live-tag"><span class="live-dot"></span>Bars build left to right on a shared 0&ndash;60% axis</div>
+    <button class="replay-btn" onclick="replay('f4', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="toggle-bar">
+      <button class="toggle-btn active" id="f4btn-a" onclick="setF4View('burden', this)">Tax burden by group</button>
+      <button class="toggle-btn" id="f4btn-b" onclick="setF4View('context', this)">Why banks still win</button>
+    </div>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 890 420" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+<text id="f4-title" x="445" y="22" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">Who Carries Pakistan’s Tax Burden?</text>
+<line x1="130" y1="340.00" x2="760" y2="340.00" stroke="#eee" stroke-width="1"/>
+<text x="120" y="343.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">0%</text>
+<line x1="130" y1="293.33" x2="760" y2="293.33" stroke="#eee" stroke-width="1"/>
+<text x="120" y="296.83" font-size="9.5" fill="#4a4a4a" text-anchor="end">10%</text>
+<line x1="130" y1="246.67" x2="760" y2="246.67" stroke="#eee" stroke-width="1"/>
+<text x="120" y="250.17" font-size="9.5" fill="#4a4a4a" text-anchor="end">20%</text>
+<line x1="130" y1="200.00" x2="760" y2="200.00" stroke="#eee" stroke-width="1"/>
+<text x="120" y="203.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">30%</text>
+<line x1="130" y1="153.33" x2="760" y2="153.33" stroke="#eee" stroke-width="1"/>
+<text x="120" y="156.83" font-size="9.5" fill="#4a4a4a" text-anchor="end">40%</text>
+<line x1="130" y1="106.67" x2="760" y2="106.67" stroke="#eee" stroke-width="1"/>
+<text x="120" y="110.17" font-size="9.5" fill="#4a4a4a" text-anchor="end">50%</text>
+<line x1="130" y1="60.00" x2="760" y2="60.00" stroke="#eee" stroke-width="1"/>
+<text x="120" y="63.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">60%</text>
+<line x1="130" y1="340" x2="760" y2="340" stroke="#111" stroke-width="1.4"/>
+<line x1="130" y1="60" x2="130" y2="340" stroke="#111" stroke-width="1.4"/>
+<rect id="f4-bar1-r" x="175.00" y="340" width="130" height="0" fill="#C4534A"/>
+<text id="f4-bar1-v" x="240.00" y="0" font-size="13" fill="#C4534A" text-anchor="middle" font-weight="bold" opacity="0">39%</text>
+<text x="240.00" y="362" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Salaried class</text>
+<text x="240.00" y="375" font-size="8.5" fill="#4a4a4a" text-anchor="middle">documented, deducted at source</text>
+<rect id="f4-bar2-r" x="380.00" y="340" width="130" height="0" fill="#0F7173"/>
+<text id="f4-bar2-v" x="445.00" y="0" font-size="13" fill="#0F7173" text-anchor="middle" font-weight="bold" opacity="0">54.5%</text>
+<text x="445.00" y="362" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Banking sector</text>
+<text x="445.00" y="375" font-size="8.5" fill="#4a4a4a" text-anchor="middle">share of pre-tax profit taxed</text>
+<rect id="f4-bar3-r" x="585.00" y="340" width="130" height="0" fill="#E3A008"/>
+<text id="f4-bar3-v" x="650.00" y="0" font-size="13" fill="#E3A008" text-anchor="middle" font-weight="bold" opacity="0">2%</text>
+<text x="650.00" y="362" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Retail / agri / real estate</text>
+<text x="650.00" y="375" font-size="8.5" fill="#4a4a4a" text-anchor="middle">share of population paying income tax</text>
+<text id="f4-footnote" x="445" y="398" font-size="10" fill="#4a4a4a" text-anchor="middle" font-style="italic" opacity="0">Tap &quot;Why banks still win&quot; above to see how a heavily taxed sector still posts record profit.</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 4. This is the chart's honest complication, and it matters: banks are not undertaxed on paper, 54.5% of pre-tax profit is a genuinely high rate, higher than the salaried class's own burden. What makes the outcome unfair is not the tax rate applied to bank profit, it's the size of the pre-tax profit pool itself, a pool inflated by lending to a government whose revenue, in turn, comes disproportionately from that same overtaxed salaried class. Taxing the profit only claws back part of a cycle the profit itself helps sustain.</div>
+  </div>
+
+  <h2>6. The defaulters nobody names</h2>
+  <p>The other half of this story is who doesn't pay banks back, and how quietly that gets resolved. Pakistan's courts have returned to this issue repeatedly since at least 2010, when Chief Justice Iftikhar Muhammad Chaudhry took suo motu notice of commercial banks writing off loans worth as much as Rs256 billion, declaring from the bench that "those who had their loans written off have built empires." A list produced in court that year named specific companies, including one tied to a sitting parliamentarian, that had written off hundreds of millions of rupees across multiple banks simultaneously.</p>
+  <p>The pattern has never fully gone away. In July 2024, the State Bank had to formally order banks to file recovery lawsuits against defaulters with outstanding loans over Rs10 million before those loans could be quietly "charged off." That same month, Pakistan's Information Commission ordered the State Bank governor to disclose a list of the country's top 1,000 loan defaulters, after the SBP had tried to claim a customer-privacy exemption to keep the list secret, an exemption the Commission ruled did not apply. One widely shared 2021 public comment on the SBP's own defaulter-reporting rules captured the frustration bluntly: the credit-reporting system, the commenter wrote, is "only applicable to masses not to the rich and powerful elite&hellip; These set of people are defaulters for billions of Rupees yet they get all the benefits and protection by the system."</p>
+  <div class="fair-box"><strong>In fairness:</strong> the State Bank has tightened its own rules over time, doubling the retention period for negative credit history in 2021 and ordering mandatory recovery lawsuits before write-offs in 2024. Whether those reforms are enforced with equal force against a politically connected industrialist and a small shopkeeper is precisely the question courts, journalists, and now the Information Commission have kept trying, and largely failing, to get a straight public answer to.</div>
+
+  <h2>7. The IMF, the debt trap, and who benefits from the cycle</h2>
+  <p>None of this happens in a vacuum. The current, 37-month Extended Fund Facility, approved on 25 September 2024 for roughly $7 billion, is Pakistan's 25th arrangement with the Fund since it joined in 1950, according to IMF programme records. Each programme has followed a similar script: austerity, tax hikes concentrated on the easiest-to-collect-from citizens, and high interest rates to defend the currency and control inflation, the exact interest rates that make government debt so lucrative for banks to hold in the first place. The IMF's own November 2025 Governance and Corruption Diagnostic Assessment found Pakistan's budget process still suffers from weak credibility, under-executed projects, cost overruns, and, in the Fund's own words, persistent corruption challenges requiring a 15-point reform agenda. On 8 May 2026, the IMF Executive Board completed the programme's third review alongside the second review of a parallel 28-month Resilience and Sustainability Facility, releasing a combined $1.3 billion and pushing total disbursements under both arrangements to roughly $4.8 billion. The Fund's own language on approval was notably guarded: Deputy Managing Director Nigel Clarke called for Pakistan to "maintain strong macroeconomic policies while accelerating reform efforts" amid what the Fund described as a "more challenging and highly uncertain external environment" following the outbreak of war in the Middle East.</p>
+  <div class="stat-grid">
+    <div class="stat-box red"><div class="value">~47%</div><div class="label">Share of Pakistan's FY26 federal budget consumed by debt servicing and interest alone</div></div>
+    <div class="stat-box red"><div class="value">Rs81tr</div><div class="label">Total public debt (domestic + external) as of December 2025, ~70.7% of GDP</div></div>
+    <div class="stat-box"><div class="value">Rs5.9tr</div><div class="label">Government borrowing from banks in FY26, up from Rs5.4tr the year before</div></div>
+    <div class="stat-box"><div class="value">Rs1.4tr</div><div class="label">Total private-sector lending across all of FY26, roughly a quarter of what the government alone borrowed</div></div>
+  </div>
+  <p>The math there is the whole scandal in two numbers: in a single fiscal year, Pakistan's entire banking sector extended barely a quarter as much credit to every business, farm, and household in the country combined as the federal government alone borrowed from those same banks. Every rupee of that government borrowing carries a state guarantee. Every rupee lent to a struggling exporter does not.</p>
+
+  <h2>8. Named and shamed: bank-by-bank profit ledger</h2>
+  <p>The sector-wide averages hide real variation, and the biggest institutions on this list are the ones the State Bank, and increasingly the courts, are being asked hardest to explain.</p>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Institution</th><th>2024 after-tax profit</th><th>2025 after-tax profit</th><th>Notes</th></tr>
+    <tr><td>United Bank Ltd (UBL)</td><td>Rs75.1bn</td><td><strong>Rs130bn</strong> (sector-leading, a record for the bank)</td><td>73% year-on-year earnings growth; also led deposit growth, up 96% y/y</td></tr>
+    <tr><td>Meezan Bank</td><td>Rs104bn (2024 sector-leading)</td><td>Rs90.7bn</td><td>Pakistan's largest Islamic bank; deposits grew 28% y/y to Rs3.3tr</td></tr>
+    <tr><td>National Bank of Pakistan</td><td>Rs26bn (approx.)</td><td>Rs85bn</td><td>Majority state-owned; 227% y/y earnings growth, boosted by higher net interest income and a one-off 2024 pension charge dropping out of the base</td></tr>
+    <tr><td>MCB Bank</td><td>Rs63.4bn</td><td>&mdash;</td><td>Top dividend payer in CY25 at Rs36/share; 2025 profit not separately confirmed in cited sources</td></tr>
+    <tr><td>HBL</td><td>Rs57.8bn</td><td>&mdash;</td><td>Pakistan's largest bank by assets; held the largest deposit base of any bank, Rs5.5tr, by end-2025</td></tr>
+    <tr><td>Sector-wide total (listed banks)</td><td>Rs597bn</td><td>Rs671bn</td><td>11% year-on-year increase, a record; Q2 2026 profit growth then flattened, see Section 10</td></tr>
+  </table>
+  </div>
+  <p style="font-family:Arial,Helvetica,sans-serif;font-size:12.5px;color:var(--muted);margin-top:-6px;">Figures as separately reported by The Friday Times (2024 data, published April 2025) and Dawn's Corporate Window and Profit by Pakistan Today (2025 data, published February 2026, cross-checked against Topline Securities' underlying research note). An earlier version of this table understated UBL's 2025 result; it has been corrected here to reflect Dawn's confirmed sector ranking, in which UBL, not Meezan, posted 2025's largest single-bank profit. Not every bank's figure was independently available for both years in the cited sources; gaps are marked rather than estimated.</p>
+
+  <h2>9. The counter-argument: what banks and regulators say</h2>
+  <p>A rigorous accounting of this story has to include the industry's own defense, and it is not a weak one. Bankers interviewed by The Express Tribune in 2025 pointed out, correctly, that private credit demand has genuinely collapsed alongside GDP growth, "when the economy grows, credit demand increases," as PBA figures put it, and that with growth hovering near 3%, businesses simply aren't asking to borrow at the volumes they once did. JS Bank's CEO has publicly argued the deeper problem is structural: most small businesses operate from leased premises or shared spaces with no titled collateral banks can lend against under current rules, a foreclosure and documentation framework problem, not pure unwillingness to lend. The State Bank governor himself has been the most consistent internal critic, publicly and repeatedly urging banks since 2025 to "rethink their business models," and unveiling a Vision 2028 SME-lending push with a target of Rs1.5 trillion in new SME credit.</p>
+  <div class="accuracy-box"><strong>The honest bottom line:</strong> banks are responding rationally to genuine incentives, a government paying premium, guaranteed, effortless returns, a private sector with weak demand and poor collateral, and a regulator whose exhortations so far carry no real penalty for ignoring them. That is precisely what makes this a systemic failure rather than a simple morality tale: no single actor needs to break a rule for the outcome to be this lopsided. Even in August 2026, industry reporting shows banks continuing to favour government paper over the SME lending push the regulator has been publicly requesting since 2025, a live illustration that appeals without consequences have not moved behaviour.</div>
+
+  <h2>10. 2026 update: the rate-cut whiplash and the credit tug-of-war</h2>
+  <p>Everything described so far, the government-securities addiction, the record profit, the starved private sector, is easiest to see clearly in a single snapshot. But 2026 has been anything but a single snapshot. Two things moved sharply and in ways that complicate the story without erasing it: the interest rate that makes government paper so lucrative for banks, and the tug-of-war between government and private borrowing for the same pool of deposits.</p>
+  <p>Start with the rate, because the precise sequence matters more than the headline number. The State Bank cut its policy rate from a crisis-era peak of 22% in June 2023 down to 10.5% by 15 December 2025, a cumulative 1,150-basis-point reduction across eleven MPC meetings, including a single record 250-basis-point cut on 4 November 2024 that exceeded every analyst's forecast. That decline is precisely what should, in theory, have squeezed the windfall banks earn simply for holding government debt. Then came a reversal nobody in the market had priced in: after pausing at 10.5% on 9 March 2026 as war broke out in the Middle East, disrupting fuel supplies and raising fears over the Strait of Hormuz, the SBP's Monetary Policy Committee raised the rate by a further 100 basis points on 27 April 2026, against consensus market expectations, and then held it at 11.5% through two further meetings in June and July 2026, a full percentage point above where the cutting cycle had bottomed out. Every basis point of that reversal flows straight back into bank earnings on existing and newly issued T-bills and PIBs.</p>
+
+    <div class="chart-block" id="f5Block">
+    <div class="live-tag"><span class="live-dot"></span>Rate path draws left to right on a true 0&ndash;24% axis, node by verified node</div>
+    <button class="replay-btn" onclick="replay('f5', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll roadmap-scroll"><div>
+<svg viewBox="0 0 1460 460" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+<text x="730" y="26" font-size="15" fill="#111" text-anchor="middle" font-weight="bold">Pakistan’s Policy Rate, Jun 2023–Jul 2026 &#8212; Every Node Is a Real MPC Decision</text>
+<text x="730" y="44" font-size="10.5" fill="#4a4a4a" text-anchor="middle">State Bank of Pakistan Monetary Policy Committee announcements, plotted to scale on both axes</text>
+<line x1="120" y1="372.00" x2="1360" y2="372.00" stroke="#e6e6e6" stroke-width="1"/>
+<text x="110" y="375.50" font-size="10" fill="#4a4a4a" text-anchor="end">0%</text>
+<line x1="120" y1="321.00" x2="1360" y2="321.00" stroke="#e6e6e6" stroke-width="1"/>
+<text x="110" y="324.50" font-size="10" fill="#4a4a4a" text-anchor="end">4%</text>
+<line x1="120" y1="270.00" x2="1360" y2="270.00" stroke="#e6e6e6" stroke-width="1"/>
+<text x="110" y="273.50" font-size="10" fill="#4a4a4a" text-anchor="end">8%</text>
+<line x1="120" y1="219.00" x2="1360" y2="219.00" stroke="#e6e6e6" stroke-width="1"/>
+<text x="110" y="222.50" font-size="10" fill="#4a4a4a" text-anchor="end">12%</text>
+<line x1="120" y1="168.00" x2="1360" y2="168.00" stroke="#e6e6e6" stroke-width="1"/>
+<text x="110" y="171.50" font-size="10" fill="#4a4a4a" text-anchor="end">16%</text>
+<line x1="120" y1="117.00" x2="1360" y2="117.00" stroke="#e6e6e6" stroke-width="1"/>
+<text x="110" y="120.50" font-size="10" fill="#4a4a4a" text-anchor="end">20%</text>
+<line x1="120" y1="66.00" x2="1360" y2="66.00" stroke="#e6e6e6" stroke-width="1"/>
+<text x="110" y="69.50" font-size="10" fill="#4a4a4a" text-anchor="end">24%</text>
+<text x="120.00" y="404" font-size="10.5" fill="#4a4a4a" text-anchor="middle" font-weight="bold">2023</text>
+<text x="321.08" y="404" font-size="10.5" fill="#4a4a4a" text-anchor="middle" font-weight="bold">2024</text>
+<text x="740.00" y="404" font-size="10.5" fill="#4a4a4a" text-anchor="middle" font-weight="bold">2025</text>
+<text x="1152.22" y="404" font-size="10.5" fill="#4a4a4a" text-anchor="middle" font-weight="bold">2026</text>
+<line x1="120" y1="372" x2="1360" y2="372" stroke="#111" stroke-width="1.4"/>
+<line x1="120" y1="66" x2="120" y2="372" stroke="#111" stroke-width="1.4"/>
+<text x="110" y="52" font-size="9.5" fill="#4a4a4a" text-anchor="end">policy rate</text>
+<rect x="120" y="225.38" width="1240" height="12.75" fill="#C4534A" opacity="0.06"/>
+<path id="f5-seg1" d="M120.00,91.50 L522.16,110.62" stroke="#0F7173" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg2" d="M522.16,110.62 L689.73,180.75" stroke="#0F7173" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg3" d="M689.73,180.75 L723.24,206.25" stroke="#0F7173" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg4" d="M723.24,206.25 L756.76,219.00" stroke="#0F7173" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg5" d="M756.76,219.00 L890.81,231.75" stroke="#0F7173" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg6" d="M890.81,231.75 L1125.41,238.12" stroke="#0F7173" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg7" d="M1125.41,238.12 L1225.95,238.12" stroke="#E3A008" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg8" d="M1225.95,238.12 L1259.46,225.38" stroke="#C4534A" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg9" d="M1259.46,225.38 L1326.49,225.38" stroke="#C4534A" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<path id="f5-seg10" d="M1326.49,225.38 L1360.00,225.38" stroke="#C4534A" stroke-width="3" fill="none" opacity="0" stroke-linecap="round"/>
+<g id="f5-n1" opacity="0">
+<circle cx="120.00" cy="91.50" r="7" fill="#14213D" stroke="#fff" stroke-width="1.6"/>
+<text x="120.00" y="57.50" font-size="10.5" fill="#14213D" text-anchor="middle" font-weight="bold">Jun 2023</text>
+<text x="120.00" y="71.50" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">22%</text>
+<text x="120.00" y="83.50" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Peak locked in</text>
+</g>
+<g id="f5-n2" opacity="0">
+<circle cx="522.16" cy="110.62" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="522.16" y="158.62" font-size="10.5" fill="#0F7173" text-anchor="middle" font-weight="bold">Jun 2024</text>
+<text x="522.16" y="134.62" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">20.5%</text>
+<text x="522.16" y="146.62" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Cutting begins</text>
+</g>
+<g id="f5-n3" opacity="0">
+<circle cx="689.73" cy="180.75" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="689.73" y="146.75" font-size="10.5" fill="#0F7173" text-anchor="middle" font-weight="bold">Nov 2024</text>
+<text x="689.73" y="160.75" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">15%</text>
+<text x="689.73" y="172.75" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Record single cut</text>
+</g>
+<g id="f5-n4" opacity="0">
+<circle cx="723.24" cy="206.25" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="723.24" y="254.25" font-size="10.5" fill="#0F7173" text-anchor="middle" font-weight="bold">Dec 2024</text>
+<text x="723.24" y="230.25" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">13%</text>
+<text x="723.24" y="242.25" font-size="8.5" fill="#4a4a4a" text-anchor="middle">5th straight cut</text>
+</g>
+<g id="f5-n5" opacity="0">
+<circle cx="756.76" cy="219.00" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="756.76" y="185.00" font-size="10.5" fill="#0F7173" text-anchor="middle" font-weight="bold">Jan 2025</text>
+<text x="756.76" y="199.00" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">12%</text>
+<text x="756.76" y="211.00" font-size="8.5" fill="#4a4a4a" text-anchor="middle">−1,000bp since Jun’24</text>
+</g>
+<g id="f5-n6" opacity="0">
+<circle cx="890.81" cy="231.75" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="890.81" y="279.75" font-size="10.5" fill="#0F7173" text-anchor="middle" font-weight="bold">May 2025</text>
+<text x="890.81" y="255.75" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">11%</text>
+<text x="890.81" y="267.75" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Cycle decelerates</text>
+</g>
+<g id="f5-n7" opacity="0">
+<circle cx="1125.41" cy="238.12" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="1125.41" y="204.12" font-size="10.5" fill="#0F7173" text-anchor="middle" font-weight="bold">Dec 2025</text>
+<text x="1125.41" y="218.12" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">10.5%</text>
+<text x="1125.41" y="230.12" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Cycle bottoms out</text>
+</g>
+<g id="f5-n8" opacity="0">
+<circle cx="1225.95" cy="238.12" r="0" fill="#E3A008" stroke="#fff" stroke-width="1.6"/>
+<text x="1225.95" y="286.12" font-size="10.5" fill="#E3A008" text-anchor="middle" font-weight="bold">Mar 2026</text>
+<text x="1225.95" y="262.12" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">10.5% held</text>
+<text x="1225.95" y="274.12" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Pause</text>
+</g>
+<g id="f5-n9" opacity="0">
+<circle cx="1259.46" cy="225.38" r="0" fill="#C4534A" stroke="#fff" stroke-width="1.6"/>
+<text x="1259.46" y="191.38" font-size="10.5" fill="#C4534A" text-anchor="middle" font-weight="bold">Apr 2026</text>
+<text x="1259.46" y="205.38" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">11.5%</text>
+<text x="1259.46" y="217.38" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Reversal</text>
+</g>
+<g id="f5-n10" opacity="0">
+<circle cx="1326.49" cy="225.38" r="0" fill="#C4534A" stroke="#fff" stroke-width="1.6"/>
+<text x="1326.49" y="273.38" font-size="10.5" fill="#C4534A" text-anchor="middle" font-weight="bold">Jun 2026</text>
+<text x="1326.49" y="249.38" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">11.5%</text>
+<text x="1326.49" y="261.38" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Held</text>
+</g>
+<g id="f5-n11" opacity="0">
+<circle cx="1360.00" cy="225.38" r="0" fill="#C4534A" stroke="#fff" stroke-width="1.6"/>
+<text x="1360.00" y="191.38" font-size="10.5" fill="#C4534A" text-anchor="middle" font-weight="bold">Jul 2026</text>
+<text x="1360.00" y="205.38" font-size="12.5" fill="#111" text-anchor="middle" font-weight="bold">11.5%</text>
+<text x="1360.00" y="217.38" font-size="8.5" fill="#4a4a4a" text-anchor="middle">Held a 3rd time</text>
+</g>
+<g font-size="9.5" font-family="Arial">
+<rect x="130" y="419" width="14" height="10" fill="#0F7173"/>
+<text x="150" y="428" fill="#4a4a4a">Rate cuts (shrinks bank margin on govt debt)</text>
+<rect x="411.2" y="419" width="14" height="10" fill="#E3A008"/>
+<text x="431.2" y="428" fill="#4a4a4a">Held / paused</text>
+<rect x="528.1" y="419" width="14" height="10" fill="#C4534A"/>
+<text x="548.1" y="428" fill="#4a4a4a">Rate hikes or holds above the 2025 low (widens bank margin)</text>
+</g>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 5. Every node on this chart is a documented SBP Monetary Policy Committee decision, plotted on a true percentage axis (gridlines every 4 points) against a true elapsed-time axis (month-by-month from June 2023 to July 2026), so both the size and the timing of every move are shown to scale &mdash; not just the six milestones a simplified version might pick out. The 1,150-basis-point cut from 22% to 10.5% between June 2023 and December 2025 is confirmed by the SBP's own December 2025 statement and the Free and Fair Election Network's policy explainer; the record 250-basis-point cut on 4 November 2024 is from Reuters and Dawn; the 9 March 2026 pause and the 27 April 2026 hike to 11.5%, both against market expectations, are drawn from SBP MPC statements as reported by Business Recorder, Dawn, and The Express Tribune. Every rate cut before March 2026 shrank the margin banks earn simply for holding government paper; every move since has widened it again.</div>
+  </div>
+
+  <div class="fair-box"><strong>The honest complication:</strong> a rate cut alone doesn't reduce what banks earn from government debt to zero, it reduces the yield, but a shrinking yield on a growing pile of holdings can still produce a growing profit, which is exactly what happened through 2025. And a rate reversal driven by an external shock, a war thousands of kilometres away disrupting oil shipping lanes, is not something Pakistani policymakers chose; it is a reminder of how exposed the entire profit model is to forces well outside Islamabad's control.</div>
+
+  <p>The second 2026 story is a genuine tug-of-war for the same pool of bank deposits, and unlike the rate story, it does not move in one clean direction. In the first seven months of FY26, the federal government's borrowing from commercial banks jumped nearly fivefold year-on-year, to Rs1.912 trillion, State Bank data shows, reinforcing exactly the crowding-out pattern this investigation documents; for the full fiscal year, government borrowing from banks reached Rs5.9 trillion, up from Rs5.4 trillion the year before. Yet across the same fiscal year, private-sector credit did something the headline profit numbers don't fully capture: it recovered, hitting a record Rs1.46 trillion in new lending for FY26 as a whole, a 35% jump over FY25's Rs1.08 trillion flow, and pushing the total outstanding stock of private-sector credit to Rs11.38 trillion, its strongest annual growth in four years. More than 80% of that new lending, some Rs1.18 trillion, went to actual business financing rather than consumer credit, and nearly 89% of that business lending was concentrated in three productive sectors: manufacturing took the largest share at 56% (Rs657 billion alone), followed by wholesale and retail trade at 18% and agriculture at 15%. This happened as the SBP's rate-cutting cycle lowered borrowing costs and the central bank trimmed the Cash Reserve Requirement from 6% to 5% specifically to free up lending capacity.</p>
+
+    <div class="chart-block" id="f7Block">
+    <div class="live-tag"><span class="live-dot"></span>Bars build on a shared Rs0&ndash;2 trillion axis across both toggle views</div>
+    <button class="replay-btn" onclick="replay('f7', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    <div class="toggle-bar">
+      <button class="toggle-btn active" id="f7btn-a" onclick="setF7View('private', this)">Private credit, full FY</button>
+      <button class="toggle-btn" id="f7btn-b" onclick="setF7View('govt', this)">Govt borrowing, first 7 months</button>
+    </div>
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll"><div>
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+<text id="f7-title" x="450" y="22" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">Private-Sector Credit, FY25 vs FY26 (full fiscal year)</text>
+<line x1="150" y1="330.00" x2="760" y2="330.00" stroke="#eee" stroke-width="1"/>
+<text x="140" y="333.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">Rs0tr</text>
+<line x1="150" y1="262.50" x2="760" y2="262.50" stroke="#eee" stroke-width="1"/>
+<text x="140" y="266.00" font-size="9.5" fill="#4a4a4a" text-anchor="end">Rs0.5tr</text>
+<line x1="150" y1="195.00" x2="760" y2="195.00" stroke="#eee" stroke-width="1"/>
+<text x="140" y="198.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">Rs1.0tr</text>
+<line x1="150" y1="127.50" x2="760" y2="127.50" stroke="#eee" stroke-width="1"/>
+<text x="140" y="131.00" font-size="9.5" fill="#4a4a4a" text-anchor="end">Rs1.5tr</text>
+<line x1="150" y1="60.00" x2="760" y2="60.00" stroke="#eee" stroke-width="1"/>
+<text x="140" y="63.50" font-size="9.5" fill="#4a4a4a" text-anchor="end">Rs2.0tr</text>
+<line x1="150" y1="330" x2="760" y2="330" stroke="#111" stroke-width="1.4"/>
+<line x1="150" y1="60" x2="150" y2="330" stroke="#111" stroke-width="1.4"/>
+<rect id="f7-bar1-r" x="255.00" y="330" width="150" height="0" fill="#0F7173"><title></title></rect>
+<text id="f7-bar1-v" x="330.00" y="0" font-size="14" fill="#0a4d4e" text-anchor="middle" font-weight="bold" opacity="0"></text>
+<rect id="f7-bar2-r" x="505.00" y="330" width="150" height="0" fill="#0F7173"><title></title></rect>
+<text id="f7-bar2-v" x="580.00" y="0" font-size="14" fill="#0a4d4e" text-anchor="middle" font-weight="bold" opacity="0"></text>
+<text id="f7-bar1-lab" x="330" y="352" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">FY25</text>
+<text id="f7-bar2-lab" x="580" y="352" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">FY26 — record, +35%</text>
+<text id="f7-footnote" x="450" y="382" font-size="10" fill="#4a4a4a" text-anchor="middle" font-style="italic" opacity="0">Tap &quot;Govt borrowing, first 7 months&quot; to see the other half of the tug-of-war.</text>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 7. Both toggled views share the identical Rs0&ndash;2 trillion axis, so switching between them is a true like-for-like comparison rather than two independently rescaled charts. Both views are real and both are true at once: private credit had its best fiscal year in four, and government borrowing from banks still grew nearly fivefold in the same year's opening months. Full-year and 7-month figures are shown as separate toggled views deliberately, so as not to compare unlike periods on one axis; State Bank of Pakistan data, as reported by pkrevenue.com, Radio Pakistan, and Profit by Pakistan Today.</div>
+  </div>
+
+  <div class="accuracy-box"><strong>What this does, and doesn't, change:</strong> a 35% jump in private credit, concentrated in manufacturing and trade rather than speculative lending, is genuinely good news, and this piece would be dishonest not to say so plainly. It does not, on its own, undo the structural picture in Sections 2 and 3: private credit's record Rs1.46 trillion for the full year is still barely a quarter of what the government alone borrowed from banks in the same twelve months, and reporting from August 2026 shows bankers themselves expect no reversal of that pattern into FY27, since neither manufacturing nor exports are forecast to accelerate sharply enough to change the underlying calculus. The tilt narrowed in 2026; it did not reverse.</div>
+
+  <h2>11. The deadline hanging over the entire model: interest-free banking by 2028</h2>
+  <p>Almost none of the coverage this investigation draws on connects the profit story to a legal deadline that, on paper, requires the entire mechanism to be dismantled. In April 2022, Pakistan's Federal Shariat Court ruled that interest in any form, including the yield banks earn on government Treasury bills and Pakistan Investment Bonds, constitutes riba, prohibited under Islamic law, and gave the state five years, until the end of 2027, to convert the country's financial system to an interest-free, risk-sharing basis. That ruling has a long history: an earlier version dates to 1991, was suspended by the Supreme Court in 2002 and sent back for fresh hearing, and only returned with a binding deadline two decades later. The State Bank of Pakistan and several banks initially appealed the 2022 verdict to the Supreme Court's Shariat Appellate Bench, but withdrew that appeal in March 2023 on the Prime Minister's instruction, letting the ruling and its deadline stand.</p>
+  <p>What changed the stakes further is that this is no longer just a court ruling. Pakistan's 26th Constitutional Amendment, passed in October 2024, wrote the same deadline directly into the constitution, requiring the elimination of riba by January 1, 2028. The government has since begun visibly acting on it: a Finance Division strategy paper released in mid-2026 laid out a "Post-2027 Financial System" roadmap, and in April 2026 the state issued its first Rs109 billion hybrid Sukuk, a bond structure combining Ijarah (leasing) and Murabaha (cost-plus sale) contracts, as a Shariah-compliant substitute for the conventional T-bills and PIBs this investigation has spent nine sections describing.</p>
+
+    <div class="chart-block" id="f6Block">
+    <div class="live-tag"><span class="live-dot"></span>Timeline draws node by node, in sequence</div>
+    <button class="replay-btn" onclick="replay('f6', this)"><span class="replay-icon">&#8635;</span>Replay</button>
+    
+    <div class="swipe-hint">&#8596; swipe to see the full diagram, or rotate your phone</div>
+    <div class="chart-scroll roadmap-scroll"><div>
+<svg viewBox="0 0 1520 400" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;">
+<text x="760.0" y="24" font-size="14" fill="#111" text-anchor="middle" font-weight="bold">The Riba Ruling: Timeline to a January 2028 Deadline</text>
+<text x="760.0" y="42" font-size="9.5" fill="#4a4a4a" text-anchor="middle">Nodes are evenly spaced by sequence, not by elapsed years — 1991–2002 and 2022–2026 compress very different real timespans</text>
+<line x1="90.0" y1="190" x2="1440.0" y2="190" stroke="#e3e3e3" stroke-width="1" stroke-dasharray="2,5"/>
+<path id="f6-seg1" d="M90.00,132.00 C202.50,132.00 202.50,248.00 315.00,248.00" stroke="#14213D" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f6-seg2" d="M315.00,248.00 C427.50,248.00 427.50,132.00 540.00,132.00" stroke="#E3A008" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f6-seg3" d="M540.00,132.00 C652.50,132.00 652.50,248.00 765.00,248.00" stroke="#E3A008" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f6-seg4" d="M765.00,248.00 C877.50,248.00 877.50,132.00 990.00,132.00" stroke="#0F7173" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f6-seg5" d="M990.00,132.00 C1102.50,132.00 1102.50,248.00 1215.00,248.00" stroke="#0F7173" stroke-width="2.6" fill="none" opacity="0"/>
+<path id="f6-seg6" d="M1215.00,248.00 C1327.50,248.00 1327.50,132.00 1440.00,132.00" stroke="#0F7173" stroke-width="2.6" fill="none" opacity="0"/>
+<g id="f6-n1" opacity="0">
+<circle cx="90.00" cy="132.00" r="7" fill="#14213D" stroke="#fff" stroke-width="1.6"/>
+<text x="90.00" y="92.00" font-size="12" fill="#14213D" text-anchor="middle" font-weight="bold">1991</text>
+<text x="90.00" y="106.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">First FSC ruling</text>
+<text x="90.00" y="120.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Federal Shariat Court first</text>
+<text x="90.00" y="132.00" font-size="9" fill="#4a4a4a" text-anchor="middle">rules against interest</text>
+</g>
+<g id="f6-n2" opacity="0">
+<circle cx="315.00" cy="248.00" r="0" fill="#14213D" stroke="#fff" stroke-width="1.6"/>
+<text x="315.00" y="274.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Suspended</text>
+<text x="315.00" y="288.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Supreme Court suspends it,</text>
+<text x="315.00" y="300.00" font-size="9" fill="#4a4a4a" text-anchor="middle">refers case back to FSC</text>
+<text x="315.00" y="314.00" font-size="12" fill="#14213D" text-anchor="middle" font-weight="bold">2002</text>
+</g>
+<g id="f6-n3" opacity="0">
+<circle cx="540.00" cy="132.00" r="0" fill="#E3A008" stroke="#fff" stroke-width="1.6"/>
+<text x="540.00" y="92.00" font-size="12" fill="#E3A008" text-anchor="middle" font-weight="bold">Apr 2022</text>
+<text x="540.00" y="106.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Riba re-banned</text>
+<text x="540.00" y="120.00" font-size="9" fill="#4a4a4a" text-anchor="middle">FSC re-rules: riba banned,</text>
+<text x="540.00" y="132.00" font-size="9" fill="#4a4a4a" text-anchor="middle">5-year deadline set</text>
+</g>
+<g id="f6-n4" opacity="0">
+<circle cx="765.00" cy="248.00" r="0" fill="#E3A008" stroke="#fff" stroke-width="1.6"/>
+<text x="765.00" y="274.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Appealed</text>
+<text x="765.00" y="288.00" font-size="9" fill="#4a4a4a" text-anchor="middle">SBP &amp; 4 banks appeal to</text>
+<text x="765.00" y="300.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Supreme Court's Shariat bench</text>
+<text x="765.00" y="314.00" font-size="12" fill="#E3A008" text-anchor="middle" font-weight="bold">Jun 2022</text>
+</g>
+<g id="f6-n5" opacity="0">
+<circle cx="990.00" cy="132.00" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="990.00" y="92.00" font-size="12" fill="#0F7173" text-anchor="middle" font-weight="bold">Mar 2023</text>
+<text x="990.00" y="106.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Appeal withdrawn</text>
+<text x="990.00" y="120.00" font-size="9" fill="#4a4a4a" text-anchor="middle">SBP &amp; NBP withdraw appeals;</text>
+<text x="990.00" y="132.00" font-size="9" fill="#4a4a4a" text-anchor="middle">ruling and deadline stand</text>
+</g>
+<g id="f6-n6" opacity="0">
+<circle cx="1215.00" cy="248.00" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="1215.00" y="274.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">Constitutionalised</text>
+<text x="1215.00" y="288.00" font-size="9" fill="#4a4a4a" text-anchor="middle">26th Amendment locks</text>
+<text x="1215.00" y="300.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Jan 1, 2028 into the constitution</text>
+<text x="1215.00" y="314.00" font-size="12" fill="#0F7173" text-anchor="middle" font-weight="bold">Oct 2024</text>
+</g>
+<g id="f6-n7" opacity="0">
+<circle cx="1440.00" cy="132.00" r="0" fill="#0F7173" stroke="#fff" stroke-width="1.6"/>
+<text x="1440.00" y="92.00" font-size="12" fill="#0F7173" text-anchor="middle" font-weight="bold">Apr 2026</text>
+<text x="1440.00" y="106.00" font-size="10.5" fill="#111" text-anchor="middle" font-weight="bold">First Sukuk issued</text>
+<text x="1440.00" y="120.00" font-size="9" fill="#4a4a4a" text-anchor="middle">First Rs109bn hybrid</text>
+<text x="1440.00" y="132.00" font-size="9" fill="#4a4a4a" text-anchor="middle">Sukuk issued</text>
+</g>
+</svg>
+    </div></div>
+    <div class="chart-caption">Figure 6. This timeline is deliberately sequence-spaced rather than time-scaled: the real gap between 1991 and 2002 (11 years) and between 2002 and 2022 (20 years) would compress most of the chart into a single point if plotted to true elapsed time, while the 2022&ndash;2026 period, where nearly all the consequential action happened, would be unreadably cramped. That trade-off is stated here explicitly rather than left implicit. Timeline compiled from Dawn's April 2022 and March 2023 court reporting, the Wikipedia-hosted case history corroborated against Dawn's primary reporting, Pakistan Gulf Economist's July 2026 interview coverage of the 26th Amendment deadline, and Daily Times' July 2026 report on the Finance Division's Post-2027 strategy paper and the first hybrid Sukuk issuance.</div>
+  </div>
+
+  <div class="side-box"><strong>Why this matters for everything above it:</strong> Sections 2 and 3 describe a business model built on banks holding conventional, interest-bearing T-bills and PIBs. The government has now committed, in its own constitution, to replacing that exact instrument with Shariah-compliant Sukuk before January 2028. The Finance Division insists existing debt contracted before end-2027 will keep being serviced on its original terms, so this is not a cliff-edge default risk. But it is a genuine structural fork: either Sukuk yields end up replicating conventional returns in substance while changing the label, in which case today's profit model continues under a new name, or the shift to genuine profit-and-loss-sharing instruments changes bank incentives in ways nobody, including the State Bank, has fully modelled yet. Watching which of those two paths Pakistan actually takes between now and 2028 may turn out to be the single most consequential unanswered question this investigation raises.</div>
+
+  <h2>12. Winners and losers</h2>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Group</th><th>Outcome</th><th>Evidence</th></tr>
+    <tr><td>Bank shareholders</td><td>Winner</td><td>19.8% return on equity, generous dividend payouts through 2025 per Friday Times reporting</td></tr>
+    <tr><td>Large, politically connected borrowers</td><td>Winner</td><td>Recurring pattern of loan write-offs documented in Supreme Court proceedings (2010&ndash;11) and ongoing SBP defaulter-disclosure disputes (2024)</td></tr>
+    <tr><td>Government's short-term financing needs</td><td>Winner (short-term)</td><td>Reliable buyer for Rs5.9tr in FY26 borrowing, keeping the state solvent quarter to quarter</td></tr>
+    <tr><td>Salaried, documented taxpayers</td><td>Loser</td><td>39% effective burden; 57% jump in tax payments in five months; 352% more than several other sectors combined</td></tr>
+    <tr><td>SMEs and private businesses</td><td>Loser</td><td>Under 7% of private credit; ADR at a decade-plus low; foreclosure framework unresolved</td></tr>
+    <tr><td>Pakistan's long-term fiscal position</td><td>Loser</td><td>Nearly 47% of the FY26 federal budget consumed by debt servicing, crowding out development spending</td></tr>
+    <tr><td>Manufacturing, trade &amp; agriculture, FY26 specifically</td><td>Mixed / improving</td><td>Record Rs1.46tr in new private credit, +35% y/y, 89% concentrated in these three sectors, even as government borrowing still grew nearly 5x in 7MFY26</td></tr>
+    <tr><td>Banks' current interest-based earnings model</td><td>Uncertain, post-2027</td><td>Constitutionally required shift to Shariah-compliant Sukuk by January 2028; whether this changes real economics or just contract labels is unresolved</td></tr>
+  </table>
+  </div>
+
+  <h2>13. What real reform would require</h2>
+  <div class="panel">
+    <ol>
+      <li><strong>A binding, not voluntary, private-lending floor.</strong> Every SBP appeal to "prioritise SME lending" since 2025 has been publicly acknowledged, and publicly ignored, by the industry itself, a pattern industry reporting confirms was still unchanged as of August 2026; targets without consequences have not moved the ADR in over a decade.</li>
+      <li><strong>Full, standing transparency on loan write-offs.</strong> The Information Commission's 2024 order for a top-1,000 defaulter list should be a floor, not a one-off victory; recurring public disclosure would let journalists and citizens, not just the State Bank, track whether reforms are enforced evenly.</li>
+      <li><strong>A tax base that finally reaches agriculture and real estate.</strong> Every serious IMF and World Bank review of Pakistan's fiscal system flags the same two under-taxed sectors; the political cost of doing this is well known and precisely why it keeps not happening.</li>
+      <li><strong>A collateral framework that recognises how small businesses actually operate.</strong> JS Bank's own CEO has said this publicly: until inventory, receivables, and cash flow count as bankable collateral, SME lending targets will keep missing themselves regardless of interest-rate policy.</li>
+      <li><strong>Breaking the loop, not just taxing it.</strong> A windfall tax recovers some of the profit after the fact; it does not change the underlying incentive that produced it. As long as government debt outpays every private alternative with none of the risk, taxing the resulting profit is treating a symptom, not the disease.</li>
+      <li><strong>Using the 2028 transition as leverage, not just a compliance deadline.</strong> The shift to Sukuk-based government financing is happening regardless of this article's argument. The open question is whether regulators design the new instruments to genuinely share risk and return, which would blunt the "risk-free markup" dynamic this investigation documents, or simply repackage the same guaranteed-return economics under an Islamic-finance label. That design choice is being made now, ahead of January 2028, largely outside public view.</li>
+    </ol>
+  </div>
+
+  <h2>14. Key takeaways, glossary &amp; sources</h2>
+  <div class="panel discussion">
+    <h3 style="margin-top:0;">Key takeaways</h3>
+    <ol>
+      <li>Pakistan's banking sector posted a record Rs671 billion after-tax profit in 2025, up 11% year-on-year, in the same period private-sector lending fell to its lowest advances-to-deposit ratio in over a decade.</li>
+      <li>The mechanism is not secret or illegal: banks legally invest deposits in government securities, financing 78% of assets by early 2026, because the risk-free return on lending to the state has consistently beaten the return on lending to Pakistani businesses.</li>
+      <li>When banks made a documented Rs110 billion windfall from the 2021&ndash;23 currency collapse, it took a 40% tax, a year-long court fight across two High Courts, and a Supreme Court-adjacent legal push to recover even part of it, only completed in February 2025 &mdash; and similar tax fights over bank profits are still working through the courts in 2026.</li>
+      <li>Pakistan's tax system is regressive by well-documented design: the salaried class carries a 39% effective burden and payment growth far outpacing other sectors, while roughly 2% of the population pays any income tax at all.</li>
+      <li>Banks themselves are heavily taxed, 54.5% of pre-tax profit, the honest complication in this story is that the pre-tax pool is so large precisely because it's funded by government interest payments, which are funded by the same overtaxed taxpayers.</li>
+      <li>Reform proposals exist, from the SBP governor's own SME lending push to a Rs1.5 trillion credit target, but a decade of similar appeals has not moved the underlying numbers, because nothing currently penalises banks for ignoring them.</li>
+      <li>2026 complicates the story without erasing it: the SBP's record rate-cutting cycle reversed course with a 100-basis-point hike on 27 April 2026, holding at 11.5% through July, while private-sector credit simultaneously hit a record Rs1.46 trillion in new lending, up 35% year-on-year and concentrated in manufacturing, trade and agriculture, even as government bank borrowing grew nearly fivefold in the same fiscal year's opening months and reached Rs5.9tr for the full year.</li>
+      <li>A largely under-discussed constitutional deadline, January 1, 2028, requires Pakistan to eliminate interest-based banking entirely; the first Shariah-compliant Sukuk replacing conventional government debt was issued in April 2026, raising a genuinely open question about whether this changes the underlying economics this investigation describes or simply changes their legal form.</li>
+    </ol>
+  </div>
+
+  <dl class="glossary">
+    <dt>Advances-to-deposit ratio (ADR)</dt>
+    <dd>The share of a bank's deposits actually lent out as loans, as opposed to invested in government securities or held in reserve; a falling ADR signals credit is going to the state, not the private economy.</dd>
+    <dt>Investment-to-deposit ratio (IDR)</dt>
+    <dd>The mirror measure of the ADR: the share of a bank's deposits invested in securities, mostly government paper. An IDR above 100%, as recorded in June 2026, means banks hold more in securities than they hold in deposits, funded partly through interbank borrowing.</dd>
+    <dt>Treasury bills (T-bills) &amp; Pakistan Investment Bonds (PIBs)</dt>
+    <dd>Short-term and long-term government debt instruments that banks can buy instead of lending to private borrowers, carrying a state guarantee and, in Pakistan's case, historically very high yields.</dd>
+    <dt>Windfall tax</dt>
+    <dd>A tax on profit judged to result from an unusual, often unearned, economic event rather than normal business activity; Pakistan's 2023 windfall tax targeted banks' currency-speculation profits during the rupee's 2021&ndash;23 collapse.</dd>
+    <dt>Crowding out</dt>
+    <dd>An economic effect where heavy government borrowing from banks leaves less credit available, or available only at higher cost, for private businesses.</dd>
+    <dt>Loan write-off / charge-off</dt>
+    <dd>An accounting process by which a bank formally records a loan as unrecoverable; legitimate when done after genuine recovery efforts, controversial in Pakistan due to a documented history of write-offs benefiting politically connected borrowers.</dd>
+    <dt>IMF Extended Fund Facility (EFF)</dt>
+    <dd>A medium-term IMF lending programme, typically three years, tied to structural and fiscal policy conditions; Pakistan's current programme, its 25th with the Fund, was approved in September 2024 and is worth roughly $7 billion.</dd>
+    <dt>Policy rate</dt>
+    <dd>The benchmark interest rate the State Bank of Pakistan sets to guide borrowing costs economy-wide; it directly shapes the yield banks earn on the government securities described throughout this piece.</dd>
+    <dt>Basis point (bp)</dt>
+    <dd>One-hundredth of one percentage point; a 100-basis-point move equals a 1.0 percentage-point change in the policy rate, the unit used throughout Figure 5's rate-path chart.</dd>
+    <dt>Riba</dt>
+    <dd>Interest or usury, prohibited under Islamic law; Pakistan's Federal Shariat Court and, since 2024, its constitution require the country's financial system to be free of riba by January 1, 2028.</dd>
+    <dt>Sukuk</dt>
+    <dd>A Shariah-compliant bond-like instrument structured around asset ownership, leasing, or profit-and-loss sharing rather than a fixed interest payment; Pakistan's government began issuing hybrid Sukuk in 2026 as a substitute for conventional T-bills and PIBs.</dd>
+  </dl>
+
+  <div class="footer-note">
+    This investigation draws on State Bank of Pakistan data as reported by Dawn (Corporate Window, February 2025, February 2026, and August 2026), The Express Tribune, Profit by Pakistan Today, Daily Times, The Friday Times, Business Recorder, pkrevenue.com, Radio Pakistan, Pakistan Observer, Bol News, Bloom Pakistan, and Pakistan Chronicle; on IMF publications including the November 2025 Governance and Corruption Diagnostic Assessment, the May 2026 press release on the third EFF and second RSF review, and the World Bank's "Transforming Pakistan's Private Sector" discussion note; on official SBP Monetary Policy Committee statements and press releases covering every rate decision cited in Figure 5; on court and regulatory records covering the 2023&ndash;2026 windfall-tax and super-tax litigation, the 2024 Pakistan Information Commission ruling on loan-defaulter disclosure, and the Federal Shariat Court's 2022 riba judgment and its subsequent Supreme Court and constitutional history; and on the Finance Division's mid-2026 Post-2027 Financial System strategy paper as reported by Daily Times and Pakistan Gulf Economist. Historical material on loan write-offs draws on Supreme Court suo motu proceedings reported by Dawn and The Express Tribune between 2006 and 2011. This update, published August 2026, corrects the bank-by-bank profit ledger to reflect UBL's confirmed 2025 sector lead, rebuilds every diagram in the piece on verified, scaled data points, corrects and dates the 2025&ndash;2026 policy-rate sequence in full (including the previously unstated 27 April 2026 rate hike), and updates figures current as of publication. Every specific figure in this article is attributed to the reporting or institutional source that published it; where sources disagreed or data was unavailable for a given year, that gap is stated rather than estimated. This piece presents a critical, evidence-based case; readers are encouraged to consult the primary sources linked in spirit throughout for the fullest picture, including the counter-arguments presented in Section 9.
+  </div>
+
+</div>
+
+<script>
+  const REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function nextPaint(fn) { requestAnimationFrame(() => requestAnimationFrame(fn)); }
+  function animateDraw(id, delay, duration) {
+    const path = document.getElementById(id);
+    if (!path) return;
+    let len = 500;
+    try { if (path.getTotalLength) len = path.getTotalLength() || 500; } catch (e) { }
+    if (REDUCE_MOTION) { path.style.transition = "none"; path.style.strokeDasharray = "none"; path.style.strokeDashoffset = 0; return; }
+    path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+    setTimeout(() => { nextPaint(() => {
+      path.style.willChange = "stroke-dashoffset";
+      path.style.transition = `stroke-dashoffset ${duration||1.6}s cubic-bezier(.22,1,.36,1)`;
+      path.style.strokeDashoffset = 0; releaseWillChange(path);
+    }); }, delay || 0);
+  }
+  function releaseWillChange(el) {
+    let done = false; const clear = () => { if (done) return; done = true; el.style.willChange = "auto"; };
+    el.addEventListener('transitionend', clear, { once: true }); setTimeout(clear, 3000);
+  }
+  function fadeIn(id, delay, dur) {
+    setTimeout(() => {
+      const el = document.getElementById(id); if (!el) return;
+      if (REDUCE_MOTION) { el.style.transition = "none"; el.style.opacity = 1; return; }
+      el.style.willChange = "opacity"; el.style.transition = `opacity ${dur||0.8}s ease`; el.style.opacity = 1;
+      releaseWillChange(el);
+    }, delay || 0);
+  }
+  function growCircle(id, r, delay) {
+    setTimeout(() => {
+      const el = document.getElementById(id); if (!el) return;
+      el.style.transition = REDUCE_MOTION ? "none" : "r 0.7s ease";
+      el.style.willChange = "r"; el.setAttribute('r', r); releaseWillChange(el);
+    }, delay || 0);
+  }
+  function growBarV(id, y, height, delay, dur) {
+    setTimeout(() => {
+      const el = document.getElementById(id); if (!el) return;
+      el.style.transition = REDUCE_MOTION ? "none" : `y ${dur||0.9}s cubic-bezier(.22,1,.36,1), height ${dur||0.9}s cubic-bezier(.22,1,.36,1)`;
+      el.style.willChange = "y,height"; el.setAttribute('y', y); el.setAttribute('height', height);
+      releaseWillChange(el);
+    }, delay || 0);
+  }
+  function growBarH(id, x, width, delay, dur) {
+    setTimeout(() => {
+      const el = document.getElementById(id); if (!el) return;
+      el.style.transition = REDUCE_MOTION ? "none" : `x ${dur||0.9}s cubic-bezier(.22,1,.36,1), width ${dur||0.9}s cubic-bezier(.22,1,.36,1)`;
+      el.style.willChange = "x,width"; el.setAttribute('x', x); el.setAttribute('width', width);
+      releaseWillChange(el);
+    }, delay || 0);
+  }
+  function resetFade(id) { const el = document.getElementById(id); if (el) { el.style.transition = "none"; el.style.opacity = 0; } }
+  function resetCircle(id) { const el = document.getElementById(id); if (el) { el.style.transition = "none"; el.setAttribute('r', 0); } }
+  function resetBarV(id, y, h) { const el = document.getElementById(id); if (el) { el.style.transition = "none"; el.setAttribute('y', y); el.setAttribute('height', h); } }
+  function resetBarH(id, x, w) { const el = document.getElementById(id); if (el) { el.style.transition = "none"; el.setAttribute('x', x); el.setAttribute('width', w); } }
+
+  /* ---------- Figure 1: capital allocation, 2-row zoom ---------- */
+  const f1InfoText = {
+    gov: 'Government securities: Rs38.25 trillion in bank holdings of T-bills &amp; PIBs by December 2025, up from Rs30tr at the start of the year (Dawn, Corporate Window).',
+    priv: 'Private sector loans: just 22% of total banking assets as of March 2026 (Daily Times); of that slice, SMEs receive under 7% (Dawn SME financing coverage).'
+  };
+  function tapF1(key) {
+    const panel = document.getElementById('f1-info');
+    if (panel) panel.innerHTML = '<b>' + (key === 'gov' ? 'Government securities' : 'Private sector loans') + ':</b> ' + f1InfoText[key];
+  }
+  function playF1() {
+    growBarH('f1-gov', 150, 499.2, 200, 1.3);
+    growBarH('f1-priv', 649.2, 140.8, 400, 1.3);
+    setTimeout(() => { fadeIn('f1-gov-lab', 0, 0.6); fadeIn('f1-priv-lab', 0, 0.6); }, 1700);
+    setTimeout(() => { fadeIn('f1-zoomline', 0, 0.6); fadeIn('f1-zoom-title', 200, 0.6); }, 2100);
+    setTimeout(() => {
+      growBarH('f1-sme', 150, 44.8, 0, 1.0);
+      growBarH('f1-rest', 194.8, 595.2, 200, 1.0);
+      fadeIn('f1-sme-lab', 1200, 0.6); fadeIn('f1-rest-lab', 1300, 0.6);
+    }, 2700);
+  }
+  function resetF1() {
+    ['f1-gov-lab','f1-priv-lab','f1-zoomline','f1-zoom-title','f1-sme-lab','f1-rest-lab'].forEach(resetFade);
+    resetBarH('f1-gov', 150, 0); resetBarH('f1-priv', 649.2, 0);
+    resetBarH('f1-sme', 150, 0); resetBarH('f1-rest', 194.8, 0);
+    const panel = document.getElementById('f1-info'); if (panel) panel.textContent = 'Tap "Government securities" or "Private sector loans" above for the source behind each number.';
+  }
+
+  /* ---------- Figure 2: divergence chart ---------- */
+  function playF2() {
+    animateDraw('f2-profit', 200, 1.8); fadeIn('f2-profit', 200, 0.6);
+    animateDraw('f2-credit', 200, 1.8); fadeIn('f2-credit', 200, 0.6);
+    setTimeout(() => {
+      growCircle('f2-cross', 5, 0);
+      fadeIn('f2-cross-t1', 200, 0.6); fadeIn('f2-cross-t2', 350, 0.6);
+    }, 2300);
+    setTimeout(() => {
+      fadeIn('f2-profit-end', 0, 0.6); fadeIn('f2-profit-end2', 150, 0.6);
+      fadeIn('f2-credit-end', 0, 0.6); fadeIn('f2-credit-end2', 150, 0.6);
+    }, 3200);
+  }
+  function resetF2() {
+    ['f2-profit','f2-credit','f2-cross-t1','f2-cross-t2','f2-profit-end','f2-profit-end2','f2-credit-end','f2-credit-end2'].forEach(resetFade);
+    resetCircle('f2-cross');
+  }
+
+  /* ---------- Generic timeline roadmap player (figures 3 & 6) ---------- */
+  function playRoadmap(prefix, count, gap) {
+    fadeIn(prefix+'-n1', 0, 0.9); growCircle(prefix+'-n1', 7, 250);
+    for (let i = 1; i < count; i++) {
+      const t = 900 + (i-1) * gap;
+      const seg = prefix + '-seg' + i;
+      const node = prefix + '-n' + (i+1);
+      setTimeout(() => { animateDraw(seg, 0, gap/1250); fadeIn(seg, 0, 0.4); }, t);
+      setTimeout(() => {
+        fadeIn(node, 0, 0.8);
+        const circ = document.querySelector('#' + node + ' circle');
+        if (circ) { circ.style.transition = REDUCE_MOTION ? "none" : "r 0.7s ease"; circ.setAttribute('r', 7); }
+      }, t + gap * 0.85);
+    }
+  }
+  function resetRoadmap(prefix, count) {
+    for (let i = 1; i <= count; i++) {
+      const node = prefix + '-n' + i;
+      resetFade(node);
+      const circ = document.querySelector('#' + node + ' circle');
+      if (circ) { circ.style.transition = "none"; circ.setAttribute('r', 0); }
+    }
+    for (let i = 1; i < count; i++) resetFade(prefix + '-seg' + i);
+  }
+  function playF3() { playRoadmap('f3', 7, 1350); }
+  function resetF3() { resetRoadmap('f3', 7); }
+  function playF6() { playRoadmap('f6', 7, 1200); }
+  function resetF6() { resetRoadmap('f6', 7); }
+
+  /* ---------- Figure 5: policy rate rollercoaster ---------- */
+  function playF5() {
+    fadeIn('f5-n1', 0, 0.9); growCircle('f5-n1', 7, 250);
+    for (let i = 1; i < 11; i++) {
+      const t = 900 + (i-1) * 900;
+      const seg = 'f5-seg' + i;
+      const node = 'f5-n' + (i+1);
+      setTimeout(() => { animateDraw(seg, 0, 0.8); fadeIn(seg, 0, 0.4); }, t);
+      setTimeout(() => {
+        fadeIn(node, 0, 0.7);
+        const circ = document.querySelector('#' + node + ' circle');
+        if (circ) { circ.style.transition = REDUCE_MOTION ? "none" : "r 0.6s ease"; circ.setAttribute('r', 6); }
+      }, t + 700);
+    }
+  }
+  function resetF5() {
+    for (let i = 1; i <= 11; i++) {
+      const node = 'f5-n' + i;
+      resetFade(node);
+      const circ = document.querySelector('#' + node + ' circle');
+      if (circ) { circ.style.transition = "none"; circ.setAttribute('r', 0); }
+    }
+    for (let i = 1; i < 11; i++) resetFade('f5-seg' + i);
+  }
+
+  /* ---------- Figure 4: tax burden toggle ---------- */
+  function playF4() {
+    growBarV('f4-bar1-r', 158.00, 182.00, 200, 1.1);
+    growBarV('f4-bar2-r', 85.67, 254.33, 500, 1.1);
+    growBarV('f4-bar3-r', 330.67, 9.33, 800, 1.1);
+    setTimeout(() => {
+      document.getElementById('f4-bar1-v').setAttribute('y', 148.00); fadeIn('f4-bar1-v', 0, 0.6);
+      document.getElementById('f4-bar2-v').setAttribute('y', 75.67); fadeIn('f4-bar2-v', 0, 0.6);
+      document.getElementById('f4-bar3-v').setAttribute('y', 320.67); fadeIn('f4-bar3-v', 0, 0.6);
+    }, 1600);
+  }
+  function resetF4() {
+    resetBarV('f4-bar1-r', 340, 0); resetBarV('f4-bar2-r', 340, 0); resetBarV('f4-bar3-r', 340, 0);
+    ['f4-bar1-v','f4-bar2-v','f4-bar3-v','f4-footnote'].forEach(resetFade);
+    setF4View('burden', document.getElementById('f4btn-a'));
+  }
+  function setF4View(view, btnEl) {
+    document.querySelectorAll('#f4Block .toggle-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+    const title = document.getElementById('f4-title');
+    const footnote = document.getElementById('f4-footnote');
+    if (view === 'burden') {
+      title.textContent = "Who Carries Pakistan's Tax Burden?";
+      footnote.style.opacity = 0;
+    } else {
+      title.textContent = "Heavily Taxed, Still Winning: The Banking Paradox";
+      footnote.style.transition = REDUCE_MOTION ? "none" : "opacity 0.6s ease";
+      footnote.textContent = "54.5% of pre-tax profit goes to tax, yet net profit still hit a record Rs671bn, because the pre-tax pool itself is inflated by government interest payments.";
+      footnote.style.opacity = 1;
+    }
+  }
+
+  /* ---------- Figure 7: credit tug-of-war toggle (shared Rs0-2tr scale) ---------- */
+  const f7Views = {
+    private: {
+      title: "Private-Sector Credit, FY25 vs FY26 (full fiscal year)",
+      bar1: { y: 184.2, h: 145.8, label: "Rs1.08tr", labY: 174.2 },
+      bar2: { y: 132.9, h: 197.1, label: "Rs1.46tr", labY: 122.9 },
+      lab1: "FY25", lab2: "FY26 \u2014 record, +35%",
+      title1: "Private-sector credit, FY25: Rs1.08 trillion (SBP, via Profit by Pakistan Today).",
+      title2: "Private-sector credit, FY26: Rs1.46 trillion, a record and a 35% year-on-year jump (SBP, via pkrevenue.com and the Finance Ministry).",
+      footnote: 'Tap "Govt borrowing, first 7 months" to see the other half of the tug-of-war.'
+    },
+    govt: {
+      title: "Government Borrowing from Banks, First 7 Months, FY25 vs FY26",
+      bar1: { y: 274.9, h: 55.1, label: "Rs408bn", labY: 264.9 },
+      bar2: { y: 71.9, h: 258.1, label: "Rs1.912tr", labY: 61.9 },
+      lab1: "7M FY25", lab2: "7M FY26 \u2014 nearly 5x",
+      title1: "Government borrowing from commercial banks, first 7 months of FY25: Rs408 billion (SBP, via Profit by Pakistan Today).",
+      title2: "Government borrowing from commercial banks, first 7 months of FY26: Rs1.912 trillion, a nearly fivefold jump (SBP, via Profit by Pakistan Today).",
+      footnote: 'Partial-year figures shown deliberately, not blended with full-year private-credit data above. Same Rs0\u20132tr axis both views, for direct visual comparison.'
+    }
+  };
+  function setF7View(view, btnEl) {
+    document.querySelectorAll('#f7Block .toggle-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+    const v = f7Views[view];
+    document.getElementById('f7-title').textContent = v.title;
+    document.getElementById('f7-bar1-lab').textContent = v.lab1;
+    document.getElementById('f7-bar2-lab').textContent = v.lab2;
+    document.querySelector('#f7-bar1-r title').textContent = v.title1;
+    document.querySelector('#f7-bar2-r title').textContent = v.title2;
+    const b1 = document.getElementById('f7-bar1-r'), b2 = document.getElementById('f7-bar2-r');
+    const t1 = document.getElementById('f7-bar1-v'), t2 = document.getElementById('f7-bar2-v');
+    b1.style.transition = REDUCE_MOTION ? "none" : "y 1.1s cubic-bezier(.22,1,.36,1), height 1.1s cubic-bezier(.22,1,.36,1)";
+    b2.style.transition = REDUCE_MOTION ? "none" : "y 1.1s cubic-bezier(.22,1,.36,1), height 1.1s cubic-bezier(.22,1,.36,1)";
+    b1.setAttribute('y', v.bar1.y); b1.setAttribute('height', v.bar1.h);
+    b2.setAttribute('y', v.bar2.y); b2.setAttribute('height', v.bar2.h);
+    t1.textContent = v.bar1.label; t1.setAttribute('y', v.bar1.labY);
+    t2.textContent = v.bar2.label; t2.setAttribute('y', v.bar2.labY);
+    const fn = document.getElementById('f7-footnote'); fn.textContent = v.footnote;
+  }
+  function playF7() {
+    setF7View('private', document.getElementById('f7btn-a'));
+    const b1 = document.getElementById('f7-bar1-r'), b2 = document.getElementById('f7-bar2-r');
+    b1.style.transition = "none"; b1.setAttribute('y', 330); b1.setAttribute('height', 0);
+    b2.style.transition = "none"; b2.setAttribute('y', 330); b2.setAttribute('height', 0);
+    resetFade('f7-bar1-v'); resetFade('f7-bar2-v'); resetFade('f7-footnote');
+    setTimeout(() => {
+      const v = f7Views.private;
+      b1.style.transition = REDUCE_MOTION ? "none" : "y 1.2s cubic-bezier(.22,1,.36,1), height 1.2s cubic-bezier(.22,1,.36,1)";
+      b2.style.transition = REDUCE_MOTION ? "none" : "y 1.2s cubic-bezier(.22,1,.36,1), height 1.2s cubic-bezier(.22,1,.36,1)";
+      b1.setAttribute('y', v.bar1.y); b1.setAttribute('height', v.bar1.h);
+      setTimeout(() => { b2.setAttribute('y', v.bar2.y); b2.setAttribute('height', v.bar2.h); }, 400);
+      setTimeout(() => { fadeIn('f7-bar1-v', 0, 0.6); fadeIn('f7-bar2-v', 150, 0.6); fadeIn('f7-footnote', 500, 0.6); }, 1500);
+    }, 300);
+  }
+  function resetF7() {
+    const b1 = document.getElementById('f7-bar1-r'), b2 = document.getElementById('f7-bar2-r');
+    if (b1) { b1.style.transition = "none"; b1.setAttribute('y', 330); b1.setAttribute('height', 0); }
+    if (b2) { b2.style.transition = "none"; b2.setAttribute('y', 330); b2.setAttribute('height', 0); }
+    ['f7-bar1-v','f7-bar2-v','f7-footnote'].forEach(resetFade);
+  }
+
+  const playFns = { f1: playF1, f2: playF2, f3: playF3, f4: playF4, f5: playF5, f6: playF6, f7: playF7 };
+  const resetFns = { f1: resetF1, f2: resetF2, f3: resetF3, f4: resetF4, f5: resetF5, f6: resetF6, f7: resetF7 };
+  function replay(key, btnEl) {
+    if (btnEl) { btnEl.classList.add('spinning'); setTimeout(() => btnEl.classList.remove('spinning'), 650); }
+    if (resetFns[key]) resetFns[key]();
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (playFns[key]) playFns[key](); }));
+  }
+
+  const triggered = {};
+  const blockPlayers = { f1Block: playF1, f2Block: playF2, f3Block: playF3, f4Block: playF4, f5Block: playF5, f6Block: playF6, f7Block: playF7 };
+  const blockIds = Object.keys(blockPlayers);
+  function fireBlock(id) { if (triggered[id]) return; triggered[id] = true; const fn = blockPlayers[id]; if (fn) fn(); }
+  function checkVisible() {
+    blockIds.forEach(id => {
+      const el = document.getElementById(id); if (!el || triggered[id]) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) fireBlock(id);
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) fireBlock(entry.target.id); }); }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+    blockIds.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+  } else { window.addEventListener('scroll', checkVisible, { passive: true }); }
+  window.addEventListener('load', checkVisible);
+  window.addEventListener('orientationchange', () => setTimeout(checkVisible, 300));
+  window.addEventListener('resize', checkVisible, { passive: true });
+  setTimeout(checkVisible, 800); checkVisible();
+  blockIds.forEach(id => {
+    const el = document.getElementById(id); if (!el) return;
+    const trigger = () => fireBlock(id);
+    if (window.PointerEvent) { el.addEventListener('pointerdown', trigger, { passive: true, once: true }); }
+    else { el.addEventListener('touchstart', trigger, { passive: true, once: true }); el.addEventListener('mousedown', trigger, { once: true }); }
+  });
+</script>
+</body>
+</html>

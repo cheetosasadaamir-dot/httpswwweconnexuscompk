@@ -3,6 +3,7 @@
 // Written in-house; sources consulted for understanding only.
 
 import { MACRO_ENRICHMENT_DATA } from './enrichment/macro';
+import { MICRO_ENRICHMENT_DATA } from './enrichment/micro';
 
 export interface ChapterEnrichmentEntry {
   id: string;
@@ -20,7 +21,7 @@ export interface ChapterEnrichmentEntry {
   };
 }
 
-export const MICRO_ENRICHMENT: ChapterEnrichmentEntry[] = [];
+export const MICRO_ENRICHMENT: ChapterEnrichmentEntry[] = MICRO_ENRICHMENT_DATA;
 
 export const MACRO_ENRICHMENT: ChapterEnrichmentEntry[] = MACRO_ENRICHMENT_DATA;
 

@@ -4,6 +4,7 @@ import DemandCurveDiagram from '@/components/DemandCurveDiagram';
 import GlossaryTooltip from '@/components/GlossaryTooltip';
 import { ArrowLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const MarketStructures = () => {
   return (
@@ -234,6 +235,7 @@ const MarketStructures = () => {
           </Link>
         </nav>
       </div>
+      <ChapterEnrichment id="market-structures" />
     </Layout>
   );
 };

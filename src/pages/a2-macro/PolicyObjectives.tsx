@@ -14,6 +14,7 @@ import LiquidityPreferenceDiagram from '@/components/diagrams/LiquidityPreferenc
 import PolicyEffectivenessSection from '@/components/diagrams/PolicyEffectivenessSection';
 import InterconnectednessSection from '@/components/diagrams/InterconnectednessSection';
 import MacroPolicyAimsSection from '@/components/diagrams/MacroPolicyAimsSection';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const policyObjectivesTakeaways = [
   "8 Macroeconomic Objectives: Price stability, Full employment, Economic growth, BoP stability, Redistribution, Environment, Productivity, Market failure correction",
@@ -631,6 +632,7 @@ const PolicyObjectives = () => {
           </ContentSection>
         </motion.div>
       </div>
+      <ChapterEnrichment id="supply-side-policy" />
     </Layout>
   );
 };

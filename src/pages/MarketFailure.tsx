@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertTriangle, Scale, Lightbulb, TrendingDown, Users, ShieldAlert, BookOpen } from 'lucide-react';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const MarketFailure = () => {
   return (
@@ -486,6 +487,7 @@ const MarketFailure = () => {
           />
         </div>
       </motion.section>
+      <ChapterEnrichment id="market-failure" />
     </ChapterLayout>
   );
 };

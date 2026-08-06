@@ -20,6 +20,7 @@ import DevelopmentSustainabilitySection from '@/components/diagrams/DevelopmentS
 import ClassificationIndicatorsSection from '@/components/diagrams/ClassificationIndicatorsSection';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 const developmentTakeaways = [
   "Economic Growth ≠ Economic Development; Growth is ↑Real GDP; Development is qualitative improvement in living standards",
   "HDI combines Health (life expectancy), Education (schooling years), and Income (GNI per capita PPP) — range 0 to 1",
@@ -494,6 +495,7 @@ const Development = () => {
           </ContentSection>
         </motion.div>
       </div>
+      <ChapterEnrichment id="economic-development" />
     </Layout>
   );
 };

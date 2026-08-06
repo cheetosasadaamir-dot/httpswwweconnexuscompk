@@ -312,11 +312,14 @@ export const ExchangeRateDiagram = () => {
           <svg viewBox="0 0 500 400" className="w-full h-auto bg-background/50 rounded-lg">
             {/* Grid */}
             <defs>
+              <pattern id="exchangeGridFixed" width="50" height="50" patternUnits="userSpaceOnUse">
+                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--border))" strokeWidth="0.5" opacity="0.3" />
+              </pattern>
               <marker id="axisArrowERFixed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                 <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--foreground))" />
               </marker>
             </defs>
-            <rect x="60" y="20" width="400" height="320" fill="url(#exchangeGrid)" />
+            <rect x="60" y="20" width="400" height="320" fill="url(#exchangeGridFixed)" />
 
             {/* Axes */}
             <line x1="60" y1="340" x2="460" y2="340" stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#axisArrowERFixed)" />
