@@ -21,7 +21,7 @@ export interface ChapterEnrichmentEntry {
   };
 }
 
-export const MICRO_ENRICHMENT: ChapterEnrichmentEntry[] = [];
+export const MICRO_ENRICHMENT: ChapterEnrichmentEntry[] = MICRO_ENRICHMENT_DATA;
 
 export const MACRO_ENRICHMENT: ChapterEnrichmentEntry[] = MACRO_ENRICHMENT_DATA;
 
