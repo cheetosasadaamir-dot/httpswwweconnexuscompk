@@ -144,7 +144,7 @@ export const ADShiftImpactDiagram = () => {
 
         {/* New AD Curve (AD₂) */}
         <motion.path
-          d={`M ${xScale(20)} ${yScale(88)} Q ${xScale(45)} ${yScale(70)}, ${xScale(62)} ${yScale(58)} Q ${xScale(75)} ${yScale(48)}, ${xScale(90)} ${yScale(38)}`}
+          d={`M ${xScale(20)} ${yScale(88)} Q ${xScale(45)} ${yScale(70)}, ${xScale(60.3)} ${yScale(59.2)} Q ${xScale(75)} ${yScale(48)}, ${xScale(90)} ${yScale(38)}`}
           fill="none" stroke={ad2Color} strokeWidth="3.5"
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
@@ -162,14 +162,14 @@ export const ADShiftImpactDiagram = () => {
 
         {/* New Equilibrium E₂ */}
         <motion.circle
-          cx={xScale(62)} cy={yScale(58)} r="7"
+          cx={xScale(60.3)} cy={yScale(59.2)} r="7"
           fill="white" stroke="#10B981" strokeWidth="3"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 2.5, type: "spring" }}
         />
         <motion.text 
-          x={xScale(62) + 12} y={yScale(58) - 10} 
+          x={xScale(60.3) + 12} y={yScale(59.2) - 10} 
           fill="white" fontSize="13" fontWeight="bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -180,21 +180,21 @@ export const ADShiftImpactDiagram = () => {
 
         {/* New dashed lines */}
         <motion.line 
-          x1={xScale(62)} y1={yScale(58)} x2={xScale(62)} y2={yScale(0)} 
+          x1={xScale(60.3)} y1={yScale(59.2)} x2={xScale(60.3)} y2={yScale(0)} 
           stroke="#10B981" strokeOpacity="0.6" strokeWidth="1.5" strokeDasharray="4,4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6 }}
         />
         <motion.line 
-          x1={xScale(62)} y1={yScale(58)} x2={margin.left} y2={yScale(58)} 
+          x1={xScale(60.3)} y1={yScale(59.2)} x2={margin.left} y2={yScale(59.2)} 
           stroke="#10B981" strokeOpacity="0.6" strokeWidth="1.5" strokeDasharray="4,4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6 }}
         />
         <motion.text 
-          x={xScale(62)} y={yScale(0) + 16} textAnchor="middle" 
+          x={xScale(60.3)} y={yScale(0) + 16} textAnchor="middle" 
           fill="#10B981" fontSize="11" fontWeight="bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -203,7 +203,7 @@ export const ADShiftImpactDiagram = () => {
           Y₂
         </motion.text>
         <motion.text 
-          x={margin.left - 12} y={yScale(58) + 4} textAnchor="middle" 
+          x={margin.left - 12} y={yScale(59.2) + 4} textAnchor="middle" 
           fill="#10B981" fontSize="11" fontWeight="bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -219,16 +219,16 @@ export const ADShiftImpactDiagram = () => {
           transition={{ delay: 3 }}
         >
           {/* ΔY arrow */}
-          <line x1={xScale(50) + 3} y1={yScale(3)} x2={xScale(62) - 3} y2={yScale(3)} 
+          <line x1={xScale(50) + 3} y1={yScale(3)} x2={xScale(60.3) - 3} y2={yScale(3)} 
                 stroke="#10B981" strokeWidth="2" markerEnd="url(#shiftArrow-ADShiftImpactDiagram)" />
-          <text x={(xScale(50) + xScale(62)) / 2} y={yScale(7)} textAnchor="middle" fill="#10B981" fontSize="10">
+          <text x={(xScale(50) + xScale(60.3)) / 2} y={yScale(7)} textAnchor="middle" fill="#10B981" fontSize="10">
             ΔY (Growth)
           </text>
 
           {/* ΔP arrow */}
-          <line x1={margin.left + 8} y1={yScale(48) - 3} x2={margin.left + 8} y2={yScale(58) + 3} 
+          <line x1={margin.left + 8} y1={yScale(48) - 3} x2={margin.left + 8} y2={yScale(59.2) + 3} 
                 stroke="#10B981" strokeWidth="2" markerEnd="url(#shiftArrow-ADShiftImpactDiagram)" />
-          <text x={margin.left + 25} y={(yScale(48) + yScale(58)) / 2 + 3} fill="#10B981" fontSize="10">
+          <text x={margin.left + 25} y={(yScale(48) + yScale(59.2)) / 2 + 3} fill="#10B981" fontSize="10">
             ΔP
           </text>
         </motion.g>

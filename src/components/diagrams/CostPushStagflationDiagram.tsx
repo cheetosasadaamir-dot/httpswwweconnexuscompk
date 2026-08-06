@@ -60,8 +60,8 @@ const CostPushStagflationDiagram = () => {
   const sras2Points = sras1Points.map(p => ({ x: p.x - 15, y: p.y + 12 }));
 
   // Equilibrium points
-  const eq1 = { x: 53, y: 47 };
-  const eq2 = { x: 40, y: 62 };
+  const eq1 = { x: 54.8, y: 48 };
+  const eq2 = { x: 39.5, y: 59.6 };
 
   const pathFromPoints = (points: { x: number; y: number }[]) => {
     if (points.length === 0) return '';
