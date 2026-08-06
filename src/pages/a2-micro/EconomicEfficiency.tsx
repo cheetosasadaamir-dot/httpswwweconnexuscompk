@@ -8,6 +8,7 @@ import { AlertTriangle, CheckCircle, Lightbulb } from 'lucide-react';
 import KeyTakeaways from '@/components/KeyTakeaways';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExaminerTrap from '@/components/ExaminerTrap';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const EconomicEfficiency = () => {
   return (
@@ -344,6 +345,7 @@ const EconomicEfficiency = () => {
       >
         <AdvancedEfficiencySection />
       </motion.section>
+      <ChapterEnrichment id="government-intervention" />
     </ChapterLayout>
   );
 };

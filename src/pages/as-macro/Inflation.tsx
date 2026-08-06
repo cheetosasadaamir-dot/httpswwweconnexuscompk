@@ -13,6 +13,7 @@ import CostPushStagflationDiagram from '@/components/diagrams/CostPushStagflatio
 import DemandPullInflationDiagram from '@/components/diagrams/DemandPullInflationDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const inflationTakeaways = [
   "Inflation is a sustained increase in the General Price Level (GPL), measured by CPI, causing a fall in the purchasing power of money",
@@ -432,6 +433,7 @@ const Inflation = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="inflation-unemployment-phillips" />
     </Layout>
   );
 };

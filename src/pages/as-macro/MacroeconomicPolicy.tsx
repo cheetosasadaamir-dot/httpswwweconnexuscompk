@@ -12,6 +12,7 @@ import PolicyConflictsDiagram from '@/components/diagrams/PolicyConflictsDiagram
 import MultiplierDiagram from '@/components/diagrams/MultiplierDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const policyTakeaways = [
   "Fiscal Policy: manipulation of G and T to shift AD; Multiplier k = 1/(1-MPC) = 1/(MPS+MPT+MPM)",
@@ -264,6 +265,7 @@ const MacroeconomicPolicy = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="fiscal-policy" />
     </Layout>
   );
 };

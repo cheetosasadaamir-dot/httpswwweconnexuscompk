@@ -8,6 +8,7 @@ import GlossaryTooltip from '@/components/GlossaryTooltip';
 import { ElasticityDiagram, AllElasticityDiagrams } from '@/components/diagrams/ElasticityDiagrams';
 import YEDXEDDiagram from '@/components/diagrams/YEDXEDDiagram';
 import PESDiagram from '@/components/diagrams/PESDiagram';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const Elasticities = () => {
   return (
@@ -634,6 +635,7 @@ const Elasticities = () => {
           </div>
         </div>
       </ContentSection>
+      <ChapterEnrichment id="how-markets-work" />
     </ChapterLayout>
   );
 };

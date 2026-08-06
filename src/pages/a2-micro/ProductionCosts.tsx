@@ -10,6 +10,7 @@ import EconomiesOfScaleDiagram from '@/components/diagrams/EconomiesOfScaleDiagr
 import RevenueCurvesDiagram from '@/components/diagrams/RevenueCurvesDiagram';
 import KeyTakeaways from '@/components/KeyTakeaways';
 import ExaminerTrap from '@/components/ExaminerTrap';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const ProductionCosts = () => {
   return (
@@ -802,6 +803,7 @@ const ProductionCosts = () => {
           </ul>
         </div>
       </ContentSection>
+      <ChapterEnrichment id="production-costs-revenue" />
     </ChapterLayout>
   );
 };

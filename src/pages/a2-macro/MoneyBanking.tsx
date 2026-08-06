@@ -18,6 +18,7 @@ import AdvancedMonetaryTheorySection from '@/components/diagrams/AdvancedMonetar
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const moneyBankingTakeaways = [
   "Liquidity Preference: 3 motives for holding money — Transactions (f(Y)), Precautionary (f(Y)), Speculative (f(r) inverse)",
@@ -746,6 +747,7 @@ const MoneyBanking = () => {
         </ContentSection>
 
       </motion.div>
+      <ChapterEnrichment id="monetary-policy" />
     </Layout>
   );
 };

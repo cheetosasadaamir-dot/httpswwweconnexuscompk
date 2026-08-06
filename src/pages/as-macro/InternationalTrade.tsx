@@ -15,6 +15,7 @@ import TradeCreationDiagram from '@/components/diagrams/TradeCreationDiagram';
 import TradeDiversionDiagram from '@/components/diagrams/TradeDiversionDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const tradeTakeaways = [
   "Absolute Advantage: producing more output with same inputs; Comparative Advantage: lower opportunity cost (basis for mutually beneficial trade)",
@@ -471,6 +472,7 @@ const InternationalTrade = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="international-economics" />
     </Layout>
   );
 };
