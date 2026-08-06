@@ -3,6 +3,7 @@
 // Written in-house; sources consulted for understanding only.
 
 import { MACRO_ENRICHMENT_DATA } from './enrichment/macro';
+import { MICRO_ENRICHMENT_DATA } from './enrichment/micro';
 
 export interface ChapterEnrichmentEntry {
   id: string;
