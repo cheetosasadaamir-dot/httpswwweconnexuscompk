@@ -69,6 +69,7 @@ const ArticleHub = lazy(() => import("./pages/ArticleHub"));
 const ArticleViewer = lazy(() => import("./pages/ArticleViewer"));
 const AssignmentArchitectPage = lazy(() => import("./pages/AssignmentArchitectPage"));
 const WorldEconomics = lazy(() => import("./pages/WorldEconomics"));
+const DiagramHub = lazy(() => import("./pages/DiagramHub"));
 
 
 
@@ -161,6 +162,7 @@ const AnimatedRoutes = () => {
           <Route path="/article-hub/:slug" element={<ProtectedRoute><ArticleViewer /></ProtectedRoute>} />
           <Route path="/assignment-architect" element={<AssignmentArchitectPage />} />
           <Route path="/world-economics" element={<WorldEconomics />} />
+          <Route path="/diagram-hub" element={<DiagramHub />} />
 
           
           {/* Legacy routes */}

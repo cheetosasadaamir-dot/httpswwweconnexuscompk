@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import AuthOverlay from '@/components/AuthOverlay';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, LineChart, MessageSquare, Target, FileText, PenLine, GraduationCap, BookOpen, Globe, Landmark, Coins, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, LineChart, MessageSquare, Target, FileText, PenLine, GraduationCap, BookOpen, Globe, Landmark, Coins, TrendingUp, BarChart3, PieChart, Activity } from 'lucide-react';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -209,11 +209,11 @@ const Index = () => {
                 Academic Workspaces
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
-                Two dedicated environments — draft top-band assignments, or explore the global economy concept by concept.
+                Three dedicated environments — draft top-band assignments, master every diagram, or explore the global economy concept by concept.
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
               <HubEntryCard
                 title="Assignment Architect"
                 description="Draft professionally structured essays, reports and research papers with proper headings and referencing."
@@ -225,6 +225,16 @@ const Index = () => {
                 delay={0}
               />
               <HubEntryCard
+                title="Diagram Hub"
+                description="106 complex economics diagrams, built stage by stage — micro and macro, with the analysis behind every shift."
+                href="/diagram-hub"
+                cta="Open Diagram Hub"
+                icons={[BarChart3, LineChart, PieChart, Activity]}
+                gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(210 60% 12%) 50%, hsl(var(--navy-light)) 100%)"
+                hoverGradient="linear-gradient(135deg, hsl(210 60% 15%) 0%, hsl(196 60% 18%) 50%, hsl(210 50% 20%) 100%)"
+                delay={0.1}
+              />
+              <HubEntryCard
                 title="World Economics"
                 description="Search a living encyclopedia of global economics — models, indicators and real-world context."
                 href="/world-economics"
@@ -232,7 +242,7 @@ const Index = () => {
                 icons={[Globe, Landmark, Coins, TrendingUp]}
                 gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(217 50% 12%) 50%, hsl(var(--navy-light)) 100%)"
                 hoverGradient="linear-gradient(135deg, hsl(217 50% 15%) 0%, hsl(200 50% 18%) 50%, hsl(217 40% 20%) 100%)"
-                delay={0.15}
+                delay={0.2}
               />
             </div>
           </div>

@@ -18,6 +18,7 @@ import {
   Video,
   Lock,
   FileText,
+  LineChart,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
@@ -499,6 +500,21 @@ const FloatingDock = () => {
                   ) : (
                     <span className="text-[10px] uppercase tracking-[0.2em] text-neon-gold/80">Open</span>
                   )}
+                </Link>
+
+                {/* Diagram Hub — open to everyone */}
+                <Link
+                  to="/diagram-hub"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-between gap-3 px-4 py-3.5 mb-5 md:mb-6 rounded-xl border border-neon-cyan/30 bg-neon-cyan/10 text-neon-cyan hover:bg-neon-cyan/20 transition-all touch-target pointer-events-auto"
+                >
+                  <span className="flex items-center gap-3">
+                    <LineChart className="w-4 h-4" />
+                    <span className="text-sm font-semibold tracking-wider uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                      Diagram Hub
+                    </span>
+                  </span>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-neon-cyan/80">Open</span>
                 </Link>
 
                 {/* Assignment Architect & World Economics */}
