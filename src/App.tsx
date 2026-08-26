@@ -69,6 +69,7 @@ const ArticleHub = lazy(() => import("./pages/ArticleHub"));
 const ArticleViewer = lazy(() => import("./pages/ArticleViewer"));
 const AssignmentArchitectPage = lazy(() => import("./pages/AssignmentArchitectPage"));
 const WorldEconomics = lazy(() => import("./pages/WorldEconomics"));
+const DiagramHub = lazy(() => import("./pages/DiagramHub"));
 
 
 
