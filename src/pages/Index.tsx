@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import AuthOverlay from '@/components/AuthOverlay';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, LineChart, MessageSquare, Target, FileText, PenLine, GraduationCap, BookOpen, Globe, Landmark, Coins, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, LineChart, MessageSquare, Target, FileText, PenLine, GraduationCap, BookOpen, Globe, Landmark, Coins, TrendingUp, BarChart3, PieChart, Activity } from 'lucide-react';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
