@@ -18,6 +18,7 @@ import {
   Video,
   Lock,
   FileText,
+  LineChart,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
