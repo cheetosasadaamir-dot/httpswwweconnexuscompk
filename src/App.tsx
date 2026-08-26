@@ -162,6 +162,7 @@ const AnimatedRoutes = () => {
           <Route path="/article-hub/:slug" element={<ProtectedRoute><ArticleViewer /></ProtectedRoute>} />
           <Route path="/assignment-architect" element={<AssignmentArchitectPage />} />
           <Route path="/world-economics" element={<WorldEconomics />} />
+          <Route path="/diagram-hub" element={<DiagramHub />} />
 
           
           {/* Legacy routes */}
