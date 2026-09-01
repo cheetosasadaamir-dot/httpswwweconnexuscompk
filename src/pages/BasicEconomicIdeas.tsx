@@ -11,6 +11,12 @@ import OpportunityCostPPCDiagram from '@/components/diagrams/OpportunityCostPPCD
 import ResourceAllocationSpectrumDiagram from '@/components/diagrams/ResourceAllocationSpectrumDiagram';
 import PriceMechanismFlowDiagram from '@/components/diagrams/PriceMechanismFlowDiagram';
 import PositiveNormativePPCDiagram from '@/components/diagrams/PositiveNormativePPCDiagram';
+import PositiveNormativeQuiz from '@/components/diagrams/PositiveNormativeQuiz';
+import ThreeQuestionsComparisonDiagram from '@/components/diagrams/ThreeQuestionsComparisonDiagram';
+import SpecializationPPCShiftDiagram from '@/components/diagrams/SpecializationPPCShiftDiagram';
+import SystemComparisonPPCDiagram from '@/components/diagrams/SystemComparisonPPCDiagram';
+import EconomicSystemsDiagram from '@/components/diagrams/EconomicSystemsDiagram';
+import MovementShiftDiagram from '@/components/diagrams/MovementShiftDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
@@ -131,6 +137,34 @@ const BasicEconomicIdeas = () => {
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* SECTION 1B: THE THREE FUNDAMENTAL QUESTIONS + SPECIALISATION */}
+        <ContentSection title="The Three Fundamental Questions and Specialisation">
+          <div className="glass-card p-5 space-y-4">
+            <h3 className="font-serif text-xl text-gradient">What, How and For Whom to Produce</h3>
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Because scarcity is universal, every economy — from a subsistence village to a trillion-dollar industrial state — must answer the same three allocation questions. <strong className="text-cambridge-cyan">What to produce?</strong> determines the <em>composition</em> of national output: capital goods versus consumer goods, healthcare versus defence. Choosing more of one is only possible by giving up the other, which is precisely what a movement along the PPC represents. <strong className="text-cambridge-magenta">How to produce?</strong> concerns the <em>technique</em>: the combination of land, labour, capital and enterprise employed. Firms minimise cost by substituting towards the relatively cheaper factor, which is why textile production concentrates in labour-abundant economies while automated assembly dominates high-wage ones. <strong className="text-cambridge-green">For whom to produce?</strong> concerns <em>distribution</em>: output is shared according to factor incomes in a market economy (those with scarce, valuable skills or assets command more), or according to political criteria under central planning. The distribution question is where positive analysis ends and normative judgement begins.
+            </p>
+
+            <ThreeQuestionsComparisonDiagram />
+          </div>
+
+          <div className="glass-card p-5 space-y-4 mt-4">
+            <h3 className="font-serif text-xl text-gradient">Specialisation, the Division of Labour and Exchange</h3>
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Scarcity pushes economies towards <strong className="text-foreground">specialisation</strong> — concentrating resources on the activities in which they are relatively most productive. Adam Smith's pin factory remains the canonical illustration: ten workers each performing one narrow stage of pin manufacture produced vastly more than ten workers each making complete pins alone. The <strong className="text-primary">division of labour</strong> raises output through three channels: repetition improves dexterity, workers avoid time lost switching tasks, and narrow tasks are easier to mechanise. Higher productivity means more output from the same factor endowment, which shifts the PPC outward.
+            </p>
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Specialisation carries costs that examiners expect to be evaluated. Highly divided work can become monotonous, raising absenteeism and labour turnover; workers with a single narrow skill face <em>structural unemployment</em> if that task is automated or offshored; and an economy specialised in a small range of exports (for example a single commodity) is exposed to volatile world prices. Specialisation also depends on <strong className="text-secondary">exchange</strong>, and exchange depends on money. Barter requires a double coincidence of wants; money removes that friction by acting as a medium of exchange, a unit of account, a store of value and a standard of deferred payment. Without money, the depth of specialisation observed in modern economies would be impossible.
+            </p>
+
+            <SpecializationPPCShiftDiagram />
+          </div>
+        </ContentSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         {/* SECTION 2: FACTORS OF PRODUCTION */}
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         <ContentSection title="The Factors of Production">
@@ -215,6 +249,12 @@ const BasicEconomicIdeas = () => {
             </p>
 
             <ResourceAllocationSpectrumDiagram />
+
+            <EconomicSystemsDiagram />
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              A useful way to compare systems is to ask <em>who owns the resources</em>, <em>who decides what is produced</em>, and <em>what motivates decision-makers</em>. In a market system, ownership is private, decisions are decentralised through prices, and the motive is profit and utility maximisation. In a command system, ownership is collective, decisions are centralised in a planning bureau, and the motive is the fulfilment of politically-set targets. Because information about consumer wants is dispersed across millions of households, the market system economises on information: no single agent needs to know why demand for a good has risen, only that its price has. This is the core of Hayek's "knowledge problem", and it explains why planned economies persistently generated queues for some goods and warehouses of unsold others.
+            </p>
           </div>
 
           {/* Free Market */}
@@ -226,6 +266,12 @@ const BasicEconomicIdeas = () => {
             </p>
 
             <PriceMechanismFlowDiagram />
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              When reading any market diagram, keep the two adjustment mechanisms apart. A change in the good's <strong className="text-cambridge-cyan">own price</strong> causes a <em>movement along</em> the demand or supply curve (an extension or contraction). A change in any <em>other</em> determinant — income, the price of substitutes and complements, tastes, expectations, input costs, technology, taxes and subsidies — causes a <em>shift of</em> the whole curve. Mislabelling one as the other is among the most heavily penalised errors at AS level.
+            </p>
+
+            <MovementShiftDiagram />
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="p-4 rounded-lg border" style={{ backgroundColor: 'hsl(142 76% 50% / 0.05)', borderColor: 'hsl(142 76% 50% / 0.3)' }}>
@@ -263,6 +309,8 @@ const BasicEconomicIdeas = () => {
           {/* Mixed Economy */}
           <div className="glass-card p-5 space-y-4 mt-4">
             <h3 className="font-serif text-xl text-gradient">The Mixed Economy: A Pragmatic Synthesis</h3>
+
+            <SystemComparisonPPCDiagram title="PPC: How Each System Allocates Between Public and Private Goods" />
             
             <p className="text-sm leading-relaxed text-muted-foreground">
               A <strong className="text-foreground">Mixed Economy</strong> combines elements of both market and command systems, seeking to harness the efficiency advantages of markets while using state intervention to correct market failures and achieve social objectives. In a mixed economy, the <strong className="text-primary">private sector</strong> operates through the price mechanism, producing most goods and services in competitive markets. The <strong className="text-secondary">public sector</strong> intervenes in specific areas: (1) providing <em>public goods</em> (defence, law enforcement) that markets would not supply; (2) subsidising <em>merit goods</em> (healthcare, education) that markets would under-provide; (3) regulating <em>externalities</em> through taxes, subsidies, or direct controls; (4) redistributing income through taxation and welfare systems; (5) stabilising the macroeconomy through fiscal and monetary policy. The precise "mix" varies widely across countries: Scandinavian economies feature extensive welfare states; the United States relies more heavily on markets; Singapore combines free trade with significant state ownership of land and housing. The optimal mix is itself a subject of ongoing political and economic debate.
@@ -350,6 +398,8 @@ const BasicEconomicIdeas = () => {
             </div>
 
             <PositiveNormativePPCDiagram />
+
+            <PositiveNormativeQuiz />
 
             <AnalysisBlock title="Why the Distinction Matters for Economic Policy" type="analysis">
               <p className="text-sm leading-relaxed">

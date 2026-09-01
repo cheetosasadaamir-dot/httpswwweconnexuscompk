@@ -1,5 +1,5 @@
 // Auto-derived index of the Econ Nexus Diagram Guide (public/diagrams/econ-nexus-diagram-guide.html)
-export type DiagramEntry = { id: string; number: number; title: string; category: string };
+export type DiagramEntry = { id: string; number: number; title: string; category: 'Microeconomics' | 'Macroeconomics' };
 
 export const DIAGRAM_GUIDE_FILE = '/diagrams/econ-nexus-diagram-guide.html';
 
@@ -110,4 +110,28 @@ export const DIAGRAM_ENTRIES: DiagramEntry[] = [
   { id: 'd104', number: 104, title: 'The Coase theorem: bargaining as an alternative to Pigouvian taxation', category: 'Microeconomics' },
   { id: 'd105', number: 105, title: 'Minimum efficient scale and market concentration', category: 'Microeconomics' },
   { id: 'd106', number: 106, title: 'Real GDP, nominal GDP and the GDP deflator', category: 'Macroeconomics' },
+  { id: 'd107', number: 107, title: 'Expected utility theory and risk aversion', category: 'Microeconomics' },
+  { id: 'd108', number: 108, title: 'Signalling: Michael Spence\'s job market model', category: 'Microeconomics' },
+  { id: 'd109', number: 109, title: 'The median voter theorem', category: 'Microeconomics' },
+  { id: 'd110', number: 110, title: 'Human capital theory: education as an investment', category: 'Microeconomics' },
+  { id: 'd111', number: 111, title: 'Moral hazard and the principal-agent problem', category: 'Microeconomics' },
+  { id: 'd112', number: 112, title: 'Labour market discrimination: Becker\'s taste-based model and statistical discrimination', category: 'Microeconomics' },
+  { id: 'd113', number: 113, title: 'Auction theory: first-price, second-price and revenue equivalence', category: 'Microeconomics' },
+  { id: 'd114', number: 114, title: 'Present value, discounting and the net present value rule', category: 'Microeconomics' },
+  { id: 'd115', number: 115, title: 'Returns to scale, the Cobb-Douglas function and the expansion path', category: 'Microeconomics' },
+  { id: 'd116', number: 116, title: 'The Heckscher-Ohlin model: factor endowments and trade', category: 'Macroeconomics' },
+  { id: 'd117', number: 117, title: 'New trade theory: economies of scale and intra-industry trade', category: 'Macroeconomics' },
+  { id: 'd118', number: 118, title: 'The optimal tariff: a large country\'s terms-of-trade argument', category: 'Macroeconomics' },
+  { id: 'd119', number: 119, title: 'The Lewis dual-economy model: unlimited supplies of labour', category: 'Microeconomics' },
+  { id: 'd120', number: 120, title: 'Arrow\'s impossibility theorem: social choice theory', category: 'Microeconomics' },
+  { id: 'd121', number: 121, title: 'CAPM and portfolio diversification: pricing only the risk that cannot be diversified away', category: 'Microeconomics' },
+  { id: 'd122', number: 122, title: 'The efficient markets hypothesis: how quickly should price reflect news?', category: 'Microeconomics' },
+  { id: 'd123', number: 123, title: 'The Modigliani-Miller theorem: does capital structure affect firm value?', category: 'Microeconomics' },
+  { id: 'd124', number: 124, title: 'Scarcity and the basic economic problem', category: 'Microeconomics' },
+  { id: 'd125', number: 125, title: 'Opportunity cost: the value of the next best alternative forgone', category: 'Microeconomics' },
+  { id: 'd126', number: 126, title: 'The three economic questions and the spectrum of economic systems', category: 'Microeconomics' },
+  { id: 'd127', number: 127, title: 'Positive versus normative economics', category: 'Microeconomics' },
+  { id: 'd128', number: 128, title: 'Factors of production and their factor payments', category: 'Microeconomics' },
+  { id: 'd129', number: 129, title: 'The demand and supply curves: movement along versus shift of the curve', category: 'Microeconomics' },
+  { id: 'd130', number: 130, title: 'The price mechanism\'s three functions: rationing, signalling, incentivising', category: 'Microeconomics' },
 ];
