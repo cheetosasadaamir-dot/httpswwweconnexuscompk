@@ -357,6 +357,8 @@ const BasicEconomicIdeas = () => {
 
             <PositiveNormativePPCDiagram />
 
+            <PositiveNormativeQuiz />
+
             <AnalysisBlock title="Why the Distinction Matters for Economic Policy" type="analysis">
               <p className="text-sm leading-relaxed">
                 Economics aspires to be a <strong>social science</strong>, building its analysis on positive (testable) foundations. However, <strong>economic policy</strong> is inherently normative—it involves choices about what <em>should</em> be done, which reflect society's values and priorities. The role of the economist is to provide positive analysis of the likely consequences of different policies ("If you do X, then Y will probably happen"), enabling policymakers to make <em>informed</em> normative choices. Conflating positive and normative statements is a common source of confusion: two economists may agree on the positive analysis (e.g., that raising the minimum wage reduces employment) but disagree on the normative conclusion (e.g., whether the trade-off is acceptable). Recognising this distinction is essential for clear thinking about economic debates.
