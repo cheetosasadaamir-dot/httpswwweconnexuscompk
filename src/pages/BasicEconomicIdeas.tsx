@@ -267,6 +267,12 @@ const BasicEconomicIdeas = () => {
 
             <PriceMechanismFlowDiagram />
 
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              When reading any market diagram, keep the two adjustment mechanisms apart. A change in the good's <strong className="text-cambridge-cyan">own price</strong> causes a <em>movement along</em> the demand or supply curve (an extension or contraction). A change in any <em>other</em> determinant — income, the price of substitutes and complements, tastes, expectations, input costs, technology, taxes and subsidies — causes a <em>shift of</em> the whole curve. Mislabelling one as the other is among the most heavily penalised errors at AS level.
+            </p>
+
+            <MovementShiftDiagram />
+
             <div className="grid md:grid-cols-2 gap-4">
               <div className="p-4 rounded-lg border" style={{ backgroundColor: 'hsl(142 76% 50% / 0.05)', borderColor: 'hsl(142 76% 50% / 0.3)' }}>
                 <h4 className="font-semibold text-sm mb-2" style={{ color: 'hsl(142 76% 50%)' }}>Advantages of Free Markets</h4>
