@@ -269,6 +269,8 @@ const BasicEconomicIdeas = () => {
           {/* Mixed Economy */}
           <div className="glass-card p-5 space-y-4 mt-4">
             <h3 className="font-serif text-xl text-gradient">The Mixed Economy: A Pragmatic Synthesis</h3>
+
+            <SystemComparisonPPCDiagram title="PPC: How Each System Allocates Between Public and Private Goods" />
             
             <p className="text-sm leading-relaxed text-muted-foreground">
               A <strong className="text-foreground">Mixed Economy</strong> combines elements of both market and command systems, seeking to harness the efficiency advantages of markets while using state intervention to correct market failures and achieve social objectives. In a mixed economy, the <strong className="text-primary">private sector</strong> operates through the price mechanism, producing most goods and services in competitive markets. The <strong className="text-secondary">public sector</strong> intervenes in specific areas: (1) providing <em>public goods</em> (defence, law enforcement) that markets would not supply; (2) subsidising <em>merit goods</em> (healthcare, education) that markets would under-provide; (3) regulating <em>externalities</em> through taxes, subsidies, or direct controls; (4) redistributing income through taxation and welfare systems; (5) stabilising the macroeconomy through fiscal and monetary policy. The precise "mix" varies widely across countries: Scandinavian economies feature extensive welfare states; the United States relies more heavily on markets; Singapore combines free trade with significant state ownership of land and housing. The optimal mix is itself a subject of ongoing political and economic debate.
