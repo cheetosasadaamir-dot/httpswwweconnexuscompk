@@ -137,6 +137,34 @@ const BasicEconomicIdeas = () => {
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
+        {/* SECTION 1B: THE THREE FUNDAMENTAL QUESTIONS + SPECIALISATION */}
+        <ContentSection title="The Three Fundamental Questions and Specialisation">
+          <div className="glass-card p-5 space-y-4">
+            <h3 className="font-serif text-xl text-gradient">What, How and For Whom to Produce</h3>
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Because scarcity is universal, every economy — from a subsistence village to a trillion-dollar industrial state — must answer the same three allocation questions. <strong className="text-cambridge-cyan">What to produce?</strong> determines the <em>composition</em> of national output: capital goods versus consumer goods, healthcare versus defence. Choosing more of one is only possible by giving up the other, which is precisely what a movement along the PPC represents. <strong className="text-cambridge-magenta">How to produce?</strong> concerns the <em>technique</em>: the combination of land, labour, capital and enterprise employed. Firms minimise cost by substituting towards the relatively cheaper factor, which is why textile production concentrates in labour-abundant economies while automated assembly dominates high-wage ones. <strong className="text-cambridge-green">For whom to produce?</strong> concerns <em>distribution</em>: output is shared according to factor incomes in a market economy (those with scarce, valuable skills or assets command more), or according to political criteria under central planning. The distribution question is where positive analysis ends and normative judgement begins.
+            </p>
+
+            <ThreeQuestionsComparisonDiagram />
+          </div>
+
+          <div className="glass-card p-5 space-y-4 mt-4">
+            <h3 className="font-serif text-xl text-gradient">Specialisation, the Division of Labour and Exchange</h3>
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Scarcity pushes economies towards <strong className="text-foreground">specialisation</strong> — concentrating resources on the activities in which they are relatively most productive. Adam Smith's pin factory remains the canonical illustration: ten workers each performing one narrow stage of pin manufacture produced vastly more than ten workers each making complete pins alone. The <strong className="text-primary">division of labour</strong> raises output through three channels: repetition improves dexterity, workers avoid time lost switching tasks, and narrow tasks are easier to mechanise. Higher productivity means more output from the same factor endowment, which shifts the PPC outward.
+            </p>
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Specialisation carries costs that examiners expect to be evaluated. Highly divided work can become monotonous, raising absenteeism and labour turnover; workers with a single narrow skill face <em>structural unemployment</em> if that task is automated or offshored; and an economy specialised in a small range of exports (for example a single commodity) is exposed to volatile world prices. Specialisation also depends on <strong className="text-secondary">exchange</strong>, and exchange depends on money. Barter requires a double coincidence of wants; money removes that friction by acting as a medium of exchange, a unit of account, a store of value and a standard of deferred payment. Without money, the depth of specialisation observed in modern economies would be impossible.
+            </p>
+
+            <SpecializationPPCShiftDiagram />
+          </div>
+        </ContentSection>
+
+        {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         {/* SECTION 2: FACTORS OF PRODUCTION */}
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         <ContentSection title="The Factors of Production">
