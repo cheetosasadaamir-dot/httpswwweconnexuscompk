@@ -11,6 +11,12 @@ import OpportunityCostPPCDiagram from '@/components/diagrams/OpportunityCostPPCD
 import ResourceAllocationSpectrumDiagram from '@/components/diagrams/ResourceAllocationSpectrumDiagram';
 import PriceMechanismFlowDiagram from '@/components/diagrams/PriceMechanismFlowDiagram';
 import PositiveNormativePPCDiagram from '@/components/diagrams/PositiveNormativePPCDiagram';
+import PositiveNormativeQuiz from '@/components/diagrams/PositiveNormativeQuiz';
+import ThreeQuestionsComparisonDiagram from '@/components/diagrams/ThreeQuestionsComparisonDiagram';
+import SpecializationPPCShiftDiagram from '@/components/diagrams/SpecializationPPCShiftDiagram';
+import SystemComparisonPPCDiagram from '@/components/diagrams/SystemComparisonPPCDiagram';
+import EconomicSystemsDiagram from '@/components/diagrams/EconomicSystemsDiagram';
+import MovementShiftDiagram from '@/components/diagrams/MovementShiftDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
