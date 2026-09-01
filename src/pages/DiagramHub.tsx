@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils';
 type Filter = 'All' | 'Microeconomics' | 'Macroeconomics';
 
 /**
- * Econ Nexus Diagram Hub — 106 stage-by-stage economics diagrams.
+ * Econ Nexus Diagram Hub — 130 stage-by-stage economics diagrams.
  * The complete guide is served as a self-contained HTML document and
  * rendered inside a responsive viewer; the index jumps to any diagram.
  */
@@ -49,10 +49,10 @@ const DiagramHub = () => {
   return (
     <div className="min-h-screen relative flex flex-col">
       <Helmet>
-        <title>Diagram Hub — 106 Economics Diagrams | Econ Nexus</title>
+        <title>Diagram Hub — 130 Economics Diagrams | Econ Nexus</title>
         <meta
           name="description"
-          content="Explore 106 complex economics diagrams explained stage by stage — micro and macro, from tax incidence to the GDP deflator."
+          content="Explore 130 complex economics diagrams explained stage by stage — micro and macro, from tax incidence to the GDP deflator."
         />
       </Helmet>
 

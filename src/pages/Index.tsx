@@ -226,7 +226,7 @@ const Index = () => {
               />
               <HubEntryCard
                 title="Diagram Hub"
-                description="106 complex economics diagrams, built stage by stage — micro and macro, with the analysis behind every shift."
+                description="130 complex economics diagrams, built stage by stage — micro and macro, with the analysis behind every shift."
                 href="/diagram-hub"
                 cta="Open Diagram Hub"
                 icons={[BarChart3, LineChart, PieChart, Activity]}
