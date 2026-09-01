@@ -221,6 +221,12 @@ const BasicEconomicIdeas = () => {
             </p>
 
             <ResourceAllocationSpectrumDiagram />
+
+            <EconomicSystemsDiagram />
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              A useful way to compare systems is to ask <em>who owns the resources</em>, <em>who decides what is produced</em>, and <em>what motivates decision-makers</em>. In a market system, ownership is private, decisions are decentralised through prices, and the motive is profit and utility maximisation. In a command system, ownership is collective, decisions are centralised in a planning bureau, and the motive is the fulfilment of politically-set targets. Because information about consumer wants is dispersed across millions of households, the market system economises on information: no single agent needs to know why demand for a good has risen, only that its price has. This is the core of Hayek's "knowledge problem", and it explains why planned economies persistently generated queues for some goods and warehouses of unsold others.
+            </p>
           </div>
 
           {/* Free Market */}
