@@ -265,10 +265,27 @@ const ProductionCosts = () => {
           </p>
         </div>
 
-        <div className="mb-8">
-          <h4 className="text-silver-bright font-semibold mb-4">Interactive: Economies of Scale & LRAC</h4>
-          <EconomiesOfScaleDiagram />
+        <div className="mb-8 space-y-8">
+          <LRACEnvelopeDiagram />
+          <div>
+            <h4 className="text-silver-bright font-semibold mb-4">Interactive: Economies of Scale &amp; Returns to Scale</h4>
+            <EconomiesOfScaleDiagram />
+          </div>
         </div>
+
+        <div className="bg-card/40 border border-silver/20 rounded-xl p-5 mb-6">
+          <h5 className="text-silver-bright font-medium mb-2">Minimum Efficient Scale and Market Structure</h5>
+          <p className="text-sm text-silver">
+            MES is the lowest output at which LRAC reaches its minimum. Comparing MES with total market demand
+            predicts how many firms an industry can support. Commercial aircraft, semiconductor fabrication and
+            steel have an MES close to global demand, so a handful of firms dominate; MES in hairdressing,
+            plumbing or restaurants is tiny relative to demand, so thousands of small firms coexist. Where LRAC
+            falls over the entire range of demand, a <strong>natural monopoly</strong> exists (water, rail track,
+            electricity grids) and one supplier is the least-cost outcome — the standard justification for
+            regulation rather than competition.
+          </p>
+        </div>
+
 
         <div className="space-y-6">
           <div>
