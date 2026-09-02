@@ -296,6 +296,9 @@ const Inflation = () => {
               </div>
             </div>
           </div>
+
+          <DeflationDiagram />
+
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════
