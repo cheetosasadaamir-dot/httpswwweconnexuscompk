@@ -873,9 +873,28 @@ const LaborMarket = () => {
                 </p>
                 <p className="text-xs text-muted-foreground mt-2">Example: Most occupations</p>
               </div>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <EconomicRentTransferDiagram />
+            </div>
+
+            <div className="mt-6 p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+              <h4 className="text-amber-400 font-semibold mb-2">Quasi-Rent and the Time Period</h4>
+              <p className="text-muted-foreground text-sm">
+                Elasticity of labour supply rises over time, so rents earned today are often competed away tomorrow.
+                A surge in demand for cyber-security analysts or offshore wind engineers creates large short-run
+                rents; as training programmes and migration expand supply, the supply curve flattens and the rent
+                erodes. Economists call this temporary surplus a <strong>quasi-rent</strong>. The policy
+                implication is important: a tax on <em>pure</em> economic rent (e.g. a land value tax) causes no
+                reduction in supply and therefore no deadweight loss, whereas taxing transfer earnings does
+                discourage the supply of labour.
+              </p>
             </div>
           </div>
         </section>
+
 
         {/* Analytical Depth: MRP Theory */}
         <MRPTheoryAnalyticalDepth />
