@@ -348,8 +348,69 @@ const LaborMarket = () => {
             </div>
           </div>
 
-          {/* Limitations */}
+          {/* Elasticity of demand for labour */}
           <div className="glass-card p-8 rounded-2xl mb-8">
+            <h3 className="text-xl font-semibold text-silver-bright mb-4">Elasticity of Demand for Labour</h3>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              Labour demand is a <strong className="text-silver-bright">derived demand</strong>: firms hire workers
+              for the value of what they produce, not for their own sake. The wage elasticity of labour demand
+              measures the responsiveness of employment to a wage change and is the single most important variable
+              in evaluating unions, minimum wages and payroll taxes.
+            </p>
+            <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg mb-6">
+              <p className="text-primary font-mono text-center">
+                E<sub>d(L)</sub> = % change in quantity of labour demanded ÷ % change in the wage rate
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <p className="text-amber-400 font-medium mb-1">1. Elasticity of demand for the product</p>
+                <p className="text-muted-foreground text-sm">If consumers desert the product when prices rise, firms cannot pass wage costs on and employment falls sharply.</p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <p className="text-amber-400 font-medium mb-1">2. Ease of substituting capital for labour</p>
+                <p className="text-muted-foreground text-sm">Self-checkouts, warehouse robots and AI drafting tools make demand for routine labour far more elastic.</p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <p className="text-amber-400 font-medium mb-1">3. Labour's share of total costs</p>
+                <p className="text-muted-foreground text-sm">Where wages are a large share of costs (care homes, hospitality) demand is elastic; in capital-intensive utilities it is inelastic.</p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <p className="text-amber-400 font-medium mb-1">4. Time period</p>
+                <p className="text-muted-foreground text-sm">Contracts, retraining and re-tooling take time, so labour demand is always more elastic in the long run.</p>
+              </div>
+            </div>
+            <ElasticityLabourDemandDiagram />
+          </div>
+
+          {/* Shifts in labour demand and supply */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <h3 className="text-xl font-semibold text-silver-bright mb-4">What Shifts Labour Demand and Supply?</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
+                <h4 className="text-cyan-300 font-semibold mb-3">Shifts in demand (MRP)</h4>
+                <ul className="space-y-2 text-muted-foreground text-sm">
+                  <li>• Rise in the <strong>product price</strong> — MRP = MPP × MR, so a housing boom lifts builders' wages</li>
+                  <li>• Rise in <strong>productivity</strong> (training, better capital, technology) shifts MRP right</li>
+                  <li>• <strong>Automation</strong> substituting for routine tasks shifts MRP left for those roles and right for complementary skills</li>
+                  <li>• Changes in the <strong>price of capital</strong> — cheap machinery can replace or complement labour</li>
+                </ul>
+              </div>
+              <div className="p-6 bg-fuchsia-500/10 border border-fuchsia-500/20 rounded-xl">
+                <h4 className="text-fuchsia-300 font-semibold mb-3">Shifts in supply</h4>
+                <ul className="space-y-2 text-muted-foreground text-sm">
+                  <li>• <strong>Migration</strong> and changes in the participation rate</li>
+                  <li>• <strong>Training and qualifications</strong> — expanding the pool of licensed nurses or pilots</li>
+                  <li>• <strong>Non-monetary factors</strong>: job satisfaction, status, safety, flexible or remote work</li>
+                  <li>• <strong>Barriers to entry</strong>: professional licensing, union closed shops, visa rules</li>
+                  <li>• <strong>Taxes and benefits</strong> affecting the net wage and the replacement ratio</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Limitations */}
+
             <h3 className="text-xl font-semibold text-silver-bright mb-4">Limitations of MRP Theory</h3>
             
             <div className="grid md:grid-cols-2 gap-4">
