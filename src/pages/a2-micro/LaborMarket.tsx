@@ -873,8 +873,8 @@ const LaborMarket = () => {
                 </p>
                 <p className="text-xs text-muted-foreground mt-2">Example: Most occupations</p>
               </div>
-              </div>
             </div>
+
 
             <div className="mt-8">
               <EconomicRentTransferDiagram />
