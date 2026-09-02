@@ -1,361 +1,200 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes } from './DiagramAxes';
+import {
+  DIAGRAM_COLORS as C,
+  plotBox,
+  revealFade,
+  revealPath,
+  revealPoint,
+} from './diagramStyle';
 
 interface UtilityDiagramProps {
+  /** Kept for backwards compatibility with existing call sites. */
   showMarginal?: boolean;
+  title?: string;
 }
 
+/**
+ * Total Utility and Marginal Utility — A2 (Cambridge 9708) standard.
+ *
+ * Data (ice-cream bars): Q 1-6, TU 20, 35, 45, 50, 50, 45; MU 20, 15, 10, 5, 0, -5.
+ * Structural rules enforced here (cross-checked against tutor2u, Economics Online,
+ * S-cool and Khan Academy):
+ *   - MU is the slope of TU, so MU falls continuously (law of diminishing marginal utility).
+ *   - TU reaches its MAXIMUM exactly where MU = 0 (between Q = 4 and Q = 5, flat at 50).
+ *   - TU FALLS once MU turns negative (Q = 6).
+ *   - MU is plotted on its own axis below TU with a zero line, and the MU curve is
+ *     drawn against the same quantity scale so the two panels line up vertically.
+ */
+const UTIL = [
+  { q: 1, tu: 20, mu: 20 },
+  { q: 2, tu: 35, mu: 15 },
+  { q: 3, tu: 45, mu: 10 },
+  { q: 4, tu: 50, mu: 5 },
+  { q: 5, tu: 50, mu: 0 },
+  { q: 6, tu: 45, mu: -5 },
+];
+
 const UtilityDiagram = ({ showMarginal = true }: UtilityDiagramProps) => {
-  const [hoveredPoint, setHoveredPoint] = useState<number | null>(null);
-  const [showTU, setShowTU] = useState(true);
-  const [showMU, setShowMU] = useState(showMarginal);
+  // Shared quantity scale: 0 - 7 mapped onto 0 - 100.
+  const qv = (q: number) => (q / 7) * 100;
 
-  // Ice Cream Bars data from the PDF
-  const utilityData = [
-    { quantity: 1, totalUtility: 20, marginalUtility: 20 },
-    { quantity: 2, totalUtility: 35, marginalUtility: 15 },
-    { quantity: 3, totalUtility: 45, marginalUtility: 10 },
-    { quantity: 4, totalUtility: 50, marginalUtility: 5 },
-    { quantity: 5, totalUtility: 50, marginalUtility: 0 },
-    { quantity: 6, totalUtility: 45, marginalUtility: -5 },
-  ];
+  const top = plotBox(540, 300, { t: 26, r: 46, b: 44, l: 62 });
+  const bot = plotBox(540, 270, { t: 26, r: 46, b: 56, l: 62 });
 
-  const width = 500;
-  const height = 320;
-  const padding = { top: 40, right: 40, bottom: 60, left: 60 };
-  const chartWidth = width - padding.left - padding.right;
-  const chartHeight = height - padding.top - padding.bottom;
+  // TU value 0-60 mapped to 0-100
+  const tuv = (tu: number) => (tu / 60) * 100;
+  // MU value -10..25 mapped to 0-100
+  const muv = (mu: number) => ((mu + 10) / 35) * 100;
 
-  // Scale functions
-  const xScale = (q: number) => padding.left + ((q - 0.5) / 6.5) * chartWidth;
-  const yScaleTU = (tu: number) => padding.top + chartHeight - (tu / 60) * chartHeight;
-  const yScaleMU = (mu: number) => padding.top + chartHeight - ((mu + 10) / 35) * chartHeight;
+  const smooth = (pts: { x: number; y: number }[]) =>
+    pts.reduce((acc, point, i, arr) => {
+      if (i === 0) return `M ${point.x} ${point.y}`;
+      const p0 = arr[Math.max(0, i - 2)];
+      const p1 = arr[i - 1];
+      const p3 = arr[Math.min(arr.length - 1, i + 1)];
+      const cp1x = p1.x + (point.x - p0.x) / 6;
+      const cp1y = p1.y + (point.y - p0.y) / 6;
+      const cp2x = point.x - (p3.x - p1.x) / 6;
+      const cp2y = point.y - (p3.y - p1.y) / 6;
+      return `${acc} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${point.x} ${point.y}`;
+    }, '');
 
-  // Generate smooth TU curve (Catmull-Rom -> cubic Bezier) so it is not a kinked polyline.
-  // TU peaks exactly at Q=5 where MU=0, matching the data.
-  const tuSmoothPoints = utilityData.map((d) => ({ x: xScale(d.quantity), y: yScaleTU(d.totalUtility) }));
-  const tuPath = tuSmoothPoints.reduce((acc, point, i, pts) => {
-    if (i === 0) return `M ${point.x} ${point.y}`;
-    const p0 = pts[Math.max(0, i - 2)];
-    const p1 = pts[i - 1];
-    const p2 = point;
-    const p3 = pts[Math.min(pts.length - 1, i + 1)];
-    const cp1x = p1.x + (p2.x - p0.x) / 6;
-    const cp1y = p1.y + (p2.y - p0.y) / 6;
-    const cp2x = p2.x - (p3.x - p1.x) / 6;
-    const cp2y = p2.y - (p3.y - p1.y) / 6;
-    return `${acc} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
-  }, '');
+  const tuPath = smooth([
+    { x: top.x(0), y: top.y(0) },
+    ...UTIL.map((d) => ({ x: top.x(qv(d.q)), y: top.y(tuv(d.tu)) })),
+  ]);
 
-  // Generate path for MU curve
-  const muPath = utilityData.map((d, i) => {
-    const x = xScale(d.quantity);
-    const y = yScaleMU(d.marginalUtility);
-    return i === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
-  }).join(' ');
+  const muPath = `M ${bot.x(qv(1))} ${bot.y(muv(20))} L ${bot.x(qv(6))} ${bot.y(muv(-5))}`;
 
   return (
-    <div className="glass-card p-6 rounded-xl">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-silver-bright">Total Utility & Marginal Utility Curves</h3>
-        <div className="flex gap-3">
-          <button
-            onClick={() => setShowTU(!showTU)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-              showTU ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-muted/30 text-muted-foreground'
-            }`}
-          >
-            Total Utility
-          </button>
-          <button
-            onClick={() => setShowMU(!showMU)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-              showMU ? 'bg-secondary/20 text-secondary border border-secondary/30' : 'bg-muted/30 text-muted-foreground'
-            }`}
-          >
-            Marginal Utility
-          </button>
-        </div>
-      </div>
-
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full">
-        {/* Grid lines */}
-        {[0, 10, 20, 30, 40, 50, 60].map((tick) => (
-          <g key={`grid-${tick}`}>
-            <line
-              x1={padding.left}
-              y1={yScaleTU(tick)}
-              x2={width - padding.right}
-              y2={yScaleTU(tick)}
-              stroke="hsl(var(--border))"
-              strokeWidth="0.5"
-              strokeDasharray="4,4"
-              opacity={0.4}
-            />
-            <text
-              x={padding.left - 10}
-              y={yScaleTU(tick)}
-              textAnchor="end"
-              alignmentBaseline="middle"
-              className="fill-muted-foreground text-xs"
-            >
-              {tick}
-            </text>
-          </g>
-        ))}
-
-        {/* X axis */}
-        <line
-          x1={padding.left}
-          y1={height - padding.bottom}
-          x2={width - padding.right}
-          y2={height - padding.bottom}
-          stroke="hsl(var(--silver))"
-          strokeWidth="1.5"
-        />
-
-        {/* Y axis */}
-        <line
-          x1={padding.left}
-          y1={padding.top}
-          x2={padding.left}
-          y2={height - padding.bottom}
-          stroke="hsl(var(--silver))"
-          strokeWidth="1.5"
-        />
-
-        {/* Zero line for MU */}
-        {showMU && (
-          <line
-            x1={padding.left}
-            y1={yScaleMU(0)}
-            x2={width - padding.right}
-            y2={yScaleMU(0)}
-            stroke="hsl(var(--destructive))"
-            strokeWidth="1"
-            strokeDasharray="6,3"
-            opacity={0.5}
-          />
-        )}
-
-        {/* X axis labels */}
-        {utilityData.map((d) => (
-          <text
-            key={`x-${d.quantity}`}
-            x={xScale(d.quantity)}
-            y={height - padding.bottom + 20}
-            textAnchor="middle"
-            className="fill-muted-foreground text-xs"
-          >
-            {d.quantity}
-          </text>
-        ))}
-
-        {/* Axis titles */}
-        <text
-          x={width / 2}
-          y={height - 10}
-          textAnchor="middle"
-          className="fill-silver-bright text-sm font-medium"
-        >
-          Quantity of Ice Cream Bars
-        </text>
-        <text
-          x={-height / 2 + 20}
-          y={18}
-          textAnchor="middle"
-          transform="rotate(-90)"
-          className="fill-silver-bright text-sm font-medium"
-        >
-          Utility (Utils)
-        </text>
-
-        {/* TU Curve */}
-        {showTU && (
-          <motion.path
-            d={tuPath}
-            fill="none"
-            stroke="hsl(var(--primary))"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-          />
-        )}
-
-        {/* MU Curve */}
-        {showMU && (
-          <motion.path
-            d={muPath}
-            fill="none"
-            stroke="hsl(var(--secondary))"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
-          />
-        )}
-
-        {/* Data points TU */}
-        {showTU && utilityData.map((d, i) => (
-          <motion.g
-            key={`tu-point-${i}`}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.1 * i + 0.5 }}
-          >
-            <circle
-              cx={xScale(d.quantity)}
-              cy={yScaleTU(d.totalUtility)}
-              r={hoveredPoint === i ? 8 : 6}
-              fill="hsl(var(--primary))"
-              stroke="hsl(var(--background))"
-              strokeWidth="2"
-              onMouseEnter={() => setHoveredPoint(i)}
-              onMouseLeave={() => setHoveredPoint(null)}
-              className="cursor-pointer transition-all duration-200"
-            />
-          </motion.g>
-        ))}
-
-        {/* Data points MU */}
-        {showMU && utilityData.map((d, i) => (
-          <motion.g
-            key={`mu-point-${i}`}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.1 * i + 0.8 }}
-          >
-            <circle
-              cx={xScale(d.quantity)}
-              cy={yScaleMU(d.marginalUtility)}
-              r={hoveredPoint === i ? 8 : 6}
-              fill="hsl(var(--secondary))"
-              stroke="hsl(var(--background))"
-              strokeWidth="2"
-              onMouseEnter={() => setHoveredPoint(i)}
-              onMouseLeave={() => setHoveredPoint(null)}
-              className="cursor-pointer transition-all duration-200"
-            />
-          </motion.g>
-        ))}
-
-        {/* Annotations */}
-        {showTU && (
-          <motion.g
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-          >
-            <text
-              x={xScale(4.5)}
-              y={yScaleTU(52)}
-              className="fill-primary text-xs font-medium"
-            >
-              Maximum TU
-            </text>
-            <line
-              x1={xScale(4.5)}
-              y1={yScaleTU(50) + 2}
-              x2={xScale(4.5)}
-              y2={yScaleTU(50) + 12}
-              stroke="hsl(var(--primary))"
-              strokeWidth="1"
-              markerEnd="url(#arrow)"
-            />
-          </motion.g>
-        )}
-
-        {showMU && (
-          <motion.g
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.8 }}
-          >
-            <text
-              x={xScale(5.3)}
-              y={yScaleMU(3)}
-              className="fill-secondary text-xs font-medium"
-            >
-              Zero MU
-            </text>
-          </motion.g>
-        )}
-
-        {/* Legend */}
-        <g transform={`translate(${width - padding.right - 100}, ${padding.top})`}>
-          {showTU && (
-            <g>
-              <rect x="0" y="0" width="12" height="12" rx="2" fill="hsl(var(--primary))" />
-              <text x="18" y="10" className="fill-silver-bright text-xs">TU Curve</text>
-            </g>
-          )}
-          {showMU && (
-            <g transform="translate(0, 18)">
-              <rect x="0" y="0" width="12" height="12" rx="2" fill="hsl(var(--secondary))" />
-              <text x="18" y="10" className="fill-silver-bright text-xs">MU Curve</text>
-            </g>
-          )}
-        </g>
-
-        {/* Tooltip */}
-        {hoveredPoint !== null && (
-          <g transform={`translate(${xScale(utilityData[hoveredPoint].quantity) + 10}, ${yScaleTU(utilityData[hoveredPoint].totalUtility) - 40})`}>
-            <rect
-              x="-5"
-              y="-5"
-              width="100"
-              height="45"
-              rx="4"
-              fill="hsl(var(--popover))"
-              stroke="hsl(var(--border))"
-            />
-            <text x="5" y="10" className="fill-silver-bright text-xs font-medium">
-              Q: {utilityData[hoveredPoint].quantity} bars
-            </text>
-            <text x="5" y="22" className="fill-primary text-xs">
-              TU: {utilityData[hoveredPoint].totalUtility} utils
-            </text>
-            <text x="5" y="34" className="fill-secondary text-xs">
-              MU: {utilityData[hoveredPoint].marginalUtility} utils
-            </text>
-          </g>
-        )}
-      </svg>
-
-      {/* Data Table */}
-      <div className="mt-6 overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-silver/20">
-              <th className="text-left py-2 px-3 text-muted-foreground font-medium">Ice Cream Bars</th>
-              <th className="text-center py-2 px-3 text-primary font-medium">Total Utility (TU)</th>
-              <th className="text-center py-2 px-3 text-secondary font-medium">Marginal Utility (MU)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {utilityData.map((d, i) => (
-              <tr
-                key={i}
-                className={`border-b border-silver/10 transition-colors ${
-                  hoveredPoint === i ? 'bg-primary/10' : 'hover:bg-muted/30'
-                }`}
-                onMouseEnter={() => setHoveredPoint(i)}
-                onMouseLeave={() => setHoveredPoint(null)}
-              >
-                <td className="py-2 px-3 text-silver-bright">{d.quantity}</td>
-                <td className="py-2 px-3 text-center text-primary">{d.totalUtility}</td>
-                <td className="py-2 px-3 text-center text-secondary">{d.marginalUtility}</td>
-              </tr>
+    <DiagramFrame
+      title="Total Utility, Marginal Utility and the Law of Diminishing Marginal Utility"
+      eyebrow="Figure — Cardinal utility"
+      legend={[
+        { label: 'Total Utility (TU)', color: C.demand },
+        { label: 'Marginal Utility (MU)', color: C.supply },
+        { label: 'MU = 0 / TU maximum', color: C.marker, kind: 'dot' },
+      ]}
+      note={
+        <>
+          <strong>Marginal utility is the slope of total utility.</strong> As successive units are
+          consumed within a given time period, MU falls — the law of diminishing marginal utility. TU
+          keeps rising while MU is positive, reaches its <strong>maximum where MU = 0</strong> (the
+          point of satiation, here Q ≈ 5), and <strong>falls once MU becomes negative</strong>. This
+          is why a rational consumer never knowingly buys into the negative-MU range, and why the
+          demand curve slopes downward: extra units are worth progressively less, so buyers will only
+          take them at a lower price.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <div key={runKey} className="min-w-[320px] space-y-1">
+          {/* ---- Panel 1: Total Utility ---- */}
+          <svg viewBox={`0 0 ${top.W} ${top.H}`} className="mx-auto h-auto w-full" role="img" aria-label="Total utility curve rising at a decreasing rate, peaking where marginal utility is zero, then falling">
+            <Axes p={top} id="util-tu" labelX="" labelY="Total Utility (utils)" />
+            {[0, 20, 40, 60].map((t) => (
+              <g key={t}>
+                <line x1={top.m.l} y1={top.y(tuv(t))} x2={top.m.l + top.cw} y2={top.y(tuv(t))} stroke={C.grid} strokeWidth={0.6} strokeDasharray="4 4" opacity={0.5} />
+                <text x={top.m.l - 8} y={top.y(tuv(t)) + 4} fill={C.muted} fontSize={10} textAnchor="end">{t}</text>
+              </g>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+            <motion.path
+              d={tuPath}
+              fill="none"
+              stroke={C.demand}
+              strokeWidth={2.8}
+              strokeLinecap="round"
+              {...revealPath(0, 1.1)}
+              animate={play ? revealPath(0, 1.1).animate : revealPath(0, 1.1).initial}
+            />
+            {UTIL.map((d, i) => (
+              <motion.circle
+                key={d.q}
+                cx={top.x(qv(d.q))}
+                cy={top.y(tuv(d.tu))}
+                r={4}
+                fill={d.tu === 50 && d.q === 5 ? C.marker : C.demand}
+                {...revealPoint(1 + i * 0.08)}
+                animate={play ? revealPoint(1 + i * 0.08).animate : revealPoint(1 + i * 0.08).initial}
+              />
+            ))}
+            <motion.g {...revealFade(2)} animate={play ? revealFade(2).animate : revealFade(2).initial}>
+              <line x1={top.x(qv(5))} y1={top.y(tuv(50))} x2={top.x(qv(5))} y2={top.m.t + top.ch} stroke={C.marker} strokeDasharray="4 3" strokeWidth={1.1} />
+              <text x={top.x(qv(5))} y={top.y(tuv(50)) - 12} fill={C.marker} fontSize={11} fontWeight="bold" textAnchor="middle">
+                TU maximum (MU = 0)
+              </text>
+              <text x={top.x(qv(6.4))} y={top.y(tuv(44))} fill={C.demand} fontSize={12} fontWeight="bold">TU</text>
+            </motion.g>
+            {UTIL.map((d) => (
+              <text key={`x${d.q}`} x={top.x(qv(d.q))} y={top.m.t + top.ch + 15} fill={C.muted} fontSize={10} textAnchor="middle">{d.q}</text>
+            ))}
+          </svg>
+
+          {/* ---- Panel 2: Marginal Utility ---- */}
+          {showMarginal && (
+            <svg viewBox={`0 0 ${bot.W} ${bot.H}`} className="mx-auto h-auto w-full" role="img" aria-label="Marginal utility curve sloping downward and cutting the horizontal axis at the quantity where total utility peaks">
+              <Axes p={bot} id="util-mu" labelX="Quantity consumed per period (Q)" labelY="Marginal Utility (utils)" />
+              {[-5, 0, 5, 10, 15, 20].map((t) => (
+                <text key={t} x={bot.m.l - 8} y={bot.y(muv(t)) + 4} fill={C.muted} fontSize={10} textAnchor="end">{t}</text>
+              ))}
+              <line x1={bot.m.l} y1={bot.y(muv(0))} x2={bot.m.l + bot.cw} y2={bot.y(muv(0))} stroke={C.intervention} strokeWidth={1.2} strokeDasharray="6 3" opacity={0.7} />
+              <motion.path
+                d={muPath}
+                fill="none"
+                stroke={C.supply}
+                strokeWidth={2.8}
+                strokeLinecap="round"
+                {...revealPath(3, 1)}
+                animate={play ? revealPath(3, 1).animate : revealPath(3, 1).initial}
+              />
+              {UTIL.map((d, i) => (
+                <motion.circle
+                  key={d.q}
+                  cx={bot.x(qv(d.q))}
+                  cy={bot.y(muv(d.mu))}
+                  r={4}
+                  fill={d.mu === 0 ? C.marker : C.supply}
+                  {...revealPoint(4 + i * 0.08)}
+                  animate={play ? revealPoint(4 + i * 0.08).animate : revealPoint(4 + i * 0.08).initial}
+                />
+              ))}
+              <motion.g {...revealFade(5)} animate={play ? revealFade(5).animate : revealFade(5).initial}>
+                <text x={bot.x(qv(5)) + 8} y={bot.y(muv(0)) - 8} fill={C.marker} fontSize={11} fontWeight="bold">MU = 0</text>
+                <text x={bot.x(qv(6.3))} y={bot.y(muv(-6))} fill={C.supply} fontSize={12} fontWeight="bold">MU</text>
+                <text x={bot.x(qv(6))} y={bot.y(muv(-8.5))} fill={C.welfareLoss} fontSize={10} textAnchor="middle">negative MU</text>
+              </motion.g>
+              {UTIL.map((d) => (
+                <text key={`x${d.q}`} x={bot.x(qv(d.q))} y={bot.m.t + bot.ch + 15} fill={C.muted} fontSize={10} textAnchor="middle">{d.q}</text>
+              ))}
+            </svg>
+          )}
+
+          {/* ---- Data table ---- */}
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-primary/20">
+                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Units consumed (Q)</th>
+                  <th className="px-3 py-2 text-center font-medium" style={{ color: C.demand }}>Total Utility (TU)</th>
+                  <th className="px-3 py-2 text-center font-medium" style={{ color: C.supply }}>Marginal Utility (MU)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {UTIL.map((d) => (
+                  <tr key={d.q} className="border-b border-primary/10">
+                    <td className="px-3 py-1.5 text-silver-bright">{d.q}</td>
+                    <td className="px-3 py-1.5 text-center" style={{ color: C.demand }}>{d.tu}</td>
+                    <td className="px-3 py-1.5 text-center" style={{ color: C.supply }}>{d.mu}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </DiagramFrame>
   );
 };
 
