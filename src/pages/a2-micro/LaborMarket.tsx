@@ -712,7 +712,58 @@ const LaborMarket = () => {
                 additional worker no longer requires raising wages for all existing workers.
               </p>
             </div>
+
+            <div className="mt-8">
+              <p className="text-muted-foreground text-sm mb-4">
+                The monopsony case is drawn in full in Section 3 — the same geometry applies whether the wage
+                floor is imposed by a union or by statute. The key contrast to hold in your head: in a
+                <strong className="text-silver-bright"> competitive</strong> market a binding wage floor moves the
+                firm <em>up its MRP curve</em> and employment falls; in a
+                <strong className="text-silver-bright"> monopsony</strong> it flattens MFC and employment
+                <strong className="text-green-400"> rises</strong> up to the competitive level.
+              </p>
+            </div>
           </div>
+
+          {/* Real-world evidence */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <h3 className="text-xl font-semibold text-silver-bright mb-4">Real-World Evidence on Minimum Wages</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <h4 className="text-green-400 font-medium mb-2">Card &amp; Krueger (New Jersey, 1994)</h4>
+                <p className="text-muted-foreground text-sm">
+                  Fast-food employment in New Jersey did not fall relative to neighbouring Pennsylvania after a
+                  minimum wage rise. The standard interpretation is that low-wage local labour markets contain
+                  significant <strong>monopsony power</strong>, so the competitive prediction over-states job losses.
+                </p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <h4 className="text-green-400 font-medium mb-2">UK National Living Wage</h4>
+                <p className="text-muted-foreground text-sm">
+                  Successive Low Pay Commission reviews found the NLW substantially raised pay at the bottom of the
+                  distribution with only limited effects on employment, though with some reduction in hours and
+                  faster automation in retail and hospitality.
+                </p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <h4 className="text-amber-400 font-medium mb-2">Where job losses do appear</h4>
+                <p className="text-muted-foreground text-sm">
+                  Effects are largest for <strong>young and low-skilled workers</strong>, in regions where the floor
+                  bites hardest relative to median pay ("bite"), and in tradable sectors where firms cannot pass
+                  costs on to consumers.
+                </p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <h4 className="text-amber-400 font-medium mb-2">Poverty targeting critique</h4>
+                <p className="text-muted-foreground text-sm">
+                  Many minimum-wage earners live in higher-income households (second earners, students), so a wage
+                  floor is a <strong>blunt anti-poverty tool</strong> compared with targeted in-work benefits or tax
+                  credits — a strong evaluative line in essays.
+                </p>
+              </div>
+            </div>
+          </div>
+
 
           {/* Evaluation */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
