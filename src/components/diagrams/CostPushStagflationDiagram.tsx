@@ -72,13 +72,13 @@ const CostPushStagflationDiagram = () => {
               <motion.text x={x(38)} y={y(66)} fill={C.intervention} fontSize={10} {...revealFade(4)}>↑ unit costs</motion.text>
 
               <motion.g {...revealFade(4)}>
-                <Guides p={p} qx={Y1} py={P1} color={C.marker} xLabel="Y₁ = 78.8" yLabel="P₁ = 74.8" />
+                <Guides p={p} qx={Y1} py={P1} color={C.marker} xLabel="Y₁" yLabel="P₁ = 74.8" />
               </motion.g>
               <motion.circle cx={x(Y1)} cy={y(P1)} r={5} fill={C.marker} {...revealPoint(4)} />
               <motion.text x={x(Y1) + 8} y={y(P1) + 12} fill={C.axis} fontSize={11} fontWeight={700} {...revealFade(5)}>E₁</motion.text>
 
               <motion.g {...revealFade(5)}>
-                <Guides p={p} qx={Y2} py={P2} color={C.intervention} xLabel="Y₂ = 69.5" yLabel="P₂ = 81.3" />
+                <Guides p={p} qx={Y2} py={P2} color={C.intervention} xLabel="Y₂" yLabel="P₂ = 81.3" />
               </motion.g>
               <motion.circle cx={x(Y2)} cy={y(P2)} r={5} fill={C.intervention} {...revealPoint(5)} />
               <motion.text x={x(Y2) - 20} y={y(P2) - 8} fill={C.axis} fontSize={11} fontWeight={700} {...revealFade(6)}>E₂</motion.text>
