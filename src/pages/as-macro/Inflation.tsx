@@ -192,6 +192,10 @@ const Inflation = () => {
           </div>
 
           <CostPushInflationDiagram />
+          <div className="mt-4">
+            <WagePriceSpiralDiagram />
+          </div>
+
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════
