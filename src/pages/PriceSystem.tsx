@@ -17,6 +17,7 @@ import SurplusWithTaxDiagram from '@/components/diagrams/SurplusWithTaxDiagram';
 import PriceCeilingDiagram from '@/components/diagrams/PriceCeilingDiagram';
 import PriceFloorDiagram from '@/components/diagrams/PriceFloorDiagram';
 import SubsidyDiagram from '@/components/diagrams/SubsidyDiagram';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const PriceSystem = () => {
   return (
@@ -874,6 +875,7 @@ const PriceSystem = () => {
           </p>
         </ExamTipBox>
       </ContentSection>
+      <ChapterEnrichment id="how-markets-work" />
     </ChapterLayout>
   );
 };

@@ -6,6 +6,7 @@ import AnalysisBlock from '@/components/AnalysisBlock';
 import GlossaryTooltip from '@/components/GlossaryTooltip';
 import PPCConceptDiagram from '@/components/diagrams/PPCConceptDiagram';
 import FactorsOfProductionDiagram from '@/components/diagrams/FactorsOfProductionDiagram';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const BasicEconomicProblem = () => {
   return (
@@ -149,6 +150,7 @@ const BasicEconomicProblem = () => {
           </p>
         </ExamTipBox>
       </ContentSection>
+      <ChapterEnrichment id="basic-economic-concepts" />
     </ChapterLayout>
   );
 };
