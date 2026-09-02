@@ -8,6 +8,9 @@ import AnalysisBlock from '@/components/AnalysisBlock';
 import CostCurvesDiagram from '@/components/diagrams/CostCurvesDiagram';
 import EconomiesOfScaleDiagram from '@/components/diagrams/EconomiesOfScaleDiagram';
 import RevenueCurvesDiagram from '@/components/diagrams/RevenueCurvesDiagram';
+import TotalProductDiagram from '@/components/diagrams/TotalProductDiagram';
+import LRACEnvelopeDiagram from '@/components/diagrams/LRACEnvelopeDiagram';
+import ProfitMaxShutdownDiagram from '@/components/diagrams/ProfitMaxShutdownDiagram';
 import KeyTakeaways from '@/components/KeyTakeaways';
 import ExaminerTrap from '@/components/ExaminerTrap';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
@@ -147,10 +150,25 @@ const ProductionCosts = () => {
           </div>
         </div>
 
-        <div className="mt-8">
-          <h4 className="text-silver-bright font-semibold mb-4">Interactive: Product Curves & Cost Curves</h4>
-          <CostCurvesDiagram />
+        <div className="mt-8 space-y-8">
+          <TotalProductDiagram />
+          <div>
+            <h4 className="text-silver-bright font-semibold mb-4">Interactive: Product Curves &amp; Cost Curves</h4>
+            <CostCurvesDiagram />
+          </div>
         </div>
+
+        <div className="mt-6 bg-card/40 border border-silver/20 rounded-xl p-5">
+          <h5 className="text-silver-bright font-medium mb-2">Real World: Diminishing Returns in Practice</h5>
+          <p className="text-sm text-silver">
+            A fixed-size Amazon fulfilment centre can absorb extra pickers during peak season, but once aisles and
+            conveyors are congested each extra worker adds less throughput — classic diminishing returns, which is
+            why Amazon builds new warehouses (a long-run change of scale) rather than simply hiring more staff into
+            existing ones. The same logic explains hospital A&amp;E departments: adding doctors without adding beds,
+            scanners or theatres raises output at a falling rate.
+          </p>
+        </div>
+
 
         <AnalysisBlock title="Product Curves Analysis" type="analysis">
           <p>The product curves illustrate the Law of Diminishing Returns in action. Initially, as workers are added, specialization allows MP to rise (increasing returns). However, as more workers share fixed capital, MP begins to fall (diminishing returns). When MP becomes negative, TP actually decreases due to overcrowding and inefficiency. The MP curve intersects AP at its maximum point—a crucial relationship for understanding cost behavior.</p>
@@ -239,11 +257,34 @@ const ProductionCosts = () => {
             </p>
           </div>
 
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-card/40 border border-silver/20 rounded-lg p-4">
+              <h5 className="text-amber-400 font-medium mb-2">Sunk Costs</h5>
+              <p className="text-silver text-sm">
+                Costs already incurred that cannot be recovered on exit — bespoke machinery, advertising,
+                R&amp;D, market research. Sunk costs are <strong>irrelevant to future decisions</strong> (ignoring
+                this is the &quot;sunk cost fallacy&quot;), but they matter enormously for contestability: high sunk
+                costs deter hit-and-run entry and protect incumbents.
+              </p>
+            </div>
+            <div className="bg-card/40 border border-silver/20 rounded-lg p-4">
+              <h5 className="text-neon-cyan font-medium mb-2">What Shifts the Cost Curves?</h5>
+              <ul className="text-silver text-sm space-y-1">
+                <li>• Wage or raw material price changes → AVC, ATC and MC all shift.</li>
+                <li>• Business rates, rent, insurance → AFC and ATC shift; MC unchanged.</li>
+                <li>• Technology and productivity gains → all curves shift downwards.</li>
+                <li>• Indirect taxes and regulation → upward shift, acting like a cost increase.</li>
+              </ul>
+            </div>
+          </div>
+
           <ExamTipBox variant="silver">
             Remember: <strong>MC intersects both AVC and ATC at their minimum points</strong>. This is because when 
             MC {"<"} AC, it pulls the average down; when MC {">"} AC, it pulls the average up. The gap between ATC 
-            and AVC equals AFC, which shrinks as output increases.
+            and AVC equals AFC, which shrinks as output increases. Note also that <strong>min AVC occurs at a lower
+            output than min ATC</strong>, because falling AFC keeps dragging ATC down after AVC has bottomed out.
           </ExamTipBox>
+
         </div>
       </ContentSection>
 
@@ -265,10 +306,27 @@ const ProductionCosts = () => {
           </p>
         </div>
 
-        <div className="mb-8">
-          <h4 className="text-silver-bright font-semibold mb-4">Interactive: Economies of Scale & LRAC</h4>
-          <EconomiesOfScaleDiagram />
+        <div className="mb-8 space-y-8">
+          <LRACEnvelopeDiagram />
+          <div>
+            <h4 className="text-silver-bright font-semibold mb-4">Interactive: Economies of Scale &amp; Returns to Scale</h4>
+            <EconomiesOfScaleDiagram />
+          </div>
         </div>
+
+        <div className="bg-card/40 border border-silver/20 rounded-xl p-5 mb-6">
+          <h5 className="text-silver-bright font-medium mb-2">Minimum Efficient Scale and Market Structure</h5>
+          <p className="text-sm text-silver">
+            MES is the lowest output at which LRAC reaches its minimum. Comparing MES with total market demand
+            predicts how many firms an industry can support. Commercial aircraft, semiconductor fabrication and
+            steel have an MES close to global demand, so a handful of firms dominate; MES in hairdressing,
+            plumbing or restaurants is tiny relative to demand, so thousands of small firms coexist. Where LRAC
+            falls over the entire range of demand, a <strong>natural monopoly</strong> exists (water, rail track,
+            electricity grids) and one supplier is the least-cost outcome — the standard justification for
+            regulation rather than competition.
+          </p>
+        </div>
+
 
         <div className="space-y-6">
           <div>
@@ -504,6 +562,34 @@ const ProductionCosts = () => {
             AR (demand) curve. This means MR reaches zero (TR is maximized) at exactly half the quantity where 
             AR equals zero. Always draw MR intersecting the quantity axis at half the point where demand does.
           </ExamTipBox>
+
+          <div className="bg-card/40 border border-silver/20 rounded-xl p-5">
+            <h5 className="text-silver-bright font-medium mb-3">Revenue, Elasticity and the MR Curve</h5>
+            <p className="text-sm text-silver mb-3">
+              Along a straight-line demand curve the elasticity of demand changes continuously, and MR records it:
+            </p>
+            <ul className="text-sm text-silver space-y-1.5">
+              <li>• <strong>MR &gt; 0</strong> (upper half of AR): demand is <strong>price elastic</strong> (PED &gt; 1) — a price cut raises total revenue.</li>
+              <li>• <strong>MR = 0</strong> (midpoint): demand is <strong>unit elastic</strong> (PED = 1) — TR is at its maximum.</li>
+              <li>• <strong>MR &lt; 0</strong> (lower half): demand is <strong>price inelastic</strong> (PED &lt; 1) — a price cut reduces total revenue.</li>
+            </ul>
+            <p className="text-xs text-muted-foreground mt-3">
+              Formal link: MR = P(1 − 1/PED). This is why no profit-maximising price maker ever operates on the
+              inelastic section of its demand curve — it could raise price, raise revenue and cut costs simultaneously.
+            </p>
+          </div>
+
+          <div className="bg-card/40 border border-silver/20 rounded-xl p-5">
+            <h5 className="text-silver-bright font-medium mb-2">Real World: Streaming Price Rises</h5>
+            <p className="text-sm text-silver">
+              Netflix repeatedly raised its standard subscription (£10.99 in 2022 to £12.99 by 2025) while continuing
+              to grow revenue, evidence that it was operating on the elastic-but-approaching-unit-elastic section of
+              its demand curve with strong brand loyalty. Low-cost airlines do the opposite: highly elastic leisure
+              demand means Ryanair cuts headline fares to fill seats, then earns margin on inelastic ancillary
+              services (bags, seat selection) where MR remains high.
+            </p>
+          </div>
+
         </div>
       </ContentSection>
 
@@ -595,6 +681,35 @@ const ProductionCosts = () => {
               </div>
             </div>
           </div>
+
+          <div className="mt-2">
+            <h4 className="text-silver-bright font-semibold mb-4">Interactive: Profit, Loss and the Shutdown Rule</h4>
+            <ProfitMaxShutdownDiagram />
+          </div>
+
+          <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-4 border-emerald-400 p-4 rounded-r-lg">
+            <h5 className="text-emerald-400 font-medium mb-2">Deriving the Firm&apos;s Short-Run Supply Curve</h5>
+            <p className="text-sm text-silver">
+              Because a price taker always produces where P = MC, the quantity it offers at every price is read
+              straight off the MC curve. Below minimum AVC the firm produces nothing, so the
+              <strong> short-run supply curve is the portion of MC above minimum AVC</strong>. In the long run,
+              fixed costs are avoidable, so the <strong>long-run supply curve is the portion of MC above minimum ATC</strong>.
+              Summing these individual curves horizontally gives the industry supply curve — the microeconomic
+              foundation of the upward-sloping supply curve met at AS level.
+            </p>
+          </div>
+
+          <div className="bg-card/40 border border-silver/20 rounded-xl p-5">
+            <h5 className="text-silver-bright font-medium mb-2">Real World: Shale Oil and the Shutdown Rule</h5>
+            <p className="text-sm text-silver">
+              When Brent crude collapsed below $30 in 2016 and again in April 2020, US shale producers faced exactly
+              this decision. Wells already drilled had huge sunk costs but low operating (variable) costs of roughly
+              $20–25 per barrel, so most kept pumping — price still exceeded AVC. New drilling, which had to cover
+              full costs of $45–55 per barrel, stopped almost completely: rig counts fell by over 70%. Airlines behaved
+              the same way, flying near-empty &quot;ghost flights&quot; only while ticket revenue covered fuel and crew costs.
+            </p>
+          </div>
+
 
           <div>
             <h4 className="text-silver-bright font-semibold mb-4">Accounting vs. Economic Profit</h4>
