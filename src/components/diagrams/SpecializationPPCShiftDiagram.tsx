@@ -50,8 +50,8 @@ const SpecializationPPCShiftDiagram = ({ title }: Props) => {
           <motion.path d={curve(p, before, 0, MAX)} fill="none" stroke={C.demand} strokeWidth={2.6} {...revealPath(0)} animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }} />
           <motion.path d={curve(p, after, 0, MAX2)} fill="none" stroke={C.social} strokeWidth={2.6} strokeDasharray="8 4" {...revealPath(2)} animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }} />
 
-          <motion.text x={p.x(MAX * 0.62)} y={p.y(before(MAX * 0.62)) + 18} fill={C.demand} fontSize={12} fontWeight={600} {...revealFade(1)} animate={play ? { opacity: 1 } : { opacity: 0 }}>PPC₁</motion.text>
-          <motion.text x={p.x(MAX2 * 0.62)} y={p.y(after(MAX2 * 0.62)) - 10} fill={C.social} fontSize={12} fontWeight={600} {...revealFade(3)} animate={play ? { opacity: 1 } : { opacity: 0 }}>PPC₂</motion.text>
+          <motion.text x={p.x(MAX * 0.4)} y={p.y(before(MAX * 0.4)) + 20} fill={C.demand} fontSize={12} fontWeight={600} {...revealFade(1)} animate={play ? { opacity: 1 } : { opacity: 0 }}>PPC₁</motion.text>
+          <motion.text x={p.x(MAX2 * 0.8)} y={p.y(after(MAX2 * 0.8)) - 12} fill={C.social} fontSize={12} fontWeight={600} {...revealFade(3)} animate={play ? { opacity: 1 } : { opacity: 0 }}>PPC₂</motion.text>
 
           <motion.g {...revealPoint(1)} animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}>
             <circle cx={p.x(q1)} cy={p.y(y1)} r={5.5} fill={C.marker} />

@@ -122,7 +122,7 @@ const PPCShiftsDiagram = ({ type, title }: PPCShiftsDiagramProps) => {
             );
           })}
           <defs>
-            <marker id="ppc-shift-arrowhead" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+            <marker id="ppc-shift-arrowhead" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="0">
               <polygon points="0 8, 4 0, 8 8" fill={C.marker} />
             </marker>
           </defs>
