@@ -11,6 +11,9 @@ import ADInflationStagesDiagram from '@/components/diagrams/ADInflationStagesDia
 import CostPushInflationDiagram from '@/components/diagrams/CostPushInflationDiagram';
 import CostPushStagflationDiagram from '@/components/diagrams/CostPushStagflationDiagram';
 import DemandPullInflationDiagram from '@/components/diagrams/DemandPullInflationDiagram';
+import CPIBasketDiagram from '@/components/diagrams/CPIBasketDiagram';
+import WagePriceSpiralDiagram from '@/components/diagrams/WagePriceSpiralDiagram';
+import DeflationDiagram from '@/components/diagrams/DeflationDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
