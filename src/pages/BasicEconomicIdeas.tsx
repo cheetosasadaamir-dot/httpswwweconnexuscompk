@@ -8,7 +8,6 @@ import PPCConceptDiagram from '@/components/diagrams/PPCConceptDiagram';
 import FactorsOfProductionDiagram from '@/components/diagrams/FactorsOfProductionDiagram';
 import PPCShiftsDiagram from '@/components/diagrams/PPCShiftsDiagram';
 import OpportunityCostPPCDiagram from '@/components/diagrams/OpportunityCostPPCDiagram';
-import ResourceAllocationSpectrumDiagram from '@/components/diagrams/ResourceAllocationSpectrumDiagram';
 import PriceMechanismFlowDiagram from '@/components/diagrams/PriceMechanismFlowDiagram';
 import PositiveNormativePPCDiagram from '@/components/diagrams/PositiveNormativePPCDiagram';
 import PositiveNormativeQuiz from '@/components/diagrams/PositiveNormativeQuiz';
@@ -248,9 +247,8 @@ const BasicEconomicIdeas = () => {
               Every society must develop some mechanism for answering the three fundamental economic questions. Historically, two polar approaches have dominated theoretical and practical discourse: the <strong className="text-cambridge-cyan">Free Market Economy</strong> and the <strong className="text-destructive">Command (Planned) Economy</strong>. In reality, all contemporary economies are <strong className="text-cambridge-green">Mixed Economies</strong>, combining elements of both in varying proportions.
             </p>
 
-            <ResourceAllocationSpectrumDiagram />
-
             <EconomicSystemsDiagram />
+
 
             <p className="text-sm leading-relaxed text-muted-foreground">
               A useful way to compare systems is to ask <em>who owns the resources</em>, <em>who decides what is produced</em>, and <em>what motivates decision-makers</em>. In a market system, ownership is private, decisions are decentralised through prices, and the motive is profit and utility maximisation. In a command system, ownership is collective, decisions are centralised in a planning bureau, and the motive is the fulfilment of politically-set targets. Because information about consumer wants is dispersed across millions of households, the market system economises on information: no single agent needs to know why demand for a good has risen, only that its price has. This is the core of Hayek's "knowledge problem", and it explains why planned economies persistently generated queues for some goods and warehouses of unsold others.
