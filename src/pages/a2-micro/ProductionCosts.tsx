@@ -596,6 +596,35 @@ const ProductionCosts = () => {
             </div>
           </div>
 
+          <div className="mt-2">
+            <h4 className="text-silver-bright font-semibold mb-4">Interactive: Profit, Loss and the Shutdown Rule</h4>
+            <ProfitMaxShutdownDiagram />
+          </div>
+
+          <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-4 border-emerald-400 p-4 rounded-r-lg">
+            <h5 className="text-emerald-400 font-medium mb-2">Deriving the Firm&apos;s Short-Run Supply Curve</h5>
+            <p className="text-sm text-silver">
+              Because a price taker always produces where P = MC, the quantity it offers at every price is read
+              straight off the MC curve. Below minimum AVC the firm produces nothing, so the
+              <strong> short-run supply curve is the portion of MC above minimum AVC</strong>. In the long run,
+              fixed costs are avoidable, so the <strong>long-run supply curve is the portion of MC above minimum ATC</strong>.
+              Summing these individual curves horizontally gives the industry supply curve — the microeconomic
+              foundation of the upward-sloping supply curve met at AS level.
+            </p>
+          </div>
+
+          <div className="bg-card/40 border border-silver/20 rounded-xl p-5">
+            <h5 className="text-silver-bright font-medium mb-2">Real World: Shale Oil and the Shutdown Rule</h5>
+            <p className="text-sm text-silver">
+              When Brent crude collapsed below $30 in 2016 and again in April 2020, US shale producers faced exactly
+              this decision. Wells already drilled had huge sunk costs but low operating (variable) costs of roughly
+              $20–25 per barrel, so most kept pumping — price still exceeded AVC. New drilling, which had to cover
+              full costs of $45–55 per barrel, stopped almost completely: rig counts fell by over 70%. Airlines behaved
+              the same way, flying near-empty &quot;ghost flights&quot; only while ticket revenue covered fuel and crew costs.
+            </p>
+          </div>
+
+
           <div>
             <h4 className="text-silver-bright font-semibold mb-4">Accounting vs. Economic Profit</h4>
             <div className="bg-card/50 border border-silver/20 rounded-xl p-6">
