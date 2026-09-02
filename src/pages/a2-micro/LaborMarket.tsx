@@ -604,7 +604,38 @@ const LaborMarket = () => {
                 at a higher employment level than the monopsony solution. Both workers and the firm can be better off.
               </p>
             </div>
+
+            <div className="mt-8">
+              <TradeUnionMonopsonyDiagram />
+            </div>
+
+            <div className="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+              <h4 className="text-blue-400 font-semibold mb-2">Bilateral Monopoly</h4>
+              <p className="text-muted-foreground text-sm">
+                When a monopsony employer faces a single strong union, the market becomes a
+                <strong className="text-silver-bright"> bilateral monopoly</strong>. Economic theory cannot predict a
+                unique wage: it is indeterminate within the zone of bargaining, running from the monopsony wage
+                (the union's floor) up to the MRP of the last worker hired (the firm's ceiling). The actual outcome
+                depends on relative bargaining power — strike funds, union density, the cost of a stoppage to the
+                employer, public sympathy and legal constraints on industrial action. Classic examples: rail unions
+                versus a national operator, doctors' associations versus a single public health service, and
+                players' unions versus a sports league.
+              </p>
+            </div>
           </div>
+
+          {/* Unions in a competitive market */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <h3 className="text-xl font-semibold text-silver-bright mb-4">Unions in a Competitive Labour Market</h3>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              Where the labour market is competitive, a negotiated wage above equilibrium behaves exactly like a
+              minimum wage: the effective supply curve becomes horizontal at the union rate, the firm moves back up
+              its MRP curve and excess supply of labour appears. Whether this matters depends overwhelmingly on the
+              elasticity of demand for labour and on whether higher pay raises productivity.
+            </p>
+            <TradeUnionCompetitiveDiagram />
+          </div>
+
 
           {/* Power of Unions */}
           <div className="glass-card p-8 rounded-2xl mb-8">
