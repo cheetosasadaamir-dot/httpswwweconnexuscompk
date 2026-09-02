@@ -239,11 +239,34 @@ const ProductionCosts = () => {
             </p>
           </div>
 
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-card/40 border border-silver/20 rounded-lg p-4">
+              <h5 className="text-amber-400 font-medium mb-2">Sunk Costs</h5>
+              <p className="text-silver text-sm">
+                Costs already incurred that cannot be recovered on exit — bespoke machinery, advertising,
+                R&amp;D, market research. Sunk costs are <strong>irrelevant to future decisions</strong> (ignoring
+                this is the &quot;sunk cost fallacy&quot;), but they matter enormously for contestability: high sunk
+                costs deter hit-and-run entry and protect incumbents.
+              </p>
+            </div>
+            <div className="bg-card/40 border border-silver/20 rounded-lg p-4">
+              <h5 className="text-neon-cyan font-medium mb-2">What Shifts the Cost Curves?</h5>
+              <ul className="text-silver text-sm space-y-1">
+                <li>• Wage or raw material price changes → AVC, ATC and MC all shift.</li>
+                <li>• Business rates, rent, insurance → AFC and ATC shift; MC unchanged.</li>
+                <li>• Technology and productivity gains → all curves shift downwards.</li>
+                <li>• Indirect taxes and regulation → upward shift, acting like a cost increase.</li>
+              </ul>
+            </div>
+          </div>
+
           <ExamTipBox variant="silver">
             Remember: <strong>MC intersects both AVC and ATC at their minimum points</strong>. This is because when 
             MC {"<"} AC, it pulls the average down; when MC {">"} AC, it pulls the average up. The gap between ATC 
-            and AVC equals AFC, which shrinks as output increases.
+            and AVC equals AFC, which shrinks as output increases. Note also that <strong>min AVC occurs at a lower
+            output than min ATC</strong>, because falling AFC keeps dragging ATC down after AVC has bottomed out.
           </ExamTipBox>
+
         </div>
       </ContentSection>
 
