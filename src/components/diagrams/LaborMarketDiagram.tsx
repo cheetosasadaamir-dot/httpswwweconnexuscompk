@@ -110,9 +110,10 @@ const LaborMarketDiagram = () => {
                     strokeWidth={2.4}
                     {...revealPath(0)}
                   />
-                  <motion.text x={x(52)} y={y(Wstar) - 8} fill={C.supply} fontSize={11} {...revealFade(1)}>
+                  <motion.text x={x(66)} y={y(Wstar) - 8} fill={C.supply} fontSize={11} {...revealFade(1)}>
                     S = ACL = MFC = W*
                   </motion.text>
+
 
                   <motion.path d={seg(MRPf, 0, 100)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(1)} />
                   <motion.text x={x(88)} y={y(MRPf(88)) - 8} fill={C.demand} fontSize={11} {...revealFade(2)}>
