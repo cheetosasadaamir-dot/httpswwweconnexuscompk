@@ -59,7 +59,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
   const qx = (q: number) => (q / Q_MAX) * 100;
   const cy = (c: number) => (c / C_MAX) * 100;
   const costPath = (f: (q: number) => number, from = 0.7, to = Q_MAX) =>
-    curve(p, (t) => ({ x: qx(from + t * (to - from)), y: cy(Math.min(f(from + t * (to - from)), C_MAX)) }), 0, 1, 140);
+    curve(p, (v) => cy(Math.min(f((v / 100) * Q_MAX), C_MAX)), qx(from), qx(to), 140);
 
   const costTicks = [40, 80, 120, 160];
   const qTicks = [2, 4, 6, 8, 10, 12];
@@ -76,7 +76,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
     f: (l: number) => number,
     sy: (v: number) => number,
     to = L_MAX,
-  ) => curve(box, (t) => ({ x: lx(t * to), y: sy(f(t * to)) }), 0.001, 1, 120);
+  ) => curve(box, (v) => sy(f((v / 100) * L_MAX)), 0, lx(to), 120);
 
   const costRows = Array.from({ length: 12 }, (_, i) => i + 1).map((q) => ({
     q,
