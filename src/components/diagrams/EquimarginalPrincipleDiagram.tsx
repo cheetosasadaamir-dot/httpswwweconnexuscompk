@@ -91,7 +91,7 @@ const EquimarginalPrincipleDiagram = () => {
                 MUₓ/Pₓ = MU_y/P_y = 6
               </text>
               <text x={p.x(ux(6)) + 8} y={p.y(rv(2))} fill={C.demand} fontSize={11} fontWeight="bold">MUₓ/Pₓ</text>
-              <text x={p.x(ux(5)) + 8} y={p.y(rv(2)) - 22} fill={C.supply} fontSize={11} fontWeight="bold">MU_y/P_y</text>
+              <text x={p.x(ux(5)) + 8} y={p.y(rv(2)) + 16} fill={C.supply} fontSize={11} fontWeight="bold">MU_y/P_y</text>
             </motion.g>
             <motion.circle cx={p.x(ux(4))} cy={p.y(rv(6))} r={5} fill={C.demand} stroke="white" strokeWidth={1.3} {...revealPoint(4)} animate={play ? revealPoint(4).animate : revealPoint(4).initial} />
             <motion.circle cx={p.x(ux(3))} cy={p.y(rv(6))} r={5} fill={C.supply} stroke="white" strokeWidth={1.3} {...revealPoint(4)} animate={play ? revealPoint(4).animate : revealPoint(4).initial} />
