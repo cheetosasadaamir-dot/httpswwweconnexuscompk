@@ -236,11 +236,7 @@ const MarketFailureExternalityDiagram = () => {
         {/* Welfare Loss Triangle */}
         <motion.polygon
           key={externalityType}
-          points={
-            data.welfare === 'overproduction'
-              ? `${xScale(data.qOptimal)},${yScale(data.pOptimal)} ${xScale(data.qMarket)},${yScale(data.pMarket)} ${xScale(data.qOptimal)},${yScale(data.pMarket - 15)}`
-              : `${xScale(data.qMarket)},${yScale(data.pMarket)} ${xScale(data.qOptimal)},${yScale(data.pOptimal)} ${xScale(data.qMarket)},${yScale(data.pOptimal - 15)}`
-          }
+          points={`${xScale(data.qOptimal)},${yScale(data.pOptimal)} ${xScale(data.qMarket)},${yScale(data.pMarket)} ${xScale(data.qMarket)},${yScale(dwlThirdY)}`}
           fill={isNegative ? "hsl(var(--destructive))" : "hsl(var(--cambridge-green))"}
           opacity={0.3}
           initial={{ opacity: 0 }}
