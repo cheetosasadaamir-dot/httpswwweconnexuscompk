@@ -1,221 +1,174 @@
-import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
+/**
+ * Perfect competition — market and firm, short run and long run.
+ *
+ * MARKET   D  : P = 100 − 1.0Q            S₁ : P = 12 + 1.2Q
+ *          → 100 − Q = 12 + 1.2Q → Q = 40, P = 56
+ *          entry shifts supply right to S₂ : P = −49.6 + 1.2Q
+ *          → new equilibrium P = 32 (= min AC), Q = 68
+ *
+ * FIRM     TC  = 250 + 12q + 0.4q²
+ *          MC  = 12 + 0.8q          AVC = 12 + 0.4q
+ *          ATC = 250/q + 12 + 0.4q  → min at q = √(250/0.4) = 25, ATC = 32
+ *          check: MC(25) = 12 + 20 = 32 ✓ (MC cuts ATC exactly at its minimum)
+ *
+ *   Short run  P = 56 → MC = P → q = 55, ATC(55) = 38.55 → supernormal profit
+ *   Long run   P = 32 → q = 25 at min ATC → normal profit only
+ */
 const PerfectCompetitionDiagram = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const p = plotBox();
+  const { x, y } = p;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
+  // ---- market ----
+  const D = (q: number) => 100 - q;
+  const S1 = (q: number) => 12 + 1.2 * q;
+  const S2 = (q: number) => -49.6 + 1.2 * q;
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+  // ---- firm (q runs 0–70, mapped onto the 0–100 plot scale) ----
+  const K = 100 / 70;
+  const fx = (q: number) => x(q * K);
+  const MC = (q: number) => 12 + 0.8 * q;
+  const ATC = (q: number) => 250 / q + 12 + 0.4 * q;
+  const AVC = (q: number) => 12 + 0.4 * q;
+  const fcurve = (f: (q: number) => number, a: number, b: number) =>
+    curve(p, (v) => f(v / K), a * K, b * K, 120);
 
-    return () => observer.disconnect();
-  }, []);
+  const seg = (f: (q: number) => number, a: number, b: number) =>
+    `M ${x(a)} ${y(f(a))} L ${x(b)} ${y(f(b))}`;
 
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1, 
-      transition: { duration: 1.5, ease: "easeInOut" as const }
-    }
-  };
+  const qSR = 55;
+  const pSR = 56;
+  const acSR = ATC(qSR); // 38.55
+  const qLR = 25;
+  const pLR = 32;
 
   return (
-    <div ref={containerRef} className="w-full">
-      <h4 className="text-lg font-semibold text-silver-bright mb-4 text-center">
-        Firm's Demand Curve in Perfect Competition
-      </h4>
-      
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Market Diagram */}
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground text-center mb-2">The Market</p>
-          <svg viewBox="0 0 300 250" className="w-full max-w-sm mx-auto">
-            {/* Grid */}
-            <defs>
-              <pattern id="grid-pc-market" width="30" height="25" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 25" fill="none" stroke="hsl(var(--silver) / 0.1)" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect x="50" y="20" width="230" height="200" fill="url(#grid-pc-market)" />
-            
-            {/* Axes */}
-            <motion.line
-              x1="50" y1="220" x2="280" y2="220"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.line
-              x1="50" y1="220" x2="50" y2="20"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            
-            {/* Axis Labels */}
-            <text x="165" y="245" textAnchor="middle" className="fill-muted-foreground text-xs">Quantity</text>
-            <text x="25" y="120" textAnchor="middle" className="fill-muted-foreground text-xs" transform="rotate(-90, 25, 120)">Price</text>
-            
-            {/* Supply Curve */}
-            <motion.path
-              d="M 70 200 Q 150 120 260 50"
-              fill="none"
-              stroke="hsl(var(--secondary))"
-              strokeWidth="3"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="265" y="45" className="fill-secondary text-sm font-medium">S</text>
-            
-            {/* Demand Curve */}
-            <motion.path
-              d="M 70 50 Q 150 120 260 200"
-              fill="none"
-              stroke="hsl(var(--primary))"
-              strokeWidth="3"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="265" y="205" className="fill-primary text-sm font-medium">D</text>
-            
-            {/* Equilibrium */}
-            <motion.circle
-              cx="157.5" cy="122.5"
-              r="6"
-              fill="hsl(var(--accent))"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.2, duration: 0.3 }}
-            />
-            
-            {/* Equilibrium Price Line */}
-            <motion.line
-              x1="50" y1="122.5" x2="157.5" y2="122.5"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="40" y="127" textAnchor="end" className="fill-muted-foreground text-xs">P*</text>
-            
-            {/* Equilibrium Quantity */}
-            <motion.line
-              x1="157.5" y1="122.5" x2="157.5" y2="220"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="157.5" y="235" textAnchor="middle" className="fill-muted-foreground text-xs">Q*</text>
-          </svg>
+    <DiagramFrame
+      title="Perfect Competition: Short-Run Profit to Long-Run Equilibrium"
+      eyebrow="Figure — the market sets the price, the firm chooses only output"
+      legend={[
+        { label: 'Market demand / firm AR = MR = P', color: C.demand },
+        { label: 'Market supply (S₁ short run, S₂ after entry)', color: C.supply },
+        { label: 'Marginal cost (MC)', color: C.social },
+        { label: 'Average total cost (ATC)', color: C.intervention },
+        { label: 'Average variable cost (AVC)', color: C.muted, dashed: true },
+        { label: 'Supernormal profit', color: C.revenue, kind: 'area' },
+      ]}
+      note={
+        <>
+          At P = 56 the firm equates <strong>MC = MR</strong> at q = 55, where average total cost is only
+          38.6 — the gold rectangle is <strong>supernormal profit</strong> of about (56 − 38.6) × 55 ≈ 955.
+          Because there are no barriers to entry, that profit attracts new firms: industry supply shifts
+          right from S₁ to S₂ and the market price falls. Entry stops only when the price has fallen to
+          32, the <strong>minimum of ATC</strong>, where the firm's horizontal demand curve is exactly
+          tangent to the bottom of its ATC curve at q = 25. There the firm earns <strong>normal profit</strong>
+          only and is simultaneously <strong>productively efficient</strong> (producing at min ATC) and
+          <strong> allocatively efficient</strong> (P = MC). Note that MC cuts both AVC and ATC precisely at
+          their minima — the firm's short-run supply curve is the MC curve above min AVC.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <div key={runKey} className="flex flex-col gap-6 lg:flex-row">
+          {/* ------------- MARKET ------------- */}
+          <div className="flex-1">
+            <p className="mb-1 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              The Industry
+            </p>
+            <svg viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[300px]" role="img"
+              aria-label="Competitive industry equilibrium with supply shifting right as firms enter">
+              <Axes p={p} id="pc-mkt" labelX="Industry output (Q)" labelY="Price (P)" />
+              {play && (
+                <>
+                  <motion.path d={seg(D, 0, 100)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(0)} />
+                  <motion.text x={x(100) + 4} y={y(0) - 6} fill={C.demand} fontSize={11} {...revealFade(1)}>D</motion.text>
+
+                  <motion.path d={seg(S1, 0, 73)} fill="none" stroke={C.supply} strokeWidth={2.4} {...revealPath(1)} />
+                  <motion.text x={x(73) + 4} y={y(S1(73))} fill={C.supply} fontSize={11} {...revealFade(2)}>S₁</motion.text>
+
+                  <motion.g {...revealFade(2)}>
+                    <Guides p={p} qx={40} py={56} color={C.marker} xLabel="Q₁ = 40" yLabel="P₁ = 56" />
+                  </motion.g>
+                  <motion.circle cx={x(40)} cy={y(56)} r={5} fill={C.marker} {...revealPoint(3)} />
+
+                  <motion.path d={seg(S2, 42, 100)} fill="none" stroke={C.supplyAlt} strokeWidth={2.4}
+                    strokeDasharray="6 4" {...revealPath(4)} />
+                  <motion.text x={x(100) + 4} y={y(S2(100))} fill={C.supplyAlt} fontSize={11} {...revealFade(5)}>S₂</motion.text>
+
+                  <motion.g {...revealFade(5)}>
+                    <Guides p={p} qx={68} py={32} color={C.social} xLabel="Q₂ = 68" yLabel="P₂ = 32" />
+                  </motion.g>
+                  <motion.circle cx={x(68)} cy={y(32)} r={5} fill={C.social} {...revealPoint(6)} />
+                  <motion.text x={x(50)} y={y(78)} fill={C.muted} fontSize={10} {...revealFade(6)}>
+                    entry → supply shifts right → price falls
+                  </motion.text>
+                </>
+              )}
+            </svg>
+          </div>
+
+          {/* ------------- FIRM ------------- */}
+          <div className="flex-1">
+            <p className="mb-1 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              The Individual Firm (price taker)
+            </p>
+            <svg viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[300px]" role="img"
+              aria-label="Price taking firm earning supernormal profit in the short run and normal profit in the long run">
+              <Axes p={p} id="pc-firm" labelX="Firm output (q)" labelY="Costs, Revenue" />
+              {play && (
+                <>
+                  {/* profit rectangle */}
+                  <motion.rect
+                    x={fx(0)} y={y(pSR)} width={fx(qSR) - fx(0)} height={y(acSR) - y(pSR)}
+                    fill={C.revenue} opacity={0.18} {...revealFade(4)}
+                  />
+
+                  <motion.path d={fcurve(MC, 3, 62)} fill="none" stroke={C.social} strokeWidth={2.4} {...revealPath(0)} />
+                  <motion.text x={fx(62) + 4} y={y(MC(62))} fill={C.social} fontSize={11} {...revealFade(1)}>MC</motion.text>
+
+                  <motion.path d={fcurve(ATC, 6, 62)} fill="none" stroke={C.intervention} strokeWidth={2.4} {...revealPath(1)} />
+                  <motion.text x={fx(62) + 4} y={y(ATC(62)) + 12} fill={C.intervention} fontSize={11} {...revealFade(2)}>ATC</motion.text>
+
+                  <motion.path d={fcurve(AVC, 3, 62)} fill="none" stroke={C.muted} strokeWidth={1.6}
+                    strokeDasharray="5 4" {...revealPath(2)} />
+                  <motion.text x={fx(62) + 4} y={y(AVC(62)) + 12} fill={C.muted} fontSize={10} {...revealFade(3)}>AVC</motion.text>
+
+                  {/* short-run price line */}
+                  <motion.path d={`M ${fx(0)} ${y(pSR)} L ${fx(66)} ${y(pSR)}`} fill="none"
+                    stroke={C.demand} strokeWidth={2.4} {...revealPath(3)} />
+                  <motion.text x={fx(66) + 4} y={y(pSR) - 6} fill={C.demand} fontSize={10} {...revealFade(4)}>
+                    P₁ = AR = MR
+                  </motion.text>
+                  <motion.circle cx={fx(qSR)} cy={y(pSR)} r={5} fill={C.marker} {...revealPoint(5)} />
+                  <motion.text x={fx(qSR) - 60} y={y(48)} fill={C.revenue} fontSize={10} {...revealFade(5)}>
+                    supernormal profit
+                  </motion.text>
+                  <line x1={fx(qSR)} y1={y(pSR)} x2={fx(qSR)} y2={y(0)} stroke={C.marker} strokeDasharray="4 3" strokeWidth={1} />
+                  <text x={fx(qSR)} y={y(0) + 15} fill={C.marker} fontSize={10} textAnchor="middle">q₁ = 55</text>
+
+                  {/* long-run price line at min ATC */}
+                  <motion.path d={`M ${fx(0)} ${y(pLR)} L ${fx(66)} ${y(pLR)}`} fill="none"
+                    stroke={C.demandAlt} strokeWidth={2.2} strokeDasharray="6 4" {...revealPath(6)} />
+                  <motion.text x={fx(66) + 4} y={y(pLR) + 12} fill={C.demandAlt} fontSize={10} {...revealFade(7)}>
+                    P₂ (long run)
+                  </motion.text>
+                  <motion.circle cx={fx(qLR)} cy={y(pLR)} r={5} fill={C.social} {...revealPoint(7)} />
+                  <line x1={fx(qLR)} y1={y(pLR)} x2={fx(qLR)} y2={y(0)} stroke={C.social} strokeDasharray="4 3" strokeWidth={1} />
+                  <text x={fx(qLR)} y={y(0) + 15} fill={C.social} fontSize={10} textAnchor="middle">q₂ = 25</text>
+                  <motion.text x={fx(qLR) - 8} y={y(pLR) - 10} fill={C.social} fontSize={9} textAnchor="end" {...revealFade(8)}>
+                    min ATC = 32
+                  </motion.text>
+                </>
+              )}
+            </svg>
+          </div>
         </div>
-
-        {/* Firm Diagram */}
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground text-center mb-2">The Firm</p>
-          <svg viewBox="0 0 300 250" className="w-full max-w-sm mx-auto">
-            {/* Grid */}
-            <rect x="50" y="20" width="230" height="200" fill="url(#grid-pc-market)" />
-            
-            {/* Axes */}
-            <motion.line
-              x1="50" y1="220" x2="280" y2="220"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.line
-              x1="50" y1="220" x2="50" y2="20"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            
-            {/* Axis Labels */}
-            <text x="165" y="245" textAnchor="middle" className="fill-muted-foreground text-xs">Quantity</text>
-            <text x="25" y="120" textAnchor="middle" className="fill-muted-foreground text-xs" transform="rotate(-90, 25, 120)">Costs, Revenue</text>
-
-            {/* Horizontal Demand/Price Line (P = D = MR = AR) */}
-            <motion.line
-              x1="50" y1="120" x2="245" y2="120"
-              stroke="hsl(var(--primary))"
-              strokeWidth="3"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 0.8, duration: 1 }}
-            />
-            <text x="248" y="112" className="fill-primary text-[9px]">D = AR = MR</text>
-
-            {/* AC — U-shaped, minimum exactly at (165,120) */}
-            <motion.path
-              d="M 80 55 Q 165 185 250 55"
-              fill="none"
-              stroke="hsl(var(--secondary))"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="252" y="52" className="fill-secondary text-[10px] font-medium">AC</text>
-
-            {/* MC — cuts AC at its minimum point (165,120) */}
-            <motion.path
-              d="M 90 170 C 130 190, 150 165, 165 120 S 200 50, 222 32"
-              fill="none"
-              stroke="hsl(var(--accent))"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="224" y="30" className="fill-accent text-[10px] font-medium">MC</text>
-
-            {/* Long-run equilibrium: P = MR = MC = AC(min) */}
-            <motion.circle
-              cx="165" cy="120" r="5"
-              fill="hsl(var(--accent))"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.6, duration: 0.3 }}
-            />
-            <line x1="165" y1="120" x2="165" y2="220" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="4,4" />
-            <text x="165" y="235" textAnchor="middle" className="fill-muted-foreground text-xs">q*</text>
-
-            {/* Price Label */}
-            <text x="40" y="125" textAnchor="end" className="fill-muted-foreground text-xs">P*</text>
-          </svg>
-        </div>
-      </div>
-
-      <div className="mt-4 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-        <p className="text-muted-foreground text-sm text-center">
-          The market sets the equilibrium price P*. The firm is a price taker, so its demand curve is
-          perfectly elastic (D = AR = MR = P*). It maximises profit where MC = MR at q*. In long-run
-          equilibrium, free entry and exit drive P* down to the minimum of AC, so the firm earns only
-          normal profit and is productively (min AC) and allocatively (P = MC) efficient.
-        </p>
-      </div>
-
-    </div>
+      )}
+    </DiagramFrame>
   );
 };
 

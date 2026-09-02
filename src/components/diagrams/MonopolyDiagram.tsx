@@ -1,545 +1,119 @@
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
 interface MonopolyDiagramProps {
   title?: string;
 }
 
 /**
- * Accurate Monopoly Diagram
- * - MR is twice as steep as AR (intercepts x-axis at half the AR intercept)
- * - MC intersects AC at its minimum point
- * - Profit rectangle between AR and AC at profit-maximizing output
+ * Monopoly equilibrium with the deadweight welfare loss triangle.
+ *
+ * AR = 100 − 1.2Q        MR = 100 − 2.4Q   (same intercept, twice the gradient)
+ * TC = 300 + 20Q + 0.3Q² → MC = 20 + 0.6Q, ATC = 300/Q + 20 + 0.3Q
+ *   min ATC at Q = √(300/0.3) = 31.6, ATC = 39.0 = MC(31.6) ✓
+ *
+ * Profit max  MC = MR : 20 + 0.6Q = 100 − 2.4Q → Qm = 26.67
+ *             price read off AR : Pm = 100 − 1.2(26.67) = 68
+ *             ATC(26.67) = 39.25 → supernormal profit ≈ 766
+ * Allocative (competitive) output  AR = MC : Qc = 44.44, Pc = 46.67
+ * Deadweight loss = ½ × (44.44 − 26.67) × (68 − 36) ≈ 284
  */
 const MonopolyDiagram = ({ title }: MonopolyDiagramProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const p = plotBox();
+  const { x, y } = p;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
+  const AR = (q: number) => 100 - 1.2 * q;
+  const MR = (q: number) => 100 - 2.4 * q;
+  const MC = (q: number) => 20 + 0.6 * q;
+  const ATC = (q: number) => 300 / q + 20 + 0.3 * q;
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+  const Qm = 26.667, Pm = 68, ACm = ATC(26.667), MCm = MC(26.667); // 39.25, 36
+  const Qc = 44.444, Pc = 46.667;
 
-    return () => observer.disconnect();
-  }, []);
-
-  // SVG dimensions
-  const width = 500;
-  const height = 420;
-  const margin = { top: 40, right: 50, bottom: 60, left: 70 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
-
-  // Cambridge standard colors
-  const demandColor = 'hsl(185, 100%, 50%)'; // Electric Cyan - AR/D
-  const mrColor = 'hsl(300, 100%, 60%)'; // Neon Magenta - MR
-  const mcColor = 'hsl(142, 76%, 45%)'; // Green - MC
-  const acColor = 'hsl(25, 95%, 55%)'; // Orange - AC
-  const profitColor = 'hsl(45, 93%, 55%)'; // Gold - Profit area
-  const axisColor = 'hsl(220, 14%, 75%)';
-  const gridColor = 'hsl(220, 14%, 20%)';
-  const labelColor = 'hsl(220, 14%, 90%)';
-
-  // Key economic points (scaled to chart)
-  // AR curve: starts at P=200, ends at Q=200 (linear demand)
-  // MR curve: starts at P=200, ends at Q=100 (twice as steep - intercepts at half)
-  // Profit-max output Qm = 60 (where MR = MC)
-  
-  const xScale = (q: number) => margin.left + (q / 200) * chartWidth;
-  const yScale = (p: number) => margin.top + chartHeight - (p / 220) * chartHeight;
-
-  // AR (Demand) curve - linear from (0, 200) to (200, 0)
-  const arPath = `M ${xScale(0)} ${yScale(200)} L ${xScale(200)} ${yScale(0)}`;
-  
-  // MR curve - linear from (0, 200) to (100, 0) - TWICE AS STEEP
-  const mrPath = `M ${xScale(0)} ${yScale(200)} L ${xScale(100)} ${yScale(0)}`;
-
-  // Key output levels
-  const qm = 60; // Profit-max output where MR = MC
-  const priceAtQm = 200 - qm; // = 140 (price on AR curve)
-  const mrAtQm = 200 - 2 * qm; // = 80 (MR at Qm)
-  
-  // AC at Qm (on AC curve) - set to 90 for visible profit
-  const acAtQm = 100; // AC at profit-maximising output Qm
-  
-  // MC curve - U-shaped, intersects AC at AC minimum (around Q=80)
-  // MC must pass through (Qm, mrAtQm) = (60, 80)
-  const mcPath = `M ${xScale(10)} ${yScale(160)} 
-                  Q ${xScale(30)} ${yScale(60)}, ${xScale(50)} ${yScale(70)} 
-                  Q ${xScale(60)} ${yScale(80)}, ${xScale(70)} ${yScale(95)}
-                  Q ${xScale(90)} ${yScale(130)}, ${xScale(120)} ${yScale(180)}`;
-
-  // AC curve - U-shaped, minimum at approximately Q=80
-  // MC must intersect AC at AC's minimum
-  // MC crosses AC exactly at AC's minimum: MC(70) = 95 = min AC
-  const acMinQ = 70;
-  const acMinP = 95;
-  const acPath = `M ${xScale(20)} ${yScale(180)} 
-                  Q ${xScale(45)} ${yScale(120)}, ${xScale(60)} ${yScale(acAtQm)}
-                  Q ${xScale(70)} ${yScale(90)}, ${xScale(80)} ${yScale(acAtQm)}
-                  Q ${xScale(110)} ${yScale(140)}, ${xScale(140)} ${yScale(185)}`;
-
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1,
-      transition: { duration: 1.5, ease: "easeInOut" as const }
-    }
-  };
+  const seg = (f: (q: number) => number, a: number, b: number) =>
+    `M ${x(a)} ${y(f(a))} L ${x(b)} ${y(f(b))}`;
 
   return (
-    <div ref={containerRef} className="w-full">
-      {title && (
-        <h4 className="font-serif text-lg text-silver-bright mb-4 text-center">{title}</h4>
+    <DiagramFrame
+      title={title ?? 'Monopoly: Restricted Output, Higher Price, Deadweight Loss'}
+      eyebrow="Figure — profit maximisation where MC = MR, price read off AR"
+      legend={[
+        { label: 'AR = D (market demand)', color: C.demand },
+        { label: 'MR (twice as steep as AR)', color: C.supply },
+        { label: 'MC', color: C.social },
+        { label: 'ATC', color: C.intervention },
+        { label: 'Supernormal profit', color: C.revenue, kind: 'area' },
+        { label: 'Deadweight welfare loss', color: C.welfareLoss, kind: 'area' },
+      ]}
+      note={
+        <>
+          The monopolist faces the whole market demand curve, so AR slopes down and MR falls
+          <strong> twice as steeply</strong>, cutting the horizontal axis at half the output at which AR does.
+          Profit is maximised where <strong>MC = MR</strong> at Q<sub>m</sub> = 26.7, and the price is read
+          <em> vertically upwards to the AR curve</em> at P<sub>m</sub> = 68 — a common error is to read the
+          price off MR or MC. Average cost at that output is 39.3, so the gold rectangle is supernormal
+          profit, which barriers to entry preserve into the long run. Because P (68) exceeds MC (36) the
+          market is <strong>allocatively inefficient</strong>: the competitive outcome would be Q<sub>c</sub> = 44.4
+          at P<sub>c</sub> = 46.7, and the red triangle between AR, MC and the two output levels is the
+          <strong> deadweight welfare loss</strong> of the trades never made. Output is also below min ATC
+          (Q = 31.6), so the firm is <strong>productively inefficient</strong> too. Evaluate: economies of
+          scale may shift the whole cost curve down, and Schumpeter argued abnormal profit funds the R&amp;D
+          that delivers dynamic efficiency.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg key={runKey} viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[320px]" role="img"
+          aria-label="Monopoly diagram showing profit maximising output where marginal cost equals marginal revenue, supernormal profit and the deadweight loss triangle">
+          <Axes p={p} id="mono" labelX="Output (Q)" labelY="Price, Costs, Revenue" />
+          {play && (
+            <>
+              {/* profit rectangle */}
+              <motion.rect x={x(0)} y={y(Pm)} width={x(Qm) - x(0)} height={y(ACm) - y(Pm)}
+                fill={C.revenue} opacity={0.18} {...revealFade(4)} />
+
+              {/* deadweight loss triangle */}
+              <motion.path
+                d={`M ${x(Qm)} ${y(Pm)} L ${x(Qm)} ${y(MCm)} L ${x(Qc)} ${y(Pc)} Z`}
+                fill={C.welfareLoss} opacity={0.28} {...revealFade(6)}
+              />
+
+              <motion.path d={seg(AR, 0, 83)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(0)} />
+              <motion.text x={x(83) + 4} y={y(AR(83))} fill={C.demand} fontSize={11} {...revealFade(1)}>AR = D</motion.text>
+
+              <motion.path d={seg(MR, 0, 41.7)} fill="none" stroke={C.supply} strokeWidth={2.4} {...revealPath(1)} />
+              <motion.text x={x(41.7) + 4} y={y(0) - 4} fill={C.supply} fontSize={11} {...revealFade(2)}>MR</motion.text>
+
+              <motion.path d={curve(p, MC, 2, 80)} fill="none" stroke={C.social} strokeWidth={2.4} {...revealPath(2)} />
+              <motion.text x={x(80) + 4} y={y(MC(80))} fill={C.social} fontSize={11} {...revealFade(3)}>MC</motion.text>
+
+              <motion.path d={curve(p, ATC, 6, 80, 140)} fill="none" stroke={C.intervention} strokeWidth={2.4} {...revealPath(3)} />
+              <motion.text x={x(80) + 4} y={y(ATC(80)) + 13} fill={C.intervention} fontSize={11} {...revealFade(4)}>ATC</motion.text>
+
+              {/* equilibrium */}
+              <motion.g {...revealFade(4)}>
+                <Guides p={p} qx={Qm} py={Pm} color={C.marker} xLabel="Qm = 26.7" yLabel="Pm = 68" />
+              </motion.g>
+              <motion.circle cx={x(Qm)} cy={y(Pm)} r={5} fill={C.marker} {...revealPoint(5)} />
+              <motion.circle cx={x(Qm)} cy={y(MCm)} r={4.5} fill={C.social} {...revealPoint(5)} />
+              <motion.text x={x(Qm) + 7} y={y(MCm) + 4} fill={C.social} fontSize={10} {...revealFade(6)}>MC = MR</motion.text>
+              <motion.text x={x(4)} y={y(Pm) - 8} fill={C.revenue} fontSize={10} {...revealFade(6)}>supernormal profit</motion.text>
+              <motion.text x={x(0) - 8} y={y(ACm) + 4} fill={C.intervention} fontSize={10} textAnchor="end" {...revealFade(6)}>AC = 39.3</motion.text>
+
+              {/* competitive benchmark */}
+              <motion.circle cx={x(Qc)} cy={y(Pc)} r={4.5} fill={C.welfareGain} {...revealPoint(7)} />
+              <motion.text x={x(Qc) + 6} y={y(Pc) + 14} fill={C.welfareGain} fontSize={10} {...revealFade(7)}>
+                P = MC (allocative)
+              </motion.text>
+              <motion.text x={x(Qc) + 4} y={y(0) + 15} fill={C.welfareGain} fontSize={10} textAnchor="middle" {...revealFade(7)}>Qc = 44.4</motion.text>
+              <motion.text x={x(Qm) + 18} y={y(56)} fill={C.welfareLoss} fontSize={10} {...revealFade(8)}>DWL</motion.text>
+            </>
+          )}
+        </svg>
       )}
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
-        {/* Grid */}
-        <g stroke={gridColor} strokeWidth="0.5" opacity="0.3">
-          {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-            <line 
-              key={`h-${i}`} 
-              x1={margin.left} 
-              y1={margin.top + (i * chartHeight) / 6} 
-              x2={margin.left + chartWidth} 
-              y2={margin.top + (i * chartHeight) / 6} 
-            />
-          ))}
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <line 
-              key={`v-${i}`} 
-              x1={margin.left + (i * chartWidth) / 5} 
-              y1={margin.top} 
-              x2={margin.left + (i * chartWidth) / 5} 
-              y2={margin.top + chartHeight} 
-            />
-          ))}
-        </g>
-
-        {/* Supernormal Profit Rectangle - shaded area between P and AC at Qm */}
-        <motion.rect
-          x={margin.left}
-          y={yScale(priceAtQm)}
-          width={xScale(qm) - margin.left}
-          height={yScale(acAtQm) - yScale(priceAtQm)}
-          fill={profitColor}
-          opacity="0.15"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 0.15 } : { opacity: 0 }}
-          transition={{ delay: 2.5, duration: 0.8 }}
-        />
-        <motion.rect
-          x={margin.left}
-          y={yScale(priceAtQm)}
-          width={xScale(qm) - margin.left}
-          height={yScale(acAtQm) - yScale(priceAtQm)}
-          fill="none"
-          stroke={profitColor}
-          strokeWidth="2"
-          strokeDasharray="6,4"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 2.5, duration: 0.8 }}
-        />
-
-        {/* Axes */}
-        <defs>
-          <marker id="arrow-monopoly" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill={axisColor} />
-          </marker>
-        </defs>
-        
-        <line 
-          x1={margin.left} y1={margin.top} 
-          x2={margin.left} y2={margin.top + chartHeight} 
-          stroke={axisColor} strokeWidth="2" 
-        />
-        <line 
-          x1={margin.left} y1={margin.top + chartHeight} 
-          x2={margin.left + chartWidth} y2={margin.top + chartHeight} 
-          stroke={axisColor} strokeWidth="2" 
-          markerEnd="url(#arrow-monopoly)"
-        />
-        <line 
-          x1={margin.left} y1={margin.top + chartHeight} 
-          x2={margin.left} y2={margin.top - 10} 
-          stroke={axisColor} strokeWidth="2" 
-          markerEnd="url(#arrow-monopoly)"
-        />
-
-        {/* Axis labels - Cambridge standard */}
-        <text x={margin.left - 45} y={margin.top + chartHeight / 2} fill={labelColor} fontSize="13" fontFamily="serif" transform={`rotate(-90, ${margin.left - 45}, ${margin.top + chartHeight / 2})`} textAnchor="middle">
-          Cost / Revenue ($)
-        </text>
-        <text x={margin.left + chartWidth / 2} y={height - 15} fill={labelColor} fontSize="14" fontFamily="serif" textAnchor="middle">
-          Output (Q)
-        </text>
-        <text x={margin.left - 8} y={margin.top + chartHeight + 18} fill={labelColor} fontSize="11">0</text>
-
-        {/* AR/D curve (Demand = Average Revenue) - LINEAR */}
-        <motion.path
-          d={arPath}
-          fill="none"
-          stroke={demandColor}
-          strokeWidth="3"
-          strokeLinecap="round"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-        <motion.text 
-          x={xScale(195)} 
-          y={yScale(0) + 18} 
-          fill={demandColor} 
-          fontSize="13" 
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 1.2 }}
-        >
-          AR = D
-        </motion.text>
-
-        {/* MR curve - TWICE AS STEEP, intercepts x-axis at HALF */}
-        <motion.path
-          d={mrPath}
-          fill="none"
-          stroke={mrColor}
-          strokeWidth="3"
-          strokeLinecap="round"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          transition={{ delay: 0.3 }}
-        />
-        <motion.text 
-          x={xScale(100) + 10} 
-          y={yScale(0) + 5} 
-          fill={mrColor} 
-          fontSize="13" 
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 1.5 }}
-        >
-          MR
-        </motion.text>
-
-        {/* MC curve - U-shaped */}
-        <motion.path
-          d={mcPath}
-          fill="none"
-          stroke={mcColor}
-          strokeWidth="3"
-          strokeLinecap="round"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          transition={{ delay: 0.6 }}
-        />
-        <motion.text 
-          x={xScale(125)} 
-          y={yScale(185)} 
-          fill={mcColor} 
-          fontSize="13" 
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 1.8 }}
-        >
-          MC
-        </motion.text>
-
-        {/* AC curve - U-shaped, MC intersects at minimum */}
-        <motion.path
-          d={acPath}
-          fill="none"
-          stroke={acColor}
-          strokeWidth="3"
-          strokeLinecap="round"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          transition={{ delay: 0.9 }}
-        />
-        <motion.text 
-          x={xScale(165)} 
-          y={yScale(175)} 
-          fill={acColor} 
-          fontSize="13" 
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 2.1 }}
-        >
-          AC
-        </motion.text>
-
-        {/* MC = AC intersection point (at AC minimum) */}
-        <motion.circle 
-          cx={xScale(acMinQ)} 
-          cy={yScale(acMinP)} 
-          r="5" 
-          fill={mcColor}
-          stroke="white"
-          strokeWidth="1.5"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-          transition={{ delay: 2.0, type: "spring" }}
-        />
-        <motion.text 
-          x={xScale(acMinQ) + 8} 
-          y={yScale(acMinP) - 8} 
-          fill={labelColor} 
-          fontSize="10" 
-          fontWeight="500"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 2.2 }}
-        >
-          MC = AC
-        </motion.text>
-
-        {/* MC = MR intersection point (profit max) */}
-        <motion.circle 
-          cx={xScale(qm)} 
-          cy={yScale(mrAtQm)} 
-          r="6" 
-          fill={mcColor}
-          stroke="white"
-          strokeWidth="2"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-          transition={{ delay: 2.2, type: "spring" }}
-        />
-
-        {/* Vertical line from MC=MR up to AR curve */}
-        <motion.line 
-          x1={xScale(qm)} y1={yScale(mrAtQm)} x2={xScale(qm)} y2={yScale(priceAtQm)} 
-          stroke={labelColor} 
-          strokeWidth="1.5" 
-          strokeDasharray="6,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-          transition={{ delay: 2.4, duration: 0.5 }}
-        />
-
-        {/* Price point on AR curve */}
-        <motion.circle 
-          cx={xScale(qm)} 
-          cy={yScale(priceAtQm)} 
-          r="7" 
-          fill={profitColor}
-          stroke="white"
-          strokeWidth="2"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-          transition={{ delay: 2.6, type: "spring" }}
-        />
-
-        {/* Dashed lines to axes */}
-        <motion.line 
-          x1={xScale(qm)} y1={yScale(priceAtQm)} x2={xScale(qm)} y2={margin.top + chartHeight} 
-          stroke={profitColor} 
-          strokeWidth="1.5" 
-          strokeDasharray="6,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-          transition={{ delay: 2.7, duration: 0.5 }}
-        />
-        <motion.line 
-          x1={margin.left} y1={yScale(priceAtQm)} x2={xScale(qm)} y2={yScale(priceAtQm)} 
-          stroke={profitColor} 
-          strokeWidth="1.5" 
-          strokeDasharray="6,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-          transition={{ delay: 2.7, duration: 0.5 }}
-        />
-        <motion.line 
-          x1={margin.left} y1={yScale(acAtQm)} x2={xScale(qm)} y2={yScale(acAtQm)} 
-          stroke={acColor} 
-          strokeWidth="1.5" 
-          strokeDasharray="6,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-          transition={{ delay: 2.7, duration: 0.5 }}
-        />
-
-        {/* AC point at Qm */}
-        <motion.circle 
-          cx={xScale(qm)} 
-          cy={yScale(acAtQm)} 
-          r="5" 
-          fill={acColor}
-          stroke="white"
-          strokeWidth="1.5"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-          transition={{ delay: 2.6, type: "spring" }}
-        />
-
-        {/* Labels on axes */}
-        <motion.text 
-          x={margin.left - 12} 
-          y={yScale(priceAtQm) + 4} 
-          fill={profitColor} 
-          fontSize="12" 
-          textAnchor="end"
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 2.9 }}
-        >
-          Pm
-        </motion.text>
-        <motion.text 
-          x={margin.left - 12} 
-          y={yScale(acAtQm) + 4} 
-          fill={acColor} 
-          fontSize="11" 
-          textAnchor="end"
-          fontWeight="500"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 2.9 }}
-        >
-          AC
-        </motion.text>
-        <motion.text 
-          x={xScale(qm)} 
-          y={margin.top + chartHeight + 16} 
-          fill={profitColor} 
-          fontSize="12" 
-          textAnchor="middle"
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 2.9 }}
-        >
-          Qm
-        </motion.text>
-
-        {/* Supernormal Profit label */}
-        <motion.text 
-          x={(margin.left + xScale(qm)) / 2} 
-          y={(yScale(priceAtQm) + yScale(acAtQm)) / 2 - 5} 
-          fill={profitColor} 
-          fontSize="11" 
-          textAnchor="middle"
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 3.0 }}
-        >
-          Supernormal
-        </motion.text>
-        <motion.text 
-          x={(margin.left + xScale(qm)) / 2} 
-          y={(yScale(priceAtQm) + yScale(acAtQm)) / 2 + 8} 
-          fill={profitColor} 
-          fontSize="11" 
-          textAnchor="middle"
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 3.0 }}
-        >
-          Profit
-        </motion.text>
-
-        {/* MC = MR annotation */}
-        <motion.text 
-          x={xScale(qm) + 12} 
-          y={yScale(mrAtQm) + 4} 
-          fill={mcColor} 
-          fontSize="10" 
-          fontWeight="500"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 2.5 }}
-        >
-          MC = MR
-        </motion.text>
-
-        {/* Key relationship annotation */}
-        <motion.rect
-          x={margin.left + chartWidth - 140}
-          y={margin.top + 10}
-          width="130"
-          height="45"
-          rx="6"
-          fill="hsla(220, 14%, 10%, 0.9)"
-          stroke={mrColor}
-          strokeWidth="1"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 3.2 }}
-        />
-        <motion.text 
-          x={margin.left + chartWidth - 75} 
-          y={margin.top + 28} 
-          fill={labelColor} 
-          fontSize="9" 
-          textAnchor="middle"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 3.3 }}
-        >
-          MR is twice as steep as AR
-        </motion.text>
-        <motion.text 
-          x={margin.left + chartWidth - 75} 
-          y={margin.top + 42} 
-          fill={labelColor} 
-          fontSize="9" 
-          textAnchor="middle"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 3.3 }}
-        >
-          (x-intercept at ½ of AR)
-        </motion.text>
-      </svg>
-
-      {/* Legend */}
-      <div className="flex flex-wrap justify-center gap-4 mt-4 text-sm text-muted-foreground">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: demandColor }} />
-          <span>AR = D (Demand)</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: mrColor }} />
-          <span>MR (Marginal Revenue)</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: mcColor }} />
-          <span>MC (Marginal Cost)</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: acColor }} />
-          <span>AC (Average Cost)</span>
-        </div>
-      </div>
-
-      {/* Academic explanation */}
-      <div className="mt-4 p-4 bg-gradient-to-r from-primary/10 to-transparent border-l-4 border-primary rounded-r-lg">
-        <p className="text-sm text-muted-foreground">
-          <strong className="text-foreground">Cambridge Key:</strong> The monopolist maximizes profit where $MC = MR$, 
-          then reads the price from the AR curve. The MR curve has <em>twice the gradient</em> of the AR curve 
-          and intersects the quantity axis at exactly half the distance. Supernormal profit = $(P_m - AC) \times Q_m$.
-        </p>
-      </div>
-    </div>
+    </DiagramFrame>
   );
 };
 
