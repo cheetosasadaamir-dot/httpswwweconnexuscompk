@@ -9,10 +9,9 @@ import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } fro
  * Budget = $24. Good X costs $2, Good Y costs $4.
  * MU_x schedule: 24, 20, 16, 12, 8, 4  →  MU_x/P_x: 12, 10, 8, 6, 4, 2
  * MU_y schedule: 40, 32, 24, 16, 8     →  MU_y/P_y: 10, 8, 6, 4, 2
- * Optimum: buy until MU_x/P_x = MU_y/P_y = 6 and the budget is exactly spent:
- *   X = 4 units ($8) + Y = 3 units ($12) = $20 … the last equal-ratio pair affordable
- *   within $24 is X = 4, Y = 4 → $8 + $16 = $24 with ratios 6 and 4? No —
- *   the exhausting bundle is X = 4 ($8) and Y = 4 ($16) = $24, checked below in the table.
+ * Optimum: spend until the marginal utility per dollar is equal across both goods,
+ *   MU_x/P_x = MU_y/P_y = 6, which happens at X = 4 units ($8) and Y = 4 units ($16),
+ *   exactly exhausting the $24 budget.
  */
 const X_ROWS = [
   { u: 1, mu: 24, ratio: 12 },
