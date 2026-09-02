@@ -1,94 +1,158 @@
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import {
+  DIAGRAM_COLORS as C,
+  plotBox,
+  revealFade,
+  revealPath,
+  revealPoint,
+} from './diagramStyle';
 
 /**
- * Subsidy Diagram — Welfare Analysis
- * Synthesised from tutor2u "Key Diagrams: Producer Subsidies" and
- * EconomicsHelp "Effect of Government Subsidies". Per-unit subsidy
- * shifts S → S+subsidy, lowering price to consumers (Pc) and raising
- * effective revenue to producers (Pp = Pc + subsidy).
+ * Producer Subsidy — Cambridge / Edexcel AS standard.
+ * D: P = 90 − 0.8Q ; S: P = 10 + 0.6Q  →  equilibrium (Q 57.14, P 44.29).
+ * Per-unit subsidy of 18 shifts supply vertically down: S₁: P = −8 + 0.6Q.
+ * New equilibrium Q₁ = 70, consumer price Pc = 34, producer price Pp = 52.
+ * Consumer share of the subsidy = 44.29 − 34 = 10.29 (57%);
+ * producer share = 52 − 44.29 = 7.71 (43%) — the flatter side of the market
+ * (here demand) captures the smaller share, per tutor2u / Economics Online.
  */
 const SubsidyDiagram = () => {
-  const W = 540, H = 420;
-  const m = { t: 30, r: 50, b: 60, l: 60 };
-  const cw = W - m.l - m.r;
-  const ch = H - m.t - m.b;
+  const p = plotBox(540, 420, { t: 34, r: 66, b: 62, l: 66 });
+  const { x, y, m, cw, ch } = p;
 
-  const x = (v: number) => m.l + (v / 100) * cw;
-  const y = (v: number) => m.t + ch - (v / 100) * ch;
-
-  // Original eq: Pe=50, Qe=50. Subsidy shifts supply down by 18.
-  // Demand: P = 90 - 0.8Q ; Supply: P = 10 + 0.6Q -> Pe=44.29, Qe=57.14
-  // Subsidy = 18 shifts supply down in parallel: P = -8 + 0.6Q
-  // New equilibrium: 90 - 0.8Q = -8 + 0.6Q -> Q1 = 70, Pc = 34, Pp = Pc + 18 = 52
   const Pe = 44.29, Qe = 57.14;
-  const Pc = 34; // new consumer price (lower)
-  const Pp = 52; // new producer effective price (Pc + subsidy)
-  const Q1 = 70; // higher equilibrium quantity
+  const Pc = 34;
+  const Pp = 52;
+  const Q1 = 70;
 
   const demand = `M ${x(5)} ${y(86)} L ${x(95)} ${y(14)}`;
   const supply = `M ${x(5)} ${y(13)} L ${x(95)} ${y(67)}`;
-  const supplyShift = `M ${x(5)} ${y(13 - 18)} L ${x(95)} ${y(67 - 18)}`; // shift down
-
-  const demandColor = 'hsl(185, 100%, 55%)';
-  const supplyColor = 'hsl(300, 100%, 65%)';
-  const subsidyColor = 'hsl(140, 80%, 55%)';
-  const axisColor = 'hsl(220, 14%, 75%)';
+  const supplySub = `M ${x(5)} ${y(-5)} L ${x(95)} ${y(49)}`;
 
   return (
-    <div className="w-full">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
-        <line x1={m.l} y1={m.t} x2={m.l} y2={m.t + ch} stroke={axisColor} strokeWidth={1.5} />
-        <line x1={m.l} y1={m.t + ch} x2={m.l + cw} y2={m.t + ch} stroke={axisColor} strokeWidth={1.5} />
-        <text x={m.l - 40} y={m.t + 12} fill={axisColor} fontSize={12}>Price</text>
-        <text x={m.l + cw - 30} y={m.t + ch + 30} fill={axisColor} fontSize={12}>Quantity</text>
+    <DiagramFrame
+      title="Per-Unit Producer Subsidy and Its Incidence"
+      eyebrow="Figure — Government intervention"
+      legend={[
+        { label: 'Demand (D)', color: C.demand },
+        { label: 'Supply (S)', color: C.supply },
+        { label: 'Supply after subsidy (S₁)', color: C.social, dashed: true },
+        { label: 'Total government cost', color: C.social, kind: 'area' },
+        { label: 'Equilibria', color: C.marker, kind: 'dot' },
+      ]}
+      note={
+        <>
+          A per-unit subsidy shifts supply <strong>vertically downwards</strong> by the full subsidy
+          amount (S → S₁), because at every quantity the firm now needs a market price lower by
+          exactly that amount to cover unit costs. Output expands from Q<sub>e</sub> to Q₁, consumers
+          pay the lower price P<sub>c</sub> and producers receive P<sub>p</sub> = P<sub>c</sub> +
+          subsidy. The shaded rectangle (P<sub>p</sub> − P<sub>c</sub>) × Q₁ is the{' '}
+          <strong>total cost to the taxpayer</strong>. Crucially, the benefit is{' '}
+          <strong>shared</strong>: the more inelastic side of the market captures the larger share.
+          Here demand is the relatively less elastic side over this range, so consumers take roughly
+          57% of the subsidy as a lower price and producers 43% as higher revenue. Evaluation:
+          opportunity cost of the spending, risk of producer inefficiency (X-inefficiency), and the
+          fact that the subsidy is only welfare-improving if it corrects a genuine positive
+          externality.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg
+          key={runKey}
+          viewBox={`0 0 ${p.W} ${p.H}`}
+          className="mx-auto h-auto w-full min-w-[320px]"
+          role="img"
+          aria-label="Subsidy diagram showing supply shifting down by the subsidy, lower consumer price, higher producer price, and the government cost rectangle"
+        >
+          <defs>
+            <marker id="sub-axis-arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+              <polygon points="0 0, 9 3.5, 0 7" fill={C.axis} />
+            </marker>
+            <marker id="sub-shift-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill={C.social} />
+            </marker>
+            <clipPath id="sub-clip">
+              <rect x={m.l} y={m.t} width={cw} height={ch} />
+            </clipPath>
+          </defs>
 
-        <path d={demand} stroke={demandColor} strokeWidth={2.5} fill="none" />
-        <path d={supply} stroke={supplyColor} strokeWidth={2.5} fill="none" />
-        <motion.path
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.2 }}
-          d={supplyShift} stroke={subsidyColor} strokeWidth={2.5} fill="none" strokeDasharray="6 3"
-        />
-        <text x={x(95) + 4} y={y(14)} fill={demandColor} fontSize={13} fontWeight="bold">D</text>
-        <text x={x(95) + 4} y={y(67)} fill={supplyColor} fontSize={13} fontWeight="bold">S</text>
-        <text x={x(95) + 4} y={y(67 - 18)} fill={subsidyColor} fontSize={12} fontWeight="bold">S+sub</text>
+          <line x1={m.l} y1={m.t + ch} x2={m.l} y2={m.t - 8} stroke={C.axis} strokeWidth={1.6} markerEnd="url(#sub-axis-arrow)" />
+          <line x1={m.l} y1={m.t + ch} x2={m.l + cw + 8} y2={m.t + ch} stroke={C.axis} strokeWidth={1.6} markerEnd="url(#sub-axis-arrow)" />
+          <text x={18} y={m.t + ch / 2} fill={C.axis} fontSize={12} textAnchor="middle" transform={`rotate(-90, 18, ${m.t + ch / 2})`}>
+            Price (P)
+          </text>
+          <text x={m.l + cw / 2} y={p.H - 14} fill={C.axis} fontSize={12} textAnchor="middle">Quantity (Q)</text>
+          <text x={m.l - 12} y={m.t + ch + 15} fill={C.muted} fontSize={11} textAnchor="middle">0</text>
 
-        {/* Original equilibrium */}
-        <line x1={x(Qe)} y1={y(Pe)} x2={m.l} y2={y(Pe)} stroke={axisColor} strokeDasharray="3 3" />
-        <line x1={x(Qe)} y1={y(Pe)} x2={x(Qe)} y2={m.t + ch} stroke={axisColor} strokeDasharray="3 3" />
-        <circle cx={x(Qe)} cy={y(Pe)} r={4} fill={axisColor} />
-        <text x={m.l - 24} y={y(Pe) + 4} fill={axisColor} fontSize={12}>Pₑ</text>
-        <text x={x(Qe) - 6} y={m.t + ch + 16} fill={axisColor} fontSize={12}>Qₑ</text>
+          <g clipPath="url(#sub-clip)">
+            <motion.path d={demand} stroke={C.demand} strokeWidth={2.6} fill="none" strokeLinecap="round" {...revealPath(0)} animate={play ? revealPath(0).animate : revealPath(0).initial} />
+            <motion.path d={supply} stroke={C.supply} strokeWidth={2.6} fill="none" strokeLinecap="round" {...revealPath(0)} animate={play ? revealPath(0).animate : revealPath(0).initial} />
+            <motion.path d={supplySub} stroke={C.social} strokeWidth={2.6} fill="none" strokeDasharray="7 4" strokeLinecap="round" {...revealPath(3, 1)} animate={play ? revealPath(3, 1).animate : revealPath(3, 1).initial} />
+          </g>
 
-        {/* New equilibrium points */}
-        <line x1={x(Q1)} y1={y(Pc)} x2={m.l} y2={y(Pc)} stroke={demandColor} strokeDasharray="3 3" />
-        <line x1={x(Q1)} y1={y(Pp)} x2={m.l} y2={y(Pp)} stroke={subsidyColor} strokeDasharray="3 3" />
-        <line x1={x(Q1)} y1={y(Pp)} x2={x(Q1)} y2={m.t + ch} stroke={axisColor} strokeDasharray="3 3" />
+          <motion.text x={x(95) + 6} y={y(14) + 4} fill={C.demand} fontSize={13} fontWeight="bold" {...revealFade(1)} animate={play ? revealFade(1).animate : revealFade(1).initial}>D</motion.text>
+          <motion.text x={x(95) + 6} y={y(67) + 4} fill={C.supply} fontSize={13} fontWeight="bold" {...revealFade(1)} animate={play ? revealFade(1).animate : revealFade(1).initial}>S</motion.text>
+          <motion.text x={x(95) + 6} y={y(49) + 4} fill={C.social} fontSize={12} fontWeight="bold" {...revealFade(4)} animate={play ? revealFade(4).animate : revealFade(4).initial}>S₁</motion.text>
 
-        <circle cx={x(Q1)} cy={y(Pc)} r={4} fill={demandColor} />
-        <circle cx={x(Q1)} cy={y(Pp)} r={4} fill={subsidyColor} />
+          {/* Original equilibrium */}
+          <motion.g {...revealFade(1)} animate={play ? revealFade(1).animate : revealFade(1).initial}>
+            <line x1={m.l} y1={y(Pe)} x2={x(Qe)} y2={y(Pe)} stroke={C.marker} strokeDasharray="4 3" strokeWidth={1.2} opacity={0.85} />
+            <line x1={x(Qe)} y1={y(Pe)} x2={x(Qe)} y2={m.t + ch} stroke={C.marker} strokeDasharray="4 3" strokeWidth={1.2} opacity={0.85} />
+            <text x={m.l - 10} y={y(Pe) + 4} fill={C.marker} fontSize={12} textAnchor="end">Pₑ</text>
+            <text x={x(Qe)} y={m.t + ch + 16} fill={C.marker} fontSize={12} textAnchor="middle">Qₑ</text>
+          </motion.g>
+          <motion.circle cx={x(Qe)} cy={y(Pe)} r={5} fill={C.marker} stroke="white" strokeWidth={1.3} {...revealPoint(2)} animate={play ? revealPoint(2).animate : revealPoint(2).initial} />
 
-        <text x={m.l - 24} y={y(Pc) + 4} fill={demandColor} fontSize={12}>Pc</text>
-        <text x={m.l - 24} y={y(Pp) + 4} fill={subsidyColor} fontSize={12}>Pp</text>
-        <text x={x(Q1) - 6} y={m.t + ch + 16} fill={axisColor} fontSize={12}>Q₁</text>
+          {/* Downward shift arrow */}
+          <motion.path
+            d={`M ${x(48)} ${y(38.8)} L ${x(48)} ${y(23)}`}
+            stroke={C.social} strokeWidth={2} fill="none" markerEnd="url(#sub-shift-arrow)"
+            {...revealPath(4, 0.5)} animate={play ? revealPath(4, 0.5).animate : revealPath(4, 0.5).initial}
+          />
+          <motion.text x={x(48) + 8} y={y(30)} fill={C.social} fontSize={11} fontWeight="bold" {...revealFade(5)} animate={play ? revealFade(5).animate : revealFade(5).initial}>
+            shift = subsidy
+          </motion.text>
 
-        {/* Subsidy bracket */}
-        <line x1={x(Q1) + 10} y1={y(Pc)} x2={x(Q1) + 10} y2={y(Pp)} stroke={subsidyColor} strokeWidth={2} />
-        <text x={x(Q1) + 14} y={(y(Pc) + y(Pp)) / 2 + 4} fill={subsidyColor} fontSize={12} fontWeight="bold">
-          Subsidy
-        </text>
+          {/* Government cost rectangle */}
+          <motion.rect
+            x={m.l} y={y(Pp)} width={x(Q1) - m.l} height={y(Pc) - y(Pp)}
+            fill={C.social} stroke={C.social} strokeWidth={1} strokeDasharray="3 3"
+            {...revealFade(6, 0.6)}
+            animate={play ? { opacity: 0.18, transition: revealFade(6, 0.6).transition } : { opacity: 0 }}
+          />
 
-        {/* Government cost shading */}
-        <rect x={m.l} y={y(Pp)} width={x(Q1) - m.l} height={y(Pc) - y(Pp)}
-          fill={subsidyColor} fillOpacity={0.12} />
-        <text x={m.l + (x(Q1) - m.l) / 2 - 50} y={(y(Pc) + y(Pp)) / 2 + 4}
-          fill={subsidyColor} fontSize={11} opacity={0.8}>Government cost</text>
-      </svg>
-      <p className="mt-3 text-xs text-muted-foreground">
-        A per-unit subsidy shifts supply rightward (S → S+sub) by the subsidy amount. Consumers pay lower price Pc; producers receive higher effective price Pp = Pc + subsidy. Output expands to Q₁. The shaded rectangle (Pp − Pc) × Q₁ measures the total cost to the government, financed through taxation, raising opportunity-cost concerns.
-      </p>
-    </div>
+          {/* New equilibrium guides */}
+          <motion.g {...revealFade(6)} animate={play ? revealFade(6).animate : revealFade(6).initial}>
+            <line x1={m.l} y1={y(Pc)} x2={x(Q1)} y2={y(Pc)} stroke={C.demand} strokeDasharray="4 3" strokeWidth={1.3} />
+            <line x1={m.l} y1={y(Pp)} x2={x(Q1)} y2={y(Pp)} stroke={C.social} strokeDasharray="4 3" strokeWidth={1.3} />
+            <line x1={x(Q1)} y1={y(Pp)} x2={x(Q1)} y2={m.t + ch} stroke={C.axis} strokeDasharray="4 3" strokeWidth={1.3} />
+            <text x={m.l - 10} y={y(Pc) + 4} fill={C.demand} fontSize={12} textAnchor="end">P_c</text>
+            <text x={m.l - 10} y={y(Pp) + 4} fill={C.social} fontSize={12} textAnchor="end">P_p</text>
+            <text x={x(Q1)} y={m.t + ch + 16} fill={C.axis} fontSize={12} textAnchor="middle">Q₁</text>
+          </motion.g>
+          <motion.circle cx={x(Q1)} cy={y(Pc)} r={5} fill={C.demand} stroke="white" strokeWidth={1.3} {...revealPoint(6)} animate={play ? revealPoint(6).animate : revealPoint(6).initial} />
+          <motion.circle cx={x(Q1)} cy={y(Pp)} r={5} fill={C.social} stroke="white" strokeWidth={1.3} {...revealPoint(6)} animate={play ? revealPoint(6).animate : revealPoint(6).initial} />
+
+          <motion.text
+            x={m.l + (x(Q1) - m.l) / 2} y={(y(Pc) + y(Pp)) / 2 + 4}
+            fill={C.social} fontSize={11} fontWeight="bold" textAnchor="middle"
+            {...revealFade(7)} animate={play ? revealFade(7).animate : revealFade(7).initial}
+          >
+            Total government cost = subsidy × Q₁
+          </motion.text>
+
+          {/* Incidence bracket */}
+          <motion.g {...revealFade(8)} animate={play ? revealFade(8).animate : revealFade(8).initial}>
+            <line x1={x(Q1) + 12} y1={y(Pc)} x2={x(Q1) + 12} y2={y(Pp)} stroke={C.marker} strokeWidth={2} />
+            <line x1={x(Q1) + 7} y1={y(Pc)} x2={x(Q1) + 17} y2={y(Pc)} stroke={C.marker} strokeWidth={2} />
+            <line x1={x(Q1) + 7} y1={y(Pp)} x2={x(Q1) + 17} y2={y(Pp)} stroke={C.marker} strokeWidth={2} />
+            <text x={x(Q1) + 20} y={(y(Pc) + y(Pp)) / 2 + 4} fill={C.marker} fontSize={11} fontWeight="bold">Subsidy</text>
+          </motion.g>
+        </svg>
+      )}
+    </DiagramFrame>
   );
 };
 

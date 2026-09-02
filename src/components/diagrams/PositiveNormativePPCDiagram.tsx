@@ -4,11 +4,18 @@ import { motion } from 'framer-motion';
 const PositiveNormativePPCDiagram = () => {
   const [selectedPoint, setSelectedPoint] = useState<'A' | 'B' | 'C' | null>(null);
 
+  // Frontier: single quadratic Bézier P0(40,40) P1(240,60) P2(280,240).
+  // Monotonically downward-sloping and concave to the origin (40,240) — the
+  // only shape a PPC may take, since increasing opportunity cost requires the
+  // gradient to steepen as resources are reallocated. A, B and C are evaluated
+  // ON that curve at t = 0.25, 0.5 and 0.75, so all three are productively
+  // efficient; choosing between them is a normative judgement.
   const points = {
-    A: { x: 80, y: 200, label: 'Point A', description: 'More Consumer Goods', color: '#22d3ee' },
-    B: { x: 180, y: 120, label: 'Point B', description: 'Balanced Production', color: '#a855f7' },
-    C: { x: 250, y: 70, label: 'Point C', description: 'More Merit Goods', color: '#d4af37' }
+    A: { x: 130, y: 60, label: 'Point A', description: 'More Consumer Goods', color: '#22d3ee' },
+    B: { x: 200, y: 100, label: 'Point B', description: 'Balanced Production', color: '#a855f7' },
+    C: { x: 250, y: 160, label: 'Point C', description: 'More Merit Goods', color: '#d4af37' }
   };
+
 
   return (
     <div className="relative">
@@ -76,13 +83,13 @@ const PositiveNormativePPCDiagram = () => {
 
             {/* PPC Curve fill */}
             <path
-              d="M 40 40 Q 60 80, 80 200 Q 140 100, 180 120 Q 230 50, 280 240 L 40 240 Z"
+              d="M 40 40 Q 240 60, 280 240 L 40 240 Z"
               fill="url(#ppcGradient)"
             />
 
             {/* PPC Curve */}
             <motion.path
-              d="M 40 40 Q 60 80, 80 200 Q 140 100, 180 120 Q 230 50, 280 240"
+              d="M 40 40 Q 240 60, 280 240"
               fill="none"
               stroke="#22d3ee"
               strokeWidth="3"

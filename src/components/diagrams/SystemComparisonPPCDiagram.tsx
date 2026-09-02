@@ -27,11 +27,21 @@ const SystemComparisonPPCDiagram = ({ title = "PPC: Resource Allocation by Econo
     return () => observer.disconnect();
   }, []);
 
+  // PPC curve path (concave to the origin). Origin is (50, 280);
+  // x = consumer goods, y = merit/public goods (up = more).
+  // Seg 1: P0(50,50)  P1(180,60)  P2(280,120)
+  // Seg 2: P0(280,120) P1(340,170) P2(370,280)
+  const ppcPath = "M 50 50 Q 180 60, 280 120 Q 340 170, 370 280";
+
+  // Every marker below is evaluated ON the Bézier above, so each allocation is
+  // a genuinely productively-efficient point on the frontier rather than an
+  // arbitrary coordinate inside or outside it.
   const systems = {
     market: {
       label: 'Market Economy',
       color: 'hsl(217, 91%, 60%)',
-      point: { x: 320, y: 80 },
+      // Segment 2 at t = 0.5
+      point: { x: 332.5, y: 185 },
       description: 'Consumer sovereignty drives production toward consumer goods based on demand',
       xLabel: 'More Consumer Goods',
       yLabel: 'Fewer Merit Goods'
@@ -39,7 +49,8 @@ const SystemComparisonPPCDiagram = ({ title = "PPC: Resource Allocation by Econo
     planned: {
       label: 'Planned Economy',
       color: 'hsl(0, 84%, 60%)',
-      point: { x: 120, y: 180 },
+      // Segment 1 at t = 0.25
+      point: { x: 113.1, y: 58.1 },
       description: 'State prioritizes merit goods (healthcare, education) over consumer goods',
       xLabel: 'Fewer Consumer Goods',
       yLabel: 'More Merit Goods'
@@ -47,7 +58,8 @@ const SystemComparisonPPCDiagram = ({ title = "PPC: Resource Allocation by Econo
     mixed: {
       label: 'Mixed Economy',
       color: 'hsl(142, 69%, 58%)',
-      point: { x: 220, y: 130 },
+      // Junction of the two Bézier segments — exactly on the frontier
+      point: { x: 280, y: 120 },
       description: 'Balanced allocation with government providing public goods while markets serve consumers',
       xLabel: 'Balanced Allocation',
       yLabel: 'Balanced Provision'
@@ -56,8 +68,6 @@ const SystemComparisonPPCDiagram = ({ title = "PPC: Resource Allocation by Econo
 
   const currentSystem = systems[activeSystem];
 
-  // PPC curve path (concave)
-  const ppcPath = "M 50 50 Q 180 60, 280 120 Q 340 170, 370 280";
 
   return (
     <div ref={containerRef} className="w-full">
