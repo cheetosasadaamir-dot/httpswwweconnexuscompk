@@ -126,13 +126,14 @@ const LaborMarketDiagram = () => {
                   <motion.circle cx={x(vFirm)} cy={y(Wstar)} r={5} fill={C.social} {...revealPoint(4)} />
                   <motion.text
                     x={x(vFirm) + 8}
-                    y={y(Wstar) - 10}
+                    y={y(Wstar) + 18}
                     fill={C.social}
                     fontSize={10}
                     {...revealFade(5)}
                   >
                     MRP = MFC
                   </motion.text>
+
                   <motion.text x={m.l + 10} y={m.t + ch - 12} fill={C.muted} fontSize={9} {...revealFade(5)}>
                     MRP &gt; W: hire more
                   </motion.text>
