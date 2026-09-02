@@ -172,9 +172,9 @@ const PPCConceptDiagram = ({ showGrowth = false, showPivot = false, title }: PPC
         />
         <text x="210" y="195" fill="hsl(220 14% 90%)" fontSize="14" fontWeight="600">B</text>
 
-        {/* Point C - On curve */}
+        {/* Point C - On curve. Midpoint of Q 280 280 340 280 => (275, 260). */}
         <motion.circle
-          cx="280" cy="260" r="8"
+          cx="275" cy="260" r="8"
           fill="hsl(217 91% 60%)"
           stroke="hsl(217 91% 80%)"
           strokeWidth="2"
