@@ -22,14 +22,25 @@ const MarketEquilibriumInteractive = ({ title = "Market Equilibrium with Shifts"
   const magentaColor = 'hsl(300, 100%, 60%)';
   const goldColor = 'hsl(45, 93%, 55%)';
 
-  // Original equilibrium
-  const eq1 = { x: margin.left + innerWidth * 0.5, y: margin.top + innerHeight * 0.5 };
-  
-  // New equilibrium after demand shift right
-  const eq2Demand = { x: margin.left + innerWidth * 0.6, y: margin.top + innerHeight * 0.4 };
-  
-  // New equilibrium after supply shift right  
-  const eq2Supply = { x: margin.left + innerWidth * 0.6, y: margin.top + innerHeight * 0.6 };
+  // Equilibria are solved from the *drawn* line endpoints (expressed as
+  // fractions of the inner plot), so every marked point and dashed guide sits
+  // exactly on the crossing of the two curves.
+  //   D0: (0.00, 0.10) -> (0.90, 0.90)      S0: (0.00, 0.90) -> (0.90, 0.10)
+  //   D1: (0.15, 0.10) -> (0.95, 0.80)      S1: (0.15, 0.95) -> (0.95, 0.20)
+  const pt = (u: number, v: number) => ({
+    x: margin.left + innerWidth * u,
+    y: margin.top + innerHeight * v,
+  });
+
+  // D0 x S0
+  const eq1 = pt(0.45, 0.5);
+
+  // D1 x S0  (demand increase: higher price, higher quantity)
+  const eq2Demand = pt(0.52794, 0.43072);
+
+  // S1 x D0  (supply increase: lower price, higher quantity)
+  const eq2Supply = pt(0.54239, 0.58212);
+
 
   const handleDemandShift = () => {
     setIsAnimating(true);
