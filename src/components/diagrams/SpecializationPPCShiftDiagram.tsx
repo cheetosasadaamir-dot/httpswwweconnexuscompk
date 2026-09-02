@@ -1,299 +1,75 @@
-import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
-const SpecializationPPCShiftDiagram = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showShift, setShowShift] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+interface Props {
+  title?: string;
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
+const MAX = 82;
+const before = (q: number) => MAX * Math.sqrt(Math.max(0, 1 - (q / MAX) ** 2));
+const MAX2 = MAX * 1.28;
+const after = (q: number) => MAX2 * Math.sqrt(Math.max(0, 1 - (q / MAX2) ** 2));
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+/**
+ * Specialisation and the division of labour raise output per worker, so the
+ * whole frontier shifts outwards: the economy can consume more of both goods
+ * without any extra factor inputs.
+ */
+const SpecializationPPCShiftDiagram = ({ title }: Props) => {
+  const p = plotBox(560, 400);
 
-    return () => observer.disconnect();
-  }, []);
-
-  const width = 500;
-  const height = 380;
-  const margin = { top: 40, right: 40, bottom: 60, left: 60 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
-
-  // Original PPC curve points
-  const originalPPC = [
-    { x: 0, y: 100 },
-    { x: 20, y: 98 },
-    { x: 40, y: 92 },
-    { x: 60, y: 82 },
-    { x: 80, y: 65 },
-    { x: 100, y: 0 }
-  ];
-
-  // Shifted PPC curve points (after specialization)
-  const shiftedPPC = [
-    { x: 0, y: 130 },
-    { x: 26, y: 127 },
-    { x: 52, y: 120 },
-    { x: 78, y: 107 },
-    { x: 104, y: 85 },
-    { x: 130, y: 0 }
-  ];
-
-  const xScale = (val: number) => (val / 130) * chartWidth;
-  const yScale = (val: number) => chartHeight - (val / 130) * chartHeight;
-
-  const createPath = (points: { x: number; y: number }[]) => {
-    return points
-      .map((p, i) => {
-        const x = margin.left + xScale(p.x);
-        const y = margin.top + yScale(p.y);
-        return i === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
-      })
-      .join(' ');
-  };
-
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: {
-      pathLength: 1,
-      opacity: 1,
-      transition: { duration: 1.5, ease: 'easeInOut' as const }
-    }
-  };
+  // Same input mix, higher output after specialisation
+  const q1 = 50, y1 = before(q1);
+  const q2 = q1 * 1.28, y2 = after(q2);
 
   return (
-    <div ref={containerRef} className="w-full">
-      <h4 className="text-lg font-semibold text-silver-bright mb-4 text-center">
-        Specialization & the Outward Shift of the PPC
-      </h4>
-      
-      <div className="flex justify-center mb-4">
-        <button
-          onClick={() => setShowShift(!showShift)}
-          className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-            showShift
-              ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40'
-              : 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
-          }`}
-        >
-          {showShift ? '← Before Specialization' : 'Apply Specialization →'}
-        </button>
-      </div>
+    <DiagramFrame
+      title={title ?? 'Specialisation & Division of Labour Shift the PPC Outwards'}
+      eyebrow="Higher productivity from the same resources"
+      legend={[
+        { label: 'PPC₁ — before specialisation', color: C.demand },
+        { label: 'PPC₂ — after specialisation', color: C.social, dashed: true },
+        { label: 'X — output combination', color: C.marker, kind: 'dot' },
+      ]}
+      note={
+        <>
+          Adam Smith&apos;s pin factory: dividing production into repeated tasks raises output per worker through
+          practice, time saved switching jobs and the use of specialised capital. With unchanged factor supplies,
+          maximum output rises from {MAX} to {Math.round(MAX2)} units of each good, moving the combination from
+          X₁ ({q1}, {y1.toFixed(1)}) to X₂ ({q2.toFixed(0)}, {y2.toFixed(1)}). The trade-offs are lower productive
+          flexibility, worker boredom and greater interdependence risk.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg key={runKey} viewBox={`0 0 ${p.W} ${p.H}`} className="w-full h-auto" role="img" aria-label="Specialisation shifting the production possibility curve outwards">
+          <Axes p={p} id="spec-ppc" labelX="Good A (units per worker-year)" labelY="Good B (units per worker-year)" />
 
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto mx-auto">
-        {/* Grid */}
-        <defs>
-          <pattern id="specGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148, 163, 184, 0.1)" strokeWidth="0.5" />
-          </pattern>
-          <linearGradient id="specOriginalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#94a3b8" />
-            <stop offset="100%" stopColor="#64748b" />
-          </linearGradient>
-          <linearGradient id="specShiftedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="100%" stopColor="#06b6d4" />
-          </linearGradient>
-          <filter id="specGlow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
+          <motion.path d={curve(p, before, 0, MAX)} fill="none" stroke={C.demand} strokeWidth={2.6} {...revealPath(0)} animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }} />
+          <motion.path d={curve(p, after, 0, MAX2)} fill="none" stroke={C.social} strokeWidth={2.6} strokeDasharray="8 4" {...revealPath(2)} animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }} />
 
-        <rect
-          x={margin.left}
-          y={margin.top}
-          width={chartWidth}
-          height={chartHeight}
-          fill="url(#specGrid)"
-        />
+          <motion.text x={p.x(MAX * 0.62)} y={p.y(before(MAX * 0.62)) + 18} fill={C.demand} fontSize={12} fontWeight={600} {...revealFade(1)} animate={play ? { opacity: 1 } : { opacity: 0 }}>PPC₁</motion.text>
+          <motion.text x={p.x(MAX2 * 0.62)} y={p.y(after(MAX2 * 0.62)) - 10} fill={C.social} fontSize={12} fontWeight={600} {...revealFade(3)} animate={play ? { opacity: 1 } : { opacity: 0 }}>PPC₂</motion.text>
 
-        {/* Axes */}
-        <line
-          x1={margin.left}
-          y1={margin.top + chartHeight}
-          x2={margin.left + chartWidth}
-          y2={margin.top + chartHeight}
-          stroke="rgba(148, 163, 184, 0.4)"
-          strokeWidth="2"
-        />
-        <line
-          x1={margin.left}
-          y1={margin.top}
-          x2={margin.left}
-          y2={margin.top + chartHeight}
-          stroke="rgba(148, 163, 184, 0.4)"
-          strokeWidth="2"
-        />
-
-        {/* Axis Labels */}
-        <text
-          x={margin.left + chartWidth / 2}
-          y={height - 10}
-          textAnchor="middle"
-          className="fill-silver-muted text-sm"
-        >
-          Consumer Goods (Units)
-        </text>
-        <text
-          x={15}
-          y={margin.top + chartHeight / 2}
-          textAnchor="middle"
-          className="fill-silver-muted text-sm"
-          transform={`rotate(-90, 15, ${margin.top + chartHeight / 2})`}
-        >
-          Capital Goods (Units)
-        </text>
-
-        {/* Original PPC Curve */}
-        {isVisible && (
-          <motion.path
-            d={createPath(originalPPC)}
-            fill="none"
-            stroke="url(#specOriginalGradient)"
-            strokeWidth="3"
-            strokeLinecap="round"
-            variants={curveVariants}
-            initial="hidden"
-            animate="visible"
-            style={{ opacity: showShift ? 0.4 : 1 }}
-          />
-        )}
-
-        {/* Shifted PPC Curve */}
-        {isVisible && showShift && (
-          <motion.path
-            d={createPath(shiftedPPC)}
-            fill="none"
-            stroke="url(#specShiftedGradient)"
-            strokeWidth="3"
-            strokeLinecap="round"
-            filter="url(#specGlow)"
-            variants={curveVariants}
-            initial="hidden"
-            animate="visible"
-          />
-        )}
-
-        {/* Arrow showing shift */}
-        {showShift && (
-          <motion.g
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <defs>
-              <marker
-                id="specArrowhead"
-                markerWidth="10"
-                markerHeight="7"
-                refX="10"
-                refY="3.5"
-                orient="auto"
-              >
-                <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee" />
-              </marker>
-            </defs>
-            <line
-              x1={margin.left + xScale(50)}
-              y1={margin.top + yScale(50)}
-              x2={margin.left + xScale(70)}
-              y2={margin.top + yScale(70)}
-              stroke="#22d3ee"
-              strokeWidth="2"
-              strokeDasharray="5,3"
-              markerEnd="url(#specArrowhead)"
-            />
-            <text
-              x={margin.left + xScale(65)}
-              y={margin.top + yScale(55)}
-              className="fill-cyan-400 text-xs font-medium"
-            >
-              Shift
-            </text>
+          <motion.g {...revealPoint(1)} animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}>
+            <circle cx={p.x(q1)} cy={p.y(y1)} r={5.5} fill={C.marker} />
+            <text x={p.x(q1) - 22} y={p.y(y1) - 8} fill={C.marker} fontSize={12} fontWeight={700}>X₁</text>
           </motion.g>
-        )}
+          <motion.g {...revealPoint(3)} animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}>
+            <circle cx={p.x(q2)} cy={p.y(y2)} r={5.5} fill={C.marker} />
+            <text x={p.x(q2) + 9} y={p.y(y2) - 8} fill={C.marker} fontSize={12} fontWeight={700}>X₂</text>
+          </motion.g>
 
-        {/* Labels */}
-        <text
-          x={margin.left + xScale(85)}
-          y={margin.top + yScale(35)}
-          className="fill-silver-muted text-xs"
-        >
-          PPC₁
-        </text>
-        {showShift && (
-          <motion.text
-            x={margin.left + xScale(115)}
-            y={margin.top + yScale(50)}
-            className="fill-cyan-400 text-xs font-medium"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-          >
-            PPC₂
-          </motion.text>
-        )}
-
-        {/* Origin */}
-        <text
-          x={margin.left - 15}
-          y={margin.top + chartHeight + 20}
-          className="fill-silver-muted text-sm"
-        >
-          O
-        </text>
-      </svg>
-
-      {/* Explanation Cards */}
-      <div className="grid md:grid-cols-2 gap-4 mt-6">
-        <div className={`p-4 rounded-xl border transition-all duration-300 ${
-          !showShift 
-            ? 'bg-slate-500/10 border-slate-500/30' 
-            : 'bg-slate-500/5 border-slate-500/10'
-        }`}>
-          <h5 className="font-semibold text-slate-400 mb-2 text-sm">Before Specialization (PPC₁)</h5>
-          <p className="text-xs text-muted-foreground">
-            The economy operates with limited productivity. Workers perform multiple tasks, 
-            machinery is general-purpose, and output per worker is relatively low.
-          </p>
-        </div>
-        <div className={`p-4 rounded-xl border transition-all duration-300 ${
-          showShift 
-            ? 'bg-cyan-500/10 border-cyan-500/30' 
-            : 'bg-cyan-500/5 border-cyan-500/10'
-        }`}>
-          <h5 className="font-semibold text-cyan-400 mb-2 text-sm">After Specialization (PPC₂)</h5>
-          <p className="text-xs text-muted-foreground">
-            The PPC shifts <strong>outward</strong>, indicating an increase in the economy's 
-            <strong> productive capacity</strong>. More of both goods can now be produced 
-            with the same resources.
-          </p>
-        </div>
-      </div>
-
-      {/* Key Insight */}
-      <div className="mt-4 p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 to-amber-500/10 border border-cyan-500/20">
-        <p className="text-sm text-silver-bright text-center">
-          <span className="text-cyan-400 font-semibold">Key Insight:</span> Specialization leads to 
-          <span className="text-amber-400 font-semibold"> increased productivity</span>, which 
-          shifts the PPC outward—representing <span className="text-cyan-400">economic growth</span>.
-        </p>
-      </div>
-    </div>
+          <motion.line
+            x1={p.x(q1) + 4} y1={p.y(y1) - 4} x2={p.x(q2) - 5} y2={p.y(y2) + 5}
+            stroke={C.marker} strokeWidth={1.6} strokeDasharray="5 3"
+            {...revealFade(3)} animate={play ? { opacity: 0.9 } : { opacity: 0 }}
+          />
+        </svg>
+      )}
+    </DiagramFrame>
   );
 };
 

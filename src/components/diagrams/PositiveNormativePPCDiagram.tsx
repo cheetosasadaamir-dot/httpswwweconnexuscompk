@@ -1,202 +1,97 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
-const PositiveNormativePPCDiagram = () => {
-  const [selectedPoint, setSelectedPoint] = useState<'A' | 'B' | 'C' | null>(null);
+const MAX = 86;
+const ppf = (q: number) => MAX * Math.sqrt(Math.max(0, 1 - (q / MAX) ** 2));
 
-  // Frontier: single quadratic Bézier P0(40,40) P1(240,60) P2(280,240).
-  // Monotonically downward-sloping and concave to the origin (40,240) — the
-  // only shape a PPC may take, since increasing opportunity cost requires the
-  // gradient to steepen as resources are reallocated. A, B and C are evaluated
-  // ON that curve at t = 0.25, 0.5 and 0.75, so all three are productively
-  // efficient; choosing between them is a normative judgement.
-  const points = {
-    A: { x: 130, y: 60, label: 'Point A', description: 'More Consumer Goods', color: '#22d3ee' },
-    B: { x: 200, y: 100, label: 'Point B', description: 'Balanced Production', color: '#a855f7' },
-    C: { x: 250, y: 160, label: 'Point C', description: 'More Merit Goods', color: '#d4af37' }
-  };
+/**
+ * Positive vs normative statements read off a single PPC. The geometry
+ * supplies the testable (positive) facts; the value judgements about which
+ * point society *should* choose are normative.
+ */
+const PositiveNormativePPCDiagram = ({ title }: { title?: string }) => {
+  const p = plotBox(560, 400);
 
+  const a = { q: MAX * 0.3, y: ppf(MAX * 0.3) };
+  const b = { q: MAX * 0.78, y: ppf(MAX * 0.78) };
+  const cost = a.y - b.y;
+
+  const statements = [
+    { kind: 'Positive', text: `Moving from A to B raises defence output by ${(b.q - a.q).toFixed(1)} units.`, color: C.demand },
+    { kind: 'Positive', text: `That move sacrifices ${cost.toFixed(1)} units of healthcare — a testable opportunity cost.`, color: C.demand },
+    { kind: 'Positive', text: 'Any point inside the curve means some resources are unemployed.', color: C.demand },
+    { kind: 'Normative', text: 'The government ought to choose A because healthcare matters more than defence.', color: C.marker },
+    { kind: 'Normative', text: 'Sacrificing healthcare for defence is unfair on low-income households.', color: C.marker },
+    { kind: 'Normative', text: 'Spare capacity is unacceptable and should be eliminated immediately.', color: C.marker },
+  ];
 
   return (
-    <div className="relative">
-      <div className="grid md:grid-cols-2 gap-6">
-        {/* SVG Diagram */}
-        <div className="relative">
-          <svg viewBox="0 0 320 280" className="w-full h-auto">
-            <defs>
-              <linearGradient id="ppcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#d4af37" stopOpacity="0.1" />
-              </linearGradient>
-              <filter id="glow-PositiveNormativePPCDiagram">
-                <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
+    <DiagramFrame
+      title={title ?? 'Positive vs Normative Statements on a PPC'}
+      eyebrow="Fact-based analysis versus value judgement"
+      legend={[
+        { label: 'PPC', color: C.axis },
+        { label: 'A / B — output combinations', color: C.marker, kind: 'dot' },
+        { label: 'Healthcare sacrificed (opportunity cost)', color: C.welfareLoss, kind: 'area' },
+      ]}
+      note={
+        <>
+          Positive statements describe what <em>is</em> and can be tested against evidence — the diagram measures
+          them. Normative statements contain a value judgement about what <em>ought</em> to be and cannot be
+          proved right or wrong by data. Words like <em>should</em>, <em>unfair</em>, <em>too much</em> and{' '}
+          <em>better</em> signal normative economics.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <div key={runKey} className="space-y-4">
+          <svg viewBox={`0 0 ${p.W} ${p.H}`} className="w-full h-auto" role="img" aria-label="PPC used to distinguish positive from normative statements">
+            <Axes p={p} id="posnorm-ppc" labelX="Defence (units)" labelY="Healthcare (units)" />
 
-            {/* Grid lines */}
-            {[50, 100, 150, 200].map((y) => (
-              <line
-                key={`h-${y}`}
-                x1="40"
-                y1={y}
-                x2="290"
-                y2={y}
-                stroke="rgba(255,255,255,0.05)"
-                strokeDasharray="2,4"
-              />
-            ))}
-            {[90, 140, 190, 240].map((x) => (
-              <line
-                key={`v-${x}`}
-                x1={x}
-                y1="40"
-                x2={x}
-                y2="240"
-                stroke="rgba(255,255,255,0.05)"
-                strokeDasharray="2,4"
-              />
-            ))}
+            <motion.path d={curve(p, ppf, 0, MAX)} fill="none" stroke={C.axis} strokeWidth={2.4} {...revealPath(0)} animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }} />
 
-            {/* Axes */}
-            <line x1="40" y1="240" x2="290" y2="240" stroke="#d1d5db" strokeWidth="2" />
-            <line x1="40" y1="240" x2="40" y2="40" stroke="#d1d5db" strokeWidth="2" />
+            <motion.rect
+              x={p.x(a.q)} y={p.y(a.y)} width={p.x(b.q) - p.x(a.q)} height={p.y(b.y) - p.y(a.y)}
+              fill={C.welfareLoss} opacity={0.12}
+              {...revealFade(2)} animate={play ? { opacity: 0.12 } : { opacity: 0 }}
+            />
 
-            {/* Axis labels */}
-            <text x="165" y="270" fill="#d1d5db" fontSize="11" textAnchor="middle" fontWeight="600">
-              Merit Goods (Education, Healthcare)
-            </text>
-            <text
-              x="20"
-              y="140"
-              fill="#d1d5db"
-              fontSize="11"
-              textAnchor="middle"
-              fontWeight="600"
-              transform="rotate(-90, 20, 140)"
+            <Guides p={p} qx={a.q} py={a.y} color={C.marker} />
+            <Guides p={p} qx={b.q} py={b.y} color={C.marker} />
+
+            <motion.g {...revealPoint(1)} animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}>
+              <circle cx={p.x(a.q)} cy={p.y(a.y)} r={6} fill={C.marker} />
+              <text x={p.x(a.q) - 20} y={p.y(a.y) - 8} fill={C.marker} fontSize={13} fontWeight={700}>A</text>
+            </motion.g>
+            <motion.g {...revealPoint(2)} animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}>
+              <circle cx={p.x(b.q)} cy={p.y(b.y)} r={6} fill={C.marker} />
+              <text x={p.x(b.q) + 10} y={p.y(b.y) - 8} fill={C.marker} fontSize={13} fontWeight={700}>B</text>
+            </motion.g>
+
+            <motion.text
+              x={(p.x(a.q) + p.x(b.q)) / 2} y={(p.y(a.y) + p.y(b.y)) / 2}
+              fill={C.welfareLoss} fontSize={11} fontWeight={600} textAnchor="middle"
+              {...revealFade(3)} animate={play ? { opacity: 1 } : { opacity: 0 }}
             >
-              Consumer Goods
-            </text>
-
-            {/* PPC Curve fill */}
-            <path
-              d="M 40 40 Q 240 60, 280 240 L 40 240 Z"
-              fill="url(#ppcGradient)"
-            />
-
-            {/* PPC Curve */}
-            <motion.path
-              d="M 40 40 Q 240 60, 280 240"
-              fill="none"
-              stroke="#22d3ee"
-              strokeWidth="3"
-              filter="url(#glow-PositiveNormativePPCDiagram)"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1.5, ease: 'easeInOut' }}
-            />
-
-            {/* Interactive Points */}
-            {Object.entries(points).map(([key, point]) => (
-              <g key={key}>
-                <motion.circle
-                  cx={point.x}
-                  cy={point.y}
-                  r={selectedPoint === key ? 12 : 8}
-                  fill={point.color}
-                  stroke="white"
-                  strokeWidth="2"
-                  className="cursor-pointer"
-                  whileHover={{ scale: 1.3 }}
-                  onClick={() => setSelectedPoint(key as 'A' | 'B' | 'C')}
-                  filter="url(#glow-PositiveNormativePPCDiagram)"
-                />
-                <text
-                  x={point.x + 15}
-                  y={point.y + 5}
-                  fill={point.color}
-                  fontSize="12"
-                  fontWeight="bold"
-                >
-                  {key}
-                </text>
-              </g>
-            ))}
-
-            {/* Title */}
-            <text x="165" y="25" fill="#f5f5f5" fontSize="12" textAnchor="middle" fontWeight="bold">
-              Production Possibility Curve: The Normative Choice
-            </text>
+              −{cost.toFixed(1)} healthcare
+            </motion.text>
           </svg>
-        </div>
 
-        {/* Explanation Panel */}
-        <div className="space-y-4">
-          <div className="p-4 rounded-xl bg-charcoal-deep/50 border border-silver/10">
-            <h5 className="text-sm font-bold text-silver-bright mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-cyan-400" />
-              The Positive Fact
-            </h5>
-            <p className="text-sm text-muted-foreground">
-              <strong className="text-cyan-400">Where an economy is currently producing</strong> on the PPC is 
-              a <strong>positive fact</strong>—it can be measured and verified using economic data such as 
-              GDP composition, output statistics, and resource utilization rates.
-            </p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {statements.map((s) => (
+              <div key={s.text} className="rounded-lg border-l-2 p-3" style={{ borderColor: s.color, backgroundColor: `${s.color}12` }}>
+                <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: s.color }}>
+                  {s.kind}
+                </span>
+                <p className="mt-1 text-[11px] leading-snug text-muted-foreground">{s.text}</p>
+              </div>
+            ))}
           </div>
-
-          <div className="p-4 rounded-xl bg-charcoal-deep/50 border border-silver/10">
-            <h5 className="text-sm font-bold text-silver-bright mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-amber-400" />
-              The Normative Choice
-            </h5>
-            <p className="text-sm text-muted-foreground">
-              Deciding <strong className="text-amber-400">which point on the curve is "best"</strong> for society 
-              is a <strong>normative judgment</strong>. Different political and ethical values lead to different 
-              answers about the optimal allocation of resources.
-            </p>
-          </div>
-
-          {/* Selected Point Details */}
-          {selectedPoint && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="p-4 rounded-xl border"
-              style={{ 
-                backgroundColor: `${points[selectedPoint].color}15`,
-                borderColor: `${points[selectedPoint].color}40`
-              }}
-            >
-              <h6 
-                className="font-bold mb-2"
-                style={{ color: points[selectedPoint].color }}
-              >
-                {points[selectedPoint].label}: {points[selectedPoint].description}
-              </h6>
-              <p className="text-sm text-muted-foreground">
-                {selectedPoint === 'A' && 
-                  "A market-oriented economy might favor this point—prioritizing consumer sovereignty and private goods production. This reflects a value judgment that individual choice should determine resource allocation."}
-                {selectedPoint === 'B' && 
-                  "A mixed economy might aim for balance—combining market efficiency with social provision. This reflects a normative view that both individual freedom and collective welfare matter."}
-                {selectedPoint === 'C' && 
-                  "A socially-oriented economy might prefer this point—emphasizing education, healthcare, and public services. This reflects a value judgment that equity and merit goods should be prioritized."}
-              </p>
-            </motion.div>
-          )}
-
-          {!selectedPoint && (
-            <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 text-center">
-              <p className="text-sm text-purple-300">
-                👆 Click on a point to see the normative implications
-              </p>
-            </div>
-          )}
         </div>
-      </div>
-    </div>
+      )}
+    </DiagramFrame>
   );
 };
 
