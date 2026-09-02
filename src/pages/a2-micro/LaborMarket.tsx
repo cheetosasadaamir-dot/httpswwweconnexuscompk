@@ -410,6 +410,8 @@ const LaborMarket = () => {
           </div>
 
           {/* Limitations */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+
 
             <h3 className="text-xl font-semibold text-silver-bright mb-4">Limitations of MRP Theory</h3>
             
