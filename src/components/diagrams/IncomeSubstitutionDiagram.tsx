@@ -1,322 +1,104 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, curve } from './DiagramAxes';
+import {
+  DIAGRAM_COLORS as C,
+  plotBox,
+  revealFade,
+  revealPath,
+  revealPoint,
+} from './diagramStyle';
 
-type GoodType = 'normal' | 'inferior' | 'giffen';
-
+/**
+ * Hicksian decomposition of a price fall into income and substitution effects — A2 standard.
+ *
+ * Original budget B₀: Y = 90 − 1.5X  →  tangency A on IC₁ (XY = 1350) at (30, 45).
+ * P_x falls: new budget B₁: Y = 90 − 0.9X  →  tangency C on IC₂ (XY = 2250) at (50, 45).
+ * Compensating variation line B_c: parallel to B₁ but tangent to the ORIGINAL curve IC₁
+ *   →  Y/X = 0.9 and XY = 1350  →  B = (38.7, 34.9), intercept 69.7.
+ * Substitution effect  = A → B (X: 30 → 38.7), always positive for a price fall.
+ * Income effect        = B → C (X: 38.7 → 50), positive here, so X is a NORMAL good.
+ */
 const IncomeSubstitutionDiagram = () => {
-  const [goodType, setGoodType] = useState<GoodType>('normal');
+  const p = plotBox(560, 410, { t: 30, r: 60, b: 62, l: 66 });
 
-  const width = 520;
-  const height = 380;
-  const padding = { top: 40, right: 40, bottom: 60, left: 60 };
-  const chartWidth = width - padding.left - padding.right;
-  const chartHeight = height - padding.top - padding.bottom;
+  const ic = (k: number) => (x: number) => k / x;
+  const icPath = (k: number) => curve(p, ic(k), Math.max(k / 96, 8), Math.min(96, k / 8), 90);
 
-  const xScale = (x: number) => padding.left + (x / 35) * chartWidth;
-  const yScale = (y: number) => padding.top + chartHeight - (y / 20) * chartHeight;
+  const A = { x: 30, y: 45 };
+  const B = { x: 38.73, y: 34.86 };
+  const Cp = { x: 50, y: 45 };
 
-  // Points based on good type (when price of X falls)
-  const getPoints = () => {
-    switch (goodType) {
-      case 'normal':
-        return {
-          A: { x: 6.4, y: 9.6 },   // Original equilibrium (on BL1)
-          B: { x: 15, y: 9 },   // After substitution effect
-          C: { x: 20, y: 7 },   // Final equilibrium (both effects positive)
-          description: 'Normal Good: Both substitution and income effects are positive. When price falls, quantity demanded increases significantly.',
-          seLabel: 'SE (+)',
-          ieLabel: 'IE (+)',
-        };
-      case 'inferior':
-        return {
-          A: { x: 6.4, y: 9.6 },
-          B: { x: 18, y: 8 },   // After substitution effect
-          C: { x: 14, y: 10 },  // Final (income effect negative but smaller)
-          description: 'Inferior Good: Substitution effect is positive, income effect is negative but smaller. Net effect is still positive.',
-          seLabel: 'SE (+)',
-          ieLabel: 'IE (−)',
-        };
-      case 'giffen':
-        return {
-          A: { x: 8.73, y: 7.27 },
-          B: { x: 18, y: 7 },   // After substitution effect
-          C: { x: 6, y: 14 },   // Final (income effect negative and larger)
-          description: 'Giffen Good: Substitution effect is positive, but income effect is negative and larger. Price fall leads to quantity decrease—violating the law of demand.',
-          seLabel: 'SE (+)',
-          ieLabel: 'IE (−−)',
-        };
-    }
-  };
-
-  const points = getPoints();
-
-  // Generate curved indifference curve path
-  // Vertex sits exactly at (centerX, centerY) so labelled points always lie on the curve.
-  // leftSpan/rightSpan let the curve be widened asymmetrically to reach a second labelled point.
-  const generateIC = (centerX: number, centerY: number, leftSpan: number, rightSpan: number) => {
-    const pathPoints: string[] = [];
-    const steps = 24;
-    for (let i = 0; i <= steps; i += 1) {
-      const s = (i / steps) * 2 - 1; // -1 .. 1
-      const span = s < 0 ? leftSpan : rightSpan;
-      const x = centerX + s * span;
-      const y = centerY + 0.5 * s * s * span;
-      pathPoints.push(`${xScale(x)},${yScale(y)}`);
-    }
-    return `M ${pathPoints.join(' L ')}`;
-  };
+  const b0 = `M ${p.x(0)} ${p.y(90)} L ${p.x(60)} ${p.y(0)}`;
+  const b1 = `M ${p.x(0)} ${p.y(90)} L ${p.x(100)} ${p.y(0)}`;
+  const bc = `M ${p.x(0)} ${p.y(69.7)} L ${p.x(77.4)} ${p.y(0)}`;
 
   return (
-    <div className="glass-card p-6 rounded-xl">
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-        <h3 className="text-lg font-semibold text-silver-bright">Income & Substitution Effects</h3>
-      </div>
+    <DiagramFrame
+      title="Income and Substitution Effects of a Fall in the Price of Good X"
+      eyebrow="Figure — Hicksian decomposition"
+      legend={[
+        { label: 'Original budget B₀', color: C.marker },
+        { label: 'New budget B₁ (Pₓ falls)', color: C.social },
+        { label: 'Compensated budget B_c', color: C.muted, dashed: true },
+        { label: 'IC₁ (original utility)', color: C.demandAlt },
+        { label: 'IC₂ (higher utility)', color: C.demand },
+      ]}
+      note={
+        <>
+          A fall in P<sub>x</sub> <strong>pivots</strong> the budget line outwards on the X-intercept
+          only. Equilibrium moves from A to C. To separate the two forces, draw a{' '}
+          <strong>compensated budget line B<sub>c</sub></strong> with the <em>new</em> price ratio but
+          just enough income to keep the consumer on the <em>original</em> indifference curve IC₁,
+          giving point B.
+          <br />
+          <strong>Substitution effect (A → B):</strong> X is now relatively cheaper, so the consumer
+          switches towards it. This effect is <em>always</em> positive for a price fall.
+          <br />
+          <strong>Income effect (B → C):</strong> real income has risen. Here it reinforces the
+          substitution effect, so X is a <strong>normal good</strong>. For an inferior good the income
+          effect works in the opposite direction and partly offsets it; for a <strong>Giffen good</strong>{' '}
+          it outweighs the substitution effect entirely and demand falls when price falls.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg key={runKey} viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[320px]" role="img" aria-label="Budget line pivot after a price fall, decomposed into substitution effect A to B and income effect B to C">
+          <Axes p={p} id="ise" labelX="Quantity of Good X" labelY="Quantity of Good Y" />
 
-      {/* Good Type Selector */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        <button
-          onClick={() => setGoodType('normal')}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-            goodType === 'normal' 
-              ? 'bg-cambridge-green/20 text-green-400 border border-green-400/30' 
-              : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
-          }`}
-        >
-          Normal Good
-        </button>
-        <button
-          onClick={() => setGoodType('inferior')}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-            goodType === 'inferior' 
-              ? 'bg-cambridge-orange/20 text-orange-400 border border-orange-400/30' 
-              : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
-          }`}
-        >
-          Inferior Good
-        </button>
-        <button
-          onClick={() => setGoodType('giffen')}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-            goodType === 'giffen' 
-              ? 'bg-destructive/20 text-destructive border border-destructive/30' 
-              : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
-          }`}
-        >
-          Giffen Good
-        </button>
-      </div>
+          <motion.path d={icPath(1350)} fill="none" stroke={C.demandAlt} strokeWidth={2.2} {...revealPath(0)} animate={play ? revealPath(0).animate : revealPath(0).initial} />
+          <motion.path d={b0} fill="none" stroke={C.marker} strokeWidth={2.6} {...revealPath(0)} animate={play ? revealPath(0).animate : revealPath(0).initial} />
+          <motion.circle cx={p.x(A.x)} cy={p.y(A.y)} r={5} fill={C.marker} stroke="white" strokeWidth={1.3} {...revealPoint(1)} animate={play ? revealPoint(1).animate : revealPoint(1).initial} />
+          <motion.text x={p.x(A.x) - 16} y={p.y(A.y) - 8} fill={C.marker} fontSize={12} fontWeight="bold" {...revealFade(1)} animate={play ? revealFade(1).animate : revealFade(1).initial}>A</motion.text>
 
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full">
-        {/* Grid */}
-        {[0, 5, 10, 15, 20].map((tick) => (
-          <line
-            key={`grid-y-${tick}`}
-            x1={padding.left}
-            y1={yScale(tick)}
-            x2={width - padding.right}
-            y2={yScale(tick)}
-            stroke="hsl(var(--border))"
-            strokeWidth="0.5"
-            strokeDasharray="4,4"
-            opacity={0.3}
-          />
-        ))}
+          {/* New budget line + higher IC */}
+          <motion.path d={b1} fill="none" stroke={C.social} strokeWidth={2.6} {...revealPath(2)} animate={play ? revealPath(2).animate : revealPath(2).initial} />
+          <motion.path d={icPath(2250)} fill="none" stroke={C.demand} strokeWidth={2.6} {...revealPath(3)} animate={play ? revealPath(3).animate : revealPath(3).initial} />
+          <motion.circle cx={p.x(Cp.x)} cy={p.y(Cp.y)} r={5} fill={C.social} stroke="white" strokeWidth={1.3} {...revealPoint(4)} animate={play ? revealPoint(4).animate : revealPoint(4).initial} />
+          <motion.text x={p.x(Cp.x) + 8} y={p.y(Cp.y) - 8} fill={C.social} fontSize={12} fontWeight="bold" {...revealFade(4)} animate={play ? revealFade(4).animate : revealFade(4).initial}>C</motion.text>
 
-        {/* Axes */}
-        <line
-          x1={padding.left}
-          y1={height - padding.bottom}
-          x2={width - padding.right}
-          y2={height - padding.bottom}
-          stroke="hsl(var(--silver))"
-          strokeWidth="1.5"
-        />
-        <line
-          x1={padding.left}
-          y1={padding.top}
-          x2={padding.left}
-          y2={height - padding.bottom}
-          stroke="hsl(var(--silver))"
-          strokeWidth="1.5"
-        />
+          {/* Compensated line + B */}
+          <motion.path d={bc} fill="none" stroke={C.muted} strokeWidth={2} strokeDasharray="7 4" {...revealPath(5)} animate={play ? revealPath(5).animate : revealPath(5).initial} />
+          <motion.circle cx={p.x(B.x)} cy={p.y(B.y)} r={5} fill={C.muted} stroke="white" strokeWidth={1.3} {...revealPoint(6)} animate={play ? revealPoint(6).animate : revealPoint(6).initial} />
+          <motion.text x={p.x(B.x) + 8} y={p.y(B.y) - 8} fill={C.muted} fontSize={12} fontWeight="bold" {...revealFade(6)} animate={play ? revealFade(6).animate : revealFade(6).initial}>B</motion.text>
 
-        {/* Axis labels */}
-        <text x={width / 2} y={height - 10} textAnchor="middle" className="fill-silver-bright text-sm font-medium">
-          Quantity of Good X
-        </text>
-        <text x={-height / 2 + 20} y={18} textAnchor="middle" transform="rotate(-90)" className="fill-silver-bright text-sm font-medium">
-          Quantity of Good Y
-        </text>
+          {/* Effect brackets on the X axis */}
+          <motion.g {...revealFade(7)} animate={play ? revealFade(7).animate : revealFade(7).initial}>
+            {[A, B, Cp].map((pt, i) => (
+              <line key={i} x1={p.x(pt.x)} y1={p.y(pt.y)} x2={p.x(pt.x)} y2={p.m.t + p.ch} stroke={C.grid} strokeDasharray="3 3" strokeWidth={1} />
+            ))}
+            <text x={p.x(A.x)} y={p.m.t + p.ch + 15} fill={C.marker} fontSize={10} textAnchor="middle">X₁</text>
+            <text x={p.x(B.x)} y={p.m.t + p.ch + 15} fill={C.muted} fontSize={10} textAnchor="middle">X_s</text>
+            <text x={p.x(Cp.x)} y={p.m.t + p.ch + 15} fill={C.social} fontSize={10} textAnchor="middle">X₂</text>
 
-        {/* Original Budget Line BL1 */}
-        <motion.line
-          x1={xScale(0)}
-          y1={yScale(16)}
-          x2={xScale(16)}
-          y2={yScale(0)}
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="2"
-          strokeDasharray="6,4"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.6 }}
-        />
-
-        {/* Compensated Budget Line BL' (parallel shift for decomposition) */}
-        <motion.line
-          x1={xScale(0)}
-          y1={yScale(13)}
-          x2={xScale(26)}
-          y2={yScale(0)}
-          stroke="hsl(var(--accent))"
-          strokeWidth="2"
-          strokeDasharray="4,2"
-          opacity={0.6}
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        />
-
-        {/* New Budget Line BL2 (after price fall) */}
-        <motion.line
-          x1={xScale(0)}
-          y1={yScale(16)}
-          x2={xScale(32)}
-          y2={yScale(0)}
-          stroke="hsl(var(--primary))"
-          strokeWidth="2.5"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        />
-
-        {/* Indifference Curves */}
-        <motion.path
-          key={`ic1-${goodType}`}
-          d={generateIC(points.A.x, points.A.y, points.A.x, Math.abs(points.B.x - points.A.x) + 3)}
-          fill="none"
-          stroke="hsl(var(--secondary))"
-          strokeWidth="2"
-          opacity={0.7}
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        />
-        <motion.path
-          key={`ic2-${goodType}`}
-          d={generateIC(points.C.x, points.C.y, Math.abs(points.C.x - points.B.x) + 3, 10)}
-          fill="none"
-          stroke="hsl(var(--secondary))"
-          strokeWidth="2.5"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-        />
-
-        {/* Points A, B, C */}
-        <motion.g
-          key={`points-${goodType}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9 }}
-        >
-          {/* Point A */}
-          <circle cx={xScale(points.A.x)} cy={yScale(points.A.y)} r="7" fill="hsl(var(--muted-foreground))" stroke="white" strokeWidth="2" />
-          <text x={xScale(points.A.x) - 15} y={yScale(points.A.y) - 12} className="fill-silver-bright text-sm font-bold">A</text>
-
-          {/* Point B (decomposition point) */}
-          <circle cx={xScale(points.B.x)} cy={yScale(points.B.y)} r="7" fill="hsl(var(--accent))" stroke="white" strokeWidth="2" />
-          <text x={xScale(points.B.x) + 10} y={yScale(points.B.y) - 8} className="fill-accent text-sm font-bold">B</text>
-
-          {/* Point C */}
-          <circle cx={xScale(points.C.x)} cy={yScale(points.C.y)} r="7" fill="hsl(var(--primary))" stroke="white" strokeWidth="2" />
-          <text x={xScale(points.C.x) + 10} y={yScale(points.C.y) - 8} className="fill-primary text-sm font-bold">C</text>
-        </motion.g>
-
-        {/* Arrows showing effects */}
-        <motion.g
-          key={`arrows-${goodType}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
-          {/* Substitution Effect Arrow (A to B projected on X-axis) */}
-          <defs>
-            <marker id="arrowhead-se" markerWidth="6" markerHeight="4" refX="0" refY="2" orient="auto">
-              <polygon points="0 0, 6 2, 0 4" fill="hsl(var(--accent))" />
-            </marker>
-            <marker id="arrowhead-ie" markerWidth="6" markerHeight="4" refX="0" refY="2" orient="auto">
-              <polygon points="0 0, 6 2, 0 4" fill="hsl(var(--primary))" />
-            </marker>
-          </defs>
-          
-          {/* SE Arrow */}
-          <line
-            x1={xScale(points.A.x)}
-            y1={height - padding.bottom + 25}
-            x2={xScale(points.B.x) - 8}
-            y2={height - padding.bottom + 25}
-            stroke="hsl(var(--accent))"
-            strokeWidth="2"
-            markerEnd="url(#arrowhead-se)"
-          />
-          <text x={xScale((points.A.x + points.B.x) / 2)} y={height - padding.bottom + 40} textAnchor="middle" className="fill-accent text-xs font-medium">
-            {points.seLabel}
-          </text>
-
-          {/* IE Arrow */}
-          <line
-            x1={xScale(points.B.x)}
-            y1={height - padding.bottom + 25}
-            x2={xScale(points.C.x) + (points.C.x > points.B.x ? -8 : 8)}
-            y2={height - padding.bottom + 25}
-            stroke="hsl(var(--primary))"
-            strokeWidth="2"
-            markerEnd="url(#arrowhead-ie)"
-          />
-          <text x={xScale((points.B.x + points.C.x) / 2)} y={height - padding.bottom + 40} textAnchor="middle" className="fill-primary text-xs font-medium">
-            {points.ieLabel}
-          </text>
-        </motion.g>
-
-        {/* Legend */}
-        <g transform={`translate(${width - padding.right - 100}, ${padding.top})`}>
-          <rect x="0" y="0" width="12" height="3" fill="hsl(var(--muted-foreground))" />
-          <text x="18" y="5" className="fill-muted-foreground text-xs">BL₁ (Original)</text>
-          
-          <rect x="0" y="14" width="12" height="3" fill="hsl(var(--accent))" />
-          <text x="18" y="19" className="fill-accent text-xs">BL' (Compensated)</text>
-          
-          <rect x="0" y="28" width="12" height="3" fill="hsl(var(--primary))" />
-          <text x="18" y="33" className="fill-primary text-xs">BL₂ (New)</text>
-        </g>
-      </svg>
-
-      {/* Description */}
-      <div className="mt-4 p-4 rounded-lg bg-muted/30 border border-border">
-        <div className="flex items-center gap-2 mb-2">
-          <span className={`px-2 py-0.5 rounded text-xs font-semibold ${
-            goodType === 'normal' ? 'bg-green-500/20 text-green-400' :
-            goodType === 'inferior' ? 'bg-orange-500/20 text-orange-400' :
-            'bg-red-500/20 text-red-400'
-          }`}>
-            {goodType === 'normal' ? 'Normal Good' : goodType === 'inferior' ? 'Inferior Good' : 'Giffen Good'}
-          </span>
-        </div>
-        <p className="text-sm text-muted-foreground leading-relaxed">{points.description}</p>
-        
-        <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
-          <div className="p-2 rounded bg-accent/10 border border-accent/20">
-            <span className="text-accent font-medium">Substitution Effect (A→B):</span>
-            <p className="text-muted-foreground mt-1">Movement along the same IC due to relative price change. Always positive for a price fall.</p>
-          </div>
-          <div className="p-2 rounded bg-primary/10 border border-primary/20">
-            <span className="text-primary font-medium">Income Effect (B→C):</span>
-            <p className="text-muted-foreground mt-1">Movement to higher IC due to increased real income. Direction depends on good type.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <line x1={p.x(A.x)} y1={p.m.t + p.ch + 26} x2={p.x(B.x)} y2={p.m.t + p.ch + 26} stroke={C.demand} strokeWidth={2} />
+            <line x1={p.x(B.x)} y1={p.m.t + p.ch + 26} x2={p.x(Cp.x)} y2={p.m.t + p.ch + 26} stroke={C.revenue} strokeWidth={2} />
+            <text x={(p.x(A.x) + p.x(B.x)) / 2} y={p.m.t + p.ch + 40} fill={C.demand} fontSize={10} textAnchor="middle">Substitution</text>
+            <text x={(p.x(B.x) + p.x(Cp.x)) / 2} y={p.m.t + p.ch + 40} fill={C.revenue} fontSize={10} textAnchor="middle">Income</text>
+          </motion.g>
+        </svg>
+      )}
+    </DiagramFrame>
   );
 };
 
