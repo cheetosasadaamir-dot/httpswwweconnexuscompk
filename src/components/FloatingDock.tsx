@@ -254,10 +254,10 @@ const FloatingDock = () => {
     <>
       {/* Desktop Floating Dock - NASA Control Style */}
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: isVisible ? 0 : -100 }}
+        initial={{ y: -100, x: '-50%' }}
+        animate={{ y: isVisible ? 0 : -100, x: '-50%' }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="fixed top-3 left-1/2 -translate-x-1/2 z-[9999] hidden lg:block pointer-events-auto max-w-[96vw]"
+        className="fixed top-3 left-1/2 z-[9999] hidden lg:block pointer-events-auto max-w-[96vw]"
       >
         <div className="floating-dock flex items-center gap-0.5 px-2 py-1.5 overflow-x-auto scrollbar-hide max-w-[96vw]">
           {/* Logo with glow */}
