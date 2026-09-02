@@ -18,32 +18,7 @@ const GUEST_COUNT_KEY = 'chatbot_guest_message_count';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
-import officialLogo from '@/assets/econnexus-logo-final.png';
-import guideEconomics from '@/assets/guide-economics.png';
-import guideBusiness from '@/assets/guide-business.png';
-import guideLaw from '@/assets/guide-law.png';
-import guidePsychology from '@/assets/guide-psychology.png';
-import guideAccounting from '@/assets/guide-accounting.png';
-import guideSociology from '@/assets/guide-sociology.png';
-import guideResearch from '@/assets/guide-research.png';
-import guideMathematics from '@/assets/guide-mathematics.png';
-import guidePhysics from '@/assets/guide-physics.png';
-import guideChemistry from '@/assets/guide-chemistry.png';
-import guideBiology from '@/assets/guide-biology.png';
 
-const GUIDE_IMAGES: Record<string, string> = {
-  'a-level': guideEconomics,
-  'business': guideBusiness,
-  'law': guideLaw,
-  'psychology': guidePsychology,
-  'accounting': guideAccounting,
-  'sociology': guideSociology,
-  'research': guideResearch,
-  'mathematics': guideMathematics,
-  'physics': guidePhysics,
-  'chemistry': guideChemistry,
-  'biology': guideBiology,
-};
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 import { loadChatHistory, saveChatMessage, clearChatHistory } from '@/lib/chat-history';
 
@@ -402,21 +377,27 @@ const LOADING_STATES_PHYSICS = [
   'Verifying with limiting cases...',
 ];
 
-// Prof. Econs Avatar Component
-const TutorAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
+// Minimal professional assistant mark (monogram, no illustration)
+const TutorAvatar = ({ size = 'md', color }: { size?: 'sm' | 'md' | 'lg'; color?: string }) => {
   const sizeClasses = {
-    sm: 'w-8 h-8',
-    md: 'w-9 h-9',
-    lg: 'w-14 h-14',
+    sm: 'w-8 h-8 text-[10px]',
+    md: 'w-9 h-9 text-[11px]',
+    lg: 'w-14 h-14 text-sm',
   };
-  
+  const accent = color || 'hsl(43 72% 53%)';
+
   return (
-    <div className={`${sizeClasses[size]} rounded-full flex-shrink-0 overflow-hidden ring-2 ring-neon-gold/50 shadow-lg shadow-neon-gold/20 bg-background/80`}>
-      <img 
-        src={officialLogo} 
-        alt="EconNexus" 
-        className="w-full h-full object-contain p-0.5"
-      />
+    <div
+      className={`${sizeClasses[size]} rounded-lg flex-shrink-0 flex items-center justify-center font-semibold tracking-[0.08em] select-none`}
+      style={{
+        background: `linear-gradient(135deg, ${accent}1f, transparent)`,
+        border: `1px solid ${accent}40`,
+        color: accent,
+        fontFamily: "'JetBrains Mono', monospace",
+      }}
+      aria-label="EconNexus AI"
+    >
+      EN
     </div>
   );
 };
@@ -752,7 +733,7 @@ const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
   );
 };
 
-export default function EconomicsChatbot() {
+export default function EconomicsChatbot({ fullScreen = false }: { fullScreen?: boolean } = {}) {
   const { user } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [guestMessageCount, setGuestMessageCount] = useState<number>(() => {
@@ -1285,14 +1266,15 @@ export default function EconomicsChatbot() {
     <motion.section
       id="ai-chatbot"
       ref={chatSectionRef}
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: fullScreen ? 0 : 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
-      className="py-2 md:py-3"
+      transition={{ duration: fullScreen ? 0.3 : 0.7, ease: 'easeOut' }}
+      className={fullScreen ? 'py-0' : 'py-2 md:py-3'}
     >
-      <div className="w-full max-w-[1920px] mx-auto px-0 sm:px-2 md:px-3">
+      <div className={fullScreen ? 'w-full px-0' : 'w-full max-w-[1920px] mx-auto px-0 sm:px-2 md:px-3'}>
         {/* Section Title */}
+        {!fullScreen && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1300,7 +1282,7 @@ export default function EconomicsChatbot() {
           className="text-center mb-4 md:mb-8"
         >
           <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-2 md:mb-4">
-            🧠 Command Center
+            Command Center
           </span>
           <h2 className="font-serif text-fluid-3xl lg:text-fluid-4xl font-bold section-title mb-2">
             Intelligence Hub
@@ -1309,20 +1291,23 @@ export default function EconomicsChatbot() {
             10 specialized AI minds. One unified workspace. Select your expert and begin.
           </p>
         </motion.div>
+        )}
 
         {/* Dashboard Container */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: fullScreen ? 1 : 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="relative rounded-none sm:rounded-xl md:rounded-2xl overflow-hidden"
+          transition={{ delay: fullScreen ? 0 : 0.2 }}
+          className={`relative overflow-hidden ${fullScreen ? 'rounded-none border-x-0' : 'rounded-none sm:rounded-xl md:rounded-2xl'}`}
           style={{
-            border: '1px solid hsl(43 72% 53% / 0.15)',
-            boxShadow: '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
+            border: fullScreen ? 'none' : '1px solid hsl(43 72% 53% / 0.15)',
+            borderTop: fullScreen ? '1px solid hsl(43 72% 53% / 0.12)' : undefined,
+            boxShadow: fullScreen ? 'none' : '0 8px 48px hsl(214 100% 14% / 0.6), 0 0 80px hsl(185 100% 50% / 0.05)',
           }}
         >
-          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={{ height: 'calc(100dvh - 140px)', minHeight: '600px', maxHeight: '1800px', willChange: 'transform', transform: 'translate3d(0,0,0)' }}>
+          <div className="flex flex-col lg:flex-row chatbot-container overflow-hidden" style={fullScreen ? { height: 'calc(100dvh - 130px)', minHeight: '480px', willChange: 'transform', transform: 'translate3d(0,0,0)' } : { height: 'calc(100dvh - 140px)', minHeight: '600px', maxHeight: '1800px', willChange: 'transform', transform: 'translate3d(0,0,0)' }}>
+
 
             {/* MOBILE & TABLET: Horizontal Scrollable Pill Menu */}
             <div className="lg:hidden relative shrink-0">
@@ -1502,67 +1487,34 @@ export default function EconomicsChatbot() {
                         background: 'radial-gradient(ellipse at center bottom, hsl(214 100% 8% / 0.6), transparent 70%)',
                       }} />
                       
-                      {/* Guide Character */}
+                      {/* Persona mark — minimal, professional */}
                       <div className="relative z-10 flex flex-col items-center">
                         <AnimatePresence mode="wait">
                           <motion.div
                             key={persona}
-                            initial={{ opacity: 0, scale: 0.85, y: 30, filter: 'blur(8px)' }}
-                            animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
-                            exit={{ opacity: 0, scale: 0.9, y: -15, filter: 'blur(6px)' }}
-                            transition={{ 
-                              duration: 0.5, 
-                              ease: [0.25, 0.46, 0.45, 0.94],
-                              opacity: { duration: 0.35 },
-                              scale: { type: 'spring', stiffness: 200, damping: 20, mass: 0.8 },
-                              filter: { duration: 0.4 },
-                            }}
-                            className="relative mb-3"
-                            style={{ willChange: 'transform, opacity, filter' }}
+                            initial={{ opacity: 0, scale: 0.94, y: 12 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.96, y: -8 }}
+                            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                            className="relative mb-4"
+                            style={{ willChange: 'transform, opacity' }}
                           >
-                            <motion.div 
-                              className="w-24 h-24 md:w-36 md:h-36 mx-auto relative"
-                              animate={{ y: [0, -6, 0] }}
-                              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-                              style={{ willChange: 'transform' }}
+                            <div
+                              className="w-16 h-16 md:w-20 md:h-20 mx-auto rounded-2xl flex items-center justify-center"
+                              style={{
+                                background: `linear-gradient(135deg, ${activeConfig.color}18, transparent 70%)`,
+                                border: `1px solid ${activeConfig.color}35`,
+                                boxShadow: `0 8px 32px ${activeConfig.color}14`,
+                              }}
                             >
-                              {/* Glassmorphic frame behind character */}
-                              <motion.div 
-                                className="absolute inset-2 rounded-full"
-                                animate={{ opacity: [0.4, 0.8, 0.4] }}
-                                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                                style={{
-                                  background: `radial-gradient(circle, ${activeConfig.color}15, transparent 70%)`,
-                                  border: `1px solid ${activeConfig.color}15`,
-                                  backdropFilter: 'blur(8px)',
-                                  willChange: 'opacity',
-                                }} 
+                              <activeConfig.icon
+                                className="w-7 h-7 md:w-9 md:h-9"
+                                style={{ color: activeConfig.color }}
                               />
-                              <img 
-                                src={GUIDE_IMAGES[persona]} 
-                                alt={activeConfig.professorName}
-                                className="w-full h-full object-contain relative z-10"
-                                style={{ 
-                                  filter: `drop-shadow(0 8px 24px ${activeConfig.color}30)`,
-                                  willChange: 'filter',
-                                }}
-                              />
-                              {/* Cyan glow ring */}
-                              <motion.div 
-                                className="absolute inset-0 rounded-full pointer-events-none"
-                                animate={{ 
-                                  boxShadow: [
-                                    `0 0 30px ${activeConfig.color}15, 0 0 60px ${activeConfig.color}08`,
-                                    `0 0 50px ${activeConfig.color}25, 0 0 100px ${activeConfig.color}12`,
-                                    `0 0 30px ${activeConfig.color}15, 0 0 60px ${activeConfig.color}08`,
-                                  ]
-                                }}
-                                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                                style={{ willChange: 'box-shadow' }}
-                              />
-                            </motion.div>
+                            </div>
                           </motion.div>
                         </AnimatePresence>
+
                         
                         <AnimatePresence mode="wait">
                           <motion.div
