@@ -1,241 +1,121 @@
-import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
+/**
+ * Monopsony labour market — Cambridge A2 standard.
+ * S = ACL: W = 10 + 0.6L   →   MFC = 10 + 1.2L (twice the slope of a linear supply curve)
+ * D = MRP: W = 90 − 0.8L
+ * Competitive outcome:  10 + 0.6L = 90 − 0.8L → L_c = 57.14, W_c = 44.29
+ * Monopsony outcome:    MFC = MRP → 10 + 1.2L = 90 − 0.8L → L_m = 40, MFC = 58
+ *                       wage read off the SUPPLY curve: W_m = 10 + 0.6(40) = 34
+ * Exploitation gap = MRP(L_m) − W_m = 58 − 34 = 24.
+ */
 const MonopsonyLaborDiagram = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const p = plotBox();
+  const { x, y, m, ch } = p;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
+  const S = (L: number) => 10 + 0.6 * L;
+  const MFC = (L: number) => 10 + 1.2 * L;
+  const MRP = (L: number) => 90 - 0.8 * L;
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+  const Lm = 40, Wm = S(Lm), MFCm = MRP(Lm); // 34 and 58
+  const Lc = 400 / 7, Wc = S(Lc); // 57.14, 44.29
 
-    return () => observer.disconnect();
-  }, []);
-
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1, 
-      transition: { duration: 1.2, ease: "easeInOut" as const }
-    }
-  };
+  const line = (f: (L: number) => number, a: number, b: number) =>
+    `M ${x(a)} ${y(f(a))} L ${x(b)} ${y(f(b))}`;
 
   return (
-    <div ref={containerRef} className="w-full">
-      <h4 className="text-lg font-semibold text-silver-bright mb-4 text-center">
-        Monopsony Labor Market
-      </h4>
-      
-      <svg viewBox="0 0 400 320" className="w-full max-w-lg mx-auto">
-        <defs>
-          <pattern id="grid-monopsony" width="30" height="25" patternUnits="userSpaceOnUse">
-            <path d="M 30 0 L 0 0 0 25" fill="none" stroke="hsl(var(--silver) / 0.1)" strokeWidth="0.5"/>
-          </pattern>
-        </defs>
-        <rect x="60" y="20" width="320" height="250" fill="url(#grid-monopsony)" />
-        
-        {/* Axes */}
-        <motion.line
-          x1="60" y1="270" x2="380" y2="270"
-          stroke="hsl(var(--silver))" strokeWidth="2"
-          initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ duration: 0.5 }}
-        />
-        <motion.line
-          x1="60" y1="270" x2="60" y2="20"
-          stroke="hsl(var(--silver))" strokeWidth="2"
-          initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ duration: 0.5 }}
-        />
-        
-        <text x="220" y="300" textAnchor="middle" className="fill-muted-foreground text-sm">Quantity of Labor</text>
-        <text x="30" y="145" textAnchor="middle" className="fill-muted-foreground text-sm" transform="rotate(-90, 30, 145)">Wage Rate</text>
-        
-        {/* MFC Curve (above supply) */}
-        <motion.path
-          d="M 80 240 Q 150 140 240 60"
-          fill="none"
-          stroke="#ef4444"
-          strokeWidth="3"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-        <text x="245" y="55" className="fill-red-400 text-sm font-medium">MFC</text>
-        
-        {/* Supply Curve (AFC) */}
-        <motion.path
-          d="M 80 260 Q 160 180 280 100"
-          fill="none"
-          stroke="hsl(var(--secondary))"
-          strokeWidth="3"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-        <text x="285" y="95" className="fill-secondary text-sm font-medium">S = AFC</text>
-        
-        {/* MRP Curve (Demand) */}
-        <motion.path
-          d="M 80 60 Q 180 120 340 240"
-          fill="none"
-          stroke="hsl(var(--primary))"
-          strokeWidth="3"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-        <text x="345" y="245" className="fill-primary text-sm font-medium">D = MRP</text>
-        
-        {/* Monopsony Equilibrium (MFC = MRP) */}
-        <motion.circle
-          cx="176" cy="122"
-          r="6"
-          fill="hsl(var(--accent))"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : {}}
-          transition={{ delay: 1.5, duration: 0.3 }}
-        />
-        
-        {/* Line from equilibrium to supply curve (to find wage) */}
-        <motion.line
-          x1="176" y1="122" x2="176" y2="175"
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="1.5"
-          strokeDasharray="4,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ delay: 1.8, duration: 0.4 }}
-        />
-        
-        {/* Point on supply curve (wage paid) */}
-        <motion.circle
-          cx="176" cy="175"
-          r="5"
-          fill="hsl(var(--secondary))"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : {}}
-          transition={{ delay: 2.2, duration: 0.3 }}
-        />
-        
-        {/* Monopsony wage line */}
-        <motion.line
-          x1="60" y1="175" x2="176" y2="175"
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="1"
-          strokeDasharray="4,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ delay: 2.5, duration: 0.4 }}
-        />
-        <text x="50" y="180" textAnchor="end" className="fill-purple-400 text-xs font-medium">W<tspan baselineShift="sub" fontSize="8">m</tspan></text>
-        
-        {/* Competitive wage line */}
-        <motion.line
-          x1="60" y1="147" x2="213" y2="147"
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="1"
-          strokeDasharray="2,2"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ delay: 2.8, duration: 0.4 }}
-        />
-        <text x="50" y="151" textAnchor="end" className="fill-green-400 text-xs font-medium">W<tspan baselineShift="sub" fontSize="8">c</tspan></text>
-        
-        {/* Competitive equilibrium point */}
-        <motion.circle
-          cx="213" cy="147"
-          r="4"
-          fill="#22c55e"
-          stroke="white"
-          strokeWidth="1"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : {}}
-          transition={{ delay: 3, duration: 0.3 }}
-        />
-        
-        {/* Monopsony employment */}
-        <motion.line
-          x1="176" y1="175" x2="176" y2="270"
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="1"
-          strokeDasharray="4,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ delay: 2.5, duration: 0.4 }}
-        />
-        <text x="176" y="285" textAnchor="middle" className="fill-purple-400 text-xs font-medium">L<tspan baselineShift="sub" fontSize="8">m</tspan></text>
-        
-        {/* Competitive employment */}
-        <motion.line
-          x1="213" y1="147" x2="213" y2="270"
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="1"
-          strokeDasharray="2,2"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ delay: 3.2, duration: 0.4 }}
-        />
-        <text x="213" y="285" textAnchor="middle" className="fill-green-400 text-xs font-medium">L<tspan baselineShift="sub" fontSize="8">c</tspan></text>
-        
-        {/* Zone of bargaining annotation */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ delay: 3.5, duration: 0.5 }}
+    <DiagramFrame
+      title="Monopsony in the Labour Market"
+      eyebrow="Figure — Single dominant buyer of labour"
+      legend={[
+        { label: 'S = ACL (labour supply)', color: C.supply },
+        { label: 'MFC (marginal factor cost)', color: C.intervention },
+        { label: 'D = MRP (labour demand)', color: C.demand },
+        { label: 'Competitive equilibrium', color: C.social, kind: 'dot' },
+        { label: 'Monopsony outcome', color: C.marker, kind: 'dot' },
+      ]}
+      note={
+        <>
+          A monopsonist faces the <strong>whole upward-sloping market supply curve</strong>, so hiring
+          one more worker requires raising the wage for <em>every</em> worker already employed. MFC
+          therefore lies above ACL and, for a linear supply curve, has exactly{' '}
+          <strong>twice the slope</strong>. Profit maximisation occurs where MFC = MRP at L
+          <sub>m</sub> = 40, but the wage is read <em>down</em> to the supply curve at W<sub>m</sub> = 34.
+          A competitive market would clear where S = MRP, at L<sub>c</sub> ≈ 57 and W<sub>c</sub> ≈ 44 —
+          so monopsony delivers <strong>both lower wages and lower employment</strong>. The vertical
+          gap MRP − W<sub>m</sub> = 24 is the rate of <strong>monopsonistic exploitation</strong>, and
+          the shaded triangle is the deadweight welfare loss from the missing employment. Crucially,
+          a minimum wage or union set between W<sub>m</sub> and W<sub>c</sub> can raise wages{' '}
+          <em>and</em> employment simultaneously — the opposite of the competitive-market prediction.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg
+          key={runKey}
+          viewBox={`0 0 ${p.W} ${p.H}`}
+          className="mx-auto h-auto w-full min-w-[320px]"
+          role="img"
+          aria-label="Monopsony labour market diagram with supply, marginal factor cost and marginal revenue product curves showing lower wage and employment than the competitive outcome"
         >
-          <rect x="62" y="142" width="120" height="31" fill="hsl(var(--amber-500) / 0.1)" stroke="hsl(var(--amber-500) / 0.3)" rx="4" />
-          <text x="122" y="162" textAnchor="middle" className="fill-amber-300 text-[10px]">Zone of Bargaining</text>
-        </motion.g>
-        
-        {/* Exploitation area */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ delay: 3.8, duration: 0.5 }}
-        >
-          <line x1="300" y1="122" x2="176" y2="122" stroke="#ef4444" strokeWidth="1" markerEnd="url(#arrow)" />
-          <text x="310" y="117" className="fill-red-400 text-[10px]">MRP = MFC</text>
-          <text x="310" y="129" className="fill-red-400 text-[10px]">(profit max)</text>
-        </motion.g>
-      </svg>
+          <Axes p={p} id="mono" labelX="Quantity of Labour (L)" labelY="Wage rate (W)" />
 
-      <div className="mt-4 grid md:grid-cols-2 gap-4">
-        <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-lg">
-          <p className="text-purple-200 text-xs">
-            <strong>Monopsony:</strong> Hires L<sub>m</sub> workers at W<sub>m</sub>. Both employment AND wages are 
-            lower than under competition.
-          </p>
-        </div>
-        <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
-          <p className="text-green-200 text-xs">
-            <strong>Competition:</strong> Would hire L<sub>c</sub> workers at W<sub>c</sub>. Workers are paid their 
-            marginal revenue product (no exploitation).
-          </p>
-        </div>
-      </div>
+          {play && (
+            <>
+              {/* Deadweight welfare loss: Lm..Lc between MRP and S */}
+              <motion.path
+                d={`M ${x(Lm)} ${y(MFCm)} L ${x(Lc)} ${y(Wc)} L ${x(Lm)} ${y(Wm)} Z`}
+                fill={C.welfareLoss}
+                opacity={0.18}
+                {...revealFade(5)}
+              />
 
-      <div className="mt-4 p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg">
-        <h4 className="text-amber-400 font-semibold mb-2">Why MFC &gt; W in Monopsony</h4>
-        <p className="text-muted-foreground text-sm">
-          The monopsonist faces the entire market supply curve (upward-sloping). To hire an additional worker, 
-          it must raise the wage — and pay this higher wage to <em>all</em> workers, not just the marginal one. 
-          Thus, the cost of hiring one more worker (MFC) exceeds the wage paid to that worker.
-        </p>
-      </div>
-    </div>
+              <motion.path d={line(S, 0, 95)} fill="none" stroke={C.supply} strokeWidth={2.4} {...revealPath(0)} />
+              <motion.path d={line(MFC, 0, 70)} fill="none" stroke={C.intervention} strokeWidth={2.4} {...revealPath(1)} />
+              <motion.path d={line(MRP, 0, 95)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(2)} />
+
+              <motion.text x={x(95) + 4} y={y(S(95))} fill={C.supply} fontSize={11} {...revealFade(1)}>
+                S = ACL
+              </motion.text>
+              <motion.text x={x(70) + 4} y={y(MFC(70))} fill={C.intervention} fontSize={11} {...revealFade(2)}>
+                MFC
+              </motion.text>
+              <motion.text x={x(95) + 4} y={y(MRP(95))} fill={C.demand} fontSize={11} {...revealFade(3)}>
+                D = MRP
+              </motion.text>
+
+              {/* Monopsony construction */}
+              <motion.g {...revealFade(4)}>
+                <Guides p={p} qx={Lm} py={MFCm} color={C.marker} xLabel="L" yLabel="MRP" />
+                <Guides p={p} qx={Lm} py={Wm} color={C.marker} yLabel="W" />
+                <line
+                  x1={x(Lm)} y1={y(MFCm)} x2={x(Lm)} y2={y(Wm)}
+                  stroke={C.welfareLoss} strokeWidth={2.2}
+                />
+                <text x={x(Lm) + 8} y={(y(MFCm) + y(Wm)) / 2} fill={C.welfareLoss} fontSize={10}>
+                  exploitation
+                </text>
+                <text x={x(Lm)} y={m.t + ch + 28} fill={C.marker} fontSize={10} textAnchor="middle">
+                  L(m) = 40
+                </text>
+              </motion.g>
+
+              {/* Competitive construction */}
+              <motion.g {...revealFade(5)}>
+                <Guides p={p} qx={Lc} py={Wc} color={C.social} xLabel="L(c)" yLabel="W(c)" />
+              </motion.g>
+
+              <motion.circle cx={x(Lm)} cy={y(MFCm)} r={5} fill={C.marker} {...revealPoint(6)} />
+              <motion.circle cx={x(Lm)} cy={y(Wm)} r={5} fill={C.marker} {...revealPoint(6)} />
+              <motion.circle cx={x(Lc)} cy={y(Wc)} r={5} fill={C.social} {...revealPoint(7)} />
+            </>
+          )}
+        </svg>
+      )}
+    </DiagramFrame>
   );
 };
 
