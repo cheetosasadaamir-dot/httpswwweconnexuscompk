@@ -10,6 +10,7 @@ import ExaminerTrap from '@/components/ExaminerTrap';
 import ExchangeRateShiftsDiagram from '@/components/diagrams/ExchangeRateShiftsDiagram';
 import FixedExchangeRateDiagram from '@/components/diagrams/FixedExchangeRateDiagram';
 import JCurveDiagram from '@/components/diagrams/JCurveDiagram';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const exchangeRateTakeaways = [
   "Exchange rate = price of one currency in terms of another; determined by demand and supply in forex market",
@@ -344,6 +345,7 @@ const ExchangeRates = () => {
           </ContentSection>
         </motion.div>
       </div>
+      <ChapterEnrichment id="international-economics" />
     </Layout>
   );
 };

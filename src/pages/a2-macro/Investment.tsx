@@ -7,6 +7,7 @@ import ExamTipBox from '@/components/ExamTipBox';
 import AcceleratorDiagram from '@/components/diagrams/AcceleratorDiagram';
 import MECCurveDiagram from '@/components/diagrams/MECCurveDiagram';
 import ParadoxOfThriftDiagram from '@/components/diagrams/ParadoxOfThriftDiagram';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const Investment = () => {
   return (
@@ -343,6 +344,7 @@ const Investment = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="national-income-growth" />
     </Layout>
   );
 };

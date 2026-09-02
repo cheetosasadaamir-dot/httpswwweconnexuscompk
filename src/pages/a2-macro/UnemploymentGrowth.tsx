@@ -10,6 +10,7 @@ import PhillipsCurveDiagram from '@/components/diagrams/PhillipsCurveDiagram';
 import ClassicalUnemploymentDiagram from '@/components/diagrams/ClassicalUnemploymentDiagram';
 import CyclicalUnemploymentDiagram from '@/components/diagrams/CyclicalUnemploymentDiagram';
 import LabourMarketTechnicalSection from '@/components/diagrams/LabourMarketTechnicalSection';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const unemploymentTakeaways = [
   "Unemployment Rate = (Unemployed ÷ Labour Force) × 100; measured by Claimant Count or Labour Force Survey (ILO standard)",
@@ -549,6 +550,7 @@ const UnemploymentGrowth = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="inflation-unemployment-phillips" />
     </Layout>
   );
 };

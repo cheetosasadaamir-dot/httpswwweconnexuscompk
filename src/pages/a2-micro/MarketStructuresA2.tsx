@@ -14,6 +14,7 @@ import GameTheoryDiagram from '@/components/diagrams/GameTheoryDiagram';
 import XEfficiencyDiagram from '@/components/diagrams/XEfficiencyDiagram';
 import ContestableMarketsDiagram from '@/components/diagrams/ContestableMarketsDiagram';
 import { NaturalMonopolyAnalyticalDepth, NaturalMonopolyEvaluativeJudgement, GameTheoryAnalyticalDepth, GameTheoryEvaluativeJudgement, KinkedDemandAnalyticalDepth, KinkedDemandEvaluativeJudgement } from '@/components/a2-depth/MarketStructuresDepthSections';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const MarketStructuresA2 = () => {
   return (
@@ -1341,6 +1342,7 @@ const MarketStructuresA2 = () => {
           </Link>
         </nav>
       </div>
+      <ChapterEnrichment id="market-structures" />
     </Layout>
   );
 };

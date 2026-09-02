@@ -7,6 +7,7 @@ import ContentSection from '@/components/ContentSection';
 import KeynesianCrossDiagram from '@/components/diagrams/KeynesianCrossDiagram';
 import ConsumptionFunctionDiagram from '@/components/diagrams/ConsumptionFunctionDiagram';
 import MultiplierDiagram from '@/components/diagrams/MultiplierDiagram';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const IncomeDetermination = () => {
   return (
@@ -374,6 +375,7 @@ const IncomeDetermination = () => {
           </div>
         </ContentSection>
       </div>
+      <ChapterEnrichment id="national-income-growth" />
     </Layout>
   );
 };

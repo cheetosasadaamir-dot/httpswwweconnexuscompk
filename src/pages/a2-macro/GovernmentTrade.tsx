@@ -5,6 +5,7 @@ import NoteCard from '@/components/NoteCard';
 import AnalysisBlock from '@/components/AnalysisBlock';
 import ExamTipBox from '@/components/ExamTipBox';
 import MultiplierDiagram from '@/components/diagrams/MultiplierDiagram';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const GovernmentTrade = () => {
   return (
@@ -351,6 +352,7 @@ const GovernmentTrade = () => {
           </div>
         </ContentSection>
       </motion.div>
+      <ChapterEnrichment id="international-economics" />
     </Layout>
   );
 };
