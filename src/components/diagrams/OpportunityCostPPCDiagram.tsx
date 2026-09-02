@@ -1,299 +1,146 @@
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import DiagramFrame from './DiagramFrame';
+import { Axes, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
 interface OpportunityCostPPCDiagramProps {
   type: 'increasing' | 'constant';
   title?: string;
 }
 
+const MAX = 90;
+const concave = (q: number) => MAX * Math.sqrt(Math.max(0, 1 - (q / MAX) ** 2));
+const linear = (q: number) => MAX - q;
+
+/**
+ * Increasing vs constant opportunity cost along a PPC.
+ * The concave frontier gives a rising sacrifice per extra unit; the straight
+ * line gives a constant one. Sacrifices below are computed from the same
+ * functions that draw the curve, so the numbers always match the geometry.
+ */
 const OpportunityCostPPCDiagram = ({ type, title }: OpportunityCostPPCDiagramProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const width = 360;
-  const height = 300;
-  const margin = { top: 40, right: 40, bottom: 60, left: 60 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
-
-  // Concave curve for increasing opportunity cost
-  const concaveCurve = `M ${margin.left} ${margin.top + 10} 
-    Q ${margin.left + chartWidth * 0.3} ${margin.top + chartHeight * 0.4}, 
-      ${margin.left + chartWidth * 0.5} ${margin.top + chartHeight * 0.7}
-    Q ${margin.left + chartWidth * 0.7} ${margin.top + chartHeight * 0.9}, 
-      ${margin.left + chartWidth - 10} ${margin.top + chartHeight}`;
-
-  // Straight line for constant opportunity cost
-  const straightLine = `M ${margin.left} ${margin.top + 10} 
-    L ${margin.left + chartWidth - 10} ${margin.top + chartHeight}`;
-
-  const curve = type === 'increasing' ? concaveCurve : straightLine;
-
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1,
-      transition: { duration: 1.2, ease: "easeInOut" as const }
-    }
-  };
-
-  const pointVariants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: { 
-      scale: 1, 
-      opacity: 1,
-      transition: { type: "spring" as const, stiffness: 300, damping: 20 }
-    }
-  };
-
-  // Points along the curve for illustration
-  const pointsIncreasing = [
-    { x: margin.left + 15, y: margin.top + 25, label: 'A₁' },
-    { x: margin.left + chartWidth * 0.35, y: margin.top + chartHeight * 0.45, label: 'A₂' },
-    { x: margin.left + chartWidth * 0.6, y: margin.top + chartHeight * 0.78, label: 'A₃' },
-  ];
-
-  const pointsConstant = [
-    { x: margin.left + 20, y: margin.top + 25, label: 'B₁' },
-    { x: margin.left + chartWidth * 0.5, y: margin.top + chartHeight * 0.5, label: 'B₂' },
-    { x: margin.left + chartWidth - 30, y: margin.top + chartHeight - 15, label: 'B₃' },
-  ];
-
-  const points = type === 'increasing' ? pointsIncreasing : pointsConstant;
+  const p = plotBox(560, 410);
+  const f = type === 'increasing' ? concave : linear;
+  const color = type === 'increasing' ? C.demand : C.supply;
 
   const goodX = type === 'increasing' ? 'Computers' : 'Basketballs';
-  const goodY = type === 'increasing' ? 'Microwave Ovens' : 'Volleyballs';
+  const goodY = type === 'increasing' ? 'Microwave ovens' : 'Volleyballs';
+
+  const qs = [0, 30, 60, 90];
+  const rows = qs.slice(1).map((q, i) => {
+    const prev = qs[i];
+    return {
+      step: `${prev} → ${q}`,
+      from: f(prev),
+      to: f(q),
+      cost: f(prev) - f(q),
+    };
+  });
+
+  const marks = qs.map((q) => ({ q, y: f(q) }));
 
   return (
-    <div ref={containerRef} className="w-full">
-      {title && (
-        <h4 className="text-center text-lg font-semibold text-silver-bright mb-4">{title}</h4>
-      )}
-      
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full max-w-sm mx-auto">
-        <defs>
-          <linearGradient id={`curveGradient-opp-${type}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={type === 'increasing' ? "hsl(183 100% 50%)" : "hsl(280 100% 70%)"} />
-            <stop offset="100%" stopColor={type === 'increasing' ? "hsl(183 100% 35%)" : "hsl(280 100% 50%)"} />
-          </linearGradient>
-          <marker
-            id={`arrowhead-opp-${type}`}
-            markerWidth="10"
-            markerHeight="7"
-            refX="9"
-            refY="3.5"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" fill="hsl(215 20.2% 65.1%)" />
-          </marker>
-        </defs>
-
-        {/* Grid lines */}
-        {[0.25, 0.5, 0.75].map((ratio, i) => (
-          <g key={i}>
-            <line
-              x1={margin.left}
-              y1={margin.top + chartHeight * ratio}
-              x2={margin.left + chartWidth}
-              y2={margin.top + chartHeight * ratio}
-              stroke="hsl(215 20.2% 25.1%)"
-              strokeWidth="0.5"
-              strokeDasharray="4,4"
-            />
-            <line
-              x1={margin.left + chartWidth * ratio}
-              y1={margin.top}
-              x2={margin.left + chartWidth * ratio}
-              y2={margin.top + chartHeight}
-              stroke="hsl(215 20.2% 25.1%)"
-              strokeWidth="0.5"
-              strokeDasharray="4,4"
-            />
-          </g>
-        ))}
-
-        {/* Axes */}
-        <motion.line
-          x1={margin.left}
-          y1={margin.top + chartHeight}
-          x2={margin.left + chartWidth + 10}
-          y2={margin.top + chartHeight}
-          stroke="hsl(215 20.2% 65.1%)"
-          strokeWidth="2"
-          markerEnd={`url(#arrowhead-opp-${type})`}
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-          transition={{ duration: 0.6 }}
-        />
-        <motion.line
-          x1={margin.left}
-          y1={margin.top + chartHeight}
-          x2={margin.left}
-          y2={margin.top - 10}
-          stroke="hsl(215 20.2% 65.1%)"
-          strokeWidth="2"
-          markerEnd={`url(#arrowhead-opp-${type})`}
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        />
-
-        {/* Axis labels */}
-        <motion.text
-          x={margin.left + chartWidth / 2}
-          y={height - 10}
-          textAnchor="middle"
-          fill="hsl(215 20.2% 65.1%)"
-          fontSize="11"
-          fontWeight="500"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          {goodX}
-        </motion.text>
-        <motion.text
-          x={12}
-          y={margin.top + chartHeight / 2}
-          textAnchor="middle"
-          fill="hsl(215 20.2% 65.1%)"
-          fontSize="11"
-          fontWeight="500"
-          transform={`rotate(-90, 12, ${margin.top + chartHeight / 2})`}
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          {goodY}
-        </motion.text>
-
-        {/* PPC curve */}
-        <motion.path
-          d={curve}
-          fill="none"
-          stroke={`url(#curveGradient-opp-${type})`}
-          strokeWidth="3"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-
-        {/* Points along curve */}
-        {points.map((point, index) => (
-          <motion.g key={index}>
-            <motion.circle
-              cx={point.x}
-              cy={point.y}
-              r="6"
-              fill={type === 'increasing' ? "hsl(183 100% 50%)" : "hsl(280 100% 70%)"}
-              stroke="white"
-              strokeWidth="2"
-              variants={pointVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-              transition={{ delay: 1 + index * 0.2 }}
-            />
-            <motion.text
-              x={point.x + 12}
-              y={point.y + 4}
-              fill={type === 'increasing' ? "hsl(183 100% 50%)" : "hsl(280 100% 70%)"}
-              fontSize="12"
-              fontWeight="600"
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 1.2 + index * 0.2 }}
-            >
-              {point.label}
-            </motion.text>
-          </motion.g>
-        ))}
-
-        {/* Origin label */}
-        <motion.text
-          x={margin.left - 15}
-          y={margin.top + chartHeight + 18}
-          fill="hsl(215 20.2% 65.1%)"
-          fontSize="12"
-          fontWeight="500"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          O
-        </motion.text>
-
-        {/* Curve type label */}
-        <motion.text
-          x={margin.left + chartWidth - 60}
-          y={margin.top + chartHeight - 40}
-          fill={type === 'increasing' ? "hsl(183 100% 50%)" : "hsl(280 100% 70%)"}
-          fontSize="13"
-          fontWeight="600"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 1.2 }}
-        >
-          PPC
-        </motion.text>
-      </svg>
-
-      {/* Explanation */}
-      <motion.div
-        className="mt-4 p-4 rounded-lg bg-muted/30 border border-silver/10"
-        initial={{ opacity: 0, y: 10 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-        transition={{ delay: 0.8 }}
-      >
-        {type === 'increasing' ? (
-          <div>
-            <h5 className="font-semibold text-silver-bright mb-2">Increasing Opportunity Cost (Concave PPC)</h5>
-            <p className="text-sm text-muted-foreground">
-              <strong>Increasing opportunity costs</strong> arise because factors of production are 
-              <strong> specialized</strong> and not equally suited to producing different goods. 
-              As production of computers increases, increasingly more microwave ovens must be sacrificed 
-              for each additional unit.
-            </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              <strong>Why?</strong> As production switches from microwave ovens to computers, 
-              it is necessary to use factors of production that are less suited to computer production, 
-              reducing efficiency and increasing the opportunity cost.
-            </p>
-          </div>
+    <DiagramFrame
+      title={title ?? (type === 'increasing' ? 'Increasing Opportunity Cost (Concave PPC)' : 'Constant Opportunity Cost (Linear PPC)')}
+      eyebrow={type === 'increasing' ? 'Imperfect factor substitutability' : 'Perfectly substitutable factors'}
+      legend={[
+        { label: type === 'increasing' ? 'PPC — bowed outwards' : 'PPC — straight line', color },
+        { label: 'Output combinations A → D', color: C.marker, kind: 'dot' },
+        { label: 'Capital goods sacrificed', color: C.welfareLoss, kind: 'area' },
+      ]}
+      note={
+        type === 'increasing' ? (
+          <>
+            Each extra 30 {goodX.toLowerCase()} costs progressively more {goodY.toLowerCase()}:{' '}
+            {rows.map((r) => r.cost.toFixed(1)).join(', then ')}. Resources are specialised, so the factors
+            switched first are the ones least suited to producing {goodY.toLowerCase()} — the law of increasing
+            opportunity cost, which is why real-world PPCs are bowed outwards.
+          </>
         ) : (
-          <div>
-            <h5 className="font-semibold text-silver-bright mb-2">Constant Opportunity Cost (Linear PPC)</h5>
-            <p className="text-sm text-muted-foreground">
-              <strong>Constant opportunity costs</strong> arise when the factors of production are 
-              <strong> equally well suited</strong> to producing both goods. The opportunity cost 
-              (sacrifice) remains the same for each additional unit produced.
-            </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              <strong>Example:</strong> Basketballs and volleyballs are very similar products, 
-              requiring similarly specialized factors of production. Moving from one to the other 
-              involves a constant rate of sacrifice.
-            </p>
+          <>
+            Every extra {goodX.toLowerCase().slice(0, -1)} costs exactly {rows[0].cost.toFixed(1)} /30 ={' '}
+            {(rows[0].cost / 30).toFixed(2)} {goodY.toLowerCase()} at any point on the line. Constant opportunity
+            cost only holds when resources are perfectly substitutable between the two goods — a simplifying
+            assumption, not the general case.
+          </>
+        )
+      }
+    >
+      {({ play, runKey }) => (
+        <div key={runKey} className="space-y-4">
+          <svg viewBox={`0 0 ${p.W} ${p.H}`} className="w-full h-auto" role="img" aria-label={`${type} opportunity cost production possibility curve`}>
+            <Axes p={p} id={`oc-ppc-${type}`} labelX={`${goodX} (units)`} labelY={`${goodY} (units)`} />
+
+            <motion.path
+              d={curve(p, f, 0, MAX)}
+              fill="none"
+              stroke={color}
+              strokeWidth={2.6}
+              strokeLinecap="round"
+              {...revealPath(0)}
+              animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+            />
+
+            {/* Sacrifice steps */}
+            {rows.map((r, i) => {
+              const q0 = qs[i];
+              const q1 = qs[i + 1];
+              return (
+                <motion.g key={r.step} {...revealFade(i + 1)} animate={play ? { opacity: 1 } : { opacity: 0 }}>
+                  <rect
+                    x={p.x(q0)}
+                    y={p.y(r.from)}
+                    width={p.x(q1) - p.x(q0)}
+                    height={p.y(r.to) - p.y(r.from)}
+                    fill={C.welfareLoss}
+                    opacity={0.12}
+                  />
+                  <line x1={p.x(q1)} y1={p.y(r.from)} x2={p.x(q1)} y2={p.y(r.to)} stroke={C.welfareLoss} strokeWidth={1.4} strokeDasharray="4 3" />
+                  <line x1={p.x(q0)} y1={p.y(r.from)} x2={p.x(q1)} y2={p.y(r.from)} stroke={C.marker} strokeWidth={1.1} strokeDasharray="4 3" opacity={0.8} />
+                  <text x={p.x(q1) + 6} y={(p.y(r.from) + p.y(r.to)) / 2 + 4} fill={C.welfareLoss} fontSize={11} fontWeight={600}>
+                    −{r.cost.toFixed(1)}
+                  </text>
+                </motion.g>
+              );
+            })}
+
+            {marks.map((m, i) => (
+              <motion.g key={m.q} {...revealPoint(i)} animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}>
+                <circle cx={p.x(m.q)} cy={p.y(m.y)} r={5.5} fill={C.marker} />
+                <text x={p.x(m.q) - 14} y={p.y(m.y) - 9} fill={C.marker} fontSize={12} fontWeight={700}>
+                  {String.fromCharCode(65 + i)}
+                </text>
+              </motion.g>
+            ))}
+          </svg>
+
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[420px] text-xs">
+              <thead>
+                <tr className="text-muted-foreground">
+                  <th className="py-1.5 text-left font-medium">Move along PPC ({goodX.toLowerCase()})</th>
+                  <th className="py-1.5 text-right font-medium">{goodY} before</th>
+                  <th className="py-1.5 text-right font-medium">{goodY} after</th>
+                  <th className="py-1.5 text-right font-medium">Opportunity cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r) => (
+                  <tr key={r.step} className="border-t border-primary/10">
+                    <td className="py-1.5 text-left">{r.step}</td>
+                    <td className="py-1.5 text-right">{r.from.toFixed(1)}</td>
+                    <td className="py-1.5 text-right">{r.to.toFixed(1)}</td>
+                    <td className="py-1.5 text-right font-semibold" style={{ color: C.welfareLoss }}>
+                      {r.cost.toFixed(1)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        )}
-      </motion.div>
-    </div>
+        </div>
+      )}
+    </DiagramFrame>
   );
 };
 
