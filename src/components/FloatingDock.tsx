@@ -175,8 +175,6 @@ const FloatingDock = () => {
   const navigate = useNavigate();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { user } = useAuth();
   const lectureLocked = !user;
@@ -225,19 +223,8 @@ const FloatingDock = () => {
     }
   }, [location.pathname, navigate]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-      // Ignore micro-scrolls so the bar does not flicker while reading
-      if (Math.abs(delta) < 12) return;
-      setIsVisible(delta < 0 || currentScrollY < 100);
-      setLastScrollY(currentScrollY);
-    };
+  // Dock stays pinned in one place — no hide/show on scroll (prevents jitter)
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
 
   const isActive = (href: string) => location.pathname === href;
 
@@ -255,7 +242,7 @@ const FloatingDock = () => {
       {/* Desktop Floating Dock - NASA Control Style */}
       <motion.nav
         initial={{ y: -100, x: '-50%' }}
-        animate={{ y: isVisible ? 0 : -100, x: '-50%' }}
+        animate={{ y: 0, x: '-50%' }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className="fixed top-3 left-1/2 z-[9999] hidden lg:block pointer-events-auto w-max max-w-[96vw]"
       >
