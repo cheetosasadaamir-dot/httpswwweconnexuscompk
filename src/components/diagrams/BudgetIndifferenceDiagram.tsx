@@ -1,348 +1,98 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, curve } from './DiagramAxes';
+import {
+  DIAGRAM_COLORS as C,
+  plotBox,
+  revealFade,
+  revealPath,
+  revealPoint,
+} from './diagramStyle';
 
-type ShiftType = 'none' | 'income-increase' | 'income-decrease' | 'price-x-increase' | 'price-x-decrease';
-
+/**
+ * Indifference curves, the budget constraint and consumer equilibrium — A2 standard.
+ *
+ * Budget line: M = 90, P_x = 1.5, P_y = 1  →  Y = 90 − 1.5X (X-intercept 60, Y-intercept 90).
+ * Indifference curves are rectangular hyperbolae XY = k (convex to the origin, never crossing).
+ * Equilibrium is the TANGENCY of the budget line with the highest attainable curve:
+ *   MRS = MU_x / MU_y = P_x / P_y = 1.5  →  Y/X = 1.5  →  X = 30, Y = 45 (k = 1350).
+ * IC1 (k = 700) is attainable but not utility-maximising; IC3 (k = 2400) is unattainable.
+ */
 const BudgetIndifferenceDiagram = () => {
-  const [shiftType, setShiftType] = useState<ShiftType>('none');
-  const [showIC, setShowIC] = useState(true);
+  const p = plotBox(540, 400, { t: 30, r: 58, b: 58, l: 66 });
 
-  const width = 520;
-  const height = 380;
-  const padding = { top: 40, right: 40, bottom: 60, left: 60 };
-  const chartWidth = width - padding.left - padding.right;
-  const chartHeight = height - padding.top - padding.bottom;
-
-  // Scale functions
-  const xScale = (x: number) => padding.left + (x / 45) * chartWidth;
-  const yScale = (y: number) => padding.top + chartHeight - (y / 15) * chartHeight;
-
-  // Budget line endpoints based on shift type
-  const getBudgetLine = () => {
-    switch (shiftType) {
-      case 'income-increase':
-        return { y: 20, x: 40 }; // Parallel outward shift
-      case 'income-decrease':
-        return { y: 5, x: 10 }; // Parallel inward shift
-      case 'price-x-increase':
-        return { y: 10, x: 10 }; // Pivotal inward (X more expensive)
-      case 'price-x-decrease':
-        return { y: 10, x: 40 }; // Pivotal outward (X cheaper)
-      default:
-        return { y: 10, x: 20 }; // Original: Income=$100, Px=$5, Py=$10
-    }
+  const ic = (k: number) => (x: number) => k / x;
+  const clampRange = (k: number): [number, number] => {
+    const lo = Math.max(k / 96, 6);
+    const hi = Math.min(96, k / 6);
+    return [lo, hi];
+  };
+  const icPath = (k: number) => {
+    const [lo, hi] = clampRange(k);
+    return curve(p, ic(k), lo, hi, 90);
   };
 
-  const budgetLine = getBudgetLine();
-
-  // Indifference curve points (convex curve)
-  const generateIC = (level: number) => {
-    const points: { x: number; y: number }[] = [];
-    for (let x = 2; x <= 35; x += 0.5) {
-      const y = (level * 8) / (x * 0.5 + 1) + level * 0.5;
-      if (y > 0.5 && y < 14) {
-        points.push({ x, y });
-      }
-    }
-    return points;
-  };
-
-  const ic1 = generateIC(1.5);
-  const ic2 = generateIC(2.86);
-  const ic3 = generateIC(3.5);
-
-  const createCurvePath = (points: { x: number; y: number }[]) => {
-    if (points.length < 2) return '';
-    return points.map((p, i) => 
-      i === 0 ? `M ${xScale(p.x)} ${yScale(p.y)}` : `L ${xScale(p.x)} ${yScale(p.y)}`
-    ).join(' ');
-  };
-
-  // Optimal point (tangency)
-  const optimalPoint = { x: 7.57, y: 6.22 };
+  const budget = `M ${p.x(0)} ${p.y(90)} L ${p.x(60)} ${p.y(0)}`;
+  const E = { x: 30, y: 45 };
 
   return (
-    <div className="glass-card p-6 rounded-xl">
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-        <h3 className="text-lg font-semibold text-silver-bright">Budget Line & Indifference Curves</h3>
-        <button
-          onClick={() => setShowIC(!showIC)}
-          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-            showIC ? 'bg-accent/20 text-accent border border-accent/30' : 'bg-muted/30 text-muted-foreground'
-          }`}
-        >
-          Indifference Curves
-        </button>
-      </div>
+    <DiagramFrame
+      title="Budget Constraint, Indifference Curves and Consumer Equilibrium"
+      eyebrow="Figure — Ordinal utility"
+      legend={[
+        { label: 'Budget line (M / Pₓ, M / P_y)', color: C.marker },
+        { label: 'Attainable indifference curve IC₁', color: C.demandAlt },
+        { label: 'Optimal indifference curve IC₂', color: C.demand },
+        { label: 'Unattainable IC₃', color: C.muted, dashed: true },
+        { label: 'Consumer equilibrium', color: C.revenue, kind: 'dot' },
+      ]}
+      note={
+        <>
+          The budget line shows every combination the consumer can just afford; its{' '}
+          <strong>slope equals the relative price ratio P<sub>x</sub>/P<sub>y</sub></strong>, and a
+          change in income shifts it in parallel while a change in one price pivots it. Indifference
+          curves are downward-sloping, convex to the origin (diminishing marginal rate of
+          substitution) and can never intersect. Utility is maximised at the{' '}
+          <strong>tangency point E</strong>, where{' '}
+          <strong>MRS = MU<sub>x</sub>/MU<sub>y</sub> = P<sub>x</sub>/P<sub>y</sub></strong> — the
+          ordinal statement of the equimarginal principle. Points on IC₁ are affordable but leave
+          utility on the table; IC₃ is preferred but unaffordable at current prices and income.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg key={runKey} viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[320px]" role="img" aria-label="Budget line tangent to the highest attainable indifference curve at the consumer equilibrium">
+          <Axes p={p} id="bi" labelX="Quantity of Good X" labelY="Quantity of Good Y" />
 
-      {/* Shift Controls */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        <button
-          onClick={() => setShiftType('none')}
-          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-            shiftType === 'none' ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-muted/30 text-muted-foreground'
-          }`}
-        >
-          Original
-        </button>
-        <button
-          onClick={() => setShiftType('income-increase')}
-          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-            shiftType === 'income-increase' ? 'bg-cambridge-green/20 text-green-400 border border-green-400/30' : 'bg-muted/30 text-muted-foreground'
-          }`}
-        >
-          Income ↑
-        </button>
-        <button
-          onClick={() => setShiftType('income-decrease')}
-          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-            shiftType === 'income-decrease' ? 'bg-destructive/20 text-destructive border border-destructive/30' : 'bg-muted/30 text-muted-foreground'
-          }`}
-        >
-          Income ↓
-        </button>
-        <button
-          onClick={() => setShiftType('price-x-increase')}
-          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-            shiftType === 'price-x-increase' ? 'bg-cambridge-orange/20 text-orange-400 border border-orange-400/30' : 'bg-muted/30 text-muted-foreground'
-          }`}
-        >
-          Pₓ ↑
-        </button>
-        <button
-          onClick={() => setShiftType('price-x-decrease')}
-          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-            shiftType === 'price-x-decrease' ? 'bg-cambridge-cyan/20 text-cyan-400 border border-cyan-400/30' : 'bg-muted/30 text-muted-foreground'
-          }`}
-        >
-          Pₓ ↓
-        </button>
-      </div>
+          {/* Indifference curves */}
+          <motion.path d={icPath(700)} fill="none" stroke={C.demandAlt} strokeWidth={2} {...revealPath(0)} animate={play ? revealPath(0).animate : revealPath(0).initial} />
+          <motion.path d={icPath(1350)} fill="none" stroke={C.demand} strokeWidth={2.8} {...revealPath(1)} animate={play ? revealPath(1).animate : revealPath(1).initial} />
+          <motion.path d={icPath(2400)} fill="none" stroke={C.muted} strokeWidth={2} strokeDasharray="6 4" {...revealPath(2)} animate={play ? revealPath(2).animate : revealPath(2).initial} />
 
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full">
-        {/* Grid lines */}
-        {[0, 5, 10, 15].map((tick) => (
-          <g key={`grid-y-${tick}`}>
-            <line
-              x1={padding.left}
-              y1={yScale(tick)}
-              x2={width - padding.right}
-              y2={yScale(tick)}
-              stroke="hsl(var(--border))"
-              strokeWidth="0.5"
-              strokeDasharray="4,4"
-              opacity={0.3}
-            />
-            <text
-              x={padding.left - 10}
-              y={yScale(tick)}
-              textAnchor="end"
-              alignmentBaseline="middle"
-              className="fill-muted-foreground text-xs"
-            >
-              {tick}
-            </text>
-          </g>
-        ))}
+          {/* Budget line */}
+          <motion.path d={budget} fill="none" stroke={C.marker} strokeWidth={2.8} {...revealPath(3)} animate={play ? revealPath(3).animate : revealPath(3).initial} />
 
-        {[0, 10, 20, 30, 40].map((tick) => (
-          <g key={`grid-x-${tick}`}>
-            <line
-              x1={xScale(tick)}
-              y1={padding.top}
-              x2={xScale(tick)}
-              y2={height - padding.bottom}
-              stroke="hsl(var(--border))"
-              strokeWidth="0.5"
-              strokeDasharray="4,4"
-              opacity={0.3}
-            />
-            <text
-              x={xScale(tick)}
-              y={height - padding.bottom + 20}
-              textAnchor="middle"
-              className="fill-muted-foreground text-xs"
-            >
-              {tick}
-            </text>
-          </g>
-        ))}
-
-        {/* Axes */}
-        <line
-          x1={padding.left}
-          y1={height - padding.bottom}
-          x2={width - padding.right}
-          y2={height - padding.bottom}
-          stroke="hsl(var(--silver))"
-          strokeWidth="1.5"
-        />
-        <line
-          x1={padding.left}
-          y1={padding.top}
-          x2={padding.left}
-          y2={height - padding.bottom}
-          stroke="hsl(var(--silver))"
-          strokeWidth="1.5"
-        />
-
-        {/* Axis labels */}
-        <text
-          x={width / 2}
-          y={height - 10}
-          textAnchor="middle"
-          className="fill-silver-bright text-sm font-medium"
-        >
-          Quantity of Good X
-        </text>
-        <text
-          x={-height / 2 + 20}
-          y={18}
-          textAnchor="middle"
-          transform="rotate(-90)"
-          className="fill-silver-bright text-sm font-medium"
-        >
-          Quantity of Good Y
-        </text>
-
-        {/* Original Budget Line (faded when shifted) */}
-        {shiftType !== 'none' && (
-          <motion.line
-            x1={xScale(0)}
-            y1={yScale(10)}
-            x2={xScale(20)}
-            y2={yScale(0)}
-            stroke="hsl(var(--muted-foreground))"
-            strokeWidth="2"
-            strokeDasharray="6,4"
-            opacity={0.4}
-          />
-        )}
-
-        {/* Budget Line */}
-        <motion.line
-          key={shiftType}
-          x1={xScale(0)}
-          y1={yScale(budgetLine.y)}
-          x2={xScale(budgetLine.x)}
-          y2={yScale(0)}
-          stroke="hsl(var(--primary))"
-          strokeWidth="3"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.8 }}
-        />
-
-        {/* Indifference Curves */}
-        {showIC && (
-          <>
-            <motion.path
-              d={createCurvePath(ic1)}
-              fill="none"
-              stroke="hsl(var(--accent))"
-              strokeWidth="2"
-              opacity={0.5}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-            />
-            <motion.path
-              d={createCurvePath(ic2)}
-              fill="none"
-              stroke="hsl(var(--accent))"
-              strokeWidth="2.5"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1, delay: 0.4 }}
-            />
-            <motion.path
-              d={createCurvePath(ic3)}
-              fill="none"
-              stroke="hsl(var(--accent))"
-              strokeWidth="2"
-              opacity={0.5}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1, delay: 0.6 }}
-            />
-
-            {/* IC Labels */}
-            <text x={xScale(30)} y={yScale(2.5)} className="fill-accent text-xs">IC₁</text>
-            <text x={xScale(32)} y={yScale(4)} className="fill-accent text-xs font-medium">IC₂</text>
-            <text x={xScale(34)} y={yScale(5.5)} className="fill-accent text-xs">IC₃</text>
-          </>
-        )}
-
-        {/* Optimal Point */}
-        {shiftType === 'none' && (
-          <motion.g
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1, type: "spring" }}
-          >
-            <circle
-              cx={xScale(optimalPoint.x)}
-              cy={yScale(optimalPoint.y)}
-              r="8"
-              fill="hsl(var(--cambridge-green))"
-              stroke="hsl(var(--background))"
-              strokeWidth="2"
-            />
-            <text
-              x={xScale(optimalPoint.x) + 12}
-              y={yScale(optimalPoint.y) - 8}
-              className="fill-green-400 text-xs font-medium"
-            >
-              Optimal Bundle (E)
-            </text>
+          <motion.g {...revealFade(4)} animate={play ? revealFade(4).animate : revealFade(4).initial}>
+            <text x={p.x(3)} y={p.y(92)} fill={C.marker} fontSize={11}>M / P_y</text>
+            <text x={p.x(60)} y={p.m.t + p.ch + 16} fill={C.marker} fontSize={11} textAnchor="middle">M / Pₓ</text>
+            <text x={p.x(14)} y={p.y(ic(700)(14)) - 8} fill={C.demandAlt} fontSize={11} fontWeight="bold">IC₁</text>
+            <text x={p.x(22)} y={p.y(ic(1350)(22)) - 8} fill={C.demand} fontSize={12} fontWeight="bold">IC₂</text>
+            <text x={p.x(34)} y={p.y(ic(2400)(34)) - 8} fill={C.muted} fontSize={11} fontWeight="bold">IC₃</text>
           </motion.g>
-        )}
 
-        {/* Budget Line Label */}
-        <text
-          x={xScale(budgetLine.x / 2 + 2)}
-          y={yScale(budgetLine.y / 2) - 12}
-          className="fill-primary text-xs font-medium"
-        >
-          Budget Line
-        </text>
-
-        {/* Legend */}
-        <g transform={`translate(${width - padding.right - 120}, ${padding.top})`}>
-          <rect x="0" y="0" width="12" height="3" fill="hsl(var(--primary))" />
-          <text x="18" y="6" className="fill-silver-bright text-xs">Budget Line</text>
-          {showIC && (
-            <g transform="translate(0, 16)">
-              <path d="M 0 6 Q 6 0 12 6" fill="none" stroke="hsl(var(--accent))" strokeWidth="2" />
-              <text x="18" y="10" className="fill-silver-bright text-xs">Indifference Curve</text>
-            </g>
-          )}
-        </g>
-      </svg>
-
-      {/* Explanation Box */}
-      <div className="mt-4 p-4 rounded-lg bg-muted/30 border border-border">
-        <h4 className="text-sm font-semibold text-silver-bright mb-2">
-          {shiftType === 'none' && 'Consumer Equilibrium'}
-          {shiftType === 'income-increase' && 'Income Increase → Parallel Outward Shift'}
-          {shiftType === 'income-decrease' && 'Income Decrease → Parallel Inward Shift'}
-          {shiftType === 'price-x-increase' && 'Price of X Increases → Pivotal Inward Shift'}
-          {shiftType === 'price-x-decrease' && 'Price of X Decreases → Pivotal Outward Shift'}
-        </h4>
-        <p className="text-xs text-muted-foreground leading-relaxed">
-          {shiftType === 'none' && 
-            'The consumer maximizes utility at point E, where the budget line is tangent to the highest attainable indifference curve (IC₂). At this point, the marginal rate of substitution equals the price ratio: MRS = Pₓ/Pᵧ.'}
-          {shiftType === 'income-increase' && 
-            'When income rises (e.g., from $100 to $200), the budget line shifts parallel outward. The consumer can now afford more of both goods, reaching a higher indifference curve.'}
-          {shiftType === 'income-decrease' && 
-            'When income falls (e.g., from $100 to $50), the budget line shifts parallel inward. The consumer is constrained to a lower indifference curve and reduced consumption.'}
-          {shiftType === 'price-x-increase' && 
-            'When the price of Good X rises, the X-intercept moves inward while the Y-intercept remains fixed. The budget line pivots, reducing affordable quantities of X.'}
-          {shiftType === 'price-x-decrease' && 
-            'When the price of Good X falls, the X-intercept moves outward while the Y-intercept remains fixed. The budget line pivots, increasing affordable quantities of X.'}
-        </p>
-      </div>
-    </div>
+          {/* Equilibrium */}
+          <motion.g {...revealFade(5)} animate={play ? revealFade(5).animate : revealFade(5).initial}>
+            <line x1={p.m.l} y1={p.y(E.y)} x2={p.x(E.x)} y2={p.y(E.y)} stroke={C.revenue} strokeDasharray="4 3" strokeWidth={1.1} />
+            <line x1={p.x(E.x)} y1={p.y(E.y)} x2={p.x(E.x)} y2={p.m.t + p.ch} stroke={C.revenue} strokeDasharray="4 3" strokeWidth={1.1} />
+            <text x={p.m.l - 8} y={p.y(E.y) + 4} fill={C.revenue} fontSize={11} textAnchor="end">Y*</text>
+            <text x={p.x(E.x)} y={p.m.t + p.ch + 16} fill={C.revenue} fontSize={11} textAnchor="middle">X*</text>
+            <text x={p.x(E.x) + 10} y={p.y(E.y) - 10} fill={C.revenue} fontSize={12} fontWeight="bold">E</text>
+            <text x={p.x(E.x) + 10} y={p.y(E.y) + 6} fill={C.revenue} fontSize={10}>MRS = Pₓ/P_y</text>
+          </motion.g>
+          <motion.circle cx={p.x(E.x)} cy={p.y(E.y)} r={5.5} fill={C.revenue} stroke="white" strokeWidth={1.4} {...revealPoint(5)} animate={play ? revealPoint(5).animate : revealPoint(5).initial} />
+        </svg>
+      )}
+    </DiagramFrame>
   );
 };
 
