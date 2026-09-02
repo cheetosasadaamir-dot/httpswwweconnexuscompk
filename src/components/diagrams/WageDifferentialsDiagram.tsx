@@ -1,232 +1,115 @@
-import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
-const WageDifferentialsDiagram = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+/**
+ * Wage differentials: skilled vs unskilled labour, drawn on identical axes so
+ * the wage gap can be read off directly.
+ *
+ * SKILLED    S: W = 40 + 1.6L   (inelastic — long training, few qualify)
+ *            D: W = 100 − 0.8L  (high MRP)
+ *            40 + 1.6L = 100 − 0.8L → L = 25, W = 80
+ *
+ * UNSKILLED  S: W = 5 + 0.25L   (elastic — large pool, no entry barriers)
+ *            D: W = 55 − 0.5L   (low MRP)
+ *            5 + 0.25L = 55 − 0.5L → L ≈ 66.7, W ≈ 21.7
+ */
+const CONFIG = {
+  skilled: {
+    label: 'Skilled labour',
+    S: (L: number) => 40 + 1.6 * L,
+    D: (L: number) => 100 - 0.8 * L,
+    L: 25,
+    W: 80,
+    Ltxt: 'L(s) = 25',
+    Wtxt: 'W(s) = 80',
+  },
+  unskilled: {
+    label: 'Unskilled labour',
+    S: (L: number) => 5 + 0.25 * L,
+    D: (L: number) => 55 - 0.5 * L,
+    L: 200 / 3,
+    W: 65 / 3,
+    Ltxt: 'L(u) ≈ 67',
+    Wtxt: 'W(u) ≈ 22',
+  },
+} as const;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1, 
-      transition: { duration: 1.2, ease: "easeInOut" as const }
-    }
-  };
+const Panel = ({ which, play }: { which: keyof typeof CONFIG; play: boolean }) => {
+  const p = plotBox();
+  const { x, y } = p;
+  const c = CONFIG[which];
+  const seg = (f: (L: number) => number, a: number, b: number) =>
+    `M ${x(a)} ${y(f(a))} L ${x(b)} ${y(f(b))}`;
 
   return (
-    <div ref={containerRef} className="w-full mt-8">
-      <h4 className="text-lg font-semibold text-silver-bright mb-4 text-center">
-        Wage Differentials: Skilled vs. Unskilled Labor
-      </h4>
-      
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Skilled Labor Market */}
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground text-center mb-2">Skilled Labor Market</p>
-          <svg viewBox="0 0 280 240" className="w-full max-w-xs mx-auto">
-            <defs>
-              <pattern id="grid-wage-diff" width="28" height="24" patternUnits="userSpaceOnUse">
-                <path d="M 28 0 L 0 0 0 24" fill="none" stroke="hsl(var(--silver) / 0.1)" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect x="50" y="20" width="210" height="180" fill="url(#grid-wage-diff)" />
-            
-            {/* Axes */}
-            <motion.line
-              x1="50" y1="200" x2="260" y2="200"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.line
-              x1="50" y1="200" x2="50" y2="20"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            
-            <text x="155" y="225" textAnchor="middle" className="fill-muted-foreground text-[10px]">Number of Workers</text>
-            <text x="25" y="110" textAnchor="middle" className="fill-muted-foreground text-[10px]" transform="rotate(-90, 25, 110)">Wage</text>
-            
-            {/* Supply (inelastic - steep) */}
-            <motion.path
-              d="M 100 180 L 160 40"
-              fill="none"
-              stroke="hsl(var(--secondary))"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="165" y="35" className="fill-secondary text-xs font-medium">S<tspan baselineShift="sub" fontSize="7">skilled</tspan></text>
-            
-            {/* Demand (high due to high MRP) */}
-            <motion.path
-              d="M 60 50 L 240 160"
-              fill="none"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="245" y="165" className="fill-primary text-xs font-medium">D<tspan baselineShift="sub" fontSize="7">skilled</tspan></text>
-            
-            {/* Equilibrium */}
-            <motion.circle
-              cx="135.9" cy="96.4"
-              r="5"
-              fill="hsl(var(--accent))"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.2, duration: 0.3 }}
-            />
-            
-            {/* High wage line */}
-            <motion.line
-              x1="50" y1="96.4" x2="135.9" y2="96.4"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="40" y="101.4" textAnchor="end" className="fill-indigo-400 text-xs font-bold">W<tspan baselineShift="sub" fontSize="7">H</tspan></text>
-            
-            {/* Employment */}
-            <motion.line
-              x1="135.9" y1="96.4" x2="135.9" y2="200"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="135.9" y="215" textAnchor="middle" className="fill-muted-foreground text-[10px]">N<tspan baselineShift="sub" fontSize="7">s</tspan></text>
-          </svg>
-        </div>
-
-        {/* Unskilled Labor Market */}
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground text-center mb-2">Unskilled Labor Market</p>
-          <svg viewBox="0 0 280 240" className="w-full max-w-xs mx-auto">
-            <rect x="50" y="20" width="210" height="180" fill="url(#grid-wage-diff)" />
-            
-            {/* Axes */}
-            <motion.line
-              x1="50" y1="200" x2="260" y2="200"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.line
-              x1="50" y1="200" x2="50" y2="20"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            
-            <text x="155" y="225" textAnchor="middle" className="fill-muted-foreground text-[10px]">Number of Workers</text>
-            <text x="25" y="110" textAnchor="middle" className="fill-muted-foreground text-[10px]" transform="rotate(-90, 25, 110)">Wage</text>
-            
-            {/* Supply (elastic - flat) */}
-            <motion.path
-              d="M 60 170 L 240 100"
-              fill="none"
-              stroke="hsl(var(--secondary))"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="245" y="95" className="fill-secondary text-xs font-medium">S<tspan baselineShift="sub" fontSize="7">unskilled</tspan></text>
-            
-            {/* Demand (lower due to lower MRP) */}
-            <motion.path
-              d="M 60 100 L 240 180"
-              fill="none"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="245" y="185" className="fill-primary text-xs font-medium">D<tspan baselineShift="sub" fontSize="7">unskilled</tspan></text>
-            
-            {/* Equilibrium */}
-            <motion.circle
-              cx="144" cy="137.3"
-              r="5"
-              fill="hsl(var(--accent))"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.2, duration: 0.3 }}
-            />
-            
-            {/* Low wage line */}
-            <motion.line
-              x1="50" y1="137.3" x2="144" y2="137.3"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="40" y="142.3" textAnchor="end" className="fill-orange-400 text-xs font-bold">W<tspan baselineShift="sub" fontSize="7">L</tspan></text>
-            
-            {/* Employment */}
-            <motion.line
-              x1="144" y1="137.3" x2="144" y2="200"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="144" y="215" textAnchor="middle" className="fill-muted-foreground text-[10px]">N<tspan baselineShift="sub" fontSize="7">u</tspan></text>
-          </svg>
-        </div>
-      </div>
-
-      <div className="mt-4 grid md:grid-cols-2 gap-4">
-        <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-lg">
-          <p className="text-indigo-200 text-xs">
-            <strong>Skilled Labor:</strong> High demand (high MRP due to productivity) + Low supply (training barriers) 
-            = <strong>High wages (W<sub>H</sub>)</strong>
-          </p>
-        </div>
-        <div className="p-3 bg-orange-500/10 border border-orange-500/20 rounded-lg">
-          <p className="text-orange-200 text-xs">
-            <strong>Unskilled Labor:</strong> Lower demand (lower MRP) + Abundant supply (easy entry) 
-            = <strong>Low wages (W<sub>L</sub>)</strong>
-          </p>
-        </div>
-      </div>
+    <div className="flex-1">
+      <p className="mb-1 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+        {c.label}
+      </p>
+      <svg
+        viewBox={`0 0 ${p.W} ${p.H}`}
+        className="mx-auto h-auto w-full min-w-[300px]"
+        role="img"
+        aria-label={`${c.label} market showing the equilibrium wage set by marginal revenue product and the elasticity of labour supply`}
+      >
+        <Axes p={p} id={`wd-${which}`} labelX="Quantity of labour (L)" labelY="Wage rate (W)" />
+        {play && (
+          <>
+            <motion.path d={seg(c.S, 0, which === 'skilled' ? 36 : 100)} fill="none" stroke={C.supply} strokeWidth={2.4} {...revealPath(0)} />
+            <motion.path d={seg(c.D, 0, which === 'skilled' ? 100 : 100)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(1)} />
+            <motion.text x={x(which === 'skilled' ? 36 : 100) + 4} y={y(c.S(which === 'skilled' ? 36 : 100))} fill={C.supply} fontSize={11} {...revealFade(1)}>
+              S(L)
+            </motion.text>
+            <motion.text x={x(100) + 4} y={y(c.D(100))} fill={C.demand} fontSize={11} {...revealFade(2)}>
+              D = MRP
+            </motion.text>
+            <motion.g {...revealFade(3)}>
+              <Guides p={p} qx={c.L} py={c.W} color={C.marker} xLabel={c.Ltxt} yLabel={c.Wtxt} />
+            </motion.g>
+            <motion.circle cx={x(c.L)} cy={y(c.W)} r={5} fill={C.marker} {...revealPoint(4)} />
+          </>
+        )}
+      </svg>
     </div>
   );
 };
+
+const WageDifferentialsDiagram = () => (
+  <DiagramFrame
+    title="Wage Differentials: Skilled vs Unskilled Labour"
+    eyebrow="Figure — Both panels drawn on identical axes"
+    legend={[
+      { label: 'S(L) = labour supply', color: C.supply },
+      { label: 'D(L) = MRP', color: C.demand },
+      { label: 'Equilibrium', color: C.marker, kind: 'dot' },
+    ]}
+    note={
+      <>
+        Because both panels use the same scale, the wage gap (80 vs about 22) can be read directly. Skilled
+        workers earn more for <strong>two reinforcing reasons</strong>. On the demand side their{' '}
+        <strong>MRP is higher</strong> — greater human capital raises output per worker and often the value
+        of that output. On the supply side, supply is <strong>steep and inelastic</strong>: long training
+        periods, professional licensing and innate ability restrict the pool, so even a large wage rise
+        brings few extra workers in the short run. Unskilled labour faces the mirror image — low MRP and a
+        large, elastic, easily replaced pool. Other causes of differentials layer on top:{' '}
+        <strong>compensating differentials</strong> for dangerous or unsocial work (North Sea rigs, night
+        shifts), <strong>occupational and geographical immobility</strong>, <strong>discrimination</strong>,{' '}
+        <strong>union or professional bargaining power</strong>, and <strong>monopsony employers</strong>{' '}
+        such as a single dominant hospital trust or supermarket in a town. Because skilled supply is
+        inelastic, most of the skilled wage is <strong>economic rent</strong>, whereas unskilled pay is
+        close to pure transfer earnings.
+      </>
+    }
+  >
+    {({ play, runKey }) => (
+      <div key={runKey} className="flex flex-col gap-6 lg:flex-row">
+        <Panel which="skilled" play={play} />
+        <Panel which="unskilled" play={play} />
+      </div>
+    )}
+  </DiagramFrame>
+);
 
 export default WageDifferentialsDiagram;
