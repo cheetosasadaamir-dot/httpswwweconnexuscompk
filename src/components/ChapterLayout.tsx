@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 
 import FloatingDock from '@/components/FloatingDock';
+import BackToHome from '@/components/BackToHome';
 
 interface ChapterLayoutProps {
   chapterNumber: number;
@@ -16,6 +17,7 @@ const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayo
       <FloatingDock />
 
       <main className="relative z-20 pt-20 md:pt-24 lg:pt-28">
+        <BackToHome />
         {/* Chapter Header - Mobile-optimized padding */}
         <header className="pt-6 md:pt-8 pb-4 md:pb-6 px-4 md:px-6 lg:px-12 border-b border-charcoal-gold/10">
           <div className="w-[95%] max-w-[1200px] mx-auto">

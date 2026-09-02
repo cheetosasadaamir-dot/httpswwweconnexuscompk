@@ -228,7 +228,10 @@ const FloatingDock = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setIsVisible(currentScrollY < lastScrollY || currentScrollY < 100);
+      const delta = currentScrollY - lastScrollY;
+      // Ignore micro-scrolls so the bar does not flicker while reading
+      if (Math.abs(delta) < 12) return;
+      setIsVisible(delta < 0 || currentScrollY < 100);
       setLastScrollY(currentScrollY);
     };
 
@@ -254,13 +257,13 @@ const FloatingDock = () => {
         initial={{ y: -100 }}
         animate={{ y: isVisible ? 0 : -100 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] hidden lg:block pointer-events-auto"
+        className="fixed top-3 left-1/2 -translate-x-1/2 z-[9999] hidden lg:block pointer-events-auto max-w-[96vw]"
       >
-        <div className="floating-dock flex items-center gap-1 px-3 py-2">
+        <div className="floating-dock flex items-center gap-0.5 px-2 py-1.5 overflow-x-auto scrollbar-hide max-w-[96vw]">
           {/* Logo with glow */}
-          <Link to="/" className="flex items-center gap-2.5 px-3 py-1.5 mr-3 group">
+          <Link to="/" className="flex items-center gap-2 px-2 py-1 mr-1.5 shrink-0 group">
             <div className="relative">
-              <img src={logoImage} alt="EconNexus" className="h-[50px] w-auto object-contain relative z-10 rounded-lg" />
+              <img src={logoImage} alt="EconNexus" className="h-8 w-auto object-contain relative z-10 rounded-md" />
               <div className="absolute inset-0 bg-neon-cyan/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <div className="flex flex-col">
@@ -287,7 +290,7 @@ const FloatingDock = () => {
                 <Link
                   to={item.href}
                   className={cn(
-                    "dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-150 pointer-events-auto",
+                    "dock-item flex items-center gap-1.5 px-2.5 py-2 rounded-xl transition-all duration-150 pointer-events-auto whitespace-nowrap",
                     "active:scale-95 active:shadow-[0_0_12px_rgba(0,242,255,0.4)]",
                     isActive(item.href) || isParentActive(item)
                       ? "active"
@@ -306,7 +309,7 @@ const FloatingDock = () => {
               ) : (
                 <button
                   onClick={() => item.scrollTo && scrollToSection(item.scrollTo)}
-                  className="dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer hover:text-secondary pointer-events-auto"
+                  className="dock-item flex items-center gap-1.5 px-2.5 py-2 rounded-xl transition-all duration-300 cursor-pointer hover:text-secondary pointer-events-auto whitespace-nowrap"
                 >
                   <item.icon className="w-4 h-4" />
                   <span className="text-sm font-medium font-display">{item.title}</span>
@@ -358,7 +361,7 @@ const FloatingDock = () => {
           {/* Glossary special button */}
           <Link
             to="/#glossary"
-            className="dock-item flex items-center gap-2 px-3.5 py-2.5 rounded-xl ml-1 hover:shadow-neon-cyan transition-all duration-300"
+            className="dock-item flex items-center gap-1.5 px-2.5 py-2 rounded-xl ml-0.5 shrink-0 whitespace-nowrap hover:shadow-neon-cyan transition-all duration-300"
           >
             <Sparkles className="w-4 h-4" />
             <span className="text-sm font-medium font-display">Glossary</span>
@@ -381,18 +384,6 @@ const FloatingDock = () => {
           <Menu className="w-5 h-5 text-white" />
         )}
       </motion.button>
-
-      {/* Mobile Logo */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="fixed top-3 left-3 z-[9999] lg:hidden pointer-events-auto"
-      >
-        <Link to="/" className="floating-dock flex items-center gap-2 px-3 py-2 touch-target">
-          <img src={logoImage} alt="EconNexus" className="h-8 md:h-9 w-auto object-contain rounded" />
-          <span className="font-display text-xs md:text-sm font-semibold text-neon-cyan">EconNexus</span>
-        </Link>
-      </motion.div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
