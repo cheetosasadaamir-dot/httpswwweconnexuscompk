@@ -20,7 +20,7 @@ import {
  * Income effect        = B → C (X: 38.7 → 50), positive here, so X is a NORMAL good.
  */
 const IncomeSubstitutionDiagram = () => {
-  const p = plotBox(560, 410, { t: 30, r: 60, b: 62, l: 66 });
+  const p = plotBox(560, 410, { t: 30, r: 60, b: 84, l: 66 });
 
   const ic = (k: number) => (x: number) => k / x;
   const icPath = (k: number) => curve(p, ic(k), Math.max(k / 96, 8), Math.min(96, k / 8), 90);
@@ -93,8 +93,8 @@ const IncomeSubstitutionDiagram = () => {
 
             <line x1={p.x(A.x)} y1={p.m.t + p.ch + 26} x2={p.x(B.x)} y2={p.m.t + p.ch + 26} stroke={C.demand} strokeWidth={2} />
             <line x1={p.x(B.x)} y1={p.m.t + p.ch + 26} x2={p.x(Cp.x)} y2={p.m.t + p.ch + 26} stroke={C.revenue} strokeWidth={2} />
-            <text x={(p.x(A.x) + p.x(B.x)) / 2} y={p.m.t + p.ch + 40} fill={C.demand} fontSize={10} textAnchor="middle">Substitution</text>
-            <text x={(p.x(B.x) + p.x(Cp.x)) / 2} y={p.m.t + p.ch + 40} fill={C.revenue} fontSize={10} textAnchor="middle">Income</text>
+            <text x={(p.x(A.x) + p.x(B.x)) / 2} y={p.m.t + p.ch + 40} fill={C.demand} fontSize={10} textAnchor="middle">Substitution effect</text>
+            <text x={(p.x(B.x) + p.x(Cp.x)) / 2} y={p.m.t + p.ch + 52} fill={C.revenue} fontSize={10} textAnchor="middle">Income effect</text>
           </motion.g>
         </svg>
       )}
