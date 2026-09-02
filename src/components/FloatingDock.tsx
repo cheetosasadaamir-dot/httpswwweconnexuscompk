@@ -225,19 +225,8 @@ const FloatingDock = () => {
     }
   }, [location.pathname, navigate]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-      // Ignore micro-scrolls so the bar does not flicker while reading
-      if (Math.abs(delta) < 12) return;
-      setIsVisible(delta < 0 || currentScrollY < 100);
-      setLastScrollY(currentScrollY);
-    };
+  // Dock stays pinned in one place — no hide/show on scroll (prevents jitter)
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
 
   const isActive = (href: string) => location.pathname === href;
 
