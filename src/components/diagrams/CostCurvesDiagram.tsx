@@ -202,7 +202,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
                 {showMC && play && (
                   <>
                     <motion.path d={costPath(mc, 0.7)} fill="none" stroke={C.supply} strokeWidth={2.8} {...revealPath(3)} />
-                    <motion.text x={p.x(qx(11.1))} y={p.y(cy(mc(11.4)))} fill={C.supply} fontSize={11} {...revealFade(4)}>MC</motion.text>
+                    <motion.text x={p.x(qx(11.0))} y={p.y(cy(mc(11.6)))} fill={C.supply} fontSize={11} {...revealFade(4)}>MC</motion.text>
                   </>
                 )}
 
@@ -260,7 +260,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
                   {play && (
                     <>
                       <motion.path d={prodPath(top, tp, tpy)} fill="none" stroke={C.demandAlt} strokeWidth={2.8} {...revealPath(0)} />
-                      <motion.text x={top.x(lx(TP_MAX_L)) + 12} y={top.y(tpy(tp(TP_MAX_L))) - 6} fill={C.demandAlt} fontSize={11} {...revealFade(1)}>TP</motion.text>
+                      <motion.text x={top.x(lx(11.4))} y={top.y(tpy(tp(11.4))) + 16} fill={C.demandAlt} fontSize={11} {...revealFade(1)}>TP</motion.text>
                       <line
                         x1={top.x(lx(MP_MAX_L))} y1={top.y(tpy(tp(MP_MAX_L)))}
                         x2={top.x(lx(MP_MAX_L))} y2={top.y0}
@@ -270,7 +270,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
                         point of inflexion
                       </motion.text>
                       <motion.circle cx={top.x(lx(TP_MAX_L))} cy={top.y(tpy(tp(TP_MAX_L)))} r={5} fill={C.marker} stroke="#0b1b2e" strokeWidth={1.5} {...revealPoint(2)} />
-                      <motion.text x={top.x(lx(TP_MAX_L))} y={top.y(tpy(tp(TP_MAX_L))) - 12} fill={C.marker} fontSize={9.5} textAnchor="middle" {...revealFade(3)}>
+                      <motion.text x={top.x(lx(TP_MAX_L)) - 6} y={top.y(tpy(tp(TP_MAX_L))) - 12} textAnchor="end" fill={C.marker} fontSize={9.5} {...revealFade(3)}>
                         TP max (MP = 0)
                       </motion.text>
                     </>
@@ -287,14 +287,14 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
                     <>
                       <motion.path d={prodPath(bot, mp, mpy)} fill="none" stroke={C.supply} strokeWidth={2.4} {...revealPath(1)} />
                       <motion.path d={prodPath(bot, ap, mpy)} fill="none" stroke={C.social} strokeWidth={2.4} {...revealPath(2)} />
-                      <motion.text x={bot.x(lx(4.2))} y={bot.y(mpy(mp(4.2))) - 10} fill={C.supply} fontSize={11} {...revealFade(3)}>MP</motion.text>
-                      <motion.text x={bot.x(lx(9.6))} y={bot.y(mpy(ap(9.6))) - 10} fill={C.social} fontSize={11} {...revealFade(4)}>AP</motion.text>
+                      <motion.text x={bot.x(lx(3.1))} y={bot.y(mpy(mp(3.1))) - 12} fill={C.supply} fontSize={11} {...revealFade(3)}>MP</motion.text>
+                      <motion.text x={bot.x(lx(10.4))} y={bot.y(mpy(ap(10.4))) - 12} fill={C.social} fontSize={11} {...revealFade(4)}>AP</motion.text>
 
                       <motion.circle cx={bot.x(lx(MP_MAX_L))} cy={bot.y(mpy(mp(MP_MAX_L)))} r={5} fill={C.marker} stroke="#0b1b2e" strokeWidth={1.5} {...revealPoint(4)} />
                       <motion.text x={bot.x(lx(MP_MAX_L))} y={bot.y(mpy(mp(MP_MAX_L))) - 12} fill={C.marker} fontSize={9.5} textAnchor="middle" {...revealFade(5)}>MP max</motion.text>
 
                       <motion.circle cx={bot.x(lx(AP_MAX_L))} cy={bot.y(mpy(ap(AP_MAX_L)))} r={5} fill={C.marker} stroke="#0b1b2e" strokeWidth={1.5} {...revealPoint(5)} />
-                      <motion.text x={bot.x(lx(AP_MAX_L)) + 10} y={bot.y(mpy(ap(AP_MAX_L))) - 10} fill={C.marker} fontSize={9.5} {...revealFade(6)}>MP = AP (AP max)</motion.text>
+                      <motion.text x={bot.x(lx(AP_MAX_L)) + 10} y={bot.y(mpy(ap(AP_MAX_L))) - 14} fill={C.marker} fontSize={9.5} {...revealFade(6)}>MP = AP (AP max)</motion.text>
 
                       <motion.circle cx={bot.x(lx(TP_MAX_L))} cy={bot.y(mpy(0))} r={5} fill={C.marker} stroke="#0b1b2e" strokeWidth={1.5} {...revealPoint(6)} />
                       <motion.text x={bot.x(lx(TP_MAX_L)) + 8} y={bot.y(mpy(0)) - 10} fill={C.marker} fontSize={9.5} {...revealFade(7)}>MP = 0</motion.text>
@@ -305,7 +305,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
                       <motion.text x={bot.x(lx(7.4))} y={bot.m.t + bot.ch + 26} fill="hsl(45,90%,62%)" fontSize={9} textAnchor="middle" {...revealFade(7)}>
                         Diminishing MP
                       </motion.text>
-                      <motion.text x={bot.x(lx(10.8))} y={bot.m.t + bot.ch + 26} fill="hsl(0,80%,68%)" fontSize={9} textAnchor="middle" {...revealFade(7)}>
+                      <motion.text x={bot.x(lx(10.6))} y={bot.m.t + bot.ch + 26} fill="hsl(0,80%,68%)" fontSize={9} textAnchor="middle" {...revealFade(7)}>
                         Negative MP
                       </motion.text>
                     </>
