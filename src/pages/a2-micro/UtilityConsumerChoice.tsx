@@ -4,6 +4,7 @@ import UtilityDiagram from '@/components/diagrams/UtilityDiagram';
 import { IndifferenceCurveAnalyticalDepth, IndifferenceCurveEvaluativeJudgement } from '@/components/a2-depth/UtilityDepthSections';
 import BudgetIndifferenceDiagram from '@/components/diagrams/BudgetIndifferenceDiagram';
 import IncomeSubstitutionDiagram from '@/components/diagrams/IncomeSubstitutionDiagram';
+import EquimarginalPrincipleDiagram from '@/components/diagrams/EquimarginalPrincipleDiagram';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import KeyTakeaways from '@/components/KeyTakeaways';
 import ExaminerTrap from '@/components/ExaminerTrap';
@@ -129,6 +130,12 @@ const UtilityConsumerChoice = () => {
             </div>
           </CardContent>
         </Card>
+
+        <div className="mt-8">
+          <EquimarginalPrincipleDiagram />
+        </div>
+
+
 
         <AnalysisBlock title="Equi-Marginal Principle:  Chain of Analysis" type="analysis">
           <p>
