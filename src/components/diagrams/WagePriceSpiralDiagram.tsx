@@ -2,26 +2,24 @@ import { motion } from 'framer-motion';
 import DiagramFrame from './DiagramFrame';
 import { DIAGRAM_COLORS as C } from './diagramStyle';
 
-/**
- * The wage-price spiral as a self-reinforcing loop.
- * Six nodes arranged on a circle of radius R around (cx, cy), joined by arcs.
- */
+/** Six stages of the wage-price spiral arranged on a circle. */
 const NODES = [
-  { label: 'Prices rise', sub: 'headline CPI ↑', color: C.intervention },
-  { label: 'Real wages fall', sub: 'W/P ↓', color: C.supply },
-  { label: 'Higher pay claims', sub: 'expected inflation ↑', color: C.marker },
-  { label: 'Unit labour costs rise', sub: 'pay growth > productivity', color: C.supplyAlt },
-  { label: 'SRAS shifts left', sub: 'firms restore margins', color: C.welfareLoss },
-  { label: 'Prices rise again', sub: 'the loop closes', color: C.intervention },
+  { l1: 'Prices rise', l2: 'headline CPI ↑', color: C.intervention },
+  { l1: 'Real wages fall', l2: 'W / P ↓', color: C.supply },
+  { l1: 'Higher pay claims', l2: 'expected inflation ↑', color: C.marker },
+  { l1: 'Unit costs rise', l2: 'pay > productivity', color: C.supplyAlt },
+  { l1: 'SRAS shifts left', l2: 'margins restored', color: C.welfareLoss },
+  { l1: 'Prices rise again', l2: 'the loop closes', color: C.intervention },
 ];
 
+const W = 560, H = 470;
+const cx = W / 2, cy = H / 2 + 4, R = 158, NR = 46;
+const TRIM = Math.asin(NR / R) + 0.09; // radians of clearance either side
+
+const pt = (a: number, r = R) => ({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
+
 const WagePriceSpiralDiagram = () => {
-  const W = 540, H = 420;
-  const cx = W / 2, cy = H / 2 + 6, R = 138;
-  const pos = NODES.map((_, i) => {
-    const a = -Math.PI / 2 + (i * 2 * Math.PI) / NODES.length;
-    return { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a), a };
-  });
+  const angles = NODES.map((_, i) => -Math.PI / 2 + (i * 2 * Math.PI) / NODES.length);
 
   return (
     <DiagramFrame
@@ -57,55 +55,54 @@ const WagePriceSpiralDiagram = () => {
 
           {play && (
             <>
-              {pos.map((pt, i) => {
-                const next = pos[(i + 1) % pos.length];
-                const mid = {
-                  x: cx + (R + 34) * Math.cos((pt.a + next.a) / 2 + (i === pos.length - 1 ? Math.PI : 0)),
-                  y: cy + (R + 34) * Math.sin((pt.a + next.a) / 2 + (i === pos.length - 1 ? Math.PI : 0)),
-                };
+              {angles.map((a, i) => {
+                const start = pt(a + TRIM);
+                const end = pt(angles[(i + 1) % angles.length] - TRIM + (i === angles.length - 1 ? 2 * Math.PI : 0));
                 return (
                   <motion.path
                     key={`arc-${i}`}
-                    d={`M ${pt.x} ${pt.y} Q ${mid.x} ${mid.y} ${next.x} ${next.y}`}
-                    fill="none" stroke={C.marker} strokeWidth={1.6} opacity={0.55}
-                    markerEnd="url(#wps-arrow)"
+                    d={`M ${start.x} ${start.y} A ${R} ${R} 0 0 1 ${end.x} ${end.y}`}
+                    fill="none" stroke={C.marker} strokeWidth={1.8} markerEnd="url(#wps-arrow)"
                     initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 0.55 }}
-                    transition={{ delay: 0.25 + i * 0.4, duration: 0.5 }}
+                    animate={{ pathLength: 1, opacity: 0.6 }}
+                    transition={{ delay: 0.3 + i * 0.38, duration: 0.45 }}
                   />
                 );
               })}
 
-              {NODES.map((n, i) => (
-                <motion.g key={n.label}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.15 + i * 0.4, duration: 0.35, ease: 'backOut' }}
-                  style={{ transformOrigin: `${pos[i].x}px ${pos[i].y}px` }}
-                >
-                  <circle cx={pos[i].x} cy={pos[i].y} r={44} fill={n.color} opacity={0.14} />
-                  <circle cx={pos[i].x} cy={pos[i].y} r={44} fill="none" stroke={n.color} strokeWidth={1.6} />
-                  <text x={pos[i].x} y={pos[i].y - 2} textAnchor="middle" fill={n.color} fontSize={10} fontWeight={700}>
-                    {n.label.split(' ').slice(0, 2).join(' ')}
-                  </text>
-                  <text x={pos[i].x} y={pos[i].y + 11} textAnchor="middle" fill={C.axis} fontSize={9}>
-                    {n.label.split(' ').slice(2).join(' ') || ''}
-                  </text>
-                  <text x={pos[i].x} y={pos[i].y + 24} textAnchor="middle" fill={C.muted} fontSize={8.5}>
-                    {n.sub}
-                  </text>
-                </motion.g>
-              ))}
+              {NODES.map((n, i) => {
+                const c = pt(angles[i]);
+                return (
+                  <motion.g key={n.l1}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.15 + i * 0.38, duration: 0.35, ease: 'backOut' }}
+                    style={{ transformOrigin: `${c.x}px ${c.y}px` }}
+                  >
+                    <circle cx={c.x} cy={c.y} r={NR} fill={n.color} opacity={0.16} />
+                    <circle cx={c.x} cy={c.y} r={NR} fill="none" stroke={n.color} strokeWidth={1.6} />
+                    <text x={c.x} y={c.y - 12} textAnchor="middle" fill={C.axis} fontSize={11} fontWeight={700}>
+                      {i + 1}
+                    </text>
+                    <text x={c.x} y={c.y + 3} textAnchor="middle" fill={n.color} fontSize={10} fontWeight={700}>
+                      {n.l1}
+                    </text>
+                    <text x={c.x} y={c.y + 17} textAnchor="middle" fill={C.muted} fontSize={8.5}>
+                      {n.l2}
+                    </text>
+                  </motion.g>
+                );
+              })}
 
-              <motion.text x={cx} y={cy - 8} textAnchor="middle" fill={C.axis} fontSize={13} fontWeight={700}
+              <motion.text x={cx} y={cy - 12} textAnchor="middle" fill={C.axis} fontSize={13} fontWeight={700}
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.6, duration: 0.4 }}>
                 WAGE-PRICE SPIRAL
               </motion.text>
-              <motion.text x={cx} y={cy + 12} textAnchor="middle" fill={C.social} fontSize={9.5}
+              <motion.text x={cx} y={cy + 10} textAnchor="middle" fill={C.social} fontSize={10}
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.8, duration: 0.4 }}>
                 broken by anchored expectations
               </motion.text>
-              <motion.text x={cx} y={cy + 26} textAnchor="middle" fill={C.social} fontSize={9.5}
+              <motion.text x={cx} y={cy + 26} textAnchor="middle" fill={C.social} fontSize={10}
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.9, duration: 0.4 }}>
                 and productivity growth
               </motion.text>
