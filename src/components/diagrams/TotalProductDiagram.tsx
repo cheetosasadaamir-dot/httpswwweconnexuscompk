@@ -134,9 +134,6 @@ const TotalProductDiagram = () => (
             <text x={bot.x(lx(8.7))} y={bot.m.t + bot.ch + 26} fill={C.muted} fontSize={9.5} textAnchor="middle">
               Stage 2: diminishing returns
             </text>
-            <text x={bot.x(lx(10.6))} y={bot.m.t + bot.ch + 40} fill={C.muted} fontSize={9.5} textAnchor="middle">
-              Stage 3
-            </text>
           </motion.g>
         </g>
       </svg>

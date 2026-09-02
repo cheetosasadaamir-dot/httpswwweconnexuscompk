@@ -141,11 +141,11 @@ const ProfitMaxShutdownDiagram = () => {
             {/* min AVC marker */}
             <motion.g {...(play ? revealFade(4) : { initial: { opacity: 0 } })}>
               <circle cx={p.x(qx(13.33))} cy={p.y(cy(33.33))} r={3.5} fill={C.social} />
-              <text x={p.x(qx(13.33)) - 6} y={p.y(cy(33.33)) + 14} fill={C.social} fontSize={9.5} textAnchor="end">
+              <text x={p.x(qx(13.33)) - 6} y={p.y(cy(33.33)) + 20} fill={C.social} fontSize={9.5} textAnchor="end">
                 min AVC = 33.3 (shutdown point)
               </text>
               <circle cx={p.x(qx(15.95))} cy={p.y(cy(46.9))} r={3.5} fill={C.demandAlt} />
-              <text x={p.x(qx(15.95)) + 8} y={p.y(cy(46.9)) + 4} fill={C.demandAlt} fontSize={9.5}>
+              <text x={p.x(qx(16.6))} y={p.y(cy(46.9)) + 26} fill={C.demandAlt} fontSize={9.5}>
                 min ATC = 46.9 (break-even)
               </text>
             </motion.g>
