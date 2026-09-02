@@ -95,11 +95,15 @@ const TradeUnionMonopsonyDiagram = () => {
               />
               <motion.g {...revealFade(5)}>
                 <line x1={x(Lu)} y1={y(Wu)} x2={x(Lu)} y2={y(MFC(Lu))} stroke={C.social} strokeWidth={2} strokeDasharray="3 3" />
-                <Guides p={p} qx={Lu} py={Wu} color={C.social} xLabel="L(u) = 50" yLabel="W(u) = 40" />
+                <Guides p={p} qx={Lu} py={Wu} color={C.social} yLabel="W(u) = 40" />
+                <text x={x(Lu)} y={p.m.t + p.ch + 44} fill={C.social} fontSize={10} textAnchor="middle">
+                  L(u) = 50
+                </text>
                 <text x={x(6)} y={y(Wu) - 8} fill={C.social} fontSize={10}>
                   new S = MFC (union floor)
                 </text>
               </motion.g>
+
               <motion.circle cx={x(Lu)} cy={y(Wu)} r={5} fill={C.social} {...revealPoint(6)} />
 
               {/* competitive benchmark */}
