@@ -1,385 +1,138 @@
-import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
 /**
- * Accurate Monopolistic Competition Diagram
- * Long-run: AR curve is TANGENT to ATC at profit-maximizing output
- * Key geometric precision: MC intersects MR at same Q where AR is tangent to ATC
+ * Monopolistic competition: short-run supernormal profit → long-run tangency.
+ *
+ * TC = 200 + 15q + 0.35q² → MC = 15 + 0.7q, ATC = 200/q + 15 + 0.35q
+ *   min ATC at q = √(200/0.35) = 23.9, ATC = 31.7 = MC(23.9) ✓
+ *
+ * SHORT RUN  AR₁ = 90 − q, MR₁ = 90 − 2q
+ *            MR = MC : 15 + 0.7q = 90 − 2q → q = 27.8, P = 62.2, ATC = 31.9
+ *
+ * LONG RUN   entry pulls demand left and makes it flatter until AR is tangent to ATC.
+ *            Tangency chosen at q = 15: ATC(15) = 33.58, ATC'(15) = −0.539
+ *            AR₂ = 41.67 − 0.539q, MR₂ = 41.67 − 1.078q
+ *            check MR₂(15) = 25.5 = MC(15) ✓ — tangency automatically satisfies MC = MR
+ *            excess capacity = 23.9 − 15 = 8.9 units
  */
 const MonopolisticCompetitionDiagram = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const p = plotBox();
+  const { x, y } = p;
+  const K = 100 / 60; // q runs 0–60
+  const fx = (q: number) => x(q * K);
+  const fc = (f: (q: number) => number, a: number, b: number) =>
+    curve(p, (v) => f(v / K), a * K, b * K, 140);
+  const seg = (f: (q: number) => number, a: number, b: number) =>
+    `M ${fx(a)} ${y(f(a))} L ${fx(b)} ${y(f(b))}`;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
+  const MC = (q: number) => 15 + 0.7 * q;
+  const ATC = (q: number) => 200 / q + 15 + 0.35 * q;
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+  const AR1 = (q: number) => 90 - q;
+  const MR1 = (q: number) => 90 - 2 * q;
+  const q1 = 27.78, P1 = AR1(27.78), AC1 = ATC(27.78);
 
-    return () => observer.disconnect();
-  }, []);
+  const AR2 = (q: number) => 41.67 - 0.539 * q;
+  const MR2 = (q: number) => 41.67 - 1.078 * q;
+  const q2 = 15, P2 = ATC(15); // 33.58
 
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1, 
-      transition: { duration: 1.5, ease: "easeInOut" as const }
-    }
-  };
+  const Panel = ({
+    id, label, ar, mr, arTo, mrTo, qe, pe, extra,
+  }: {
+    id: string; label: string;
+    ar: (q: number) => number; mr: (q: number) => number;
+    arTo: number; mrTo: number; qe: number; pe: number; extra?: React.ReactNode;
+  }) => (
+    <div className="flex-1">
+      <p className="mb-1 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
+      <svg viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[300px]" role="img" aria-label={label}>
+        <Axes p={p} id={id} labelX="Firm output (q)" labelY="Price, Costs, Revenue" />
+        {extra}
+        <motion.path d={fc(MC, 3, 55)} fill="none" stroke={C.social} strokeWidth={2.4} {...revealPath(0)} />
+        <motion.text x={fx(55) + 4} y={y(MC(55))} fill={C.social} fontSize={11} {...revealFade(1)}>MC</motion.text>
+        <motion.path d={fc(ATC, 5, 55, )} fill="none" stroke={C.intervention} strokeWidth={2.4} {...revealPath(1)} />
+        <motion.text x={fx(55) + 4} y={y(ATC(55)) + 13} fill={C.intervention} fontSize={11} {...revealFade(2)}>ATC</motion.text>
+        <motion.path d={seg(ar, 0, arTo)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(2)} />
+        <motion.text x={fx(arTo) + 4} y={y(ar(arTo))} fill={C.demand} fontSize={11} {...revealFade(3)}>AR</motion.text>
+        <motion.path d={seg(mr, 0, mrTo)} fill="none" stroke={C.supply} strokeWidth={2.2} {...revealPath(3)} />
+        <motion.text x={fx(mrTo) + 4} y={y(mr(mrTo)) + 4} fill={C.supply} fontSize={11} {...revealFade(4)}>MR</motion.text>
+        <motion.g {...revealFade(4)}>
+          <Guides p={p} qx={qe * K} py={pe} color={C.marker} xLabel={`q = ${qe.toFixed(0)}`} yLabel={`P = ${pe.toFixed(1)}`} />
+        </motion.g>
+        <motion.circle cx={fx(qe)} cy={y(pe)} r={5} fill={C.marker} {...revealPoint(5)} />
+        <motion.circle cx={fx(qe)} cy={y(MC(qe))} r={4} fill={C.social} {...revealPoint(5)} />
+      </svg>
+    </div>
+  );
 
   return (
-    <div ref={containerRef} className="w-full">
-      <h4 className="text-lg font-semibold text-silver-bright mb-4 text-center">
-        Short-Run vs Long-Run in Monopolistic Competition
-      </h4>
-      
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Short-Run: Supernormal Profits */}
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground text-center mb-2 font-medium">Short-Run: Supernormal Profits</p>
-          <svg viewBox="0 0 340 300" className="w-full max-w-sm mx-auto">
-            <defs>
-              <pattern id="grid-mc-sr" width="30" height="25" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 25" fill="none" stroke="hsl(var(--silver) / 0.1)" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect x="55" y="25" width="260" height="230" fill="url(#grid-mc-sr)" />
-            
-            {/* Axes */}
-            <motion.line
-              x1="55" y1="255" x2="315" y2="255"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.line
-              x1="55" y1="255" x2="55" y2="25"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            
-            <text x="185" y="280" textAnchor="middle" className="fill-muted-foreground text-xs font-medium">Quantity</text>
-            <text x="18" y="105" textAnchor="middle" className="fill-muted-foreground text-xs font-medium" transform="rotate(-90, 18, 105)">Price/Cost (£)</text>
-            
-            {/* MC Curve - U-shaped, cuts ATC at its minimum (205,183) and MR at Q*=172 */}
-            <motion.path
-              d="M 90 175 Q 110 205, 135 208 Q 158 210, 172 196 Q 190 190, 205 183 Q 235 170, 258 80"
-              fill="none"
-              stroke="#22c55e"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="262" y="76" className="fill-green-400 text-xs font-semibold">MC</text>
-            
-            {/* ATC Curve - genuine U-shape, minimum at Q=205 */}
-            <motion.path
-              d="M 75 95 Q 120 150, 160 172 Q 185 183, 205 183 Q 245 183, 300 105"
-              fill="none"
-              stroke="#f59e0b"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="302" y="100" className="fill-amber-400 text-xs font-semibold">ATC</text>
-            
-            {/* Demand Curve (AR) - downward sloping, above ATC in short run */}
-            <motion.path
-              d="M 60 55 L 295 210"
-              fill="none"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="300" y="215" className="fill-primary text-xs font-semibold">D=AR</text>
-            
-            {/* MR Curve - steeper than AR, same intercept */}
-            <motion.path
-              d="M 60 55 L 178 210"
-              fill="none"
-              stroke="#a855f7"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="172" y="224" className="fill-purple-400 text-xs font-semibold">MR</text>
-            
-            {/* Supernormal Profit area - rectangle between P and ATC at Q* */}
-            <motion.rect
-              x="55" y="129" width="117" height="48"
-              fill="hsl(142 76% 36% / 0.35)"
-              stroke="hsl(142 76% 45%)"
-              strokeWidth="1.5"
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="113" y="157" textAnchor="middle" className="fill-green-300 text-[9px] font-semibold">Supernormal Profit</text>
-            
-            {/* MC = MR intersection point */}
-            <motion.circle
-              cx="172" cy="196"
-              r="5"
-              fill="#a855f7"
-              stroke="white"
-              strokeWidth="1.5"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.2, duration: 0.3 }}
-            />
-            
-            {/* Price point on AR */}
-            <motion.circle
-              cx="172" cy="129"
-              r="5"
-              fill="hsl(var(--accent))"
-              stroke="white"
-              strokeWidth="1.5"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.3, duration: 0.3 }}
-            />
-            
-            {/* ATC point */}
-            <motion.circle
-              cx="172" cy="177"
-              r="4"
-              fill="#f59e0b"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.35, duration: 0.3 }}
-            />
-            
-            {/* Price line to Y-axis */}
-            <motion.line
-              x1="55" y1="129" x2="172" y2="129"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="45" y="132" textAnchor="end" className="fill-accent text-[10px] font-semibold">P</text>
-            
-            {/* ATC line to Y-axis */}
-            <motion.line
-              x1="55" y1="177" x2="172" y2="177"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.6, duration: 0.5 }}
-            />
-            <text x="45" y="180" textAnchor="end" className="fill-amber-400 text-[10px] font-semibold">ATC</text>
-            
-            {/* Quantity line */}
-            <motion.line
-              x1="172" y1="129" x2="172" y2="255"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="172" y="270" textAnchor="middle" className="fill-muted-foreground text-[10px] font-semibold">Q*</text>
-            
-            {/* MC=MR label */}
-            <text x="180" y="205" className="fill-purple-300 text-[8px]">MC=MR</text>
-          </svg>
+    <DiagramFrame
+      title="Monopolistic Competition: Short Run and Long Run"
+      eyebrow="Figure — free entry erodes profit until AR is tangent to ATC"
+      legend={[
+        { label: 'AR (downward sloping but highly elastic)', color: C.demand },
+        { label: 'MR', color: C.supply },
+        { label: 'MC', color: C.social },
+        { label: 'ATC', color: C.intervention },
+        { label: 'Short-run supernormal profit', color: C.revenue, kind: 'area' },
+        { label: 'Excess capacity', color: C.welfareLoss, kind: 'area' },
+      ]}
+      note={
+        <>
+          In the <strong>short run</strong> the firm maximises profit where MC = MR at q = 28 and charges 62.2,
+          well above the average cost of 31.9, so the gold rectangle is supernormal profit. Because entry is
+          free, new differentiated rivals take demand away: the firm's AR curve shifts <strong>left</strong> and
+          becomes <strong>more elastic</strong> (flatter) as more substitutes appear. Equilibrium is reached only
+          when AR is exactly <strong>tangent to ATC</strong>, at q = 15 and P = 33.6, so AR = AC and only normal
+          profit remains — MC = MR is automatically satisfied at the tangency point. Two inefficiencies follow.
+          The tangency must lie on the <em>falling</em> section of ATC, so output is short of the productively
+          efficient minimum at q = 23.9: the gap of about 9 units is <strong>excess capacity</strong> (the
+          half-empty restaurant). And P &gt; MC, so the market is allocatively inefficient. The offsetting
+          benefit is genuine <strong>variety and choice</strong>, which perfect competition cannot deliver.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <div key={runKey} className="flex flex-col gap-6 lg:flex-row">
+          {play && (
+            <>
+              <Panel
+                id="mcomp-sr" label="Short run: supernormal profit"
+                ar={AR1} mr={MR1} arTo={55} mrTo={42} qe={q1} pe={P1}
+                extra={
+                  <motion.rect x={fx(0)} y={y(P1)} width={fx(q1) - fx(0)} height={y(AC1) - y(P1)}
+                    fill={C.revenue} opacity={0.18} {...revealFade(4)} />
+                }
+              />
+              <Panel
+                id="mcomp-lr" label="Long run: tangency, normal profit only"
+                ar={AR2} mr={MR2} arTo={55} mrTo={38} qe={q2} pe={P2}
+                extra={
+                  <>
+                    <motion.g {...revealFade(5)}>
+                      <line x1={fx(q2)} y1={y(12)} x2={fx(23.9)} y2={y(12)} stroke={C.welfareLoss} strokeWidth={2} />
+                      <polygon points={`${fx(q2)},${y(12)} ${fx(q2) + 8},${y(12) - 4} ${fx(q2) + 8},${y(12) + 4}`} fill={C.welfareLoss} />
+                      <polygon points={`${fx(23.9)},${y(12)} ${fx(23.9) - 8},${y(12) - 4} ${fx(23.9) - 8},${y(12) + 4}`} fill={C.welfareLoss} />
+                      <line x1={fx(23.9)} y1={y(31.7)} x2={fx(23.9)} y2={y(8)} stroke={C.welfareLoss} strokeDasharray="4 3" strokeWidth={1} />
+                    </motion.g>
+                    <motion.text x={fx(19.5)} y={y(5)} fill={C.welfareLoss} fontSize={10} textAnchor="middle" {...revealFade(6)}>
+                      excess capacity
+                    </motion.text>
+                    <motion.circle cx={fx(23.9)} cy={y(31.7)} r={4} fill={C.welfareGain} {...revealPoint(6)} />
+                    <motion.text x={fx(23.9) + 6} y={y(31.7) + 14} fill={C.welfareGain} fontSize={9} {...revealFade(7)}>
+                      min ATC
+                    </motion.text>
+                  </>
+                }
+              />
+            </>
+          )}
         </div>
-
-        {/* Long-Run: Normal Profits - AR TANGENT to ATC */}
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground text-center mb-2 font-medium">Long-Run: Normal Profits (AR tangent to ATC)</p>
-          <svg viewBox="0 0 340 300" className="w-full max-w-sm mx-auto">
-            <rect x="55" y="25" width="260" height="230" fill="url(#grid-mc-sr)" />
-            
-            {/* Axes */}
-            <motion.line
-              x1="55" y1="255" x2="315" y2="255"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.line
-              x1="55" y1="255" x2="55" y2="25"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            
-            <text x="185" y="280" textAnchor="middle" className="fill-muted-foreground text-xs font-medium">Quantity</text>
-            <text x="18" y="105" textAnchor="middle" className="fill-muted-foreground text-xs font-medium" transform="rotate(-90, 18, 105)">Price/Cost (£)</text>
-            
-            {/* MC Curve - intersects MR at Q where AR is tangent to ATC */}
-            <motion.path
-              d="M 85 185 C 100 210, 112 208, 130 190 Q 138 184, 145 177 Q 168 160, 195 145 C 215 135, 230 105, 242 55"
-              fill="none"
-              stroke="#22c55e"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="246" y="52" className="fill-green-400 text-xs font-semibold">MC</text>
-            
-            {/* ATC Curve - TANGENT to AR at the profit-maximizing output */}
-            <motion.path
-              d="M 72 60 Q 103 101, 145 126 Q 176 145, 195 145 Q 230 145, 292 100"
-              fill="none"
-              stroke="#f59e0b"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="294" y="96" className="fill-amber-400 text-xs font-semibold">ATC</text>
-            
-            {/* Demand Curve (AR) - EXACTLY TANGENT to ATC at one point */}
-            <motion.path
-              d="M 60 75 L 275 205"
-              fill="none"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="280" y="210" className="fill-primary text-xs font-semibold">D=AR</text>
-            
-            {/* MR Curve - twice as steep as AR */}
-            <motion.path
-              d="M 60 75 L 168 205"
-              fill="none"
-              stroke="#a855f7"
-              strokeWidth="2.5"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x="178" y="212" className="fill-purple-400 text-xs font-semibold">MR</text>
-            
-            {/* THE KEY TANGENT POINT - P = ATC, where AR just touches ATC */}
-            <motion.circle
-              cx="145" cy="126"
-              r="7"
-              fill="hsl(var(--accent))"
-              stroke="white"
-              strokeWidth="2"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.2, duration: 0.3 }}
-            />
-            
-            {/* MC = MR intersection */}
-            <motion.circle
-              cx="145" cy="177"
-              r="5"
-              fill="#a855f7"
-              stroke="white"
-              strokeWidth="1.5"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.3, duration: 0.3 }}
-            />
-            
-            {/* Tangent point annotation */}
-            <motion.g
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : {}}
-              transition={{ delay: 1.8, duration: 0.5 }}
-            >
-              <line x1="145" y1="126" x2="192" y2="96" stroke="white" strokeWidth="1" strokeDasharray="2,2" />
-              <text x="196" y="92" className="fill-accent text-[9px] font-semibold">Tangent Point</text>
-              <text x="196" y="102" className="fill-accent text-[9px]">(P = ATC)</text>
-            </motion.g>
-            
-            {/* Price/ATC line to Y-axis (same point since P=ATC) */}
-            <motion.line
-              x1="55" y1="126" x2="145" y2="126"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="52" y="120" textAnchor="end" className="fill-accent text-[10px] font-semibold">P=ATC</text>
-            
-            {/* Quantity line */}
-            <motion.line
-              x1="145" y1="126" x2="145" y2="255"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1"
-              strokeDasharray="4,4"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="145" y="270" textAnchor="middle" className="fill-muted-foreground text-[10px] font-semibold">Q*</text>
-            
-            {/* MC=MR label */}
-            <text x="152" y="188" className="fill-purple-300 text-[8px]">MC=MR</text>
-            
-            {/* Excess Capacity indicator */}
-            <motion.g
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : {}}
-              transition={{ delay: 2, duration: 0.5 }}
-            >
-              <line x1="145" y1="248" x2="195" y2="248" stroke="#ef4444" strokeWidth="2" />
-              <line x1="145" y1="244" x2="145" y2="252" stroke="#ef4444" strokeWidth="2" />
-              <line x1="195" y1="244" x2="195" y2="252" stroke="#ef4444" strokeWidth="2" />
-              <text x="170" y="230" textAnchor="middle" className="fill-red-400 text-[8px]">Excess</text>
-              <text x="170" y="240" textAnchor="middle" className="fill-red-400 text-[8px]">Capacity</text>
-            </motion.g>
-          </svg>
-        </div>
-      </div>
-
-      {/* Chain of Analysis */}
-      <div className="mt-6 p-4 bg-gradient-to-r from-primary/10 to-transparent border-l-4 border-primary rounded-r-lg">
-        <p className="text-sm text-muted-foreground leading-relaxed text-justify">
-          <strong className="text-foreground">Chain of Analysis:</strong> In <strong className="text-green-400">short-run</strong>, supernormal profits (P &gt; ATC) attract new entrants → 
-          Market share per firm decreases → Demand curve shifts left → Entry continues until AR becomes <strong className="text-amber-400">tangent to ATC</strong> in <strong className="text-blue-400">long-run</strong> → 
-          Normal profit (P = ATC) at profit-maximizing output (MC = MR). Note: Output is <strong className="text-red-400">not at minimum ATC</strong>, creating <strong>excess capacity</strong> and <strong>allocative inefficiency</strong> (P &gt; MC).
-        </p>
-      </div>
-
-      <div className="mt-4 grid md:grid-cols-2 gap-4">
-        <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
-          <p className="text-green-200 text-xs leading-relaxed">
-            <strong>Short-Run:</strong> Supernormal profits (shaded rectangle) attract new firms, increasing competition 
-            and reducing demand for each existing firm.
-          </p>
-        </div>
-        <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-          <p className="text-blue-200 text-xs leading-relaxed">
-            <strong>Long-Run:</strong> Entry continues until AR is <em>tangent</em> to ATC (P = ATC), 
-            leaving only normal profit. The tangent point is <strong>NOT at minimum ATC</strong> → excess capacity.
-          </p>
-        </div>
-      </div>
-    </div>
+      )}
+    </DiagramFrame>
   );
 };
 

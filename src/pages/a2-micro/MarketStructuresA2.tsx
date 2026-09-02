@@ -13,6 +13,9 @@ import MonopolyDiagram from '@/components/diagrams/MonopolyDiagram';
 import GameTheoryDiagram from '@/components/diagrams/GameTheoryDiagram';
 import XEfficiencyDiagram from '@/components/diagrams/XEfficiencyDiagram';
 import ContestableMarketsDiagram from '@/components/diagrams/ContestableMarketsDiagram';
+import NaturalMonopolyDiagram from '@/components/diagrams/NaturalMonopolyDiagram';
+import PriceDiscriminationDiagram from '@/components/diagrams/PriceDiscriminationDiagram';
+import CartelDiagram from '@/components/diagrams/CartelDiagram';
 import { NaturalMonopolyAnalyticalDepth, NaturalMonopolyEvaluativeJudgement, GameTheoryAnalyticalDepth, GameTheoryEvaluativeJudgement, KinkedDemandAnalyticalDepth, KinkedDemandEvaluativeJudgement } from '@/components/a2-depth/MarketStructuresDepthSections';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
 
@@ -730,6 +733,9 @@ const MarketStructuresA2 = () => {
           {/* Advanced Game Theory Diagram */}
           <div className="glass-card p-8 rounded-2xl mb-8">
             <GameTheoryDiagram />
+            <div className="mt-8">
+              <CartelDiagram />
+            </div>
           </div>
 
           {/* Examiner Trap */}
@@ -908,6 +914,12 @@ const MarketStructuresA2 = () => {
             </p>
 
             <MonopolyDiagram title="Monopoly Profit Maximization" />
+            <div className="mt-8">
+              <NaturalMonopolyDiagram />
+            </div>
+            <div className="mt-8">
+              <PriceDiscriminationDiagram />
+            </div>
           </div>
 
           {/* Natural Monopoly */}
