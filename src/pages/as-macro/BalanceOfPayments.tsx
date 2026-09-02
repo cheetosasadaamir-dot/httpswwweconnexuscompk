@@ -11,6 +11,7 @@ import { JCurveMarshallLernerDiagram } from '@/components/diagrams/JCurveMarshal
 import { PolicyCorrectionDiagram } from '@/components/diagrams/PolicyCorrectionDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const BalanceOfPayments = () => {
   return (
@@ -269,6 +270,7 @@ const BalanceOfPayments = () => {
 
         </motion.div>
       </div>
+      <ChapterEnrichment id="international-economics" />
     </Layout>
   );
 };

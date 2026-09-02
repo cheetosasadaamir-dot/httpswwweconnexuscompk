@@ -18,6 +18,7 @@ import KeynesianTheorySection from '@/components/diagrams/KeynesianTheorySection
 import KeynesianEquilibriumSection from '@/components/diagrams/KeynesianEquilibriumSection';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const NationalIncome = () => {
   return (
@@ -983,6 +984,7 @@ const NationalIncome = () => {
           </div>
         </ContentSection>
       </div>
+      <ChapterEnrichment id="national-income-growth" />
     </Layout>
   );
 };

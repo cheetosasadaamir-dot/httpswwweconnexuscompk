@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import KeyTakeaways from '@/components/KeyTakeaways';
 import ExaminerTrap from '@/components/ExaminerTrap';
 import AnalysisBlock from '@/components/AnalysisBlock';
+import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const UtilityConsumerChoice = () => {
   return (
@@ -299,6 +300,7 @@ const UtilityConsumerChoice = () => {
         <IndifferenceCurveAnalyticalDepth />
         <IndifferenceCurveEvaluativeJudgement />
       </motion.section>
+      <ChapterEnrichment id="how-markets-work" />
     </ChapterLayout>
   );
 };
