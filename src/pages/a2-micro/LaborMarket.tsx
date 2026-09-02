@@ -154,7 +154,12 @@ const LaborMarket = () => {
                 remains upward-sloping because higher wages attract more workers into the labor force.
               </p>
             </div>
+
+            <div className="mt-8">
+              <BackwardBendingSupplyDiagram />
+            </div>
           </div>
+
 
           {/* Firm's Labor Supply */}
           <div className="glass-card p-8 rounded-2xl mb-8">
