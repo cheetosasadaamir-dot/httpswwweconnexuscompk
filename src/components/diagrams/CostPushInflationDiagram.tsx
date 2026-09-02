@@ -1,212 +1,96 @@
-import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
+/**
+ * Second-round cost effects — the wage-price spiral drawn on AD/AS.
+ *
+ * SRAS₁ : P = 10 + 0.35Y + 0.006Y² ; SRAS₂ = SRAS₁ + 18 ; SRAS₃ = SRAS₁ + 36
+ * AD    : P = 130 − 0.7Y (unchanged — the central bank accommodates)
+ * E₁ : Y = 78.8, P = 74.8 · E₂ : Y = 69.5, P = 81.3 · E₃ : Y = 59.7, P = 88.2
+ */
 const CostPushInflationDiagram = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showShift, setShowShift] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const p = plotBox();
+  const { x, y } = p;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.2 }
-    );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const SRAS1 = (Y: number) => 10 + 0.35 * Y + 0.006 * Y * Y;
+  const SRAS2 = (Y: number) => SRAS1(Y) + 18;
+  const SRAS3 = (Y: number) => SRAS1(Y) + 36;
+  const AD = (Y: number) => 130 - 0.7 * Y;
 
-  const width = 450, height = 320;
-  const margin = { top: 40, right: 30, bottom: 50, left: 60 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
-
-  // SRAS curves
-  const sras1Path = `M ${margin.left + 30},${margin.top + chartHeight - 30} Q ${margin.left + 150},${margin.top + chartHeight - 100} ${margin.left + chartWidth - 30},${margin.top + 30}`;
-  const sras2Path = `M ${margin.left + 30},${margin.top + chartHeight - 80} Q ${margin.left + 120},${margin.top + chartHeight - 150} ${margin.left + chartWidth - 60},${margin.top + 20}`;
-  
-  // AD curve
-  const adPath = `M ${margin.left + 40},${margin.top + 30} Q ${margin.left + 180},${margin.top + 120} ${margin.left + chartWidth - 40},${margin.top + chartHeight - 30}`;
+  const pts = [
+    { Y: 78.8, P: 74.8, label: 'E₁', color: C.marker },
+    { Y: 69.5, P: 81.3, label: 'E₂', color: C.supplyAlt },
+    { Y: 59.7, P: 88.2, label: 'E₃', color: C.intervention },
+  ];
 
   return (
-    <div ref={containerRef} className="glass-card p-4 my-3">
-      <div className="flex justify-between items-center mb-2">
-        <h3 className="font-serif text-lg text-gradient">Cost-Push Inflation</h3>
-        <button
-          onClick={() => setShowShift(!showShift)}
-          className="px-3 py-1 text-xs rounded-full border border-primary/30 hover:bg-primary/10 transition-all"
-        >
-          {showShift ? 'Hide' : 'Show'} AS Shift
-        </button>
-      </div>
+    <DiagramFrame
+      title="Second-Round Effects: The Wage-Price Spiral on AD/AS"
+      eyebrow="Figure — one shock becomes sustained inflation only if costs keep rising"
+      legend={[
+        { label: 'SRAS₁ → SRAS₂ → SRAS₃', color: C.supply },
+        { label: 'AD (accommodated, unchanged)', color: C.demand },
+        { label: 'Successive equilibria', color: C.intervention, kind: 'dot' },
+      ]}
+      note={
+        <>
+          A single supply shock only raises the price <em>level</em>. It becomes <strong>sustained
+          inflation</strong> when it triggers second-round effects. Round 1: import or energy costs jump,
+          SRAS₁ → SRAS₂, P rises to 81.3 and Y falls to 69.5. Round 2: real wages have fallen, so workers
+          bargain for compensating nominal pay rises; if these exceed productivity growth, unit labour costs
+          rise again and SRAS₂ → SRAS₃ (P = 88.2, Y = 59.7). Each round leaves the economy with higher prices
+          and lower output. The spiral is broken by <strong>anchored inflation expectations</strong> — a
+          credible inflation target, independent central bank, forward guidance — plus productivity growth
+          that absorbs pay rises. Evaluation: trade-union density, indexation of wages and benefits, and the
+          degree of monetary accommodation all determine whether round 2 ever happens.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg key={runKey} viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[320px]" role="img"
+          aria-label="Three successive leftward shifts of SRAS along a fixed AD curve">
+          <Axes p={p} id="cpinf" labelX="Real national output (Y)" labelY="General price level (P)" />
+          {play && (
+            <>
+              <motion.path d={curve(p, SRAS1, 5, 88)} fill="none" stroke={C.supply} strokeWidth={2.6} {...revealPath(0)} />
+              <motion.text x={x(88) - 32} y={y(SRAS1(88)) + 14} fill={C.supply} fontSize={11} fontWeight={700} {...revealFade(1)}>SRAS₁</motion.text>
 
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full max-w-md mx-auto">
-        <defs>
-          <marker id="arrow-cp" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="hsl(var(--foreground))" />
-          </marker>
-        </defs>
+              <motion.path d={curve(p, AD, 20, 100)} fill="none" stroke={C.demand} strokeWidth={2.6} {...revealPath(1)} />
+              <motion.text x={x(97)} y={y(AD(97)) - 8} fill={C.demand} fontSize={11} fontWeight={700} {...revealFade(2)}>AD</motion.text>
 
-        {/* Axes */}
-        <line x1={margin.left} y1={margin.top + chartHeight} x2={margin.left + chartWidth} y2={margin.top + chartHeight} stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#arrow-cp)" />
-        <line x1={margin.left} y1={margin.top + chartHeight} x2={margin.left} y2={margin.top} stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#arrow-cp)" />
-        
-        <text x={margin.left + chartWidth / 2} y={height - 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="600">Real GDP (Y)</text>
-        <text x={20} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="600" transform={`rotate(-90, 20, ${margin.top + chartHeight / 2})`}>Price Level (P)</text>
+              <motion.path d={curve(p, SRAS2, 5, 80)} fill="none" stroke={C.supplyAlt} strokeWidth={2.4}
+                strokeDasharray="7 4" {...revealPath(2)} />
+              <motion.text x={x(80) - 32} y={y(SRAS2(80)) - 8} fill={C.supplyAlt} fontSize={11} fontWeight={700} {...revealFade(3)}>SRAS₂</motion.text>
 
-        {/* AD Curve */}
-        <motion.path
-          d={adPath}
-          fill="none"
-          stroke="hsl(var(--primary))"
-          strokeWidth="3"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ duration: 0.8 }}
-        />
-        <text x={margin.left + chartWidth - 30} y={margin.top + chartHeight - 15} fill="hsl(var(--primary))" fontSize="11" fontWeight="600">AD</text>
+              <motion.path d={curve(p, SRAS3, 5, 70)} fill="none" stroke={C.intervention} strokeWidth={2.4}
+                strokeDasharray="7 4" {...revealPath(3)} />
+              <motion.text x={x(70) - 32} y={y(SRAS3(70)) - 8} fill={C.intervention} fontSize={11} fontWeight={700} {...revealFade(4)}>SRAS₃</motion.text>
 
-        {/* SRAS1 */}
-        <motion.path
-          d={sras1Path}
-          fill="none"
-          stroke="hsl(var(--cambridge-orange))"
-          strokeWidth="3"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        />
-        <text x={margin.left + chartWidth - 15} y={margin.top + 45} fill="hsl(var(--cambridge-orange))" fontSize="10" fontWeight="600">SRAS₁</text>
+              {pts.map((pt, i) => (
+                <g key={pt.label}>
+                  <motion.g {...revealFade(4 + i)}>
+                    <Guides p={p} qx={pt.Y} py={pt.P} color={pt.color} yLabel={pt.P.toFixed(1)} />
+                    <text x={x(pt.Y)} y={y(0) + (i === 1 ? 28 : 15)} fill={pt.color} fontSize={10} textAnchor="middle">
+                      {pt.Y.toFixed(1)}
+                    </text>
+                  </motion.g>
+                  <motion.circle cx={x(pt.Y)} cy={y(pt.P)} r={5} fill={pt.color} {...revealPoint(4 + i)} />
+                  <motion.text x={x(pt.Y) + 8} y={y(pt.P) + 12} fill={C.axis} fontSize={11} fontWeight={700} {...revealFade(5 + i)}>
+                    {pt.label}
+                  </motion.text>
+                </g>
+              ))}
 
-        {/* SRAS2 - shifted left */}
-        {showShift && (
-          <>
-            <motion.path
-              d={sras2Path}
-              fill="none"
-              stroke="hsl(var(--destructive))"
-              strokeWidth="3"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.6 }}
-            />
-            <text x={margin.left + chartWidth - 55} y={margin.top + 35} fill="hsl(var(--destructive))" fontSize="10" fontWeight="600">SRAS₂</text>
-            
-            {/* Shift arrow */}
-            <motion.path
-              d={`M ${margin.left + 200} ${margin.top + 100} L ${margin.left + 160} ${margin.top + 70}`}
-              stroke="hsl(var(--destructive))"
-              strokeWidth="2"
-              markerEnd="url(#arrow-cp)"
-              strokeDasharray="4,2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            />
-          </>
-        )}
-
-        {/* Price level lines */}
-        <motion.line
-          x1={margin.left}
-          y1={margin.top + chartHeight - 100}
-          x2={margin.left + 170}
-          y2={margin.top + chartHeight - 100}
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="1"
-          strokeDasharray="4,2"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ delay: 0.6 }}
-        />
-        <text x={margin.left - 8} y={margin.top + chartHeight - 97} textAnchor="end" fill="hsl(var(--muted-foreground))" fontSize="9">P₁</text>
-
-        {showShift && (
-          <>
-            <motion.line
-              x1={margin.left}
-              y1={margin.top + chartHeight - 145}
-              x2={margin.left + 130}
-              y2={margin.top + chartHeight - 145}
-              stroke="hsl(var(--destructive))"
-              strokeWidth="1"
-              strokeDasharray="4,2"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ delay: 0.4 }}
-            />
-            <text x={margin.left - 8} y={margin.top + chartHeight - 142} textAnchor="end" fill="hsl(var(--destructive))" fontSize="9">P₂</text>
-          </>
-        )}
-
-        {/* Output lines */}
-        <motion.line
-          x1={margin.left + 170}
-          y1={margin.top + chartHeight}
-          x2={margin.left + 170}
-          y2={margin.top + chartHeight - 100}
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="1"
-          strokeDasharray="4,2"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ delay: 0.7 }}
-        />
-        <text x={margin.left + 170} y={margin.top + chartHeight + 12} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">Y₁</text>
-
-        {showShift && (
-          <>
-            <motion.line
-              x1={margin.left + 130}
-              y1={margin.top + chartHeight}
-              x2={margin.left + 130}
-              y2={margin.top + chartHeight - 145}
-              stroke="hsl(var(--destructive))"
-              strokeWidth="1"
-              strokeDasharray="4,2"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ delay: 0.5 }}
-            />
-            <text x={margin.left + 130} y={margin.top + chartHeight + 12} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="9">Y₂</text>
-          </>
-        )}
-
-        {/* Equilibrium points */}
-        <motion.circle
-          cx={margin.left + 170}
-          cy={margin.top + chartHeight - 100}
-          r="5"
-          fill="hsl(var(--cambridge-orange))"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : {}}
-          transition={{ delay: 0.8 }}
-        />
-        <text x={margin.left + 178} y={margin.top + chartHeight - 108} fill="hsl(var(--foreground))" fontSize="9">E₁</text>
-
-        {showShift && (
-          <>
-            <motion.circle
-              cx={margin.left + 130}
-              cy={margin.top + chartHeight - 145}
-              r="5"
-              fill="hsl(var(--destructive))"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.6 }}
-            />
-            <text x={margin.left + 138} y={margin.top + chartHeight - 153} fill="hsl(var(--foreground))" fontSize="9">E₂</text>
-          </>
-        )}
-      </svg>
-
-      <div className="mt-2 p-3 bg-muted/30 rounded-lg">
-        <p className="text-xs text-muted-foreground">
-          <strong className="text-foreground">Cost-Push Inflation:</strong> {showShift 
-            ? 'Rising production costs (wages, raw materials, oil) shift SRAS left from SRAS₁ to SRAS₂. This causes higher prices (P₁→P₂) AND lower output (Y₁→Y₂)—a situation called stagflation.'
-            : 'Click "Show AS Shift" to see how rising production costs cause the aggregate supply curve to shift left, leading to higher prices and lower real output.'}
-        </p>
-      </div>
-    </div>
+              <motion.text x={x(16)} y={y(94)} fill={C.muted} fontSize={10} {...revealFade(7)}>
+                each round: ↑ costs → ↑ P, ↓ Y
+              </motion.text>
+            </>
+          )}
+        </svg>
+      )}
+    </DiagramFrame>
   );
 };
 
