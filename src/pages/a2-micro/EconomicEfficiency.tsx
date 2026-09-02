@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import ChapterLayout from '@/components/ChapterLayout';
 import EfficiencyDiagram from '@/components/diagrams/EfficiencyDiagram';
+import EfficiencyComparisonDiagram from '@/components/diagrams/EfficiencyComparisonDiagram';
 import MarketFailureExternalityDiagram from '@/components/diagrams/MarketFailureExternalityDiagram';
 import AdvancedEfficiencySection from '@/components/diagrams/AdvancedEfficiencySection';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -49,6 +50,9 @@ const EconomicEfficiency = () => {
         </div>
 
         <EfficiencyDiagram />
+        <div className="mt-8">
+          <EfficiencyComparisonDiagram />
+        </div>
 
         <div className="grid md:grid-cols-2 gap-4 mt-8">
           <Card className="glass-card border-border">
