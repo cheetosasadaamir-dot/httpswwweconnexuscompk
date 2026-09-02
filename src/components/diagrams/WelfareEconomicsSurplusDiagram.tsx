@@ -54,7 +54,10 @@ const WelfareEconomicsSurplusDiagram = () => {
   // Key economic points - precisely defined
   const demandYIntercept = { x: 0, y: 95 };  // Pmax - reservation price
   const supplyYIntercept = { x: 0, y: 5 };   // Pmin - minimum supply price
-  const equilibrium = { x: 50, y: 50 };       // Equilibrium: Pe, Qe
+  // D: P = 95 - Q, S: P = 5 + Q  =>  95 - Q = 5 + Q  =>  Qe = 45, Pe = 50.
+  // The marked point must sit exactly on the crossing of the two drawn lines,
+  // otherwise the CS/PS triangles no longer close along the curves.
+  const equilibrium = { x: 45, y: 50 };       // Equilibrium: Pe, Qe
 
   // Demand curve: from (0, 95) to (95, 0) - linear downward slope
   const demandPath = `M ${xScale(0)} ${yScale(demandYIntercept.y)} L ${xScale(95)} ${yScale(0)}`;

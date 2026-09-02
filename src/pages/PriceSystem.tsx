@@ -9,7 +9,7 @@ import GlossaryTooltip from '@/components/GlossaryTooltip';
 import DemandSupplyDiagram from '@/components/diagrams/DemandSupplyDiagram';
 import MarketEquilibriumInteractive from '@/components/diagrams/MarketEquilibriumInteractive';
 import WelfareEconomicsSurplusDiagram from '@/components/diagrams/WelfareEconomicsSurplusDiagram';
-import DemandSupplyEquilibriumDiagram from '@/components/diagrams/DemandSupplyEquilibriumDiagram';
+
 import MovementShiftDiagram from '@/components/diagrams/MovementShiftDiagram';
 import ExcessDemandSupplyDiagram from '@/components/diagrams/ExcessDemandSupplyDiagram';
 import PriceFunctionsDiagram from '@/components/diagrams/PriceFunctionsDiagram';

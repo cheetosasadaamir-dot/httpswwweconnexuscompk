@@ -145,9 +145,10 @@ const PPCConceptDiagram = ({ showGrowth = false, showPivot = false, title }: PPC
           />
         )}
 
-        {/* Point A - On curve (efficient) */}
+        {/* Point A - On curve (efficient). Midpoint (t=0.5) of the first
+            Bézier segment M 80 60 Q 120 100 200 200 => (130, 115). */}
         <motion.circle
-          cx="120" cy="100" r="8"
+          cx="130" cy="115" r="8"
           fill="hsl(217 91% 60%)"
           stroke="hsl(217 91% 80%)"
           strokeWidth="2"
@@ -156,7 +157,7 @@ const PPCConceptDiagram = ({ showGrowth = false, showPivot = false, title }: PPC
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         />
-        <text x="130" y="95" fill="hsl(220 14% 90%)" fontSize="14" fontWeight="600">A</text>
+        <text x="140" y="110" fill="hsl(220 14% 90%)" fontSize="14" fontWeight="600">A</text>
 
         {/* Point B - On curve */}
         <motion.circle
@@ -171,9 +172,9 @@ const PPCConceptDiagram = ({ showGrowth = false, showPivot = false, title }: PPC
         />
         <text x="210" y="195" fill="hsl(220 14% 90%)" fontSize="14" fontWeight="600">B</text>
 
-        {/* Point C - On curve */}
+        {/* Point C - On curve. Midpoint of Q 280 280 340 280 => (275, 260). */}
         <motion.circle
-          cx="280" cy="260" r="8"
+          cx="275" cy="260" r="8"
           fill="hsl(217 91% 60%)"
           stroke="hsl(217 91% 80%)"
           strokeWidth="2"

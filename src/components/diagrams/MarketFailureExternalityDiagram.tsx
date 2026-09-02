@@ -28,6 +28,16 @@ const MarketFailureExternalityDiagram = () => {
     return { x, y };
   };
 
+  // Value of a straight line at a given quantity — used to anchor the
+  // deadweight-loss triangle on the true social curve rather than an offset.
+  const evalAt = (
+    line: { start: { x: number; y: number }; end: { x: number; y: number } },
+    x: number
+  ) => {
+    const m = (line.end.y - line.start.y) / (line.end.x - line.start.x);
+    return line.start.y + m * (x - line.start.x);
+  };
+
 
   // Precomputed intersections (numerically exact) for each externality scenario
   const negProdMpc = { start: { x: 10, y: 20 }, end: { x: 100, y: 80 } };
@@ -131,6 +141,13 @@ const MarketFailureExternalityDiagram = () => {
   const data = getExternalityData();
   const isNegative = externalityType.includes('negative');
 
+  // The deadweight-loss triangle is bounded by MSC, MSB and the vertical at Qm.
+  // Its third vertex therefore lies ON the divergent social curve at the market
+  // quantity — never at an arbitrary vertical offset from the market price.
+  const socialCurve = (data.showMSC ? data.msc : (data as { msb?: typeof data.mpc }).msb) ?? null;
+  const dwlThirdY = socialCurve ? evalAt(socialCurve, data.qMarket) : data.pMarket;
+
+
   return (
     <div className="glass-card p-6 rounded-xl">
       <div className="mb-4">
@@ -219,11 +236,7 @@ const MarketFailureExternalityDiagram = () => {
         {/* Welfare Loss Triangle */}
         <motion.polygon
           key={externalityType}
-          points={
-            data.welfare === 'overproduction'
-              ? `${xScale(data.qOptimal)},${yScale(data.pOptimal)} ${xScale(data.qMarket)},${yScale(data.pMarket)} ${xScale(data.qOptimal)},${yScale(data.pMarket - 15)}`
-              : `${xScale(data.qMarket)},${yScale(data.pMarket)} ${xScale(data.qOptimal)},${yScale(data.pOptimal)} ${xScale(data.qMarket)},${yScale(data.pOptimal - 15)}`
-          }
+          points={`${xScale(data.qOptimal)},${yScale(data.pOptimal)} ${xScale(data.qMarket)},${yScale(data.pMarket)} ${xScale(data.qMarket)},${yScale(dwlThirdY)}`}
           fill={isNegative ? "hsl(var(--destructive))" : "hsl(var(--cambridge-green))"}
           opacity={0.3}
           initial={{ opacity: 0 }}
