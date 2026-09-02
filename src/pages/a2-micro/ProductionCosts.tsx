@@ -147,10 +147,25 @@ const ProductionCosts = () => {
           </div>
         </div>
 
-        <div className="mt-8">
-          <h4 className="text-silver-bright font-semibold mb-4">Interactive: Product Curves & Cost Curves</h4>
-          <CostCurvesDiagram />
+        <div className="mt-8 space-y-8">
+          <TotalProductDiagram />
+          <div>
+            <h4 className="text-silver-bright font-semibold mb-4">Interactive: Product Curves &amp; Cost Curves</h4>
+            <CostCurvesDiagram />
+          </div>
         </div>
+
+        <div className="mt-6 bg-card/40 border border-silver/20 rounded-xl p-5">
+          <h5 className="text-silver-bright font-medium mb-2">Real World: Diminishing Returns in Practice</h5>
+          <p className="text-sm text-silver">
+            A fixed-size Amazon fulfilment centre can absorb extra pickers during peak season, but once aisles and
+            conveyors are congested each extra worker adds less throughput — classic diminishing returns, which is
+            why Amazon builds new warehouses (a long-run change of scale) rather than simply hiring more staff into
+            existing ones. The same logic explains hospital A&amp;E departments: adding doctors without adding beds,
+            scanners or theatres raises output at a falling rate.
+          </p>
+        </div>
+
 
         <AnalysisBlock title="Product Curves Analysis" type="analysis">
           <p>The product curves illustrate the Law of Diminishing Returns in action. Initially, as workers are added, specialization allows MP to rise (increasing returns). However, as more workers share fixed capital, MP begins to fall (diminishing returns). When MP becomes negative, TP actually decreases due to overcrowding and inefficiency. The MP curve intersects AP at its maximum point—a crucial relationship for understanding cost behavior.</p>
