@@ -504,6 +504,34 @@ const ProductionCosts = () => {
             AR (demand) curve. This means MR reaches zero (TR is maximized) at exactly half the quantity where 
             AR equals zero. Always draw MR intersecting the quantity axis at half the point where demand does.
           </ExamTipBox>
+
+          <div className="bg-card/40 border border-silver/20 rounded-xl p-5">
+            <h5 className="text-silver-bright font-medium mb-3">Revenue, Elasticity and the MR Curve</h5>
+            <p className="text-sm text-silver mb-3">
+              Along a straight-line demand curve the elasticity of demand changes continuously, and MR records it:
+            </p>
+            <ul className="text-sm text-silver space-y-1.5">
+              <li>• <strong>MR &gt; 0</strong> (upper half of AR): demand is <strong>price elastic</strong> (PED &gt; 1) — a price cut raises total revenue.</li>
+              <li>• <strong>MR = 0</strong> (midpoint): demand is <strong>unit elastic</strong> (PED = 1) — TR is at its maximum.</li>
+              <li>• <strong>MR &lt; 0</strong> (lower half): demand is <strong>price inelastic</strong> (PED &lt; 1) — a price cut reduces total revenue.</li>
+            </ul>
+            <p className="text-xs text-muted-foreground mt-3">
+              Formal link: MR = P(1 − 1/PED). This is why no profit-maximising price maker ever operates on the
+              inelastic section of its demand curve — it could raise price, raise revenue and cut costs simultaneously.
+            </p>
+          </div>
+
+          <div className="bg-card/40 border border-silver/20 rounded-xl p-5">
+            <h5 className="text-silver-bright font-medium mb-2">Real World: Streaming Price Rises</h5>
+            <p className="text-sm text-silver">
+              Netflix repeatedly raised its standard subscription (£10.99 in 2022 to £12.99 by 2025) while continuing
+              to grow revenue, evidence that it was operating on the elastic-but-approaching-unit-elastic section of
+              its demand curve with strong brand loyalty. Low-cost airlines do the opposite: highly elastic leisure
+              demand means Ryanair cuts headline fares to fill seats, then earns margin on inelastic ancillary
+              services (bags, seat selection) where MR remains high.
+            </p>
+          </div>
+
         </div>
       </ContentSection>
 
