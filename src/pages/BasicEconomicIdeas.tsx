@@ -8,7 +8,6 @@ import PPCConceptDiagram from '@/components/diagrams/PPCConceptDiagram';
 import FactorsOfProductionDiagram from '@/components/diagrams/FactorsOfProductionDiagram';
 import PPCShiftsDiagram from '@/components/diagrams/PPCShiftsDiagram';
 import OpportunityCostPPCDiagram from '@/components/diagrams/OpportunityCostPPCDiagram';
-import ResourceAllocationSpectrumDiagram from '@/components/diagrams/ResourceAllocationSpectrumDiagram';
 import PriceMechanismFlowDiagram from '@/components/diagrams/PriceMechanismFlowDiagram';
 import PositiveNormativePPCDiagram from '@/components/diagrams/PositiveNormativePPCDiagram';
 import PositiveNormativeQuiz from '@/components/diagrams/PositiveNormativeQuiz';
