@@ -10,7 +10,7 @@ const BackToHome = ({ className = '' }: { className?: string }) => {
   if (pathname === '/') return null;
 
   return (
-    <div className={`w-[95%] max-w-[1200px] mx-auto px-1 pt-3 ${className}`}>
+    <div className={`w-[95%] max-w-[1200px] mx-auto px-4 md:px-6 pt-2 pb-1 ${className}`}>
       <Link
         to="/"
         className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/12 bg-white/[0.04] text-[11px] uppercase tracking-[0.18em] text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/40 transition-colors"
