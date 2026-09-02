@@ -112,9 +112,13 @@ const MonopolisticCompetitionDiagram = () => {
                 ar={AR2} mr={MR2} arTo={55} mrTo={38} qe={q2} pe={P2}
                 extra={
                   <>
-                    <motion.rect x={fx(q2)} y={y(46)} width={fx(23.9) - fx(q2)} height={y(20) - y(46)}
-                      fill={C.welfareLoss} opacity={0.14} {...revealFade(5)} />
-                    <motion.text x={fx(19)} y={y(48)} fill={C.welfareLoss} fontSize={10} textAnchor="middle" {...revealFade(6)}>
+                    <motion.g {...revealFade(5)}>
+                      <line x1={fx(q2)} y1={y(12)} x2={fx(23.9)} y2={y(12)} stroke={C.welfareLoss} strokeWidth={2} />
+                      <polygon points={`${fx(q2)},${y(12)} ${fx(q2) + 8},${y(12) - 4} ${fx(q2) + 8},${y(12) + 4}`} fill={C.welfareLoss} />
+                      <polygon points={`${fx(23.9)},${y(12)} ${fx(23.9) - 8},${y(12) - 4} ${fx(23.9) - 8},${y(12) + 4}`} fill={C.welfareLoss} />
+                      <line x1={fx(23.9)} y1={y(31.7)} x2={fx(23.9)} y2={y(8)} stroke={C.welfareLoss} strokeDasharray="4 3" strokeWidth={1} />
+                    </motion.g>
+                    <motion.text x={fx(19.5)} y={y(5)} fill={C.welfareLoss} fontSize={10} textAnchor="middle" {...revealFade(6)}>
                       excess capacity
                     </motion.text>
                     <motion.circle cx={fx(23.9)} cy={y(31.7)} r={4} fill={C.welfareGain} {...revealPoint(6)} />

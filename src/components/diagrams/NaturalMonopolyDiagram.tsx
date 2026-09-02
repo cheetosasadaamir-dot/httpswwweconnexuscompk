@@ -69,7 +69,7 @@ const NaturalMonopolyDiagram = () => {
               <motion.rect x={fx(0)} y={y(55)} width={fx(50) - fx(0)} height={y(50) - y(55)}
                 fill={C.revenue} opacity={0.25} {...revealFade(4)} />
               <motion.rect x={fx(0)} y={y(30)} width={fx(100) - fx(0)} height={y(MC) - y(30)}
-                fill={C.welfareLoss} opacity={0.14} {...revealFade(6)} />
+                fill={C.welfareLoss} opacity={0.10} {...revealFade(6)} />
 
               <motion.path d={seg(AR, 0, 110)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(0)} />
               <motion.text x={fx(110) + 2} y={y(AR(110)) + 12} fill={C.demand} fontSize={11} {...revealFade(1)}>AR</motion.text>
@@ -85,22 +85,22 @@ const NaturalMonopolyDiagram = () => {
               <motion.text x={fx(110) + 2} y={y(MC) + 4} fill={C.social} fontSize={11} {...revealFade(4)}>MC</motion.text>
 
               <motion.g {...revealFade(4)}>
-                <Guides p={p} qx={50 * K} py={55} color={C.marker} xLabel="Q = 50" yLabel="P = 55" />
+                <Guides p={p} qx={50 * K} py={55} color={C.marker} xLabel="Q = 50" yLabel="55" />
               </motion.g>
               <motion.circle cx={fx(50)} cy={y(55)} r={5} fill={C.marker} {...revealPoint(5)} />
               <motion.text x={fx(52)} y={y(64)} fill={C.marker} fontSize={10} {...revealFade(5)}>unregulated</motion.text>
 
               <motion.g {...revealFade(6)}>
-                <Guides p={p} qx={66.7 * K} py={40} color={C.welfareGain} xLabel="Q = 66.7" yLabel="P = AC = 40" />
+                <Guides p={p} qx={66.7 * K} py={40} color={C.welfareGain} xLabel="Q = 66.7" yLabel="40" />
               </motion.g>
               <motion.circle cx={fx(66.7)} cy={y(40)} r={5} fill={C.welfareGain} {...revealPoint(6)} />
               <motion.text x={fx(68)} y={y(46)} fill={C.welfareGain} fontSize={10} {...revealFade(7)}>AC pricing</motion.text>
 
               <motion.circle cx={fx(100)} cy={y(MC)} r={5} fill={C.demandAlt} {...revealPoint(7)} />
-              <motion.text x={fx(80)} y={y(MC) - 8} fill={C.demandAlt} fontSize={10} {...revealFade(8)}>
+              <motion.text x={fx(44)} y={y(24)} fill={C.demandAlt} fontSize={10} {...revealFade(8)}>
                 MC pricing: Q = 100, subsidy = 2000
               </motion.text>
-              <motion.text x={fx(78) + 4} y={y(0) + 15} fill={C.demandAlt} fontSize={10} textAnchor="middle" {...revealFade(8)}>Q = 100</motion.text>
+              <motion.text x={fx(100)} y={y(0) + 15} fill={C.demandAlt} fontSize={10} textAnchor="middle" {...revealFade(8)}>Q = 100</motion.text>
             </>
           )}
         </svg>

@@ -93,10 +93,10 @@ const CartelDiagram = () => {
                   aria-label="Individual cartel member with a quota of four units and an incentive to expand to twelve units">
                   <Axes p={p} id="cartel-firm" labelX="Member output (q)" labelY="Price, Costs, Revenue" />
                   <motion.path d={`M ${gx(4)} ${y(68)} L ${gx(12)} ${y(68)} L ${gx(12)} ${y(MCf(12))} L ${gx(4)} ${y(MCf(4))} Z`}
-                    fill={C.welfareLoss} opacity={0.18} {...revealFade(4)} />
+                    fill={C.welfareLoss} opacity={0.12} {...revealFade(4)} />
                   <motion.path d={`M ${gx(0)} ${y(68)} L ${gx(16)} ${y(68)}`} fill="none" stroke={C.demand}
                     strokeWidth={2.4} {...revealPath(0)} />
-                  <motion.text x={gx(16) + 4} y={y(68) - 6} fill={C.demand} fontSize={10} {...revealFade(1)}>P = 68 (cartel price)</motion.text>
+                  <motion.text x={gx(16) + 4} y={y(68) - 6} fill={C.demand} fontSize={10} {...revealFade(1)}>P = 68</motion.text>
                   <motion.path d={seg(MCf, 0, 16, gx)} fill="none" stroke={C.social} strokeWidth={2.4} {...revealPath(1)} />
                   <motion.text x={gx(16) + 4} y={y(MCf(16))} fill={C.social} fontSize={11} {...revealFade(2)}>MC</motion.text>
                   <motion.g {...revealFade(3)}>

@@ -103,7 +103,7 @@ const PerfectCompetitionDiagram = () => {
                     <Guides p={p} qx={68} py={32} color={C.social} xLabel="Q₂ = 68" yLabel="P₂ = 32" />
                   </motion.g>
                   <motion.circle cx={x(68)} cy={y(32)} r={5} fill={C.social} {...revealPoint(6)} />
-                  <motion.text x={x(50)} y={y(78)} fill={C.muted} fontSize={10} {...revealFade(6)}>
+                  <motion.text x={x(30)} y={y(90)} fill={C.muted} fontSize={10} {...revealFade(6)}>
                     entry → supply shifts right → price falls
                   </motion.text>
                 </>
@@ -144,7 +144,7 @@ const PerfectCompetitionDiagram = () => {
                     P₁ = AR = MR
                   </motion.text>
                   <motion.circle cx={fx(qSR)} cy={y(pSR)} r={5} fill={C.marker} {...revealPoint(5)} />
-                  <motion.text x={fx(qSR) - 60} y={y(48)} fill={C.revenue} fontSize={10} {...revealFade(5)}>
+                  <motion.text x={fx(6)} y={y(48)} fill={C.revenue} fontSize={10} {...revealFade(5)}>
                     supernormal profit
                   </motion.text>
                   <line x1={fx(qSR)} y1={y(pSR)} x2={fx(qSR)} y2={y(0)} stroke={C.marker} strokeDasharray="4 3" strokeWidth={1} />
