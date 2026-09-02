@@ -18,6 +18,9 @@ import GameTheoryDiagram from '@/components/diagrams/GameTheoryDiagram';
 import ContestableMarketsDiagram from '@/components/diagrams/ContestableMarketsDiagram';
 import XEfficiencyDiagram from '@/components/diagrams/XEfficiencyDiagram';
 import EfficiencyDiagram from '@/components/diagrams/EfficiencyDiagram';
+import NaturalMonopolyDiagram from '@/components/diagrams/NaturalMonopolyDiagram';
+import PriceDiscriminationDiagram from '@/components/diagrams/PriceDiscriminationDiagram';
+import CartelDiagram from '@/components/diagrams/CartelDiagram';
 
 const MarketStructures = () => {
   return (
@@ -180,6 +183,24 @@ const MarketStructures = () => {
             </p>
             <MonopolyDiagram title="Monopoly Equilibrium: MC = MR, Price Read Off AR" />
 
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Not every monopoly is an accident of market power. Where fixed costs are enormous relative to demand — water mains, the electricity grid, rail
+              track — average cost falls across the entire relevant output range, so a single supplier is genuinely cheaper than several duplicating networks.
+              This is a <strong className="text-foreground">natural monopoly</strong>, and it converts the policy question from "how do we break the firm up?"
+              into "how do we regulate its price?". Marginal-cost pricing achieves allocative efficiency but forces a loss equal to the fixed cost, so
+              regulators typically impose average-cost pricing through RPI − X price caps instead.
+            </p>
+            <NaturalMonopolyDiagram />
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              A firm with price-setting power can also raise profit without changing its costs by charging different prices to different groups for the same
+              product. <strong className="text-foreground">Third-degree price discrimination</strong> requires the ability to separate consumers by their
+              price elasticity of demand and to prevent resale between the sub-markets. The firm then applies MR = MC separately in each, charging more where
+              demand is less elastic — peak rail fares, business air tickets and term-time holiday pricing are the standard illustrations.
+            </p>
+            <PriceDiscriminationDiagram />
+
+
             <AnalysisBlock title="Chain of Analysis: The Welfare Loss Triangle" type="analysis">
               <p className="text-sm leading-relaxed">
                 <strong>Step 1:</strong> Allocative efficiency requires P = MC, because price measures the marginal benefit to consumers and MC the
@@ -253,6 +274,15 @@ const MarketStructures = () => {
               and low entry barriers make it collapse.
             </p>
             <GameTheoryDiagram />
+
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              When collusion succeeds, the group behaves as a single joint monopolist: industry MR is equated with industry MC, a high price is agreed and
+              the profit-maximising output is divided into quotas. The agreement is fragile precisely because it is profitable. Taking the cartel price as
+              given, each member's own marginal cost lies well below it, so each has a private incentive to exceed its quota secretly — and when every member
+              reasons that way, output rises, the price collapses and the cartel disintegrates.
+            </p>
+            <CartelDiagram />
+
 
             <ExamTipBox title="Collusive versus Non-Collusive Oligopoly" variant="gold">
               <p className="text-sm leading-relaxed">
