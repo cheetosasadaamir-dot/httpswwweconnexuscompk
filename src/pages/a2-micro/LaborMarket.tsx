@@ -9,6 +9,11 @@ import { Link } from 'react-router-dom';
 import LaborMarketDiagram from '@/components/diagrams/LaborMarketDiagram';
 import MonopsonyLaborDiagram from '@/components/diagrams/MonopsonyLaborDiagram';
 import WageDifferentialsDiagram from '@/components/diagrams/WageDifferentialsDiagram';
+import BackwardBendingSupplyDiagram from '@/components/diagrams/BackwardBendingSupplyDiagram';
+import ElasticityLabourDemandDiagram from '@/components/diagrams/ElasticityLabourDemandDiagram';
+import TradeUnionCompetitiveDiagram from '@/components/diagrams/TradeUnionCompetitiveDiagram';
+import TradeUnionMonopsonyDiagram from '@/components/diagrams/TradeUnionMonopsonyDiagram';
+import EconomicRentTransferDiagram from '@/components/diagrams/EconomicRentTransferDiagram';
 import { MRPTheoryAnalyticalDepth, MRPTheoryEvaluativeJudgement } from '@/components/a2-depth/LaborMarketDepthSections';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
 
