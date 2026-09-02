@@ -266,14 +266,6 @@ const FloatingDock = () => {
               <img src={logoImage} alt="EconNexus" className="h-8 w-auto object-contain relative z-10 rounded-md" />
               <div className="absolute inset-0 bg-neon-cyan/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <div className="flex flex-col">
-              <span className="font-display text-sm font-semibold text-white group-hover:text-neon-cyan transition-colors">
-                EconNexus
-              </span>
-              <span className="text-[10px] text-muted-foreground font-medium tracking-wider">
-                
-              </span>
-            </div>
           </Link>
 
           <div className="w-px h-7 bg-neon-cyan/20 mx-1" />
@@ -298,7 +290,7 @@ const FloatingDock = () => {
                   )}
                 >
                   <item.icon className="w-4 h-4" />
-                  <span className="text-sm font-medium font-display">{item.title}</span>
+                  <span className="text-[13px] font-medium font-display">{item.title}</span>
                   {item.levels && (
                     <ChevronDown className={cn(
                       "w-3 h-3 transition-transform duration-300",
@@ -312,7 +304,7 @@ const FloatingDock = () => {
                   className="dock-item flex items-center gap-1.5 px-2.5 py-2 rounded-xl transition-all duration-300 cursor-pointer hover:text-secondary pointer-events-auto whitespace-nowrap"
                 >
                   <item.icon className="w-4 h-4" />
-                  <span className="text-sm font-medium font-display">{item.title}</span>
+                  <span className="text-[13px] font-medium font-display">{item.title}</span>
                 </button>
               )}
 
@@ -364,7 +356,7 @@ const FloatingDock = () => {
             className="dock-item flex items-center gap-1.5 px-2.5 py-2 rounded-xl ml-0.5 shrink-0 whitespace-nowrap hover:shadow-neon-cyan transition-all duration-300"
           >
             <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-medium font-display">Glossary</span>
+            <span className="text-[13px] font-medium font-display">Glossary</span>
           </Link>
 
         </div>
