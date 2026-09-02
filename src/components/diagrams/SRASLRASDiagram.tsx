@@ -1,310 +1,88 @@
-import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
+/**
+ * SRAS and LRAS on one pair of axes.
+ *
+ * SRAS : P = 10 + 0.7Y
+ * LRAS : vertical at Yf = 70 (productive potential)
+ * AD   : P = 95 − 0.8Y
+ * Equilibrium: 10 + 0.7Y = 95 − 0.8Y → Y = 56.7, P = 49.7
+ * Negative output gap = 70 − 56.7 = 13.3.
+ */
 const SRASLRASDiagram = () => {
-  const [showAnnotations, setShowAnnotations] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const p = plotBox();
+  const { x, y } = p;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const width = 540;
-  const height = 420;
-  const margin = { top: 40, right: 60, bottom: 60, left: 70 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
-
-  const xScale = (val: number) => margin.left + (val / 100) * chartWidth;
-  const yScale = (val: number) => margin.top + chartHeight - (val / 100) * chartHeight;
-
-  // SRAS curve (upward sloping, increasingly steep)
-  const srasPoints = [
-    { x: 10, y: 15 },
-    { x: 25, y: 22 },
-    { x: 40, y: 32 },
-    { x: 55, y: 48 },
-    { x: 65, y: 65 },
-    { x: 72, y: 85 },
-  ];
-
-  // LRAS position
-  const lrasX = 65;
-
-  const pathFromPoints = (points: { x: number; y: number }[]) => {
-    if (points.length === 0) return '';
-    let d = `M ${xScale(points[0].x)} ${yScale(points[0].y)}`;
-    for (let i = 1; i < points.length; i++) {
-      const prev = points[i - 1];
-      const curr = points[i];
-      const cpX1 = xScale(prev.x + (curr.x - prev.x) / 3);
-      const cpY1 = yScale(prev.y);
-      const cpX2 = xScale(prev.x + 2 * (curr.x - prev.x) / 3);
-      const cpY2 = yScale(curr.y);
-      d += ` C ${cpX1} ${cpY1}, ${cpX2} ${cpY2}, ${xScale(curr.x)} ${yScale(curr.y)}`;
-    }
-    return d;
-  };
-
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1,
-      transition: { duration: 1.2, ease: "easeInOut" as const }
-    }
-  };
+  const SRAS = (Y: number) => 10 + 0.7 * Y;
+  const AD = (Y: number) => 95 - 0.8 * Y;
+  const Yf = 70;
+  const Ye = 85 / 1.5;      // 56.67
+  const Pe = SRAS(Ye);      // 49.67
 
   return (
-    <div ref={containerRef} className="glass-card p-6">
-      <div className="flex flex-wrap justify-between items-center mb-4 gap-4">
-        <div>
-          <h3 className="font-serif text-xl text-gradient">Short-Run vs Long-Run Aggregate Supply</h3>
-          <p className="text-muted-foreground text-sm mt-1">
-            SRAS upward sloping (sticky wages); LRAS vertical at full employment output (Yfe/Y*)
-          </p>
-        </div>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setShowAnnotations(!showAnnotations)}
-        >
-          {showAnnotations ? "Hide" : "Show"} Keynesian Ranges
-        </Button>
-      </div>
-      
-      {/* Examiner Tip */}
-      <div className="mb-4 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs">
-        <span className="font-semibold text-amber-400">⚠️ Examiner Trap:</span>
-        <span className="text-muted-foreground ml-2">
-          LRAS is vertical because in the long run all prices (including wages) are flexible. 
-          A change in GPL does not change real wages, so there's no incentive to produce more/less.
-        </span>
-      </div>
-      
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full max-w-lg mx-auto">
-        {/* Grid */}
-        <defs>
-          <pattern id="grid-as" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.15" />
-          </pattern>
-          <marker id="arrowhead-as" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--silver))" />
-          </marker>
-        </defs>
-        <rect x={margin.left} y={margin.top} width={chartWidth} height={chartHeight} fill="url(#grid-as)" />
+    <DiagramFrame
+      title="Short-Run and Long-Run Aggregate Supply"
+      eyebrow="Figure — SRAS slopes upward, LRAS is vertical at productive potential"
+      legend={[
+        { label: 'SRAS — short-run aggregate supply', color: C.supply },
+        { label: 'LRAS — productive potential (Yf)', color: C.social },
+        { label: 'AD — aggregate demand', color: C.demand },
+        { label: 'Equilibrium', color: C.marker, kind: 'dot' },
+      ]}
+      note={
+        <>
+          <strong>SRAS slopes upward</strong> because in the short run at least one factor price — above all
+          the nominal wage — is fixed by contract. A higher price level therefore raises revenue faster than
+          costs, widening profit margins and inducing firms to expand output (overtime, extra shifts, running
+          plant harder). SRAS shifts when <em>costs per unit</em> change: wages, oil and commodity prices,
+          import prices via the exchange rate, indirect taxes and subsidies.
+          <strong> LRAS is vertical at Yf</strong> because in the long run all prices and wages are flexible,
+          so real output depends only on the <em>quantity and quality of factors</em> — labour supply, the
+          capital stock, technology, education and institutions — not on the price level. LRAS shifts only
+          through supply-side improvement (investment, migration, training, productivity, deregulation).
+          Here equilibrium is at Y = 56.7 &lt; Yf = 70, a <strong>negative output gap of 13.3</strong>: spare
+          capacity, cyclical unemployment and weak inflationary pressure.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg key={runKey} viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[320px]" role="img"
+          aria-label="Upward sloping SRAS, vertical LRAS at full capacity and a downward sloping AD curve">
+          <Axes p={p} id="sraslras" labelX="Real national output (Y)" labelY="General price level (P)" />
+          {play && (
+            <>
+              {/* negative output gap band */}
+              <motion.rect x={x(Ye)} y={p.m.t} width={x(Yf) - x(Ye)} height={p.ch}
+                fill={C.welfareLoss} opacity={0.10} {...revealFade(4)} />
 
-        {/* Axes */}
-        <line 
-          x1={margin.left} y1={margin.top + chartHeight} 
-          x2={margin.left + chartWidth + 10} y2={margin.top + chartHeight} 
-          stroke="hsl(var(--silver))" strokeWidth="2"
-          markerEnd="url(#arrowhead-as)"
-        />
-        <line 
-          x1={margin.left} y1={margin.top + chartHeight} 
-          x2={margin.left} y2={margin.top - 10} 
-          stroke="hsl(var(--silver))" strokeWidth="2"
-          markerEnd="url(#arrowhead-as)"
-        />
+              <motion.path d={curve(p, SRAS, 8, 95)} fill="none" stroke={C.supply} strokeWidth={2.8} {...revealPath(0)} />
+              <motion.text x={x(95) - 4} y={y(SRAS(95)) - 8} fill={C.supply} fontSize={12} fontWeight={700} {...revealFade(1)}>SRAS</motion.text>
 
-        {/* Axis Labels */}
-        <text x={margin.left + chartWidth / 2} y={height - 15} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="500">
-          Real National Output / Real GDP (Y)
-        </text>
-        <text x={18} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="13" fontWeight="500" transform={`rotate(-90, 18, ${margin.top + chartHeight / 2})`}>
-          General Price Level (P)
-        </text>
+              <motion.line x1={x(Yf)} y1={y(0)} x2={x(Yf)} y2={y(96)} stroke={C.social} strokeWidth={2.8} {...revealPath(1)} />
+              <motion.text x={x(Yf) + 6} y={y(94)} fill={C.social} fontSize={12} fontWeight={700} {...revealFade(2)}>LRAS</motion.text>
 
-        {/* LRAS - Vertical line */}
-        <motion.line
-          x1={xScale(lrasX)} y1={yScale(95)}
-          x2={xScale(lrasX)} y2={yScale(5)}
-          stroke="hsl(var(--cambridge-green))"
-          strokeWidth="3.5"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        />
-        <motion.text 
-          x={xScale(lrasX) + 8} 
-          y={yScale(97)} 
-          fill="hsl(var(--cambridge-green))" 
-          fontSize="14" 
-          fontWeight="700"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ delay: 1 }}
-        >
-          LRAS
-        </motion.text>
+              <motion.path d={curve(p, AD, 12, 100)} fill="none" stroke={C.demand} strokeWidth={2.8} {...revealPath(2)} />
+              <motion.text x={x(90)} y={y(AD(90)) - 8} fill={C.demand} fontSize={12} fontWeight={700} {...revealFade(3)}>AD</motion.text>
 
-        {/* Y* label on x-axis */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ delay: 1.2 }}
-        >
-          <line 
-            x1={xScale(lrasX)} y1={yScale(0)}
-            x2={xScale(lrasX)} y2={yScale(0) + 8}
-            stroke="hsl(var(--cambridge-green))" strokeWidth="2"
-          />
-          <text x={xScale(lrasX)} y={yScale(0) + 22} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="12" fontWeight="600">
-            Y* (Yf)
-          </text>
-        </motion.g>
+              <motion.g {...revealFade(4)}>
+                <Guides p={p} qx={Ye} py={Pe} color={C.marker} yLabel="P = 49.7" />
+                <text x={x(Ye)} y={y(0) + 15} fill={C.marker} fontSize={10} textAnchor="middle">Y = 56.7</text>
+                <text x={x(Yf)} y={y(0) + 15} fill={C.social} fontSize={10} textAnchor="middle">Yf = 70</text>
+              </motion.g>
+              <motion.circle cx={x(Ye)} cy={y(Pe)} r={5} fill={C.marker} {...revealPoint(4)} />
+              <motion.text x={x(Ye) + 8} y={y(Pe) - 8} fill={C.axis} fontSize={11} fontWeight={700} {...revealFade(5)}>E</motion.text>
 
-        {/* SRAS Curve */}
-        <motion.path
-          d={pathFromPoints(srasPoints)}
-          fill="none"
-          stroke="hsl(var(--cambridge-orange))"
-          strokeWidth="3.5"
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-        <motion.text 
-          x={xScale(75)} 
-          y={yScale(88)} 
-          fill="hsl(var(--cambridge-orange))" 
-          fontSize="14" 
-          fontWeight="700"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ delay: 1.2 }}
-        >
-          SRAS
-        </motion.text>
-
-        {/* Zone annotations */}
-        {showAnnotations && (
-          <>
-            {/* Flat zone - spare capacity */}
-            <motion.g
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 0.8 } : {}}
-              transition={{ delay: 1.5 }}
-            >
-              <rect 
-                x={xScale(10)} y={yScale(40)} 
-                width={xScale(40) - xScale(10)} height={yScale(10) - yScale(40)}
-                fill="hsl(var(--primary))" opacity="0.1" rx="4"
-              />
-              <text x={xScale(25)} y={yScale(25)} textAnchor="middle" fill="hsl(var(--primary))" fontSize="10" fontWeight="600">
-                Spare Capacity
-              </text>
-              <text x={xScale(25)} y={yScale(20)} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">
-                (Elastic SRAS)
-              </text>
-            </motion.g>
-
-            {/* Near full employment zone */}
-            <motion.g
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 0.8 } : {}}
-              transition={{ delay: 1.7 }}
-            >
-              <rect 
-                x={xScale(50)} y={yScale(75)} 
-                width={xScale(70) - xScale(50)} height={yScale(40) - yScale(75)}
-                fill="hsl(var(--destructive))" opacity="0.1" rx="4"
-              />
-              <text x={xScale(60)} y={yScale(78)} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="10" fontWeight="600">
-                Near Full
-              </text>
-              <text x={xScale(60)} y={yScale(73)} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="10" fontWeight="600">
-                Employment
-              </text>
-              <text x={xScale(60)} y={yScale(68)} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="9">
-                (Inelastic SRAS)
-              </text>
-            </motion.g>
-
-            {/* Full employment line annotation */}
-            <motion.g
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : {}}
-              transition={{ delay: 1.9 }}
-            >
-              <line 
-                x1={xScale(lrasX) + 3} y1={yScale(50)}
-                x2={xScale(lrasX) + 30} y2={yScale(50)}
-                stroke="hsl(var(--cambridge-green))" strokeWidth="1" strokeDasharray="3,2"
-              />
-              <text x={xScale(lrasX) + 35} y={yScale(52)} fill="hsl(var(--cambridge-green))" fontSize="9">
-                Full Employment
-              </text>
-              <text x={xScale(lrasX) + 35} y={yScale(47)} fill="hsl(var(--cambridge-green))" fontSize="9">
-                (Potential Output)
-              </text>
-            </motion.g>
-          </>
-        )}
-      </svg>
-
-      {/* Legend */}
-      <div className="mt-4 flex flex-wrap justify-center gap-6 text-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-1 bg-[hsl(var(--cambridge-orange))] rounded" />
-          <span className="text-muted-foreground">Short-Run AS (SRAS)</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-1 bg-[hsl(var(--cambridge-green))] rounded" />
-          <span className="text-muted-foreground">Long-Run AS (LRAS)</span>
-        </div>
-      </div>
-
-      {/* Explanation - Enhanced with examiner-approved reasoning */}
-      <div className="mt-5 grid md:grid-cols-2 gap-4 text-sm">
-        <div className="p-4 bg-[hsl(var(--cambridge-orange))]/10 rounded-lg border border-[hsl(var(--cambridge-orange))]/20">
-          <h4 className="font-semibold text-[hsl(var(--cambridge-orange))] mb-2">SRAS: Upward Sloping (Money Wage Rigidity)</h4>
-          <p className="text-muted-foreground leading-relaxed mb-2">
-            In the short run, <strong>money wages are sticky</strong> due to contracts, menu costs, and imperfect information. 
-            As GPL rises, real wages fall (W/P↓), making labour cheaper → firms expand output.
-          </p>
-          <div className="font-mono text-xs bg-muted/30 p-2 rounded">
-            ↑P → ↓(W/P) → ↓Real labour cost → ↑Quantity supplied
-          </div>
-        </div>
-        <div className="p-4 bg-[hsl(var(--cambridge-green))]/10 rounded-lg border border-[hsl(var(--cambridge-green))]/20">
-          <h4 className="font-semibold text-[hsl(var(--cambridge-green))] mb-2">LRAS: Vertical at Yfe (Full Flexibility)</h4>
-          <p className="text-muted-foreground leading-relaxed mb-2">
-            In the long run, all prices (including wages) are fully flexible. Workers demand higher nominal wages 
-            when GPL rises → real wage unchanged → no incentive to vary output.
-          </p>
-          <div className="font-mono text-xs bg-muted/30 p-2 rounded">
-            ↑P → ↑W (proportionally) → W/P constant → Y stays at Yfe
-          </div>
-        </div>
-      </div>
-
-      {/* Real-World Example */}
-      <div className="mt-4 p-4 bg-primary/5 rounded-lg border border-primary/20 text-sm">
-        <h4 className="font-semibold text-primary mb-2">📌 Real-World Application: UK Post-COVID Recovery (2021-22)</h4>
-        <p className="text-muted-foreground leading-relaxed">
-          As demand surged post-lockdown, the UK operated on the <span className="text-cambridge-orange">steep portion of SRAS</span> 
-          (near full employment). Firms struggled to expand output → excess demand was absorbed primarily through 
-          price increases rather than output gains → CPI inflation reached 11.1% by October 2022.
-        </p>
-      </div>
-    </div>
+              <motion.text x={x((Ye + Yf) / 2)} y={y(88)} fill={C.welfareLoss} fontSize={10} textAnchor="middle" {...revealFade(5)}>
+                negative output gap
+              </motion.text>
+            </>
+          )}
+        </svg>
+      )}
+    </DiagramFrame>
   );
 };
 

@@ -11,6 +11,9 @@ import ADInflationStagesDiagram from '@/components/diagrams/ADInflationStagesDia
 import CostPushInflationDiagram from '@/components/diagrams/CostPushInflationDiagram';
 import CostPushStagflationDiagram from '@/components/diagrams/CostPushStagflationDiagram';
 import DemandPullInflationDiagram from '@/components/diagrams/DemandPullInflationDiagram';
+import CPIBasketDiagram from '@/components/diagrams/CPIBasketDiagram';
+import WagePriceSpiralDiagram from '@/components/diagrams/WagePriceSpiralDiagram';
+import DeflationDiagram from '@/components/diagrams/DeflationDiagram';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
@@ -102,6 +105,9 @@ const Inflation = () => {
               However, the CPI methodology is subject to several well-documented biases that compromise its accuracy. <strong>Substitution bias</strong> arises because consumers respond to relative price changes by substituting towards cheaper alternatives, yet fixed-weight indices fail to capture this behavioural adjustment. <strong>Quality bias</strong> occurs when price increases reflect genuine improvements in product quality (e.g., smartphones with enhanced features) rather than pure inflation, causing CPI to overstate the true inflation rate. <strong>New goods bias</strong> emerges from the lag between the introduction of innovative products and their incorporation into the basket. <strong>Outlet substitution bias</strong> results from consumers shifting purchases to discount retailers. Collectively, these biases are estimated to cause CPI to overstate true inflation by 0.5–1.0 percentage points annually in developed economies.
             </p>
           </div>
+
+          <CPIBasketDiagram />
+
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════
@@ -192,6 +198,10 @@ const Inflation = () => {
           </div>
 
           <CostPushInflationDiagram />
+          <div className="mt-4">
+            <WagePriceSpiralDiagram />
+          </div>
+
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════
@@ -296,6 +306,9 @@ const Inflation = () => {
               </div>
             </div>
           </div>
+
+          <DeflationDiagram />
+
         </ContentSection>
 
         {/* ═══════════════════════════════════════════════════════════════════
