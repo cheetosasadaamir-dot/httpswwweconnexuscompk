@@ -9,6 +9,11 @@ import { Link } from 'react-router-dom';
 import LaborMarketDiagram from '@/components/diagrams/LaborMarketDiagram';
 import MonopsonyLaborDiagram from '@/components/diagrams/MonopsonyLaborDiagram';
 import WageDifferentialsDiagram from '@/components/diagrams/WageDifferentialsDiagram';
+import BackwardBendingSupplyDiagram from '@/components/diagrams/BackwardBendingSupplyDiagram';
+import ElasticityLabourDemandDiagram from '@/components/diagrams/ElasticityLabourDemandDiagram';
+import TradeUnionCompetitiveDiagram from '@/components/diagrams/TradeUnionCompetitiveDiagram';
+import TradeUnionMonopsonyDiagram from '@/components/diagrams/TradeUnionMonopsonyDiagram';
+import EconomicRentTransferDiagram from '@/components/diagrams/EconomicRentTransferDiagram';
 import { MRPTheoryAnalyticalDepth, MRPTheoryEvaluativeJudgement } from '@/components/a2-depth/LaborMarketDepthSections';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
 
@@ -149,7 +154,12 @@ const LaborMarket = () => {
                 remains upward-sloping because higher wages attract more workers into the labor force.
               </p>
             </div>
+
+            <div className="mt-8">
+              <BackwardBendingSupplyDiagram />
+            </div>
           </div>
+
 
           {/* Firm's Labor Supply */}
           <div className="glass-card p-8 rounded-2xl mb-8">
@@ -343,8 +353,71 @@ const LaborMarket = () => {
             </div>
           </div>
 
+          {/* Elasticity of demand for labour */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <h3 className="text-xl font-semibold text-silver-bright mb-4">Elasticity of Demand for Labour</h3>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              Labour demand is a <strong className="text-silver-bright">derived demand</strong>: firms hire workers
+              for the value of what they produce, not for their own sake. The wage elasticity of labour demand
+              measures the responsiveness of employment to a wage change and is the single most important variable
+              in evaluating unions, minimum wages and payroll taxes.
+            </p>
+            <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg mb-6">
+              <p className="text-primary font-mono text-center">
+                E<sub>d(L)</sub> = % change in quantity of labour demanded ÷ % change in the wage rate
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <p className="text-amber-400 font-medium mb-1">1. Elasticity of demand for the product</p>
+                <p className="text-muted-foreground text-sm">If consumers desert the product when prices rise, firms cannot pass wage costs on and employment falls sharply.</p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <p className="text-amber-400 font-medium mb-1">2. Ease of substituting capital for labour</p>
+                <p className="text-muted-foreground text-sm">Self-checkouts, warehouse robots and AI drafting tools make demand for routine labour far more elastic.</p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <p className="text-amber-400 font-medium mb-1">3. Labour's share of total costs</p>
+                <p className="text-muted-foreground text-sm">Where wages are a large share of costs (care homes, hospitality) demand is elastic; in capital-intensive utilities it is inelastic.</p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <p className="text-amber-400 font-medium mb-1">4. Time period</p>
+                <p className="text-muted-foreground text-sm">Contracts, retraining and re-tooling take time, so labour demand is always more elastic in the long run.</p>
+              </div>
+            </div>
+            <ElasticityLabourDemandDiagram />
+          </div>
+
+          {/* Shifts in labour demand and supply */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <h3 className="text-xl font-semibold text-silver-bright mb-4">What Shifts Labour Demand and Supply?</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
+                <h4 className="text-cyan-300 font-semibold mb-3">Shifts in demand (MRP)</h4>
+                <ul className="space-y-2 text-muted-foreground text-sm">
+                  <li>• Rise in the <strong>product price</strong> — MRP = MPP × MR, so a housing boom lifts builders' wages</li>
+                  <li>• Rise in <strong>productivity</strong> (training, better capital, technology) shifts MRP right</li>
+                  <li>• <strong>Automation</strong> substituting for routine tasks shifts MRP left for those roles and right for complementary skills</li>
+                  <li>• Changes in the <strong>price of capital</strong> — cheap machinery can replace or complement labour</li>
+                </ul>
+              </div>
+              <div className="p-6 bg-fuchsia-500/10 border border-fuchsia-500/20 rounded-xl">
+                <h4 className="text-fuchsia-300 font-semibold mb-3">Shifts in supply</h4>
+                <ul className="space-y-2 text-muted-foreground text-sm">
+                  <li>• <strong>Migration</strong> and changes in the participation rate</li>
+                  <li>• <strong>Training and qualifications</strong> — expanding the pool of licensed nurses or pilots</li>
+                  <li>• <strong>Non-monetary factors</strong>: job satisfaction, status, safety, flexible or remote work</li>
+                  <li>• <strong>Barriers to entry</strong>: professional licensing, union closed shops, visa rules</li>
+                  <li>• <strong>Taxes and benefits</strong> affecting the net wage and the replacement ratio</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           {/* Limitations */}
           <div className="glass-card p-8 rounded-2xl mb-8">
+
+
             <h3 className="text-xl font-semibold text-silver-bright mb-4">Limitations of MRP Theory</h3>
             
             <div className="grid md:grid-cols-2 gap-4">
@@ -599,7 +672,38 @@ const LaborMarket = () => {
                 at a higher employment level than the monopsony solution. Both workers and the firm can be better off.
               </p>
             </div>
+
+            <div className="mt-8">
+              <TradeUnionMonopsonyDiagram />
+            </div>
+
+            <div className="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+              <h4 className="text-blue-400 font-semibold mb-2">Bilateral Monopoly</h4>
+              <p className="text-muted-foreground text-sm">
+                When a monopsony employer faces a single strong union, the market becomes a
+                <strong className="text-silver-bright"> bilateral monopoly</strong>. Economic theory cannot predict a
+                unique wage: it is indeterminate within the zone of bargaining, running from the monopsony wage
+                (the union's floor) up to the MRP of the last worker hired (the firm's ceiling). The actual outcome
+                depends on relative bargaining power — strike funds, union density, the cost of a stoppage to the
+                employer, public sympathy and legal constraints on industrial action. Classic examples: rail unions
+                versus a national operator, doctors' associations versus a single public health service, and
+                players' unions versus a sports league.
+              </p>
+            </div>
           </div>
+
+          {/* Unions in a competitive market */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <h3 className="text-xl font-semibold text-silver-bright mb-4">Unions in a Competitive Labour Market</h3>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              Where the labour market is competitive, a negotiated wage above equilibrium behaves exactly like a
+              minimum wage: the effective supply curve becomes horizontal at the union rate, the firm moves back up
+              its MRP curve and excess supply of labour appears. Whether this matters depends overwhelmingly on the
+              elasticity of demand for labour and on whether higher pay raises productivity.
+            </p>
+            <TradeUnionCompetitiveDiagram />
+          </div>
+
 
           {/* Power of Unions */}
           <div className="glass-card p-8 rounded-2xl mb-8">
@@ -707,7 +811,58 @@ const LaborMarket = () => {
                 additional worker no longer requires raising wages for all existing workers.
               </p>
             </div>
+
+            <div className="mt-8">
+              <p className="text-muted-foreground text-sm mb-4">
+                The monopsony case is drawn in full in Section 3 — the same geometry applies whether the wage
+                floor is imposed by a union or by statute. The key contrast to hold in your head: in a
+                <strong className="text-silver-bright"> competitive</strong> market a binding wage floor moves the
+                firm <em>up its MRP curve</em> and employment falls; in a
+                <strong className="text-silver-bright"> monopsony</strong> it flattens MFC and employment
+                <strong className="text-green-400"> rises</strong> up to the competitive level.
+              </p>
+            </div>
           </div>
+
+          {/* Real-world evidence */}
+          <div className="glass-card p-8 rounded-2xl mb-8">
+            <h3 className="text-xl font-semibold text-silver-bright mb-4">Real-World Evidence on Minimum Wages</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <h4 className="text-green-400 font-medium mb-2">Card &amp; Krueger (New Jersey, 1994)</h4>
+                <p className="text-muted-foreground text-sm">
+                  Fast-food employment in New Jersey did not fall relative to neighbouring Pennsylvania after a
+                  minimum wage rise. The standard interpretation is that low-wage local labour markets contain
+                  significant <strong>monopsony power</strong>, so the competitive prediction over-states job losses.
+                </p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <h4 className="text-green-400 font-medium mb-2">UK National Living Wage</h4>
+                <p className="text-muted-foreground text-sm">
+                  Successive Low Pay Commission reviews found the NLW substantially raised pay at the bottom of the
+                  distribution with only limited effects on employment, though with some reduction in hours and
+                  faster automation in retail and hospitality.
+                </p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <h4 className="text-amber-400 font-medium mb-2">Where job losses do appear</h4>
+                <p className="text-muted-foreground text-sm">
+                  Effects are largest for <strong>young and low-skilled workers</strong>, in regions where the floor
+                  bites hardest relative to median pay ("bite"), and in tradable sectors where firms cannot pass
+                  costs on to consumers.
+                </p>
+              </div>
+              <div className="p-4 border border-silver/20 rounded-lg">
+                <h4 className="text-amber-400 font-medium mb-2">Poverty targeting critique</h4>
+                <p className="text-muted-foreground text-sm">
+                  Many minimum-wage earners live in higher-income households (second earners, students), so a wage
+                  floor is a <strong>blunt anti-poverty tool</strong> compared with targeted in-work benefits or tax
+                  credits — a strong evaluative line in essays.
+                </p>
+              </div>
+            </div>
+          </div>
+
 
           {/* Evaluation */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -869,8 +1024,27 @@ const LaborMarket = () => {
                 <p className="text-xs text-muted-foreground mt-2">Example: Most occupations</p>
               </div>
             </div>
+
+
+            <div className="mt-8">
+              <EconomicRentTransferDiagram />
+            </div>
+
+            <div className="mt-6 p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+              <h4 className="text-amber-400 font-semibold mb-2">Quasi-Rent and the Time Period</h4>
+              <p className="text-muted-foreground text-sm">
+                Elasticity of labour supply rises over time, so rents earned today are often competed away tomorrow.
+                A surge in demand for cyber-security analysts or offshore wind engineers creates large short-run
+                rents; as training programmes and migration expand supply, the supply curve flattens and the rent
+                erodes. Economists call this temporary surplus a <strong>quasi-rent</strong>. The policy
+                implication is important: a tax on <em>pure</em> economic rent (e.g. a land value tax) causes no
+                reduction in supply and therefore no deadweight loss, whereas taxing transfer earnings does
+                discourage the supply of labour.
+              </p>
+            </div>
           </div>
         </section>
+
 
         {/* Analytical Depth: MRP Theory */}
         <MRPTheoryAnalyticalDepth />

@@ -1,271 +1,149 @@
-import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
 /**
- * Geometrically Precise Labour Market Diagram
- * Exam Standard: Market sets W*, firm faces horizontal supply at that wage
- * Equilibrium points MUST align exactly with curve intersections
+ * Perfectly competitive labour market — market and firm side by side.
+ *
+ * MARKET   S(L) = 20 + 0.8L      D(L) = ΣMRP = 100 − 0.8L
+ *          equilibrium: 20 + 0.8L = 100 − 0.8L → L* = 50, W* = 60
+ *
+ * FIRM     faces a perfectly elastic supply at W* = 60, so W = ACL = MFC.
+ *          MRP = 100 − 2L → profit-max hiring where MRP = MFC → L = 20.
+ *          (firm axis runs 0–50 workers, plotted at 2× so it fills 0–100)
  */
 const LaborMarketDiagram = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const p = plotBox();
+  const { x, y, m, ch } = p;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
+  const S = (L: number) => 20 + 0.8 * L;
+  const D = (L: number) => 100 - 0.8 * L;
+  const Lstar = 50;
+  const Wstar = 60;
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+  // firm panel: value v on the plot = 2 × workers
+  const MRPf = (v: number) => 100 - v; // = 100 − 2L with L = v/2
+  const Lfirm = 20; // workers
+  const vFirm = Lfirm * 2;
 
-    return () => observer.disconnect();
-  }, []);
-
-  // Market diagram calculations
-  // Labour Supply: W = 20 + 0.8L (upward sloping)
-  // Labour Demand (ΣMRP): W = 100 - 0.8L (downward sloping)
-  // Equilibrium: 20 + 0.8L = 100 - 0.8L → 1.6L = 80 → L* = 50, W* = 60
-
-  const marketEqL = 50;
-  const marketEqW = 60;
-
-  // Firm diagram - MRP curve for individual firm
-  // Firm faces horizontal supply at market wage W*
-  // MRP = 100 - 2L (steeper for individual firm)
-  // Optimal hiring: W* = MRP → 60 = 100 - 2L → L* = 20
-
-  const firmOptimalL = 20;
-
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1, 
-      transition: { duration: 1.2, ease: "easeInOut" as const }
-    }
-  };
-
-  // Scale functions for market diagram
-  const mXScale = (l: number) => 50 + (l / 100) * 210;
-  const mYScale = (w: number) => 220 - (w / 120) * 180;
-
-  // Scale functions for firm diagram  
-  const fXScale = (l: number) => 50 + (l / 50) * 210;
-  const fYScale = (w: number) => 220 - (w / 120) * 180;
+  const seg = (f: (v: number) => number, a: number, b: number) =>
+    `M ${x(a)} ${y(f(a))} L ${x(b)} ${y(f(b))}`;
 
   return (
-    <div ref={containerRef} className="w-full">
-      <h4 className="text-lg font-semibold text-silver-bright mb-4 text-center">
-        Labour Market Equilibrium in Perfect Competition
-      </h4>
-      
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Industry/Market Diagram */}
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground text-center mb-2">The Market (Industry)</p>
-          <svg viewBox="0 0 300 260" className="w-full max-w-sm mx-auto">
-            <defs>
-              <pattern id="grid-labor-market" width="30" height="25" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 25" fill="none" stroke="hsl(var(--silver) / 0.1)" strokeWidth="0.5"/>
-              </pattern>
-              <marker id="arrow-labor" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" fill="hsl(var(--silver))" />
-              </marker>
-            </defs>
-            <rect x="50" y="20" width="220" height="200" fill="url(#grid-labor-market)" />
-            
-            {/* Axes */}
-            <motion.line
-              x1="50" y1="220" x2="275" y2="220"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              markerEnd="url(#arrow-labor)"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.line
-              x1="50" y1="220" x2="50" y2="25"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <polygon points="50,25 46,37 54,37" fill="hsl(var(--silver))" />
-            
-            <text x="160" y="250" textAnchor="middle" className="fill-muted-foreground text-xs">Number of Workers (L)</text>
-            <text x="22" y="120" textAnchor="middle" className="fill-muted-foreground text-xs" transform="rotate(-90, 22, 120)">Wage Rate (W)</text>
-            
-            {/* Labor Supply (upward sloping): W = 20 + 0.8L */}
-            <motion.line
-              x1={mXScale(0)} y1={mYScale(20)}
-              x2={mXScale(100)} y2={mYScale(100)}
-              stroke="hsl(var(--cambridge-orange))"
-              strokeWidth="3"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x={mXScale(95)} y={mYScale(98)} className="fill-[hsl(var(--cambridge-orange))] text-sm font-medium">SL</text>
-            
-            {/* Labor Demand (ΣMRP - downward sloping): W = 100 - 0.8L */}
-            <motion.line
-              x1={mXScale(0)} y1={mYScale(100)}
-              x2={mXScale(100)} y2={mYScale(20)}
-              stroke="hsl(var(--cambridge-cyan))"
-              strokeWidth="3"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x={mXScale(95)} y={mYScale(22)} className="fill-[hsl(var(--cambridge-cyan))] text-xs font-medium">DL = ΣMRP</text>
-            
-            {/* Equilibrium - PRECISELY at intersection */}
-            <motion.circle
-              cx={mXScale(marketEqL)} cy={mYScale(marketEqW)}
-              r="6"
-              fill="hsl(var(--accent))"
-              stroke="white"
-              strokeWidth="1.5"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.2, duration: 0.3 }}
-            />
-            
-            {/* Equilibrium Wage - horizontal dashed line */}
-            <motion.line
-              x1="50" y1={mYScale(marketEqW)} x2={mXScale(marketEqL)} y2={mYScale(marketEqW)}
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1.5"
-              strokeDasharray="5,3"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x="40" y={mYScale(marketEqW) + 4} textAnchor="end" className="fill-amber-400 text-xs font-medium">W*</text>
-            
-            {/* Equilibrium Employment - vertical dashed line */}
-            <motion.line
-              x1={mXScale(marketEqL)} y1={mYScale(marketEqW)} x2={mXScale(marketEqL)} y2="220"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1.5"
-              strokeDasharray="5,3"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <text x={mXScale(marketEqL)} y="235" textAnchor="middle" className="fill-amber-400 text-xs font-medium">N*</text>
-          </svg>
-        </div>
-
-        {/* Firm Diagram */}
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground text-center mb-2">The Firm</p>
-          <svg viewBox="0 0 300 260" className="w-full max-w-sm mx-auto">
-            <rect x="50" y="20" width="220" height="200" fill="url(#grid-labor-market)" />
-            
-            {/* Axes */}
-            <motion.line
-              x1="50" y1="220" x2="275" y2="220"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              markerEnd="url(#arrow-labor)"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <motion.line
-              x1="50" y1="220" x2="50" y2="25"
-              stroke="hsl(var(--silver))" strokeWidth="2"
-              initial={{ pathLength: 0 }} animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.5 }}
-            />
-            <polygon points="50,25 46,37 54,37" fill="hsl(var(--silver))" />
-            
-            <text x="160" y="250" textAnchor="middle" className="fill-muted-foreground text-xs">Units of Labor (L)</text>
-            <text x="22" y="120" textAnchor="middle" className="fill-muted-foreground text-xs" transform="rotate(-90, 22, 120)">Wage/MRP</text>
-            
-            {/* Horizontal Supply = W* = MFC = AFC */}
-            <motion.line
-              x1="50" y1={fYScale(marketEqW)} x2="265" y2={fYScale(marketEqW)}
-              stroke="hsl(var(--cambridge-orange))"
-              strokeWidth="3"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 0.8, duration: 1 }}
-            />
-            <text x="270" y={fYScale(marketEqW) - 5} className="fill-[hsl(var(--cambridge-orange))] text-[9px]">W* = MFC = AFC = S</text>
-            
-            {/* MRP Curve (firm's demand): W = 100 - 2L */}
-            <motion.line
-              x1={fXScale(0)} y1={fYScale(100)}
-              x2={fXScale(50)} y2={fYScale(0)}
-              stroke="hsl(var(--cambridge-cyan))"
-              strokeWidth="3"
-              variants={curveVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-            />
-            <text x={fXScale(48)} y={fYScale(5)} className="fill-[hsl(var(--cambridge-cyan))] text-sm font-medium">MRP = DL</text>
-            
-            {/* Equilibrium point - where MRP = W* */}
-            <motion.circle
-              cx={fXScale(firmOptimalL)} cy={fYScale(marketEqW)}
-              r="6"
-              fill="hsl(var(--accent))"
-              stroke="white"
-              strokeWidth="1.5"
-              initial={{ scale: 0 }}
-              animate={isVisible ? { scale: 1 } : {}}
-              transition={{ delay: 1.5, duration: 0.3 }}
-            />
-            
-            {/* Optimal Employment - vertical dashed line */}
-            <motion.line
-              x1={fXScale(firmOptimalL)} y1={fYScale(marketEqW)} x2={fXScale(firmOptimalL)} y2="220"
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth="1.5"
-              strokeDasharray="5,3"
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ delay: 1.8, duration: 0.5 }}
-            />
-            <text x={fXScale(firmOptimalL)} y="235" textAnchor="middle" className="fill-amber-400 text-xs font-medium">L*</text>
-            
-            {/* W* label */}
-            <text x="40" y={fYScale(marketEqW) + 4} textAnchor="end" className="fill-amber-400 text-xs font-medium">W*</text>
-
-            {/* MRP = W annotation */}
-            <motion.text
-              x={fXScale(firmOptimalL) + 10} y={fYScale(marketEqW) - 10}
-              className="fill-muted-foreground text-[9px]"
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : {}}
-              transition={{ delay: 2 }}
+    <DiagramFrame
+      title="Perfectly Competitive Labour Market: Market and Firm"
+      eyebrow="Figure — The market sets the wage, the firm takes it"
+      legend={[
+        { label: 'S(L) = ACL (labour supply)', color: C.supply },
+        { label: 'D(L) = ΣMRP (labour demand)', color: C.demand },
+        { label: 'W* = ACL = MFC to the firm', color: C.marker, dashed: true },
+        { label: 'Profit-maximising employment', color: C.social, kind: 'dot' },
+      ]}
+      note={
+        <>
+          The <strong>market</strong> panel determines the wage: aggregate supply of labour (upward sloping
+          because higher wages attract workers into the occupation) meets aggregate demand, the horizontal
+          sum of every firm's MRP curve, at W* = 60 and N* = 50. The <strong>firm</strong> panel is drawn on a
+          much smaller employment scale: because the firm is a tiny part of the market it can hire as many
+          workers as it wants at the going wage, so its labour supply curve is{' '}
+          <strong>perfectly elastic</strong> and W = ACL = MFC. Profit maximisation requires{' '}
+          <strong>MRP = MFC</strong>, giving 20 workers. To the left of that point MRP &gt; W so the extra
+          worker adds more to revenue than to cost; to the right MRP &lt; W and the firm makes a loss on the
+          marginal hire. Because only the <em>downward-sloping</em> portion of MRP satisfies the second-order
+          condition, the MRP curve <em>is</em> the firm's demand curve for labour.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <div key={runKey} className="flex flex-col gap-6 lg:flex-row">
+          {/* ---------------- MARKET ---------------- */}
+          <div className="flex-1">
+            <p className="mb-1 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              The Market (Industry)
+            </p>
+            <svg
+              viewBox={`0 0 ${p.W} ${p.H}`}
+              className="mx-auto h-auto w-full min-w-[300px]"
+              role="img"
+              aria-label="Competitive labour market equilibrium where labour supply meets the sum of firms' marginal revenue product curves"
             >
-              MRP = W*
-            </motion.text>
-          </svg>
-        </div>
-      </div>
+              <Axes p={p} id="lm-mkt" labelX="Number of workers (L)" labelY="Wage rate (W)" />
+              {play && (
+                <>
+                  <motion.path d={seg(S, 0, 100)} fill="none" stroke={C.supply} strokeWidth={2.4} {...revealPath(0)} />
+                  <motion.path d={seg(D, 0, 100)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(1)} />
+                  <motion.text x={x(100) + 5} y={y(S(100))} fill={C.supply} fontSize={11} {...revealFade(1)}>
+                    S(L)
+                  </motion.text>
+                  <motion.text x={x(100) + 5} y={y(D(100))} fill={C.demand} fontSize={11} {...revealFade(2)}>
+                    D = ΣMRP
+                  </motion.text>
+                  <motion.g {...revealFade(3)}>
+                    <Guides p={p} qx={Lstar} py={Wstar} color={C.marker} xLabel="N* = 50" yLabel="W* = 60" />
+                  </motion.g>
+                  <motion.circle cx={x(Lstar)} cy={y(Wstar)} r={5} fill={C.marker} {...revealPoint(4)} />
+                </>
+              )}
+            </svg>
+          </div>
 
-      <div className="mt-4 grid md:grid-cols-2 gap-4">
-        <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-          <p className="text-blue-200 text-xs">
-            <strong>Market:</strong> Equilibrium wage (W*) is set where labour supply equals labour demand (ΣMRP of all firms). 
-            At W* = 60, total employment N* = 50.
-          </p>
+          {/* ---------------- FIRM ---------------- */}
+          <div className="flex-1">
+            <p className="mb-1 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              The Individual Firm (wage taker)
+            </p>
+            <svg
+              viewBox={`0 0 ${p.W} ${p.H}`}
+              className="mx-auto h-auto w-full min-w-[300px]"
+              role="img"
+              aria-label="Individual firm hiring where marginal revenue product equals the perfectly elastic marginal factor cost at the market wage"
+            >
+              <Axes p={p} id="lm-firm" labelX="Number of workers (L)" labelY="Wage, MRP" />
+              {play && (
+                <>
+                  {/* perfectly elastic supply at the market wage */}
+                  <motion.path
+                    d={`M ${x(0)} ${y(Wstar)} L ${x(100)} ${y(Wstar)}`}
+                    fill="none"
+                    stroke={C.supply}
+                    strokeWidth={2.4}
+                    {...revealPath(0)}
+                  />
+                  <motion.text x={x(66)} y={y(Wstar) - 8} fill={C.supply} fontSize={11} {...revealFade(1)}>
+                    S = ACL = MFC = W*
+                  </motion.text>
+
+
+                  <motion.path d={seg(MRPf, 0, 100)} fill="none" stroke={C.demand} strokeWidth={2.4} {...revealPath(1)} />
+                  <motion.text x={x(88)} y={y(MRPf(88)) - 8} fill={C.demand} fontSize={11} {...revealFade(2)}>
+                    MRP = D(L)
+                  </motion.text>
+
+                  <motion.g {...revealFade(3)}>
+                    <Guides p={p} qx={vFirm} py={Wstar} color={C.social} xLabel="L = 20" yLabel="W* = 60" />
+                  </motion.g>
+                  <motion.circle cx={x(vFirm)} cy={y(Wstar)} r={5} fill={C.social} {...revealPoint(4)} />
+                  <motion.text
+                    x={x(vFirm) + 8}
+                    y={y(Wstar) + 18}
+                    fill={C.social}
+                    fontSize={10}
+                    {...revealFade(5)}
+                  >
+                    MRP = MFC
+                  </motion.text>
+
+                  <motion.text x={m.l + 10} y={m.t + ch - 12} fill={C.muted} fontSize={9} {...revealFade(5)}>
+                    MRP &gt; W: hire more
+                  </motion.text>
+                </>
+              )}
+            </svg>
+          </div>
         </div>
-        <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
-          <p className="text-green-200 text-xs">
-            <strong>Firm:</strong> Takes W* as given (price taker). Hires where MRP = W* (profit maximization). 
-            At W* = 60, optimal hiring L* = 20. Supply is perfectly elastic.
-          </p>
-        </div>
-      </div>
-    </div>
+      )}
+    </DiagramFrame>
   );
 };
 
