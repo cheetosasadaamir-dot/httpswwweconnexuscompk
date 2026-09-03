@@ -10,7 +10,7 @@ initPerformanceMonitoring();
 // Add resource hints for critical third-party origins
 addPreconnect('https://fonts.googleapis.com');
 addPreconnect('https://fonts.gstatic.com');
-addDnsPrefetch('https://jvgawqkiswotvfqnoiwr.supabase.co');
+addDnsPrefetch(import.meta.env.VITE_SUPABASE_URL || 'https://your-project.supabase.co');
 addDnsPrefetch('https://ai.gateway.lovable.dev');
 
 createRoot(document.getElementById("root")!).render(
