@@ -1,8 +1,18 @@
 # Econ Nexus
 
+**The Agentic Standard For Academic Mastery**
+
+> © 2026 Asad Aamir Khan and Zafeer Ahmed. All rights reserved.
+> This repository is public for **evaluation and review only**. It is **not**
+> open source. No permission is granted to copy, modify, deploy, or reuse this
+> code, its AI prompts, or its educational content. See [LICENSE](./LICENSE)
+> and [SECURITY.md](./SECURITY.md).
+
 ## Project info
 
 **URL**: https://www.econnexus.app
+
+
 
 ## How can I edit this code?
 
