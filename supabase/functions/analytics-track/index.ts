@@ -31,8 +31,8 @@ Deno.serve(async (req) => {
     }
 
     const serviceKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY');
-    const analyticsUrl = Deno.env.get('ANALYTICS_SUPABASE_URL') || 'https://bwdkbuqjhaojsruoixjg.supabase.co';
-    if (!serviceKey) {
+    const analyticsUrl = Deno.env.get('ANALYTICS_SUPABASE_URL');
+    if (!serviceKey || !analyticsUrl) {
       return new Response(JSON.stringify({ success: false, error: 'analytics not configured' }), {
         status: 200,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
