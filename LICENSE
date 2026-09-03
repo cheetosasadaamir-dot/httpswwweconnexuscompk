@@ -1,0 +1,37 @@
+Econ Nexus — Proprietary Software License
+Copyright (c) 2026 Asad Aamir Khan and Zafeer Ahmed. All rights reserved.
+
+This source code is made publicly viewable for evaluation, review, and
+demonstration purposes only (including hackathon and investor review).
+Public visibility does NOT grant any license to use it.
+
+You MAY:
+  - View and read this source code.
+  - Reference it in reviews, judging, or academic discussion with attribution.
+
+You MAY NOT, without prior written permission from the copyright holders:
+  - Copy, reproduce, or redistribute this source code in whole or in part.
+  - Modify, adapt, translate, or create derivative works from it.
+  - Use it, or any portion of it, in any product, service, or project,
+    whether commercial or non-commercial.
+  - Deploy, host, or operate this software or any substantially similar
+    application derived from it.
+  - Use the "Econ Nexus" name, logo, branding, visual design, or written
+    educational content.
+  - Extract, reuse, or fine-tune on the AI system prompts, persona
+    definitions, teaching protocols, diagram specifications, curriculum
+    notes, articles, or any other content contained in this repository.
+
+All educational content, diagrams, articles, AI persona designs, prompt
+engineering, and curriculum materials in this repository are original
+copyrighted works and are protected independently of the software code.
+
+Third-party open-source dependencies listed in package.json remain governed
+by their own respective licenses.
+
+NO WARRANTY: This software is provided "AS IS", without warranty of any kind,
+express or implied. In no event shall the copyright holders be liable for any
+claim, damages, or other liability arising from the use of this software.
+
+For licensing, partnership, or permission requests, contact:
+asadaamir496@gmail.com
