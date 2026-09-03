@@ -43,15 +43,14 @@ Deno.serve(async (req) => {
     const last_sign_in_at = body.last_sign_in_at || new Date().toISOString()
 
     const analyticsServiceKey = Deno.env.get('ANALYTICS_SERVICE_ROLE_KEY')
-    if (!analyticsServiceKey) {
-      console.error('ANALYTICS_SERVICE_ROLE_KEY not set')
+    const analyticsUrl = Deno.env.get('ANALYTICS_SUPABASE_URL')
+    if (!analyticsServiceKey || !analyticsUrl) {
+      console.error('Analytics configuration missing')
       return new Response(JSON.stringify({ error: 'Server config error' }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
-
-    const analyticsUrl = Deno.env.get('ANALYTICS_SUPABASE_URL') || 'https://bwdkbuqjhaojsruoixjg.supabase.co'
     const analyticsAdmin = createClient(analyticsUrl, analyticsServiceKey)
 
     const { error: upsertError } = await analyticsAdmin
