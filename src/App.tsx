@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { EzoicProvider, useEzoicPageView } from "@ezoic/react-sdk";
 // AnimatePresence + PageTransition removed — they were blocking navigation
 // by waiting for exit animations that never completed
 import ErrorBoundary from "@/components/ErrorBoundary";
