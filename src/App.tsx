@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { EzoicProvider, useEzoicPageView } from "@ezoic/react-sdk";
 // AnimatePresence + PageTransition removed — they were blocking navigation
 // by waiting for exit animations that never completed
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -104,6 +105,7 @@ const PageLoader = () => (
 const AnimatedRoutes = () => {
   const location = useLocation();
   usePageTracking();
+  useEzoicPageView(location.pathname, { ids: [101, 102] });
   return (
     <ErrorBoundary>
       <Suspense fallback={<PageLoader />}>
@@ -189,7 +191,9 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <AuthGateProvider>
-            <AnimatedRoutes />
+            <EzoicProvider>
+              <AnimatedRoutes />
+            </EzoicProvider>
           </AuthGateProvider>
         </BrowserRouter>
       </TooltipProvider>
