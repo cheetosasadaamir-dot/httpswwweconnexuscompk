@@ -105,6 +105,7 @@ const PageLoader = () => (
 const AnimatedRoutes = () => {
   const location = useLocation();
   usePageTracking();
+  useEzoicPageView(location.pathname, { ids: [101, 102] });
   return (
     <ErrorBoundary>
       <Suspense fallback={<PageLoader />}>
@@ -190,7 +191,9 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <AuthGateProvider>
-            <AnimatedRoutes />
+            <EzoicProvider>
+              <AnimatedRoutes />
+            </EzoicProvider>
           </AuthGateProvider>
         </BrowserRouter>
       </TooltipProvider>
