@@ -1,109 +1,83 @@
-import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from '../DiagramFrame';
+import { Axes, Guides, curve } from '../DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from '../diagramStyle';
 
+/**
+ * Monetary (classical) inflation.
+ * LRAS : vertical at Yf = 60
+ * AD1  : P = 90 − 0.9Y  → P at Yf = 36
+ * AD2  : P = 120 − 0.9Y → P at Yf = 66
+ * With output fixed at capacity, the whole AD increase becomes price level.
+ */
 const MonetaryInflationDiagram = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const p = plotBox();
+  const { x, y } = p;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.2 }
-    );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const w = 420, h = 340;
-  const m = { top: 35, right: 35, bottom: 55, left: 55 };
-  const cw = w - m.left - m.right;
-  const ch = h - m.top - m.bottom;
-  const x = (v: number) => m.left + (v / 100) * cw;
-  const y = (v: number) => m.top + ch - (v / 100) * ch;
-
-  const lrasX = 65;
-  const ad1 = [
-    { x: 20, y: 78 }, { x: 38, y: 56 }, { x: 52, y: 40 },
-    { x: 68, y: 28 }, { x: 82, y: 20 },
-  ];
-  const ad2 = ad1.map(p => ({ x: p.x + 18, y: p.y }));
-
-  const path = (pts: { x: number; y: number }[]) => {
-    let d = `M ${x(pts[0].x)} ${y(pts[0].y)}`;
-    for (let i = 1; i < pts.length; i++) {
-      const p = pts[i - 1], c = pts[i];
-      d += ` Q ${x((p.x + c.x) / 2)} ${y(p.y)}, ${x(c.x)} ${y(c.y)}`;
-    }
-    return d;
-  };
-
-  const anim = { hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { duration: 0.9, ease: "easeInOut" as const } } };
-
-  // Intersection of AD1 with LRAS (x=65) → roughly y=35
-  // Intersection of AD2 with LRAS (x=65) → roughly y=55
-  const e1y = 35;
-  const e2y = 55;
+  const AD1 = (Y: number) => 90 - 0.9 * Y;
+  const AD2 = (Y: number) => 120 - 0.9 * Y;
+  const Yf = 60;
+  const P1 = AD1(Yf); // 36
+  const P2 = AD2(Yf); // 66
 
   return (
-    <div ref={containerRef}>
-      <svg viewBox={`0 0 ${w} ${h}`} className="w-full max-w-md mx-auto" aria-label="Monetary Inflation Diagram showing MV=PQ and AD shift along vertical LRAS">
-        <defs>
-          <pattern id="grid-mi" width="33" height="33" patternUnits="userSpaceOnUse">
-            <path d="M 33 0 L 0 0 0 33" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="0.3" opacity="0.12" />
-          </pattern>
-          <marker id="arr-mi" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="hsl(var(--primary))" />
-          </marker>
-        </defs>
+    <DiagramFrame
+      title="Monetary Inflation in the Long Run"
+      eyebrow="AD rises against a vertical LRAS — output fixed, prices rise one-for-one"
+      legend={[
+        { label: 'LRAS — productive potential (Yf)', color: C.social },
+        { label: 'AD₁ — before monetary expansion', color: C.demand },
+        { label: 'AD₂ — after monetary expansion', color: C.demandAlt, dashed: true },
+        { label: 'Equilibrium', color: C.marker, kind: 'dot' },
+      ]}
+      note={
+        <>
+          In the long run all wages and prices are flexible, so real output is fixed at Yf by the
+          quantity and quality of factors — LRAS is vertical. An increase in the money supply raises
+          AD, but output cannot exceed Yf, so the entire adjustment falls on the price level:
+          P rises from 36 to 66 with Y unchanged at 60. This is the Quantity Theory,
+          <strong> MV = PQ</strong>: with V and Q stable, a rise in M raises P proportionately.
+          Evaluate it: V is not stable in a liquidity trap, and if the economy starts with spare
+          capacity part of the AD rise raises real output instead.
+        </>
+      }
+    >
+      {({ play, runKey }) => (
+        <svg key={runKey} viewBox={`0 0 ${p.W} ${p.H}`} className="mx-auto h-auto w-full min-w-[320px]" role="img"
+          aria-label="Monetary inflation: AD shifts right against a vertical LRAS so only the price level rises">
+          <Axes p={p} id="mninf" labelX="Real national output (Y)" labelY="General price level (P)" />
+          {play && (
+            <>
+              <motion.line x1={x(Yf)} y1={y(0)} x2={x(Yf)} y2={y(96)} stroke={C.social} strokeWidth={2.8} {...revealPath(0)} />
+              <motion.text x={x(Yf) + 6} y={y(94)} fill={C.social} fontSize={12} fontWeight={700} {...revealFade(1)}>LRAS</motion.text>
 
-        <rect x={m.left} y={m.top} width={cw} height={ch} fill="url(#grid-mi)" />
+              <motion.path d={curve(p, AD1, 5, 95)} fill="none" stroke={C.demand} strokeWidth={2.8} {...revealPath(1)} />
+              <motion.text x={x(86)} y={y(AD1(86)) - 8} fill={C.demand} fontSize={12} fontWeight={700} {...revealFade(2)}>AD₁</motion.text>
 
-        {/* Axes */}
-        <line x1={m.left} y1={m.top + ch} x2={m.left + cw} y2={m.top + ch} stroke="hsl(var(--foreground))" strokeWidth="1.5" />
-        <line x1={m.left} y1={m.top} x2={m.left} y2={m.top + ch} stroke="hsl(var(--foreground))" strokeWidth="1.5" />
-        <text x={m.left + cw / 2} y={h - 8} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="500">Real GDP (Y)</text>
-        <text x={14} y={m.top + ch / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="500" transform={`rotate(-90, 14, ${m.top + ch / 2})`}>Price Level (P)</text>
+              <motion.path d={curve(p, AD2, 28, 100)} fill="none" stroke={C.demandAlt} strokeWidth={2.8}
+                strokeDasharray="7 4" {...revealPath(2)} />
+              <motion.text x={x(98)} y={y(AD2(98)) - 8} fill={C.demandAlt} fontSize={12} fontWeight={700} {...revealFade(3)}>AD₂</motion.text>
 
-        {/* LRAS */}
-        <motion.line x1={x(lrasX)} y1={y(92)} x2={x(lrasX)} y2={y(8)} stroke="hsl(var(--cambridge-green))" strokeWidth="2.5" initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ delay: 0.2 }} />
-        <text x={x(lrasX) + 6} y={y(94)} fill="hsl(var(--cambridge-green))" fontSize="12" fontWeight="700">LRAS</text>
+              <motion.g {...revealFade(3)}>
+                <Guides p={p} qx={Yf} py={P1} color={C.marker} xLabel="Yf = 60" yLabel="P₁ = 36" />
+              </motion.g>
+              <motion.circle cx={x(Yf)} cy={y(P1)} r={5} fill={C.marker} {...revealPoint(3)} />
 
-        {/* AD₁ */}
-        <motion.path d={path(ad1)} fill="none" stroke="hsl(var(--cambridge-cyan))" strokeWidth="2.5" variants={anim} initial="hidden" animate={isVisible ? "visible" : "hidden"} />
-        <text x={x(84)} y={y(18)} fill="hsl(var(--cambridge-cyan))" fontSize="12" fontWeight="700">AD₁</text>
+              <motion.g {...revealFade(4)}>
+                <Guides p={p} qx={Yf} py={P2} color={C.intervention} yLabel="P₂ = 66" />
+              </motion.g>
+              <motion.circle cx={x(Yf)} cy={y(P2)} r={5} fill={C.intervention} {...revealPoint(4)} />
 
-        {/* AD₂ */}
-        <motion.path d={path(ad2)} fill="none" stroke="hsl(var(--cambridge-cyan))" strokeWidth="2.5" strokeDasharray="7,4" initial={{ opacity: 0, pathLength: 0 }} animate={isVisible ? { opacity: 1, pathLength: 1 } : {}} transition={{ delay: 0.8, duration: 0.8 }} />
-        <text x={x(100)} y={y(18)} fill="hsl(var(--cambridge-cyan))" fontSize="12" fontWeight="700">AD₂</text>
-
-        {/* Shift arrow */}
-        <motion.path d={`M ${x(55)} ${y(42)} L ${x(70)} ${y(42)}`} stroke="hsl(var(--primary))" strokeWidth="2" markerEnd="url(#arr-mi)" initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ delay: 1.1 }} />
-
-        {/* Equilibria on LRAS */}
-        <motion.circle cx={x(lrasX)} cy={y(e1y)} r="5" fill="hsl(var(--primary))" initial={{ scale: 0 }} animate={isVisible ? { scale: 1 } : {}} transition={{ delay: 0.5 }} />
-        <text x={x(lrasX) - 14} y={y(e1y) - 8} fill="hsl(var(--foreground))" fontSize="11" fontWeight="700">E₁</text>
-
-        <motion.circle cx={x(lrasX)} cy={y(e2y)} r="5" fill="hsl(var(--secondary))" initial={{ scale: 0 }} animate={isVisible ? { scale: 1 } : {}} transition={{ delay: 1.3 }} />
-        <text x={x(lrasX) - 14} y={y(e2y) - 8} fill="hsl(var(--foreground))" fontSize="11" fontWeight="700">E₂</text>
-
-        {/* Dashed lines */}
-        <motion.line x1={m.left} y1={y(e1y)} x2={x(lrasX)} y2={y(e1y)} stroke="hsl(var(--muted-foreground))" strokeDasharray="4,3" strokeWidth="1" initial={{ opacity: 0 }} animate={isVisible ? { opacity: 0.5 } : {}} />
-        <motion.line x1={m.left} y1={y(e2y)} x2={x(lrasX)} y2={y(e2y)} stroke="hsl(var(--muted-foreground))" strokeDasharray="4,3" strokeWidth="1" initial={{ opacity: 0 }} animate={isVisible ? { opacity: 0.5 } : {}} transition={{ delay: 1.3 }} />
-        <text x={m.left - 8} y={y(e1y) + 4} textAnchor="end" fill="hsl(var(--foreground))" fontSize="10">P₁</text>
-        <text x={m.left - 8} y={y(e2y) + 4} textAnchor="end" fill="hsl(var(--secondary))" fontSize="10" fontWeight="600">P₂</text>
-
-        {/* Yf label */}
-        <motion.line x1={x(lrasX)} y1={y(0)} x2={x(lrasX)} y2={y(0) + 5} stroke="hsl(var(--cambridge-green))" strokeWidth="2" initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} />
-        <text x={x(lrasX)} y={y(0) + 16} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="10" fontWeight="600">Yf</text>
-
-        {/* MV=PQ annotation */}
-        <motion.foreignObject x={x(22)} y={y(88)} width="90" height="36" initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ delay: 1.5 }}>
-          <div className="bg-muted/60 rounded-md px-2 py-1 text-center">
-            <span className="text-[10px] font-mono font-semibold text-primary">↑M × V = ↑P × Q</span>
-          </div>
-        </motion.foreignObject>
-      </svg>
-    </div>
+              <motion.line x1={x(Yf) + 14} y1={y(P1) - 4} x2={x(Yf) + 14} y2={y(P2) + 4}
+                stroke={C.intervention} strokeWidth={2} markerEnd="url(#mninf-arrow)" {...revealFade(5)} />
+              <motion.text x={x(Yf) + 20} y={y((P1 + P2) / 2)} fill={C.intervention} fontSize={10} {...revealFade(5)}>
+                pure inflation
+              </motion.text>
+            </>
+          )}
+        </svg>
+      )}
+    </DiagramFrame>
   );
 };
 
