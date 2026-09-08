@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, LineChart, Search, X } from 'lucide-react';
@@ -19,9 +19,6 @@ const DiagramHub = () => {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<Filter>('All');
   const [active, setActive] = useState<string | null>(null);
-  const frameRef = useRef<HTMLIFrameElement>(null);
-  const viewerRef = useRef<HTMLDivElement>(null);
-
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     return DIAGRAM_ENTRIES.filter(
@@ -33,17 +30,7 @@ const DiagramHub = () => {
 
   const jumpTo = (id: string) => {
     setActive(id);
-    const frame = frameRef.current;
-    try {
-      if (frame?.contentWindow) {
-        frame.contentWindow.location.hash = `#${id}`;
-      } else if (frame) {
-        frame.src = `${DIAGRAM_GUIDE_FILE}#${id}`;
-      }
-    } catch {
-      if (frame) frame.src = `${DIAGRAM_GUIDE_FILE}#${id}`;
-    }
-    viewerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.open(`${DIAGRAM_GUIDE_FILE}#${id}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -172,19 +159,15 @@ const DiagramHub = () => {
             )}
           </div>
 
-          {/* Viewer */}
-          <div ref={viewerRef} className="scroll-mt-24">
-            <div className="relative rounded-xl md:rounded-2xl overflow-hidden border border-white/10 bg-white shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
-              <iframe
-                ref={frameRef}
-                src={DIAGRAM_GUIDE_FILE}
-                title="Econ Nexus Diagram Guide"
-                className="w-full block h-[calc(100dvh-140px)] min-h-[520px]"
-                style={{ border: 0, background: '#ffffff' }}
-                sandbox="allow-same-origin allow-scripts allow-popups"
-                loading="eager"
-              />
-            </div>
+          <div className="flex justify-center">
+            <a
+              href={DIAGRAM_GUIDE_FILE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-primary/40 bg-primary/15 px-5 text-sm font-semibold text-primary transition-colors hover:bg-primary/25"
+            >
+              Open Complete Interactive Diagram Guide
+            </a>
           </div>
         </div>
       </main>
