@@ -1,21 +1,15 @@
 import { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BookOpen, Newspaper, Filter, ArrowRight, Clock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingDock from '@/components/FloatingDock';
-import { useAuth } from '@/hooks/useAuth';
 import { ARTICLES, ARTICLE_CATEGORIES } from '@/data/articles';
 
 const ArticleHub = () => {
-  const { user, session } = useAuth();
   const [active, setActive] = useState<(typeof ARTICLE_CATEGORIES)[number]>('All');
-
-  if (!session && !user) {
-    return <Navigate to="/auth?redirect=/article-hub" replace />;
-  }
 
   const filtered = useMemo(
     () => (active === 'All' ? ARTICLES : ARTICLES.filter(a => a.category === active)),
