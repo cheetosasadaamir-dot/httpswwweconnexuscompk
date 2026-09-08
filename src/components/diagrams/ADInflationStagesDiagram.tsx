@@ -1,260 +1,211 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
+
+/**
+ * AD shifts along the three stages of the Keynesian AS curve.
+ *
+ * Geometry is calculated, not hand-placed: AS is a single monotonic function
+ * of output, and every equilibrium is the true intersection of that function
+ * with a downward-sloping AD curve, so price/output effects per stage are exact.
+ */
+
+const p = plotBox(560, 400, { t: 36, r: 58, b: 62, l: 68 });
+
+/** Full-employment output (Q value, 0-100 scale). */
+const YF = 78;
+/** Stage boundaries on the output axis. */
+const S1 = 34;
+const S2 = 62;
+
+/** Keynesian AS: flat with spare capacity, rising through bottlenecks, vertical at Yf. */
+const AS = (q: number) => {
+  if (q <= S1) return 22 + 0.06 * q;
+  if (q <= S2) return 24.04 + 0.55 * (q - S1);
+  const t = Math.min((q - S2) / (YF - S2), 1);
+  return 39.44 + 46 * t * t;
+};
+
+/** Downward-sloping AD curves: P = a - 0.75Q. */
+const AD_A = [58, 92, 128] as const;
+const adP = (a: number) => (q: number) => a - 0.75 * q;
+
+/** Numeric intersection of AD with the AS function. */
+const equilibrium = (a: number) => {
+  let lo = 2;
+  let hi = YF;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    if (AS(mid) > adP(a)(mid)) hi = mid;
+    else lo = mid;
+  }
+  const q = (lo + hi) / 2;
+  return { q, p: AS(q) };
+};
+
+const EQ = AD_A.map(equilibrium);
+
+const stages = [
+  {
+    title: 'Stage 1 — Elastic (spare capacity)',
+    body: 'Deep spare capacity and high unemployment. A rise in AD raises real output almost one-for-one while the price level barely moves, because firms can hire without bidding up wages.',
+    price: 'Minimal',
+    output: 'Large increase',
+  },
+  {
+    title: 'Stage 2 — Intermediate (bottlenecks)',
+    body: 'Some sectors hit capacity before others. An AD increase raises both real output and the price level, as shortages in skilled labour and key inputs push costs up.',
+    price: 'Moderate',
+    output: 'Moderate increase',
+  },
+  {
+    title: 'Stage 3 — Inelastic (full capacity)',
+    body: 'At Yf every resource is employed. Further AD increases cannot raise real output at all, so the whole shift becomes a higher price level — pure demand-pull inflation.',
+    price: 'Large (inflation)',
+    output: 'Zero',
+  },
+];
+
+const STAGE_TINT = [C.social, C.marker, C.intervention];
 
 const ADInflationStagesDiagram = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [activeStage, setActiveStage] = useState<number>(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.2 }
-    );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const width = 500, height = 340;
-  const margin = { top: 40, right: 30, bottom: 50, left: 60 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
-
-  // AS curve coordinates - three stages
-  const asPoints = [
-    { x: margin.left + 30, y: margin.top + chartHeight - 20 },
-    { x: margin.left + 80, y: margin.top + chartHeight - 25 },
-    { x: margin.left + 140, y: margin.top + chartHeight - 40 },
-    { x: margin.left + 200, y: margin.top + chartHeight - 70 },
-    { x: margin.left + 260, y: margin.top + chartHeight - 120 },
-    { x: margin.left + 300, y: margin.top + chartHeight - 180 },
-    { x: margin.left + 320, y: margin.top + 60 },
-    { x: margin.left + 325, y: margin.top + 30 },
-  ];
-
-  const asPath = `M ${asPoints.map(p => `${p.x},${p.y}`).join(' L ')}`;
-
-  // AD curves at different positions
-  const adPositions = [
-    { x: margin.left + 60, label: 'AD₁', color: 'hsl(var(--muted-foreground))' },
-    { x: margin.left + 160, label: 'AD₂', color: 'hsl(var(--cambridge-cyan))' },
-    { x: margin.left + 280, label: 'AD₃', color: 'hsl(var(--cambridge-magenta))' },
-  ];
-
-  const getADPath = (startX: number) => {
-    const endX = startX + 180;
-    const startY = margin.top + 20;
-    const endY = margin.top + chartHeight - 20;
-    return `M ${startX},${startY} Q ${startX + 60},${startY + 80} ${endX},${endY}`;
-  };
-
-  const stages = [
-    {
-      title: 'Stage 1: Elastic (Spare Capacity)',
-      description: 'At low output levels, there is significant spare capacity. AD shifts cause large increases in real output (Y) with minimal price increases. Unemployment is high, so firms can hire without bidding up wages.',
-      priceEffect: 'Minimal',
-      outputEffect: 'Large increase',
-    },
-    {
-      title: 'Stage 2: Intermediate (Bottlenecks)',
-      description: 'As the economy approaches full capacity, bottlenecks emerge in some sectors. AD shifts cause both output and prices to rise. Some industries experience shortages while others still have spare capacity.',
-      priceEffect: 'Moderate',
-      outputEffect: 'Moderate increase',
-    },
-    {
-      title: 'Stage 3: Inelastic (Full Capacity)',
-      description: 'At or near full employment (Yf), further AD increases cannot raise real output. All resources are fully employed. AD shifts translate entirely into price increases—pure demand-pull inflation.',
-      priceEffect: 'Large (Inflation)',
-      outputEffect: 'Zero',
-    },
-  ];
+  const [active, setActive] = useState(0);
 
   return (
-    <div ref={containerRef} className="glass-card p-4 my-3">
-      <div className="flex justify-between items-center mb-2">
-        <h3 className="font-serif text-lg text-gradient">AD Shift Along Three Stages of AS</h3>
-        <div className="flex gap-1">
-          {stages.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveStage(i)}
-              className={`px-2 py-0.5 text-xs rounded-full transition-all ${
-                activeStage === i
-                  ? 'bg-primary text-primary-foreground'
-                  : 'border border-primary/30 hover:bg-primary/10'
-              }`}
-            >
-              Stage {i + 1}
-            </button>
-          ))}
+    <DiagramFrame
+      title="AD Shifts Along the Three Stages of AS"
+      eyebrow="Keynesian AS · demand-pull inflation"
+      legend={[
+        { label: 'AS (Keynesian)', color: C.supply },
+        { label: 'AD₁ · AD₂ · AD₃', color: C.demand },
+        { label: 'Full employment (Yf)', color: C.intervention, dashed: true },
+        { label: 'Equilibria', color: C.marker, kind: 'dot' },
+      ]}
+      note={
+        <div className="space-y-1">
+          <p className="text-silver-bright">{stages[active].title}</p>
+          <p>{stages[active].body}</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.15em]">
+            Price effect: {stages[active].price} · Output effect: {stages[active].output}
+          </p>
         </div>
-      </div>
+      }
+    >
+      {({ play, runKey }) => (
+        <div key={runKey} className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            {stages.map((s, i) => (
+              <button
+                key={s.title}
+                type="button"
+                onClick={() => setActive(i)}
+                className={`rounded-full border px-3 py-1 text-[11px] transition-colors ${
+                  active === i
+                    ? 'border-primary/60 bg-primary/20 text-primary'
+                    : 'border-white/15 bg-white/5 text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Stage {i + 1}
+              </button>
+            ))}
+          </div>
 
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full max-w-lg mx-auto">
-        <defs>
-          <marker id="arrow-ad" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="hsl(var(--foreground))" />
-          </marker>
-        </defs>
+          <svg viewBox={`0 0 ${p.W} ${p.H}`} className="w-full min-w-[320px]">
+            {/* stage bands */}
+            {[
+              [0, S1],
+              [S1, S2],
+              [S2, 100],
+            ].map(([from, to], i) => (
+              <rect
+                key={i}
+                x={p.x(from)}
+                y={p.m.t}
+                width={p.x(to) - p.x(from)}
+                height={p.ch}
+                fill={STAGE_TINT[i]}
+                opacity={active === i ? 0.14 : 0.04}
+              />
+            ))}
 
-        {/* Axes */}
-        <line x1={margin.left} y1={margin.top + chartHeight} x2={margin.left + chartWidth} y2={margin.top + chartHeight} stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#arrow-ad)" />
-        <line x1={margin.left} y1={margin.top + chartHeight} x2={margin.left} y2={margin.top} stroke="hsl(var(--foreground))" strokeWidth="2" markerEnd="url(#arrow-ad)" />
-        
-        <text x={margin.left + chartWidth / 2} y={height - 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="600">Real GDP (Y)</text>
-        <text x={20} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="600" transform={`rotate(-90, 20, ${margin.top + chartHeight / 2})`}>Price Level (P)</text>
+            <Axes p={p} id="ad-stages" labelX="Real output (Y)" labelY="Price level (P)" />
 
-        {/* Stage zones */}
-        <motion.rect
-          x={margin.left}
-          y={margin.top}
-          width={120}
-          height={chartHeight}
-          fill={activeStage === 0 ? 'hsl(var(--cambridge-green))' : 'transparent'}
-          opacity={0.1}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: activeStage === 0 ? 0.15 : 0 }}
-        />
-        <motion.rect
-          x={margin.left + 120}
-          y={margin.top}
-          width={140}
-          height={chartHeight}
-          fill={activeStage === 1 ? 'hsl(var(--cambridge-yellow))' : 'transparent'}
-          opacity={0.1}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: activeStage === 1 ? 0.15 : 0 }}
-        />
-        <motion.rect
-          x={margin.left + 260}
-          y={margin.top}
-          width={chartWidth - 260}
-          height={chartHeight}
-          fill={activeStage === 2 ? 'hsl(var(--destructive))' : 'transparent'}
-          opacity={0.1}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: activeStage === 2 ? 0.15 : 0 }}
-        />
-
-        {/* Full employment line */}
-        <motion.line
-          x1={margin.left + 320}
-          y1={margin.top}
-          x2={margin.left + 320}
-          y2={margin.top + chartHeight}
-          stroke="hsl(var(--destructive))"
-          strokeWidth="2"
-          strokeDasharray="6,3"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        />
-        <text x={margin.left + 320} y={margin.top - 8} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="10" fontWeight="600">Yf</text>
-
-        {/* AS Curve */}
-        <motion.path
-          d={asPath}
-          fill="none"
-          stroke="hsl(var(--cambridge-orange))"
-          strokeWidth="3"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : {}}
-          transition={{ duration: 1 }}
-        />
-        <text x={margin.left + chartWidth - 20} y={margin.top + 45} fill="hsl(var(--cambridge-orange))" fontSize="11" fontWeight="600">AS</text>
-
-        {/* Stage labels */}
-        <text x={margin.left + 60} y={margin.top + 15} textAnchor="middle" fill="hsl(var(--cambridge-green))" fontSize="9" fontWeight="500">Elastic</text>
-        <text x={margin.left + 190} y={margin.top + 15} textAnchor="middle" fill="hsl(var(--cambridge-yellow))" fontSize="9" fontWeight="500">Intermediate</text>
-        <text x={margin.left + 305} y={margin.top + 15} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="9" fontWeight="500">Inelastic</text>
-
-        {/* AD Curves */}
-        {adPositions.map((ad, i) => (
-          <motion.g key={i}>
-            <motion.path
-              d={getADPath(ad.x)}
-              fill="none"
-              stroke={ad.color}
-              strokeWidth={activeStage === i ? 3 : 2}
-              initial={{ pathLength: 0 }}
-              animate={isVisible ? { pathLength: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.5 + i * 0.2 }}
+            {/* full employment */}
+            <motion.line
+              x1={p.x(YF)} y1={p.m.t} x2={p.x(YF)} y2={p.m.t + p.ch}
+              stroke={C.intervention} strokeWidth={1.6} strokeDasharray="6 4"
+              {...revealFade(0)} animate={play ? { opacity: 1 } : { opacity: 0 }}
             />
-            <text x={ad.x + 180} y={margin.top + chartHeight - 8} fill={ad.color} fontSize="10" fontWeight="600">{ad.label}</text>
-          </motion.g>
-        ))}
+            <text x={p.x(YF)} y={p.m.t - 10} textAnchor="middle" fill={C.intervention} fontSize={11}>
+              Yf
+            </text>
 
-        {/* Shift arrows */}
-        <motion.path
-          d={`M ${margin.left + 130} ${margin.top + 100} L ${margin.left + 170} ${margin.top + 100}`}
-          stroke="hsl(var(--cambridge-cyan))"
-          strokeWidth="2"
-          markerEnd="url(#arrow-ad)"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ delay: 1.2 }}
-        />
-        <motion.path
-          d={`M ${margin.left + 230} ${margin.top + 80} L ${margin.left + 270} ${margin.top + 80}`}
-          stroke="hsl(var(--cambridge-magenta))"
-          strokeWidth="2"
-          markerEnd="url(#arrow-ad)"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ delay: 1.4 }}
-        />
+            {/* AS */}
+            <motion.path
+              d={curve(p, AS, 2, 88)}
+              fill="none" stroke={C.supply} strokeWidth={2.6}
+              {...revealPath(1)} animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+            />
+            <text x={p.x(84)} y={p.y(AS(83)) - 8} fill={C.supply} fontSize={12} fontWeight={600}>
+              AS
+            </text>
 
-        {/* Equilibrium points */}
-        <motion.circle
-          cx={margin.left + 90}
-          cy={margin.top + chartHeight - 30}
-          r="5"
-          fill="hsl(var(--muted-foreground))"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : {}}
-          transition={{ delay: 1 }}
-        />
-        <motion.circle
-          cx={margin.left + 220}
-          cy={margin.top + chartHeight - 90}
-          r="5"
-          fill="hsl(var(--cambridge-cyan))"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : {}}
-          transition={{ delay: 1.2 }}
-        />
-        <motion.circle
-          cx={margin.left + 310}
-          cy={margin.top + 70}
-          r="5"
-          fill="hsl(var(--cambridge-magenta))"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : {}}
-          transition={{ delay: 1.4 }}
-        />
-      </svg>
+            {/* AD curves + equilibria */}
+            {AD_A.map((a, i) => (
+              <g key={a}>
+                <motion.path
+                  d={curve(p, adP(a), Math.max(2, (a - 96) / 0.75), Math.min(96, (a - 6) / 0.75))}
+                  fill="none"
+                  stroke={i === 0 ? C.demand : i === 1 ? C.demandAlt : C.consumerSurplus}
+                  strokeWidth={active === i ? 2.8 : 1.9}
+                  opacity={active === i ? 1 : 0.72}
+                  {...revealPath(2 + i)}
+                  animate={play ? { pathLength: 1, opacity: active === i ? 1 : 0.72 } : { pathLength: 0, opacity: 0 }}
+                />
+                <text
+                  x={p.x(Math.min(96, (a - 6) / 0.75)) + 4}
+                  y={p.y(6) - 2}
+                  fill={i === 0 ? C.demand : i === 1 ? C.demandAlt : C.consumerSurplus}
+                  fontSize={11}
+                >
+                  AD{['₁', '₂', '₃'][i]}
+                </text>
+                <motion.circle
+                  cx={p.x(EQ[i].q)} cy={p.y(EQ[i].p)} r={5}
+                  fill={C.marker}
+                  {...revealPoint(3 + i)}
+                  animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                />
+              </g>
+            ))}
 
-      {/* Stage explanation */}
-      <motion.div
-        key={activeStage}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mt-2 p-3 bg-muted/30 rounded-lg"
-      >
-        <h4 className="font-semibold text-sm text-primary mb-1">{stages[activeStage].title}</h4>
-        <p className="text-xs text-muted-foreground mb-2">{stages[activeStage].description}</p>
-        <div className="grid grid-cols-2 gap-2 text-xs">
-          <div className="p-2 bg-muted/30 rounded">
-            <span className="text-muted-foreground">Price Effect:</span>
-            <span className="ml-1 font-semibold">{stages[activeStage].priceEffect}</span>
-          </div>
-          <div className="p-2 bg-muted/30 rounded">
-            <span className="text-muted-foreground">Output Effect:</span>
-            <span className="ml-1 font-semibold">{stages[activeStage].outputEffect}</span>
-          </div>
+            {/* guides for the active equilibrium */}
+            {play && (
+              <Guides
+                p={p}
+                qx={EQ[active].q}
+                py={EQ[active].p}
+                xLabel={`Y${['₁', '₂', '₃'][active]}`}
+                yLabel={`P${['₁', '₂', '₃'][active]}`}
+              />
+            )}
+
+            {/* stage captions */}
+            <text x={p.x(S1 / 2)} y={p.m.t + 14} textAnchor="middle" fill={C.social} fontSize={10}>
+              Elastic
+            </text>
+            <text x={p.x((S1 + S2) / 2)} y={p.m.t + 14} textAnchor="middle" fill={C.marker} fontSize={10}>
+              Intermediate
+            </text>
+            <text x={p.x((S2 + 100) / 2)} y={p.m.t + 14} textAnchor="middle" fill={C.intervention} fontSize={10}>
+              Inelastic
+            </text>
+          </svg>
         </div>
-      </motion.div>
-    </div>
+      )}
+    </DiagramFrame>
   );
 };
 
