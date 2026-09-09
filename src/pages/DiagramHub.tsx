@@ -28,9 +28,21 @@ const DiagramHub = () => {
     );
   }, [query, filter]);
 
+  const [expanded, setExpanded] = useState(false);
+  const viewerRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLIFrameElement>(null);
+
+  /** Open the requested diagram inside the in-page viewer. */
   const jumpTo = (id: string) => {
     setActive(id);
-    window.open(`${DIAGRAM_GUIDE_FILE}#${id}`, '_blank', 'noopener,noreferrer');
+    const frame = frameRef.current;
+    if (frame) {
+      // Reassigning src (rather than the hash alone) reliably re-scrolls the guide.
+      frame.src = `${DIAGRAM_GUIDE_FILE}#${id}`;
+    }
+    requestAnimationFrame(() => {
+      viewerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   };
 
   return (
