@@ -171,15 +171,43 @@ const DiagramHub = () => {
             )}
           </div>
 
-          <div className="flex justify-center">
-            <a
-              href={DIAGRAM_GUIDE_FILE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-primary/40 bg-primary/15 px-5 text-sm font-semibold text-primary transition-colors hover:bg-primary/25"
-            >
-              Open Complete Interactive Diagram Guide
-            </a>
+          {/* In-page viewer */}
+          <div ref={viewerRef} className="glass-card p-3 sm:p-4 scroll-mt-24">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span
+                className="text-[10px] uppercase tracking-[0.2em] text-primary/80"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              >
+                Interactive Diagram Guide
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setExpanded((v) => !v)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all"
+                >
+                  {expanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                  {expanded ? 'Shrink' : 'Expand'}
+                </button>
+                <a
+                  href={active ? `${DIAGRAM_GUIDE_FILE}#${active}` : DIAGRAM_GUIDE_FILE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-primary/40 bg-primary/15 px-3 py-1.5 text-[11px] font-semibold text-primary hover:bg-primary/25 transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" /> New tab
+                </a>
+              </div>
+            </div>
+            <iframe
+              ref={frameRef}
+              src={DIAGRAM_GUIDE_FILE}
+              title="Econ Nexus Interactive Diagram Guide"
+              loading="lazy"
+              className={cn(
+                'w-full rounded-xl border border-white/10 bg-space-void/60 transition-[height] duration-300',
+                expanded ? 'h-[85vh]' : 'h-[60vh] min-h-[420px]'
+              )}
+            />
           </div>
         </div>
       </main>
