@@ -1,461 +1,198 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import DiagramFrame from './DiagramFrame';
+import { Axes, Guides, curve } from './DiagramAxes';
+import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
+
+/**
+ * Cyclical (demand-deficient) unemployment shown as a negative output gap
+ * in AD/AS space, plus the reflationary policy response that closes it.
+ *
+ * All three equilibria are true intersections of the AD lines with the
+ * upward-sloping SRAS, and the output gap is measured against LRAS at Yf.
+ */
+
+const p = plotBox(560, 400, { t: 36, r: 58, b: 62, l: 68 });
+
+/** Full-employment output. */
+const YF = 68;
+
+/** SRAS: P = 18 + 0.62Q. */
+const sras = (q: number) => 18 + 0.62 * q;
+/** AD: P = a - 0.78Q. */
+const ad = (a: number) => (q: number) => a - 0.78 * q;
+
+const solve = (a: number) => {
+  const q = (a - 18) / (0.62 + 0.78);
+  return { q, p: sras(q) };
+};
+
+/** AD calibrated so AD_FULL clears exactly at Yf. */
+const A_FULL = 18 + 1.4 * YF; // 113.2
+const A_SLUMP = A_FULL - 26;
+
+const E_FULL = solve(A_FULL);
+const E_SLUMP = solve(A_SLUMP);
+
+const STEPS = [
+  {
+    label: 'Negative output gap',
+    text: 'A collapse in confidence, exports or investment shifts AD left to AD₂. Equilibrium output falls to Y₂, below the full-employment level Yf. The horizontal distance Y₂→Yf is the negative output gap, and the workers no longer needed to produce that lost output are cyclically unemployed.',
+  },
+  {
+    label: 'Policy response',
+    text: 'Reflationary policy — lower interest rates, quantitative easing, tax cuts or higher government spending — shifts AD back to the right. Output returns towards Yf, the output gap closes and demand-deficient unemployment falls, at the cost of a higher price level and, for fiscal action, a wider budget deficit.',
+  },
+];
 
 const CyclicalUnemploymentDiagram = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [showPolicy, setShowPolicy] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
-
-  const width = 520;
-  const height = 420;
-  const margin = { top: 40, right: 40, bottom: 70, left: 80 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
-
-  // Scale functions
-  const xScale = (val: number) => margin.left + (val / 100) * chartWidth;
-  const yScale = (val: number) => margin.top + chartHeight - (val / 100) * chartHeight;
-
-  // Potential output (Yf = full employment)
-  const Yf = 75;
-  // Current output (Y1 < Yf = output gap)
-  const Y1 = 45;
-  // Output after policy (Y2)
-  const Y2 = 70;
-
-  // Price levels
-  const P1 = 35;
-  const P2 = 50;
-
-  // LRAS vertical line
-  const lrasPath = `M ${xScale(Yf)} ${margin.top} L ${xScale(Yf)} ${margin.top + chartHeight}`;
-  
-  // SRAS upward sloping
-  const srasPath = `M ${xScale(10)} ${yScale(15)} Q ${xScale(50)} ${yScale(40)} ${xScale(90)} ${yScale(85)}`;
-  
-  // AD1 (recession - low demand)
-  const ad1Path = `M ${xScale(10)} ${yScale(70)} Q ${xScale(45)} ${yScale(35)} ${xScale(70)} ${yScale(10)}`;
-  
-  // AD2 (after expansionary policy)
-  const ad2Path = `M ${xScale(25)} ${yScale(85)} Q ${xScale(60)} ${yScale(50)} ${xScale(90)} ${yScale(20)}`;
-
-  const curveVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1,
-      transition: { duration: 1, ease: "easeInOut" as const }
-    }
-  };
+  const [step, setStep] = useState(0);
+  const recovered = step === 1;
 
   return (
-    <div ref={containerRef} className="glass-card p-6 rounded-xl">
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h3 className="font-serif text-lg text-silver-bright">Cyclical (Demand-Deficient) Unemployment</h3>
-          <p className="text-xs text-muted-foreground mt-1">Figure 4.2: Negative Output Gap and Policy Response</p>
-        </div>
-        <button
-          onClick={() => setShowPolicy(!showPolicy)}
-          className="px-3 py-1.5 text-xs font-medium rounded-lg bg-cambridge-green/20 text-cambridge-green hover:bg-cambridge-green/30 transition-colors"
-        >
-          {showPolicy ? 'Hide Policy' : 'Show Expansionary Policy'}
-        </button>
-      </div>
+    <DiagramFrame
+      title="Cyclical (Demand-Deficient) Unemployment"
+      eyebrow="Figure 4.2 · negative output gap and policy response"
+      legend={[
+        { label: 'AD₁ (full employment)', color: C.demand },
+        { label: 'AD₂ (deficient demand)', color: C.demandAlt, dashed: true },
+        { label: 'SRAS', color: C.supply },
+        { label: 'LRAS at Yf', color: C.intervention, dashed: true },
+        { label: 'Output gap', color: C.welfareLoss, kind: 'area' },
+      ]}
+      note={<p>{STEPS[step].text}</p>}
+    >
+      {({ play, runKey }) => (
+        <div key={runKey} className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            {STEPS.map((s, i) => (
+              <button
+                key={s.label}
+                type="button"
+                onClick={() => setStep(i)}
+                className={`rounded-full border px-3 py-1 text-[11px] transition-colors ${
+                  step === i
+                    ? 'border-primary/60 bg-primary/20 text-primary'
+                    : 'border-white/15 bg-white/5 text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {i + 1}. {s.label}
+              </button>
+            ))}
+          </div>
 
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
-        {/* Grid */}
-        {[20, 40, 60, 80].map((val) => (
-          <g key={val}>
-            <line
-              x1={xScale(val)}
-              y1={margin.top}
-              x2={xScale(val)}
-              y2={margin.top + chartHeight}
-              stroke="hsl(var(--muted-foreground))"
-              strokeOpacity={0.1}
-              strokeDasharray="4,4"
+          <svg viewBox={`0 0 ${p.W} ${p.H}`} className="w-full min-w-[320px]">
+            {/* output gap band */}
+            <motion.rect
+              x={p.x(E_SLUMP.q)}
+              y={p.m.t}
+              width={p.x(YF) - p.x(E_SLUMP.q)}
+              height={p.ch}
+              fill={C.welfareLoss}
+              initial={{ opacity: 0 }}
+              animate={play && !recovered ? { opacity: 0.14 } : { opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
             />
-            <line
-              x1={margin.left}
-              y1={yScale(val)}
-              x2={margin.left + chartWidth}
-              y2={yScale(val)}
-              stroke="hsl(var(--muted-foreground))"
-              strokeOpacity={0.1}
-              strokeDasharray="4,4"
+
+            <Axes p={p} id="cyclical-u" labelX="Real output (Y)" labelY="Price level (P)" />
+
+            {/* LRAS */}
+            <motion.line
+              x1={p.x(YF)} y1={p.m.t + p.ch} x2={p.x(YF)} y2={p.m.t + 6}
+              stroke={C.intervention} strokeWidth={2} strokeDasharray="6 4"
+              {...revealPath(0)}
+              animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
             />
-          </g>
-        ))}
+            <text x={p.x(YF)} y={p.m.t - 6} textAnchor="middle" fill={C.intervention} fontSize={11}>
+              LRAS (Yf)
+            </text>
 
-        {/* Axes */}
-        <line
-          x1={margin.left}
-          y1={margin.top + chartHeight}
-          x2={margin.left + chartWidth}
-          y2={margin.top + chartHeight}
-          stroke="hsl(var(--silver))"
-          strokeWidth={2}
-        />
-        <line
-          x1={margin.left}
-          y1={margin.top}
-          x2={margin.left}
-          y2={margin.top + chartHeight}
-          stroke="hsl(var(--silver))"
-          strokeWidth={2}
-        />
-
-        {/* Axis labels */}
-        <text
-          x={width / 2}
-          y={height - 10}
-          textAnchor="middle"
-          fill="hsl(var(--silver-bright))"
-          className="text-sm font-serif"
-        >
-          Real GDP (Y)
-        </text>
-        <text
-          x={25}
-          y={height / 2}
-          textAnchor="middle"
-          fill="hsl(var(--silver-bright))"
-          className="text-sm font-serif"
-          transform={`rotate(-90, 25, ${height / 2})`}
-        >
-          Price Level (P)
-        </text>
-
-        {/* Output gap shading */}
-        <motion.rect
-          x={xScale(Y1)}
-          y={margin.top}
-          width={xScale(Yf) - xScale(Y1)}
-          height={chartHeight}
-          fill="hsl(var(--destructive))"
-          opacity={0.08}
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 0.08 } : { opacity: 0 }}
-          transition={{ duration: 0.5, delay: 1.5 }}
-        />
-        <text
-          x={(xScale(Y1) + xScale(Yf)) / 2}
-          y={margin.top + 25}
-          textAnchor="middle"
-          fill="hsl(var(--destructive))"
-          className="text-xs font-medium"
-        >
-          Negative Output Gap
-        </text>
-
-        {/* LRAS */}
-        <motion.path
-          d={lrasPath}
-          fill="none"
-          stroke="hsl(var(--cambridge-orange))"
-          strokeWidth={3}
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-        <text
-          x={xScale(Yf) + 8}
-          y={margin.top + 20}
-          fill="hsl(var(--cambridge-orange))"
-          className="text-sm font-semibold"
-        >
-          LRAS
-        </text>
-
-        {/* SRAS */}
-        <motion.path
-          d={srasPath}
-          fill="none"
-          stroke="hsl(var(--cambridge-cyan))"
-          strokeWidth={3}
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-        <text
-          x={xScale(92)}
-          y={yScale(88)}
-          fill="hsl(var(--cambridge-cyan))"
-          className="text-sm font-semibold"
-        >
-          SRAS
-        </text>
-
-        {/* AD1 */}
-        <motion.path
-          d={ad1Path}
-          fill="none"
-          stroke="hsl(var(--cambridge-magenta))"
-          strokeWidth={3}
-          variants={curveVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        />
-        <text
-          x={xScale(72)}
-          y={yScale(8)}
-          fill="hsl(var(--cambridge-magenta))"
-          className="text-sm font-semibold"
-        >
-          AD₁
-        </text>
-
-        {/* AD2 (after policy) */}
-        {showPolicy && (
-          <>
+            {/* SRAS */}
             <motion.path
-              d={ad2Path}
-              fill="none"
-              stroke="hsl(var(--cambridge-green))"
-              strokeWidth={3}
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              d={curve(p, sras, 4, 92)}
+              fill="none" stroke={C.supply} strokeWidth={2.6}
+              {...revealPath(1)}
+              animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
             />
-            <text
-              x={xScale(92)}
-              y={yScale(18)}
-              fill="hsl(var(--cambridge-green))"
-              className="text-sm font-semibold"
-            >
+            <text x={p.x(88)} y={p.y(sras(88)) - 8} fill={C.supply} fontSize={12} fontWeight={600}>
+              SRAS
+            </text>
+
+            {/* AD1 */}
+            <motion.path
+              d={curve(p, ad(A_FULL), 22, 96)}
+              fill="none" stroke={C.demand} strokeWidth={recovered ? 2.8 : 2}
+              {...revealPath(2)}
+              animate={play ? { pathLength: 1, opacity: recovered ? 1 : 0.75 } : { pathLength: 0, opacity: 0 }}
+            />
+            <text x={p.x(94)} y={p.y(ad(A_FULL)(94)) - 6} fill={C.demand} fontSize={11}>
+              AD₁
+            </text>
+
+            {/* AD2 */}
+            <motion.path
+              d={curve(p, ad(A_SLUMP), 4, 96)}
+              fill="none" stroke={C.demandAlt} strokeWidth={recovered ? 1.8 : 2.8}
+              strokeDasharray={recovered ? '5 4' : undefined}
+              {...revealPath(3)}
+              animate={play ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+            />
+            <text x={p.x(90)} y={p.y(ad(A_SLUMP)(90)) - 6} fill={C.demandAlt} fontSize={11}>
               AD₂
             </text>
 
-            {/* Shift arrow */}
-            <motion.path
-              d={`M ${xScale(50)} ${yScale(42)} L ${xScale(60)} ${yScale(52)}`}
-              fill="none"
-              stroke="hsl(var(--cambridge-green))"
-              strokeWidth={2}
-              markerEnd="url(#arrowCyclical)"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.4, delay: 0.5 }}
-            />
+            {/* recovery arrow */}
+            {recovered && (
+              <motion.line
+                x1={p.x(E_SLUMP.q) + 8} y1={p.y(86)} x2={p.x(YF) - 8} y2={p.y(86)}
+                stroke={C.welfareGain} strokeWidth={1.8}
+                {...revealFade(4)} animate={play ? { opacity: 1 } : { opacity: 0 }}
+              />
+            )}
 
-            {/* New equilibrium E2 */}
+            {/* equilibria */}
             <motion.circle
-              cx={xScale(Y2)}
-              cy={yScale(P2)}
-              r={6}
-              fill="hsl(var(--cambridge-green))"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.8 }}
+              cx={p.x(E_SLUMP.q)} cy={p.y(E_SLUMP.p)} r={5.5} fill={C.marker}
+              {...revealPoint(4)}
+              animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
             />
-            <text
-              x={xScale(Y2) + 12}
-              y={yScale(P2) - 8}
-              fill="hsl(var(--cambridge-green))"
-              className="text-xs font-bold"
-            >
-              E₂
-            </text>
-
-            {/* Y2 projection */}
-            <motion.line
-              x1={xScale(Y2)}
-              y1={yScale(P2)}
-              x2={xScale(Y2)}
-              y2={margin.top + chartHeight}
-              stroke="hsl(var(--cambridge-green))"
-              strokeWidth={1.5}
-              strokeDasharray="6,4"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.4, delay: 1 }}
+            <motion.circle
+              cx={p.x(E_FULL.q)} cy={p.y(E_FULL.p)} r={5.5}
+              fill={recovered ? C.welfareGain : C.muted}
+              {...revealPoint(5)}
+              animate={play ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
             />
-            <text
-              x={xScale(Y2)}
-              y={margin.top + chartHeight + 18}
-              textAnchor="middle"
-              fill="hsl(var(--cambridge-green))"
-              className="text-xs font-medium"
-            >
-              Y₂
-            </text>
 
-            {/* P2 projection */}
-            <motion.line
-              x1={margin.left}
-              y1={yScale(P2)}
-              x2={xScale(Y2)}
-              y2={yScale(P2)}
-              stroke="hsl(var(--cambridge-green))"
-              strokeWidth={1.5}
-              strokeDasharray="6,4"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.4, delay: 1.1 }}
-            />
-            <text
-              x={margin.left - 10}
-              y={yScale(P2) + 4}
-              textAnchor="end"
-              fill="hsl(var(--cambridge-green))"
-              className="text-xs font-medium"
-            >
-              P₂
-            </text>
-          </>
-        )}
+            {play && (
+              <>
+                <Guides p={p} qx={E_SLUMP.q} py={E_SLUMP.p} xLabel="Y₂" yLabel="P₂" />
+                <Guides
+                  p={p}
+                  qx={E_FULL.q}
+                  py={E_FULL.p}
+                  color={recovered ? C.welfareGain : C.muted}
+                  yLabel="P₁"
+                />
+              </>
+            )}
 
-        {/* Equilibrium E1 */}
-        <motion.circle
-          cx={xScale(Y1)}
-          cy={yScale(P1)}
-          r={6}
-          fill="hsl(var(--cambridge-magenta))"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : { scale: 0 }}
-          transition={{ duration: 0.4, delay: 1.2 }}
-        />
-        <text
-          x={xScale(Y1) + 12}
-          y={yScale(P1) - 8}
-          fill="hsl(var(--cambridge-magenta))"
-          className="text-xs font-bold"
-        >
-          E₁
-        </text>
-
-        {/* Y1 projection */}
-        <motion.line
-          x1={xScale(Y1)}
-          y1={yScale(P1)}
-          x2={xScale(Y1)}
-          y2={margin.top + chartHeight}
-          stroke="hsl(var(--cambridge-magenta))"
-          strokeWidth={1.5}
-          strokeDasharray="6,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-          transition={{ duration: 0.4, delay: 1.4 }}
-        />
-        <text
-          x={xScale(Y1)}
-          y={margin.top + chartHeight + 18}
-          textAnchor="middle"
-          fill="hsl(var(--cambridge-magenta))"
-          className="text-xs font-medium"
-        >
-          Y₁
-        </text>
-
-        {/* Yf (full employment) label */}
-        <text
-          x={xScale(Yf)}
-          y={margin.top + chartHeight + 18}
-          textAnchor="middle"
-          fill="hsl(var(--cambridge-orange))"
-          className="text-xs font-medium"
-        >
-          Yf
-        </text>
-
-        {/* P1 projection */}
-        <motion.line
-          x1={margin.left}
-          y1={yScale(P1)}
-          x2={xScale(Y1)}
-          y2={yScale(P1)}
-          stroke="hsl(var(--cambridge-magenta))"
-          strokeWidth={1.5}
-          strokeDasharray="6,4"
-          initial={{ pathLength: 0 }}
-          animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
-          transition={{ duration: 0.4, delay: 1.3 }}
-        />
-        <text
-          x={margin.left - 10}
-          y={yScale(P1) + 4}
-          textAnchor="end"
-          fill="hsl(var(--cambridge-magenta))"
-          className="text-xs font-medium"
-        >
-          P₁
-        </text>
-
-        {/* Arrow marker */}
-        <defs>
-          <marker
-            id="arrowCyclical"
-            markerWidth="10"
-            markerHeight="7"
-            refX="9"
-            refY="3.5"
-            orient="auto"
-          >
-            <polygon
-              points="0 0, 10 3.5, 0 7"
-              fill="hsl(var(--cambridge-green))"
-            />
-          </marker>
-        </defs>
-      </svg>
-
-      {/* Legend */}
-      <div className="mt-4 flex flex-wrap gap-4 text-xs">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-0.5 bg-cambridge-orange" />
-          <span className="text-muted-foreground">LRAS (Full Employment)</span>
+            {!recovered && (
+              <motion.text
+                x={(p.x(E_SLUMP.q) + p.x(YF)) / 2}
+                y={p.m.t + p.ch - 12}
+                textAnchor="middle"
+                fill={C.welfareLoss}
+                fontSize={10}
+                {...revealFade(6)}
+                animate={play ? { opacity: 1 } : { opacity: 0 }}
+              >
+                Negative output gap
+              </motion.text>
+            )}
+          </svg>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-0.5 bg-cambridge-cyan" />
-          <span className="text-muted-foreground">SRAS</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-0.5 bg-cambridge-magenta" />
-          <span className="text-muted-foreground">AD₁ (Recession)</span>
-        </div>
-        {showPolicy && (
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-0.5 bg-cambridge-green" />
-            <span className="text-muted-foreground">AD₂ (After Policy)</span>
-          </div>
-        )}
-      </div>
-
-      {/* Explanation */}
-      <div className="mt-4 p-3 bg-muted/30 rounded-lg text-xs text-muted-foreground">
-        {showPolicy ? (
-          <p>
-            <strong>Policy Response:</strong> Expansionary fiscal policy (↑G or ↓T) or monetary 
-            policy (↓r) shifts $AD$ rightward from $AD_1$ to $AD_2$. Output increases from $Y_1$ 
-            to $Y_2$, closing the <strong>negative output gap</strong> and reducing cyclical 
-            unemployment. Trade-off: price level rises from $P_1$ to $P_2$ (inflation).
-          </p>
-        ) : (
-          <p>
-            <strong>Cyclical Unemployment:</strong> During a recession, $AD$ falls below full 
-            employment output ($Y_f$). The economy operates at $Y_1 &lt; Y_f$, creating a 
-            <strong> negative output gap</strong>. Unemployment exceeds the natural rate because 
-            firms lay off workers due to insufficient demand for goods and services.
-          </p>
-        )}
-      </div>
-    </div>
+      )}
+    </DiagramFrame>
   );
 };
 
