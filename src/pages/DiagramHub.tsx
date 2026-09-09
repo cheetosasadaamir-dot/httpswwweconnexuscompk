@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, LineChart, Search, X } from 'lucide-react';
+import { ArrowLeft, ExternalLink, LineChart, Maximize2, Minimize2, Search, X } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingDock from '@/components/FloatingDock';
