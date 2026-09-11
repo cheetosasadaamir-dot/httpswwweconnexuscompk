@@ -26,7 +26,7 @@ const BalanceOfPayments = () => {
             The Balance of Payments
           </h1>
           <p className="text-xl text-muted-foreground mb-6">
-            AS Level Macroeconomics • Chapter 4.8
+            Foundation Level Macroeconomics • Chapter 4.8
           </p>
 
           {/* Section 1: Structure of the Balance of Payments */}

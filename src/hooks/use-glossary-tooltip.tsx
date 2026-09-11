@@ -31,7 +31,7 @@ export const useGlossaryTooltip = () => {
     );
   };
 
-  const findTermsByLevel = (level: 'AS' | 'A2' | 'Both'): GlossaryTerm[] => {
+  const findTermsByLevel = (level: 'Foundation' | 'A2' | 'Both'): GlossaryTerm[] => {
     return glossaryTerms.filter(term => term.level === level || term.level === 'Both');
   };
 

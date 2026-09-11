@@ -490,8 +490,8 @@ const GlossarySection = () => {
           className="flex justify-center gap-6 mt-6 text-xs text-muted-foreground"
         >
           <span>📚 {glossaryTerms.length} Total Terms</span>
-          <span>🎯 {glossaryTerms.filter(t => t.level === 'AS' || t.level === 'Both').length} AS Level</span>
-          <span>📈 {glossaryTerms.filter(t => t.level === 'A2' || t.level === 'Both').length} A2 Level</span>
+          <span>🎯 {glossaryTerms.filter(t => t.level === 'AS' || t.level === 'Both').length} Foundation Level</span>
+          <span>📈 {glossaryTerms.filter(t => t.level === 'A2' || t.level === 'Both').length} Advanced Level</span>
           <span>📐 {glossaryTerms.filter(t => t.formula).length} With Formulas</span>
         </motion.div>
       </div>

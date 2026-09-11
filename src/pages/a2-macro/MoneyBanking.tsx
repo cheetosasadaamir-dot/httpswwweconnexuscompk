@@ -40,7 +40,7 @@ const MoneyBanking = () => {
       >
         {/* Chapter Header */}
         <div className="mb-6">
-          <span className="text-primary text-sm font-medium tracking-wider uppercase">A2 Level • Chapter 3</span>
+          <span className="text-primary text-sm font-medium tracking-wider uppercase">Advanced Level • Chapter 3</span>
           <h1 className="font-serif text-3xl md:text-4xl text-gradient mt-1 mb-2">
             Money, Interest Rate Determination & Monetary Policy
           </h1>

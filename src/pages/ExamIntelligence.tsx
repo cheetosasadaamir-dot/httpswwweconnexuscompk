@@ -65,8 +65,8 @@ const ExamIntelligence = () => {
               <Tabs value={levelFilter} onValueChange={(v) => setLevelFilter(v as typeof levelFilter)} className="w-auto">
                 <TabsList className="bg-background/50 border border-border">
                   <TabsTrigger value="all">All Levels</TabsTrigger>
-                  <TabsTrigger value="AS">AS Level</TabsTrigger>
-                  <TabsTrigger value="A2">A2 Level</TabsTrigger>
+                  <TabsTrigger value="AS">Foundation Level</TabsTrigger>
+                  <TabsTrigger value="A2">Advanced Level</TabsTrigger>
                 </TabsList>
               </Tabs>
               <Tabs value={seriesFilter} onValueChange={(v) => setSeriesFilter(v as typeof seriesFilter)} className="w-auto">

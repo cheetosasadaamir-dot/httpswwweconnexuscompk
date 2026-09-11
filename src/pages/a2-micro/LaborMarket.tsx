@@ -25,7 +25,7 @@ const LaborMarket = () => {
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
           <Link to="/" className="hover:text-primary transition-colors">Home</Link>
           <ChevronRight className="w-4 h-4" />
-          <Link to="/a2-micro/market-structures" className="hover:text-primary transition-colors">A2 Microeconomics</Link>
+          <Link to="/a2-micro/market-structures" className="hover:text-primary transition-colors">Advanced Microeconomics</Link>
           <ChevronRight className="w-4 h-4" />
           <span className="text-foreground">Labor Market</span>
         </nav>
@@ -34,7 +34,7 @@ const LaborMarket = () => {
         <header className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              A2 Microeconomics • Chapter 5
+              Advanced Microeconomics • Chapter 5
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-silver-bright mb-4">

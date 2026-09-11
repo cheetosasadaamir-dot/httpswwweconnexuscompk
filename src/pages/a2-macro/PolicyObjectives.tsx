@@ -39,7 +39,7 @@ const PolicyObjectives = () => {
         >
           <div className="mb-6">
             <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium">
-              A2 Level • Chapter 5
+              Advanced Level • Chapter 5
             </span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">

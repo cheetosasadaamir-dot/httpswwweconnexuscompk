@@ -43,7 +43,7 @@ const Development = () => {
             Economic Development & Global Integration
           </h1>
           <p className="text-xl text-muted-foreground mb-6">
-            A2 Level Macroeconomics • Syllabus (2026-2028)
+            Advanced Level Macroeconomics • Syllabus (2026-2028)
           </p>
 
           {/* Key Takeaways Summary */}

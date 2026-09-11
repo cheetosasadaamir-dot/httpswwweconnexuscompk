@@ -33,7 +33,7 @@ const ExamIntelligence = lazy(() => import("./pages/ExamIntelligence"));
 const Microeconomics = lazy(() => import("./pages/Microeconomics"));
 const Macroeconomics = lazy(() => import("./pages/Macroeconomics"));
 
-// AS Macro chapters
+// Foundation Macro chapters
 const ADASEquilibrium = lazy(() => import("./pages/as-macro/ADASEquilibrium"));
 const Inflation = lazy(() => import("./pages/as-macro/Inflation"));
 const InternationalTrade = lazy(() => import("./pages/as-macro/InternationalTrade"));
@@ -41,7 +41,7 @@ const ExchangeRates = lazy(() => import("./pages/as-macro/ExchangeRates"));
 const BalanceOfPayments = lazy(() => import("./pages/as-macro/BalanceOfPayments"));
 const MacroeconomicPolicy = lazy(() => import("./pages/as-macro/MacroeconomicPolicy"));
 
-// A2 Macro chapters
+// Advanced Macro chapters
 const Investment = lazy(() => import("./pages/a2-macro/Investment"));
 const GovernmentTrade = lazy(() => import("./pages/a2-macro/GovernmentTrade"));
 const MoneyBanking = lazy(() => import("./pages/a2-macro/MoneyBanking"));
@@ -49,7 +49,7 @@ const UnemploymentGrowth = lazy(() => import("./pages/a2-macro/UnemploymentGrowt
 const PolicyObjectives = lazy(() => import("./pages/a2-macro/PolicyObjectives"));
 const Development = lazy(() => import("./pages/a2-macro/Development"));
 
-// A2 Microeconomics
+// Advanced Microeconomics
 const MarketStructuresA2 = lazy(() => import("./pages/a2-micro/MarketStructuresA2"));
 const LaborMarketA2 = lazy(() => import("./pages/a2-micro/LaborMarket"));
 const UtilityConsumerChoice = lazy(() => import("./pages/a2-micro/UtilityConsumerChoice"));
@@ -116,20 +116,20 @@ const AnimatedRoutes = () => {
           <Route path="/microeconomics" element={<Microeconomics />} />
           <Route path="/macroeconomics" element={<Macroeconomics />} />
           
-          {/* AS Microeconomics chapters */}
+          {/* Foundation Microeconomics chapters */}
           <Route path="/basic-economic-ideas" element={<BasicEconomicIdeas />} />
           <Route path="/price-system" element={<PriceSystem />} />
           <Route path="/elasticities" element={<Elasticities />} />
           <Route path="/market-failure" element={<MarketFailure />} />
           
-          {/* A2 Microeconomics chapters */}
+          {/* Advanced Microeconomics chapters */}
           <Route path="/a2-micro/utility-consumer-choice" element={<UtilityConsumerChoice />} />
           <Route path="/a2-micro/economic-efficiency" element={<EconomicEfficiency />} />
           <Route path="/a2-micro/production-costs" element={<ProductionCosts />} />
           <Route path="/a2-micro/market-structures" element={<MarketStructuresA2 />} />
           <Route path="/a2-micro/labor-market" element={<LaborMarketA2 />} />
           
-          {/* AS Macroeconomics chapters */}
+          {/* Foundation Macroeconomics chapters */}
           <Route path="/as-macro/ad-as" element={<ADASEquilibrium />} />
           <Route path="/as-macro/inflation" element={<Inflation />} />
           <Route path="/as-macro/international-trade" element={<InternationalTrade />} />
@@ -137,7 +137,7 @@ const AnimatedRoutes = () => {
           <Route path="/as-macro/balance-of-payments" element={<BalanceOfPayments />} />
           <Route path="/as-macro/policy" element={<MacroeconomicPolicy />} />
           
-          {/* A2 Macroeconomics chapters */}
+          {/* Advanced Macroeconomics chapters */}
           <Route path="/a2-macro/national-income" element={<NationalIncome />} />
           <Route path="/a2-macro/money-banking" element={<MoneyBanking />} />
           <Route path="/a2-macro/unemployment-growth" element={<UnemploymentGrowth />} />

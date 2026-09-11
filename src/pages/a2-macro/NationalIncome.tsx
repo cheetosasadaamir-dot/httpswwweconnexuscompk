@@ -32,7 +32,7 @@ const NationalIncome = () => {
         >
           <div className="flex items-center gap-3 mb-2">
             <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium">
-              A2 Level • Chapter 2
+              Advanced Level • Chapter 2
             </span>
           </div>
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-gradient mb-2">
@@ -631,7 +631,7 @@ const NationalIncome = () => {
           </ExamTipBox>
         </ContentSection>
 
-        {/* Topic 6: The Aggregate Expenditure Model (Keynesian Cross) - A2 Level */}
+        {/* Topic 6: The Aggregate Expenditure Model (Keynesian Cross) - Advanced Level */}
         <ContentSection title="Topic 6: The Aggregate Expenditure Model (Keynesian Cross)" id="ae-model">
           <div className="space-y-0">
             <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
@@ -725,7 +725,7 @@ const NationalIncome = () => {
           </div>
         </ContentSection>
 
-        {/* Topic 7: The Multiplier & Marginal Propensities (A2 Level) */}
+        {/* Topic 7: The Multiplier & Marginal Propensities (Advanced Level) */}
         <ContentSection title="Topic 7: The Multiplier Effect & Marginal Propensities" id="multiplier">
           <div className="space-y-0">
             <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">

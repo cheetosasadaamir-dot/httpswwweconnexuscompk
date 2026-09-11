@@ -20,7 +20,7 @@ const ProductionCosts = () => {
     <ChapterLayout
       chapterNumber={2}
       title="Production, Costs, Revenues and Profits"
-      subtitle="A2 Microeconomics — Theory of the Firm Foundations"
+      subtitle="Advanced Microeconomics — Theory of the Firm Foundations"
     >
       {/* Key Takeaways */}
       <KeyTakeaways

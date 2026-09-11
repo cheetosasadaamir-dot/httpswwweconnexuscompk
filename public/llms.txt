@@ -2,13 +2,13 @@
 
 > Agentic AI tutors, notes, diagrams, and exam intelligence for A-Level and university economics.
 
-EconNexus deploys 11 specialist AI personas across Economics, Business, Sciences, and Law. Content is syllabus-locked to A-Level board specifications (AS and A2) with structured notes, interactive diagrams, exam papers, case studies, and a real-time chat tutor.
+EconNexus deploys 11 specialist AI personas across Economics, Business, Sciences, and Law. Content is syllabus-locked to A-Level board specifications (Foundation and Advanced) with structured notes, interactive diagrams, exam papers, case studies, and a real-time chat tutor.
 
 ## Pages
 
 - [Home](/): Overview of the EconNexus agentic ecosystem.
-- [Microeconomics](/microeconomics): AS + A2 microeconomics chapters — scarcity, price system, elasticities, market failure, market structures, labor market, utility, production costs.
-- [Macroeconomics](/macroeconomics): AS + A2 macroeconomics chapters — AD/AS, inflation, trade, exchange rates, balance of payments, national income, money and banking, development.
+- [Microeconomics](/microeconomics): Foundation + Advanced microeconomics chapters — scarcity, price system, elasticities, market failure, market structures, labor market, utility, production costs.
+- [Macroeconomics](/macroeconomics): Foundation + Advanced macroeconomics chapters — AD/AS, inflation, trade, exchange rates, balance of payments, national income, money and banking, development.
 - [Notes](/notes): Full notes repository across all chapters.
 - [Case Studies](/case-studies): Applied economics case studies with worked analysis.
 - [Exam Intelligence](/exam-intelligence): Past-paper vault with reasoning and MCQ solutions.

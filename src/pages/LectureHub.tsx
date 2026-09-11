@@ -10,10 +10,10 @@ import { useAuth } from '@/hooks/useAuth';
 
 const CATEGORIES = [
   { id: 'all', label: 'All' },
-  { id: 'as-micro', label: 'AS Micro' },
-  { id: 'as-macro', label: 'AS Macro' },
-  { id: 'a2-micro', label: 'A2 Micro' },
-  { id: 'a2-macro', label: 'A2 Macro' },
+  { id: 'as-micro', label: 'Foundation Micro' },
+  { id: 'as-macro', label: 'Foundation Macro' },
+  { id: 'a2-micro', label: 'Advanced Micro' },
+  { id: 'a2-macro', label: 'Advanced Macro' },
 ] as const;
 
 const placeholders = Array.from({ length: 8 }, (_, i) => ({

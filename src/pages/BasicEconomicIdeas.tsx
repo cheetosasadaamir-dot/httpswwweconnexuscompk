@@ -31,7 +31,7 @@ const BasicEconomicIdeas = () => {
       >
         {/* Chapter Header */}
         <div className="mb-6">
-          <span className="text-primary text-sm font-medium tracking-wider uppercase">AS Level • Chapter 1</span>
+          <span className="text-primary text-sm font-medium tracking-wider uppercase">Foundation Level • Chapter 1</span>
           <h1 className="font-serif text-4xl md:text-5xl text-gradient mt-2 mb-3">
             Basic Economic Ideas
           </h1>
