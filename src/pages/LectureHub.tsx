@@ -37,7 +37,7 @@ const LectureHub = () => {
     <div className="min-h-screen relative">
       <Helmet>
         <title>Lecture Hub — Econ Nexus</title>
-        <meta name="description" content="Cinematic on-demand economics lectures — AS & A2, Micro & Macro — inside Econ Nexus." />
+        <meta name="description" content="Cinematic on-demand economics lectures — Foundation & Advanced, Micro & Macro — inside Econ Nexus." />
       </Helmet>
 
       <Header />
