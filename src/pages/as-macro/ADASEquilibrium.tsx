@@ -37,7 +37,7 @@ const ADASEquilibrium = () => {
       >
         {/* Chapter Header */}
         <div className="mb-12">
-          <span className="text-primary text-sm font-medium tracking-wider uppercase">AS Level • Chapter 1</span>
+          <span className="text-primary text-sm font-medium tracking-wider uppercase">Foundation Level • Chapter 1</span>
           <h1 className="font-serif text-4xl md:text-5xl text-gradient mt-2 mb-4">
             Macroeconomic Equilibrium
           </h1>
@@ -849,7 +849,7 @@ const ADASEquilibrium = () => {
           <CostPushStagflationDiagram />
         </ContentSection>
 
-        {/* Macroeconomic Equilibrium - CIE AS-Level Enhanced Content */}
+        {/* Macroeconomic Equilibrium - CIE Foundation Level Enhanced Content */}
         <ContentSection title="Equilibrium Real National Output: Framework">
           {/* Integrated CIE Content Section */}
           <ADASEquilibriumSection />

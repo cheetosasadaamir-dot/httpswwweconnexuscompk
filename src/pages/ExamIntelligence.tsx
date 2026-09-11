@@ -13,7 +13,7 @@ const ExamIntelligence = () => {
   const [selectedPaper, setSelectedPaper] = useState<ExamPaper | null>(null);
   const [selectedQuestion, setSelectedQuestion] = useState<MCQQuestion | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
-  const [levelFilter, setLevelFilter] = useState<'all' | 'AS' | 'A2'>('all');
+  const [levelFilter, setLevelFilter] = useState<'all' | 'Foundation' | 'Advanced'>('all');
   const [seriesFilter, setSeriesFilter] = useState<'all' | 'may' | 'oct'>('all');
 
   const paperIcons = {
@@ -65,8 +65,8 @@ const ExamIntelligence = () => {
               <Tabs value={levelFilter} onValueChange={(v) => setLevelFilter(v as typeof levelFilter)} className="w-auto">
                 <TabsList className="bg-background/50 border border-border">
                   <TabsTrigger value="all">All Levels</TabsTrigger>
-                  <TabsTrigger value="AS">AS Level</TabsTrigger>
-                  <TabsTrigger value="A2">A2 Level</TabsTrigger>
+                  <TabsTrigger value="Foundation">Foundation Level</TabsTrigger>
+                  <TabsTrigger value="Advanced">Advanced Level</TabsTrigger>
                 </TabsList>
               </Tabs>
               <Tabs value={seriesFilter} onValueChange={(v) => setSeriesFilter(v as typeof seriesFilter)} className="w-auto">
@@ -100,7 +100,7 @@ const ExamIntelligence = () => {
                         </div>
                         <Badge variant="outline" className={cn(
                           "text-xs",
-                          paper.level === 'AS' ? "border-emerald-500 text-emerald-400" : "border-amber-500 text-amber-400"
+                          paper.level === 'Foundation' ? "border-emerald-500 text-emerald-400" : "border-amber-500 text-amber-400"
                         )}>
                           {paper.level} Level
                         </Badge>

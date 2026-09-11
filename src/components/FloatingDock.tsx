@@ -55,7 +55,7 @@ const navigation: NavItem[] = [
     icon: TrendingUp,
     levels: [
       {
-        title: 'AS Level',
+        title: 'Foundation Level',
         children: [
           { title: 'Basic Economic Ideas', href: '/basic-economic-ideas' },
           { title: 'The Price System', href: '/price-system' },
@@ -64,7 +64,7 @@ const navigation: NavItem[] = [
         ],
       },
       {
-        title: 'A2 Level',
+        title: 'Advanced Level',
         children: [
           { title: 'Utility & Consumer Choice', href: '/a2-micro/utility-consumer-choice' },
           { title: 'Production & Costs', href: '/a2-micro/production-costs' },
@@ -81,7 +81,7 @@ const navigation: NavItem[] = [
     icon: Globe,
     levels: [
       {
-        title: 'AS Level',
+        title: 'Foundation Level',
         children: [
           { title: 'AD/AS Equilibrium', href: '/as-macro/ad-as' },
           { title: 'Inflation', href: '/as-macro/inflation' },
@@ -91,7 +91,7 @@ const navigation: NavItem[] = [
         ],
       },
       {
-        title: 'A2 Level',
+        title: 'Advanced Level',
         children: [
           { title: 'Keynesian Theory', href: '/a2-macro/national-income' },
           { title: 'Unemployment & Phillips Curve', href: '/a2-macro/unemployment-growth' },
@@ -120,7 +120,7 @@ interface MobileMenuTier {
 
 const mobileMenuTiers: MobileMenuTier[] = [
   {
-    title: 'AS Macroeconomics',
+    title: 'Foundation Macroeconomics',
     icon: Globe,
     children: [
       { title: 'AD/AS Equilibrium', href: '/as-macro/ad-as' },
@@ -130,7 +130,7 @@ const mobileMenuTiers: MobileMenuTier[] = [
     ],
   },
   {
-    title: 'A2 Macroeconomics',
+    title: 'Advanced Macroeconomics',
     icon: TrendingUp,
     children: [
       { title: 'Money & Banking', href: '/a2-macro/money-banking' },
@@ -149,7 +149,7 @@ const mobileMenuTiers: MobileMenuTier[] = [
     ],
   },
   {
-    title: 'AS Microeconomics',
+    title: 'Foundation Microeconomics',
     icon: Scale,
     children: [
       { title: 'Basic Economic Ideas', href: '/basic-economic-ideas' },
@@ -159,7 +159,7 @@ const mobileMenuTiers: MobileMenuTier[] = [
     ],
   },
   {
-    title: 'A2 Microeconomics',
+    title: 'Advanced Microeconomics',
     icon: TrendingUp,
     children: [
       { title: 'Utility & Consumer Choice', href: '/a2-micro/utility-consumer-choice' },

@@ -34,7 +34,7 @@ const ExchangeRates = () => {
             Exchange Rates
           </h1>
           <p className="text-lg text-muted-foreground mb-4">
-            AS Level Macroeconomics • Chapter 4
+            Foundation Level Macroeconomics • Chapter 4
           </p>
 
           {/* Key Takeaways Summary */}

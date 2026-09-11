@@ -26,7 +26,7 @@ const BalanceOfPayments = () => {
             The Balance of Payments
           </h1>
           <p className="text-xl text-muted-foreground mb-6">
-            AS Level Macroeconomics • Chapter 4.8
+            Foundation Level Macroeconomics • Chapter 4.8
           </p>
 
           {/* Section 1: Structure of the Balance of Payments */}
@@ -157,7 +157,7 @@ const BalanceOfPayments = () => {
 
               {/* Zero-Gap Logic Chain: J-Curve */}
               <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-cyan rounded-r-lg">
-                <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: The J-Curve Effect (A2 Standard)</h4>
+                <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: The J-Curve Effect (Advanced Standard)</h4>
                 <p className="text-xs text-muted-foreground leading-relaxed text-justify">
                   <strong className="text-foreground">Variable Change:</strong> Currency depreciates (↓ER) → 
                   <strong className="text-foreground"> Short-Run Impact (Inelastic Period):</strong> Export and import volumes fixed by existing contracts; quantity response minimal → Higher import prices (in domestic currency) on unchanged volume → Trade balance worsens (value effect {'>'} volume effect) → 

@@ -18,18 +18,18 @@ export interface MCQQuestion {
 export interface ExamPaper {
   code: string;
   title: string;
-  level: 'AS' | 'A2';
+  level: 'Foundation' | 'Advanced';
   session: string;
   duration: string;
   totalMarks: number;
   questions: MCQQuestion[];
 }
 
-// 9708/11 - AS Level Paper 1 October/November 2025
+// 9708/11 - Foundation Level Paper 1 October/November 2025
 export const paper9708_11: ExamPaper = {
   code: '9708/11',
-  title: 'AS Level Multiple Choice',
-  level: 'AS',
+  title: 'Foundation Level Multiple Choice',
+  level: 'Foundation',
   session: 'October/November 2025',
   duration: '1 hour',
   totalMarks: 30,
@@ -440,11 +440,11 @@ export const paper9708_11: ExamPaper = {
   ]
 };
 
-// 9708/12 - AS Level Paper 1 October/November 2025
+// 9708/12 - Foundation Level Paper 1 October/November 2025
 export const paper9708_12: ExamPaper = {
   code: '9708/12',
-  title: 'AS Level Multiple Choice',
-  level: 'AS',
+  title: 'Foundation Level Multiple Choice',
+  level: 'Foundation',
   session: 'October/November 2025',
   duration: '1 hour',
   totalMarks: 30,
@@ -862,7 +862,7 @@ export const paper9708_12: ExamPaper = {
 export const paper9708_31: ExamPaper = {
   code: '9708/31',
   title: 'A Level Multiple Choice',
-  level: 'A2',
+  level: 'Advanced',
   session: 'October/November 2025',
   duration: '1 hour 15 minutes',
   totalMarks: 30,
@@ -1280,7 +1280,7 @@ export const paper9708_31: ExamPaper = {
 export const paper9708_32: ExamPaper = {
   code: '9708/32',
   title: 'A Level Multiple Choice',
-  level: 'A2',
+  level: 'Advanced',
   session: 'October/November 2025',
   duration: '1 hour 15 minutes',
   totalMarks: 30,
@@ -1714,7 +1714,7 @@ export const getPaperByCode = (code: string): ExamPaper | undefined => {
 };
 
 // Helper to filter papers by level
-export const getPapersByLevel = (level: 'AS' | 'A2'): ExamPaper[] => {
+export const getPapersByLevel = (level: 'Foundation' | 'Advanced'): ExamPaper[] => {
   return allExamPapers.filter(paper => paper.level === level);
 };
 

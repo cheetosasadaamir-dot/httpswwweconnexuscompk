@@ -194,17 +194,17 @@ const Microeconomics = () => {
             </p>
           </motion.div>
 
-          {/* AS Level Section */}
+          {/* Foundation Level Section */}
           <LevelSection 
-            level="AS Level" 
+            level="Foundation Level" 
             topics={asLevelTopics} 
             icon={BookOpen}
             id="as"
           />
 
-          {/* A2 Level Section */}
+          {/* Advanced Level Section */}
           <LevelSection 
-            level="A2 Level" 
+            level="Advanced Level" 
             topics={a2LevelTopics} 
             icon={GraduationCap}
             id="a2"

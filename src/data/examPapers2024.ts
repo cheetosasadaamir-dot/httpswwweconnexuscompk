@@ -7,7 +7,7 @@ import { MCQQuestion, ExamPaper } from './examPapers';
 export const paper9708_32_s24: ExamPaper = {
   code: '9708/32',
   title: 'A Level Multiple Choice',
-  level: 'A2',
+  level: 'Advanced',
   session: 'May/June 2024',
   duration: '1 hour 15 minutes',
   totalMarks: 30,
@@ -409,11 +409,11 @@ export const paper9708_32_s24: ExamPaper = {
   ]
 };
 
-// 9708/12 - AS Level Paper 1 October/November 2024
+// 9708/12 - Foundation Level Paper 1 October/November 2024
 export const paper9708_12_w24: ExamPaper = {
   code: '9708/12',
-  title: 'AS Level Multiple Choice',
-  level: 'AS',
+  title: 'Foundation Level Multiple Choice',
+  level: 'Foundation',
   session: 'October/November 2024',
   duration: '1 hour',
   totalMarks: 30,

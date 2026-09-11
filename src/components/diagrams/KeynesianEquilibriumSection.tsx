@@ -7,7 +7,7 @@ import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
 /**
- * [A2 Specialist - Keynesian Income Determination]
+ * [Advanced Specialist - Keynesian Income Determination]
  * Enhanced Circular Flow, Output Gaps, and Accelerator Theory
  * Based on A-level Notes
  */

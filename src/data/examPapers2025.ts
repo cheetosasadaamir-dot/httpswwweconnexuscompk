@@ -3,11 +3,11 @@
 
 import { MCQQuestion, ExamPaper } from './examPapers';
 
-// 9708/12 - AS Level Paper 1 May/June 2025
+// 9708/12 - Foundation Level Paper 1 May/June 2025
 export const paper9708_12_s25: ExamPaper = {
   code: '9708/12',
-  title: 'AS Level Multiple Choice',
-  level: 'AS',
+  title: 'Foundation Level Multiple Choice',
+  level: 'Foundation',
   session: 'May/June 2025',
   duration: '1 hour',
   totalMarks: 30,
@@ -419,7 +419,7 @@ export const paper9708_12_s25: ExamPaper = {
 export const paper9708_32_s25: ExamPaper = {
   code: '9708/32',
   title: 'A Level Multiple Choice',
-  level: 'A2',
+  level: 'Advanced',
   session: 'May/June 2025',
   duration: '1 hour 15 minutes',
   totalMarks: 30,

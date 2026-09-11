@@ -40,7 +40,7 @@ const MoneyBanking = () => {
       >
         {/* Chapter Header */}
         <div className="mb-6">
-          <span className="text-primary text-sm font-medium tracking-wider uppercase">A2 Level • Chapter 3</span>
+          <span className="text-primary text-sm font-medium tracking-wider uppercase">Advanced Level • Chapter 3</span>
           <h1 className="font-serif text-3xl md:text-4xl text-gradient mt-1 mb-2">
             Money, Interest Rate Determination & Monetary Policy
           </h1>
@@ -169,7 +169,7 @@ const MoneyBanking = () => {
 
           {/* Zero-Gap Chain of Analysis: Liquidity Preference */}
           <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-cyan rounded-r-lg">
-            <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: Money Market Equilibrium (A2 Standard)</h4>
+            <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: Money Market Equilibrium (Advanced Standard)</h4>
             <p className="text-xs text-muted-foreground leading-relaxed text-justify">
               <strong className="text-foreground">Variable Change:</strong> Central bank increases money supply via Open Market Operations → 
               <strong className="text-foreground"> Direct Market Impact:</strong> At prevailing interest rate, excess supply of money emerges (<InlineMath math="M^s > M^d" />) → 
@@ -200,7 +200,7 @@ const MoneyBanking = () => {
 
           {/* Zero-Gap Chain of Analysis: Liquidity Trap */}
           <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-orange rounded-r-lg">
-            <h4 className="font-serif font-semibold text-cambridge-orange text-sm mb-2">Zero-Gap Logic Chain: The Liquidity Trap (A2 Standard)</h4>
+            <h4 className="font-serif font-semibold text-cambridge-orange text-sm mb-2">Zero-Gap Logic Chain: The Liquidity Trap (Advanced Standard)</h4>
             <p className="text-xs text-muted-foreground leading-relaxed text-justify">
               <strong className="text-foreground">Variable Change:</strong> Interest rates reach "floor" level (near zero lower bound) → 
               <strong className="text-foreground"> Direct Market Impact:</strong> All agents unanimously expect interest rates to rise in future → Expected bond price fall (<InlineMath math="P_B^{expected} \downarrow" />) → 
@@ -334,7 +334,7 @@ const MoneyBanking = () => {
 
           {/* Zero-Gap Logic Chain: Full Transmission Mechanism */}
           <div className="mt-0 p-4 bg-gradient-to-r from-cambridge-cyan/10 via-cambridge-magenta/10 to-cambridge-green/10 border border-border rounded-lg">
-            <h4 className="font-serif font-semibold text-foreground text-sm mb-2">Comprehensive Transmission Chain (A2 Standard)</h4>
+            <h4 className="font-serif font-semibold text-foreground text-sm mb-2">Comprehensive Transmission Chain (Advanced Standard)</h4>
             <div className="text-xs text-muted-foreground leading-relaxed space-y-2">
               <p className="text-justify">
                 <span className="inline-block w-16 text-cambridge-cyan font-semibold">Stage 1:</span> 

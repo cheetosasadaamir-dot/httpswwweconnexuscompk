@@ -43,7 +43,7 @@ const Development = () => {
             Economic Development & Global Integration
           </h1>
           <p className="text-xl text-muted-foreground mb-6">
-            A2 Level Macroeconomics • Syllabus (2026-2028)
+            Advanced Level Macroeconomics • Syllabus (2026-2028)
           </p>
 
           {/* Key Takeaways Summary */}
@@ -120,7 +120,7 @@ const Development = () => {
 
             {/* Zero-Gap Logic Chain: Kuznets Curve */}
             <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-orange rounded-r-lg">
-              <h4 className="font-serif font-semibold text-cambridge-orange text-sm mb-2">Zero-Gap Logic Chain: The Kuznets Curve (A2 Standard)</h4>
+              <h4 className="font-serif font-semibold text-cambridge-orange text-sm mb-2">Zero-Gap Logic Chain: The Kuznets Curve (Advanced Standard)</h4>
               <p className="text-xs text-muted-foreground leading-relaxed text-justify">
                 <strong className="text-foreground">Variable Change:</strong> Economy begins industrialisation from low-income agricultural base → 
                 <strong className="text-foreground"> Stage I Rising Inequality:</strong> Dual economy emerges with high-wage modern sector (urban manufacturing) alongside low-wage traditional sector (rural agriculture) → Labour migration is incomplete → Wage dispersion widens → Capital accumulates in industrial elite → Gini coefficient rises → 
@@ -196,7 +196,7 @@ const Development = () => {
 
             {/* Zero-Gap Logic Chain: J-Curve in Development Context */}
             <div className="mt-0 p-4 bg-muted/20 border-l-2 border-cambridge-cyan rounded-r-lg">
-              <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: Depreciation & Development (A2 Standard)</h4>
+              <h4 className="font-serif font-semibold text-cambridge-cyan text-sm mb-2">Zero-Gap Logic Chain: Depreciation & Development (Advanced Standard)</h4>
               <p className="text-xs text-muted-foreground leading-relaxed text-justify">
                 <strong className="text-foreground">Policy Action:</strong> Developing country devalues currency to correct CA deficit → 
                 <strong className="text-foreground"> Short-Run (J-Curve Trough):</strong> Inelastic demand + fixed contracts → Import bill rises in domestic currency → Trade balance initially worsens → 

@@ -38,7 +38,7 @@ const Inflation = () => {
       >
         {/* Chapter Header */}
         <div className="mb-5">
-          <span className="text-primary text-sm font-medium tracking-wider uppercase">AS Level • Chapter 4.6</span>
+          <span className="text-primary text-sm font-medium tracking-wider uppercase">Foundation Level • Chapter 4.6</span>
           <h1 className="font-serif text-3xl md:text-4xl text-gradient mt-1 mb-2">
             Price Stability: Money &amp; Inflation
           </h1>

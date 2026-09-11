@@ -35,7 +35,7 @@ interface NoteCategory {
 const noteCategories: NoteCategory[] = [
   {
     id: "as-micro",
-    title: "AS Microeconomics",
+    title: "Foundation Microeconomics",
     description: "Foundational concepts in individual markets, price mechanisms, and market failures",
     icon: TrendingUp,
     chapters: [
@@ -63,7 +63,7 @@ const noteCategories: NoteCategory[] = [
   },
   {
     id: "a2-micro",
-    title: "A2 Microeconomics",
+    title: "Advanced Microeconomics",
     description: "Advanced theory of the firm, market structures, and labor economics",
     icon: Factory,
     chapters: [
@@ -96,7 +96,7 @@ const noteCategories: NoteCategory[] = [
   },
   {
     id: "as-macro",
-    title: "AS Macroeconomics",
+    title: "Foundation Macroeconomics",
     description: "National economy fundamentals including AD/AS, inflation, and international trade",
     icon: Globe,
     chapters: [
@@ -129,7 +129,7 @@ const noteCategories: NoteCategory[] = [
   },
   {
     id: "a2-macro",
-    title: "A2 Macroeconomics",
+    title: "Advanced Macroeconomics",
     description: "Advanced monetary theory, growth economics, and development studies",
     icon: Landmark,
     chapters: [

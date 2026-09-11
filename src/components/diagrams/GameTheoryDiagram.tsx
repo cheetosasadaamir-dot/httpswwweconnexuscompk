@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 /**
  * Game Theory: Prisoner's Dilemma Diagram
- *  A2 Level - Oligopoly Interdependence
+ *  Advanced Level - Oligopoly Interdependence
  * Shows dominant strategy, Nash Equilibrium, and collusion outcomes
  */
 const GameTheoryDiagram = () => {

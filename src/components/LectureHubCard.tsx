@@ -42,7 +42,7 @@ const LectureHubCard = () => {
                 </h2>
 
                 <p className="text-fluid-sm md:text-fluid-base text-muted-foreground max-w-lg leading-relaxed mb-6">
-                  A cinematic archive of on-demand economics lectures — micro, macro, AS &amp; A2 —
+                  A cinematic archive of on-demand economics lectures — micro, macro, Foundation &amp; Advanced —
                   taught in plain language with syllabus-locked precision.
                 </p>
 
@@ -71,7 +71,7 @@ const LectureHubCard = () => {
                 {/* Floating video tiles */}
                 {[
                   { top: '12%', left: '10%', delay: 0, label: 'Micro · AS' },
-                  { top: '38%', left: '46%', delay: 0.15, label: 'Macro · A2' },
+                  { top: '38%', left: '46%', delay: 0.15, label: 'Macro · Advanced' },
                   { top: '62%', left: '18%', delay: 0.3, label: 'Case Studies' },
                 ].map((t, i) => (
                   <motion.div

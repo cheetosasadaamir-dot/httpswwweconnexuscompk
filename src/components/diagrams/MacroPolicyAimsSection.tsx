@@ -208,7 +208,7 @@ const MacroPolicyAimsSection = () => {
     <div className="space-y-4">
       <div className="mb-3">
         <span className="px-2 py-1 bg-secondary/20 text-secondary rounded-full text-xs font-medium">
-          [A2 Specialist - Macro Policy Aims]
+          [Advanced Specialist - Macro Policy Aims]
         </span>
       </div>
 

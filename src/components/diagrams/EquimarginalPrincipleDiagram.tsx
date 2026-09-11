@@ -4,7 +4,7 @@ import { Axes } from './DiagramAxes';
 import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
 /**
- * Equimarginal principle (consumer equilibrium in cardinal utility) — A2 standard.
+ * Equimarginal principle (consumer equilibrium in cardinal utility) — advanced standard.
  *
  * Budget = $24. Good X costs $2, Good Y costs $4.
  * MU_x schedule: 24, 20, 16, 12, 8, 4  →  MU_x/P_x: 12, 10, 8, 6, 4, 2

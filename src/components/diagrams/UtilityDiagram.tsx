@@ -16,7 +16,7 @@ interface UtilityDiagramProps {
 }
 
 /**
- * Total Utility and Marginal Utility — A2 (Cambridge 9708) standard.
+ * Total Utility and Marginal Utility — advanced standard.
  *
  * Data (ice-cream bars): Q 1-6, TU 20, 35, 45, 50, 50, 45; MU 20, 15, 10, 5, 0, -5.
  * Structural rules enforced here (cross-checked against tutor2u, Economics Online,

@@ -32,7 +32,7 @@ const EconomicGrowth = () => {
       >
         {/* Chapter Header - Compact */}
         <div className="mb-6">
-          <span className="text-primary text-xs font-medium tracking-wider uppercase">A2 Level • Chapter 1</span>
+          <span className="text-primary text-xs font-medium tracking-wider uppercase">Advanced Level • Chapter 1</span>
           <h1 className="font-serif text-3xl md:text-4xl text-gradient mt-1 mb-2">
             Economic Growth, Standard of Living & Economic Development
           </h1>

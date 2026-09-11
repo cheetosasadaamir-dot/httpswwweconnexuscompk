@@ -31,7 +31,7 @@ interface NavItem {
   children?: SubNavItem[];
 }
 
-// Master Syllabus Map - Hierarchical Micro/Macro → AS/A2 Structure
+// Master Syllabus Map - Hierarchical Micro/Macro → Foundation/Advanced Structure
 const navigation: NavItem[] = [
   {
     title: 'Home',
@@ -44,7 +44,7 @@ const navigation: NavItem[] = [
     icon: TrendingUp,
     levels: [
       {
-        title: 'AS Level',
+        title: 'Foundation Level',
         children: [
           { title: 'Ch.1: Basic Economic Ideas', href: '/basic-economic-ideas' },
           { title: 'Ch.2: The Price System', href: '/price-system' },
@@ -53,7 +53,7 @@ const navigation: NavItem[] = [
         ],
       },
       {
-        title: 'A2 Level',
+        title: 'Advanced Level',
         children: [
           { title: 'Ch.1: Utility & Consumer Choice', href: '/a2-micro/utility-consumer-choice' },
           { title: 'Ch.2: Production & Costs', href: '/a2-micro/production-costs' },
@@ -70,7 +70,7 @@ const navigation: NavItem[] = [
     icon: Globe,
     levels: [
       {
-        title: 'AS Level',
+        title: 'Foundation Level',
         children: [
           { title: 'Ch.1: AD/AS Equilibrium', href: '/as-macro/ad-as' },
           { title: 'Ch.2: Inflation', href: '/as-macro/inflation' },
@@ -80,7 +80,7 @@ const navigation: NavItem[] = [
         ],
       },
       {
-        title: 'A2 Level',
+        title: 'Advanced Level',
         children: [
           { title: 'Ch.2: Keynesian Theory', href: '/a2-macro/national-income' },
           { title: 'Ch.4: Unemployment & Phillips Curve', href: '/a2-macro/unemployment-growth' },
@@ -124,10 +124,10 @@ const Sidebar = () => {
       setExpandedItems(prev => prev.includes('Microeconomics') ? prev : [...prev, 'Microeconomics']);
       
       if (path.startsWith('/a2-micro')) {
-        setExpandedLevels(prev => prev.includes('Microeconomics-A2 Level') ? prev : [...prev, 'Microeconomics-A2 Level']);
+        setExpandedLevels(prev => prev.includes('Microeconomics-Advanced Level') ? prev : [...prev, 'Microeconomics-Advanced Level']);
       } else if (path.startsWith('/basic-economic-ideas') || path.startsWith('/price-system') || 
                  path.startsWith('/elasticities') || path.startsWith('/market-failure')) {
-        setExpandedLevels(prev => prev.includes('Microeconomics-AS Level') ? prev : [...prev, 'Microeconomics-AS Level']);
+        setExpandedLevels(prev => prev.includes('Microeconomics-Foundation Level') ? prev : [...prev, 'Microeconomics-Foundation Level']);
       }
     }
     
@@ -135,9 +135,9 @@ const Sidebar = () => {
       setExpandedItems(prev => prev.includes('Macroeconomics') ? prev : [...prev, 'Macroeconomics']);
       
       if (path.startsWith('/a2-macro')) {
-        setExpandedLevels(prev => prev.includes('Macroeconomics-A2 Level') ? prev : [...prev, 'Macroeconomics-A2 Level']);
+        setExpandedLevels(prev => prev.includes('Macroeconomics-Advanced Level') ? prev : [...prev, 'Macroeconomics-Advanced Level']);
       } else if (path.startsWith('/as-macro')) {
-        setExpandedLevels(prev => prev.includes('Macroeconomics-AS Level') ? prev : [...prev, 'Macroeconomics-AS Level']);
+        setExpandedLevels(prev => prev.includes('Macroeconomics-Foundation Level') ? prev : [...prev, 'Macroeconomics-Foundation Level']);
       }
     }
   }, [location.pathname]);

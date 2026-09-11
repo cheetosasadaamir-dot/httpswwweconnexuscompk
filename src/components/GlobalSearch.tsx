@@ -30,27 +30,27 @@ const examMCQContent: SearchResult[] = allExamPapers.flatMap(paper =>
 
 // Searchable content database
 const searchableContent: SearchResult[] = [
-  // AS Microeconomics
+  // Foundation Microeconomics
   { id: 'basic-economic-ideas', title: 'Basic Economic Ideas', category: 'chapter', href: '/basic-economic-ideas', description: 'Scarcity, PPC, Opportunity Cost' },
   { id: 'price-system', title: 'The Price System', category: 'chapter', href: '/price-system', description: 'Demand, Supply, Market Equilibrium' },
   { id: 'elasticities', title: 'Elasticities', category: 'chapter', href: '/elasticities', description: 'PED, YED, XED, PES' },
   { id: 'market-failure', title: 'Market Failure', category: 'chapter', href: '/market-failure', description: 'Externalities, Public Goods' },
   
-  // A2 Microeconomics
+  // Advanced Microeconomics
   { id: 'utility-consumer-choice', title: 'Utility & Consumer Choice', category: 'chapter', href: '/a2-micro/utility-consumer-choice', description: 'Marginal Utility, Indifference Curves' },
   { id: 'production-costs', title: 'Production & Costs', category: 'chapter', href: '/a2-micro/production-costs', description: 'Short-Run & Long-Run Costs' },
   { id: 'economic-efficiency', title: 'Economic Efficiency', category: 'chapter', href: '/a2-micro/economic-efficiency', description: 'Allocative, Productive, X-Efficiency' },
   { id: 'market-structures', title: 'Market Structures', category: 'chapter', href: '/a2-micro/market-structures', description: 'Perfect Competition, Monopoly, Oligopoly' },
   { id: 'labor-market', title: 'Labor Market', category: 'chapter', href: '/a2-micro/labor-market', description: 'Wage Determination, Monopsony' },
   
-  // AS Macroeconomics
+  // Foundation Macroeconomics
   { id: 'ad-as', title: 'AD/AS Equilibrium', category: 'chapter', href: '/as-macro/ad-as', description: 'Aggregate Demand, SRAS, LRAS' },
   { id: 'inflation', title: 'Inflation', category: 'chapter', href: '/as-macro/inflation', description: 'Demand-Pull, Cost-Push Inflation' },
   { id: 'international-trade', title: 'International Trade', category: 'chapter', href: '/as-macro/international-trade', description: 'Comparative Advantage, Terms of Trade' },
   { id: 'balance-of-payments', title: 'Balance of Payments', category: 'chapter', href: '/as-macro/balance-of-payments', description: 'Current Account, Capital Account' },
   { id: 'macro-policy', title: 'Macroeconomic Policy', category: 'chapter', href: '/as-macro/policy', description: 'Fiscal, Monetary, Supply-Side' },
   
-  // A2 Macroeconomics
+  // Advanced Macroeconomics
   { id: 'keynesian-theory', title: 'Keynesian Theory', category: 'chapter', href: '/a2-macro/national-income', description: 'Multiplier Effect, Keynesian Cross' },
   { id: 'unemployment-growth', title: 'Unemployment & Phillips Curve', category: 'chapter', href: '/a2-macro/unemployment-growth', description: 'Types of Unemployment, NAIRU' },
   { id: 'policy-objectives', title: 'Policy Objectives', category: 'chapter', href: '/a2-macro/policy-objectives', description: 'Policy Conflicts, Laffer Curve' },

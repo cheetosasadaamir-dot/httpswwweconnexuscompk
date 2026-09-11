@@ -227,7 +227,7 @@ const InteractivePPCEngine = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="font-serif text-lg text-secondary mb-2 flex items-center gap-2">
-                    <span className="px-2 py-0.5 text-xs bg-primary/20 rounded text-primary">AS Level</span>
+                    <span className="px-2 py-0.5 text-xs bg-primary/20 rounded text-primary">Foundation Level</span>
                     Law of Increasing Opportunity Cost
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -240,7 +240,7 @@ const InteractivePPCEngine = () => {
                 </div>
                 <div>
                   <h4 className="font-serif text-lg text-secondary mb-2 flex items-center gap-2">
-                    <span className="px-2 py-0.5 text-xs bg-secondary/20 rounded text-secondary">A2 Level</span>
+                    <span className="px-2 py-0.5 text-xs bg-secondary/20 rounded text-secondary">Advanced Level</span>
                     LRAS & Trend Growth Connection
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">

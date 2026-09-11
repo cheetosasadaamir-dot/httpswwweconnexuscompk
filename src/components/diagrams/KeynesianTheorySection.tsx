@@ -5,7 +5,7 @@ import 'katex/dist/katex.min.css';
 import { Button } from '@/components/ui/button';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// [A2 Specialist - Keynesian vs Monetarist]
+// [Advanced Specialist - Keynesian vs Monetarist]
 // Advanced Macroeconomic Thought: Keynesian Economic Framework
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -504,7 +504,7 @@ const KeynesianTheorySection = () => {
       <div className="glass-card p-4 rounded-xl bg-gradient-to-r from-cambridge-cyan/10 to-cambridge-magenta/10 border border-cambridge-cyan/20">
         <div className="flex items-center gap-3 mb-2">
           <span className="px-3 py-1 bg-cambridge-cyan/20 text-cambridge-cyan rounded-full text-xs font-semibold">
-            A2 Specialist - Keynesian vs Monetarist
+            Advanced Specialist - Keynesian vs Monetarist
           </span>
         </div>
         <h3 className="font-serif text-xl font-bold text-gradient mb-2">
