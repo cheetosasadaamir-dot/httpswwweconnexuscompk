@@ -52,7 +52,7 @@ const PolicyObjectives = () => {
           {/* Key Takeaways Summary */}
           <KeyTakeaways takeaways={policyObjectivesTakeaways} />
 
-          {/* Topic 0: Macro Policy Aims [A2 Specialist] */}
+          {/* Topic 0: Macro Policy Aims [Advanced Specialist] */}
           <ContentSection title="Topic 0: Government Macro Policy Aims">
             <MacroPolicyAimsSection />
           </ContentSection>
@@ -594,12 +594,12 @@ const PolicyObjectives = () => {
             </AnalysisBlock>
           </ContentSection>
 
-          {/* Topic 6: Policy Effectiveness & Conflicts [A2 Specialist] */}
+          {/* Topic 6: Policy Effectiveness & Conflicts [Advanced Specialist] */}
           <ContentSection title="Topic 6: Policy Effectiveness & Conflicts">
             <PolicyEffectivenessSection />
           </ContentSection>
 
-          {/* Topic 7: Inter-connectedness & Phillips Curve [A2 Specialist] */}
+          {/* Topic 7: Inter-connectedness & Phillips Curve [Advanced Specialist] */}
           <ContentSection title="Topic 7: Inter-connectedness of Macroeconomic Problems">
             <InterconnectednessSection />
           </ContentSection>

@@ -270,7 +270,7 @@ const GlossaryTermCard = ({ term }: { term: GlossaryTerm }) => {
             variant="outline" 
             className={cn(
               "text-[10px] px-1.5 py-0 h-4 border-tutor-gold/30",
-              term.level === 'AS' ? 'text-tutor-cyan' : term.level === 'A2' ? 'text-tutor-gold' : 'text-silver'
+              term.level === 'Foundation' ? 'text-tutor-cyan' : term.level === 'Advanced' ? 'text-tutor-gold' : 'text-silver'
             )}
           >
             {term.level}
@@ -358,7 +358,7 @@ const GlossaryTermCard = ({ term }: { term: GlossaryTerm }) => {
 
 const GlossarySection = () => {
   const [selectedLetter, setSelectedLetter] = useState<string>('A');
-  const [levelFilter, setLevelFilter] = useState<'All' | 'AS' | 'A2'>('All');
+  const [levelFilter, setLevelFilter] = useState<'All' | 'Foundation' | 'Advanced'>('All');
   const allLetters = getAllLetters();
   const availableLetters = useMemo(() => {
     const letters = new Set(glossaryTerms.map(t => t.term[0].toUpperCase()));
@@ -404,7 +404,7 @@ const GlossarySection = () => {
           transition={{ delay: 0.1 }}
           className="flex justify-center gap-2 mb-4"
         >
-          {(['All', 'AS', 'A2'] as const).map((level) => (
+          {(['All', 'Foundation', 'Advanced'] as const).map((level) => (
             <button
               key={level}
               onClick={() => setLevelFilter(level)}
@@ -490,8 +490,8 @@ const GlossarySection = () => {
           className="flex justify-center gap-6 mt-6 text-xs text-muted-foreground"
         >
           <span>📚 {glossaryTerms.length} Total Terms</span>
-          <span>🎯 {glossaryTerms.filter(t => t.level === 'AS' || t.level === 'Both').length} Foundation Level</span>
-          <span>📈 {glossaryTerms.filter(t => t.level === 'A2' || t.level === 'Both').length} Advanced Level</span>
+          <span>🎯 {glossaryTerms.filter(t => t.level === 'Foundation' || t.level === 'Both').length} Foundation Level</span>
+          <span>📈 {glossaryTerms.filter(t => t.level === 'Advanced' || t.level === 'Both').length} Advanced Level</span>
           <span>📐 {glossaryTerms.filter(t => t.formula).length} With Formulas</span>
         </motion.div>
       </div>

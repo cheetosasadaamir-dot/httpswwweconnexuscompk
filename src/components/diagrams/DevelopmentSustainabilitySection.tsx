@@ -5,8 +5,8 @@ import { useRef, useState, useEffect } from 'react';
 
 /**
  * Socio-Economic & Sustainability Expansion
- *  A2 Syllabus Compliant
- * [A2 Specialist - Development & Sustainability]
+ *  Advanced syllabus Compliant
+ * [Advanced Specialist - Development & Sustainability]
  */
 const DevelopmentSustainabilitySection = () => {
   return (
@@ -20,7 +20,7 @@ const DevelopmentSustainabilitySection = () => {
       >
         <div className="flex items-center gap-3 mb-3">
           <span className="px-3 py-1 bg-cambridge-green/20 text-cambridge-green text-xs font-mono rounded-full">
-            A2 SPECIALIST
+            ADVANCED SPECIALIST
           </span>
           <span className="text-xs text-muted-foreground">Development & Sustainability</span>
         </div>

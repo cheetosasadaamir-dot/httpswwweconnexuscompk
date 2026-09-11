@@ -911,7 +911,7 @@ const NationalIncome = () => {
         {/* Keynesian Equilibrium & Circular Flow Analysis */}
         <ContentSection 
           title="Keynesian Equilibrium & Income Determination" 
-          subtitle="[A2 Specialist - Keynesian Income Determination]"
+          subtitle="[Advanced Specialist - Keynesian Income Determination]"
           id="keynesian-equilibrium"
         >
           <KeynesianEquilibriumSection />
@@ -920,7 +920,7 @@ const NationalIncome = () => {
         {/* Advanced Macroeconomic Thought: Keynesian Framework */}
         <ContentSection 
           title="Advanced Macroeconomic Thought: Keynesian Framework" 
-          subtitle="[A2 Specialist - Keynesian vs Monetarist]"
+          subtitle="[Advanced Specialist - Keynesian vs Monetarist]"
           id="keynesian-framework"
         >
           <KeynesianTheorySection />

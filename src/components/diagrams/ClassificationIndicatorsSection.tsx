@@ -67,7 +67,7 @@ const ClassificationIndicatorsSection = () => {
         <div className="h-8 w-1 bg-gradient-to-b from-primary to-cambridge-cyan rounded-full" />
         <div>
           <span className="text-xs font-medium text-cambridge-cyan uppercase tracking-wider">
-            [A2 Specialist - Classification & Indicators]
+            [Advanced Specialist - Classification & Indicators]
           </span>
           <h3 className="text-xl font-serif font-semibold text-foreground">
             Classification of Countries & Development Indicators

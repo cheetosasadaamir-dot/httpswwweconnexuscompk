@@ -16,7 +16,7 @@ const AdvancedMonetaryTheorySection = () => {
         className="p-4 bg-gradient-to-r from-cambridge-cyan/20 via-cambridge-magenta/10 to-cambridge-orange/10 rounded-lg border border-cambridge-cyan/30"
       >
         <span className="inline-block px-2 py-0.5 bg-cambridge-cyan/20 text-cambridge-cyan text-xs font-semibold rounded mb-2">
-          A2 SPECIALIST — MONETARY THEORY
+          ADVANCED SPECIALIST — MONETARY THEORY
         </span>
         <h3 className="font-serif text-xl text-silver-bright mb-2">
           Advanced Theory: Quantity Theory & MPC Policy Determination

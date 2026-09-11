@@ -19,7 +19,7 @@ const PolicyEffectivenessSection: React.FC = () => {
       <div className="glass-card p-6 rounded-xl border-l-4 border-l-secondary">
         <div className="flex items-center gap-2 mb-3">
           <span className="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-xs font-semibold">
-            A2 Specialist – Policy Effectiveness & Conflicts
+            Advanced Specialist – Policy Effectiveness & Conflicts
           </span>
         </div>
         <h2 className="font-serif text-2xl text-foreground mb-2">

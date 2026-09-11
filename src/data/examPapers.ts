@@ -18,7 +18,7 @@ export interface MCQQuestion {
 export interface ExamPaper {
   code: string;
   title: string;
-  level: 'Foundation' | 'A2';
+  level: 'Foundation' | 'Advanced';
   session: string;
   duration: string;
   totalMarks: number;
@@ -1714,7 +1714,7 @@ export const getPaperByCode = (code: string): ExamPaper | undefined => {
 };
 
 // Helper to filter papers by level
-export const getPapersByLevel = (level: 'Foundation' | 'A2'): ExamPaper[] => {
+export const getPapersByLevel = (level: 'Foundation' | 'Advanced'): ExamPaper[] => {
   return allExamPapers.filter(paper => paper.level === level);
 };
 

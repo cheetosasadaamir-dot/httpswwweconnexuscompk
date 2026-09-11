@@ -10,7 +10,7 @@ import {
 } from './diagramStyle';
 
 /**
- * Indifference curves, the budget constraint and consumer equilibrium — A2 standard.
+ * Indifference curves, the budget constraint and consumer equilibrium — advanced standard.
  *
  * Budget line: M = 90, P_x = 1.5, P_y = 1  →  Y = 90 − 1.5X (X-intercept 60, Y-intercept 90).
  * Indifference curves are rectangular hyperbolae XY = k (convex to the origin, never crossing).

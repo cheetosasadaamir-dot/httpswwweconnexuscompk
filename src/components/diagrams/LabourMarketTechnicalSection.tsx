@@ -4,8 +4,8 @@ import 'katex/dist/katex.min.css';
 
 /**
  * Technical Analysis: Employment & Labour Market Framework
- *  A2 Syllabus Compliant
- * [A2 Specialist - Labour Market & Phillips Curve]
+ *  Advanced syllabus Compliant
+ * [Advanced Specialist - Labour Market & Phillips Curve]
  */
 const LabourMarketTechnicalSection = () => {
   return (
@@ -19,7 +19,7 @@ const LabourMarketTechnicalSection = () => {
       >
         <div className="flex items-center gap-3 mb-3">
           <span className="px-3 py-1 bg-cambridge-cyan/20 text-cambridge-cyan text-xs font-mono rounded-full">
-            A2 SPECIALIST
+            ADVANCED SPECIALIST
           </span>
           <span className="text-xs text-muted-foreground">Labour Market & Phillips Curve</span>
         </div>

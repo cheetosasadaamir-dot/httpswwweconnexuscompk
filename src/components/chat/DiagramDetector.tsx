@@ -93,13 +93,13 @@ const DIAGRAM_COMPONENTS = {
 type DiagramType = keyof typeof DIAGRAM_COMPONENTS;
 
 // Topic detection patterns with priority ranking - Full Syllabus Coverage
-// Priority 10: Highly specific A2 concepts
+// Priority 10: Highly specific advanced concepts
 // Priority 8: Major macro/micro frameworks
 // Priority 6: Core AD/AS and welfare
 // Priority 4: Foundational concepts
 const TOPIC_PATTERNS: { pattern: RegExp; diagram: DiagramType; priority: number }[] = [
   // ═══════════════════════════════════════════════════════════════════════════
-  // PRIORITY 10 - A2 ADVANCED CONCEPTS (Highly Specific)
+  // PRIORITY 10 - ADVANCED CONCEPTS (Highly Specific)
   // ═══════════════════════════════════════════════════════════════════════════
   
   // International Economics - Exchange Rates

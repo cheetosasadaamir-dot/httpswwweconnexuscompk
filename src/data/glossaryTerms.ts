@@ -6,7 +6,7 @@ export interface GlossaryTerm {
   definition: string;
   examTip: string;
   formula?: string;
-  level: 'Foundation' | 'A2' | 'Both';
+  level: 'Foundation' | 'Advanced' | 'Both';
   topic: string;
   hasDiagram?: string; // Component name for mini-diagram
 }
@@ -449,7 +449,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     topic: "Consumer Theory",
     hasDiagram: "UtilityDiagram"
   },
-  // === NEW ADVANCED A2 TERMS ===
+  // === NEW ADVANCED TERMS ===
   {
     term: "X-Inefficiency",
     definition: "A concept developed by Harvey Leibenstein (1966) describing the inefficiency that arises when firms operate above their minimum possible cost due to lack of competitive pressure. This organizational slack results from managerial complacency, overstaffing, and weak cost control in monopolistic markets.",
@@ -536,6 +536,6 @@ export const filterTermsByLetter = (letter: string): GlossaryTerm[] => {
 };
 
 // Helper function to get terms by level
-export const filterTermsByLevel = (level: 'Foundation' | 'A2' | 'Both'): GlossaryTerm[] => {
+export const filterTermsByLevel = (level: 'Foundation' | 'Advanced' | 'Both'): GlossaryTerm[] => {
   return glossaryTerms.filter(term => term.level === level || term.level === 'Both');
 };

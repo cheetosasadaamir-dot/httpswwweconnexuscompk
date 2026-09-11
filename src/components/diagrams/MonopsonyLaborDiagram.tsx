@@ -4,7 +4,7 @@ import { Axes, Guides } from './DiagramAxes';
 import { DIAGRAM_COLORS as C, plotBox, revealFade, revealPath, revealPoint } from './diagramStyle';
 
 /**
- * Monopsony labour market — Cambridge A2 standard.
+ * Monopsony labour market — Cambridge advanced standard.
  * S = ACL: W = 10 + 0.6L   →   MFC = 10 + 1.2L (twice the slope of a linear supply curve)
  * D = MRP: W = 90 − 0.8L
  * Competitive outcome:  10 + 0.6L = 90 − 0.8L → L_c = 57.14, W_c = 44.29

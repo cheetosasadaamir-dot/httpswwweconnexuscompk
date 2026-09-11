@@ -10,7 +10,7 @@ import AnalysisBlock from '@/components/AnalysisBlock';
  * Advanced Efficiency, Market Failure & Cost-Benefit Analysis Section
  * Covers: Productive/Allocative/Dynamic Efficiency, Pareto Optimality,
  * Complete vs Partial Market Failure, and Social CBA
- * [A2 Specialist - Efficiency & Market Failure]
+ * [Advanced Specialist - Efficiency & Market Failure]
  */
 const AdvancedEfficiencySection = () => {
   return (
@@ -18,7 +18,7 @@ const AdvancedEfficiencySection = () => {
       {/* Section Header */}
       <div className="text-center mb-8">
         <span className="inline-block px-3 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full mb-4">
-          [A2 Specialist - Efficiency & Market Failure]
+          [Advanced Specialist - Efficiency & Market Failure]
         </span>
         <h2 className="text-2xl font-serif font-bold text-silver-bright mb-2">
           Advanced Efficiency Theory & Cost-Benefit Analysis

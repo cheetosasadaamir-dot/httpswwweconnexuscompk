@@ -10,7 +10,7 @@ import {
 } from './diagramStyle';
 
 /**
- * Hicksian decomposition of a price fall into income and substitution effects — A2 standard.
+ * Hicksian decomposition of a price fall into income and substitution effects — advanced standard.
  *
  * Original budget B₀: Y = 90 − 1.5X  →  tangency A on IC₁ (XY = 1350) at (30, 45).
  * P_x falls: new budget B₁: Y = 90 − 0.9X  →  tangency C on IC₂ (XY = 2250) at (50, 45).
