@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
-import FloatingDock from '@/components/FloatingDock';
-import BackToHome from '@/components/BackToHome';
-
+import FloatingDock from "@/components/FloatingDock";
+import BackToHome from "@/components/BackToHome";
+import AdUnit from "@/components/AdUnit";
 interface ChapterLayoutProps {
   chapterNumber: number;
   title: string;
@@ -13,7 +13,6 @@ interface ChapterLayoutProps {
 const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayoutProps) => {
   return (
     <div className="min-h-screen relative">
-      
       <FloatingDock />
 
       <main className="relative z-20 pt-20 md:pt-24 lg:pt-28">
@@ -55,9 +54,9 @@ const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayo
 
         {/* Chapter Content - Mobile-first padding */}
         <div className="w-[95%] max-w-[1200px] mx-auto py-6 md:py-8">
-          <div className="space-compact">
-            {children}
-          </div>
+          <AdUnit slot="2098600553" />
+          <div className="space-compact">{children}</div>
+          <AdUnit slot="2098600553" />
         </div>
       </main>
     </div>
