@@ -1,40 +1,55 @@
-import { useCallback } from 'react';
-import { Helmet } from 'react-helmet-async';
-import AuthOverlay from '@/components/AuthOverlay';
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, LineChart, MessageSquare, Target, FileText, PenLine, GraduationCap, BookOpen, Globe, Landmark, Coins, TrendingUp, BarChart3, PieChart, Activity } from 'lucide-react';
+import { useCallback } from "react";
+import { Helmet } from "react-helmet-async";
+import AuthOverlay from "@/components/AuthOverlay";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Sparkles,
+  LineChart,
+  MessageSquare,
+  Target,
+  FileText,
+  PenLine,
+  GraduationCap,
+  BookOpen,
+  Globe,
+  Landmark,
+  Coins,
+  TrendingUp,
+  BarChart3,
+  PieChart,
+  Activity,
+} from "lucide-react";
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import KnowledgePillars from '@/components/KnowledgePillars';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import KnowledgePillars from "@/components/KnowledgePillars";
 // EconomicsChatbot moved to its own /chat page
-import GlossarySection from '@/components/GlossarySection';
-import OwnerProfileSection from '@/components/OwnerProfileSection';
-import HubEntryCard from '@/components/HubEntryCard';
-import LectureHubCard from '@/components/LectureHubCard';
-import ArticleHubCard from '@/components/ArticleHubCard';
+import GlossarySection from "@/components/GlossarySection";
+import OwnerProfileSection from "@/components/OwnerProfileSection";
+import HubEntryCard from "@/components/HubEntryCard";
+import LectureHubCard from "@/components/LectureHubCard";
+import ArticleHubCard from "@/components/ArticleHubCard";
+import AdUnit from "@/components/AdUnit";
 
-
-
-import { Button } from '@/components/ui/button';
-import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
-
+import { Button } from "@/components/ui/button";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const features = [
   {
     icon: LineChart,
-    title: 'Clear Diagrams',
-    description: 'No more messy hand-drawn charts. Our animated diagrams make complex relationships crystal clear.',
+    title: "Clear Diagrams",
+    description: "No more messy hand-drawn charts. Our animated diagrams make complex relationships crystal clear.",
   },
   {
     icon: MessageSquare,
-    title: 'Easy Language',
-    description: 'Complex economic theories explained in plain English. Jargon decoded, concepts simplified.',
+    title: "Easy Language",
+    description: "Complex economic theories explained in plain English. Jargon decoded, concepts simplified.",
   },
   {
     icon: Target,
-    title: 'Exam Focused',
-    description: 'Strategically built for A-Level board specifications. Every concept leads to exam success.',
+    title: "Exam Focused",
+    description: "Strategically built for A-Level board specifications. Every concept leads to exam success.",
   },
 ];
 
@@ -45,15 +60,24 @@ const Index = () => {
     <div className="min-h-screen relative">
       <Helmet>
         <title>Econ Nexus: Next-Gen Ecosystem for Academic Excellence</title>
-        <meta name="description" content="Econ Nexus deploys specialist AI tutors for A-Level and university academics — notes, diagrams, exam intelligence, and syllabus-locked answers." />
+        <meta
+          name="description"
+          content="Econ Nexus deploys specialist AI tutors for A-Level and university academics — notes, diagrams, exam intelligence, and syllabus-locked answers."
+        />
         <link rel="canonical" href="https://httpswwweconnexuscompk.lovable.app/" />
         <meta property="og:title" content="Econ Nexus: Next-Gen Ecosystem for Academic Excellence" />
-        <meta property="og:description" content="Specialist AI tutors, notes, diagrams, and exam intelligence for A-Level and university economics." />
+        <meta
+          property="og:description"
+          content="Specialist AI tutors, notes, diagrams, and exam intelligence for A-Level and university economics."
+        />
         <meta property="og:url" content="https://httpswwweconnexuscompk.lovable.app/" />
       </Helmet>
       <Header />
 
-      <main className="relative z-10 safe-area-inset" style={{ willChange: 'opacity, transform', transform: 'translate3d(0,0,0)' }}>
+      <main
+        className="relative z-10 safe-area-inset"
+        style={{ willChange: "opacity, transform", transform: "translate3d(0,0,0)" }}
+      >
         {/* Hero Section */}
         <section className="min-h-[60vh] flex items-center pt-24 md:pt-28 lg:pt-32">
           <div className="w-[95%] max-w-[1200px] mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-24">
@@ -65,11 +89,16 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="font-bold leading-tight mb-6 md:mb-8 text-fluid-hero"
-                style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontWeight: 800,
+                  fontStyle: "italic",
+                  letterSpacing: "-0.04em",
+                  textTransform: "uppercase" as const,
+                }}
               >
                 <span className="section-title">Econ Nexus: Next-Gen Ecosystem for Academic Excellence</span>
               </motion.h1>
-
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -77,7 +106,9 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-fluid-base lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 md:mb-12 px-2"
               >
-                Deploy an ecosystem of specialized AI minds tailored to your specific field of study. From real-time syllabus tracking to complex University-level analysis, Econ Nexus provides the cognitive infrastructure for the modern elite student.
+                Deploy an ecosystem of specialized AI minds tailored to your specific field of study. From real-time
+                syllabus tracking to complex University-level analysis, Econ Nexus provides the cognitive infrastructure
+                for the modern elite student.
               </motion.p>
 
               <motion.div
@@ -94,10 +125,10 @@ const Index = () => {
                   <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-secondary via-amber-400 to-secondary opacity-0 group-hover:opacity-100 transition-opacity"
                     animate={{
-                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
-                    style={{ backgroundSize: '200% 200%' }}
+                    style={{ backgroundSize: "200% 200%" }}
                   />
                   <span className="relative flex items-center justify-center gap-2">
                     Explore Economics Notes
@@ -105,7 +136,6 @@ const Index = () => {
                   </span>
                 </Button>
               </motion.div>
-
             </div>
           </div>
         </section>
@@ -130,14 +160,23 @@ const Index = () => {
               </span>
               <h2
                 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
-                style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontWeight: 800,
+                  fontStyle: "italic",
+                  letterSpacing: "-0.04em",
+                  textTransform: "uppercase" as const,
+                }}
               >
                 Chat with Econ Nexus AI Tutors
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 11 specialist personas across Economics, Business, Sciences, Law — board-aware and syllabus-locked.
               </p>
-              <span className="inline-block px-6 py-3 rounded-xl bg-secondary text-secondary-foreground uppercase tracking-[0.2em] text-xs md:text-sm group-hover:translate-y-[-2px] transition-transform" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <span
+                className="inline-block px-6 py-3 rounded-xl bg-secondary text-secondary-foreground uppercase tracking-[0.2em] text-xs md:text-sm group-hover:translate-y-[-2px] transition-transform"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              >
                 Open Chat →
               </span>
             </a>
@@ -161,7 +200,16 @@ const Index = () => {
               <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full glass-card text-xs md:text-sm text-secondary mb-4 md:mb-6">
                 📚 Notes Repository
               </span>
-               <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
+              <h2
+                className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontWeight: 800,
+                  fontStyle: "italic",
+                  letterSpacing: "-0.04em",
+                  textTransform: "uppercase" as const,
+                }}
+              >
                 Knowledge Pillars
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
@@ -189,8 +237,6 @@ const Index = () => {
         {/* Econ Nexus Research & Article Hub — long-form library */}
         <ArticleHubCard />
 
-
-
         {/* Silver Divider */}
         <div className="w-[95%] max-w-[1200px] mx-auto">
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
@@ -205,11 +251,21 @@ const Index = () => {
               viewport={{ once: true }}
               className="text-center mb-10 md:mb-16"
             >
-              <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
+              <h2
+                className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontWeight: 800,
+                  fontStyle: "italic",
+                  letterSpacing: "-0.04em",
+                  textTransform: "uppercase" as const,
+                }}
+              >
                 Academic Workspaces
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
-                Three dedicated environments — draft top-band assignments, master every diagram, or explore the global economy concept by concept.
+                Three dedicated environments — draft top-band assignments, master every diagram, or explore the global
+                economy concept by concept.
               </p>
             </motion.div>
 
@@ -253,6 +309,17 @@ const Index = () => {
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
         </div>
 
+        {/* Ad Unit */}
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <AdUnit slot="2098600553" />
+        </div>
+
+        {/* Owner Profile Section */}
+        <OwnerProfileSection />
+
+        {/* Owner Profile Section */}
+        <OwnerProfileSection />
+
         {/* Owner Profile Section */}
         <OwnerProfileSection />
 
@@ -270,7 +337,16 @@ const Index = () => {
               viewport={{ once: true }}
               className="text-center mb-10 md:mb-16"
             >
-               <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
+              <h2
+                className="text-fluid-4xl lg:text-fluid-5xl font-bold section-title mb-3 md:mb-4"
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontWeight: 800,
+                  fontStyle: "italic",
+                  letterSpacing: "-0.04em",
+                  textTransform: "uppercase" as const,
+                }}
+              >
                 Simplified Mastery
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
@@ -295,7 +371,18 @@ const Index = () => {
                   >
                     <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-primary group-hover:text-secondary transition-colors" />
                   </motion.div>
-                  <h3 className="text-lg md:text-xl text-silver-bright mb-2 md:mb-3" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>{feature.title}</h3>
+                  <h3
+                    className="text-lg md:text-xl text-silver-bright mb-2 md:mb-3"
+                    style={{
+                      fontFamily: "'Syne', sans-serif",
+                      fontWeight: 800,
+                      fontStyle: "italic",
+                      letterSpacing: "-0.04em",
+                      textTransform: "uppercase" as const,
+                    }}
+                  >
+                    {feature.title}
+                  </h3>
                   <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{feature.description}</p>
                 </motion.div>
               ))}
@@ -319,17 +406,22 @@ const Index = () => {
         {/* CTA Section */}
         <section className="section-mobile">
           <div className="w-[95%] max-w-[1200px] mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-               <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold text-silver-bright mb-4 md:mb-6" style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', textTransform: 'uppercase' as const }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <h2
+                className="text-fluid-4xl lg:text-fluid-5xl font-bold text-silver-bright mb-4 md:mb-6"
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontWeight: 800,
+                  fontStyle: "italic",
+                  letterSpacing: "-0.04em",
+                  textTransform: "uppercase" as const,
+                }}
+              >
                 Ready to Master Economics?
               </h2>
               <p className="text-fluid-lg lg:text-xl text-muted-foreground mb-8 md:mb-10 max-w-2xl mx-auto px-2">
-                Join thousands of students who've transformed their understanding of economics. 
-                Your A* journey starts here.
+                Join thousands of students who've transformed their understanding of economics. Your A* journey starts
+                here.
               </p>
               <Button
                 size="lg"
@@ -345,7 +437,6 @@ const Index = () => {
       </main>
 
       <Footer />
-      
     </div>
   );
 };
