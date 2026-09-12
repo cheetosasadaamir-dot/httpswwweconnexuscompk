@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import AdUnit from "@/components/AdUnit";
 
 interface ContentSectionProps {
   title: string;
@@ -7,9 +8,10 @@ interface ContentSectionProps {
   id?: string;
   children: React.ReactNode;
   className?: string;
+  showAd?: boolean;
 }
 
-const ContentSection = ({ title, subtitle, id, children, className }: ContentSectionProps) => {
+const ContentSection = ({ title, subtitle, id, children, className, showAd }: ContentSectionProps) => {
   return (
     <motion.section
       id={id}
@@ -20,17 +22,12 @@ const ContentSection = ({ title, subtitle, id, children, className }: ContentSec
       className={cn("mb-4", className)}
     >
       <div className="mb-2 md:mb-3">
-        <h2 className="font-serif text-fluid-xl lg:text-fluid-2xl font-bold section-title mb-0.5">
-          {title}
-        </h2>
-        {subtitle && (
-          <p className="text-fluid-sm text-muted-foreground">{subtitle}</p>
-        )}
+        <h2 className="font-serif text-fluid-xl lg:text-fluid-2xl font-bold section-title mb-0.5">{title}</h2>
+        {subtitle && <p className="text-fluid-sm text-muted-foreground">{subtitle}</p>}
         <div className="h-0.5 w-12 md:w-16 bg-gradient-to-r from-primary to-secondary rounded-full mt-1" />
       </div>
-      <div className="space-y-2">
-        {children}
-      </div>
+      <div className="space-y-2">{children}</div>
+      {showAd && <AdUnit slot="2098600553" />}
     </motion.section>
   );
 };
