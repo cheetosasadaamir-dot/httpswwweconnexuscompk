@@ -317,12 +317,6 @@ const Index = () => {
         {/* Owner Profile Section */}
         <OwnerProfileSection />
 
-        {/* Owner Profile Section */}
-        <OwnerProfileSection />
-
-        {/* Owner Profile Section */}
-        <OwnerProfileSection />
-
         {/* Silver Divider */}
         <div className="w-[95%] max-w-[1200px] mx-auto">
           <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
