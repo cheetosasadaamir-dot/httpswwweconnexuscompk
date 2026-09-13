@@ -316,7 +316,7 @@ const MoneyBanking = () => {
         {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
         {/* TOPIC 3: THE MONETARY TRANSMISSION MECHANISM */}
         {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
-        <ContentSection title="Topic 3: The Monetary Transmission Mechanism" id="topic3">
+        <ContentSection showAd title="Topic 3: The Monetary Transmission Mechanism" id="topic3">
           
           <div className="prose prose-invert max-w-none mb-6">
             <p className="text-sm leading-relaxed text-justify text-foreground/90">
@@ -734,7 +734,7 @@ const MoneyBanking = () => {
         {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
         {/* ADVANCED THEORY: QUANTITY THEORY & MPC POLICY */}
         {/* ═══════════════════════════════════════════════════════════════════════════════════════════════════ */}
-        <ContentSection title="Advanced Theory: Monetarist Framework & MPC Decision-Making" id="advanced-theory">
+        <ContentSection showAd title="Advanced Theory: Monetarist Framework & MPC Decision-Making" id="advanced-theory">
           <AdvancedMonetaryTheorySection />
           
           {/* Interactive QTM Diagram */}

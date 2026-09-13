@@ -306,7 +306,7 @@ const UnemploymentGrowth = () => {
         </ContentSection>
 
         {/* Costs of Unemployment */}
-        <ContentSection title="Costs of Unemployment">
+        <ContentSection showAd title="Costs of Unemployment">
           <p className="text-muted-foreground mb-4 text-sm">
             Unemployment imposes substantial costs on individuals, businesses, the economy, and communities. 
             These costs extend beyond the immediate loss of income to include long-term scarring effects on 
@@ -506,7 +506,7 @@ const UnemploymentGrowth = () => {
         </ContentSection>
 
         {/* Chapter Summary */}
-        <ContentSection title="Chapter Summary">
+        <ContentSection showAd title="Chapter Summary">
           <div className="glass-card p-6">
             <h3 className="font-serif text-xl text-gradient mb-4">Key Takeaways</h3>
             <ul className="space-y-3 text-muted-foreground">

@@ -88,7 +88,7 @@ const Investment = () => {
         </ContentSection>
 
         {/* Determinants of Investment */}
-        <ContentSection title="Determinants of Investment">
+        <ContentSection showAd title="Determinants of Investment">
           <MECCurveDiagram />
 
           <NoteCard title="Marginal Efficiency of Capital (MEC)" type="theory">
@@ -316,7 +316,7 @@ const Investment = () => {
         </ContentSection>
 
         {/* Chapter Summary */}
-        <ContentSection title="Chapter Summary">
+        <ContentSection showAd title="Chapter Summary">
           <div className="glass-card p-6">
             <h3 className="font-serif text-xl text-gradient mb-4">Key Takeaways</h3>
             <ul className="space-y-2 text-muted-foreground">

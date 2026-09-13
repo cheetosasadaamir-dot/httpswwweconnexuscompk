@@ -112,7 +112,7 @@ const PolicyObjectives = () => {
           </ContentSection>
 
           {/* Interrelated Macroeconomic Problems */}
-          <ContentSection title="Interrelated Macroeconomic Problems (Tradeoffs)">
+          <ContentSection showAd title="Interrelated Macroeconomic Problems (Tradeoffs)">
             <p className="text-foreground/90 leading-relaxed text-sm mb-2">
               It is not possible to achieve all the objectives simultaneously. Hence the government has to face tradeoffs. There are <strong>SIX main tradeoffs</strong> that the government faces:
             </p>
@@ -434,7 +434,7 @@ const PolicyObjectives = () => {
           </ContentSection>
 
           {/* Topic 4: Exchange Rate Policy */}
-          <ContentSection title="Topic 4: Exchange Rate Policy">
+          <ContentSection showAd title="Topic 4: Exchange Rate Policy">
             <p className="text-foreground/90 leading-relaxed text-sm mb-2">
               <strong>Definition:</strong> Exchange Rate Policies are part of the monetary policy of a country because the exchange rate, interest rate and money supply are all intimately related. The main purpose is to build international competitiveness and clear balance of payment stability.
             </p>
@@ -600,7 +600,7 @@ const PolicyObjectives = () => {
           </ContentSection>
 
           {/* Topic 7: Inter-connectedness & Phillips Curve [Advanced Specialist] */}
-          <ContentSection title="Topic 7: Inter-connectedness of Macroeconomic Problems">
+          <ContentSection showAd title="Topic 7: Inter-connectedness of Macroeconomic Problems">
             <InterconnectednessSection />
           </ContentSection>
 

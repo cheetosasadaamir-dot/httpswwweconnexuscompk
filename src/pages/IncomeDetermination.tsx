@@ -92,7 +92,7 @@ const IncomeDetermination = () => {
         </ContentSection>
 
         {/* The 2-Sector Model */}
-        <ContentSection title="The 2-Sector Model" id="two-sector">
+        <ContentSection showAd title="The 2-Sector Model" id="two-sector">
           <NoteCard title="Simplifying Assumption" type="concept">
             <p>
               We begin with a simple closed economy with no government: <span className="font-mono">AE = C + I</span>
@@ -244,7 +244,7 @@ const IncomeDetermination = () => {
         </ContentSection>
 
         {/* The 45-Degree Line */}
-        <ContentSection title="The 45-Degree Line Model" id="keynesian-cross">
+        <ContentSection showAd title="The 45-Degree Line Model" id="keynesian-cross">
           <NoteCard title="The Keynesian Cross" type="concept">
             <p>
               The 45° line shows all points where Y = AE. The equilibrium national income 

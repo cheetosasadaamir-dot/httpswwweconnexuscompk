@@ -166,7 +166,7 @@ const BasicEconomicIdeas = () => {
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         {/* SECTION 2: FACTORS OF PRODUCTION */}
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
-        <ContentSection title="The Factors of Production">
+        <ContentSection showAd title="The Factors of Production">
           <div className="glass-card p-5 space-y-4">
             <h3 className="font-serif text-xl text-gradient">The Four Categories of Economic Resources</h3>
             
@@ -325,7 +325,7 @@ const BasicEconomicIdeas = () => {
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         {/* SECTION 5: POSITIVE AND NORMATIVE STATEMENTS */}
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
-        <ContentSection title="Positive and Normative Statements">
+        <ContentSection showAd title="Positive and Normative Statements">
           <div className="glass-card p-5 space-y-4">
             <h3 className="font-serif text-xl text-gradient">Facts vs. Value Judgments in Economic Analysis</h3>
             

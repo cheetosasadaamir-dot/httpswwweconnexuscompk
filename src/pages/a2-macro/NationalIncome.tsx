@@ -195,7 +195,7 @@ const NationalIncome = () => {
         </ContentSection>
 
         {/* Topic 2.5: Liquidity Preference Theory */}
-        <ContentSection title="Topic 2.5: Liquidity Preference & Interest Rate Determination" id="liquidity-preference">
+        <ContentSection showAd title="Topic 2.5: Liquidity Preference & Interest Rate Determination" id="liquidity-preference">
           <div className="space-y-0">
             <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
               Keynes's <strong className="text-silver-bright">Liquidity Preference Theory</strong> provides the theoretical foundation for understanding how interest rates are determined in money markets, representing a fundamental departure from the classical loanable funds approach. Rather than viewing interest rates as the price that equilibrates saving and investment, Keynes argued that the interest rate is determined by the <strong>supply of and demand for money</strong>—specifically, by the interaction between an exogenously-determined money supply (controlled by the central bank) and the public's desire to hold wealth in liquid monetary form rather than interest-bearing assets. The demand for money (liquidity preference) arises from three distinct motives, each with different determinants and elasticities.
@@ -402,7 +402,7 @@ const NationalIncome = () => {
         </ContentSection>
 
         {/* Topic 4: The Keynesian Consumption Function & Multiplier */}
-        <ContentSection title="Topic 4: The Keynesian Consumption Function & Multiplier Theory" id="consumption">
+        <ContentSection showAd title="Topic 4: The Keynesian Consumption Function & Multiplier Theory" id="consumption">
           <div className="space-y-0">
             <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
               The <strong className="text-silver-bright">Keynesian consumption function</strong> represents one of the foundational pillars of macroeconomic theory, establishing a systematic relationship between aggregate consumption expenditure and the level of disposable national income. Keynes, in his seminal work <em>The General Theory of Employment, Interest and Money</em> (1936), posited that consumption is primarily determined by current income levels, rejecting the classical assumption that interest rates were the principal driver of household spending decisions. The function takes the canonical form <InlineMath math="C = a + bY" />, where the parameter <InlineMath math="a" /> represents <strong className="text-cambridge-cyan">autonomous consumption</strong>—expenditure that occurs irrespective of income levels, financed through dissaving or borrowing—and the coefficient <InlineMath math="b" /> denotes the <strong className="text-cambridge-cyan">Marginal Propensity to Consume (MPC)</strong>, defined as the fraction of each additional unit of income that households allocate to consumption rather than saving. The theoretical constraint that <InlineMath math="0 < MPC < 1" /> ensures that increases in income generate proportionately smaller increases in consumption, with the residual flowing into saving, thereby establishing the fundamental identity <InlineMath math="MPC + MPS = 1" />.
@@ -726,7 +726,7 @@ const NationalIncome = () => {
         </ContentSection>
 
         {/* Topic 7: The Multiplier & Marginal Propensities (Advanced Level) */}
-        <ContentSection title="Topic 7: The Multiplier Effect & Marginal Propensities" id="multiplier">
+        <ContentSection showAd title="Topic 7: The Multiplier Effect & Marginal Propensities" id="multiplier">
           <div className="space-y-0">
             <p className="text-sm text-muted-foreground leading-relaxed text-justify mb-4">
               The <strong className="text-silver-bright">Keynesian Multiplier</strong> represents the mechanism whereby an initial autonomous injection into the circular flow generates a <strong>magnified final impact</strong> on equilibrium national income. The multiplier coefficient <InlineMath math="k" /> quantifies the ratio of the final change in income to the initial autonomous expenditure change: <InlineMath math="k = \frac{\Delta Y}{\Delta A}" />. The transmission operates through successive rounds of induced consumption: an initial autonomous injection (whether <InlineMath math="\Delta I" />, <InlineMath math="\Delta G" />, or <InlineMath math="\Delta X" />) creates income for factor owners (wages, profits, rent, interest), who subsequently spend a fraction—determined by the <strong>Marginal Propensity to Consume</strong> (MPC)—on domestic consumption, thereby generating further incomes and further consumption in a <strong>geometric series</strong> that converges to a finite sum determined by the marginal propensity to withdraw. The critical insight is that the multiplier's magnitude is <strong>inversely related</strong> to the total leakage rate from the circular flow: economies with higher savings rates, tax burdens, or import propensities exhibit smaller multipliers because a greater fraction of each income increment "leaks" out before generating subsequent rounds of domestic spending.
@@ -918,7 +918,7 @@ const NationalIncome = () => {
         </ContentSection>
 
         {/* Advanced Macroeconomic Thought: Keynesian Framework */}
-        <ContentSection 
+        <ContentSection showAd 
           title="Advanced Macroeconomic Thought: Keynesian Framework" 
           subtitle="[Advanced Specialist - Keynesian vs Monetarist]"
           id="keynesian-framework"

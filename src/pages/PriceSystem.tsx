@@ -332,7 +332,7 @@ const PriceSystem = () => {
       </ContentSection>
 
       {/* Section 2.3: Movement vs Shift */}
-      <ContentSection 
+      <ContentSection showAd 
         title="2.3 Movement Along vs. Shift of Curve" 
         subtitle="A Critical Distinction for Cambridge Examinations"
       >
@@ -544,7 +544,7 @@ const PriceSystem = () => {
       </ContentSection>
 
       {/* Section 2.6: Consumer & Producer Surplus - WELFARE ECONOMICS PRECISION MODULE */}
-      <ContentSection 
+      <ContentSection showAd 
         title="2.6 Consumer and Producer Surplus" 
         subtitle="The Mathematical Foundations of Welfare Economics"
       >

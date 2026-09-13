@@ -97,7 +97,7 @@ const Development = () => {
           </ContentSection>
 
           {/* Section 2: Measuring Inequality */}
-          <ContentSection title="Section 8.2: Income Inequality & Distribution">
+          <ContentSection showAd title="Section 8.2: Income Inequality & Distribution">
             <p className="text-foreground/90 leading-relaxed text-justify mb-1">
               The distribution of income and wealth within an economy represents a fundamental dimension of development that aggregate growth statistics fail to capture. High levels of inequality undermine social cohesion, reduce the poverty-reducing impact of growth (since growth accrues disproportionately to those already wealthy), and may generate political instability that undermines investment and long-term prosperity. The measurement and analysis of inequality therefore occupy a central position in development economics, with the <strong>Lorenz Curve</strong> and <strong>Gini Coefficient</strong> serving as the primary analytical tools.
             </p>
@@ -255,7 +255,7 @@ const Development = () => {
           </ContentSection>
 
           {/* Section 5: Characteristics of Developing Economies */}
-          <ContentSection title="Section 8.5: Characteristics of Economies at Different Levels of Development">
+          <ContentSection showAd title="Section 8.5: Characteristics of Economies at Different Levels of Development">
             <p className="text-foreground/90 leading-relaxed text-justify mb-1">
               Economies at different stages of development exhibit systematic structural differences that both reflect and perpetuate development gaps. Understanding these characteristics—the <strong>dual economy</strong> structure, demographic patterns, sectoral composition, and institutional frameworks—is essential for designing appropriate development strategies and evaluating policy interventions. The contrast between <em>More Economically Developed Countries (MEDCs)</em> and <em>Less Economically Developed Countries (LEDCs)</em> illuminates both the challenges facing developing nations and the structural transformations that successful development entails.
             </p>
@@ -450,7 +450,7 @@ const Development = () => {
           </ContentSection>
 
           {/* Socio-Economic & Sustainability Expansion - CIE Framework */}
-          <ContentSection title="Socio-Economic & Sustainability Framework">
+          <ContentSection showAd title="Socio-Economic & Sustainability Framework">
             <DevelopmentSustainabilitySection />
           </ContentSection>
 

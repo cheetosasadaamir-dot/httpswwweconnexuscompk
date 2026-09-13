@@ -167,7 +167,7 @@ const Inflation = () => {
         {/* ═══════════════════════════════════════════════════════════════════
             SECTION 4.6.3: COST-PUSH INFLATION & STAGFLATION
         ═══════════════════════════════════════════════════════════════════ */}
-        <ContentSection title="4.6.3 Cost-Push Inflation: Supply-Side Shocks" className="mb-4">
+        <ContentSection showAd title="4.6.3 Cost-Push Inflation: Supply-Side Shocks" className="mb-4">
           {/* HIGH-DENSITY ZERO-GAP BLOCK */}
           <div className="glass-card p-5 mb-3">
             <h4 className="font-serif text-lg text-primary mb-3">Analytical Framework</h4>
@@ -279,7 +279,7 @@ const Inflation = () => {
         {/* ═══════════════════════════════════════════════════════════════════
             SECTION 4.6.6: DEFLATION
         ═══════════════════════════════════════════════════════════════════ */}
-        <ContentSection title="4.6.6 Deflation: Causes, Types, and Consequences" className="mb-4">
+        <ContentSection showAd title="4.6.6 Deflation: Causes, Types, and Consequences" className="mb-4">
           <div className="glass-card p-5 mb-3">
             <h4 className="font-serif text-lg text-primary mb-3">The Dual Nature of Deflation</h4>
             <p className="text-sm leading-relaxed text-justify mb-3">
@@ -410,7 +410,7 @@ const Inflation = () => {
         </ContentSection>
 
         {/* Chapter Summary */}
-        <ContentSection title="Chapter Summary">
+        <ContentSection showAd title="Chapter Summary">
           <div className="glass-card p-5">
             <h3 className="font-serif text-lg text-gradient mb-3">Key Takeaways – Price Stability</h3>
             <ul className="space-y-1.5 text-sm text-muted-foreground">

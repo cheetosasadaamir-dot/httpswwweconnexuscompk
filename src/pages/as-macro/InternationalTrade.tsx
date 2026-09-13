@@ -191,7 +191,7 @@ const InternationalTrade = () => {
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         {/* SECTION 3: PROTECTIONISM */}
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
-        <ContentSection title="Protectionism: Tools and Impact">
+        <ContentSection showAd title="Protectionism: Tools and Impact">
           <div className="glass-card p-5 space-y-4">
             <h3 className="font-serif text-xl text-gradient">The Distortion of Free Trade</h3>
             
@@ -327,7 +327,7 @@ const InternationalTrade = () => {
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
         {/* SECTION 6: TRADE CREATION AND TRADE DIVERSION (4.7.3) */}
         {/* ═══════════════════════════════════════════════════════════════════════════════════════ */}
-        <ContentSection title="Trade Creation and Trade Diversion">
+        <ContentSection showAd title="Trade Creation and Trade Diversion">
           <div className="glass-card p-5 space-y-4">
             <h3 className="font-serif text-xl text-gradient">The Welfare Economics of Customs Unions</h3>
             

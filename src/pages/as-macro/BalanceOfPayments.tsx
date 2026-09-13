@@ -117,7 +117,7 @@ const BalanceOfPayments = () => {
           </ContentSection>
 
           {/* Section 3: Correcting a BoP Imbalance */}
-          <ContentSection title="3. Correcting a Balance of Payments Deficit" className="mb-2">
+          <ContentSection showAd title="3. Correcting a Balance of Payments Deficit" className="mb-2">
             <div className="prose prose-invert max-w-none text-justify">
               <p className="text-foreground/90 leading-relaxed mb-4">
                 Policy instruments for correcting a Current Account deficit are conventionally classified into two categories, distinguished by their mechanism of action: <strong>Expenditure-Switching Policies</strong>, which seek to redirect demand from foreign to domestically produced goods without reducing aggregate spending, and <strong>Expenditure-Reducing Policies</strong>, which seek to lower the overall level of aggregate demand, thereby reducing import spending as a consequence of diminished national income. The choice between these approaches—and increasingly, their optimal combination—involves complex trade-offs between external balance and internal macroeconomic objectives.
@@ -207,7 +207,7 @@ const BalanceOfPayments = () => {
           </ContentSection>
 
           {/* Chapter Summary */}
-          <ContentSection title="Chapter Summary: Key Analytical Relationships">
+          <ContentSection showAd title="Chapter Summary: Key Analytical Relationships">
             <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-xl border border-primary/20">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
