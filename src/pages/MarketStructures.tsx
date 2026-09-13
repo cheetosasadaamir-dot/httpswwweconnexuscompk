@@ -170,7 +170,7 @@ const MarketStructures = () => {
         </ContentSection>
 
         {/* SECTION 3: Monopoly */}
-        <ContentSection title="Monopoly and Monopoly Power">
+        <ContentSection showAd title="Monopoly and Monopoly Power">
           <div className="glass-card p-5 space-y-4">
             <h3 className="font-serif text-xl text-gradient">Restricted Output, Higher Price, Deadweight Loss</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
@@ -296,7 +296,7 @@ const MarketStructures = () => {
         </ContentSection>
 
         {/* SECTION 6: Contestability */}
-        <ContentSection title="Contestable Markets and Policy">
+        <ContentSection showAd title="Contestable Markets and Policy">
           <div className="glass-card p-5 space-y-4">
             <h3 className="font-serif text-xl text-gradient">The Threat of Entry as a Substitute for Actual Competition</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">

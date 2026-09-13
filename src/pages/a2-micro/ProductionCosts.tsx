@@ -83,7 +83,7 @@ const ProductionCosts = () => {
       </ContentSection>
 
       {/* Topic 1: Production */}
-      <ContentSection title="Topic 1: Production">
+      <ContentSection showAd title="Topic 1: Production">
         <div className="space-y-6">
           <div>
             <h4 className="text-silver-bright font-semibold mb-3">Short Run vs. Long Run</h4>
@@ -534,7 +534,7 @@ const ProductionCosts = () => {
       </ContentSection>
 
       {/* Topic 4: Revenues */}
-      <ContentSection title="Topic 4: Revenues">
+      <ContentSection showAd title="Topic 4: Revenues">
         <p className="text-silver leading-relaxed mb-6">
           Understanding revenue concepts is essential for analyzing profit maximization. The behavior of revenue 
           curves differs fundamentally between price-taking firms (perfect competition) and price-making firms 
@@ -881,7 +881,7 @@ const ProductionCosts = () => {
       </ContentSection>
 
       {/* Analytical Depth & Evaluative Judgement */}
-      <ContentSection title="Analytical Depth & Evaluative Judgement">
+      <ContentSection showAd title="Analytical Depth & Evaluative Judgement">
         <DiminishingReturnsAnalyticalDepth />
         <DiminishingReturnsEvaluativeJudgement />
       </ContentSection>

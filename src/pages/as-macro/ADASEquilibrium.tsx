@@ -155,7 +155,7 @@ const ADASEquilibrium = () => {
         </ContentSection>
 
         {/* AD Definition and Determinants - High-Density Academic Block */}
-        <ContentSection title="Aggregate Demand: Formal Definition and Determinants">
+        <ContentSection showAd title="Aggregate Demand: Formal Definition and Determinants">
           {/* Zero-Gap Dense Definition Block */}
           <div className="space-y-0 mb-8">
             <div className="glass-card p-8 bg-gradient-to-br from-primary/5 to-transparent border-l-4 border-primary">
@@ -567,7 +567,7 @@ const ADASEquilibrium = () => {
         </ContentSection>
 
         {/* Aggregate Supply - Expanded */}
-        <ContentSection title="Aggregate Supply (AS)">
+        <ContentSection showAd title="Aggregate Supply (AS)">
           <NoteCard title="Understanding Aggregate Supply" type="definition">
             <p className="leading-relaxed">
               Aggregate supply represents the <strong>total quantity of goods and services that all producers 
@@ -777,7 +777,7 @@ const ADASEquilibrium = () => {
         </ContentSection>
 
         {/* Interactive AD/AS Model */}
-        <ContentSection title="Interactive AD/AS Model">
+        <ContentSection showAd title="Interactive AD/AS Model">
           <p className="text-muted-foreground mb-6 leading-relaxed">
             Use the interactive diagram below to explore how demand and supply shocks affect macroeconomic 
             equilibrium. Click the buttons to simulate an increase in aggregate demand or an adverse supply 
@@ -850,7 +850,7 @@ const ADASEquilibrium = () => {
         </ContentSection>
 
         {/* Macroeconomic Equilibrium - CIE Foundation Level Enhanced Content */}
-        <ContentSection title="Equilibrium Real National Output: Framework">
+        <ContentSection showAd title="Equilibrium Real National Output: Framework">
           {/* Integrated CIE Content Section */}
           <ADASEquilibriumSection />
         </ContentSection>
@@ -996,7 +996,7 @@ const ADASEquilibrium = () => {
         </ContentSection>
 
         {/* Examiner Traps & Command Word Focus */}
-        <ContentSection title="Examiner Guidance: Common Errors & Command Words">
+        <ContentSection showAd title="Examiner Guidance: Common Errors & Command Words">
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {/* Examiner Traps */}
             <div className="glass-card p-6 border-l-4 border-amber-500">

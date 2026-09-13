@@ -124,7 +124,7 @@ const ExchangeRates = () => {
           </ContentSection>
 
           {/* Topic 3: Exchange Rate Systems */}
-          <ContentSection title="Topic 3: Exchange Rate Systems" id="systems" className="mb-4">
+          <ContentSection showAd title="Topic 3: Exchange Rate Systems" id="systems" className="mb-4">
             
             <div className="grid md:grid-cols-2 gap-3 mb-4">
               <NoteCard title="1. Free Floating Exchange Rate" className="mb-0">
@@ -304,7 +304,7 @@ const ExchangeRates = () => {
           </ContentSection>
 
           {/* Chapter Summary */}
-          <ContentSection title="Chapter Summary" className="mb-4">
+          <ContentSection showAd title="Chapter Summary" className="mb-4">
             <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 rounded-xl">
               <h3 className="text-lg font-semibold text-foreground mb-3">Key Takeaways</h3>
               <div className="grid md:grid-cols-2 gap-3">

@@ -154,7 +154,7 @@ const GovernmentTrade = () => {
         </ContentSection>
 
         {/* 4-Sector Model */}
-        <ContentSection title="Open Economy with Government (4-Sector Model)">
+        <ContentSection showAd title="Open Economy with Government (4-Sector Model)">
           <NoteCard title="The Foreign Sector" type="theory">
             <p>
               In an open economy, we bring in the foreign sector through imports (M) and exports (X). 
@@ -312,7 +312,7 @@ const GovernmentTrade = () => {
         </ContentSection>
 
         {/* Chapter Summary */}
-        <ContentSection title="Chapter Summary">
+        <ContentSection showAd title="Chapter Summary">
           <div className="glass-card p-6">
             <h3 className="font-serif text-xl text-gradient mb-4">Key Equations</h3>
             <div className="grid md:grid-cols-2 gap-4 font-mono text-sm">

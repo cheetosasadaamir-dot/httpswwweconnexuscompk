@@ -131,7 +131,7 @@ const DiagramBank = () => {
         </ContentSection>
 
         {/* Elasticity Diagrams */}
-        <ContentSection title="Chapter 3: Elasticities">
+        <ContentSection showAd title="Chapter 3: Elasticities">
           <NoteCard title="Price Elasticity of Demand (PED)" type="theory">
             <p>
               PED measures responsiveness of quantity demanded to a change in price. The five cases 
@@ -268,7 +268,7 @@ const DiagramBank = () => {
         </ContentSection>
 
         {/* Macroeconomics Diagrams */}
-        <ContentSection title="Chapter 7: AD/AS Analysis">
+        <ContentSection showAd title="Chapter 7: AD/AS Analysis">
           <NoteCard title="Keynesian LRAS: The Three Phases" type="theory">
             <p>
               The syllabus specifically requires the <strong>Keynesian Long-Run Aggregate Supply</strong> 
