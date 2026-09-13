@@ -27,7 +27,7 @@ const ContentSection = ({ title, subtitle, id, children, className, showAd }: Co
         <div className="h-0.5 w-12 md:w-16 bg-gradient-to-r from-primary to-secondary rounded-full mt-1" />
       </div>
       <div className="space-y-2">{children}</div>
-      {showAd && <AdUnit slot="2098600553" />}
+      {showAd && <AdUnit slot="3909988633" />}
     </motion.section>
   );
 };

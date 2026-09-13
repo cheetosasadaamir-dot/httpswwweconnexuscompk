@@ -311,7 +311,7 @@ const Index = () => {
 
         {/* Ad Unit */}
         <div className="w-[95%] max-w-[1200px] mx-auto">
-          <AdUnit slot="2098600553" />
+          <AdUnit slot="3909988633" />
         </div>
 
         {/* Owner Profile Section */}

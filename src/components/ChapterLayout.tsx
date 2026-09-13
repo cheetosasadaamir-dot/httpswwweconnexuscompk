@@ -54,9 +54,9 @@ const ChapterLayout = ({ chapterNumber, title, subtitle, children }: ChapterLayo
 
         {/* Chapter Content - Mobile-first padding */}
         <div className="w-[95%] max-w-[1200px] mx-auto py-6 md:py-8">
-          <AdUnit slot="2098600553" />
+          <AdUnit slot="3909988633" />
           <div className="space-compact">{children}</div>
-          <AdUnit slot="2098600553" />
+          <AdUnit slot="3909988633" />
         </div>
       </main>
     </div>
