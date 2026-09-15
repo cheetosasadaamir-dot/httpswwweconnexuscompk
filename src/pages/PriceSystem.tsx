@@ -57,7 +57,7 @@ const PriceSystem = () => {
         </NoteCard>
 
         {/* High-Density Law of Demand Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-cyan-500 pl-6">
             <h3 className="font-serif text-2xl text-silver-bright mb-4">The Law of Demand: A Technical Analysis</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -75,7 +75,7 @@ const PriceSystem = () => {
         </div>
 
         {/* Diminishing Marginal Utility Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-amber-500 pl-6">
             <h3 className="font-serif text-2xl text-amber-400 mb-4">The Theoretical Foundation: Diminishing Marginal Utility</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -218,7 +218,7 @@ const PriceSystem = () => {
         </NoteCard>
 
         {/* High-Density Law of Supply Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-magenta-500 pl-6">
             <h3 className="font-serif text-2xl text-silver-bright mb-4">The Law of Supply: A Technical Analysis</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -236,7 +236,7 @@ const PriceSystem = () => {
         </div>
 
         {/* Producer Rationality Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-amber-500 pl-6">
             <h3 className="font-serif text-2xl text-amber-400 mb-4">The Microeconomic Logic of Producer Behavior</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -360,7 +360,7 @@ const PriceSystem = () => {
           </div>
         </NoteCard>
 
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <MovementShiftDiagram />
         </div>
 
@@ -403,7 +403,7 @@ const PriceSystem = () => {
         </NoteCard>
 
         {/* High-Density Equilibrium & Invisible Hand Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-amber-500 pl-6">
             <h3 className="font-serif text-2xl text-silver-bright mb-4">Market Equilibrium and the Invisible Hand: A Synthesis</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -421,7 +421,7 @@ const PriceSystem = () => {
         </div>
 
         {/* Rationing and Signalling Functions Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-cyan-500 pl-6">
             <h3 className="font-serif text-2xl text-cyan-400 mb-4">The Rationing and Signalling Functions of Price</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -435,11 +435,11 @@ const PriceSystem = () => {
           </div>
         </div>
 
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <DemandSupplyDiagram title="Figure 2.1: Market Equilibrium Determination" />
         </div>
 
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <ExcessDemandSupplyDiagram />
         </div>
 
@@ -485,7 +485,7 @@ const PriceSystem = () => {
           </p>
         </NoteCard>
 
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <MarketEquilibriumInteractive title="Figure 2.2: Interactive Equilibrium Shifts" />
         </div>
 
@@ -549,7 +549,7 @@ const PriceSystem = () => {
         subtitle="The Mathematical Foundations of Welfare Economics"
       >
         {/* High-Density Consumer Surplus Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-cyan-500 pl-6">
             <h3 className="font-serif text-2xl text-cyan-400 mb-4">Consumer Surplus: A Technical Analysis</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -567,7 +567,7 @@ const PriceSystem = () => {
         </div>
 
         {/* High-Density Producer Surplus Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-magenta-500 pl-6">
             <h3 className="font-serif text-2xl text-magenta-400 mb-4">Producer Surplus: A Technical Analysis</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -585,12 +585,12 @@ const PriceSystem = () => {
         </div>
 
         {/* Precision Diagram */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <WelfareEconomicsSurplusDiagram />
         </div>
 
         {/* Total Welfare Analysis Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-amber-500 pl-6">
             <h3 className="font-serif text-2xl text-amber-400 mb-4">Total Economic Welfare: The Sum of Surplus</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -605,15 +605,15 @@ const PriceSystem = () => {
         </div>
 
         {/* Tax Incidence and Welfare Interactive Diagram */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <SurplusWithTaxDiagram />
         </div>
 
         {/* Senior Examiner's Conclusions */}
-        <div className="glass-card p-8 my-6 bg-gradient-to-br from-background via-background to-amber-500/5">
+        <div className="glass-card p-5 md:p-6 my-3 bg-gradient-to-br from-background via-background to-amber-500/5">
           <div className="border-l-4 border-amber-500 pl-6">
             <h3 className="font-serif text-2xl text-amber-400 mb-4">Senior Examiner's Conclusions</h3>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* CS Conclusion */}
               <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
                 <h5 className="font-semibold text-cyan-400 mb-3">Consumer Surplus Evaluation</h5>
@@ -663,7 +663,7 @@ const PriceSystem = () => {
           </p>
         </NoteCard>
 
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <PriceFunctionsDiagram />
         </div>
 
@@ -691,7 +691,7 @@ const PriceSystem = () => {
         </AnalysisBlock>
 
         {/* High-Density Critical Insight Block */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-red-500 pl-6">
             <h3 className="font-serif text-2xl text-red-400 mb-4">Critical Insight: Why the Price System May Fail</h3>
             <div className="space-y-4 text-muted-foreground text-justify leading-relaxed">
@@ -770,7 +770,7 @@ const PriceSystem = () => {
         </NoteCard>
 
         {/* PRICE CEILING */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-red-500 pl-6">
             <h3 className="font-serif text-2xl text-silver-bright mb-4">2.7.1 Maximum Prices (Price Ceilings)</h3>
             <div className="grid lg:grid-cols-2 gap-6 items-start">
@@ -802,7 +802,7 @@ const PriceSystem = () => {
         </div>
 
         {/* PRICE FLOOR */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-emerald-500 pl-6">
             <h3 className="font-serif text-2xl text-silver-bright mb-4">2.7.2 Minimum Prices (Price Floors)</h3>
             <div className="grid lg:grid-cols-2 gap-6 items-start">
@@ -841,7 +841,7 @@ const PriceSystem = () => {
         </div>
 
         {/* SUBSIDY */}
-        <div className="glass-card p-8 my-6">
+        <div className="glass-card p-5 md:p-6 my-3">
           <div className="border-l-4 border-cyan-500 pl-6">
             <h3 className="font-serif text-2xl text-silver-bright mb-4">2.7.3 Producer Subsidies — Welfare Analysis</h3>
             <div className="grid lg:grid-cols-2 gap-6 items-start">
