@@ -25,7 +25,7 @@ type Filter = 'All' | 'Microeconomics' | 'Macroeconomics';
 const DiagramHub = () => {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<Filter>('All');
-  const [active, setActive] = useState('d129');
+  const [active, setActive] = useState('d1');
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const frameRef = useRef<HTMLIFrameElement>(null);
@@ -76,7 +76,7 @@ const DiagramHub = () => {
         <title>Interactive Economics Diagram Hub | Econ Nexus</title>
         <meta
           name="description"
-          content="Study 157 interactive economics diagrams with staged explanations, examples, evaluation and self-checks."
+          content={`Study ${DIAGRAM_ENTRIES.length} interactive economics diagrams with staged explanations, examples, evaluation and self-checks.`}
         />
       </Helmet>
 
@@ -136,7 +136,7 @@ const DiagramHub = () => {
                   <input
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
-                    placeholder="Search 157 diagrams"
+                    placeholder={`Search ${DIAGRAM_ENTRIES.length} diagrams`}
                     aria-label="Search diagrams"
                     className="h-11 w-full rounded-md border border-primary/20 bg-background/65 pl-9 pr-10 text-base text-foreground outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
@@ -247,6 +247,7 @@ const DiagramHub = () => {
                 ref={frameRef}
                 src={`${DIAGRAM_GUIDE_FILE}#${active}`}
                 title={`${activeDiagram?.title ?? 'Economics diagram'} interactive guide`}
+                loading="eager"
                 className="h-full min-h-[68vh] w-full rounded-md border border-primary/15 bg-background lg:min-h-0"
               />
             </div>
