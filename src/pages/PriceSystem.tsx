@@ -17,6 +17,7 @@ import SurplusWithTaxDiagram from '@/components/diagrams/SurplusWithTaxDiagram';
 import PriceCeilingDiagram from '@/components/diagrams/PriceCeilingDiagram';
 import PriceFloorDiagram from '@/components/diagrams/PriceFloorDiagram';
 import SubsidyDiagram from '@/components/diagrams/SubsidyDiagram';
+import RealWorldExample from '@/components/RealWorldExample';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const PriceSystem = () => {
@@ -1041,7 +1042,7 @@ const PriceSystem = () => {
           </p>
         </AnalysisBlock>
 
-        <ExamTipBox title="Eight Evaluation Lines That Lift a Price-System Answer" variant="cyan">
+        <ExamTipBox title="Eight Evaluation Lines That Lift a Price-System Answer" variant="silver">
           <ul className="space-y-1.5 text-sm">
             <li>• Elasticity governs the split between price and quantity adjustment after any shift.</li>
             <li>• Short-run supply is far more inelastic than long-run supply in housing, mining and agriculture.</li>
