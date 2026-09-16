@@ -16,9 +16,9 @@ const Card = ({
   label: string;
   children: React.ReactNode;
 }) => (
-  <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm p-5 md:p-7">
+  <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm p-4 md:p-6">
     <div
-      className="flex items-center gap-2 mb-4 text-[11px] uppercase tracking-[0.22em] text-neon-gold"
+      className="flex items-center gap-2 mb-3 text-[11px] uppercase tracking-[0.22em] text-neon-gold"
       style={{ fontFamily: "'JetBrains Mono', monospace" }}
     >
       {icon}
@@ -43,7 +43,7 @@ const ChapterEnrichment = ({ id }: ChapterEnrichmentProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.05 }}
       transition={{ duration: 0.5 }}
-      className="w-full max-w-[900px] mx-auto px-1 sm:px-2 py-10 md:py-14 space-y-5 md:space-y-6"
+      className="w-full max-w-[900px] mx-auto px-1 sm:px-2 py-5 md:py-7 space-y-3 md:space-y-4"
       aria-label={`${data.title} — extended notes`}
     >
       <header className="text-center mb-2">

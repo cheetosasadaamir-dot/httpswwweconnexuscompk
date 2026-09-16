@@ -17,6 +17,7 @@ import SurplusWithTaxDiagram from '@/components/diagrams/SurplusWithTaxDiagram';
 import PriceCeilingDiagram from '@/components/diagrams/PriceCeilingDiagram';
 import PriceFloorDiagram from '@/components/diagrams/PriceFloorDiagram';
 import SubsidyDiagram from '@/components/diagrams/SubsidyDiagram';
+import RealWorldExample from '@/components/RealWorldExample';
 import ChapterEnrichment from '@/components/ChapterEnrichment';
 
 const PriceSystem = () => {
@@ -875,6 +876,186 @@ const PriceSystem = () => {
           </p>
         </ExamTipBox>
       </ContentSection>
+      <ContentSection
+        title="2.8 Exceptions to the Law of Demand"
+        subtitle="Where the Downward-Sloping Curve Breaks Down"
+      >
+        <div className="grid md:grid-cols-3 gap-3">
+          <NoteCard title="Veblen Goods" type="concept">
+            <p className="text-justify text-sm">
+              For conspicuous luxuries — designer handbags, prestige marques, fine wine — part of the utility derived is the <strong>status signal</strong> of the price itself. A price cut can therefore <em>reduce</em> quantity demanded by diluting exclusivity, producing an upward-sloping demand segment over a limited price range.
+            </p>
+          </NoteCard>
+          <NoteCard title="Giffen Goods" type="concept">
+            <p className="text-justify text-sm">
+              An inferior staple (historically bread or rice in subsistence economies) where a price rise so erodes real income that households cut the expensive substitute (meat) and buy <strong>more</strong> of the staple to preserve calories. Here the negative income effect outweighs the substitution effect.
+            </p>
+          </NoteCard>
+          <NoteCard title="Speculative Demand" type="concept">
+            <p className="text-justify text-sm">
+              In asset markets — housing, equities, crypto, commodity futures — rising prices generate expectations of further rises, so demand becomes <strong>self-reinforcing</strong> rather than self-correcting, until expectations reverse and the bubble deflates.
+            </p>
+          </NoteCard>
+        </div>
+
+        <div className="glass-card p-5 md:p-6 my-3">
+          <div className="border-l-4 border-cyan-500 pl-5">
+            <h3 className="font-serif text-xl text-silver-bright mb-3">Interrelated Demand: Joint, Composite and Derived</h3>
+            <div className="space-y-3 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                <strong className="text-cyan-400">Joint (complementary) demand</strong> arises where two goods are consumed together, so a fall in the price of one raises demand for the other: printers and cartridges, cars and fuel, electric vehicles and charging infrastructure. <strong className="text-cyan-400">Composite demand</strong> exists where a single supply is drawn upon by several competing uses — milk for liquid consumption, cheese and butter; land for housing, agriculture and solar farms — so a rise in demand for one use raises the price faced by <em>all</em> the others. <strong className="text-cyan-400">Derived demand</strong> describes demand for a factor or intermediate input that exists only because of demand for the final good: demand for steel is derived from construction and vehicles, demand for labour from demand for output.
+              </p>
+              <p>
+                These relationships explain why shocks travel across apparently unrelated markets. A surge in EV sales raises derived demand for lithium, cobalt and copper simultaneously; a drought that lifts the price of wheat also lifts the price of animal feed, and therefore of poultry and eggs. Strong answers trace this <strong>chain of transmission</strong> rather than treating each market as sealed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-5 md:p-6 my-3">
+          <div className="border-l-4 border-amber-500 pl-5">
+            <h3 className="font-serif text-xl text-amber-400 mb-3">Interrelated Supply: Joint and Competitive</h3>
+            <div className="space-y-3 text-muted-foreground text-justify leading-relaxed">
+              <p>
+                <strong className="text-amber-400">Joint supply</strong> occurs where one production process necessarily yields two outputs: beef and leather, crude oil refined into petrol, diesel and jet fuel, sheep producing both mutton and wool. Supply of the by-product therefore cannot be expanded independently — a diesel shortage cannot be relieved without simultaneously adding petrol to the market, which is why refinery bottlenecks produce curious price divergences between fuels.
+              </p>
+              <p>
+                <strong className="text-amber-400">Competitive supply</strong> is the mirror image: a producer's fixed resources can be switched between alternative outputs, so more of one means less of another. A farmer allocates hectares between wheat and barley; a refinery adjusts its yield mix toward whichever product carries the higher margin. This is simply opportunity cost expressed on the supply side, and it means that subsidising one crop predictably contracts the supply of its competitor — a recurring source of unintended consequences in agricultural policy.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <ExamTipBox title="Supply Shifters Worth Naming Precisely" variant="gold">
+          <p className="text-justify">
+            Do not write "costs changed". Name the mechanism: input prices, the number of firms in the market, producer expectations, indirect taxes (a vertical upward shift equal to the tax per unit for a specific tax; a proportionally widening shift for an ad valorem tax), subsidies (a downward shift equal to the subsidy), and <strong>technology</strong>, which lowers marginal cost and shifts supply rightward, cutting equilibrium price while raising equilibrium quantity.
+          </p>
+        </ExamTipBox>
+      </ContentSection>
+
+      <ContentSection showAd
+        title="2.9 Price Discovery and Disequilibrium Dynamics"
+        subtitle="How Markets Actually Reach Equilibrium"
+      >
+        <div className="grid md:grid-cols-2 gap-3">
+          <NoteCard title="Walrasian (Price) Adjustment" type="theory">
+            <p className="text-justify text-sm">
+              At a given quantity, if the price exceeds the market-clearing level, excess supply appears and sellers bid the price down; if it lies below, excess demand bids it up. Adjustment runs through <strong>price</strong>, as in an auction or a continuously quoted financial market. Stability requires the conventional slopes: demand downward, supply upward.
+            </p>
+          </NoteCard>
+          <NoteCard title="Marshallian (Quantity) Adjustment" type="theory">
+            <p className="text-justify text-sm">
+              Producers first commit to a quantity; the demand price they can obtain for that quantity then signals whether to expand or contract next period. Adjustment runs through <strong>quantity</strong>, which fits markets with long production lags — agriculture, mining, housebuilding, semiconductor fabrication.
+            </p>
+          </NoteCard>
+        </div>
+
+        <AnalysisBlock title="The Cobweb Model: Why Some Markets Oscillate" type="analysis">
+          <p className="text-justify">
+            Where output must be committed before price is known, producers form expectations from <em>last</em> period's price. A high price this year induces heavy planting, next year's glut collapses the price, the collapse discourages planting, and the following year's shortage lifts the price again. Whether these oscillations converge on equilibrium, diverge, or repeat indefinitely depends on the relative slopes: if supply is <strong>less</strong> price-elastic than demand the cycle converges; if it is <strong>more</strong> elastic the cycle explodes; if the elasticities are equal the market cycles forever. This is the formal explanation for the pork cycle, coffee and cocoa cycles, and the boom-bust rhythm of capital-intensive industries.
+          </p>
+        </AnalysisBlock>
+
+        <AnalysisBlock title="Evaluation: Equilibrium as Abstraction, Not Description" type="evaluation">
+          <p className="text-justify">
+            Real markets are rarely <em>at</em> equilibrium; they are perpetually moving toward a target that is itself moving. Market power (OPEC+ quotas, dominant platforms, monopsony buyers of agricultural output) means observed prices partly reflect strategic behaviour rather than competitive interaction. Expectations and speculation can decouple price from current fundamentals, so the mechanism transmits noise alongside genuine scarcity signals. The comparative-static diagram remains indispensable as an analytical device — but a high-level answer says what the diagram omits: time, information, and power.
+          </p>
+        </AnalysisBlock>
+      </ContentSection>
+
+      <ContentSection
+        title="2.10 The Price System in the Real World"
+        subtitle="Contemporary Case Evidence"
+      >
+        <div className="grid md:grid-cols-2 gap-3">
+          <RealWorldExample
+            type="negative"
+            title="Cocoa: The Inelastic Supply Shock (2024–25)"
+            description="Drought and swollen shoot disease across Côte d'Ivoire and Ghana — roughly 60% of world output — cut the 2023/24 global crop by about 14% to some 4.2 million tonnes. London cocoa rose from around $6,900 per tonne in October 2024 to roughly $11,400 by the end of December, making cocoa the best-performing major commodity of the year with gains near 172%."
+            impact="With both supply and demand highly price-inelastic in the short run, a modest quantity shock produced an extreme price movement. Manufacturers responded through shrinkflation and recipe reformulation rather than headline price rises."
+            source="ICCO, Bloomberg commodity reporting"
+          />
+          <RealWorldExample
+            type="positive"
+            title="Lithium: The Glut After the Boom"
+            description="Lithium carbonate prices fell roughly 86% from their late-2022 peak as output climbed from about 737,000 tonnes in 2022 to nearly 1.2 million tonnes (LCE) in 2024, outrunning slower-than-forecast EV demand. Mine closures in Australia and China through 2024 halved the surplus, and producers by 2025 described a paradox of falling prices alongside rising underlying demand."
+            impact="A textbook commodity cycle: high prices attract investment, new capacity overshoots, prices undershoot, capacity exits, and the cycle repeats — a real-world cobweb with a multi-year production lag."
+            source="Fastmarkets, Reuters market analysis"
+          />
+          <RealWorldExample
+            type="neutral"
+            title="OPEC+ and Managed Supply"
+            description="Production quotas function as deliberate leftward management of global supply to defend a target price band. Since 2023 the group has repeatedly extended voluntary cuts of several million barrels per day against weakening Chinese demand growth and rising non-OPEC output from US shale, Guyana and Brazil, with Brent oscillating broadly between $70 and $95 per barrel."
+            impact="Demonstrates both the power and the limits of cartel supply management: quota discipline, spare capacity and the elasticity of non-member supply all erode the cartel's control over price."
+            source="Market reporting on OPEC+ quota decisions"
+          />
+          <RealWorldExample
+            type="negative"
+            title="Housing: Supply Rigidity Dominates"
+            description="Planning restrictions, zoning and multi-year build times make housing supply strongly inelastic. UK completions persistently undershoot the stated 300,000-home target, sitting nearer 200,000–250,000. In the United States, mortgage rates near 6–7% created a lock-in effect: owners holding cheap fixed-rate loans refuse to sell, shrinking the supply of existing homes."
+            impact="Price adjustment does almost all the work because quantity cannot respond. Demand-side measures — help-to-buy schemes, cheap credit — are largely capitalised into higher prices rather than into more houses."
+            source="National housing statistics and mortgage market data"
+          />
+          <RealWorldExample
+            type="neutral"
+            title="Surge Pricing: Rationing in Real Time"
+            description="Ride-hailing algorithms raise fares — sometimes two to five times the base — when demand spikes during rush hour, storms or events. The higher price simultaneously rations scarce driver capacity toward the highest-value journeys and pulls additional drivers onto the road within minutes, shifting supply rightward in near real time."
+            impact="The purest live demonstration of the rationing and incentive functions operating together — and of the equity backlash they provoke, which has forced platform-imposed caps during declared emergencies."
+            source="Platform pricing disclosures and academic studies"
+          />
+          <RealWorldExample
+            type="negative"
+            title="Semiconductors: Shortage, Glut, Shortage"
+            description="The 2021–22 chip shortage pushed lead times past 52 weeks and idled vehicle assembly lines, costing global auto production an estimated $200 billion in 2021. By 2023–24 legacy and memory nodes had swung into oversupply and prices collapsed; by 2025 AI accelerators and high-bandwidth memory created a fresh bottleneck at the leading edge."
+            impact="Capital-intensive capacity decisions taken years in advance against volatile derived demand generate cobweb dynamics — and the bottleneck migrates between segments rather than disappearing."
+            source="Industry production and lead-time reporting"
+          />
+        </div>
+      </ContentSection>
+
+      <ContentSection
+        title="2.11 Misconceptions, Welfare and the Limits of the Market"
+        subtitle="Precision Points and Evaluative Range"
+      >
+        <div className="glass-card p-5 md:p-6 my-3">
+          <h3 className="font-serif text-xl text-silver-bright mb-3">Six Errors Examiners See Repeatedly</h3>
+          <ul className="space-y-3">
+            {[
+              ['"Demand curves always slope downward."', 'True for almost all normal goods, but Veblen goods, Giffen goods and speculative assets can slope upward over a range because status, dominant income effects or price expectations override substitution.'],
+              ['"A change in demand and a change in quantity demanded are the same thing."', 'A change in quantity demanded is a movement along a fixed curve caused only by the good\u2019s own price. A change in demand is a shift of the whole curve caused by income, tastes, related prices, expectations or population.'],
+              ['"Price controls are a free way to help people."', 'A ceiling below equilibrium creates a shortage, queuing and black markets; a floor above it creates a surplus someone must buy or store. Both suppress the rationing function and generate deadweight loss even when the distributional aim is met.'],
+              ['"A shortage means supply is too low."', 'A shortage is excess demand at the prevailing price. It may arise because demand grew faster than supply, or simply because price is fixed below the market-clearing level. It is a statement about price relative to both curves.'],
+              ['"Producer surplus is profit."', 'Producer surplus is revenue minus the minimum acceptable (marginal-cost based) sum over units sold. Fixed costs are not deducted, so it is closer to a contribution toward fixed costs and profit than to accounting profit.'],
+              ['"Buffer stocks always stabilise prices."', 'International tin, coffee and cocoa schemes all collapsed when managers misjudged the trend price, exhausted storage, or ran out of funds to keep buying during a sustained glut. Success demands accurate forecasting and deep financing.'],
+            ].map(([claim, correction]) => (
+              <li key={claim}>
+                <p className="text-sm text-red-300/90 italic">{claim}</p>
+                <p className="text-sm text-muted-foreground text-justify mt-1">{correction}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <AnalysisBlock title="Where the Price Mechanism Stops Working" type="evaluation">
+          <p className="text-justify">
+            The mechanism allocates private goods in competitive conditions with remarkable economy of information, but it fails predictably in five cases. <strong>Externalities</strong> drive a wedge between private and social cost, so price misvalues the good and output is wrong in level. <strong>Public goods</strong> are non-excludable and non-rival, so free-riding leaves them unpriced and under-provided. <strong>Information asymmetry</strong> — used cars, insurance, healthcare — corrupts the signal itself, producing adverse selection and moral hazard. <strong>Factor immobility</strong> means resources cannot follow the signal quickly, leaving structural unemployment behind declining industries. Finally, the market responds to <strong>purchasing power rather than need</strong>, so merit goods are under-consumed by low-income households. Each justifies intervention — and each intervention carries its own risk of government failure, so the evaluative judgement is always comparative rather than absolute.
+          </p>
+        </AnalysisBlock>
+
+        <ExamTipBox title="Eight Evaluation Lines That Lift a Price-System Answer" variant="silver">
+          <ul className="space-y-1.5 text-sm">
+            <li>• Elasticity governs the split between price and quantity adjustment after any shift.</li>
+            <li>• Short-run supply is far more inelastic than long-run supply in housing, mining and agriculture.</li>
+            <li>• Markets are continually in disequilibrium; equilibrium is an analytical reference point.</li>
+            <li>• Pure price rationing is efficient but can conflict sharply with equity.</li>
+            <li>• Joint and composite linkages mean intervention in one market distorts its neighbours.</li>
+            <li>• Market power means observed prices reflect strategy as well as scarcity.</li>
+            <li>• Expectations can decouple price from fundamentals and transmit noise as signal.</li>
+            <li>• Judge intervention by weighing static deadweight loss against dynamic and equity gains.</li>
+          </ul>
+        </ExamTipBox>
+      </ContentSection>
+
       <ChapterEnrichment id="how-markets-work" />
     </ChapterLayout>
   );

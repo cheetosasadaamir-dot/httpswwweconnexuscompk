@@ -47,7 +47,7 @@ const NoteCard = ({ title, type = 'theory', children, className, delay = 0 }: No
   return (
     <div 
       className={cn(
-        "glass-card-hover border-l-4 p-6",
+        "glass-card-hover border-l-4 p-5",
         styles.border,
         className
       )}
@@ -57,13 +57,13 @@ const NoteCard = ({ title, type = 'theory', children, className, delay = 0 }: No
         animation: 'fade-in-up 0.6s ease-out forwards',
       }}
     >
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-2">
         <span className={cn("px-3 py-1 rounded-full text-xs font-medium", styles.badge)}>
           {styles.label}
         </span>
       </div>
-      <h3 className="font-serif text-xl text-silver-bright mb-4">{title}</h3>
-      <div className="text-muted-foreground leading-relaxed-plus space-y-4">
+      <h3 className="font-serif text-xl text-silver-bright mb-2">{title}</h3>
+      <div className="text-muted-foreground leading-relaxed space-y-2.5">
         {children}
       </div>
     </div>

@@ -18,16 +18,16 @@ const KeyTakeaways = ({ title = "Key Takeaways", takeaways, className = "" }: Ke
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`glass-card p-6 rounded-2xl border-l-4 border-primary mb-8 ${className}`}
+      className={`glass-card p-5 rounded-2xl border-l-4 border-primary mb-4 ${className}`}
     >
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-3">
         <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
           <Lightbulb className="w-5 h-5 text-primary" />
         </div>
         <h3 className="font-serif text-xl font-semibold text-silver-bright">{title}</h3>
       </div>
       
-      <ul className="space-y-3">
+      <ul className="space-y-2">
         {takeaways.map((takeaway, index) => (
           <motion.li
             key={index}
