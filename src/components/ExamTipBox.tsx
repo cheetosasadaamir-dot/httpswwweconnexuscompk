@@ -44,7 +44,7 @@ const ExamTipBox = ({
   return (
     <div 
       className={cn(
-        "relative overflow-hidden rounded-xl border-2 p-6 backdrop-blur-sm",
+        "relative overflow-hidden rounded-xl border-2 p-5 backdrop-blur-sm",
         styles.container,
         `shadow-lg ${styles.glow}`,
         className
@@ -62,7 +62,7 @@ const ExamTipBox = ({
       />
       
       <div className="relative">
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3 mb-2">
           <div className={cn(
             "w-10 h-10 rounded-lg flex items-center justify-center",
             variant === 'gold' ? 'bg-amber-500/20' : variant === 'silver' ? 'bg-silver/20' : 'bg-orange-500/20'

@@ -14,12 +14,12 @@ const AnalysisBlock = ({ title, type = 'analysis', children, className }: Analys
   return (
     <div 
       className={cn(
-        "glass-card p-6 border-l-4",
+        "glass-card p-5 border-l-4",
         isEvaluation ? 'border-l-secondary' : 'border-l-primary',
         className
       )}
     >
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-2">
         <div className={cn(
           "w-10 h-10 rounded-lg flex items-center justify-center",
           isEvaluation ? 'bg-secondary/20' : 'bg-primary/20'
@@ -39,8 +39,8 @@ const AnalysisBlock = ({ title, type = 'analysis', children, className }: Analys
           </span>
         </div>
       </div>
-      <h4 className="font-serif text-xl text-silver-bright mb-4">{title}</h4>
-      <div className="text-muted-foreground leading-relaxed-plus space-y-3">
+      <h4 className="font-serif text-xl text-silver-bright mb-2">{title}</h4>
+      <div className="text-muted-foreground leading-relaxed space-y-2.5">
         {children}
       </div>
     </div>
