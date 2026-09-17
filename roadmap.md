@@ -9,3 +9,8 @@
 - [x] Add contemporary real-world evidence, misconceptions, and evaluation points
 - [x] Remove excessive vertical gaps from notes across every chapter
 - [x] Verify Price System and shared chapter spacing on desktop and mobile
+
+## Broken diagram corrections (requested 2026-09-17)
+- [ ] Audit current diagrams for economic and rendering defects
+- [ ] Correct only demonstrably broken diagrams and shared causes
+- [ ] Verify corrected diagrams on desktop and mobile
