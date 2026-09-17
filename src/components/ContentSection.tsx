@@ -19,7 +19,7 @@ const ContentSection = ({ title, subtitle, id, children, className, showAd }: Co
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={cn("mb-3", className)}
+      className={cn("content-section-notes mb-3", className)}
     >
       <div className="mb-2 md:mb-3">
         <h2 className="font-serif text-fluid-xl lg:text-fluid-2xl font-bold section-title mb-0.5">{title}</h2>
