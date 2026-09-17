@@ -41,7 +41,7 @@ const typeStyles = {
   },
 };
 
-const NoteCard = ({ title, type = 'theory', children, className, delay = 0 }: NoteCardProps) => {
+const NoteCard = ({ title, type = 'theory', children, className }: NoteCardProps) => {
   const styles = typeStyles[type];
 
   return (
@@ -51,11 +51,6 @@ const NoteCard = ({ title, type = 'theory', children, className, delay = 0 }: No
         styles.border,
         className
       )}
-      style={{ 
-        animationDelay: `${delay}ms`,
-        opacity: 0,
-        animation: 'fade-in-up 0.6s ease-out forwards',
-      }}
     >
       <div className="flex items-center gap-3 mb-2">
         <span className={cn("px-3 py-1 rounded-full text-xs font-medium", styles.badge)}>
