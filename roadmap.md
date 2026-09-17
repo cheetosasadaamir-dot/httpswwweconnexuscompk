@@ -7,5 +7,5 @@
 ## Price System enrichment and chapter spacing (requested 2026-09-17)
 - [x] Research and integrate advanced demand, supply, equilibrium, and price-system knowledge
 - [x] Add contemporary real-world evidence, misconceptions, and evaluation points
-- [ ] Remove excessive vertical gaps from notes across every chapter
-- [ ] Verify Price System and shared chapter spacing on desktop and mobile
+- [x] Remove excessive vertical gaps from notes across every chapter
+- [x] Verify Price System and shared chapter spacing on desktop and mobile
