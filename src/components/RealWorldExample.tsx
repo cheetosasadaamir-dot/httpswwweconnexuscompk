@@ -51,9 +51,9 @@ const RealWorldExample = ({
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`glass-card p-5 rounded-xl border ${config.borderColor} ${config.bgColor} ${className}`}
+      className={`glass-card p-4 rounded-xl border ${config.borderColor} ${config.bgColor} ${className}`}
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3">
         <div className="flex-shrink-0">
           <div className={`w-10 h-10 rounded-lg bg-card/50 flex items-center justify-center`}>
             <Globe className="w-5 h-5 text-primary" />
@@ -66,7 +66,7 @@ const RealWorldExample = ({
             <Icon className={`w-4 h-4 ${config.iconColor}`} />
           </div>
           
-          <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-2">
             {description}
           </p>
           

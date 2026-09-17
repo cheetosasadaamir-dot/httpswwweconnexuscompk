@@ -14,10 +14,10 @@ interface EvaluativeJudgementSectionProps {
 export const AnalyticalDepthSection = ({ children, className }: AnalyticalDepthSectionProps) => {
   return (
     <div className={cn(
-      "glass-card rounded-2xl p-8 border-l-4 border-l-neon-cyan mb-8",
+      "glass-card rounded-2xl p-5 md:p-6 border-l-4 border-l-neon-cyan mb-4",
       className
     )}>
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-3">
         <div className="w-10 h-10 rounded-xl bg-neon-cyan/10 flex items-center justify-center">
           <Microscope className="w-5 h-5 text-neon-cyan" />
         </div>
@@ -26,7 +26,7 @@ export const AnalyticalDepthSection = ({ children, className }: AnalyticalDepthS
           <p className="text-xs text-neon-cyan/70">Short-Run vs Long-Run • Stakeholder Impact</p>
         </div>
       </div>
-      <div className="text-muted-foreground leading-relaxed space-y-4">
+      <div className="text-muted-foreground leading-relaxed space-y-2.5">
         {children}
       </div>
     </div>
@@ -36,10 +36,10 @@ export const AnalyticalDepthSection = ({ children, className }: AnalyticalDepthS
 export const EvaluativeJudgementSection = ({ children, className }: EvaluativeJudgementSectionProps) => {
   return (
     <div className={cn(
-      "glass-card rounded-2xl p-8 border-l-4 border-l-amber-500 mb-8",
+      "glass-card rounded-2xl p-5 md:p-6 border-l-4 border-l-amber-500 mb-4",
       className
     )}>
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-3">
         <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
           <Scale className="w-5 h-5 text-amber-400" />
         </div>
@@ -48,7 +48,7 @@ export const EvaluativeJudgementSection = ({ children, className }: EvaluativeJu
           <p className="text-xs text-amber-400/70">Critical Assessment • Balanced Perspective</p>
         </div>
       </div>
-      <div className="text-muted-foreground leading-relaxed space-y-4">
+      <div className="text-muted-foreground leading-relaxed space-y-2.5">
         {children}
       </div>
     </div>

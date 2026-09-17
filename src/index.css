@@ -927,6 +927,37 @@
     gap: 0.5rem;
   }
 
+  /* Dense chapter rhythm: legacy note pages used stacked 1.5–2rem margins. */
+  .content-section-notes > div:last-of-type {
+    row-gap: 0.625rem;
+  }
+
+  .content-section-notes :is(.mt-8, .my-8) {
+    margin-top: 1rem !important;
+  }
+
+  .content-section-notes :is(.mb-8, .my-8) {
+    margin-bottom: 1rem !important;
+  }
+
+  .content-section-notes :is(.mt-6, .my-6) {
+    margin-top: 0.75rem !important;
+  }
+
+  .content-section-notes :is(.mb-6, .my-6) {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .content-section-notes :is(.space-y-8, .space-y-6) > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.75rem !important;
+  }
+
+  @media (max-width: 767px) {
+    .content-section-notes :is(.p-8, .p-6) {
+      padding: 1rem;
+    }
+  }
+
   /* NASA-style data display */
   .data-readout {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
