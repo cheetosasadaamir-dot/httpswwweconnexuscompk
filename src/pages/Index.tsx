@@ -19,6 +19,9 @@ import {
   BarChart3,
   PieChart,
   Activity,
+  Library,
+  School,
+  NotebookPen,
 } from "lucide-react";
 
 import Header from "@/components/Header";
@@ -299,6 +302,16 @@ const Index = () => {
                 gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(217 50% 12%) 50%, hsl(var(--navy-light)) 100%)"
                 hoverGradient="linear-gradient(135deg, hsl(217 50% 15%) 0%, hsl(200 50% 18%) 50%, hsl(217 40% 20%) 100%)"
                 delay={0.2}
+              />
+              <HubEntryCard
+                title="Courses"
+                description="Full economics courses — starting with Managerial Economics: 4 modules, 24 chapters, interactive diagrams and self-checks."
+                href="/courses"
+                cta="Browse Courses"
+                icons={[GraduationCap, Library, School, NotebookPen]}
+                gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(200 60% 12%) 50%, hsl(var(--navy-light)) 100%)"
+                hoverGradient="linear-gradient(135deg, hsl(200 60% 15%) 0%, hsl(190 60% 18%) 50%, hsl(200 50% 20%) 100%)"
+                delay={0.3}
               />
             </div>
           </div>
