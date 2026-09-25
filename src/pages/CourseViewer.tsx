@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import {
   ArrowLeft,
   ChevronLeft,
@@ -17,15 +17,19 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { DIAGRAM_ENTRIES, DIAGRAM_GUIDE_FILE } from '@/data/diagramGuide';
+import { COURSES } from '@/data/courses';
 import { cn } from '@/lib/utils';
 
-type Filter = 'All' | 'Microeconomics' | 'Macroeconomics';
 
-const DiagramHub = () => {
+const CourseViewer = () => {
+  const { slug } = useParams();
+  const course = COURSES.find((c) => c.slug === slug);
+  const DIAGRAM_ENTRIES = (course?.lessons ?? []).map((l, i) => ({ ...l, number: i + 1, category: l.module }));
+  const DIAGRAM_GUIDE_FILE = course?.file ?? '';
+  const modules = ['All', ...Array.from(new Set(DIAGRAM_ENTRIES.map((l) => l.module)))];
   const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState<Filter>('All');
-  const [active, setActive] = useState('d1');
+  const [filter, setFilter] = useState('All');
+  const [active, setActive] = useState(course?.lessons[0]?.id ?? '');
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const frameRef = useRef<HTMLIFrameElement>(null);
@@ -38,10 +42,10 @@ const DiagramHub = () => {
       const matchesQuery =
         !normalizedQuery ||
         diagram.title.toLowerCase().includes(normalizedQuery) ||
-        String(diagram.number) === normalizedQuery;
+        diagram.module.toLowerCase().includes(normalizedQuery);
       return matchesFilter && matchesQuery;
     });
-  }, [filter, query]);
+  }, [filter, query, slug]);
 
   const activeIndex = DIAGRAM_ENTRIES.findIndex((diagram) => diagram.id === active);
   const activeDiagram = DIAGRAM_ENTRIES[activeIndex] ?? DIAGRAM_ENTRIES[0];
@@ -70,13 +74,15 @@ const DiagramHub = () => {
     if (next) selectDiagram(next.id);
   };
 
+  if (!course) return <Navigate to="/courses" replace />;
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Interactive Economics Diagram Hub | Econ Nexus</title>
+        <title>{`${course.title} Course | Econ Nexus`}</title>
         <meta
           name="description"
-          content={`Study ${DIAGRAM_ENTRIES.length} interactive economics diagrams with staged explanations, examples, evaluation and self-checks.`}
+          content={course.description}
         />
       </Helmet>
 
@@ -87,26 +93,26 @@ const DiagramHub = () => {
           <section className="border-b border-primary/15 bg-card/35">
             <div className="mx-auto w-[95%] max-w-[1440px] py-5 sm:py-7">
               <Link
-                to="/"
+                to="/courses"
                 className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-primary"
               >
-                <ArrowLeft className="h-4 w-4" /> Home
+                <ArrowLeft className="h-4 w-4" /> All courses
               </Link>
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
                   <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-                    <Library className="h-4 w-4" /> Interactive study library
+                    <Library className="h-4 w-4" /> Econ Nexus course
                   </div>
                   <h1 className="max-w-3xl font-serif text-3xl font-bold uppercase leading-tight text-silver-bright sm:text-4xl">
-                    Economics Diagram Hub
+                    {course.title}
                   </h1>
                   <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                    Explore each model stage by stage, test your understanding, and move through the full economics ecosystem.
+                    {course.description}
                   </p>
                 </div>
                 <div className="flex items-center gap-3 border-l-2 border-secondary pl-4">
                   <strong className="font-serif text-3xl text-silver-bright">{DIAGRAM_ENTRIES.length}</strong>
-                  <span className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Interactive<br />diagrams</span>
+                  <span className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Course<br />lessons</span>
                 </div>
               </div>
             </div>
@@ -128,7 +134,7 @@ const DiagramHub = () => {
                 'border-primary/15 bg-card/45 lg:flex lg:min-h-0 lg:flex-col lg:border-r',
                 libraryOpen ? 'block' : 'hidden lg:flex',
               )}
-              aria-label="Diagram library"
+              aria-label="Course index"
             >
               <div className="border-b border-primary/15 p-3 sm:p-4">
                 <div className="relative">
@@ -136,8 +142,8 @@ const DiagramHub = () => {
                   <input
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
-                    placeholder={`Search ${DIAGRAM_ENTRIES.length} diagrams`}
-                    aria-label="Search diagrams"
+                    placeholder={`Search ${DIAGRAM_ENTRIES.length} lessons`}
+                    aria-label="Search lessons"
                     className="h-11 w-full rounded-md border border-primary/20 bg-background/65 pl-9 pr-10 text-base text-foreground outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
                   />
                   {query && (
@@ -154,23 +160,23 @@ const DiagramHub = () => {
                   )}
                 </div>
 
-                <div className="mt-3 grid grid-cols-3 gap-1 rounded-md border border-primary/15 bg-background/50 p-1">
-                  {(['All', 'Microeconomics', 'Macroeconomics'] as Filter[]).map((item) => (
+                <div className="mt-3 flex flex-wrap gap-1 rounded-md border border-primary/15 bg-background/50 p-1">
+                  {modules.map((item) => (
                     <Button
                       key={item}
                       type="button"
                       variant="ghost"
                       onClick={() => setFilter(item)}
                       className={cn(
-                        'h-9 min-w-0 px-1 text-[11px] uppercase tracking-normal',
+                        'h-8 px-2 text-[11px] uppercase tracking-normal',
                         filter === item ? 'bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground' : 'text-muted-foreground',
                       )}
                     >
-                      {item === 'Microeconomics' ? 'Micro' : item === 'Macroeconomics' ? 'Macro' : 'All'}
+                      {item === 'All' ? 'All' : item.split(':')[0]}
                     </Button>
                   ))}
                 </div>
-                <p className="mt-3 text-xs text-muted-foreground">{results.length} diagrams found</p>
+                <p className="mt-3 text-xs text-muted-foreground">{results.length} lessons found</p>
               </div>
 
               <div className="max-h-[56vh] flex-1 overflow-y-auto overscroll-contain p-2 lg:max-h-none">
@@ -189,7 +195,7 @@ const DiagramHub = () => {
                     aria-current={active === diagram.id ? 'true' : undefined}
                   >
                     <span className={cn('w-8 shrink-0 font-mono text-[10px]', active === diagram.id ? 'text-primary-foreground/75' : 'text-primary')}>
-                      {String(diagram.number).padStart(3, '0')}
+                      {String(diagram.number).padStart(2, '0')}
                     </span>
                     <span className="min-w-0">
                       <span className="block text-xs font-semibold leading-snug">{diagram.title}</span>
@@ -200,7 +206,7 @@ const DiagramHub = () => {
                   </Button>
                 ))}
                 {results.length === 0 && (
-                  <p className="px-4 py-10 text-center text-sm text-muted-foreground">No matching diagrams found.</p>
+                  <p className="px-4 py-10 text-center text-sm text-muted-foreground">No matching lessons found.</p>
                 )}
               </div>
             </aside>
@@ -214,7 +220,7 @@ const DiagramHub = () => {
                   variant="outline"
                   size="icon"
                   onClick={() => setLibraryOpen((value) => !value)}
-                  aria-label={libraryOpen ? 'Close diagram library' : 'Open diagram library'}
+                  aria-label={libraryOpen ? 'Close course index' : 'Open course index'}
                   className="shrink-0 lg:hidden"
                 >
                   {libraryOpen ? <PanelLeftClose /> : <PanelLeftOpen />}
@@ -223,20 +229,20 @@ const DiagramHub = () => {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-silver-bright">{activeDiagram?.title}</p>
                 <p className="text-[10px] uppercase tracking-[0.12em] text-primary">
-                  Diagram {activeDiagram?.number} · {activeDiagram?.category}
+                  Lesson {activeDiagram?.number} · {activeDiagram?.category}
                 </p>
               </div>
-              <Button type="button" variant="outline" size="icon" onClick={() => move(-1)} disabled={activeIndex <= 0} aria-label="Previous diagram">
+              <Button type="button" variant="outline" size="icon" onClick={() => move(-1)} disabled={activeIndex <= 0} aria-label="Previous lesson">
                 <ChevronLeft />
               </Button>
-              <Button type="button" variant="outline" size="icon" onClick={() => move(1)} disabled={activeIndex >= DIAGRAM_ENTRIES.length - 1} aria-label="Next diagram">
+              <Button type="button" variant="outline" size="icon" onClick={() => move(1)} disabled={activeIndex >= DIAGRAM_ENTRIES.length - 1} aria-label="Next lesson">
                 <ChevronRight />
               </Button>
               <Button type="button" variant="outline" size="icon" onClick={() => setExpanded((value) => !value)} aria-label={expanded ? 'Exit focus view' : 'Open focus view'}>
                 {expanded ? <Minimize2 /> : <Maximize2 />}
               </Button>
               <Button asChild variant="outline" size="icon">
-                <a href={`${DIAGRAM_GUIDE_FILE}#${active}`} target="_blank" rel="noopener noreferrer" aria-label="Open diagram in new tab">
+                <a href={`${DIAGRAM_GUIDE_FILE}#${active}`} target="_blank" rel="noopener noreferrer" aria-label="Open lesson in new tab">
                   <ExternalLink />
                 </a>
               </Button>
@@ -246,7 +252,7 @@ const DiagramHub = () => {
               <iframe
                 ref={frameRef}
                 src={`${DIAGRAM_GUIDE_FILE}#${active}`}
-                title={`${activeDiagram?.title ?? 'Economics diagram'} interactive guide`}
+                title={`${activeDiagram?.title ?? 'Course lesson'} — ${course.title}`}
                 loading="eager"
                 className="h-full min-h-[68vh] w-full rounded-md border border-primary/15 bg-background lg:min-h-0"
               />
@@ -260,4 +266,4 @@ const DiagramHub = () => {
   );
 };
 
-export default DiagramHub;
+export default CourseViewer;

@@ -71,6 +71,8 @@ const ArticleViewer = lazy(() => import("./pages/ArticleViewer"));
 const AssignmentArchitectPage = lazy(() => import("./pages/AssignmentArchitectPage"));
 const WorldEconomics = lazy(() => import("./pages/WorldEconomics"));
 const DiagramHub = lazy(() => import("./pages/DiagramHub"));
+const Courses = lazy(() => import("./pages/Courses"));
+const CourseViewer = lazy(() => import("./pages/CourseViewer"));
 
 
 
@@ -165,6 +167,8 @@ const AnimatedRoutes = () => {
           <Route path="/assignment-architect" element={<AssignmentArchitectPage />} />
           <Route path="/world-economics" element={<WorldEconomics />} />
           <Route path="/diagram-hub" element={<DiagramHub />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:slug" element={<CourseViewer />} />
 
           
           {/* Legacy routes */}
