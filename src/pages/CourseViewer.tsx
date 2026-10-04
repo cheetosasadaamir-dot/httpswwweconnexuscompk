@@ -63,7 +63,7 @@ const CourseViewer = () => {
     setLibraryOpen(false);
     const frame = frameRef.current;
     if (frame) frame.src = `${DIAGRAM_GUIDE_FILE}#${id}`;
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 1280) {
       requestAnimationFrame(() => viewerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
     }
   };
@@ -123,16 +123,16 @@ const CourseViewer = () => {
           ref={viewerRef}
           className={cn(
             'mx-auto grid w-full min-w-0 bg-background',
-            expanded
-              ? 'h-full max-w-none grid-cols-1 overflow-hidden rounded-md border border-primary/20'
-              : 'max-w-[1440px] lg:h-[calc(100vh-5rem)] lg:min-h-[720px] lg:grid-cols-[340px_minmax(0,1fr)] lg:border-x lg:border-primary/10',
+             expanded
+               ? 'h-full max-w-none grid-cols-1 overflow-hidden rounded-md border border-primary/20'
+               : 'max-w-[1440px] xl:h-[calc(100dvh-5rem)] xl:min-h-[720px] xl:grid-cols-[340px_minmax(0,1fr)] xl:border-x xl:border-primary/10',
           )}
         >
           {!expanded && (
             <aside
               className={cn(
-                'border-primary/15 bg-card/45 lg:flex lg:min-h-0 lg:flex-col lg:border-r',
-                libraryOpen ? 'block' : 'hidden lg:flex',
+                 'border-primary/15 bg-card/45 xl:flex xl:min-h-0 xl:flex-col xl:border-r',
+                 libraryOpen ? 'block' : 'hidden xl:flex',
               )}
               aria-label="Course index"
             >
@@ -179,7 +179,7 @@ const CourseViewer = () => {
                 <p className="mt-3 text-xs text-muted-foreground">{results.length} lessons found</p>
               </div>
 
-              <div className="max-h-[56vh] flex-1 overflow-y-auto overscroll-contain p-2 lg:max-h-none">
+               <div className="max-h-[56dvh] flex-1 overflow-y-auto overscroll-contain p-2 xl:max-h-none">
                 {results.map((diagram) => (
                   <Button
                     key={diagram.id}
@@ -221,7 +221,7 @@ const CourseViewer = () => {
                   size="icon"
                   onClick={() => setLibraryOpen((value) => !value)}
                   aria-label={libraryOpen ? 'Close course index' : 'Open course index'}
-                  className="shrink-0 lg:hidden"
+                   className="shrink-0 xl:hidden"
                 >
                   {libraryOpen ? <PanelLeftClose /> : <PanelLeftOpen />}
                 </Button>
@@ -248,13 +248,13 @@ const CourseViewer = () => {
               </Button>
             </div>
 
-            <div className="min-h-[70vh] flex-1 bg-background p-1.5 sm:p-3 lg:min-h-0">
+             <div className="min-h-[75dvh] flex-1 bg-background p-1.5 sm:p-3 xl:min-h-0">
               <iframe
                 ref={frameRef}
                 src={`${DIAGRAM_GUIDE_FILE}#${active}`}
                 title={`${activeDiagram?.title ?? 'Course lesson'} — ${course.title}`}
                 loading="eager"
-                className="h-full min-h-[68vh] w-full rounded-md border border-primary/15 bg-background lg:min-h-0"
+                 className="h-full min-h-[73dvh] w-full rounded-md border border-primary/15 bg-background xl:min-h-0"
               />
             </div>
           </div>

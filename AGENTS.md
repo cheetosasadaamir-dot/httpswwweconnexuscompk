@@ -1,0 +1,2 @@
+Keep route changes immediate and reset page scroll only when the pathname changes without a hash; waiting for exit animations or retaining previous scroll positions makes navigation feel broken.
+Use the compact navigation below the wide-desktop breakpoint because the full navigation and search do not fit comfortably on tablets and small laptops.

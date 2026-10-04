@@ -7,6 +7,7 @@ import { useAuthGate } from '@/hooks/useAuthGate';
 import GlobalSearch from './GlobalSearch';
 import EconNexusLogo from './EconNexusLogo';
 import UserProfileDropdown from './UserProfileDropdown';
+import { Button } from '@/components/ui/button';
 
 interface NavLink {
   label: string;
@@ -30,6 +31,19 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated, requireAuth } = useAuthGate();
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', onEscape);
+    return () => window.removeEventListener('keydown', onEscape);
+  }, [isMobileMenuOpen]);
 
   const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
     if (closeMobileMenu) {
@@ -87,7 +101,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-           <nav className="hidden lg:flex items-center gap-8">
+           <nav className="hidden xl:flex items-center gap-5">
             {protectedNavLinks.map((link) => (
               <button
                 key={link.href}
@@ -145,21 +159,22 @@ const Header = () => {
           </nav>
 
           {/* Integrated Search Bar */}
-          <div className="hidden md:block flex-1 max-w-xs lg:max-w-sm xl:max-w-md mx-4">
+           <div className="hidden md:block min-w-0 flex-1 max-w-xs xl:max-w-sm mx-4">
             <GlobalSearch compact />
           </div>
 
           {/* User Profile & Mobile Menu */}
           <div className="flex items-center gap-2">
             <UserProfileDropdown />
-            <button
+             <Button
+               type="button" variant="ghost" size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-silver hover:text-silver-bright"
-              aria-label="Toggle menu"
+               className="xl:hidden shrink-0 text-silver hover:text-silver-bright"
+               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+             </Button>
           </div>
         </div>
       </div>
@@ -171,7 +186,7 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-navy-deep/95 backdrop-blur-xl border-b border-silver/10"
+             className="xl:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain bg-navy-deep/95 backdrop-blur-xl border-b border-silver/10"
           >
             <div className="px-6 py-4 space-y-2">
               {protectedNavLinks.map((link) => (

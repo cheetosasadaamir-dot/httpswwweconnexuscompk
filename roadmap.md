@@ -18,3 +18,8 @@
 ## Managerial Economics course update (requested 2026-10-04)
 - [x] Replace the existing course document with the uploaded self-contained edition
 - [x] Verify lesson navigation on desktop/mobile and interactive diagrams/quizzes in the live course
+
+## Cross-device interface and navigation (requested 2026-10-04)
+- [ ] Make shared navigation usable across phones, tablets, laptops and desktops
+- [ ] Keep course reading and navigation usable on intermediate screen sizes
+- [ ] Verify representative routes at phone, tablet and desktop widths
