@@ -14,3 +14,7 @@
 - [ ] Audit current diagrams for economic and rendering defects
 - [ ] Correct only demonstrably broken diagrams and shared causes
 - [ ] Verify corrected diagrams on desktop and mobile
+
+## Managerial Economics course update (requested 2026-10-04)
+- [x] Replace the existing course document with the uploaded self-contained edition
+- [x] Verify lesson navigation on desktop/mobile and interactive diagrams/quizzes in the live course
