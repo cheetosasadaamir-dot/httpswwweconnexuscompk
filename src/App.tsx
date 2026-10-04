@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useLayoutEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -102,6 +102,14 @@ const PageLoader = () => (
   </div>
 );
 
+const NavigationScroll = () => {
+  const { pathname, hash } = useLocation();
+  useLayoutEffect(() => {
+    if (!hash) window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  return null;
+};
+
 // Animated routes wrapper — NO AnimatePresence mode="wait" 
 // (it was blocking navigation by waiting for exit animations that never fired)
 const AnimatedRoutes = () => {
@@ -110,6 +118,7 @@ const AnimatedRoutes = () => {
   useEzoicPageView(location.pathname, { ids: [101, 102] });
   return (
     <ErrorBoundary>
+      <NavigationScroll />
       <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
           <Route path="/" element={<Index />} />

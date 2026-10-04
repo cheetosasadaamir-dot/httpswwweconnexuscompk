@@ -24,6 +24,7 @@ import { cn } from '@/lib/utils';
 import logoImage from '@/assets/econnexus-logo-final.png';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
 import { useAuth } from '@/hooks/useAuth';
+import { Button } from '@/components/ui/button';
 
 
 interface SubNavItem {
@@ -179,6 +180,25 @@ const FloatingDock = () => {
   const { user } = useAuth();
   const lectureLocked = !user;
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', onEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onEscape);
+    };
+  }, [isMobileMenuOpen]);
+
 
   const scrollToSection = useCallback((sectionId: string, closeMobileMenu = false) => {
     if (closeMobileMenu) {
@@ -244,7 +264,7 @@ const FloatingDock = () => {
         initial={{ y: -100, x: '-50%' }}
         animate={{ y: 0, x: '-50%' }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="fixed top-3 left-1/2 z-[9999] hidden lg:block pointer-events-auto w-max max-w-[96vw]"
+         className="fixed top-3 left-1/2 z-[9999] hidden xl:block pointer-events-auto w-max max-w-[96vw]"
       >
         <div className="floating-dock flex items-center gap-0.5 px-2 py-1.5 overflow-x-auto scrollbar-hide max-w-[96vw]">
           {/* Logo with glow */}
@@ -261,7 +281,7 @@ const FloatingDock = () => {
           {navigation.map((item) => (
             <div
               key={item.title}
-              className="relative"
+             className="relative"
               onMouseEnter={() => item.levels && setActiveDropdown(item.title)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
@@ -303,8 +323,9 @@ const FloatingDock = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-3 dropdown-menu min-w-[300px]"
+                     className="absolute top-full left-0 pt-3 min-w-[300px]"
                   >
+                    <div className="dropdown-menu">
                     {item.levels.map((level) => (
                       <div key={level.title} className="mb-3 last:mb-0">
                         <div className="flex items-center gap-2 px-4 py-2.5 border-b border-neon-gold/10">
@@ -331,6 +352,7 @@ const FloatingDock = () => {
                         </div>
                       </div>
                     ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -350,19 +372,19 @@ const FloatingDock = () => {
       </motion.nav>
 
       {/* Mobile Menu Button - Touch-friendly 44x44px target */}
-      <motion.button
+       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed top-3 right-3 z-[9999] lg:hidden floating-dock p-3 touch-target pointer-events-auto"
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+         className="fixed top-3 right-3 z-[9999] xl:hidden pointer-events-auto"
       >
+        <Button type="button" variant="ghost" size="icon" className="floating-dock h-11 w-11 touch-target text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'} aria-expanded={isMobileMenuOpen}>
         {isMobileMenuOpen ? (
-          <X className="w-5 h-5 text-white" />
+           <X className="w-5 h-5" />
         ) : (
-          <Menu className="w-5 h-5 text-white" />
+           <Menu className="w-5 h-5" />
         )}
-      </motion.button>
+        </Button>
+       </motion.div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -371,7 +393,7 @@ const FloatingDock = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 lg:hidden"
+             className="fixed inset-0 z-[9998] xl:hidden"
           >
             {/* Glassmorphic Backdrop */}
             <div 
@@ -385,7 +407,7 @@ const FloatingDock = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-              className="absolute right-0 top-0 h-full w-full sm:w-[340px] bg-space-void/90 backdrop-blur-[15px] border-l border-neon-cyan/20 overflow-y-auto safe-area-inset"
+               className="absolute right-0 top-0 h-full h-[100dvh] w-full sm:w-[340px] bg-space-void/90 backdrop-blur-[15px] border-l border-neon-cyan/20 overflow-y-auto overscroll-contain safe-area-inset"
             >
               <div className="p-4 md:p-6 pt-16 md:pt-20">
                 
