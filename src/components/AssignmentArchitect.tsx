@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import { toast } from 'sonner';
@@ -332,10 +333,10 @@ const AssignmentArchitect = () => {
                 </div>
               </div>
               <div
-                className="prose prose-invert prose-sm md:prose-base max-w-none p-5 md:p-7 rounded-xl bg-background/50 border border-secondary/10 backdrop-blur-md max-h-[640px] overflow-y-auto prose-headings:font-[Bodoni_Moda] prose-headings:text-secondary prose-headings:tracking-tight prose-strong:text-secondary/90"
+                className="prose prose-invert prose-sm md:prose-base max-w-none p-5 md:p-7 rounded-xl bg-background/50 border border-secondary/10 backdrop-blur-md max-h-[640px] overflow-y-auto prose-headings:font-[Bodoni_Moda] prose-headings:text-secondary prose-headings:tracking-tight prose-h1:text-2xl md:prose-h1:text-3xl prose-h1:mb-2 prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3 prose-h2:pb-2 prose-h2:border-b prose-h2:border-secondary/20 prose-h3:text-base md:prose-h3:text-lg prose-h3:mt-5 prose-h3:mb-2 prose-strong:text-secondary/90 prose-table:block prose-table:overflow-x-auto prose-table:text-sm prose-th:bg-secondary/10 prose-th:px-3 prose-th:py-2 prose-td:px-3 prose-td:py-2 prose-td:border prose-th:border prose-td:border-secondary/15 prose-th:border-secondary/20 prose-blockquote:border-l-secondary prose-blockquote:bg-secondary/5 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:rounded-r-lg prose-hr:border-secondary/15 prose-li:my-0.5"
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
-                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
                   {output}
                 </ReactMarkdown>
               </div>
