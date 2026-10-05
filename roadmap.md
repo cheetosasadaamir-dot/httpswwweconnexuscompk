@@ -20,6 +20,6 @@
 - [x] Verify lesson navigation on desktop/mobile and interactive diagrams/quizzes in the live course
 
 ## Cross-device interface and navigation (requested 2026-10-04)
-- [ ] Make shared navigation usable across phones, tablets, laptops and desktops
-- [ ] Keep course reading and navigation usable on intermediate screen sizes
-- [ ] Verify representative routes at phone, tablet and desktop widths
+- [x] Make shared navigation usable across phones, tablets, laptops and desktops
+- [x] Keep course reading and navigation usable on intermediate screen sizes
+- [x] Verify representative routes at phone, tablet and desktop widths
