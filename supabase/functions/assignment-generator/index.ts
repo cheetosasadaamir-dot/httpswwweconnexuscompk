@@ -132,8 +132,6 @@ serve(async (req) => {
     const difficultyGuide = DIFFICULTY_GUIDE[difficulty] || DIFFICULTY_GUIDE.medium;
 
     const isPakBoard = level.startsWith('fbise') || level.startsWith('bise') || level.startsWith('aku');
-    const isCambridge = ['igcse', 'as-level', 'a-level'].includes(level) ||
-      /\bcambridge\b|\bcaie\b|\bedexcel\b|\bA[\s-]?Level\b/i.test(additional_requirements || '');
     const isUniversity = ['undergraduate', 'postgraduate'].includes(level);
     const citationStyle = isUniversity ? 'APA 7th edition' : (isPakBoard ? 'Harvard (author-date)' : 'Harvard (author-date)');
 
