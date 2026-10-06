@@ -132,21 +132,14 @@ serve(async (req) => {
     const difficultyGuide = DIFFICULTY_GUIDE[difficulty] || DIFFICULTY_GUIDE.medium;
 
     const isPakBoard = level.startsWith('fbise') || level.startsWith('bise') || level.startsWith('aku');
-    const isCambridge = ['igcse', 'as-level', 'a-level'].includes(level) ||
-      /\bcambridge\b|\bcaie\b|\bedexcel\b|\bA[\s-]?Level\b/i.test(additional_requirements || '');
     const isUniversity = ['undergraduate', 'postgraduate'].includes(level);
     const citationStyle = isUniversity ? 'APA 7th edition' : (isPakBoard ? 'Harvard (author-date)' : 'Harvard (author-date)');
 
-    const aoBlock = isCambridge ? `
-🎯 CAMBRIDGE AO ALIGNMENT (this output only — the user's board uses AOs):
-- Tag every question with the Cambridge Assessment Objective it targets (AO1 Knowledge & Understanding, AO2 Application & Analysis, AO3 Evaluation — check the current syllabus for exact weightings by subject).
-- Include an AO marks-breakdown per question (e.g., "AO1: 2 | AO2: 3 | AO3: 5").
-- The Syllabus Alignment Summary table must include an "Assessment Objective" column.
-` : `
-🎯 ASSESSMENT ALIGNMENT (non-Cambridge board):
-- Do NOT tag questions with Cambridge AO1/AO2/AO3/AO4 labels — they do not apply to this board.
-- Instead, tag every question with Bloom's Taxonomy level (Remember / Understand / Apply / Analyse / Evaluate / Create) and the board's own SLO / learning-outcome code.
-- The Syllabus Alignment Summary table uses "Bloom's Level" + "SLO / Outcome Code" columns instead of AO.
+    const aoBlock = `
+🎯 ASSESSMENT ALIGNMENT (all boards and levels):
+- NEVER use Cambridge AO1/AO2/AO3/AO4 labels anywhere in the output — they only apply to A Level exams and this platform serves general economics students at every level.
+- Instead, tag every question with Bloom's Taxonomy level (Remember / Understand / Apply / Analyse / Evaluate / Create) and, where the board has one, its own SLO / learning-outcome code.
+- The Syllabus Alignment Summary table uses "Bloom's Level" + "SLO / Outcome Code" columns.
 `;
 
     const SKELETONS: Record<string, string> = {
@@ -177,10 +170,10 @@ FORMATTING (strict GitHub-flavoured Markdown — this is rendered directly):
 - Then a 2-column metadata table: | Field | Detail | with rows Subject, Topic, Level / Board, Assignment Type, Total Marks, Duration, Word Count (~${targetWords}), Citation Style (${citationStyle}).
 - Then follow THIS section skeleton exactly, using real "## " and "### " markdown headings (never bold text as a heading, never UPPERCASE paragraphs as headings):
 ${skeleton}
-- After the skeleton add: "## Recommended Reading" (4–6 real sources in ${citationStyle}), "## Syllabus Alignment" (table: Question | Topic / Syllabus Ref | ${isCambridge ? 'AO' : "Bloom's Level"} | Marks), and "## Examiner's Note" (3 lines of strategy).
+- After the skeleton add: "## Recommended Reading" (4–6 real sources in ${citationStyle}), "## Syllabus Alignment" (table: Question | Topic / Syllabus Ref | Bloom's Level | Marks), and "## Examiner's Note" (3 lines of strategy).
 - Every question: a "### Question N — short title [M marks]" heading, the stem in clear prose, sub-parts as (a), (b), (c) each on its own line with marks in brackets, then a blockquote starting "> **Approach Hints:**" with 2–4 short bullet cues (concepts/frameworks to use, one misconception to avoid).
 - Separate major sections with a "---" rule. Keep paragraphs ≤4 sentences. Use tables for any data, rubrics, or comparisons. Bold key terms sparingly.
-- Math in LaTeX: $...$ inline, $$...$$ on its own lines.
+- ALL mathematics MUST be written in LaTeX so it renders beautifully: inline math as $...$ (e.g. $P = MC$), display equations as $$...$$ on their own lines (e.g. $$MR = P\\left(1 - \\frac{1}{|E_d|}\\right)$$). Never write math as plain text like "MR = P(1 - 1/Ed)" or "Qd = a - bP" — always use LaTeX with proper symbols (\\frac, \\times, \\Delta, \\sum, \\sqrt, subscripts, superscripts). This applies to every formula, calculation, worked step, elasticity, cost/revenue function, and statistical expression.
 - No emojis, no preamble ("Here is…"), no closing chatter, never mention being an AI.
 
 RESEARCH-BACKED STANDARDS (from university writing centres and exam boards: Oxford, Monash, GMU, Toronto, McGill, Cambridge International):
