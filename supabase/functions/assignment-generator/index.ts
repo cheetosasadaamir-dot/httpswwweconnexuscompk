@@ -207,7 +207,7 @@ Follow the section skeleton and formatting rules exactly. Start directly with th
         ? "https://openrouter.ai/api/v1/chat/completions"
         : "https://api.openai.com/v1/chat/completions";
     const model = useLovable
-      ? "google/gemini-2.5-flash"
+      ? "openai/gpt-6-astra"
       : isOpenRouter ? "openai/gpt-4o" : "gpt-4o";
 
     const body: Record<string, unknown> = {
