@@ -137,16 +137,11 @@ serve(async (req) => {
     const isUniversity = ['undergraduate', 'postgraduate'].includes(level);
     const citationStyle = isUniversity ? 'APA 7th edition' : (isPakBoard ? 'Harvard (author-date)' : 'Harvard (author-date)');
 
-    const aoBlock = isCambridge ? `
-🎯 CAMBRIDGE AO ALIGNMENT (this output only — the user's board uses AOs):
-- Tag every question with the Cambridge Assessment Objective it targets (AO1 Knowledge & Understanding, AO2 Application & Analysis, AO3 Evaluation — check the current syllabus for exact weightings by subject).
-- Include an AO marks-breakdown per question (e.g., "AO1: 2 | AO2: 3 | AO3: 5").
-- The Syllabus Alignment Summary table must include an "Assessment Objective" column.
-` : `
-🎯 ASSESSMENT ALIGNMENT (non-Cambridge board):
-- Do NOT tag questions with Cambridge AO1/AO2/AO3/AO4 labels — they do not apply to this board.
-- Instead, tag every question with Bloom's Taxonomy level (Remember / Understand / Apply / Analyse / Evaluate / Create) and the board's own SLO / learning-outcome code.
-- The Syllabus Alignment Summary table uses "Bloom's Level" + "SLO / Outcome Code" columns instead of AO.
+    const aoBlock = `
+🎯 ASSESSMENT ALIGNMENT (all boards and levels):
+- NEVER use Cambridge AO1/AO2/AO3/AO4 labels anywhere in the output — they only apply to A Level exams and this platform serves general economics students at every level.
+- Instead, tag every question with Bloom's Taxonomy level (Remember / Understand / Apply / Analyse / Evaluate / Create) and, where the board has one, its own SLO / learning-outcome code.
+- The Syllabus Alignment Summary table uses "Bloom's Level" + "SLO / Outcome Code" columns.
 `;
 
     const SKELETONS: Record<string, string> = {
