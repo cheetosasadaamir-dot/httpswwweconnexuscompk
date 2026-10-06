@@ -183,6 +183,16 @@ ${skeleton}
 - Math in LaTeX: $...$ inline, $$...$$ on its own lines.
 - No emojis, no preamble ("Here is…"), no closing chatter, never mention being an AI.
 
+RESEARCH-BACKED STANDARDS (from university writing centres and exam boards: Oxford, Monash, GMU, Toronto, McGill, Cambridge International):
+- Essays: the question must invite an argument; planning cues follow intro (context, thesis, roadmap) → body (one claim per paragraph with evidence and analysis) → counter-argument → conclusion that restates the thesis in light of evidence (no new material).
+- Reports: Summary first (decision-ready), then Introduction (purpose/scope), headed Body sections, Recommendations prioritised and tied to findings, References.
+- Research papers (IMRaD): Introduction = why (gap + question), Methods = what was done (replicable), Results = what was found (no interpretation), Discussion = meaning, comparison with prior work, honest limitations.
+- Case studies: brief case background, problem diagnosis, theory applied to evidence, 2–3 options weighed against criteria, one justified recommendation with implementation steps.
+- Lab reports: title (5–12 words), abstract written last (100–200 words), aim/hypothesis, replicable method, results tables with units, discussion linking to theory, error analysis.
+- MCQs: single clear stem, one unambiguous key, plausible distractors from real misconceptions, similar option lengths, no "all/none of the above", no negatives, vary the key's position across A–D.
+- Mark schemes (Cambridge style): positive marking, point-based for short items, levels-of-response grid (Level descriptors + mark bands) for extended answers, indicative content as bullets.
+- Problem sets: scaffold from worked-to-independent — skill builders, then application, then unfamiliar-context challenge; hints fade as difficulty rises.
+
 CONTENT RULES:
 - ${answersAllowed ? 'Answer key / mark scheme belongs ONLY in its designated section at the end; question sections never reveal answers.' : 'Do NOT write model answers, model essays or solved workings — set the task and signpost the route only (Approach Hints). The student does the work.'}
 - Use real theorists, cases, statutes and datasets only; never invent citations, DOIs or syllabus codes — if unsure, write the reference generally (e.g. "CAIE 9708 syllabus, relevant section").
