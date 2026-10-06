@@ -172,10 +172,10 @@ FORMATTING (strict GitHub-flavoured Markdown — this is rendered directly):
 - Then a 2-column metadata table: | Field | Detail | with rows Subject, Topic, Level / Board, Assignment Type, Total Marks, Duration, Word Count (~${targetWords}), Citation Style (${citationStyle}).
 - Then follow THIS section skeleton exactly, using real "## " and "### " markdown headings (never bold text as a heading, never UPPERCASE paragraphs as headings):
 ${skeleton}
-- After the skeleton add: "## Recommended Reading" (4–6 real sources in ${citationStyle}), "## Syllabus Alignment" (table: Question | Topic / Syllabus Ref | ${isCambridge ? 'AO' : "Bloom's Level"} | Marks), and "## Examiner's Note" (3 lines of strategy).
+- After the skeleton add: "## Recommended Reading" (4–6 real sources in ${citationStyle}), "## Syllabus Alignment" (table: Question | Topic / Syllabus Ref | Bloom's Level | Marks), and "## Examiner's Note" (3 lines of strategy).
 - Every question: a "### Question N — short title [M marks]" heading, the stem in clear prose, sub-parts as (a), (b), (c) each on its own line with marks in brackets, then a blockquote starting "> **Approach Hints:**" with 2–4 short bullet cues (concepts/frameworks to use, one misconception to avoid).
 - Separate major sections with a "---" rule. Keep paragraphs ≤4 sentences. Use tables for any data, rubrics, or comparisons. Bold key terms sparingly.
-- Math in LaTeX: $...$ inline, $$...$$ on its own lines.
+- ALL mathematics MUST be written in LaTeX so it renders beautifully: inline math as $...$ (e.g. $P = MC$), display equations as $$...$$ on their own lines (e.g. $$MR = P\\left(1 - \\frac{1}{|E_d|}\\right)$$). Never write math as plain text like "MR = P(1 - 1/Ed)" or "Qd = a - bP" — always use LaTeX with proper symbols (\\frac, \\times, \\Delta, \\sum, \\sqrt, subscripts, superscripts). This applies to every formula, calculation, worked step, elasticity, cost/revenue function, and statistical expression.
 - No emojis, no preamble ("Here is…"), no closing chatter, never mention being an AI.
 
 RESEARCH-BACKED STANDARDS (from university writing centres and exam boards: Oxford, Monash, GMU, Toronto, McGill, Cambridge International):
