@@ -1,4 +1,8 @@
 
+## Global economics positioning (requested 2026-10-08)
+- [ ] Remove Cambridge-specific interface and teaching defaults while preserving factual references
+- [ ] Verify market-neutral wording and app navigation
+
 ## Diagram Hub update (requested 2026-09-15)
 - [x] Integrate uploaded 169-diagram guide
 - [x] Add diagrams 151–169 to search and category navigation
