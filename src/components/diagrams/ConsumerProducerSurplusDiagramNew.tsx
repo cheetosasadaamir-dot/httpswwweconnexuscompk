@@ -410,7 +410,7 @@ const ConsumerProducerSurplusDiagramNew = ({
       {/* Cambridge Key */}
       <div className="mt-4 p-4 bg-gradient-to-r from-primary/10 to-transparent border-l-4 border-primary rounded-r-lg">
         <p className="text-sm text-muted-foreground">
-          <strong className="text-foreground">Cambridge Definition:</strong> At equilibrium, total welfare (social surplus) = CS + PS. 
+          <strong className="text-foreground">Economic Definition:</strong> At equilibrium, total welfare (social surplus) = CS + PS. 
           Any deviation from equilibrium creates <strong>deadweight loss</strong> and reduces allocative efficiency.
         </p>
       </div>

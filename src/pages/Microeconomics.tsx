@@ -145,7 +145,7 @@ const LevelSection = ({
       </div>
       <div>
         <h2 className="font-serif text-3xl font-bold text-silver-bright">{level}</h2>
-        <p className="text-muted-foreground">Cambridge International {level}</p>
+        <p className="text-muted-foreground">Microeconomics · {level}</p>
       </div>
     </motion.div>
 

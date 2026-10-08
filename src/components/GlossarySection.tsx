@@ -391,8 +391,8 @@ const GlossarySection = () => {
             The Master Economist's Glossary
           </h2>
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Master the language of the Syllabus. These definitions are aligned with the 
-            2026-2028 Cambridge International Standards to ensure maximum marks.
+            Master the language of economics. Explore clear definitions for foundational study,
+            advanced analysis, and real-world application.
           </p>
         </motion.div>
 

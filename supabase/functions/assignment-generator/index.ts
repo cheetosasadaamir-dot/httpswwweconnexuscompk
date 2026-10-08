@@ -35,9 +35,9 @@ const ASSIGNMENT_TYPES: Record<string, string> = {
 };
 
 const LEVEL_GUIDANCE: Record<string, string> = {
-  igcse: `IGCSE / O-Level (ages 14–16, Cambridge/Edexcel). Clear concepts, foundational depth, scaffolded explanations, board command words.`,
-  'as-level': `AS-Level (Year 12, Cambridge/Edexcel). Analytical depth, intermediate applications, board-style command words.`,
-  'a-level': `A-Level / A2 (Year 13, Cambridge/Edexcel). High analytical and evaluative rigor, synoptic links, extended-response bias.`,
+  igcse: `Secondary school (ages 14–16). Clear concepts, foundational depth, scaffolded explanations, board command words.`,
+  'as-level': `Foundation level (upper secondary). Analytical depth, intermediate applications, board-style command words.`,
+  'a-level': `Advanced level (upper secondary and introductory university). High analytical and evaluative rigor, synoptic links, extended-response bias.`,
   ib: `IB Diploma (HL/SL). TOK linkage, international perspectives, IA-quality methodology.`,
   undergraduate: `Undergraduate university level. Theoretical sophistication, primary literature engagement, critical evaluation.`,
   postgraduate: `Postgraduate / Master's level. Original synthesis, advanced methodology, gap-in-literature framing.`,
@@ -137,7 +137,7 @@ serve(async (req) => {
 
     const aoBlock = `
 🎯 ASSESSMENT ALIGNMENT (all boards and levels):
-- NEVER use Cambridge AO1/AO2/AO3/AO4 labels anywhere in the output — they only apply to A Level exams and this platform serves general economics students at every level.
+- NEVER use AO1/AO2/AO3/AO4 labels anywhere in the output — they only apply to A Level exams and this platform serves general economics students at every level.
 - Instead, tag every question with Bloom's Taxonomy level (Remember / Understand / Apply / Analyse / Evaluate / Create) and, where the board has one, its own SLO / learning-outcome code.
 - The Syllabus Alignment Summary table uses "Bloom's Level" + "SLO / Outcome Code" columns.
 `;
@@ -183,7 +183,7 @@ RESEARCH-BACKED STANDARDS (from university writing centres and exam boards: Oxfo
 - Case studies: brief case background, problem diagnosis, theory applied to evidence, 2–3 options weighed against criteria, one justified recommendation with implementation steps.
 - Lab reports: title (5–12 words), abstract written last (100–200 words), aim/hypothesis, replicable method, results tables with units, discussion linking to theory, error analysis.
 - MCQs: single clear stem, one unambiguous key, plausible distractors from real misconceptions, similar option lengths, no "all/none of the above", no negatives, vary the key's position across A–D.
-- Mark schemes (Cambridge style): positive marking, point-based for short items, levels-of-response grid (Level descriptors + mark bands) for extended answers, indicative content as bullets.
+- Mark schemes: positive marking, point-based for short items, levels-of-response grid (Level descriptors + mark bands) for extended answers, indicative content as bullets.
 - Problem sets: scaffold from worked-to-independent — skill builders, then application, then unfamiliar-context challenge; hints fade as difficulty rises.
 
 CONTENT RULES:

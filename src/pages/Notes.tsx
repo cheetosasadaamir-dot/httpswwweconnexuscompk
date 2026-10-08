@@ -202,8 +202,8 @@ const Notes = () => {
               </h1>
               
               <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                Comprehensive study materials covering the entire Cambridge International 
-                A-Level Economics syllabus. Each chapter includes theory, diagrams, 
+                Comprehensive economics study materials, from foundational concepts
+                to advanced analysis. Each chapter includes theory, diagrams, 
                 exam tips, and real-world applications.
               </p>
             </motion.div>

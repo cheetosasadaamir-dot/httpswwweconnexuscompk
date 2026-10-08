@@ -317,7 +317,7 @@ const NationalIncome = () => {
             </div>
           </AnalysisBlock>
 
-          <ExamTipBox title="Cambridge Examiner Insight">
+          <ExamTipBox title="Analytical Insight">
             <p className="text-xs">
               When answering questions on macroeconomic policy, always consider <strong>both views</strong>. 
               Keynesian analysis is more relevant for short-run analysis with spare capacity, while 

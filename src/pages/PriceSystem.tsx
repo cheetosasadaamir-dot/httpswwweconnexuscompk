@@ -52,7 +52,7 @@ const PriceSystem = () => {
           </p>
           <div className="mt-4 p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
             <p className="text-sm text-muted-foreground">
-              <strong className="text-cyan-400">Key Point:</strong> The phrase "willing and able" is crucial. A consumer may <em>want</em> a luxury car, but without sufficient income (ability), this does not constitute <strong>effective demand</strong>. Cambridge requires this distinction.
+              <strong className="text-cyan-400">Key Point:</strong> The phrase "willing and able" is crucial. A consumer may <em>want</em> a luxury car, but without sufficient income (ability), this does not constitute <strong>effective demand</strong>. This distinction is essential to demand analysis.
             </p>
           </div>
         </NoteCard>
@@ -335,11 +335,11 @@ const PriceSystem = () => {
       {/* Section 2.3: Movement vs Shift */}
       <ContentSection showAd 
         title="2.3 Movement Along vs. Shift of Curve" 
-        subtitle="A Critical Distinction for Cambridge Examinations"
+        subtitle="A Critical Distinction in Economic Analysis"
       >
         <NoteCard title="The Critical Distinction" type="definition">
           <p className="mb-4">
-            Cambridge examiners require precise use of terminology when describing changes in demand or supply. <strong>Misusing these terms will lose marks.</strong>
+            Economic analysis requires precise terminology when describing changes in demand or supply. <strong>Misusing these terms changes the meaning of the analysis.</strong>
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
@@ -365,7 +365,7 @@ const PriceSystem = () => {
           <MovementShiftDiagram />
         </div>
 
-        <ExamTipBox title="Cambridge Command Words" variant="gold">
+        <ExamTipBox title="Economic Analysis Command Words" variant="gold">
           <p className="mb-2"><strong>When the examiner asks you to "explain the effect of a price change":</strong></p>
           <ul className="space-y-1 text-sm">
             <li>✓ Use: "There is a <strong>movement along</strong> the demand curve" or "An <strong>extension/contraction</strong> of demand"</li>
@@ -482,7 +482,7 @@ const PriceSystem = () => {
       >
         <NoteCard title="Comparative Statics" type="theory">
           <p>
-            <strong>Comparative statics</strong> is the method of comparing the <strong>original equilibrium</strong> with a <strong>new equilibrium</strong> after a change in one or more determinants. This is a key analytical skill for Cambridge essays.
+            <strong>Comparative statics</strong> is the method of comparing the <strong>original equilibrium</strong> with a <strong>new equilibrium</strong> after a change in one or more determinants. This is a key skill for economic analysis.
           </p>
         </NoteCard>
 
@@ -532,7 +532,7 @@ const PriceSystem = () => {
         </AnalysisBlock>
 
         <ExamTipBox title="Diagram Drawing for Full Marks" variant="gold" className="mt-6">
-          <p>When drawing equilibrium shift diagrams, Cambridge examiners require:</p>
+          <p>When drawing equilibrium shift diagrams, include:</p>
           <ul className="mt-2 space-y-1 text-sm">
             <li>✓ Label original equilibrium as <strong>E</strong> (or E₀) with Pe and Qe</li>
             <li>✓ Label new equilibrium as <strong>E₁</strong> with P₁ and Q₁</li>

@@ -54,7 +54,7 @@ const ExamIntelligence = () => {
             <span className="text-gradient">Exam Intelligence</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Master Cambridge A-Level Economics MCQ papers with sophisticated Nexus Reasoning™ for every question.
+            Build economics exam skills with past-paper MCQs and detailed Nexus Reasoning™ for every question.
           </p>
         </motion.div>
 
