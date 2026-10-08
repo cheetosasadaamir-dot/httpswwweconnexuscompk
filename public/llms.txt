@@ -1,8 +1,8 @@
 # EconNexus
 
-> Agentic AI tutors, notes, diagrams, and exam intelligence for A-Level and university economics.
+> Agentic AI tutors, courses, notes, diagrams, research, and exam intelligence for economics learners across all markets.
 
-EconNexus deploys 11 specialist AI personas across Economics, Business, Sciences, and Law. Content is syllabus-locked to A-Level board specifications (Foundation and Advanced) with structured notes, interactive diagrams, exam papers, case studies, and a real-time chat tutor.
+EconNexus deploys 11 specialist AI personas across Economics, Business, Sciences, and Law. Economics learning spans foundational and advanced concepts, with structured notes, interactive diagrams, courses, exam papers, case studies, and a real-time chat tutor that adapts to the learner's level and curriculum.
 
 ## Pages
 

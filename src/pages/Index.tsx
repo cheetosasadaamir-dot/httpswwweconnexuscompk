@@ -52,7 +52,7 @@ const features = [
   {
     icon: Target,
     title: "Exam Focused",
-    description: "Strategically built for A-Level board specifications. Every concept leads to exam success.",
+    description: "Build economics knowledge and assessment skills across curricula, from school to university.",
   },
 ];
 
@@ -65,13 +65,13 @@ const Index = () => {
         <title>Econ Nexus: Next-Gen Ecosystem for Academic Excellence</title>
         <meta
           name="description"
-          content="Econ Nexus deploys specialist AI tutors for A-Level and university academics — notes, diagrams, exam intelligence, and syllabus-locked answers."
+          content="Econ Nexus is a global economics learning ecosystem — AI tutors, courses, notes, diagrams, research, and exam intelligence for learners at every level."
         />
         <link rel="canonical" href="https://httpswwweconnexuscompk.lovable.app/" />
         <meta property="og:title" content="Econ Nexus: Next-Gen Ecosystem for Academic Excellence" />
         <meta
           property="og:description"
-          content="Specialist AI tutors, notes, diagrams, and exam intelligence for A-Level and university economics."
+          content="Economics AI tutors, courses, notes, diagrams, research, and exam intelligence for learners across all markets."
         />
         <meta property="og:url" content="https://httpswwweconnexuscompk.lovable.app/" />
       </Helmet>
