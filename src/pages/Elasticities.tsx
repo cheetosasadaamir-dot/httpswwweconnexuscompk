@@ -358,7 +358,7 @@ const Elasticities = () => {
         </div>
 
         <ExamTipBox title="Special Cases: Giffen & Veblen Goods" variant="silver" className="mt-6">
-          <p className="mb-2 text-justify"><strong>Cambridge may test these exceptional cases:</strong></p>
+          <p className="mb-2 text-justify"><strong>Consider these exceptional cases:</strong></p>
           <ul className="space-y-2 text-sm">
             <li><strong>Giffen Goods:</strong> Extremely inferior goods where the income effect dominates the substitution effect, causing demand to <em>increase</em> when price rises (violating the Law of Demand). Theoretical case: staple foods in extreme poverty where price increases reduce real income so severely that consumers cannot afford superior alternatives.</li>
             <li><strong>Veblen Goods:</strong> Conspicuous consumption goods where higher prices increase demand due to status signaling. The high price itself becomes a desirable attribute, demonstrating wealth to observers. Examples: luxury watches, designer fashion, fine art, exclusive club memberships.</li>

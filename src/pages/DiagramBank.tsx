@@ -27,7 +27,7 @@ const DiagramBank = () => {
 
         {/* Color Legend */}
         <div className="glass-card p-6 mb-12">
-          <h3 className="font-serif text-xl text-silver-bright mb-4">Cambridge Standard Color Key</h3>
+          <h3 className="font-serif text-xl text-silver-bright mb-4">Economic Diagram Color Key</h3>
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded" style={{ backgroundColor: 'hsl(185 100% 50%)' }} />
@@ -100,7 +100,7 @@ const DiagramBank = () => {
         <ContentSection title="Chapter 2: The Price System">
           <NoteCard title="Market Equilibrium: Demand & Supply" type="theory">
             <p>
-              The foundation of price determination in free markets. Cambridge requires clear labeling 
+              The foundation of price determination in free markets. Accurate diagrams require clear labeling 
               of <strong>P₁, P₂</strong> for prices and <strong>Q₁, Q₂</strong> for quantities, with 
               equilibrium marked as <strong>E</strong>.
             </p>
@@ -207,7 +207,7 @@ const DiagramBank = () => {
             </div>
           </AnalysisBlock>
 
-          <ExamTipBox title="Cambridge Marking Scheme Tip" variant="gold" className="mt-6">
+          <ExamTipBox title="Diagram Assessment Tip" variant="gold" className="mt-6">
             <p>
               When drawing externality diagrams, examiners award marks for:
             </p>
@@ -224,7 +224,7 @@ const DiagramBank = () => {
         <ContentSection title="Chapter 5: Theory of the Firm">
           <NoteCard title="Pure Monopoly: Profit Maximization" type="theory">
             <p>
-              The monopoly diagram is a <strong>high-mark diagram</strong> in Cambridge exams. 
+              The monopoly diagram is a <strong>key analytical tool</strong> in economics. 
               Key features include the <strong>MC = MR</strong> profit maximization point, the 
               <strong>AR (Demand)</strong> curve, and the <strong>supernormal profit area</strong>.
             </p>
@@ -337,7 +337,7 @@ const DiagramBank = () => {
 
         <ExamTipBox title=" Evaluation Language" variant="silver" className="mt-6">
           <p>
-            Use these Cambridge-standard evaluation phrases in your essays:
+            Use these evaluation phrases to strengthen your economic arguments:
           </p>
           <ul className="mt-2 space-y-1 text-sm">
             <li>• "However, this depends on the <strong>magnitude</strong> of the change..."</li>

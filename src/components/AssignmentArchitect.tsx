@@ -49,8 +49,8 @@ const ASSIGNMENT_TYPES = [
 ];
 
 const LEVELS = [
-  { value: 'igcse', label: 'IGCSE / O-Level (Cambridge)' },
-  { value: 'as-level', label: 'Foundation Level (Cambridge/Edexcel)' },
+  { value: 'igcse', label: 'Secondary School' },
+  { value: 'as-level', label: 'Foundation Level' },
   { value: 'a-level', label: 'Advanced / University' },
   { value: 'ib', label: 'IB Diploma' },
   { value: 'undergraduate', label: 'Undergraduate' },

@@ -494,8 +494,8 @@ const UnemploymentGrowth = () => {
             <p>
               <strong>Keynesians</strong> believe demand-side policies can effectively reduce unemployment, especially 
               when the economy operates below full capacity. <strong>Monetarists</strong> argue that demand management 
-              only causes inflation in the long run; reducing NRU requires supply-side reforms. Cambridge examiners 
-              expect you to evaluate both perspectives!
+              only causes inflation in the long run; reducing NRU requires supply-side reforms. A balanced economic analysis
+              evaluates both perspectives.
             </p>
           </ExamTipBox>
         </ContentSection>

@@ -118,7 +118,7 @@ const NationalIncome = () => {
             </NoteCard>
           </div>
 
-          <ExamTipBox title="Cambridge Examiner Insight">
+          <ExamTipBox title="Analytical Insight">
             <p>
               When drawing the circular flow, always show the indirect links: savings flow to investment 
               via financial institutions; taxes flow to government spending via the government; 

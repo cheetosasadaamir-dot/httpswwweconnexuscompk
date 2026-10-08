@@ -42,7 +42,7 @@ const CaseStudies = () => {
               </h1>
               
               <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                Practice with authentic Cambridge International A-Level Economics past papers. 
+                Explore applied economics through exam-based case studies. 
                 Each case study includes interactive data tables, answer blueprints, and 
                 model answers aligned with marking schemes.
               </p>

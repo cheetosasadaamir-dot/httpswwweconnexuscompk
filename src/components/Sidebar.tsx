@@ -289,7 +289,7 @@ const Sidebar = () => {
         <div className="p-4 border-t border-silver/10">
           <div className="glass-card p-3 rounded-lg">
             <p className="text-xs text-muted-foreground text-center">
-              Cambridge International AS & A Level
+              Economics for Every Learner
             </p>
           </div>
         </div>

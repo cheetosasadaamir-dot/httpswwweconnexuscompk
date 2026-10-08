@@ -321,7 +321,7 @@ const IncomeDetermination = () => {
             </ol>
           </div>
 
-          <ExamTipBox title="Cambridge Examiner Expectation">
+          <ExamTipBox title="Analytical Guidance">
             <p>
               Show the multiplier process step-by-step. Explain that the process ends because 
               each round 'leaks' some income to savings (and in more complex models, to taxes and imports). 
