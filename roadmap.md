@@ -15,6 +15,7 @@
 - [x] Verify Price System and shared chapter spacing on desktop and mobile
 
 ## Broken diagram corrections (requested 2026-09-17)
+- Reference check renewed 2026-10-09 using Economics Help through Firecrawl.
 - [ ] Audit current diagrams for economic and rendering defects
 - [ ] Correct only demonstrably broken diagrams and shared causes
 - [ ] Verify corrected diagrams on desktop and mobile
