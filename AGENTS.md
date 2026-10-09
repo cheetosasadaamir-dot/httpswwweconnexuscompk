@@ -1,2 +1,4 @@
 Keep route changes immediate and reset page scroll only when the pathname changes without a hash; waiting for exit animations or retaining previous scroll positions makes navigation feel broken.
 Use the compact navigation below the wide-desktop breakpoint because the full navigation and search do not fit comfortably on tablets and small laptops.
+Derive externality equilibria and short-run cost turning points from the shared economic models, with numerical tests; rounded labels must not determine plotted points.
+Clip sampled curves to their plotting bounds instead of clamping economic values; clamping invents false flat curve segments.

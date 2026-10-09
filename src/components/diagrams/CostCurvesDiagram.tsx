@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import DiagramFrame from './DiagramFrame';
 import { Axes, Guides, curve } from './DiagramAxes';
 import { DIAGRAM_COLORS as C, plotBox, revealPath, revealPoint, revealFade } from './diagramStyle';
+import { minimumATCQuantity, shortRunCosts } from './economicModels';
 
 interface CostCurvesDiagramProps {
   showTable?: boolean;
@@ -22,16 +23,16 @@ interface CostCurvesDiagramProps {
  * MC therefore cuts AVC exactly at q = 5 and ATC exactly at q ≈ 6.8 — both at their
  * minimum points, as required.
  */
-const TFC = 100;
-const avc = (q: number) => 0.6 * q * q - 6 * q + 41;
-const mc = (q: number) => 1.8 * q * q - 12 * q + 41;
+const TFC = shortRunCosts.fixed;
+const avc = shortRunCosts.avc;
+const mc = shortRunCosts.mc;
 const afc = (q: number) => TFC / q;
-const atc = (q: number) => afc(q) + avc(q);
+const atc = shortRunCosts.atc;
 const tvc = (q: number) => q * avc(q);
 
 const AVC_MIN_Q = 5;
 const AVC_MIN = avc(AVC_MIN_Q); // 26
-const ATC_MIN_Q = 6.8;
+const ATC_MIN_Q = minimumATCQuantity();
 const ATC_MIN = atc(ATC_MIN_Q); // ≈ 42.7
 
 /* Product curves: TP = 3L² − 0.2L³  →  MP = 6L − 0.6L², AP = 3L − 0.2L² */
@@ -59,7 +60,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
   const qx = (q: number) => (q / Q_MAX) * 100;
   const cy = (c: number) => (c / C_MAX) * 100;
   const costPath = (f: (q: number) => number, from = 0.7, to = Q_MAX) =>
-    curve(p, (v) => cy(Math.min(f((v / 100) * Q_MAX), C_MAX)), qx(from), qx(to), 140);
+    curve(p, (v) => cy(f((v / 100) * Q_MAX)), qx(from), qx(to), 140);
 
   const costTicks = [40, 80, 120, 160];
   const qTicks = [2, 4, 6, 8, 10, 12];
@@ -154,7 +155,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
               <>
                 <strong>Key relationship:</strong> whenever MC lies below an average curve that average
                 is falling; whenever MC lies above it, it is rising. MC therefore cuts AVC at its minimum
-                (q = 5, AVC = 26 — the shutdown point) and ATC at its minimum (q ≈ 6.8, ATC ≈ 42.7 — the
+                (q = 5, AVC = 26 — the shutdown point) and ATC at its minimum (q ≈ 6.801, ATC ≈ 42.65 — the
                 break-even point). AFC is a rectangular hyperbola (100/q) that falls continuously, so the
                 vertical gap between ATC and AVC narrows as output rises.
               </>
@@ -202,7 +203,7 @@ const CostCurvesDiagram: React.FC<CostCurvesDiagramProps> = ({ showTable = true 
                 {showMC && play && (
                   <>
                     <motion.path d={costPath(mc, 0.7)} fill="none" stroke={C.supply} strokeWidth={2.8} {...revealPath(3)} />
-                    <motion.text x={p.x(qx(11.0))} y={p.y(cy(mc(11.6)))} fill={C.supply} fontSize={11} {...revealFade(4)}>MC</motion.text>
+                    <motion.text x={p.x(qx(11.0)) - 24} y={p.y(cy(mc(11.0))) + 14} fill={C.supply} fontSize={11} {...revealFade(4)}>MC</motion.text>
                   </>
                 )}
 

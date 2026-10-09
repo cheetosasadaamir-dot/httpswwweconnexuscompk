@@ -105,9 +105,39 @@ export const curve = (
   steps = 80,
 ) => {
   let d = '';
+  let previous: { x: number; y: number } | undefined;
   for (let i = 0; i <= steps; i++) {
     const v = from + ((to - from) * i) / steps;
-    d += `${i === 0 ? 'M' : 'L'} ${p.x(v).toFixed(2)} ${p.y(f(v)).toFixed(2)} `;
+    const current = { x: v, y: f(v) };
+    if (!Number.isFinite(current.y)) {
+      previous = undefined;
+      continue;
+    }
+    if (previous) {
+      // Clip each sampled segment to the economic plotting range, not clamp
+      // its values (clamping would invent horizontal/vertical curve sections).
+      let enter = 0;
+      let exit = 1;
+      const dx = current.x - previous.x;
+      const dy = current.y - previous.y;
+      let visible = true;
+      for (const [direction, distance] of [[-dx, previous.x], [dx, 100 - previous.x], [-dy, previous.y], [dy, 100 - previous.y]]) {
+        if (direction === 0) {
+          if (distance < 0) visible = false;
+        } else {
+          const t = distance / direction;
+          if (direction < 0) enter = Math.max(enter, t);
+          else exit = Math.min(exit, t);
+        }
+      }
+      if (visible && enter <= exit) {
+        const a = { x: previous.x + enter * dx, y: previous.y + enter * dy };
+        const b = { x: previous.x + exit * dx, y: previous.y + exit * dy };
+        if (!d || enter > 0) d += `M ${p.x(a.x).toFixed(2)} ${p.y(a.y).toFixed(2)} `;
+        d += `L ${p.x(b.x).toFixed(2)} ${p.y(b.y).toFixed(2)} `;
+      }
+    }
+    previous = current;
   }
   return d.trim();
 };

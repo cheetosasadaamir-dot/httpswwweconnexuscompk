@@ -29,8 +29,8 @@ const MonopolyDiagram = ({ title }: MonopolyDiagramProps) => {
   const MC = (q: number) => 20 + 0.6 * q;
   const ATC = (q: number) => 300 / q + 20 + 0.3 * q;
 
-  const Qm = 26.667, Pm = 68, ACm = ATC(26.667), MCm = MC(26.667); // 39.25, 36
-  const Qc = 44.444, Pc = 46.667;
+  const Qm = 80 / 3, Pm = AR(Qm), ACm = ATC(Qm), MCm = MC(Qm);
+  const Qc = 80 / 1.8, Pc = AR(Qc);
 
   const seg = (f: (q: number) => number, a: number, b: number) =>
     `M ${x(a)} ${y(f(a))} L ${x(b)} ${y(f(b))}`;
@@ -50,12 +50,14 @@ const MonopolyDiagram = ({ title }: MonopolyDiagramProps) => {
       note={
         <>
           The monopolist faces the whole market demand curve, so AR slopes down and MR falls
-          <strong> twice as steeply</strong>, cutting the horizontal axis at half the output at which AR does.
+          <strong> twice as steeply for this linear demand curve</strong>, cutting the horizontal axis at half
+          the output at which AR does. For non-linear demand, MR still lies below AR but need not have twice its slope.
           Profit is maximised where <strong>MC = MR</strong> at Q<sub>m</sub> = 26.7, and the price is read
           <em> vertically upwards to the AR curve</em> at P<sub>m</sub> = 68 — a common error is to read the
           price off MR or MC. Average cost at that output is 39.3, so the gold rectangle is supernormal
           profit, which barriers to entry preserve into the long run. Because P (68) exceeds MC (36) the
-          market is <strong>allocatively inefficient</strong>: the competitive outcome would be Q<sub>c</sub> = 44.4
+          market is <strong>allocatively inefficient</strong>: the P = MC benchmark, holding the cost curve
+          unchanged and assuming no externalities, is Q<sub>c</sub> = 44.4
           at P<sub>c</sub> = 46.7, and the red triangle between AR, MC and the two output levels is the
           <strong> deadweight welfare loss</strong> of the trades never made. Output is also below min ATC
           (Q = 31.6), so the firm is <strong>productively inefficient</strong> too. Evaluate: economies of
