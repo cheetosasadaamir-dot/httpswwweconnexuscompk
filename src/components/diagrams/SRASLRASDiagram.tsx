@@ -41,8 +41,10 @@ const SRASLRASDiagram = () => {
           import prices via the exchange rate, indirect taxes and subsidies.
           <strong> LRAS is vertical at Yf</strong> because in the long run all prices and wages are flexible,
           so real output depends only on the <em>quantity and quality of factors</em> — labour supply, the
-          capital stock, technology, education and institutions — not on the price level. LRAS shifts only
-          through supply-side improvement (investment, migration, training, productivity, deregulation).
+           capital stock, technology, education and institutions — not on the price level in this classical model.
+           LRAS shifts right when productive capacity improves, and left when capacity falls, for example
+           after capital destruction or a reduction in the workforce. Keynesian models allow spare capacity
+           and a non-vertical supply curve below full employment.
           Here equilibrium is at Y = 56.7 &lt; Yf = 70, a <strong>negative output gap of 13.3</strong>: spare
           capacity, cyclical unemployment and weak inflationary pressure.
         </>

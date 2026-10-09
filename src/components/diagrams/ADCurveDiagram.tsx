@@ -37,7 +37,8 @@ const ADCurveDiagram = () => {
           <strong> (2) Interest-rate effect:</strong> a lower price level reduces the demand for money; with
           money supply fixed, interest rates fall, stimulating credit-financed consumption and investment.
           <strong> (3) International trade effect:</strong> a lower domestic price level makes exports more
-          competitive and imports dearer, so (X − M) rises. A price-level change causes a
+           competitive relative to foreign goods; imports become relatively less attractive, assuming
+           foreign prices and the exchange rate are unchanged, so (X − M) rises. A price-level change causes a
           <em> movement along</em> AD (P = 71 → 39 moves the economy from Y = 30 to Y = 70); a change in any
           non-price determinant of C, I, G or (X − M) <em>shifts</em> the whole curve.
         </>
