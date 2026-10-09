@@ -48,8 +48,10 @@ const KeynesianLRASDiagram = ({ title }: KeynesianLRASDiagramProps) => {
           brought back on line, so unit costs and prices rise alongside output (E₂: Y = 55, P = 55).
           <strong> Phase 3 (Y = Yf = 70, vertical):</strong> at full capacity extra demand is purely
           inflationary (E₃: P = 90 with output stuck at 70). The policy conclusion is that the
-          <strong> effect of a demand stimulus depends entirely on where the economy currently sits</strong> —
-          the same £10bn is costless in phase 1 and purely inflationary in phase 3.
+          <strong> price/output effect of a demand stimulus depends on available capacity</strong> —
+          in the stylised horizontal range output can rise without a price-level increase; at full
+          capacity extra demand raises prices only. Stimulus still has fiscal and opportunity costs,
+          and its real-world effects also depend on expectations, financing and supply constraints.
         </>
       }
     >
