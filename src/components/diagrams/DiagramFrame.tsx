@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 export interface DiagramLegendItem {
   label: string;
@@ -45,7 +46,7 @@ const DiagramFrame = ({
       ([entry]) => {
         if (entry.isIntersecting) setPlay(true);
       },
-      { threshold: 0.15 },
+      { threshold: 0, rootMargin: '100px 0px' },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -76,7 +77,7 @@ const DiagramFrame = ({
             {title}
           </h4>
         </div>
-        <button
+        <Button
           type="button"
           onClick={replay}
           aria-label={`Replay animation for ${title}`}
@@ -84,7 +85,7 @@ const DiagramFrame = ({
         >
           <RotateCcw className="h-3.5 w-3.5" />
           Replay
-        </button>
+        </Button>
       </figcaption>
 
       {legend && legend.length > 0 && (

@@ -23,7 +23,7 @@ const MonetaryInflationDiagram = () => {
   return (
     <DiagramFrame
       title="Monetary Inflation in the Long Run"
-      eyebrow="AD rises against a vertical LRAS — output fixed, prices rise one-for-one"
+      eyebrow="Classical long-run model — higher AD, unchanged potential output"
       legend={[
         { label: 'LRAS — productive potential (Yf)', color: C.social },
         { label: 'AD₁ — before monetary expansion', color: C.demand },
@@ -34,8 +34,10 @@ const MonetaryInflationDiagram = () => {
         <>
           In the long run all wages and prices are flexible, so real output is fixed at Yf by the
           quantity and quality of factors — LRAS is vertical. An increase in the money supply raises
-          AD, but output cannot exceed Yf, so the entire adjustment falls on the price level:
-          P rises from 36 to 66 with Y unchanged at 60. This is the Quantity Theory,
+           AD; after wages and prices adjust, output returns to Yf, so the long-run adjustment falls on
+           the price level. Output can temporarily exceed potential in the short run.
+           The illustrative AD shift raises P from 36 to 66 with Y unchanged at 60; these linear curves
+           do not specify a particular percentage increase in money supply. The Quantity Theory is
           <strong> MV = PQ</strong>: with V and Q stable, a rise in M raises P proportionately.
           Evaluate it: V is not stable in a liquidity trap, and if the economy starts with spare
           capacity part of the AD rise raises real output instead.

@@ -39,7 +39,8 @@ const CostPushDiagram = () => {
           Equilibrium moves from E₁ (Y = 47.1, P = 47.6) to E₂ (Y = 36.5, P = 57.2): the price level
           rises <strong>and</strong> real output falls — stagflation, with rising unemployment.
           Note AD does not move; demand-side policy can cure one problem only by worsening the other,
-          which is why supply-side measures are the sustainable response.
+           while supply-side measures can address the underlying cost constraints. The best response
+           depends on whether the shock is temporary, inflation expectations and policy time lags.
         </>
       }
     >

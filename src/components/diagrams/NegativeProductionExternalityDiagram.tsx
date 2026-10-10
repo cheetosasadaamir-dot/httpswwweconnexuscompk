@@ -54,13 +54,13 @@ const NegativeProductionExternalityDiagram = () => {
   // Market Equilibrium E₁: MPC = Demand (MPB)
   // MPC: y = 15 + 0.7x, Demand: y = 90 - 0.7x
   // 15 + 0.7x = 90 - 0.7x → 1.4x = 75 → x = 53.57
-  const qMarket = 53.57;
+  const qMarket = 75 / 1.4;
   const pMarket = 15 + 0.7 * qMarket; // ≈ 52.5
 
   // Social Optimum E*: MSC = Demand (MSB)
   // MSC: y = 35 + 0.7x, Demand: y = 90 - 0.7x
   // 35 + 0.7x = 90 - 0.7x → 1.4x = 55 → x = 39.29
-  const qOptimal = 39.29;
+  const qOptimal = 55 / 1.4;
   const pOptimal = 35 + 0.7 * qOptimal; // ≈ 62.5
 
   // Welfare Loss Triangle vertices (points toward Q* on left)
@@ -155,7 +155,7 @@ const NegativeProductionExternalityDiagram = () => {
         {/* MSC Curve (Social Cost - Above MPC) */}
         <motion.line
           x1={xScale(msc.x1)} y1={yScale(msc.y1)}
-          x2={xScale(msc.x2)} y2={yScale(Math.min(msc.y2, 100))}
+          x2={xScale((100 - msc.y1) / 0.7)} y2={yScale(100)}
           stroke={mscColor}
           strokeWidth="3"
           strokeLinecap="round"

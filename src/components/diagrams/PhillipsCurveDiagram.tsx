@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
+import { phillipsInflation } from './economicModels';
 
 const PhillipsCurveDiagram = () => {
   const [view, setView] = useState<'srpc' | 'shift' | 'lrpc'>('srpc');
@@ -34,49 +35,17 @@ const PhillipsCurveDiagram = () => {
   // Natural Rate of Unemployment
   const nru = 5;
 
-  // Short-run Phillips Curve 1 (original, πᵉ = 2%)
-  const srpc1Points = [
-    { x: 2, y: 8 },
-    { x: 3, y: 5 },
-    { x: 4, y: 3.5 },
-    { x: 5, y: 2.5 },
-    { x: 6, y: 2 },
-    { x: 8, y: 1.5 },
-    { x: 10, y: 1 },
-  ];
-
-  // Short-run Phillips Curve 2 (shifted, πᵉ = 5%)
-  const srpc2Points = [
-    { x: 2, y: 11 },
-    { x: 3, y: 8 },
-    { x: 4, y: 6.5 },
-    { x: 5, y: 5.5 },
-    { x: 6, y: 5 },
-    { x: 8, y: 4.5 },
-    { x: 10, y: 4 },
-  ];
-
-  // Short-run Phillips Curve 3 (supply shock shift, πᵉ = 7%)
-  const srpc3Points = [
-    { x: 2, y: 13 },
-    { x: 3, y: 10 },
-    { x: 4, y: 8.5 },
-    { x: 5, y: 7.5 },
-    { x: 6, y: 7 },
-    { x: 8, y: 6.5 },
-    { x: 10, y: 6 },
-  ];
-
-  const pathFromPoints = (points: { x: number; y: number }[]) => {
-    let path = `M ${xScale(points[0].x)} ${yScale(points[0].y)}`;
-    for (let i = 1; i < points.length - 1; i++) {
-      const xc = (xScale(points[i].x) + xScale(points[i + 1].x)) / 2;
-      const yc = (yScale(points[i].y) + yScale(points[i + 1].y)) / 2;
-      path += ` Q ${xScale(points[i].x)} ${yScale(points[i].y)} ${xc} ${yc}`;
-    }
-    path += ` L ${xScale(points[points.length - 1].x)} ${yScale(points[points.length - 1].y)}`;
-    return path;
-  };
+  // Sample the actual model, rather than smoothing through control points
+  // that miss the marked equilibria. A(5,2), B(3,5), C(5,5).
+  const sample = (expected: number, shock = 0) => Array.from({ length: 161 }, (_, i) => {
+    const x = 2 + i / 20;
+    return { x, y: phillipsInflation(x, expected, shock) };
+  });
+  const srpc1Points = sample(2);
+  const srpc2Points = sample(5);
+  const srpc3Points = sample(5, 2);
+  const pathFromPoints = (points: { x: number; y: number }[]) =>
+    points.map((point, i) => `${i === 0 ? 'M' : 'L'} ${xScale(point.x)} ${yScale(point.y)}`).join(' ');
 
   const curveVariants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -264,7 +233,7 @@ const PhillipsCurveDiagram = () => {
         />
         <text
           x={xScale(10) + 5}
-          y={yScale(1) + 5}
+          y={yScale(phillipsInflation(10, 2)) + 5}
           fill="hsl(var(--cambridge-cyan))"
           className="text-xs font-semibold"
         >
@@ -285,7 +254,7 @@ const PhillipsCurveDiagram = () => {
             />
             <text
               x={xScale(10) + 5}
-              y={yScale(4) + 5}
+              y={yScale(phillipsInflation(10, 5)) + 5}
               fill="hsl(var(--cambridge-magenta))"
               className="text-xs font-semibold"
             >
@@ -308,7 +277,7 @@ const PhillipsCurveDiagram = () => {
             />
             <text
               x={xScale(10) + 5}
-              y={yScale(6) + 5}
+              y={yScale(phillipsInflation(10, 5, 2)) + 5}
               fill="hsl(var(--cambridge-green))"
               className="text-xs font-semibold"
             >
@@ -317,7 +286,7 @@ const PhillipsCurveDiagram = () => {
 
             {/* Shift arrow 1 */}
             <motion.path
-              d={`M ${xScale(6)} ${yScale(2.5)} L ${xScale(6)} ${yScale(5.5)}`}
+              d={`M ${xScale(nru)} ${yScale(2)} L ${xScale(nru)} ${yScale(5)}`}
               fill="none"
               stroke="hsl(var(--silver))"
               strokeWidth={2}
@@ -330,7 +299,7 @@ const PhillipsCurveDiagram = () => {
 
             {/* Shift arrow 2 */}
             <motion.path
-              d={`M ${xScale(6)} ${yScale(5.5)} L ${xScale(6)} ${yScale(7.5)}`}
+              d={`M ${xScale(nru)} ${yScale(5)} L ${xScale(nru)} ${yScale(7.5)}`}
               fill="none"
               stroke="hsl(var(--silver))"
               strokeWidth={2}
@@ -349,7 +318,7 @@ const PhillipsCurveDiagram = () => {
             {/* Point A - Initial equilibrium on SRPC1 at NRU */}
             <motion.circle
               cx={xScale(nru)}
-              cy={yScale(2.5)}
+              cy={yScale(2)}
               r={7}
               fill="hsl(var(--cambridge-cyan))"
               initial={{ scale: 0 }}
@@ -358,7 +327,7 @@ const PhillipsCurveDiagram = () => {
             />
             <text
               x={xScale(nru) - 15}
-              y={yScale(2.5) - 12}
+              y={yScale(2) - 12}
               fill="hsl(var(--cambridge-cyan))"
               className="text-xs font-bold"
             >
@@ -387,7 +356,7 @@ const PhillipsCurveDiagram = () => {
             {/* Point C - New equilibrium on SRPC2 at NRU */}
             <motion.circle
               cx={xScale(nru)}
-              cy={yScale(5.5)}
+              cy={yScale(5)}
               r={7}
               fill="hsl(var(--cambridge-magenta))"
               initial={{ scale: 0 }}
@@ -396,7 +365,7 @@ const PhillipsCurveDiagram = () => {
             />
             <text
               x={xScale(nru) + 12}
-              y={yScale(5.5) - 8}
+              y={yScale(5) - 8}
               fill="hsl(var(--cambridge-magenta))"
               className="text-xs font-bold"
             >
@@ -405,7 +374,7 @@ const PhillipsCurveDiagram = () => {
 
             {/* Arrow A to B */}
             <motion.path
-              d={`M ${xScale(nru) - 5} ${yScale(2.5) - 5} Q ${xScale(4)} ${yScale(4)} ${xScale(3) + 7} ${yScale(5) + 5}`}
+              d={`M ${xScale(nru) - 5} ${yScale(2) - 5} Q ${xScale(4)} ${yScale(4)} ${xScale(3) + 7} ${yScale(5) + 5}`}
               fill="none"
               stroke="hsl(var(--cambridge-green))"
               strokeWidth={2}
@@ -418,7 +387,7 @@ const PhillipsCurveDiagram = () => {
 
             {/* Arrow B to C */}
             <motion.path
-              d={`M ${xScale(3) + 7} ${yScale(5)} L ${xScale(nru) - 7} ${yScale(5.5)}`}
+              d={`M ${xScale(3) + 7} ${yScale(5)} L ${xScale(nru) - 7} ${yScale(5)}`}
               fill="none"
               stroke="hsl(var(--cambridge-magenta))"
               strokeWidth={2}

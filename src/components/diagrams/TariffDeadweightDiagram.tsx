@@ -61,7 +61,7 @@ const TariffDeadweightDiagram = () => {
       
       {/* Axis Labels */}
       <text x={margin.left + chartWidth / 2} y={height - 12} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="500">Quantity (Q)</text>
-      <text x={18} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="500" transform={`rotate(-90, 18, ${margin.top + chartHeight / 2})`}>General Price Level (GPL)</text>
+      <text x={18} y={margin.top + chartHeight / 2} textAnchor="middle" fill="hsl(var(--foreground))" fontSize="12" fontWeight="500" transform={`rotate(-90, 18, ${margin.top + chartHeight / 2})`}>Price of the good (P)</text>
 
       {/* Supply Curve (domestic) - Neon Cyan */}
       <motion.line
@@ -169,7 +169,7 @@ const TariffDeadweightDiagram = () => {
 
           {/* Producer Surplus Gain - Trapezoid */}
           <motion.polygon
-            points={`${xScale(q1)},${yScale(worldPrice)} ${xScale(q2)},${yScale(worldPrice)} ${xScale(q2)},${yScale(tariffPrice)} ${xScale(q1)},${yScale(tariffPrice)}`}
+            points={`${xScale(0)},${yScale(worldPrice)} ${xScale(0)},${yScale(tariffPrice)} ${xScale(q2)},${yScale(tariffPrice)} ${xScale(q1)},${yScale(worldPrice)}`}
             fill="hsl(var(--cambridge-green))"
             opacity={0.25}
             initial={{ opacity: 0 }}
