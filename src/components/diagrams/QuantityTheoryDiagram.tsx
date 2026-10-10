@@ -134,8 +134,9 @@ const QuantityTheoryDiagram = () => {
 
       {/* Assumptions */}
       <div className="mt-3 p-2 bg-muted/20 rounded text-[10px] text-muted-foreground">
-        <strong>Monetarist Assumptions:</strong> V (velocity) and T (real output) are constant in the short run. 
-        Therefore, any change in M directly causes a proportional change in P.
+        <strong>Classical assumptions:</strong> velocity is assumed stable and real output is fixed at
+        full employment in the long run. Under those assumptions, a change in M produces a proportional
+        change in P. In the short run, output and velocity can change, so this result is not automatic.
       </div>
     </div>
   );

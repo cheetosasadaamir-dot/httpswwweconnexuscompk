@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 
 interface WelfareWithWorldPriceDiagramProps {
   title?: string;
-  scenario?: 'free-trade' | 'autarky' | 'tariff' | 'quota';
+  scenario?: 'free-trade' | 'autarky';
 }
 
 /**
@@ -149,8 +149,6 @@ const WelfareWithWorldPriceDiagram = ({
         return 'Under autarky (no trade), domestic equilibrium occurs where domestic D = S. Consumer surplus is smaller and producer surplus is larger compared to free trade.';
       case 'free-trade':
         return 'Under free trade, the world price (Pw) is below domestic equilibrium. Consumers gain surplus (lower price), but domestic producers lose surplus. Imports = Qd - Qs.';
-      case 'tariff':
-        return 'A tariff raises the effective price to Pw + t. Consumers lose surplus, domestic producers gain, and the government collects tariff revenue. Deadweight loss triangles appear.';
       default:
         return '';
     }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { externalityModel, minimumATCQuantity, shortRunCosts } from '@/components/diagrams/economicModels';
+import { externalityModel, minimumATCQuantity, shortRunCosts, phillipsInflation } from '@/components/diagrams/economicModels';
 import { curve } from '@/components/diagrams/DiagramAxes';
 import { plotBox } from '@/components/diagrams/diagramStyle';
 
@@ -30,6 +30,14 @@ describe('cost identities', () => {
     expect(shortRunCosts.atc(q - 0.1)).toBeGreaterThan(shortRunCosts.atc(q));
     expect(shortRunCosts.atc(q + 0.1)).toBeGreaterThan(shortRunCosts.atc(q));
   });
+});
+
+it('Phillips equilibria match expected inflation at the natural rate', () => {
+  expect(phillipsInflation(5, 2)).toBe(2);
+  expect(phillipsInflation(3, 2)).toBe(5);
+  expect(phillipsInflation(5, 5)).toBe(5);
+  expect(phillipsInflation(5, 5, 2)).toBe(7);
+  expect(phillipsInflation(4, 2)).toBeGreaterThan(phillipsInflation(5, 2));
 });
 
 it('clips a curve at the axes without inventing a flat segment', () => {
