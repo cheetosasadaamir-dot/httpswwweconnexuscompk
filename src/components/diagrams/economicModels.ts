@@ -31,3 +31,7 @@ export const minimumATCQuantity = () => {
   }
   return (low + high) / 2;
 };
+
+/** Expected-inflation SRPC: at the natural rate actual = expected inflation. */
+export const phillipsInflation = (unemployment: number, expected: number, shock = 0) =>
+  expected + 3 * (Math.exp(0.5 * (5 - unemployment)) - 1) / (Math.exp(1) - 1) + shock;

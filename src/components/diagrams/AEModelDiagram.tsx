@@ -172,23 +172,20 @@ const AEModelDiagram = ({
               Yf
             </text>
             {/* Deflationary gap annotation */}
-            <rect
-              x={xScale(visibleEq1Y) - 40}
-              y={yScale(Yf) - 30}
-              width={80}
-              height={22}
-              rx={4}
-              fill="hsl(var(--destructive))"
-              opacity={0.2}
+            <line
+              x1={xScale(Yf)} x2={xScale(Yf)}
+              y1={yScale(Yf)}
+              y2={yScale((showShift ? autonomousShifted : autonomousBase) + MPC * Yf)}
+              stroke="hsl(var(--destructive))" strokeWidth={4}
             />
             <text
-              x={xScale(visibleEq1Y)}
-              y={yScale(Yf) - 15}
-              textAnchor="middle"
+              x={xScale(Yf) - 12}
+              y={yScale(Yf) - 16}
+              textAnchor="end"
               fill="hsl(var(--destructive))"
               className="text-[10px] font-semibold"
             >
-              Deflationary Gap
+              {showShift ? 'Inflationary gap = 100' : 'Deflationary gap = 50'}
             </text>
           </motion.g>
         )}
