@@ -97,7 +97,7 @@ const Header = () => {
             <EconNexusLogo size="sm" showText={false} useImage={true} />
           </div>
           <div className="hidden sm:block">
-            <EconNexusLogo size="sm" useImage={true} />
+            <EconNexusLogo size="sm" showText={false} useImage={true} />
           </div>
 
           {/* Desktop Navigation */}
