@@ -21,7 +21,7 @@ import {
   LineChart,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import logoImage from '@/assets/econnexus-logo-final.png';
+import logoImage from '@/assets/econnexus-emblem.png';
 import OwnerProfileDrawer from './OwnerProfileDrawer';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -270,7 +270,7 @@ const FloatingDock = () => {
           {/* Logo with glow */}
           <Link to="/" className="flex items-center gap-2 px-2 py-1 mr-1.5 shrink-0 group">
             <div className="relative">
-              <img src={logoImage} alt="EconNexus" className="h-8 w-auto object-contain relative z-10 rounded-md" />
+              <img src={logoImage} alt="EconNexus" className="h-7 w-auto object-contain relative z-10" />
               <div className="absolute inset-0 bg-neon-cyan/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           </Link>
