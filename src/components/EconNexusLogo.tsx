@@ -13,7 +13,7 @@ interface EconNexusLogoProps {
 }
 
 const sizeMap = {
-  sm: { icon: 'w-5 h-5', iconBox: 'w-8 h-8', text: 'text-base', gap: 'gap-1.5', img: 'h-7' },
+  sm: { icon: 'w-5 h-5', iconBox: 'w-8 h-8', text: 'text-base', gap: 'gap-1.5', img: 'h-5' },
   md: { icon: 'w-6 h-6', iconBox: 'w-10 h-10', text: 'text-lg', gap: 'gap-2', img: 'h-9' },
   lg: { icon: 'w-7 h-7', iconBox: 'w-12 h-12', text: 'text-2xl', gap: 'gap-2.5', img: 'h-11' },
 };
