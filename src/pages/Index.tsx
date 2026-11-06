@@ -107,38 +107,16 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-fluid-base lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 md:mb-12 px-2"
+                className="text-fluid-base lg:text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto mb-8 md:mb-12 px-2"
               >
-                Deploy an ecosystem of specialized AI minds tailored to your specific field of study. From real-time
-                syllabus tracking to complex University-level analysis, Econ Nexus provides the cognitive infrastructure
-                for the modern elite student.
+                EconNexus is a next-generation interactive learning platform designed to transform the way students
+                understand and explore education. We bring complex academic concepts to life through interactive diagrams,
+                realistic simulations, animated visualizations, in-depth explanations, and AI-powered learning tools. From
+                school-level foundations to advanced university studies, our mission is to make learning more engaging,
+                practical, and accessible. Starting with Economics and expanding into Physics, Mathematics, and other STEM
+                subjects, we're building a future where students don't just memorize concepts where they visualize,
+                experiment, and truly understand them.
               </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4 sm:px-0"
-              >
-                <Button
-                  size="lg"
-                  onClick={() => scrollToNotesRepository()}
-                  className="cta-amber-glow touch-target relative overflow-hidden bg-secondary hover:bg-secondary/90 text-secondary-foreground px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-medium rounded-xl group cursor-pointer w-full sm:w-auto"
-                >
-                  <motion.span
-                    className="absolute inset-0 bg-gradient-to-r from-secondary via-amber-400 to-secondary opacity-0 group-hover:opacity-100 transition-opacity"
-                    animate={{
-                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    style={{ backgroundSize: "200% 200%" }}
-                  />
-                  <span className="relative flex items-center justify-center gap-2">
-                    Explore Economics Notes
-                    <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Button>
-              </motion.div>
             </div>
           </div>
         </section>

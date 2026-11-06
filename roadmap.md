@@ -28,3 +28,8 @@
 - [x] Make shared navigation usable across phones, tablets, laptops and desktops
 - [x] Keep course reading and navigation usable on intermediate screen sizes
 - [x] Verify representative routes at phone, tablet and desktop widths
+
+## Homepage introduction update (requested 2026-11-06)
+- [x] Replace the homepage introduction with the user's new platform description
+- [x] Remove the "Explore Economics Notes" homepage button
+- [x] Verify the homepage on desktop and mobile
