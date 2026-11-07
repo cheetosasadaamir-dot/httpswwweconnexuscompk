@@ -218,8 +218,8 @@ const Notes = () => {
               {[
                 { icon: BookOpen, label: "Chapters", value: "18+" },
                 { icon: BarChart3, label: "Diagrams", value: "100+" },
-                { icon: GraduationCap, label: "Exam Tips", value: "50+" },
-                { icon: LineChart, label: "Case Studies", value: "20+" }
+                { icon: GraduationCap, label: "Study Tips", value: "50+" },
+                { icon: LineChart, label: "Real-World Examples", value: "20+" }
               ].map((stat, idx) => (
                 <div key={idx} className="glass-card p-4 text-center">
                   <stat.icon className="w-5 h-5 text-neon-cyan mx-auto mb-2" />

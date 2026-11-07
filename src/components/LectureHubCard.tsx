@@ -72,7 +72,7 @@ const LectureHubCard = () => {
                 {[
                   { top: '12%', left: '10%', delay: 0, label: 'Micro · AS' },
                   { top: '38%', left: '46%', delay: 0.15, label: 'Macro · Advanced' },
-                  { top: '62%', left: '18%', delay: 0.3, label: 'Case Studies' },
+                  { top: '62%', left: '18%', delay: 0.3, label: 'Price Systems' },
                 ].map((t, i) => (
                   <motion.div
                     key={i}

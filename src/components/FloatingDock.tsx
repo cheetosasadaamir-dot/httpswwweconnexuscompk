@@ -103,8 +103,6 @@ const navigation: NavItem[] = [
       },
     ],
   },
-  { title: 'Case Studies', href: '/case-studies', icon: BookOpen },
-  { title: 'Exam Intelligence', href: '/exam-intelligence', icon: GraduationCap },
 ];
 
 // Mobile tiered navigation structure
@@ -432,14 +430,6 @@ const FloatingDock = () => {
                     <Library className="w-4 h-4" />
                     <span>Notes</span>
                   </Link>
-                  <Link
-                    to="/exam-intelligence"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-neon-cyan/10 border border-neon-cyan/20 text-neon-cyan hover:bg-neon-cyan/20 transition-all text-sm touch-target pointer-events-auto"
-                  >
-                    <GraduationCap className="w-4 h-4" />
-                    <span>Exams</span>
-                  </Link>
                 </div>
 
                 {/* Lecture Hub — locked until sign-in */}
@@ -582,17 +572,6 @@ const FloatingDock = () => {
                 {/* Divider */}
                 <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-5 md:my-6" />
 
-                {/* Utility Links - Touch-friendly */}
-                <div className="space-y-2">
-                  <Link
-                    to="/case-studies"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 md:px-4 py-3 rounded-xl text-muted-foreground hover:bg-space-elevated hover:text-white transition-all touch-target"
-                  >
-                    <BookOpen className="w-5 h-5" />
-                    <span className="font-medium">Case Studies</span>
-                  </Link>
-                </div>
               </div>
             </motion.div>
           </motion.div>

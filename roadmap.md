@@ -33,3 +33,7 @@
 - [x] Replace the homepage introduction with the user's new platform description
 - [x] Remove the "Explore Economics Notes" homepage button
 - [x] Verify the homepage on desktop and mobile
+
+## Remove Case Studies and Exam Intelligence sections (requested 2026-11-06)
+- [x] Remove their routes, navigation, search entries, and public listings
+- [x] Keep unrelated real-world examples and study guidance intact

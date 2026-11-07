@@ -1,32 +1,20 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, FileText, BookOpen, Briefcase, ChevronRight, Command, GraduationCap } from 'lucide-react';
+import { Search, FileText, BookOpen, ChevronRight, Command } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { sanitizeInput, checkRateLimit, RATE_LIMITS } from '@/lib/security';
 import { useDebounce } from '@/hooks/use-debounce';
 import { useAuthGate } from '@/hooks/useAuthGate';
-import { allExamPapers } from '@/data/examPapers';
 
 interface SearchResult {
   id: string;
   title: string;
-  category: 'notes' | 'case-studies' | 'chapter' | 'topic' | 'exam-mcq';
+  category: 'notes' | 'chapter' | 'topic';
   href: string;
   description?: string;
   scrollTo?: string;
 }
-
-// Generate exam MCQ search entries from all papers
-const examMCQContent: SearchResult[] = allExamPapers.flatMap(paper => 
-  paper.questions.map(q => ({
-    id: `${paper.code}-${paper.session}-q${q.id}`,
-    title: `Q${q.id}: ${q.question.slice(0, 60)}${q.question.length > 60 ? '...' : ''}`,
-    category: 'exam-mcq' as const,
-    href: `/exam-intelligence?paper=${paper.code}&session=${encodeURIComponent(paper.session)}&question=${q.id}`,
-    description: `${paper.code} ${paper.session} | ${q.examinerKey.ao}: ${q.examinerKey.topic}`
-  }))
-);
 
 // Searchable content database
 const searchableContent: SearchResult[] = [
@@ -89,15 +77,7 @@ const searchableContent: SearchResult[] = [
   { id: 'customs-union', title: 'Customs Union', category: 'topic', href: '/as-macro/international-trade', description: 'Trade bloc with common external tariff' },
   { id: 'tariff', title: 'Tariff', category: 'topic', href: '/as-macro/international-trade', description: 'Tax on imports' },
   
-  // Notes & Case Studies pages
-  { id: 'notes', title: 'Notes Library', category: 'notes', href: '/notes', description: 'Complete A-Level Economics Materials' },
-  { id: 'case-studies', title: 'Case Studies Bank', category: 'case-studies', href: '/case-studies', description: 'Past Papers & Analysis' },
-  
-  // Exam Intelligence
-  { id: 'exam-intelligence', title: 'Exam Intelligence', category: 'chapter', href: '/exam-intelligence', description: 'MCQ Masterclass – 240 Solved Questions' },
-  
-  // Add exam MCQ content
-  ...examMCQContent,
+  { id: 'notes', title: 'Notes Library', category: 'notes', href: '/notes', description: 'Economics study materials across all levels' },
 ];
 
 const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
@@ -210,10 +190,8 @@ const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
   const getCategoryIcon = (category: SearchResult['category']) => {
     switch (category) {
       case 'notes': return BookOpen;
-      case 'case-studies': return Briefcase;
       case 'chapter': return FileText;
       case 'topic': return Search;
-      case 'exam-mcq': return GraduationCap;
       default: return FileText;
     }
   };
@@ -221,10 +199,8 @@ const GlobalSearch = ({ compact = false }: { compact?: boolean }) => {
   const getCategoryLabel = (category: SearchResult['category']) => {
     switch (category) {
       case 'notes': return 'Notes';
-      case 'case-studies': return 'Case Study';
       case 'chapter': return 'Chapter';
       case 'topic': return 'Topic';
-      case 'exam-mcq': return 'MCQ';
       default: return 'Content';
     }
   };

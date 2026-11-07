@@ -65,13 +65,13 @@ const Index = () => {
         <title>Econ Nexus: Next-Gen Ecosystem for Academic Excellence</title>
         <meta
           name="description"
-          content="Econ Nexus is a global economics learning ecosystem — AI tutors, courses, notes, diagrams, research, and exam intelligence for learners at every level."
+          content="Econ Nexus is a global economics learning ecosystem — AI tutors, courses, notes, diagrams, and research for learners at every level."
         />
         <link rel="canonical" href="https://httpswwweconnexuscompk.lovable.app/" />
         <meta property="og:title" content="Econ Nexus: Next-Gen Ecosystem for Academic Excellence" />
         <meta
           property="og:description"
-          content="Economics AI tutors, courses, notes, diagrams, research, and exam intelligence for learners across all markets."
+          content="Economics AI tutors, courses, notes, diagrams, and research for learners across all markets."
         />
         <meta property="og:url" content="https://httpswwweconnexuscompk.lovable.app/" />
       </Helmet>

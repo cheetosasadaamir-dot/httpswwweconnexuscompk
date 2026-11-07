@@ -127,7 +127,6 @@ const routeLabels: Record<string, BreadcrumbItem[]> = {
   ],
   // Other pages
   '/diagrams': [{ label: 'Diagram Bank', href: '/diagrams' }],
-  '/case-studies': [{ label: 'Case Studies', href: '/case-studies' }],
   '/market-structures': [
     { label: 'Microeconomics', href: '/microeconomics' },
     { label: 'Market Structures', href: '/market-structures' },

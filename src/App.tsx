@@ -20,14 +20,12 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 const MarketStructures = lazy(() => import("./pages/MarketStructures"));
 const BasicEconomicIdeas = lazy(() => import("./pages/BasicEconomicIdeas"));
 const PriceSystem = lazy(() => import("./pages/PriceSystem"));
-const CaseStudies = lazy(() => import("./pages/CaseStudies"));
 const Notes = lazy(() => import("./pages/Notes"));
 const NationalIncomeLegacy = lazy(() => import("./pages/NationalIncome"));
 const IncomeDetermination = lazy(() => import("./pages/IncomeDetermination"));
 const NationalIncome = lazy(() => import("./pages/a2-macro/NationalIncome"));
 const Elasticities = lazy(() => import("./pages/Elasticities"));
 const MarketFailure = lazy(() => import("./pages/MarketFailure"));
-const ExamIntelligence = lazy(() => import("./pages/ExamIntelligence"));
 
 // Landing pages for hierarchical navigation
 const Microeconomics = lazy(() => import("./pages/Microeconomics"));
@@ -157,8 +155,6 @@ const AnimatedRoutes = () => {
           
           {/* Utility pages */}
           <Route path="/notes" element={<Notes />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/exam-intelligence" element={<ExamIntelligence />} />
           <Route path="/market-structures" element={<MarketStructures />} />
           
           {/* Utility & Admin */}

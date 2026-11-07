@@ -6,8 +6,7 @@ const footerLinks = {
   resources: [
     { label: 'Notes Library', href: '/notes' },
     { label: 'Diagram Bank', href: '/diagrams' },
-    { label: 'Case Studies', href: '/case-studies' },
-    { label: 'Exam Tips', href: '/exam-tips' },
+    { label: 'Courses', href: '/courses' },
   ],
   topics: [
     { label: 'Microeconomics', href: '/microeconomics' },

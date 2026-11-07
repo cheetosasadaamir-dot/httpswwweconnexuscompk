@@ -97,11 +97,6 @@ const navigation: NavItem[] = [
     icon: BookOpen,
   },
   {
-    title: 'Case Studies',
-    href: '/case-studies',
-    icon: GraduationCap,
-  },
-  {
     title: 'Diagram Bank',
     href: '/diagrams',
     icon: Image,
