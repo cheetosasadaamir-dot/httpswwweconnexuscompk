@@ -37,3 +37,8 @@
 ## Remove Case Studies and Exam Intelligence sections (requested 2026-11-06)
 - [x] Remove their routes, navigation, search entries, and public listings
 - [x] Keep unrelated real-world examples and study guidance intact
+
+## Homepage closing callout and headline removal (requested 2026-11-08)
+- [x] Remove the closing economics callout and its button
+- [x] Remove the "Econ Nexus: Next-Gen Ecosystem for Academic Excellence" homepage headline and matching page metadata
+- [x] Verify the homepage has no remaining instances of the removed wording

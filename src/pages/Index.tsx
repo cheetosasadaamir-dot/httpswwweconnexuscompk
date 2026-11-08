@@ -1,9 +1,7 @@
-import { useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import AuthOverlay from "@/components/AuthOverlay";
 import { motion } from "framer-motion";
 import {
-  ArrowRight,
   Sparkles,
   LineChart,
   MessageSquare,
@@ -35,9 +33,6 @@ import LectureHubCard from "@/components/LectureHubCard";
 import ArticleHubCard from "@/components/ArticleHubCard";
 import AdUnit from "@/components/AdUnit";
 
-import { Button } from "@/components/ui/button";
-import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-
 const features = [
   {
     icon: LineChart,
@@ -57,18 +52,16 @@ const features = [
 ];
 
 const Index = () => {
-  const { scrollToNotesRepository } = useSmoothScroll();
-
   return (
     <div className="min-h-screen relative">
       <Helmet>
-        <title>Econ Nexus: Next-Gen Ecosystem for Academic Excellence</title>
+        <title>Econ Nexus | Interactive Learning Platform</title>
         <meta
           name="description"
           content="Econ Nexus is a global economics learning ecosystem — AI tutors, courses, notes, diagrams, and research for learners at every level."
         />
         <link rel="canonical" href="https://httpswwweconnexuscompk.lovable.app/" />
-        <meta property="og:title" content="Econ Nexus: Next-Gen Ecosystem for Academic Excellence" />
+        <meta property="og:title" content="Econ Nexus | Interactive Learning Platform" />
         <meta
           property="og:description"
           content="Economics AI tutors, courses, notes, diagrams, and research for learners across all markets."
@@ -86,22 +79,6 @@ const Index = () => {
           <div className="w-[95%] max-w-[1200px] mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-24">
             <div className="text-center">
               {/* Persona Badge */}
-
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-bold leading-tight mb-6 md:mb-8 text-fluid-hero"
-                style={{
-                  fontFamily: "'Syne', sans-serif",
-                  fontWeight: 800,
-                  fontStyle: "italic",
-                  letterSpacing: "-0.04em",
-                  textTransform: "uppercase" as const,
-                }}
-              >
-                <span className="section-title">Econ Nexus: Next-Gen Ecosystem for Academic Excellence</span>
-              </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -375,50 +352,8 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Silver Divider */}
-        <div className="w-[95%] max-w-[1200px] mx-auto">
-          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
-        </div>
-
         {/* Master Economist's Glossary */}
         <GlossarySection />
-
-        {/* Silver Divider */}
-        <div className="w-[95%] max-w-[1200px] mx-auto">
-          <div className="h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.2)] to-transparent" />
-        </div>
-
-        {/* CTA Section */}
-        <section className="section-mobile">
-          <div className="w-[95%] max-w-[1200px] mx-auto text-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <h2
-                className="text-fluid-4xl lg:text-fluid-5xl font-bold text-silver-bright mb-4 md:mb-6"
-                style={{
-                  fontFamily: "'Syne', sans-serif",
-                  fontWeight: 800,
-                  fontStyle: "italic",
-                  letterSpacing: "-0.04em",
-                  textTransform: "uppercase" as const,
-                }}
-              >
-                Ready to Master Economics?
-              </h2>
-              <p className="text-fluid-lg lg:text-xl text-muted-foreground mb-8 md:mb-10 max-w-2xl mx-auto px-2">
-                Join thousands of students who've transformed their understanding of economics. Your A* journey starts
-                here.
-              </p>
-              <Button
-                size="lg"
-                onClick={() => scrollToNotesRepository()}
-                className="cta-amber-glow touch-target bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 md:px-10 py-5 md:py-6 text-base md:text-lg rounded-xl cursor-pointer w-full sm:w-auto"
-              >
-                Begin Your Journey
-                <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
-              </Button>
-            </motion.div>
-          </div>
-        </section>
       </main>
 
       <Footer />
