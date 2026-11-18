@@ -42,3 +42,9 @@
 - [x] Remove the closing economics callout and its button
 - [x] Remove the "Econ Nexus: Next-Gen Ecosystem for Academic Excellence" homepage headline and matching page metadata
 - [x] Verify the homepage has no remaining instances of the removed wording
+
+## Homepage knowledge pillars and STEM expansion (requested 2026-11-18)
+- [ ] Combine Microeconomics and Macroeconomics into one Economics opening window
+- [ ] Organize Knowledge Pillars into Social Sciences and STEM Sciences, with Economics and Physics available
+- [ ] Match the existing homepage window style and make room for future subjects
+- [ ] Verify homepage navigation and layout across desktop and mobile
