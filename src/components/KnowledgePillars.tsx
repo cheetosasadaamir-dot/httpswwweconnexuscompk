@@ -2,39 +2,38 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuthGate } from '@/hooks/useAuthGate';
-import { 
-  TrendingUp, 
-  Users, 
-  ShoppingCart, 
-  BarChart3,
-  Globe,
-  Landmark,
-  PiggyBank,
-  ArrowUpRight,
-  Activity
-} from 'lucide-react';
+import { Activity, ArrowUpRight, Atom, BarChart3, Brain, Dna, FlaskConical, Globe, Landmark, PiggyBank, ShoppingCart, Sigma, TrendingUp, Users } from 'lucide-react';
 
 interface PillarCardProps {
   title: string;
   description: string;
-  href: string;
+  href?: string;
   icons: React.ComponentType<{ className?: string }>[];
   gradient: string;
   hoverGradient: string;
   delay: number;
+  comingSoon?: boolean;
 }
 
-const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, delay }: PillarCardProps) => {
+const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, delay, comingSoon = false }: PillarCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated, requireAuth } = useAuthGate();
 
   const handleClick = (e: React.MouseEvent) => {
+    if (!href) return;
     e.preventDefault();
     if (isAuthenticated) {
       navigate(href);
     } else {
       requireAuth(() => navigate(href));
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (href && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      navigate(href);
     }
   };
 
@@ -45,7 +44,14 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
     >
-      <div onClick={handleClick} className="cursor-pointer">
+      <div
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        role={href ? 'link' : undefined}
+        tabIndex={href ? 0 : -1}
+        aria-label={href ? `Explore ${title}` : `${title}, coming soon`}
+        className={href ? 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary' : 'cursor-default'}
+      >
         <motion.div
           onHoverStart={() => setIsHovered(true)}
           onHoverEnd={() => setIsHovered(false)}
@@ -115,13 +121,19 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-3 md:mb-4 max-w-xs">
                 {description}
               </p>
-              <motion.div
-                className="inline-flex items-center gap-2 text-primary font-medium text-sm md:text-base"
-                animate={{ x: isHovered ? 5 : 0 }}
-              >
-                Explore Topics
-                <ArrowUpRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
-              </motion.div>
+              {comingSoon ? (
+                <span className="inline-flex items-center rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary">
+                  Coming soon
+                </span>
+              ) : (
+                <motion.div
+                  className="inline-flex items-center gap-2 text-primary font-medium text-sm md:text-base"
+                  animate={{ x: isHovered ? 5 : 0 }}
+                >
+                  Explore Topics
+                  <ArrowUpRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                </motion.div>
+              )}
             </motion.div>
           </div>
 
@@ -145,28 +157,88 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
 };
 
 const KnowledgePillars = () => {
+  const economicsGradient = 'linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(234 60% 12%) 50%, hsl(var(--navy-light)) 100%)';
+  const economicsHover = 'linear-gradient(135deg, hsl(234 60% 15%) 0%, hsl(217 60% 18%) 50%, hsl(234 50% 20%) 100%)';
+  const stemGradient = 'linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(200 60% 12%) 50%, hsl(var(--navy-light)) 100%)';
+  const stemHover = 'linear-gradient(135deg, hsl(200 60% 15%) 0%, hsl(190 60% 18%) 50%, hsl(200 50% 20%) 100%)';
+
   return (
-    <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
-      <div data-first-chapter="true">
-        <PillarCard
-          title="Microeconomics"
-          description="Explore individual markets, consumer behavior, and the forces of supply and demand."
-          href="/microeconomics"
-          icons={[TrendingUp, Users, ShoppingCart, BarChart3]}
-          gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(234 60% 12%) 50%, hsl(var(--navy-light)) 100%)"
-          hoverGradient="linear-gradient(135deg, hsl(234 60% 15%) 0%, hsl(217 60% 18%) 50%, hsl(234 50% 20%) 100%)"
-          delay={0}
-        />
+    <div className="space-y-12 md:space-y-16">
+      <section aria-labelledby="social-sciences-heading">
+        <div className="mb-5 md:mb-7 flex items-end justify-between gap-4">
+          <div>
+            <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-secondary">Social Sciences</p>
+            <h3 id="social-sciences-heading" className="font-serif text-2xl md:text-3xl font-bold text-silver-bright">Explore society and its systems</h3>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+          <div data-first-chapter="true">
+            <PillarCard
+              title="Economics"
+              description="Explore choices, markets, prices, national economies, and the forces shaping everyday life."
+              href="/economics"
+              icons={[TrendingUp, BarChart3, Globe, Landmark]}
+              gradient={economicsGradient}
+              hoverGradient={economicsHover}
+              delay={0}
+            />
+          </div>
+          <PillarCard
+            title="Other Social Sciences"
+            description="More ways to explore people, communities, institutions, and society are on the way."
+            icons={[Users, Brain, Activity]}
+            gradient={economicsGradient}
+            hoverGradient={economicsHover}
+            delay={0.1}
+            comingSoon
+          />
+        </div>
+      </section>
+
+      <section aria-labelledby="stem-sciences-heading">
+        <div className="mb-5 md:mb-7">
+          <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-secondary">STEM Sciences</p>
+          <h3 id="stem-sciences-heading" className="font-serif text-2xl md:text-3xl font-bold text-silver-bright">Explore the natural world</h3>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+          <PillarCard
+            title="Physics"
+            description="Explore motion, energy, forces, and the principles that describe the physical world."
+            href="/chat?subject=physics"
+            icons={[Atom, Activity, TrendingUp]}
+            gradient={stemGradient}
+            hoverGradient={stemHover}
+            delay={0}
+          />
+          <PillarCard
+            title="Chemistry"
+            description="A new subject area is in development."
+            icons={[FlaskConical, Atom, Activity]}
+            gradient={stemGradient}
+            hoverGradient={stemHover}
+            delay={0.1}
+            comingSoon
+          />
+          <PillarCard
+            title="Mathematics"
+            description="A new subject area is in development."
+            icons={[Sigma, BarChart3, TrendingUp]}
+            gradient={stemGradient}
+            hoverGradient={stemHover}
+            delay={0.2}
+            comingSoon
+          />
+          <PillarCard
+            title="Biology"
+            description="A new subject area is in development."
+            icons={[Dna, Activity, Brain]}
+            gradient={stemGradient}
+            hoverGradient={stemHover}
+            delay={0.3}
+            comingSoon
+          />
+        </div>
       </div>
-      <PillarCard
-        title="Macroeconomics"
-        description="Understand global trade, inflation, monetary policy, and economic growth."
-        href="/macroeconomics"
-        icons={[Globe, Landmark, PiggyBank, Activity]}
-        gradient="linear-gradient(135deg, hsl(var(--navy-base)) 0%, hsl(217 50% 12%) 50%, hsl(var(--navy-light)) 100%)"
-        hoverGradient="linear-gradient(135deg, hsl(217 50% 15%) 0%, hsl(200 50% 18%) 50%, hsl(217 40% 20%) 100%)"
-        delay={0.15}
-      />
     </div>
   );
 };
