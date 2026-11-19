@@ -30,6 +30,7 @@ const MarketFailure = lazy(() => import("./pages/MarketFailure"));
 // Landing pages for hierarchical navigation
 const Microeconomics = lazy(() => import("./pages/Microeconomics"));
 const Macroeconomics = lazy(() => import("./pages/Macroeconomics"));
+const Economics = lazy(() => import("./pages/Economics"));
 
 // Foundation Macro chapters
 const ADASEquilibrium = lazy(() => import("./pages/as-macro/ADASEquilibrium"));
@@ -122,6 +123,7 @@ const AnimatedRoutes = () => {
           <Route path="/" element={<Index />} />
           
           {/* Main Landing Pages */}
+          <Route path="/economics" element={<Economics />} />
           <Route path="/microeconomics" element={<Microeconomics />} />
           <Route path="/macroeconomics" element={<Macroeconomics />} />
           

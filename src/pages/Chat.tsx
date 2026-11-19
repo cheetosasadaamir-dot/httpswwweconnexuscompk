@@ -1,8 +1,12 @@
 import Layout from '@/components/Layout';
 import EconomicsChatbot from '@/components/EconomicsChatbot';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const Chat = () => {
+  const [searchParams] = useSearchParams();
+  const initialPersona = searchParams.get('subject') === 'physics' ? 'physics' : undefined;
+
   useEffect(() => {
     document.title = 'AI Tutor Chat — EconNexus';
     const meta = document.querySelector('meta[name="description"]');
@@ -12,7 +16,7 @@ const Chat = () => {
   return (
     <Layout>
       <div className="w-full">
-        <EconomicsChatbot fullScreen />
+        <EconomicsChatbot fullScreen initialPersona={initialPersona} />
       </div>
     </Layout>
   );

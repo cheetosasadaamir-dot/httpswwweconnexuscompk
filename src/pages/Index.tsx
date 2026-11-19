@@ -171,7 +171,7 @@ const Index = () => {
                 Knowledge Pillars
               </h2>
               <p className="text-fluid-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
-                Two foundational branches of economics, each with its own universe of concepts to master.
+                Explore Economics and the wider social sciences alongside Physics and growing STEM subject areas.
               </p>
             </motion.div>
 

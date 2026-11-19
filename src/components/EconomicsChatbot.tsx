@@ -733,7 +733,13 @@ const SystemStatus = ({ streamState }: { streamState: StreamState }) => {
   );
 };
 
-export default function EconomicsChatbot({ fullScreen = false }: { fullScreen?: boolean } = {}) {
+export default function EconomicsChatbot({
+  fullScreen = false,
+  initialPersona,
+}: {
+  fullScreen?: boolean;
+  initialPersona?: 'physics';
+} = {}) {
   const { user } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [guestMessageCount, setGuestMessageCount] = useState<number>(() => {
@@ -746,7 +752,7 @@ export default function EconomicsChatbot({ fullScreen = false }: { fullScreen?: 
   const [isLoading, setIsLoading] = useState(false);
   const [streamState, setStreamState] = useState<StreamState>('idle');
   const [retryCount, setRetryCount] = useState(0);
-  const [persona, setPersona] = useState<Persona>('a-level');
+  const [persona, setPersona] = useState<Persona>(initialPersona ?? 'a-level');
   const [isChatActive, setIsChatActive] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [uploadedImageName, setUploadedImageName] = useState<string>('');

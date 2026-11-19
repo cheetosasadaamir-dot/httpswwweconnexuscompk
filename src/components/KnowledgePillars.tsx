@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuthGate } from '@/hooks/useAuthGate';
-import { Activity, ArrowUpRight, Atom, BarChart3, Brain, Dna, FlaskConical, Globe, Landmark, PiggyBank, ShoppingCart, Sigma, TrendingUp, Users } from 'lucide-react';
+import { Activity, ArrowUpRight, Atom, BarChart3, Brain, Dna, FlaskConical, Globe, Landmark, Sigma, TrendingUp, Users } from 'lucide-react';
 
 interface PillarCardProps {
   title: string;
@@ -23,6 +23,11 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
   const handleClick = (e: React.MouseEvent) => {
     if (!href) return;
     e.preventDefault();
+    openDestination();
+  };
+
+  const openDestination = () => {
+    if (!href) return;
     if (isAuthenticated) {
       navigate(href);
     } else {
@@ -33,7 +38,7 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (href && (event.key === 'Enter' || event.key === ' ')) {
       event.preventDefault();
-      navigate(href);
+      openDestination();
     }
   };
 
@@ -55,8 +60,8 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
         <motion.div
           onHoverStart={() => setIsHovered(true)}
           onHoverEnd={() => setIsHovered(false)}
-          className="relative h-64 md:h-80 lg:h-96 rounded-xl md:rounded-2xl overflow-hidden cursor-pointer group touch-target"
-          whileHover={{ scale: 1.02 }}
+          className={`relative h-64 md:h-80 lg:h-96 rounded-xl md:rounded-2xl overflow-hidden ${href ? 'cursor-pointer' : 'cursor-default'} group touch-target`}
+          whileHover={href ? { scale: 1.02 } : undefined}
           transition={{ duration: 0.3 }}
         >
           {/* Background with gradient shift */}
@@ -93,7 +98,7 @@ const PillarCard = ({ title, description, href, icons, gradient, hoverGradient, 
                 <Icon className="w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 text-silver/30" />
               </motion.div>
             ))}
-          </div>
+                </div>
 
           {/* Border glow on hover */}
           <motion.div
@@ -238,7 +243,7 @@ const KnowledgePillars = () => {
             comingSoon
           />
         </div>
-      </div>
+      </section>
     </div>
   );
 };
